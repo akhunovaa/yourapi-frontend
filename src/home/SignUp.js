@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './Home.css';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import logo from '../img/logo.jpg';
 import { Redirect } from 'react-router-dom'
 import { ReCaptcha } from 'react-recaptcha-google'
 import { signup } from '../util/APIUtils';
@@ -82,7 +81,6 @@ class SignUpForm extends Component {
                 Alert.error((error && error.message) || 'Что-то пошло не так! Попробуйте заново.');
             });
         }
-
     }
 
     render() {
@@ -90,7 +88,7 @@ class SignUpForm extends Component {
             <Grid className={"login-form"} textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                 <Grid.Column className="grid-column">
                     <Header as='h2' color='teal' textAlign='center'>
-                        <Image src={logo} /> Регистрация
+                        <Image/> Регистрация
                     </Header>
                     <Form onSubmit={this.handleSubmit} size='large'>
                         <Segment stacked>

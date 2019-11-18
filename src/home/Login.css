@@ -1,0 +1,52 @@
+.main{
+    position: relative;
+    width: 1366px;
+    height: 768px;
+    background: #FFFFFF;
+}
+
+.inner-main{
+    position: absolute;
+    width: 490px;
+    height: 768px;
+    left: 877px;
+    top: 0px;
+
+    /* white */
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.inner-header{
+    position: absolute;
+    width: 490px;
+    height: 1px;
+    left: 877px;
+    top: 64px;
+
+    /* Gray 5 */
+    background: #E0E0E0;
+}
+.login-left{
+    position: absolute;
+    width: 877px;
+    height: 768px;
+    left: 0px;
+    top: 0px;
+
+    /* Blue 1 */
+    background: #2F80ED;
+    opacity: 0.4;
+}
+
+.login-right{
+    position: absolute;
+    width: 490px;
+    height: 768px;
+    left: 877px;
+    top: 0px;
+
+    /* white */
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

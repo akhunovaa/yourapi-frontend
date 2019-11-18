@@ -3,7 +3,6 @@ import './Home.css';
 import Alert from 'react-s-alert';
 import { Redirect } from 'react-router-dom'
 import {Button, Header, Image, Message, Segment, Grid, Form} from "semantic-ui-react";
-import logo from "../img/logo.jpg";
 import {login} from "../util/APIUtils";
 import {ACCESS_TOKEN} from "../constants";
 
@@ -39,7 +38,32 @@ class Login extends Component {
 
         return (
             <div className={"main"}>
-                <LoginForm {...this.props} />
+                <div className={"inner-main"}>
+                    <div className={"login-left"}>
+
+                    </div>
+                    <div className={"login-right"}>
+                        <div className={"inner-header"}>
+                            <form onSubmit={this.handleSubmit}>
+                                <div className="form-item">
+                                    <input type="text" name="login"
+                                           className="form-control" placeholder="Логин"
+                                           value={this.state.login} onChange={this.handleInputChange} required/>
+                                </div>
+                                <div className="form-item">
+                                    <input type="password" name="password"
+                                           className="form-control" placeholder="Пароль"
+                                           value={this.state.password} onChange={this.handleInputChange} required/>
+                                </div>
+                                <div className="form-item">
+                                    <button type="submit" className="btn confirm-button btn-primary">Авторизоваться</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         )
     }
@@ -86,7 +110,7 @@ class LoginForm extends Component {
             <Grid className={"login-form"} textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                 <Grid.Column className="grid-column">
                     <Header as='h2' color='teal' textAlign='center'>
-                        <Image src={logo} /> Добро пожаловать
+                        <Image/> Добро пожаловать
                     </Header>
                     <Form size='large' onSubmit={this.handleSubmit}>
                         <Segment stacked>
