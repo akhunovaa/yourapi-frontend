@@ -1,0 +1,44 @@
+.page-not-found {
+    min-height: 800px;
+    height: fit-content;
+    text-align: center;
+    padding-top: 170px;
+}
+
+.page-not-found .title {
+    font-size: 50px;
+    letter-spacing: 10px;
+    margin-bottom: 10px;
+}
+
+.page-not-found .desc {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.go-back-btn {
+    min-width: 160px;
+    background-color: #8cd87b;
+    border-color: #b6e6aa;
+    color: #5c6a57;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.go-back-btn:hover {
+    min-width: 160px;
+    background-color: #8cd87b;
+    border-color: #b6e6aa;
+    color: #5c6a57;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.go-back-btn:focus {
+    min-width: 160px;
+    background-color: #8cd87b;
+    border-color: #b6e6aa;
+    color: #5c6a57;
+    font-size: 15px;
+    font-weight: 400;
+}

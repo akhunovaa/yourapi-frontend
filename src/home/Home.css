@@ -1,0 +1,76 @@
+.main{
+
+}
+
+.grid-column{
+    max-width: 600px;
+}
+
+.ui.grid.login-form{
+
+}
+.ui.grid.login-form{
+
+}
+
+.ui.grid {
+     margin-top: initial;
+     margin-bottom: initial;
+     margin-left: initial;
+     margin-right: initial;
+}
+
+.tools-header {
+    font-weight: 700;
+    font-size: 1.88571429rem;
+    display: grid;
+    width: 100%;
+    padding-left: 12px;
+    margin-top: 12px;
+}
+
+.modal-header {
+    height: 60px !important;
+}
+
+.device-modal-conf {
+    width: fit-content !important;
+    overflow: auto;
+}
+
+
+.device-cell-header {
+    width: 100%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 230px;
+}
+
+
+.status-activity {
+    font-weight: bold;
+}
+
+
+
+.device-cell-body {
+    display: inline-flex;
+    overflow: overlay;
+    width: auto;
+    justify-content: center;
+    text-align: center;
+    min-height: 70px;
+    align-items: center;
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 500px) {
+    .grid-column{
+        max-width: 360px;
+    }
+}
