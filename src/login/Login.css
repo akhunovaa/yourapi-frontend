@@ -1,0 +1,90 @@
+#login-container{
+    width: auto;
+    min-width: 1366px;
+    height: 100%;
+    min-height: 1000px;
+    display: flex;
+    /*margin-top: 80px;*/
+    /*margin-left: 40px;*/
+    /*margin-right: 40px;*/
+}
+
+#login-container-left{
+    width: 70%;
+    float: left;
+    background: url('../img/img.png') round;
+    /*-moz-background-size: 100%; !* Firefox 3.6+ *!*/
+    /*-webkit-background-size: 100%; !* Safari 3.1+ и Chrome 4.0+ *!*/
+    /*-o-background-size: 100%; !* Opera 9.6+ *!*/
+    /*background-size: 100%; !* Современные браузеры *!*/
+}
+
+#login-container-right{
+    width: 30%;
+    float: right;
+    height: 100%;
+}
+
+#login-container-right-header{
+    height: 66px;
+    min-height: 66px;
+    border-bottom: 2px solid #E0E0E0;
+}
+
+#login-container-right-form{
+    height: 528px;
+    min-height: 528px;
+}
+#login-container-right-footer{
+    height: 176px;
+    min-height: 176px;
+    padding: 88px 185px 118px 186px;
+    display: inline-block;
+}
+
+.login-right-header{
+    padding: 24px 399px 24px 32px !important;
+}
+
+.login-data-segment-form{
+    border: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+
+.footer-icon-group{
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    width: 184px;
+}
+
+.navigate-links{
+    margin: 64px 120px 20px;
+    height: 52px;
+}
+
+
+.footer-icon-group-label{
+    width: 184px;
+    text-align: center;
+    display: inline-block;
+}
+
+.login-nav-link-left{
+    width: 124px;
+    float: left;
+    height: 100%;
+    min-height: 52px;
+    border-bottom: 2px solid #2F80ED;
+    text-align: center;
+}
+
+.signup-nav-link-right{
+    width: 124px;
+    float: right;
+    height: 100%;
+    min-height: 52px;
+    text-align: center;
+}
+
