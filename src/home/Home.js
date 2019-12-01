@@ -46,7 +46,7 @@ class Home extends Component {
             <div className={"main"}>
                 <Link
                     style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#0f22ed'}}
-                    to="/logout" onClick={this.props.onLogout}>Выйти</Link>
+                    to="#" onClick={this.props.onLogout}>Выйти</Link>
                 <div className="tools-header">
                     <Header disabled style={{height: 'auto'}} floated={'left'} size={'tiny'}>
                        Добро пожаловать на маркетплейс yourapi.ru
