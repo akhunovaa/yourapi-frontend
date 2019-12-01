@@ -95,12 +95,17 @@ class LoginForm2 extends Component {
         event.preventDefault();
 
         const loginRequest = Object.assign({}, this.state);
+
         login(loginRequest)
             .then(response => {
-                localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-                Alert.success("Вы авторизовались в системе!");
-                this.props.history.push("/");
-                window.location.reload();
+                if (!response.success){
+                    Alert.warning(response.message);
+                }else {
+                    localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+                    Alert.success("Вы авторизовались в системе!");
+                    this.props.history.push("/");
+                    window.location.reload();
+                }
             }).catch(error => {
             Alert.error((error && error.message) || 'Что-то пошло не так! Попробуйте заново.');
         });
