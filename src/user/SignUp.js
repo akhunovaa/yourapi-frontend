@@ -1,30 +1,39 @@
 import React, {Component} from 'react';
-import './Home.css';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import { Redirect } from 'react-router-dom'
-import { ReCaptcha } from 'react-recaptcha-google'
-import { signup } from '../util/APIUtils';
+import './SignUp.css';
+import {Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
+// import {Redirect} from 'react-router-dom'
+import {ReCaptcha} from 'react-recaptcha-google'
+import {signup} from '../util/APIUtils';
 import Alert from 'react-s-alert';
+import { Link, Redirect } from 'react-router-dom'
 
 class SignUp extends Component {
 
     state = {};
 
     render() {
-        if(this.props.authenticated) {
+        if (this.props.authenticated) {
             return <Redirect
                 to={{
                     pathname: "/",
-                    state: { from: this.props.location }
+                    state: {from: this.props.location}
                 }}/>;
         }
         return (
-            <div className={"main"}>
-                <SignUpForm {...this.props} />
+            <div className="frame">
+                <div className="signup-container">
+                    <div className="signup-content">
+                        <h1 className="signup-title">Регистрация на портале YourAPI.ru</h1>
+                        <SignUpForm {...this.props} />
+                        {/*<span className="login-link">Уже зарегистрированы? <Link*/}
+                        {/*    to="/login">Авторизоваться!</Link></span>*/}
+                    </div>
+                </div>
             </div>
         )
     }
 }
+
 class SignUpForm extends Component {
     constructor(props) {
         super(props);
@@ -45,6 +54,7 @@ class SignUpForm extends Component {
             this.captcha.reset();
         }
     }
+
     onLoadRecaptcha() {
         if (this.captcha) {
             this.captcha.reset();
@@ -53,7 +63,7 @@ class SignUpForm extends Component {
 
     verifyCallback(recaptchaToken) {
         this.setState({
-            captchaToken : recaptchaToken
+            captchaToken: recaptchaToken
         })
     }
 
@@ -63,7 +73,7 @@ class SignUpForm extends Component {
         const inputValue = target.value;
 
         this.setState({
-            [inputName] : inputValue
+            [inputName]: inputValue
         });
     }
 
@@ -71,7 +81,7 @@ class SignUpForm extends Component {
         event.preventDefault();
 
         const signUpRequest = Object.assign({}, this.state);
-        if (signUpRequest.captchaToken != null){
+        if (signUpRequest.captchaToken != null) {
             signup(signUpRequest)
                 .then(response => {
                     Alert.success("Вы успешно зарегистрировались! Пожалуйста авторизуйтесь заново.");
@@ -85,26 +95,30 @@ class SignUpForm extends Component {
 
     render() {
         return (
-            <Grid className={"login-form"} textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+            <Grid className={"login-form"} textAlign='center' style={{height: '100vh'}} verticalAlign='middle'>
                 <Grid.Column className="grid-column">
                     <Header as='h2' color='teal' textAlign='center'>
                         <Image/> Регистрация
                     </Header>
                     <Form onSubmit={this.handleSubmit} size='large'>
                         <Segment stacked>
-                            <Form.Input fluid icon='user' iconPosition='left' placeholder='Login' name="login" onChange={this.handleInputChange} required/>
-                            <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail' name="email" onChange={this.handleInputChange} required/>
+                            <Form.Input fluid icon='user' iconPosition='left' placeholder='Login' name="login"
+                                        onChange={this.handleInputChange} required/>
+                            <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail' name="email"
+                                        onChange={this.handleInputChange} required/>
                             <Form.Input name="password"
-                                fluid
-                                icon='lock'
-                                iconPosition='left'
-                                placeholder='Пароль'
-                                type='password'
-                                required
-                                onChange={this.handleInputChange}
+                                        fluid
+                                        icon='lock'
+                                        iconPosition='left'
+                                        placeholder='Пароль'
+                                        type='password'
+                                        required
+                                        onChange={this.handleInputChange}
                             />
                             <ReCaptcha
-                                ref={(el) => {this.captcha = el;}}
+                                ref={(el) => {
+                                    this.captcha = el;
+                                }}
                                 size="normal"
                                 data-theme="light"
                                 render="explicit"
@@ -119,10 +133,10 @@ class SignUpForm extends Component {
                         </Segment>
                     </Form>
                     <Message>
-                        Уже зарегистрированы? <a href='/'>Авторизоваться!!</a>
+                        Уже зарегистрированы? <a href='/login'>Авторизоваться!!</a>
                     </Message>
                     <Message>
-                        Данный ресурс представлен в рамках Хакатона <b>«Лучший по профессии».</b> <i>Задача №10.</i>
+                        Данный ресурс представлен в рамках Хакатона <b>«UrbanTech.Moscow».</b> <i>Задача №5.</i>
                     </Message>
                 </Grid.Column>
             </Grid>

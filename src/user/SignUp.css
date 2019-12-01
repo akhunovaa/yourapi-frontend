@@ -1,0 +1,852 @@
+/* Регистрация */
+.registration {
+    position: relative;
+    width: 1366px;
+    height: 768px;
+
+    background: #FFFFFF;
+}
+
+/* img */
+
+.img {
+    position: absolute;
+    width: 1366px;
+    height: 768px;
+    left: 0px;
+    top: 0px;
+
+    background: url(../img/image.png);
+}
+
+
+/* frame */
+.frame {
+    position: absolute;
+    width: 490px;
+    height: 768px;
+    left: 876px;
+    top: 0px;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* line */
+.line {
+position: absolute;
+width: 490px;
+height: 1px;
+left: 876px;
+top: 64px;
+
+/* Gray 5 */
+background: #E0E0E0;
+}
+
+/* header */
+
+.header {
+    position: absolute;
+width: 490px;
+height: 64px;
+left: 876px;
+top: 0px;
+}
+
+
+/* header-frame */
+.header-frame {
+position: absolute;
+width: 490px;
+height: 64px;
+left: 876px;
+top: 0px;
+
+/* white */
+    background: #FFFFFF;
+}
+
+/* logo-text */
+.logo-text {
+position: absolute;
+width: 201px;
+height: 16px;
+left: 908px;
+top: 24px;
+}
+
+
+/* YourAPI */
+
+.YourAPI {
+position: absolute;
+left: 0%;
+right: 70.65%;
+top: 0%;
+bottom: -18.75%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+/* Blue 1 */
+color: #2F80ED;
+}
+
+/* social-networks-section */
+
+.social-networks-section {
+    position: absolute;
+    width: 490px;
+    height: 174px;
+    left: 876px;
+    top: 594px;
+
+}
+
+
+
+/* social-networks-frame */
+.social-networks-frame {
+    position: absolute;
+    width: 490px;
+    height: 174px;
+    left: 876px;
+    top: 594px;
+
+    /* white */
+    background: #FFFFFF;
+}
+
+/* social-networks-group */
+
+.social-network-group {
+    position: absolute;
+    width: 183.88px;
+    height: 50px;
+    left: 1029px;
+    top: 650px;
+
+
+    /* p */
+
+    position: absolute;
+    width: 119px;
+    height: 16px;
+    left: 1062px;
+    top: 650px;
+
+
+    /* Войти с помощью */
+
+    position: absolute;
+    left: 0%;
+    right: -16.67%;
+    top: 0%;
+    bottom: 0%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+
+
+    /* google-brands 1 */
+
+    position: absolute;
+    width: 15.35px;
+    height: 16px;
+    left: 1029px;
+    top: 684px;
+
+
+    /* Vector */
+
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 1.56%;
+    bottom: 1.56%;
+
+    /* Gray 3 */
+    background: #A5A5A5;
+
+
+    /* facebook-f-brands */
+
+    position: absolute;
+    width: 8.57px;
+    height: 16px;
+    left: 1088px;
+    top: 684px;
+
+
+    /* Vector */
+
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    /* Gray 3 */
+    background: #A5A5A5;
+
+
+    /* vk-brands */
+
+    position: absolute;
+    width: 20.2px;
+    height: 12px;
+    left: 1141px;
+    top: 687px;
+
+
+    /* Vector */
+
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    /* Gray 3 */
+    background: #A5A5A5;
+
+
+    /* yandex-brands */
+
+    position: absolute;
+    width: 7.88px;
+    height: 16px;
+    left: 1205px;
+    top: 684px;
+
+
+    /* Vector */
+
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    /* Gray 3 */
+    background: #A5A5A5;
+
+}
+
+/* sign-up-form */
+.sign-up-form {
+position: absolute;
+width: 490px;
+height: 528px;
+left: 876px;
+top: 65px;
+
+}
+
+/* sign-up-frame */
+.sign-up-frame {
+
+    position: absolute;
+    width: 490px;
+    height: 528px;
+    left: 876px;
+    top: 65px;
+
+    /* white */
+    background: #FFFFFF;
+
+}
+
+
+/* button-primary */
+
+position: absolute;
+width: 250px;
+height: 32px;
+left: 996px;
+top: 477px;
+
+
+
+/* button-primary */
+
+position: absolute;
+width: 250px;
+height: 32px;
+left: calc(50% - 250px/2 + 438px);
+top: calc(50% - 32px/2 + 109px);
+
+
+
+/* .atom-button */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* .atom-button */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Blue 1 */
+background: #2F80ED;
+border-radius: 4px;
+
+
+/* text-white */
+
+position: absolute;
+width: 164px;
+height: 16px;
+left: 1039px;
+top: 485px;
+
+
+
+/* text-white */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+/* Gray 6 */
+color: #F2F2F2;
+
+
+/* input-label */
+
+position: absolute;
+width: 250px;
+height: 50px;
+left: 996px;
+top: 205px;
+
+
+
+/* label */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: -8%;
+bottom: 76%;
+
+
+
+/* Имя */
+
+position: absolute;
+left: 0%;
+right: -16.67%;
+top: 0%;
+bottom: 0%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+/* Gray 3 */
+color: #A5A5A5;
+
+
+/* input */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 36%;
+bottom: 0%;
+
+
+
+/* input */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* white */
+background: #FFFFFF;
+/* Gray 5 */
+border: 1px solid #E0E0E0;
+box-sizing: border-box;
+border-radius: 4px;
+
+
+/* input-label */
+
+position: absolute;
+width: 250px;
+height: 50px;
+left: 996px;
+top: 275px;
+
+
+
+/* label */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: -8%;
+bottom: 76%;
+
+
+
+/* Электронная почта */
+
+position: absolute;
+left: 0%;
+right: -16.67%;
+top: 0%;
+bottom: 0%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+/* Gray 3 */
+color: #A5A5A5;
+
+
+/* input */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 36%;
+bottom: 0%;
+
+
+
+/* input */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* white */
+background: #FFFFFF;
+/* Gray 5 */
+border: 1px solid #E0E0E0;
+box-sizing: border-box;
+border-radius: 4px;
+
+
+/* input-label-group */
+
+position: absolute;
+width: 250px;
+height: 76px;
+left: 996px;
+top: 345px;
+
+
+
+/* p */
+
+position: absolute;
+width: 250px;
+height: 16px;
+left: 996px;
+top: 405px;
+
+
+
+/* Минимум 6 символов */
+
+position: absolute;
+left: 0%;
+right: -16.67%;
+top: 0%;
+bottom: 0%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+/* Gray 3 */
+color: #A5A5A5;
+
+
+/* input-label */
+
+position: absolute;
+width: 250px;
+height: 50px;
+left: 996px;
+top: 345px;
+
+
+
+/* label */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: -8%;
+bottom: 76%;
+
+
+
+/* Пароль */
+
+position: absolute;
+left: 0%;
+right: -16.67%;
+top: 0%;
+bottom: 0%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+/* Gray 3 */
+color: #A5A5A5;
+
+
+/* input */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 36%;
+bottom: 0%;
+
+
+
+/* input */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* white */
+background: #FFFFFF;
+/* Gray 5 */
+border: 1px solid #E0E0E0;
+box-sizing: border-box;
+border-radius: 4px;
+
+
+/* eye-slash-solid */
+
+position: absolute;
+width: 15px;
+height: 12px;
+left: 1215px;
+top: 373px;
+
+
+
+/* eye-slash-solid */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Gray 3 */
+background: #A5A5A5;
+
+
+/* p */
+
+position: absolute;
+width: 250px;
+height: 52px;
+left: 996px;
+top: 517px;
+
+
+
+/* Создавая аккаунт, вы принимаете пользовательское соглашение и политику конфиденциальности */
+
+position: absolute;
+left: 0%;
+right: -16.67%;
+top: 0%;
+bottom: 7.69%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+/* Gray 3 */
+color: #A5A5A5;
+
+
+/* checkbox-group */
+
+position: absolute;
+width: 135px;
+height: 16px;
+left: 996px;
+top: 445px;
+
+
+
+/* p */
+
+position: absolute;
+width: 111px;
+height: 14px;
+left: 1020px;
+top: 446px;
+
+
+
+/* Запомнить меня */
+
+position: absolute;
+left: 0%;
+right: -16.67%;
+top: 0%;
+bottom: -14.29%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+/* Gray 2 */
+color: #4F4F4F;
+
+
+/* checkbox-active */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 996px;
+top: 445px;
+
+
+
+/* Rectangle 4 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #FFFFFF;
+/* Gray 5 */
+border: 1px solid #E0E0E0;
+box-sizing: border-box;
+border-radius: 4px;
+
+
+/* Rectangle 3 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Blue 1 */
+background: #2F80ED;
+border-radius: 4px;
+
+
+/* Vector */
+
+position: absolute;
+left: 18.75%;
+right: 14.2%;
+top: 25%;
+bottom: 25%;
+
+background: #FFFFFF;
+
+
+/* tab */
+
+position: absolute;
+width: 250px;
+height: 52px;
+left: 996px;
+top: 129px;
+
+
+
+/* sign-in-tab */
+
+position: absolute;
+width: 124px;
+height: 52px;
+left: 996px;
+top: 129px;
+
+
+
+/* Rectangle 10 */
+
+position: absolute;
+width: 124px;
+height: 52px;
+left: 996px;
+top: 129px;
+
+/* Gray 5 */
+background: #E0E0E0;
+
+
+/* indicator */
+
+position: absolute;
+width: 124px;
+height: 0px;
+left: 996px;
+top: 181px;
+
+/* Blue 1 */
+border: 2px solid #2F80ED;
+
+
+/* h5 */
+
+position: absolute;
+width: 33px;
+height: 16px;
+left: 1042px;
+top: 145px;
+
+
+
+/* Вход */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 16px;
+
+/* Gray 2 */
+color: #4F4F4F;
+
+
+/* sign-up-tab */
+
+position: absolute;
+width: 124px;
+height: 52px;
+left: 1122px;
+top: 129px;
+
+
+
+/* Rectangle 9 */
+
+position: absolute;
+width: 124px;
+height: 52px;
+left: 1122px;
+top: 129px;
+
+/* Gray 5 */
+background: #E0E0E0;
+
+
+/* indicator */
+
+position: absolute;
+width: 124px;
+height: 0px;
+left: 1122px;
+top: 181px;
+
+/* Blue 1 */
+border: 2px solid #2F80ED;
+
+
+/* h5 */
+
+position: absolute;
+width: 82px;
+height: 16px;
+left: 1142px;
+top: 145px;
+
+
+
+/* Регистрация */
+
+position: absolute;
+left: 0%;
+right: -3.66%;
+top: 0%;
+bottom: 0%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 16px;
+
+/* Gray 2 */
+color: #4F4F4F;
+
+
+/* line */
+
+position: absolute;
+width: 490px;
+height: 0px;
+left: 876px;
+top: 594px;
+
+/* Gray 5 */
+border: 1px solid #E0E0E0;
