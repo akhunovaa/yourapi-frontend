@@ -111,7 +111,6 @@ class LoginForm2 extends Component {
                 }else {
                     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                     Alert.success("Вы авторизовались в системе!");
-                    this.props.history.push("/");
                     window.location.reload();
                 }
             }).catch(error => {
