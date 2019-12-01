@@ -115,11 +115,11 @@ class LoginForm2 extends Component {
                             <Form>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}} for="login">Логин/Email</label>
-                                    <input className="form-login-input" id="login" required placeholder='Логин/Email'/>
+                                    <input onChange={this.handleInputChange} className="form-login-input" id="login" required placeholder='Логин/Email'/>
                                 </Form.Field>
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
-                                    <Input
+                                    <Input onChange={this.handleInputChange}
                                         icon={{ name: 'eye slash outline', link: true }}
                                         iconPosition='right'
                                         placeholder='Пароль' id="password" required type='password'
@@ -137,7 +137,7 @@ class LoginForm2 extends Component {
                                     }} label='Запомнить меня'/>
                                 </Form.Field>
                                 <Button type='submit' style={{background: '#2F80ED', color: 'white'}} fluid
-                                        size='large'>
+                                        size='large' onClick={this.handleSubmit}>
                                     Войти
                                 </Button>
                             </Form>

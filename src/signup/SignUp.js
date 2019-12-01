@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Signup.css';
 import {Link, Redirect} from 'react-router-dom'
 import {Button, Checkbox, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
-import {login} from "../util/APIUtils";
+import { signup } from "../util/APIUtils";
 import {ACCESS_TOKEN} from "../constants";
 import Alert from "react-s-alert";
 
@@ -64,11 +64,36 @@ class SignupForm2 extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: '',
+            surname: '',
+            patrName: '',
             login: '',
-            password: ''
+            email: '',
+            password: '',
+            phone: '+78000000000',
+            captchaToken: ''
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onLoadRecaptcha = this.onLoadRecaptcha.bind(this);
+        this.verifyCallback = this.verifyCallback.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.captcha) {
+            this.captcha.reset();
+        }
+    }
+    onLoadRecaptcha() {
+        if (this.captcha) {
+            this.captcha.reset();
+        }
+    }
+
+    verifyCallback(recaptchaToken) {
+        this.setState({
+            captchaToken : recaptchaToken
+        })
     }
 
     handleInputChange(event) {
@@ -84,16 +109,19 @@ class SignupForm2 extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const loginRequest = Object.assign({}, this.state);
-        login(loginRequest)
-            .then(response => {
-                localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-                Alert.success("Вы авторизовались в системе!");
-                this.props.history.push("/");
-                window.location.reload();
-            }).catch(error => {
-            Alert.error((error && error.message) || 'Что-то пошло не так! Попробуйте заново.');
-        });
+        const signUpRequest = Object.assign({}, this.state);
+            signup(signUpRequest)
+                .then(response => {
+                    if (!response.success){
+                        Alert.warning(response.message);
+                    }else {
+                        Alert.success("Вы успешно зарегистрировались! Вы можете авторизоваться в системе.");
+                        this.props.history.push("/");
+                    }
+                }).catch(error => {
+                Alert.error((error && error.message) || 'Что-то пошло не так! Попробуйте заново.');
+            });
+
     }
 
     render() {
@@ -105,15 +133,15 @@ class SignupForm2 extends Component {
                             <Form>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}} for="login">Имя</label>
-                                    <input className="form-login-input" id="login" required placeholder='Имя'/>
+                                    <input onChange={this.handleInputChange} className="form-login-input" id="name" required placeholder='Имя'/>
                                 </Form.Field>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}} for="email">Электронная почта</label>
-                                    <input className="form-login-input" id="login" required placeholder='Имя'/>
+                                    <input onChange={this.handleInputChange} className="form-login-input" id="email" required placeholder='Имя'/>
                                 </Form.Field>
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
-                                    <Input
+                                    <Input onChange={this.handleInputChange}
                                         icon={{ name: 'eye slash outline', link: true }}
                                         iconPosition='right'
                                         placeholder='Пароль' id="password" required type='password'
@@ -129,7 +157,7 @@ class SignupForm2 extends Component {
                                     }} label='Запомнить меня'/>
                                 </Form.Field>
                                 <Button type='submit' style={{background: '#2F80ED', color: 'white'}} fluid
-                                        size='large'>
+                                        size='large' onClick={this.handleSubmit}>
                                     Создать аккаунт и войти
                                 </Button>
                                 <label style={{float: 'left', color: '#A5A5A5', paddingTop: '8px'}}>Создавая аккаунт, вы принимаете</label>
