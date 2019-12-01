@@ -31,6 +31,9 @@ class Home extends Component {
     render() {
         return (
             <div className={"main"}>
+                <a onClick={this.props.onLogout} style={{color: 'white'}}>
+                    <span>Выйти</span>
+                </a>
                 <div className="tools-header">
                     <Header disabled style={{height: 'auto'}} floated={'left'} size={'tiny'}>
                        Добро пожаловать на маркетплейс yourapi.ru
@@ -39,6 +42,7 @@ class Home extends Component {
                 <Message>
                     Данный ресурс представлен в рамках Хакатона.<b/> <i>SberCloud</i>
                 </Message>
+
             </div>
         )
     }

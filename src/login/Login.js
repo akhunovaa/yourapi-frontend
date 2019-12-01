@@ -55,7 +55,7 @@ class Login extends Component {
                                 <Link to="/signup"><b style={{color: '#4F4F4F'}}>Регистрация</b></Link>
                             </div>
                         </div>
-                        <LoginForm2/>
+                        <LoginForm2 {...this.props} />
                     </div>
                     <div id="login-container-right-footer">
                         <div className='footer-icon-group-label'>
