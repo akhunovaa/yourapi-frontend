@@ -100,8 +100,10 @@ class SignupForm2 extends Component {
                     if (!response.success){
                         Alert.warning(response.message);
                     }else {
-                        Alert.success("Вы успешно зарегистрировались! Вы можете авторизоваться в системе.");
+                        Alert.success("Вы успешно зарегистрировались!");
+                        localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                         this.props.history.push("/");
+                        window.location.reload();
                     }
                 }).catch(error => {
                 Alert.error((error && error.message) || 'Что-то пошло не так! Попробуйте заново.');
@@ -122,7 +124,7 @@ class SignupForm2 extends Component {
                                 </Form.Field>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}} for="email">Электронная почта</label>
-                                    <input onChange={this.handleInputChange} className="form-login-input" type="email" id="email" name="email" required placeholder='Имя'/>
+                                    <input onChange={this.handleInputChange} className="form-login-input" type="email" id="email" name="email" required placeholder='Email'/>
                                 </Form.Field>
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
