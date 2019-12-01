@@ -115,14 +115,14 @@ class LoginForm2 extends Component {
                             <Form>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}} for="login">Логин/Email</label>
-                                    <input onChange={this.handleInputChange} className="form-login-input" id="login" required placeholder='Логин/Email'/>
+                                    <input onChange={this.handleInputChange} className="form-login-input" id="login" name="login" required placeholder='Логин/Email'/>
                                 </Form.Field>
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
                                     <Input onChange={this.handleInputChange}
                                         icon={{ name: 'eye slash outline', link: true }}
                                         iconPosition='right'
-                                        placeholder='Пароль' id="password" required type='password'
+                                        placeholder='Пароль' id="password" name="password" required type='password'
                                     />
                                 </Form.Field>
                                 <Link

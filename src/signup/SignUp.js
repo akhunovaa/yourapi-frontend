@@ -118,18 +118,18 @@ class SignupForm2 extends Component {
                             <Form>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}} for="login">Имя</label>
-                                    <input onChange={this.handleInputChange} className="form-login-input" id="name" required placeholder='Имя'/>
+                                    <input onChange={this.handleInputChange} className="form-login-input" id="name" name="name" required placeholder='Имя'/>
                                 </Form.Field>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}} for="email">Электронная почта</label>
-                                    <input onChange={this.handleInputChange} className="form-login-input" id="email" required placeholder='Имя'/>
+                                    <input onChange={this.handleInputChange} className="form-login-input" id="email" name="email" required placeholder='Имя'/>
                                 </Form.Field>
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
                                     <Input onChange={this.handleInputChange}
                                         icon={{ name: 'eye slash outline', link: true }}
                                         iconPosition='right'
-                                        placeholder='Пароль' id="password" required type='password'
+                                        placeholder='Пароль' id="password" name="password" required type='password'
                                     />
                                 </Form.Field>
                                 <label style={{float: 'left', color: '#A5A5A5'}}>Минимум 6 символов</label>
