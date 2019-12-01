@@ -5,6 +5,7 @@ import Home from '../home/Home';
 import SignUp from '../signup/SignUp';
 import Login from '../login/Login';
 import LoadingIndicator from '../common/LoadingIndicator';
+import PrivateRoute from '../common/PrivateRoute';
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
@@ -87,9 +88,9 @@ class App extends Component {
                 <div>
                     <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
                     <Switch>
-                        <Route exact path="/"
-                        render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>
-                        {/*<PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>*/}
+                        {/*<Route exact path="/"*/}
+                        {/*render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>
                         <Route exact path="/login"
                                render={(props) => <Login authenticated={this.state.authenticated} {...props} />}/>
                         <Route exact path="/signup"
