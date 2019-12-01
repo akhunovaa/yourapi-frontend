@@ -93,7 +93,7 @@ class SignupForm2 extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
+        this.setState({login: this.state.name});
         const signUpRequest = Object.assign({}, this.state);
             signup(signUpRequest)
                 .then(response => {
