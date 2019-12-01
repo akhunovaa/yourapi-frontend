@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Home.css';
+import {Header, Message} from "semantic-ui-react";
 class Home extends Component {
 
     _isMounted = false;
@@ -30,7 +31,14 @@ class Home extends Component {
     render() {
         return (
             <div className={"main"}>
-
+                <div className="tools-header">
+                    <Header disabled style={{height: 'auto'}} floated={'left'} size={'tiny'}>
+                       Добро пожаловать на маркетплейс yourapi.ru
+                    </Header>
+                </div>
+                <Message>
+                    Данный ресурс представлен в рамках Хакатона.<b/> <i>SberCloud</i>
+                </Message>
             </div>
         )
     }
