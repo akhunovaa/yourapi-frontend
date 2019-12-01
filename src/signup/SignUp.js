@@ -122,7 +122,7 @@ class SignupForm2 extends Component {
                                 </Form.Field>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}} for="email">Электронная почта</label>
-                                    <input onChange={this.handleInputChange} className="form-login-input" id="email" name="email" required placeholder='Имя'/>
+                                    <input onChange={this.handleInputChange} className="form-login-input" type="email" id="email" name="email" required placeholder='Имя'/>
                                 </Form.Field>
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
