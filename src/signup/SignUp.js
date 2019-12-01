@@ -70,31 +70,16 @@ class SignupForm2 extends Component {
             login: '',
             email: '',
             password: '',
-            phone: '+78000000000',
-            captchaToken: ''
+            phone: '+78000000000'
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onLoadRecaptcha = this.onLoadRecaptcha.bind(this);
-        this.verifyCallback = this.verifyCallback.bind(this);
     }
 
     componentDidMount() {
-        if (this.captcha) {
-            this.captcha.reset();
-        }
-    }
-    onLoadRecaptcha() {
-        if (this.captcha) {
-            this.captcha.reset();
-        }
+
     }
 
-    verifyCallback(recaptchaToken) {
-        this.setState({
-            captchaToken : recaptchaToken
-        })
-    }
 
     handleInputChange(event) {
         const target = event.target;
