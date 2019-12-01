@@ -4,7 +4,7 @@ import Alert from 'react-s-alert';
 import {Button, Checkbox, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import {login} from "../util/APIUtils";
 import {ACCESS_TOKEN} from "../constants";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class Login extends Component {
 
@@ -27,6 +27,14 @@ class Login extends Component {
     }
 
     render() {
+
+        if (this.props.authenticated) {
+            return <Redirect
+                to={{
+                    pathname: "/",
+                    state: {from: this.props.location}
+                }}/>;
+        }
 
         return (
             <div id="login-container">
