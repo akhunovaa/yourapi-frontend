@@ -93,7 +93,7 @@ class SignupForm2 extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({login: this.state.name});
+
         const signUpRequest = Object.assign({}, this.state);
             signup(signUpRequest)
                 .then(response => {
@@ -119,8 +119,8 @@ class SignupForm2 extends Component {
                         <Segment className='login-data-segment-form'>
                             <Form>
                                 <Form.Field>
-                                    <label style={{float: 'left', color: '#A5A5A5'}} for="login">Имя</label>
-                                    <input onChange={this.handleInputChange} className="form-login-input" id="name" name="name" required placeholder='Имя'/>
+                                    <label style={{float: 'left', color: '#A5A5A5'}} for="login">Имя/Логин</label>
+                                    <input onChange={this.handleInputChange} className="form-login-input" id="login" name="login" required placeholder='Имя/Логин'/>
                                 </Form.Field>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}} for="email">Электронная почта</label>
