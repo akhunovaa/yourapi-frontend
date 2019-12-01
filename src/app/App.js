@@ -3,6 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import NotFound from '../common/NotFound';
 import Home from '../home/Home';
 import SignUp from '../user/SignUp';
+import Card from '../product/Card';
 import Login from '../user/Login';
 import LoadingIndicator from '../common/LoadingIndicator';
 import Alert from 'react-s-alert';
@@ -94,6 +95,8 @@ class App extends Component {
                                render={(props) => <Login authenticated={this.state.authenticated} {...props} />}/>
                         <Route exact path="/signup"
                                render={(props) => <SignUp authenticated={this.state.authenticated} {...props} />}/>
+                        <Route exact path="/card"
+                               render={(props) => <Card authenticated={true} {...props} />}/>
                         <Route component={NotFound}/>
                     </Switch>
                     <AppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>

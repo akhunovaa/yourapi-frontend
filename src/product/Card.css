@@ -1,0 +1,336 @@
+/* #Card */
+
+.card {
+    position: absolute;
+    width: 320px;
+    height: 220px;
+    left: 61px;
+    top: 68px;
+}
+
+
+/* #Rectangle 19 */
+.frame {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    /* white */
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    border-radius: 4px;
+}
+
+/* #Caption */
+.category-sub {
+    position: absolute;
+    left: 11.56%;
+    right: 44.38%;
+    top: 83.18%;
+    bottom: 10.45%;
+}
+
+
+/* #Caption */
+.category-sub-text {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+/* #indicator */
+.indicator-out {
+    position: absolute;
+    left: 7.5%;
+    right: 90%;
+    top: 84.55%;
+    bottom: 11.82%;
+}
+
+
+/* #Ellipse 3 */
+.indicator-in {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    /* Gray 3 */
+    background: #A5A5A5;
+}
+
+/* #<p>  */
+.description {
+    position: absolute;
+    left: 7.5%;
+    right: 7.5%;
+    top: 55%;
+    bottom: 22.73%;
+}
+
+
+/* #Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная... */
+.description-text {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 2.04%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+/* #Caption */
+.autor-team {
+    position: absolute;
+    left: 7.5%;
+    right: 44.38%;
+    top: 42.27%;
+    bottom: 50.45%;
+}
+
+
+/* #от apisports */
+.autor-team-name {
+    position: absolute;
+    left: 0%;
+    right: -16.67%;
+    top: 0%;
+    bottom: 0%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+/* #<h4>  */
+.card-title {
+    position: absolute;
+    left: 7.5%;
+    right: 52.81%;
+    top: 32.73%;
+    bottom: 57.73%;
+}
+
+
+/* #API-FOOTBALL */
+.card-title-name {
+    position: absolute;
+    left: 0%;
+    right: 1.57%;
+    top: 0%;
+    bottom: 0%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+
+/* #bookmark-regular */
+.bookmark-regular-out {
+    position: absolute;
+    left: 87.81%;
+    right: 7.5%;
+    top: 12.73%;
+    bottom: 78.18%;
+}
+
+
+
+/* #bookmark-regular */
+.bookmark-regular-in {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    /* Gray 3 */
+    background: #A5A5A5;
+}
+
+/* #rating */
+.rating {
+    position: absolute;
+    left: 70.31%;
+    right: 17.19%;
+    top: 13.64%;
+    bottom: 79.09%;
+}
+
+/* #text-default */
+.text-default-out {
+
+    position: absolute;
+    left: 76.88%;
+    right: 17.19%;
+    top: 13.64%;
+    bottom: 79.09%;
+}
+
+
+/* #text-default */
+.text-default-in {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Orange */
+    color: #F39847;
+
+}
+
+/* #star-solid */
+.star-solid-out {
+    position: absolute;
+    left: 70.31%;
+    right: 24.46%;
+    top: 13.64%;
+    bottom: 79.09%;
+}
+
+
+/* #star-solid */
+.star-solid-in {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    /* Orange */
+    background: #F39847;
+
+}
+
+/* #img */
+
+.autor-team-logo {
+    position: absolute;
+    left: 7.5%;
+    right: 82.5%;
+    top: 12.73%;
+    bottom: 72.73%;
+
+    background: url(image.png);
+}
+
+/* #default-icon */
+
+position: absolute;
+left: 7.5%;
+right: 82.5%;
+top: 12.73%;
+bottom: 72.73%;
+
+
+
+/* #Rectangle 44 */
+
+position: absolute;
+left: 7.5%;
+right: 82.5%;
+top: 12.73%;
+bottom: 72.73%;
+
+/* Blue 1 */
+background: #2F80ED;
+opacity: 0.1;
+border-radius: 4px;
+
+
+/* #Ellipse 18 */
+
+position: absolute;
+left: 10.62%;
+right: 83.44%;
+top: 16.36%;
+bottom: 75%;
+
+/* Blue 1 */
+background: #2F80ED;
+opacity: 0.4;
+
+
+/* #Polygon 3 */
+
+position: absolute;
+left: 8.88%;
+right: 88.99%;
+top: 17.22%;
+bottom: 79.42%;
+
+/* Orange */
+background: #F39847;
+opacity: 0.2;
+transform: rotate(-79.48deg);
+
+
+/* #Rectangle 45 */
+
+position: absolute;
+left: 9.74%;
+right: 89.67%;
+top: 21.84%;
+bottom: 75.22%;
+
+/* Green 3 */
+background: #6FCF97;
+opacity: 0.5;
+transform: rotate(27.96deg);
+
+
+/* #Rectangle 46 */
+
+position: absolute;
+left: 14.18%;
+right: 85.4%;
+top: 14.32%;
+bottom: 80.62%;
+
+/* white */
+background: #FFFFFF;
+opacity: 0.5;
+transform: rotate(-1.7deg);
