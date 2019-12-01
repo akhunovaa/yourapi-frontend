@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Home.css';
-import {Header, Message} from "semantic-ui-react";
+import {Header, Message, Input} from "semantic-ui-react";
+import {Link} from "react-router-dom";
 class Home extends Component {
 
     _isMounted = false;
@@ -11,6 +12,18 @@ class Home extends Component {
             //roleAdmin: this.props.currentUser.role ? this.props.currentUser.role.role_name  === "ROLE_ADMIN" : false
             roleAdmin: true
         };
+
+        if(this.props.currentUser){
+            this.state = {
+                name: this.props.currentUser.name,
+                imageUrl: this.props.currentUser.imageUrl,
+                email: this.props.currentUser.email,
+                surname: this.props.currentUser.surname,
+                patrName: this.props.currentUser.patrName,
+                phone: this.props.currentUser.phone,
+                note: this.props.currentUser.note,
+            };
+        }
 
         this.reload = this.reload.bind(this);
     }
@@ -31,9 +44,9 @@ class Home extends Component {
     render() {
         return (
             <div className={"main"}>
-                <a onClick={this.props.onLogout} style={{color: 'white'}}>
-                    <span>Выйти</span>
-                </a>
+                <Link
+                    style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#0f22ed'}}
+                    to="/logout" onClick={this.props.onLogout}>Выйти</Link>
                 <div className="tools-header">
                     <Header disabled style={{height: 'auto'}} floated={'left'} size={'tiny'}>
                        Добро пожаловать на маркетплейс yourapi.ru
@@ -42,7 +55,38 @@ class Home extends Component {
                 <Message>
                     Данный ресурс представлен в рамках Хакатона.<b/> <i>SberCloud</i>
                 </Message>
+                <div className="profile-description">
 
+                <form>
+                    <div className="profile-input">
+                        <label className='input-form-label' form='name'>Имя:</label>
+                        <Input  transparent className='profile-form-input' type='text' id='name' name="name" placeholder="Имя"
+                                value={this.state.name} onChange={this.handleInputChange}/>
+                    </div>
+                    <div className="profile-input">
+                        <label className='input-form-label' form='surname'>Фамилия:</label>
+                        <Input transparent className='profile-form-input' type='text' id='surname' name="surname" placeholder="Фамилия"
+                               value={this.state.surname} onChange={this.handleInputChange}/>
+                    </div>
+                    <div className="profile-input">
+                        <label className='input-form-label' form='patrname'>Отчество:</label>
+                        <Input  transparent className='profile-form-input' type='text' id='patrname' name="patrName" placeholder="Отчество"
+                                value={this.state.patrName} onChange={this.handleInputChange}/>
+                    </div>
+                    <div className="profile-input">
+                        <label className='input-form-label' form='email'>E-mail:</label>
+                        <Input transparent className='profile-form-input' type='text' id='email' name="email" placeholder="E-mail"
+                               value={this.state.email} onChange={this.handleInputChange}/>
+                    </div>
+
+                    <div className="profile-input">
+                        <label className='input-form-label' form='note'>Примечание:</label>
+                        <Input  transparent className='profile-form-input' type='text' id='note' name="note" placeholder="Примечание"
+                                value={this.state.note} onChange={this.handleInputChange}/>
+                    </div>
+                </form>
+
+            </div>
             </div>
         )
     }

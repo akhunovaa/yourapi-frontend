@@ -12,6 +12,73 @@
     margin-top: 12px;
 }
 
+.profile-input{
+    margin-top: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    /*display: -webkit-flex;*/
+    text-align-last: center;
+}
+
+.profile-form-input{
+    flex: 1;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid ;
+    border-image:  -webkit-linear-gradient(to right, rgba(176,176,176,1) 20%, rgba(0,0,0,1) 50%, rgba(176,176,176,1) 100%);
+    border-image-slice: 1;
+    font-size: 16px;
+    height: 25px;
+    background: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-radius: initial;
+    outline: none;
+}
+.profile-form-input:focus{
+    flex: 1;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid ;
+    border-image:  -webkit-linear-gradient(to right, rgba(176,176,176,1) 20%, rgba(0,0,0,1) 50%, rgba(176,176,176,1) 100%);
+    border-image-slice: 1;
+    font-size: 16px;
+    height: 25px;
+    background: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-radius: initial;
+    outline: none;
+}
+.profile-form-input:hover {
+    flex: 1;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid ;
+    border-image:  -webkit-linear-gradient(to right, rgba(176,176,176,1) 20%, rgba(0,0,0,1) 50%, rgba(176,176,176,1) 100%);
+    border-image-slice: 1;
+    font-size: 16px;
+    height: 25px;
+    background: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-radius: initial;
+    outline: none;
+}
+
+.input-form-label{
+    /*font-family: "Comic Sans MS", cursive, sans-serif;*/
+    margin-right: 12px;
+    margin-bottom: initial;
+}
+
+
 /*
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
