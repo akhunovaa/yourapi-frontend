@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './AppHeader.css';
 import {Link} from "react-router-dom";
-import {Button, Checkbox, Form, Grid, Header, Icon, Input, Dropdown} from "semantic-ui-react";
+import {Icon, Input, Dropdown} from "semantic-ui-react";
 
 class AppHeader extends Component {
     render() {
