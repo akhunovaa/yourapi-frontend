@@ -6,7 +6,7 @@ class AppHeader extends Component {
 
         return (
             <div>
-                { !this.props.authenticated ? (
+                { this.props.authenticated ? (
                     <div className="header-authenticated">
 
                     </div>
