@@ -1,4 +1,70 @@
 .header-authenticated{
     height: 64px;
     width: 100%;
+    display: flex;
+}
+
+.header-right-menu{
+    width: 226px;
+    height: 100%;
+    float: right;
+    border-left: 1px solid #E0E0E0;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    color: #A5A5A5;
+    display: flex;
+}
+
+.header-left-logo{
+    width: 114px;
+    float: left;
+    height: 100%;
+    min-height: 64px;
+    text-align: center;
+    padding: 24px 28px 24px 28px;
+    background-color: #428BEF;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.header-center-navlink{
+    padding: 24px 36px 24px 36px;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+
+.header-right-navlink{
+    text-align: center;
+    min-width: 114px;
+    padding: 24px 36px 24px 36px;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.header-right-navlink-profile{
+    text-align: center;
+    min-width: 114px;
+    padding-top: 12px;
+}
+
+
+.header-center-search-input{
+    /*padding: 16px 484px 9px 33px;*/
+    padding-top: 16px;
+    width: 250px;
+    margin-right: 484px;
+}
+
+.header-center-container{
+    display: flex;
 }
