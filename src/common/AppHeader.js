@@ -8,7 +8,7 @@ class AppHeader extends Component {
 
         return (
             <div>
-                { this.props.authenticated ? (
+                { !this.props.authenticated ? (
                     <div className="header-authenticated">
                         <div className='header-left-logo'>
                             <Link to="/"><b style={{color: 'white'}}>YourAPI</b></Link>

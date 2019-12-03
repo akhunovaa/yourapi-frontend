@@ -1,0 +1,39 @@
+.footer-authenticated{
+    height: 48px;
+    width: 100%;
+    display: flex;
+    background: #4F4F4F;
+}
+
+.footer-left-logo{
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 28px;
+}
+
+.footer-link-container{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 41px;
+}
+
+.footer-icons-group{
+    padding: 18px 130px 18px 384px;
+    display: flex;
+    justify-content: space-between;
+}
+.footer-icon-container{
+    color: #A5A5A5;
+}
+.footer-right-link-container{
+    color: #F2F2F2;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    padding: 16px 28px 16px 130px;
+}
