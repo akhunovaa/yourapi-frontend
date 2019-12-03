@@ -3,9 +3,18 @@ import './AppHeader.css';
 
 class AppHeader extends Component {
     render() {
-        return (
-            <div className="header">
 
+        return (
+            <div>
+                { !this.props.authenticated ? (
+                    <div className="header-authenticated">
+
+                    </div>
+                ) : (
+                    <div className="header">
+
+                    </div>
+                )}
             </div>
         )
     }
