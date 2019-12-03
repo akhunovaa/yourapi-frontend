@@ -7,7 +7,7 @@ class AppFooter extends Component {
     render() {
         return (
             <div>
-                {!this.props.authenticated ? (
+                {this.props.authenticated ? (
                     <div className="footer-authenticated">
                         <div className='footer-left-logo'>
                             <NavLink to="/"><b style={{color: '#F2F2F2'}}>(c) 2019 YourAPI</b></NavLink>
