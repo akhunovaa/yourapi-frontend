@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Home.css';
 import {Header, Message, Input} from "semantic-ui-react";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 class Home extends Component {
 
     _isMounted = false;
@@ -44,9 +44,9 @@ class Home extends Component {
     render() {
         return (
             <div className={"main"}>
-                <Link
+                <NavLink
                     style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#0f22ed'}}
-                    to="/" onClick={this.props.onLogout}>Выйти</Link>
+                    to="/" onClick={this.props.onLogout}>Выйти</NavLink>
                 <div className="tools-header">
                     <Header disabled style={{height: 'auto'}} floated={'left'} size={'tiny'}>
                        Добро пожаловать на маркетплейс yourapi.ru
