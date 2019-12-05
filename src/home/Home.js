@@ -15,18 +15,6 @@ class Home extends Component {
             roleAdmin: true
         };
 
-        if(this.props.currentUser){
-            this.state = {
-                name: this.props.currentUser.name,
-                imageUrl: this.props.currentUser.imageUrl,
-                email: this.props.currentUser.email,
-                surname: this.props.currentUser.surname,
-                patrName: this.props.currentUser.patrName,
-                phone: this.props.currentUser.phone,
-                note: this.props.currentUser.note,
-            };
-        }
-
         this.reload = this.reload.bind(this);
     }
 
