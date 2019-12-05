@@ -4,13 +4,55 @@
 }
 
 
-.tools-header {
-    font-weight: 700;
-    font-size: 1.88571429rem;
-    display: grid;
+.header-picture {
     width: 100%;
-    padding-left: 12px;
-    margin-top: 12px;
+    height: 352px;
+    background: url('../img/img_header.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.header-text{
+    padding-top: 87px;
+    padding-left: 152px;
+}
+
+.header-text-main{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 56px;
+    padding-top: 7px;
+
+}
+.header-slogan{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 6 */
+    color: #F2F2F2;
+}
+.header-buttons{
+    padding-top: 16px;
+    display: inline-flex;
+}
+
+.header-api-create-button{
+    padding-right: 16px;
+}
+
+.header-api-create-button button{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 .profile-input{
