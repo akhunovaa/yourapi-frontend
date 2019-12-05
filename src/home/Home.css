@@ -1,6 +1,7 @@
 .main{
     height: auto;
     min-height: 1480px;
+    background: #F2F2F2;
 }
 
 
@@ -47,12 +48,126 @@
     padding-right: 16px;
 }
 
-.header-api-create-button button{
+.header-api-create-button{
     font-family: Roboto, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
+}
+
+.main-body-container{
+    padding: 32px 88px 68px;
+    display: block;
+}
+
+.main-body-new-api-container{
+    height: auto;
+    display: grid;
+}
+
+.main-body-new-api-container-name{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    float: left;
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.main-body-new-api-container-show-link{
+    float: right;
+    /* Gray 2 */
+    color: #4F4F4F;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.body-data{
+    padding-top: 12px;
+}
+.body-cell-data{
+    min-width: 270px;
+    height: 180px;
+    display: block;
+    padding-top: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.cell-header{
+    height: 52px;
+}
+
+.body-cell-container{
+    width: 356px;
+    height: 180px;
+}
+
+.grid-logo{
+    float: left;
+}
+.grid-labels{
+    float: right;
+}
+
+.cell-grid-body-text{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+.cell-grid-body-label{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+.cell-grid-body-description{
+    height: 50px;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #4F4F4F;
+    padding-top: 12px;
+}
+.cell-grid-body-category{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #A5A5A5;
+    padding-top: 13px;
+}
+
+.main-body-popular-api-container{
+    padding-top: 20px;
+    height: auto;
+    display: grid;
+}
+
+.main-body-test-api-container{
+    padding-top: 20px;
+    height: auto;
+    display: grid;
 }
 
 .profile-input{
