@@ -1,11 +1,29 @@
 import React, {Component} from 'react';
 import './AppHeader.css';
-import {Link} from "react-router-dom";
-import {Icon, Input, Dropdown} from "semantic-ui-react";
+import {Link, NavLink} from "react-router-dom";
+import {Icon, Input, Dropdown, Portal, Button, Divider, Segment, List} from "semantic-ui-react";
 
 class AppHeader extends Component {
-    render() {
 
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false
+        };
+
+    }
+        handleOpen = () => {
+        this.setState({open: true})
+    };
+
+    handleClose = () => {
+        this.setState({open: false})
+    };
+
+
+    render() {
+        const { open } = this.state;
         return (
             <div>
                 { this.props.authenticated ? (
@@ -41,9 +59,60 @@ class AppHeader extends Component {
                                 <Icon link size={'large'}  name='bookmark outline' />
                             </div>
                             <div className='header-right-navlink-profile'>
-                                <Icon link size={'huge'} name='user circle' />
+                                <Portal
+                                    closeOnPortalMouseLeave
+                                    closeOnTriggerClick
+                                    closeOnDocumentClick
+                                    trigger={
+                                        <Icon link size={'huge'} name='user circle' />
+                                    }
+                                    open={open}
+                                    onOpen={this.handleOpen}
+                                    onClose={this.handleClose}>
+                                    <div id='profile-portal' onClick={this.handleClose}>
+                                        <Segment className="profile-segment"
+                                                 style={{position: 'fixed',  right: 12,  top: '76px', zIndex: 1000, }}>
+                                            <List size={"big"}>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <NavLink to="/" style={{color: 'black'}}>Личный кабинет</NavLink>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <NavLink to="/" style={{color: 'gray'}}>Настройка профиля</NavLink>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <NavLink to="/" style={{color: 'gray'}}>Администрирование</NavLink>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <Divider/>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <NavLink to="/" style={{color: 'gray'}}>Справка</NavLink>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <Divider/>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <a onClick={this.props.onLogout} style={{color: 'gray'}}>
+                                                            <span>Выйти</span>
+                                                        </a>
+                                                    </List.Content>
+                                                </List.Item>
+                                            </List>
+                                        </Segment>
+                                    </div>
+                                </Portal>
                             </div>
                         </div>
+
                     </div>
                 ) : (
                     <div className="header">
