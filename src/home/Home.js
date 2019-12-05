@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Home.css';
-import {Header, Message, Input} from "semantic-ui-react";
+import {Grid, Segment, Divider, Form, Button} from "semantic-ui-react";
 import {NavLink} from "react-router-dom";
 class Home extends Component {
 
@@ -43,50 +43,32 @@ class Home extends Component {
 
     render() {
         return (
-            <div className={"main"}>
-                <NavLink
-                    style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#0f22ed'}}
-                    to="/" onClick={this.props.onLogout}>Выйти</NavLink>
-                <div className="tools-header">
-                    <Header disabled style={{height: 'auto'}} floated={'left'} size={'tiny'}>
-                       Добро пожаловать на маркетплейс yourapi.ru
-                    </Header>
+            <div className="main">
+                <div className="header-picture">
+                    <div className='header-text'>
+                        <div className="header-text-main">
+                            <NavLink to="/"><b style={{color: '#F2F2F2'}}>YourAPI</b></NavLink>
+                        </div>
+                        <div className="header-slogan">
+                            <label>Небольшой рекламный</label><br />
+                            <label>слоган. Может в две строчки</label>
+                        </div>
+                        <div className="header-buttons">
+                            <div className="header-api-create-button">
+                                <Button style={{background: '#F39847', color: 'white'}}
+                                        size='large'>
+                                    Разместить API
+                                </Button>
+                            </div>
+                            <div className="header-company-create-button">
+                                <Button style={{background: '#FFFFFF', color: '#4F4F4F'}}
+                                        size='large'>
+                                    Создать компанию
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <Message>
-                    Данный ресурс представлен в рамках Хакатона.<b/> <i>SberCloud</i>
-                </Message>
-                <div className="profile-description">
-
-                <form>
-                    <div className="profile-input">
-                        <label className='input-form-label' form='name'>Имя:</label>
-                        <Input  transparent className='profile-form-input' type='text' id='name' name="name" placeholder="Имя"
-                                value={this.state.name} onChange={this.handleInputChange}/>
-                    </div>
-                    <div className="profile-input">
-                        <label className='input-form-label' form='surname'>Фамилия:</label>
-                        <Input transparent className='profile-form-input' type='text' id='surname' name="surname" placeholder="Фамилия"
-                               value={this.state.surname} onChange={this.handleInputChange}/>
-                    </div>
-                    <div className="profile-input">
-                        <label className='input-form-label' form='patrname'>Отчество:</label>
-                        <Input  transparent className='profile-form-input' type='text' id='patrname' name="patrName" placeholder="Отчество"
-                                value={this.state.patrName} onChange={this.handleInputChange}/>
-                    </div>
-                    <div className="profile-input">
-                        <label className='input-form-label' form='email'>E-mail:</label>
-                        <Input transparent className='profile-form-input' type='text' id='email' name="email" placeholder="E-mail"
-                               value={this.state.email} onChange={this.handleInputChange}/>
-                    </div>
-
-                    <div className="profile-input">
-                        <label className='input-form-label' form='note'>Примечание:</label>
-                        <Input  transparent className='profile-form-input' type='text' id='note' name="note" placeholder="Примечание"
-                                value={this.state.note} onChange={this.handleInputChange}/>
-                    </div>
-                </form>
-
-            </div>
             </div>
         )
     }
