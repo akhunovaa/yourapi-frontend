@@ -80,7 +80,7 @@ class AppHeader extends Component {
                                                 </List.Item>
                                                 <List.Item>
                                                     <List.Content>
-                                                        <NavLink to="/" style={{color: 'gray'}}>Настройка профиля</NavLink>
+                                                        <NavLink to="/profile" style={{color: 'gray'}}>Настройка профиля</NavLink>
                                                     </List.Content>
                                                 </List.Item>
                                                 <List.Item>
