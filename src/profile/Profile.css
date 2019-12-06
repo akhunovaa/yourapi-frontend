@@ -15,10 +15,7 @@
 }
 
 .profile-main-container{
-    padding-top: 36px;
-    padding-left: 31px;
-    padding-right: 33px;
-    padding-bottom: 28px;
+    padding: 36px 33px 28px 31px;
 }
 
 .profile-form-container{
@@ -28,4 +25,80 @@
     margin-top: 26px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+}
+
+.profile-avatar-container{
+    padding-top: 72px;
+    padding-left: 252px;
+    padding-right: 444px;
+    display: inline-flex;
+}
+
+.profile-avatar {
+    display: block;
+    width: 124px;
+    height: 124px;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-avatar-footer {
+    position: absolute;
+    text-align: center;
+    margin-top: 92px;
+    padding-right: 8px;
+    padding-left: 8px;
+
+    opacity: 0.5;
+    height: 32px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 188, 212, 0);
+    transition: background-color 0.5s;
+    overflow: hidden;
+}
+
+.profile-avatar-footer:hover {
+    background-color: #F2F2F2;
+    overflow: hidden;
+}
+
+.text-avatar {
+    width: 124px;
+    height: 124px;
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 48px;
+    border-radius: 50%;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    background: #46b5e5;
+    background: linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -ms-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -moz-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -o-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -webkit-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+}
+
+.user-name-container{
+    margin-top: 32px;
+    padding-left: 32px;
+    height: 42px;
+    overflow: hidden;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+.user-custom-icon-container{
+    padding-left: 18px;
+    margin-top: 42px;
 }
