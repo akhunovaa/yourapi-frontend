@@ -2,10 +2,12 @@
     height: auto;
     min-height: 1480px;
     background: #F2F2F2;
+    min-width: 1633px;
 }
 
 
 .header-picture {
+    min-width: 1633px;
     width: 100%;
     height: 352px;
     background: url('../img/img_header.png');

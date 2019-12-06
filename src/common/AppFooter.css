@@ -3,6 +3,7 @@
     width: 100%;
     display: flex;
     background: #4F4F4F;
+    min-width: 1633px;
 }
 
 .footer-left-logo{

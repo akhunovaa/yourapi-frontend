@@ -21,6 +21,7 @@
 .profile-form-container{
     min-height: 1480px;
     width: 100%;
+    min-width: 1284px;
     height: 2129px;
     margin-top: 26px;
     background: #FFFFFF;
