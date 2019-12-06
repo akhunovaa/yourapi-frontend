@@ -153,3 +153,14 @@ export function deviceDeleteRequestSend(deviceId) {
     });
 }
 
+export function loadUser(paramData) {
+    let query = Object.keys(paramData)
+        .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(paramData[k]))
+        .join('&');
+
+    return request({
+        url: API_BASE_URL + "/individual/info"  + query,
+        method: 'GET'
+    });
+}
+
