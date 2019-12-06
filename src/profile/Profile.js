@@ -57,7 +57,7 @@ class Profile extends Component {
 
     render() {
         return (
-            <div className="main">
+            <div className="profile-main">
                 <div className="profile-main-container">
                     <div className="container-breadcrumb">
                         <Breadcrumb>
