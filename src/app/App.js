@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import NotFound from '../common/NotFound';
 import Home from '../home/Home';
+import Profile from '../profile/Profile';
 import SignUp from '../signup/SignUp';
 import Login from '../login/Login';
 import LoadingIndicator from '../common/LoadingIndicator';
@@ -95,6 +96,9 @@ class App extends Component {
                                render={(props) => <Login history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
                         <Route exact path="/signup"
                                render={(props) => <SignUp history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
+                        {/*<Route path='/profile' component={Profile} />*/}
+                        <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}/>
+                        {/*<Route path='/users/:handle' component={Profile} />*/}
                         <Route component={NotFound}/>
                     </Switch>
                     <AppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
