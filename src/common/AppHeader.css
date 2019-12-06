@@ -1,7 +1,8 @@
 .header-authenticated{
     height: 64px;
-    width: 100%;
     display: flex;
+    min-width: 1633px;
+    width: auto;
 }
 
 .header-right-menu{
