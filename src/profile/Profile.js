@@ -21,8 +21,9 @@ class Profile extends Component {
             },
             surname:'Akhunov',
             name:'Azat',
-            patrName:'Akhmatovich'
-
+            patrName:'Akhmatovich',
+            nickname:'leon4uk',
+            dbirth:'12.07.1986'
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -133,6 +134,20 @@ class Profile extends Component {
                                     <label>Отчество</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.patrName} className="form-input" id="patrName"
                                            name="patrName" required placeholder='Отчество'/>
+                                </div>
+                            </div>
+                            <div className="profile-info-container-nickname-input">
+                                <div className="profile-info-container-name-input">
+                                    <label>Имя профиля</label>
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.nickname} className="form-input" id="nickname"
+                                           name="nickname" required placeholder='Имя профиля'/>
+                                </div>
+                            </div>
+                            <div className="profile-info-container-date-birth-input">
+                                <div className="profile-info-container-name-input">
+                                    <label>Дата рождения</label>
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.dbirth} className="form-input" id="dbirth"
+                                           name="dbirth" required placeholder='Дата рождения'/>
                                 </div>
                             </div>
                         </div>
