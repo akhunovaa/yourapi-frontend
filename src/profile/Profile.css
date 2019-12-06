@@ -102,3 +102,43 @@
     padding-left: 18px;
     margin-top: 42px;
 }
+
+.profile-info-container{
+    padding-top: 40px;
+    padding-left: 252px;
+}
+
+.profile-info-container-name{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.profile-info-container-name-inputs{
+    padding-top: 28px;
+    display: inline-flex;
+
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.form-input{
+    padding-top: 6px;
+}
+
+.profile-info-container-name-input{
+    display: grid;
+    min-width: 250px;
+    padding-right: 12px;
+}
