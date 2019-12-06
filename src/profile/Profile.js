@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import './Profile.css';
 import {NavLink} from "react-router-dom";
-import {Breadcrumb, Icon, Image, Segment} from "semantic-ui-react";
+import {Breadcrumb, Icon, Image, Input} from "semantic-ui-react";
 import {loadUser} from "../util/APIUtils";
 import profile from '../img/profile.png';
+import {Form} from "semantic-ui-react/dist/commonjs/collections/Form";
 
 class Profile extends Component {
 
@@ -17,10 +18,15 @@ class Profile extends Component {
                 name: 'Azat',
                 surname: 'Akhunov',
                 patrName: 'Akhmatovich'
-            }
+            },
+            surname:'Akhunov',
+            name:'Azat',
+            patrName:'Akhmatovich'
+
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     componentDidMount () {
@@ -60,6 +66,16 @@ class Profile extends Component {
         window.location.reload();
     };
 
+    handleInputChange(event) {
+        const target = event.target;
+        const inputName = target.name;
+        const inputValue = target.value;
+
+        this.setState({
+            [inputName]: inputValue
+        });
+    }
+
     render() {
         return (
             <div className="profile-main">
@@ -97,7 +113,28 @@ class Profile extends Component {
                             <div className="user-custom-icon-container">
                                 <Icon link name='cog' size={'large'} color={'grey'} />
                             </div>
-
+                        </div>
+                        <div className="profile-info-container">
+                            <div className="profile-info-container-name">
+                                <span>Профиль</span>
+                            </div>
+                            <div className="profile-info-container-name-inputs">
+                                <div className="profile-info-container-name-input">
+                                    <label>Фамилия</label>
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.surname} className="form-input" id="surname"
+                                           name="surname" required placeholder='Фамилия'/>
+                                </div>
+                                <div className="profile-info-container-name-input">
+                                    <label>Имя</label>
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.name} className="form-input" id="name"
+                                           name="name" required placeholder='Имя'/>
+                                </div>
+                                <div className="profile-info-container-name-input">
+                                    <label>Отчество</label>
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.patrName} className="form-input" id="patrName"
+                                           name="patrName" required placeholder='Отчество'/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
