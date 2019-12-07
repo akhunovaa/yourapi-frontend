@@ -157,7 +157,7 @@ class Profile extends Component {
                             <Breadcrumb.Divider icon='right chevron'/>
                             <Breadcrumb.Section as={NavLink} to={'/profile'} link>Личный кабинет</Breadcrumb.Section>
                             <Breadcrumb.Divider icon='right arrow'/>
-                            <Breadcrumb.Section active>Настройки профиля</Breadcrumb.Section>
+                            <Breadcrumb.Section active>Настройка профиля</Breadcrumb.Section>
                         </Breadcrumb>
                     </div>
                     <div className="profile-form-container">
