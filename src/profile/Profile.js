@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Profile.css';
 import {NavLink} from "react-router-dom";
-import {Breadcrumb, Dropdown, Icon, Image, Input} from "semantic-ui-react";
+import {Breadcrumb, Dropdown, Icon, Image, Input, TextArea, Form, Divider} from "semantic-ui-react";
 import {loadUser} from "../util/APIUtils";
 
 class Profile extends Component {
@@ -24,7 +24,8 @@ class Profile extends Component {
             dbirth: '12.07.1986',
             sex: "Мужской",
             language: "Русский",
-            city: "Москва, Россия"
+            city: "Москва, Россия",
+            info: "И даже с языками, использующими латинский алфавит, могут возникнуть небольшие проблемы: в различных языках те или иные буквы встречаются с разной частотой, имеется разница в длине наиболее распространенных слов. Отсюда напрашивается вывод, что все же лучше использовать в качестве «рыбы» текст на том языке, который планируется использовать при запуске проекта. Сегодня существует несколько вариантов Lorem ipsum, кроме того, есть специальные генераторы, создающие собственные варианты текста на основе оригинального трактата, благодаря чему появляется возможность получить более длинный неповторяющийся набор слов."
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -250,7 +251,17 @@ class Profile extends Component {
                                               defaultValue={this.state.city}/>
                                 </div>
                             </div>
+                            <div className="profile-info-container-input">
+                                <div className="profile-info-container-name-textarea">
+                                    <label style={{paddingBottom: '6px'}}>О себе</label>
+                                    <Form>
+                                        <TextArea onChange={this.handleDropdownChange} placeholder='Расскажите о себе' style={{ minHeight: 265, maxHeight: 300, minWidth: 382 }}  id="info" name="info" defaultValue={this.state.info}/>
+                                    </Form>
+                                </div>
+                            </div>
+                            <Divider  style={{marginTop: '40px'}}/>
                         </div>
+
                     </div>
                 </div>
             </div>
