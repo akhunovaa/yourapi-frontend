@@ -139,6 +139,11 @@
     padding-top: 6px;
 }
 
+.phone-form-input{
+    width: 238px;
+    height: 38px;
+}
+
 .profile-info-container-name-input{
     display: grid;
     min-width: 250px;
