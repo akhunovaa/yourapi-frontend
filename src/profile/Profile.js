@@ -25,11 +25,14 @@ class Profile extends Component {
             sex: "Мужской",
             language: "Русский",
             city: "Москва, Россия",
+            phoneNumber: "",
+            email: "",
             info: "И даже с языками, использующими латинский алфавит, могут возникнуть небольшие проблемы: в различных языках те или иные буквы встречаются с разной частотой, имеется разница в длине наиболее распространенных слов. Отсюда напрашивается вывод, что все же лучше использовать в качестве «рыбы» текст на том языке, который планируется использовать при запуске проекта. Сегодня существует несколько вариантов Lorem ipsum, кроме того, есть специальные генераторы, создающие собственные варианты текста на основе оригинального трактата, благодаря чему появляется возможность получить более длинный неповторяющийся набор слов."
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
     }
 
     componentDidMount() {
@@ -80,6 +83,14 @@ class Profile extends Component {
     }
 
     handleDropdownChange = (e, {key, value}) => this.setState({[key]: value});
+
+
+    handleOnPhoneChange(value) {
+        console.log(value)
+        this.setState({
+            phone: value
+        });
+    }
 
     render() {
         const sexOptions = [
@@ -255,13 +266,33 @@ class Profile extends Component {
                                 <div className="profile-info-container-name-textarea">
                                     <label style={{paddingBottom: '6px'}}>О себе</label>
                                     <Form>
-                                        <TextArea onChange={this.handleDropdownChange} placeholder='Расскажите о себе' style={{ minHeight: 265, maxHeight: 300, minWidth: 382 }}  id="info" name="info" defaultValue={this.state.info}/>
+                                        <TextArea onChange={this.handleDropdownChange} placeholder='Расскажите о себе' style={{ minHeight: 265, maxHeight: 265, minWidth: 382 }}  id="info" name="info" defaultValue={this.state.info}/>
                                     </Form>
                                 </div>
                             </div>
-                            <Divider  style={{marginTop: '40px'}}/>
+                            <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
                         </div>
-
+                        <div className="profile-info-container">
+                            <div className="profile-info-container-name">
+                                <span>Контакты</span>
+                            </div>
+                            <div className="profile-info-container-input">
+                                <div className="profile-info-container-name-input">
+                                    <label>Телефон</label>
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.phoneNumber}
+                                           id="phoneNumber"
+                                           name="phoneNumber" placeholder='+7(___)___-__-__' required/>
+                                </div>
+                            </div>
+                            <div className="profile-info-container-input">
+                                <div className="profile-info-container-name-input">
+                                    <label>Email</label>
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.email}
+                                           id="email"
+                                           name="email" placeholder='user@botmasterzzz.com' required/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
