@@ -281,7 +281,7 @@ class Profile extends Component {
                                     <label>Телефон</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.phoneNumber}
                                            id="phoneNumber"
-                                           name="phoneNumber" placeholder='+7(___)___-__-__' required/>
+                                           name="phoneNumber" placeholder='+7( ___ ) ___ - __ - __ ' required/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
