@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import './Profile.css';
 import {NavLink} from "react-router-dom";
-import {Breadcrumb, Icon, Image, Input} from "semantic-ui-react";
+import {Breadcrumb, Icon, Image, Input, Dropdown} from "semantic-ui-react";
 import {loadUser} from "../util/APIUtils";
 import profile from '../img/profile.png';
-import {Form} from "semantic-ui-react/dist/commonjs/collections/Form";
 
 class Profile extends Component {
 
@@ -23,7 +22,9 @@ class Profile extends Component {
             name:'Azat',
             patrName:'Akhmatovich',
             nickname:'leon4uk',
-            dbirth:'12.07.1986'
+            dbirth:'12.07.1986',
+            sex: "Мужской",
+            language: "Русский"
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -77,7 +78,33 @@ class Profile extends Component {
         });
     }
 
+    handleDropdownChange = (e, { key, value }) => this.setState({ [key]: value });
+
     render() {
+        const sexOptions = [
+            {
+                sex: 'Мужской',
+                text: 'Мужской',
+                value: 'Мужской'
+            },
+            {
+                sex: 'Женский',
+                text: 'Женский',
+                value: 'Женский'
+            }
+        ];
+        const languageOptions = [
+            {
+                language: 'Русский',
+                text: 'Русский',
+                value: 'Русский'
+            },
+            {
+                language: 'English',
+                text: 'English',
+                value: 'English'
+            }
+        ];
         return (
             <div className="profile-main">
                 <div className="profile-main-container">
@@ -148,6 +175,18 @@ class Profile extends Component {
                                     <label>Дата рождения</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.dbirth} className="form-input" id="dbirth"
                                            name="dbirth" required placeholder='Дата рождения'/>
+                                </div>
+                            </div>
+                            <div className="profile-info-container-sex-input">
+                                <div className="profile-info-container-name-input">
+                                    <label style={{paddingBottom: '6px'}}>Пол</label>
+                                    <Dropdown onChange={this.handleDropdownChange} placeholder='Пол' fluid selection id="sex" name="sex" className="form-input"  options={sexOptions} defaultValue={this.state.sex}/>
+                                </div>
+                            </div>
+                            <div className="profile-info-container-input">
+                                <div className="profile-info-container-name-input">
+                                    <label style={{paddingBottom: '6px'}}>Язык</label>
+                                    <Dropdown onChange={this.handleDropdownChange} placeholder='Язык' fluid selection id="language" name="language" className="form-input" options={languageOptions} defaultValue={this.state.language}/>
                                 </div>
                             </div>
                         </div>
