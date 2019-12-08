@@ -1,6 +1,6 @@
 .profile-main{
     height: auto;
-    min-height: 2129px;
+    min-height: 2400px;
     background: #F2F2F2;
     min-width: 1633px;
     width: auto;
@@ -17,12 +17,12 @@
 }
 
 .profile-main-container{
+    min-height: 2400px;
     padding: 36px 33px 28px 31px;
 }
 
 .profile-form-container{
     min-height: 2400px;
-    height: 2400px;
     margin-top: 26px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
