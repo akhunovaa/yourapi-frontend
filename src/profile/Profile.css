@@ -23,6 +23,7 @@
 
 .profile-form-container{
     min-height: 2400px;
+    height: auto;
     margin-top: 26px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
