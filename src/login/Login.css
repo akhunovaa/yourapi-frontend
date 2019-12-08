@@ -60,6 +60,7 @@
 }
 
 .navigate-links{
+    min-width: 250px;
     margin: 64px 120px 20px;
     height: 52px;
 }
