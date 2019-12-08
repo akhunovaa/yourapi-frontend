@@ -262,3 +262,10 @@
     color:  #FFFFFF !important;
 }
 
+.prefer-callback{
+    padding-top: 16px;
+    display: inline-block;
+    height: 80px;
+    width: 250px;
+}
+

@@ -275,8 +275,8 @@ class Profile extends Component {
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-textarea">
                                     <label style={{paddingBottom: '6px'}}>О себе</label>
-                                    <Form>
-                                        <TextArea onChange={this.handleDropdownChange} placeholder='Расскажите о себе' style={{ minHeight: 265, maxHeight: 265, minWidth: 382 }}  id="info" name="info" defaultValue={this.state.info}/>
+                                    <Form style={{paddingTop: '6px'}}>
+                                        <TextArea onChange={this.handleDropdownChange} placeholder='Расскажите о себе' style={{minHeight: 265, maxHeight: 265, minWidth: 382 }}  id="info" name="info" defaultValue={this.state.info}/>
                                     </Form>
                                 </div>
                             </div>
@@ -365,6 +365,22 @@ class Profile extends Component {
                                 </div>
                             </div>
 
+                            <div className="profile-info-container-messengers">
+                                <h5>Предпочтительный вид связи</h5>
+                            </div>
+
+                            <div className="prefer-callback">
+                                <div style={{paddingBottom: 16}}>
+                                    <Checkbox/><span className="messenger-list">Электронное письмо</span>
+                                </div>
+                               <div style={{paddingBottom: 16}}>
+                                   <Checkbox defaultChecked/><span className="messenger-list">Звонок</span>
+                               </div>
+                                <div style={{paddingBottom: 16}}>
+                                    <Checkbox defaultChecked/><span className="messenger-list">Сообщение в мессенджер</span>
+                                </div>
+                            </div>
+                            <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
                         </div>
 
                     </div>
