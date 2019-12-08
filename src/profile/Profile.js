@@ -389,7 +389,7 @@ class Profile extends Component {
                             <div className="profile-info-container-name-inputs password">
                                 <div className="profile-info-container-name-input password-input">
                                     <label style={{marginBottom: 6}}>Старый пароль</label>
-                                    <Input   style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
+                                    <Input style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
                                            icon={{ name: 'eye slash outline', link: true }}
                                            iconPosition='right' defaultValue="123456"
                                            placeholder='Старый пароль' id="oldPassword" name="oldPassword" required type='password'/>
@@ -409,7 +409,7 @@ class Profile extends Component {
                                              placeholder='Повторите новый пароль' id="newRePassword" name="newRePassword" required type='password'/>
                                 </div>
                                 <div className="profile-info-container-name-input password-input">
-                                    <Button compact color='blue'>Изменить пароль</Button>
+                                    <Button compact color='blue' style={{width: 165, height:32}}>Изменить пароль</Button>
                                 </div>
                             </div>
                             <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
