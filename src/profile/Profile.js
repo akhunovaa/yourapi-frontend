@@ -382,7 +382,35 @@ class Profile extends Component {
                             </div>
                             <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
                         </div>
-
+                        <div className="profile-info-container">
+                            <div className="profile-info-container-name">
+                                <span>Безопасность</span>
+                            </div>
+                            <div className="profile-info-container-name-inputs password">
+                                <div className="profile-info-container-name-input password-input">
+                                    <label style={{marginBottom: 6}}>Старый пароль</label>
+                                    <Input   style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
+                                           icon={{ name: 'eye slash outline', link: true }}
+                                           iconPosition='right' defaultValue="123456"
+                                           placeholder='Старый пароль' id="oldPassword" name="oldPassword" required type='password'/>
+                                </div>
+                                <div className="profile-info-container-name-input password-input">
+                                    <label style={{marginBottom: 6}}>Новый пароль</label>
+                                    <Input   style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
+                                             icon={{ name: 'eye slash outline', link: true }}
+                                             iconPosition='right' defaultValue="123456"
+                                             placeholder='Старый пароль' id="newPassword" name="newPassword" required type='password'/>
+                                </div>
+                                <div className="profile-info-container-name-input password-input">
+                                    <label style={{marginBottom: 6}}>Повторите новый пароль</label>
+                                    <Input   style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
+                                             icon={{ name: 'eye slash outline', link: true }}
+                                             iconPosition='right' defaultValue="123456"
+                                             placeholder='Повторите новый пароль' id="newRePassword" name="newRePassword" required type='password'/>
+                                </div>
+                            </div>
+                            <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
+                        </div>
                     </div>
                 </div>
             </div>
