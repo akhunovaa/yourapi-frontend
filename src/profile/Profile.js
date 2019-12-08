@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Profile.css';
-import {NavLink} from "react-router-dom";
-import {Breadcrumb, Dropdown, Icon, Image, Input, TextArea, Form, Divider, Segment, Portal, List, Button, Checkbox} from "semantic-ui-react";
+import {Link, NavLink} from "react-router-dom";
+import {Breadcrumb, Dropdown, Icon, Image, Input, TextArea, Form, Divider, Segment, Portal, List, Button, Checkbox, Table} from "semantic-ui-react";
 import {loadUser} from "../util/APIUtils";
 
 class Profile extends Component {
@@ -408,8 +408,51 @@ class Profile extends Component {
                                              iconPosition='right' defaultValue="123456"
                                              placeholder='Повторите новый пароль' id="newRePassword" name="newRePassword" required type='password'/>
                                 </div>
+                                <div className="profile-info-container-name-input password-input">
+                                    <Button compact color='blue'>Изменить пароль</Button>
+                                </div>
                             </div>
                             <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
+                        </div>
+                        <div className="profile-info-container">
+                            <div className="profile-info-container-name">
+                                <span>Участник команд</span>
+                            </div>
+                            <div className="profile-info-container-command-table">
+                                <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                                    <Table.Header>
+                                        <Table.Row>
+                                            <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Команда</span></Table.HeaderCell>
+                                            <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Роль</span></Table.HeaderCell>
+                                            <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Статус</span></Table.HeaderCell>
+                                            <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Действие</span></Table.HeaderCell>
+                                        </Table.Row>
+                                    </Table.Header>
+
+                                    <Table.Body>
+                                        <Table.Row class="noBorder">
+                                            <Table.Cell>Волга</Table.Cell>
+                                            <Table.Cell>Роль 1</Table.Cell>
+                                            <Table.Cell><Icon color='green' name='dot circle' size='small'/>В команде</Table.Cell>
+                                            <Table.Cell><NavLink to="#"><b style={{color: '#EB5757'}}>Выйти из команды </b></NavLink></Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row class="noBorder">
+                                            <Table.Cell>Урал</Table.Cell>
+                                            <Table.Cell>Роль 3</Table.Cell>
+                                            <Table.Cell><Icon color='orange' name='dot circle' size='small'/>Запрос на участие</Table.Cell>
+                                            <Table.Cell>
+                                            <div className='command-approve'>
+                                                <Button icon fluid labelPosition='left' color='blue'> <Icon name='checkmark' />Принять</Button>
+                                                <Button fluid icon labelPosition='left' color='red'><Icon name='close' />Отклонить</Button>
+                                            </div>
+                                            </Table.Cell>
+                                        </Table.Row>
+                                    </Table.Body>
+                                </Table>
+                            </div>
+                            <div className="profile-info-container-name-input command-search-link">
+                                <NavLink to="#"><b style={{color: '#2F80ED'}}>+ Вступить в команду</b></NavLink>
+                            </div>
                         </div>
                     </div>
                 </div>
