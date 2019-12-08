@@ -21,8 +21,8 @@
 }
 
 .profile-form-container{
-    min-height: 1480px;
-    height: 2129px;
+    min-height: 2400px;
+    height: 2400px;
     margin-top: 26px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
@@ -278,10 +278,28 @@
 }
 
 .password{
+    padding-top: 0;
     display: block;
 }
 
 .password-input{
     padding-top: 24px;
+}
+
+.profile-info-container-command-table{
+    padding-top: 24px;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.command-approve{
+    display: flex;
+}
+
+.command-search-link {
+    padding-top: 32px;
 }
 
