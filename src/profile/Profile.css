@@ -202,3 +202,59 @@
     /* Gray 3 */
     color: #A5A5A5;
 }
+
+.profile-info-container-messengers{
+    padding-top: 28px;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size:  14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.profile-info-container-messengers-button{
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    width: 124px;
+    height: 32px;
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.profile-messenger-portal{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    width: 230px;
+    height: 166px;
+    /* Gray 2 */
+    color: #4F4F4F;
+    white-space: nowrap;
+}
+
+.messenger-list{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    padding-left: 9px;
+}
+
+.ui.checkbox input:checked~.box:before,
+.ui.checkbox input:checked~label:before {
+    background-color: #2F80ED !important;
+}
+
+.ui.checkbox input:checked~.box:after, .ui.checkbox input:checked~label:after {
+    color:  #FFFFFF !important;
+}
+

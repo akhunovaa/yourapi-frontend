@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Profile.css';
 import {NavLink} from "react-router-dom";
-import {Breadcrumb, Dropdown, Icon, Image, Input, TextArea, Form, Divider} from "semantic-ui-react";
+import {Breadcrumb, Dropdown, Icon, Image, Input, TextArea, Form, Divider, Segment, Portal, List, Button, Checkbox} from "semantic-ui-react";
 import {loadUser} from "../util/APIUtils";
 
 class Profile extends Component {
@@ -17,6 +17,7 @@ class Profile extends Component {
                 surname: 'Akhunov',
                 patrName: 'Akhmatovich'
             },
+            open: false,
             surname: 'Akhunov',
             name: 'Azat',
             patrName: 'Akhmatovich',
@@ -92,7 +93,16 @@ class Profile extends Component {
         });
     }
 
+    handleOpen = () => {
+        this.setState({open: true})
+    };
+
+    handleClose = () => {
+        this.setState({open: false})
+    };
+
     render() {
+        const { open } = this.state;
         const sexOptions = [
             {
                 sex: 'Мужской',
@@ -292,7 +302,60 @@ class Profile extends Component {
                                            name="email" placeholder='user@botmasterzzz.com' required/>
                                 </div>
                             </div>
+                            <div className="profile-info-container-messengers">
+                                <h5>Мессенджеры</h5>
+                            </div>
+
+                            <div className="profile-info-container-input">
+                                <Portal
+                                    closeOnPortalMouseLeave
+                                    closeOnTriggerClick
+                                    closeOnDocumentClick
+                                    trigger={
+                                        <Button className="profile-info-container-messengers-button" basic>+ Добавить</Button>
+                                    }
+                                    open={open}
+                                    onOpen={this.handleOpen}
+                                    onClose={this.handleClose}>
+                                    <div id='profile-messenger-portal'>
+                                        <Segment className="profile-messenger-portal"
+                                                 style={{position: 'fixed', top: '234px', left: 407}}>
+                                            <List size={"big"}>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Checkbox defaultChecked/><Icon style={{paddingLeft: 12}} name='telegram plane'><span className="messenger-list">Telegram</span></Icon>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='whatsapp'><span className="messenger-list">WhatsApp</span></Icon>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='viber'><span className="messenger-list">Viber</span></Icon>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='skype'><span className="messenger-list">Skype</span></Icon>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='facebook messenger'><span className="messenger-list">Facebook-messenger</span></Icon>
+                                                    </List.Content>
+                                                </List.Item>
+                                            </List>
+                                        </Segment>
+                                    </div>
+                                </Portal>
+                            </div>
+
+
+
                         </div>
+
                     </div>
                 </div>
             </div>
