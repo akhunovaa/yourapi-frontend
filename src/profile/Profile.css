@@ -153,6 +153,14 @@
     min-width: 250px;
     padding-right: 12px;
     width: 250px;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 3 */
+    color: #A5A5A5;
 }
 .profile-info-container-nickname-input{
     padding-top: 20px;
@@ -267,5 +275,13 @@
     display: inline-block;
     height: 80px;
     width: 250px;
+}
+
+.password{
+    display: block;
+}
+
+.password-input{
+    padding-top: 24px;
 }
 
