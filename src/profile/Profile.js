@@ -288,7 +288,7 @@ class Profile extends Component {
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
-                                    <label>Телефон</label>
+                                    <label style={{marginBottom: 6}}>Телефон</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.phoneNumber}
                                            id="phoneNumber"
                                            name="phoneNumber" placeholder='+7( ___ ) ___ - __ - __ ' required/>
@@ -296,7 +296,7 @@ class Profile extends Component {
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
-                                    <label>Email</label>
+                                    <label style={{marginBottom: 6}}>Email</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.email}
                                            id="email"
                                            name="email" placeholder='user@botmasterzzz.com' required/>
@@ -352,7 +352,18 @@ class Profile extends Component {
                                 </Portal>
                             </div>
 
-
+                            <div className="profile-info-container-name-inputs messengers">
+                                <div className="profile-info-container-name-input">
+                                    <Input disabled style={{paddingTop: 0, height: 32}}
+                                           className="form-input" id="messenger-login"
+                                           name="messenger-login" required placeholder='Telegram' iconPosition='left' icon='telegram plane'/>
+                                </div>
+                                <div className="profile-info-container-name-input">
+                                    <Input onChange={this.handleInputChange}  style={{paddingTop: 0, height: 32}}
+                                           className="form-input" id="messenger-login"
+                                           name="messenger-login" required placeholder='Телефон или имя'/>
+                                </div>
+                            </div>
 
                         </div>
 
