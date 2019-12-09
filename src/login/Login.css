@@ -101,12 +101,22 @@
     padding-top: 12px;
 }
 
-.signup-nav-link-right{
+.signup-nav-link-right-login{
     width: 124px;
     float: right;
     height: 100%;
     min-height: 52px;
     text-align: center;
     padding-top: 12px;
+}
+
+.signup-nav-link-right-login:hover{
+    width: 124px;
+    float: right;
+    height: 100%;
+    min-height: 52px;
+    text-align: center;
+    padding-top: 12px;
+    background-color: #E0E0E0;
 }
 

@@ -51,7 +51,7 @@ class Login extends Component {
                             <div className='login-nav-link-left'>
                                 <Link to="/login"><b style={{color: '#4F4F4F'}}>Вход</b></Link>
                             </div>
-                            <div className='signup-nav-link-right'>
+                            <div className='signup-nav-link-right-login'>
                                 <Link to="/signup"><b style={{color: '#4F4F4F'}}>Регистрация</b></Link>
                             </div>
                         </div>
