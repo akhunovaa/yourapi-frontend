@@ -147,11 +147,13 @@ class SignupForm2 extends Component {
                                         size='large' onClick={this.handleSubmit}>
                                     Создать аккаунт и войти
                                 </Button>
-                                <label style={{float: 'left', color: '#A5A5A5', paddingTop: '8px'}}>Создавая аккаунт, вы принимаете</label>
-                                <Link
-                                    style={{float: 'left', paddingTop: '0px', color: '#2F80ED'}}
-                                    to="#">пользовательские соглашения </Link>
-                                <Link style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#2F80ED'}} to="#">и политику конфиденциальности</Link>
+                                <div className='license-agreement'>
+                                    <label style={{float: 'left', color: '#A5A5A5', paddingTop: '8px'}}>Создавая аккаунт, вы принимаете</label>
+                                    <Link
+                                        style={{float: 'left', paddingTop: '0px', color: '#2F80ED'}}
+                                        to="#">пользовательские соглашения и</Link>
+                                    <Link style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#2F80ED'}} to="#">политику конфиденциальности</Link>
+                                </div>
                             </Form>
 
                         </Segment>
