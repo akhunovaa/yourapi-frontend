@@ -5,3 +5,36 @@ body{
     font-size: 14px;
     line-height: 16px;
 }
+
+.ui.form input{
+    color: #4F4F4F;
+}
+
+.ui.form input:hover{
+    /* Blue 1 */
+    border: 1px solid #2F80ED;
+    border-radius: 4px;
+}
+
+.ui.form input:active{
+    /* Blue 1 */
+    border: 1px solid #2F80ED !important;
+    border-radius: 4px;
+}
+
+.ui.form input:focus{
+    /* Blue 1 */
+    border: 1px solid #2F80ED !important;
+    border-radius: 4px;
+}
+
+.ui.form input:visited{
+    /* Blue 1 */
+    border: 1px solid #2F80ED !important;
+    border-radius: 4px;
+}
+.ui.form input:checked{
+    /* Blue 1 */
+    border: 1px solid #2F80ED !important;
+    border-radius: 4px;
+}
