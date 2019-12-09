@@ -39,7 +39,7 @@ class AppHeader extends Component {
                                 <Link to="/"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>
                             </div>
                             <div className='header-center-search-input'>
-                                <Input size={'small'} fluid icon={{ name: 'search', link: true, iconPosition: 'right' }}
+                                <Input size={'small'} fluid icon={{ name: 'search', link: true}}
                                        placeholder='Поиск...' id="search" name="search"/>
                             </div>
                         </div>
