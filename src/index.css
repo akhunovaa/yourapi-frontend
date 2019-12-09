@@ -39,9 +39,10 @@ body{
     border-radius: 4px;
 }
 
-input:required {
-    /* Red */
-    border: 1px solid #EB5757;
-    box-sizing: border-box;
-    border-radius: 4px;
-}
+/*.ui.input>input:required:focus:valid{*/
+    /*background: url("./img/check-solid.svg") no-repeat 95% 50% #219653;*/
+    /*background-size: 16px;*/
+/*}*/
+/*.ui.input>input:focus:invalid{*/
+    /*content: "\f00d";*/
+/*}*/
