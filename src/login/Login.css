@@ -31,6 +31,20 @@
     border-bottom: 1px solid #E0E0E0;
 }
 
+#login-container-right-header h3{
+    color: #2F80ED;
+}
+
+.submit-button{
+    background: #2F80ED !important;
+    color: white !important;
+    font-family: Roboto, serif !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+}
+
 #login-container-right-form{
     height: 528px;
     min-height: 528px;
