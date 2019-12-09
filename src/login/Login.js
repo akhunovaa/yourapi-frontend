@@ -121,8 +121,7 @@ class LoginForm2 extends Component {
         return (
             <Grid style={{paddingLeft: '80px', paddingRight: '80px'}} textAlign='center'>
                 <Grid.Column className="grid-column">
-                    <form onSubmit={this.handleSubmit}>
-                    <Form size='tiny'>
+                    <Form size='tiny' onSubmit={this.handleSubmit}>
                         <Segment className='login-data-segment-form'>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Логин/Email</label>
@@ -131,7 +130,7 @@ class LoginForm2 extends Component {
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
                                     <Input onChange={this.handleInputChange}
-                                        icon={{ name: 'eye slash outline', link: true, iconPosition: 'right' }}
+                                        icon={{ name: 'eye slash outline', link: true}}
                                         placeholder='Пароль' id="password" name="password" required type='password'
                                     />
                                 </Form.Field>
@@ -152,7 +151,6 @@ class LoginForm2 extends Component {
                                 </Button>
                         </Segment>
                     </Form>
-                    </form>
                 </Grid.Column>
             </Grid>
         );
