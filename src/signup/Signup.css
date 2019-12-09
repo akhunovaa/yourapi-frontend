@@ -68,10 +68,14 @@
 
 
 .footer-icon-group{
-    margin-top: 18px;
-    display: inline-block;
-    text-align: center;
-    width: 100%;
+    /*margin-top: 18px;*/
+    /*display: inline-block;*/
+    /*text-align: center;*/
+    /*width: 100%;*/
+}
+
+.footer-icon-group i:hover{
+    color: #2F80ED !important;
 }
 
 .navigate-links{
