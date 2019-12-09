@@ -390,22 +390,19 @@ class Profile extends Component {
                                 <div className="profile-info-container-name-input password-input">
                                     <label style={{marginBottom: 6}}>Старый пароль</label>
                                     <Input style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
-                                           icon={{ name: 'eye slash outline', link: true }}
-                                           iconPosition='right' defaultValue="123456"
+                                           icon={{ name: 'eye slash outline', link: true }} defaultValue="123456"
                                            placeholder='Старый пароль' id="oldPassword" name="oldPassword" required type='password'/>
                                 </div>
                                 <div className="profile-info-container-name-input password-input">
                                     <label style={{marginBottom: 6}}>Новый пароль</label>
                                     <Input   style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
-                                             icon={{ name: 'eye slash outline', link: true }}
-                                             iconPosition='right' defaultValue="123456"
+                                             icon={{ name: 'eye slash outline', link: true }} defaultValue="123456"
                                              placeholder='Старый пароль' id="newPassword" name="newPassword" required type='password'/>
                                 </div>
                                 <div className="profile-info-container-name-input password-input">
                                     <label style={{marginBottom: 6}}>Повторите новый пароль</label>
                                     <Input   style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
-                                             icon={{ name: 'eye slash outline', link: true }}
-                                             iconPosition='right' defaultValue="123456"
+                                             icon={{ name: 'eye slash outline', link: true }} defaultValue="123456"
                                              placeholder='Повторите новый пароль' id="newRePassword" name="newRePassword" required type='password'/>
                                 </div>
                                 <div className="profile-info-container-name-input password-input">
@@ -430,13 +427,13 @@ class Profile extends Component {
                                     </Table.Header>
 
                                     <Table.Body>
-                                        <Table.Row class="noBorder">
+                                        <Table.Row>
                                             <Table.Cell>Волга</Table.Cell>
                                             <Table.Cell>Роль 1</Table.Cell>
                                             <Table.Cell><Icon color='green' name='dot circle' size='small'/>В команде</Table.Cell>
                                             <Table.Cell><NavLink to="#"><b style={{color: '#EB5757'}}>Выйти из команды </b></NavLink></Table.Cell>
                                         </Table.Row>
-                                        <Table.Row class="noBorder">
+                                        <Table.Row>
                                             <Table.Cell>Урал</Table.Cell>
                                             <Table.Cell>Роль 3</Table.Cell>
                                             <Table.Cell><Icon color='orange' name='dot circle' size='small'/>Запрос на участие</Table.Cell>
