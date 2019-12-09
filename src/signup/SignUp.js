@@ -118,6 +118,7 @@ class SignupForm2 extends Component {
                 <Grid.Column>
                     <Form size='tiny' onSubmit={this.handleSubmit}>
                         <Segment className='login-data-segment-form'>
+                        <form onSubmit={this.handleSubmit}>
                             <Form>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}} for="login">Имя/Логин</label>
@@ -145,7 +146,7 @@ class SignupForm2 extends Component {
                                     }} label='Запомнить меня'/>
                                 </Form.Field>
                                 <Button type='submit' className='submit-button' fluid
-                                        size='large' onClick={this.handleSubmit}>
+                                        size='large'>
                                     Создать аккаунт и войти
                                 </Button>
                                 <div className='license-agreement'>
@@ -156,6 +157,7 @@ class SignupForm2 extends Component {
                                     <Link style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#2F80ED'}} to="#">политику конфиденциальности</Link>
                                 </div>
                             </Form>
+                        </form>
                         </Segment>
                     </Form>
                 </Grid.Column>

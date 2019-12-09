@@ -121,7 +121,8 @@ class LoginForm2 extends Component {
         return (
             <Grid style={{paddingLeft: '80px', paddingRight: '80px'}} textAlign='center'>
                 <Grid.Column className="grid-column">
-                    <Form size='tiny' onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit}>
+                    <Form size='tiny'>
                         <Segment className='login-data-segment-form'>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Логин/Email</label>
@@ -146,11 +147,12 @@ class LoginForm2 extends Component {
                                     }} label='Запомнить меня'/>
                                 </Form.Field>
                                 <Button type='submit' className='submit-button' fluid
-                                        size='large' onClick={this.handleSubmit}>
+                                        size='large'>
                                     Войти
                                 </Button>
                         </Segment>
                     </Form>
+                    </form>
                 </Grid.Column>
             </Grid>
         );
