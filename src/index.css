@@ -38,3 +38,10 @@ body{
     border: 1px solid #2F80ED !important;
     border-radius: 4px;
 }
+
+input:required {
+    /* Red */
+    border: 1px solid #EB5757;
+    box-sizing: border-box;
+    border-radius: 4px;
+}

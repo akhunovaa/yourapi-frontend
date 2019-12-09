@@ -125,7 +125,7 @@ class LoginForm2 extends Component {
                         <Segment className='login-data-segment-form'>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Логин/Email</label>
-                                    <input onChange={this.handleInputChange} className="form-login-input" id="login" name="login" required placeholder='Логин/Email'/>
+                                    <Input onChange={this.handleInputChange} className="form-login-input" id="login" name="login" required placeholder='Логин/Email'/>
                                 </Form.Field>
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
