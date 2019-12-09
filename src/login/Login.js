@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Login.css';
 import Alert from 'react-s-alert';
-import {Button, Checkbox, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
+import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import {login} from "../util/APIUtils";
 import {ACCESS_TOKEN} from "../constants";
 import {Link, Redirect} from "react-router-dom";
@@ -57,6 +57,7 @@ class Login extends Component {
                         </div>
                         <LoginForm2 {...this.props} />
                     </div>
+                    <Divider style={{marginTop: 0,  marginBottom: 0}}/>
                     <div id="login-container-right-footer">
                         <div className='footer-icon-group-label'>
                             <label style={{color: '#4F4F4F'}}>Войти с помощью</label>
