@@ -30,7 +30,7 @@ class SignUp extends Component {
                     </div>
                     <div id="signup-container-right-form">
                         <div className='navigate-links'>
-                            <div className='login-nav-link-left-1'>
+                            <div className='login-nav-link-left-login'>
                                 <Link to="/login"><b style={{color: '#4F4F4F'}}>Вход</b></Link>
                             </div>
                             <div className='signup-nav-link-right-1'>
