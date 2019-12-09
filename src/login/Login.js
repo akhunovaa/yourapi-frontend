@@ -59,19 +59,17 @@ class Login extends Component {
                     </div>
                     <Divider style={{marginTop: 0,  marginBottom: 0}}/>
                     <div id="login-container-right-footer">
-                        <div className='footer-icon-group-label'>
-                            <label style={{color: '#4F4F4F'}}>Войти с помощью</label>
+                            <div className='footer-icon-group-label'>
+                                <label style={{color: '#4F4F4F'}}>Войти с помощью</label>
+                            </div>
+
+                            <div className='footer-icon-group'>
+                                <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} />
+                                <Icon style={{marginRight: 44, color: '#A5A5A5'}}  link name='facebook' size={'large'} />
+                                <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'} />
+                                <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
+                            </div>
                         </div>
-
-                        <div className='footer-icon-group'>
-                            <Icon link name='google' size={'large'} color={'grey'} />
-                            <Icon link name='facebook' size={'large'} color={'grey'}/>
-                            <Icon link name='vk' size={'large'} color={'grey'} />
-                            <Icon link name='yandex' size={'large'} color={'grey'} />
-                        </div>
-
-
-                    </div>
                 </div>
 
             </div>

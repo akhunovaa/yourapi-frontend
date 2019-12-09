@@ -28,7 +28,7 @@ class SignUp extends Component {
                     <div id="login-container-right-header">
                         <Header as='h3' className={'login-right-header'}>YourAPI</Header>
                     </div>
-                    <div id="login-container-right-form">
+                    <div id="signup-container-right-form">
                         <div className='navigate-links'>
                             <div className='login-nav-link-left-1'>
                                 <Link to="/login"><b style={{color: '#4F4F4F'}}>Вход</b></Link>
@@ -40,16 +40,16 @@ class SignUp extends Component {
                         <SignupForm2 {...this.props} />
                         <Divider style={{marginTop: 24,  marginBottom: 0}}/>
                     </div>
-                    <div id="login-container-right-footer">
+                    <div className="signup-container-right-footer">
                         <div className='footer-icon-group-label'>
                             <label style={{color: '#4F4F4F'}}>Войти с помощью</label>
                         </div>
 
                         <div className='footer-icon-group'>
-                            <Icon link name='google' size={'large'} color={'grey'} />
-                            <Icon link name='facebook' size={'large'} color={'grey'}/>
-                            <Icon link name='vk' size={'large'} color={'grey'} />
-                            <Icon link name='yandex' size={'large'} color={'grey'} />
+                            <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} />
+                            <Icon style={{marginRight: 44, color: '#A5A5A5'}}  link name='facebook' size={'large'} />
+                            <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'} />
+                            <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
                         </div>
 
 

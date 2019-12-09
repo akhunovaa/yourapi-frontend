@@ -45,13 +45,15 @@
     line-height: 16px !important;
 }
 
-#login-container-right-form{
-    height: 446px;
+#signup-container-right-form{
+    height: 528px;
 }
-#login-container-right-footer{
-    height: 176px;
-    min-height: 176px;
-    padding: 88px 185px 118px 186px;
+.signup-container-right-footer{
+    margin-top: 56px;
+    height: 256px;
+    min-height: 256px;
+    width: 100%;
+    /*padding: 88px 185px 118px 186px;*/
     display: inline-block;
 }
 
@@ -66,10 +68,10 @@
 
 
 .footer-icon-group{
-    margin-top: 22px;
-    display: flex;
-    justify-content: space-between;
-    width: 184px;
+    margin-top: 18px;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
 }
 
 .navigate-links{
@@ -80,7 +82,12 @@
 
 
 .footer-icon-group-label{
-    width: 184px;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    width: 100%;
     text-align: center;
     display: inline-block;
 }
