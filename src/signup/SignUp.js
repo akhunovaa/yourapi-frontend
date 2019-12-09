@@ -118,21 +118,18 @@ class SignupForm2 extends Component {
                 <Grid.Column>
                     <Form size='tiny' onSubmit={this.handleSubmit}>
                         <Segment className='login-data-segment-form'>
-                        <form onSubmit={this.handleSubmit}>
-                            <Form>
                                 <Form.Field>
-                                    <label style={{float: 'left', color: '#A5A5A5'}} for="login">Имя/Логин</label>
+                                    <label style={{float: 'left', color: '#A5A5A5'}}>Имя/Логин</label>
                                     <Input onChange={this.handleInputChange} className="form-login-input" id="login" name="login" required placeholder='Имя/Логин'/>
                                 </Form.Field>
                                 <Form.Field>
-                                    <label style={{float: 'left', color: '#A5A5A5'}} for="email">Электронная почта</label>
+                                    <label style={{float: 'left', color: '#A5A5A5'}}>Электронная почта</label>
                                     <Input onChange={this.handleInputChange} className="form-login-input" type="email" id="email" name="email" required placeholder='Email'/>
                                 </Form.Field>
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
                                     <Input onChange={this.handleInputChange}
                                         icon={{ name: 'eye slash outline', link: true }}
-                                        iconPosition='right'
                                         placeholder='Пароль' id="password" name="password" required type='password'
                                     />
                                 </Form.Field>
@@ -156,8 +153,6 @@ class SignupForm2 extends Component {
                                         to="#">пользовательские соглашения и</Link>
                                     <Link style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#2F80ED'}} to="#">политику конфиденциальности</Link>
                                 </div>
-                            </Form>
-                        </form>
                         </Segment>
                     </Form>
                 </Grid.Column>
