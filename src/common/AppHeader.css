@@ -33,10 +33,11 @@
 }
 
 .header-center-navlink{
+
     padding: 24px 36px 24px 36px;
-    font-family: Roboto, serif;
+    font-family: Roboto, sans-serif;
     font-style: normal;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 14px;
     line-height: 16px;
     min-width: 154px;

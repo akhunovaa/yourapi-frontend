@@ -1,47 +1,9 @@
 import React, {Component} from 'react';
-import './AppHeader.css';
-import {Link, NavLink, withRouter} from "react-router-dom";
+import './ProfileHeader.css';
+import {Link, NavLink} from "react-router-dom";
 import {Icon, Input, Dropdown, Portal, Divider, Segment, List} from "semantic-ui-react";
-import ProfileHeader from "../header/ProfileHeader";
 
-class AppHeader extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        };
-        this.renderSwitch = this.renderSwitch.bind(this);
-    }
-
-    renderSwitch(path) {
-        switch(path) {
-            case '/':
-                return <HomeHeader onLogout={this.props.onLogout}/>;
-            case '/profile':
-                return <ProfileHeader onLogout={this.props.onLogout}/>;
-            default:
-                return <HomeHeader onLogout={this.props.onLogout}/>;
-        }
-    }
-
-    render() {
-        const path=this.props.location.pathname;
-        return (
-            <div>
-                { this.props.authenticated ? (
-                    this.renderSwitch(path)
-                ) : (
-                    <div className="header">
-
-                    </div>
-                )}
-            </div>
-        )
-    }
-}
-
-class HomeHeader extends Component {
+class ProfileHeader extends Component {
 
     constructor(props) {
         super(props);
@@ -58,35 +20,39 @@ class HomeHeader extends Component {
         this.setState({open: false})
     };
 
-    componentDidMount() {
-
-    }
-
     render() {
         const { open } = this.state;
         return (
-            <div className="header-authenticated">
-                <div className='header-left-logo'>
-                    <Link to="/"><b style={{color: 'white'}}>YourAPI</b></Link>
+            <div className="profile-header">
+                <div className='left-profile-header-links'>
+                    <div className='header-left-logo'>
+                        <Link to="/"><b style={{color: 'white'}}>YourAPI</b></Link>
+                    </div>
+                    <div className='header-navigation-link'>
+                        <Link to="#" style={{color: 'white'}}>Личный кабинет</Link>
+                    </div>
+                    <div className='lk-page-link'>
+                        <Link to="#" style={{color: 'white'}}><b>Настройки профиля</b></Link>
+                    </div>
+                    <div className='admin-page-link'>
+                        <Link to="#" style={{color: '#A7C8F4'}}>Администрирование</Link>
+                    </div>
+                    <div className='api-page-link'>
+                        <Link to="#" style={{color: '#A7C8F4'}}>Мои API</Link>
+                    </div>
+                    <div className='linked-api-page-link'>
+                        <Link to="#" style={{color: '#A7C8F4'}}>Подключенные API</Link>
+                    </div>
                 </div>
-                <div className='header-center-container'>
-                    <div className='header-center-navlink'>
-                        <Link to="/"><b style={{color: '#A5A5A5'}}>Магазин API</b></Link>
+                <div className='right-profile-header-links'>
+                    <div className='profile-header-navlink'>
+                        <Link to="#" style={{color: '#FFFFFF'}}>Магазин API</Link>
                     </div>
-                    <div className='header-center-navlink'>
-                        <Link to="/"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>
-                    </div>
-                    <div className='header-center-search-input'>
-                        <Input size={'small'} fluid icon={{ name: 'search', link: true}}
-                               placeholder='Поиск...' id="search" name="search"/>
-                    </div>
-                </div>
-                <div className="header-right-menu">
-                    <div className='header-right-navlink'>
+                    <div className='profile-header-language-navlink'>
                         <Dropdown text='RU' closeOnChange>
                             <Dropdown.Menu>
-                                <Dropdown.Item text='RU' description='Русский' />
-                                <Dropdown.Item text='EN' description='English' />
+                                <Dropdown.Item label={{ color: 'white'}} text='RU' description='Русский' />
+                                <Dropdown.Item label={{ color: 'white'}} text='EN' description='English' />
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
@@ -150,10 +116,9 @@ class HomeHeader extends Component {
                         </Portal>
                     </div>
                 </div>
-
             </div>
-        );
+        )
     }
 }
 
-export default withRouter(AppHeader);
+export default ProfileHeader;
