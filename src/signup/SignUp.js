@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Signup.css';
 import {Link, Redirect} from 'react-router-dom'
-import {Button, Checkbox, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
+import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import { signup } from "../util/APIUtils";
 import {ACCESS_TOKEN} from "../constants";
 import Alert from "react-s-alert";
@@ -38,6 +38,7 @@ class SignUp extends Component {
                             </div>
                         </div>
                         <SignupForm2 {...this.props} />
+                        <Divider style={{marginTop: 24,  marginBottom: 0}}/>
                     </div>
                     <div id="login-container-right-footer">
                         <div className='footer-icon-group-label'>
@@ -155,7 +156,6 @@ class SignupForm2 extends Component {
                                     <Link style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#2F80ED'}} to="#">политику конфиденциальности</Link>
                                 </div>
                             </Form>
-
                         </Segment>
                     </Form>
                 </Grid.Column>
