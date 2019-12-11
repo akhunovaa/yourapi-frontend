@@ -50,12 +50,12 @@
     padding-right: 16px;
 }
 
-.header-api-create-button{
-    font-family: Roboto, serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
+.create-button{
+    font-family: Roboto, serif !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
 }
 
 .main-body-container{
