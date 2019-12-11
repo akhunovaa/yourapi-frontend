@@ -1,6 +1,6 @@
 #login-container{
     width: auto;
-    min-width: 1366px;
+    /*min-width: 1366px;*/
     height: 100%;
     min-height: 1000px;
     display: flex;
@@ -10,6 +10,7 @@
 }
 
 #login-container-left{
+    min-width: 800px;
     width: 70%;
     float: left;
     background: url('../img/img.png') no-repeat center center fixed;
@@ -45,8 +46,10 @@
     line-height: 16px !important;
 }
 
-#login-container-right-form{
+.login-container-right-form{
     height: 426px;
+    min-width: 488px;
+    padding-top: 64px;
 }
 #login-container-right-footer{
     padding-top: 88px;
@@ -74,8 +77,8 @@
 }
 
 .navigate-links{
-    min-width: 250px;
-    margin: 64px 120px 20px;
+    margin-left: 120px;
+    margin-right: 120px;
     height: 52px;
 }
 
@@ -93,8 +96,8 @@
 
 .login-nav-link-left{
     width: 124px;
+    height: 52px;
     float: left;
-    height: 100%;
     min-height: 52px;
     border-bottom: 2px solid #2F80ED;
     text-align: center;
