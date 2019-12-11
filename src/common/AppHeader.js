@@ -113,34 +113,34 @@ class HomeHeader extends Component {
                                     <List size={"big"}>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/" style={{color: 'black'}}>Личный кабинет</NavLink>
+                                                <NavLink to="/" style={{color: 'black'}}><span className="portal-item">Личный кабинет</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/profile" style={{color: 'gray'}}>Настройка профиля</NavLink>
+                                                <NavLink to="/profile" style={{color: 'gray'}}><span className="portal-item">Настройка профиля</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/" style={{color: 'gray'}}>Администрирование</NavLink>
+                                                <NavLink to="/" style={{color: 'gray'}}><span className="portal-item">Администрирование</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider/>
+                                            <Divider style={{marginTop: 0,  marginBottom: 0}}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/" style={{color: 'gray'}}>Справка</NavLink>
+                                                <NavLink to="/" style={{color: 'gray'}}><span className="portal-item">Справка</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider/>
+                                            <Divider style={{marginTop: 0,  marginBottom: 0}}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
                                                 <a onClick={this.props.onLogout} style={{color: 'gray'}}>
-                                                    <span>Выйти</span>
+                                                    <span className="portal-item">Выйти</span>
                                                 </a>
                                             </List.Content>
                                         </List.Item>
