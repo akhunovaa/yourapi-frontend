@@ -10,14 +10,14 @@ class AppFooter extends Component {
                 {this.props.authenticated ? (
                     <div className="footer-authenticated">
                         <div className='footer-left-logo'>
-                            <NavLink to="/"><b style={{color: '#F2F2F2'}}>(c) 2019 YourAPI</b></NavLink>
+                            <NavLink to="/"><span style={{color: '#F2F2F2'}}>(c) 2019 YourAPI</span></NavLink>
                         </div>
 
                         <div className="footer-link-container">
-                            <NavLink to="/"><b style={{color: '#F2F2F2'}}>Политика конфиденциальности</b></NavLink>
+                            <NavLink to="/"><span style={{color: '#F2F2F2'}}>Политика конфиденциальности</span></NavLink>
                         </div>
                         <div className="footer-link-container">
-                            <NavLink to="/"><b style={{color: '#F2F2F2'}}>Пользовательское соглашение</b></NavLink>
+                            <NavLink to="/"><span style={{color: '#F2F2F2'}}>Пользовательское соглашение</span></NavLink>
                         </div>
                         <div className='footer-icons-group'>
                             <div className='footer-icon-container'>
