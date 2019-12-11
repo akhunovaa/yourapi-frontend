@@ -304,6 +304,14 @@
     display: flex;
 }
 
+.command-approve-buttons-text{
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+}
+
 .command-search-link {
     padding-top: 32px;
 }

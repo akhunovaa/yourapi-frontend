@@ -431,7 +431,7 @@ class Profile extends Component {
                                             <Table.Cell>Волга</Table.Cell>
                                             <Table.Cell>Роль 1</Table.Cell>
                                             <Table.Cell><Icon color='green' name='dot circle' size='small'/>В команде</Table.Cell>
-                                            <Table.Cell><NavLink to="#"><b style={{color: '#EB5757'}}>Выйти из команды </b></NavLink></Table.Cell>
+                                            <Table.Cell><NavLink to="#"><span style={{color: '#EB5757'}}>Выйти из команды </span></NavLink></Table.Cell>
                                         </Table.Row>
                                         <Table.Row>
                                             <Table.Cell>Урал</Table.Cell>
@@ -439,8 +439,8 @@ class Profile extends Component {
                                             <Table.Cell><Icon color='orange' name='dot circle' size='small'/>Запрос на участие</Table.Cell>
                                             <Table.Cell>
                                             <div className='command-approve'>
-                                                <Button icon fluid labelPosition='left' color='blue'> <Icon name='checkmark' />Принять</Button>
-                                                <Button fluid icon labelPosition='left' color='red'><Icon name='close' />Отклонить</Button>
+                                                <Button icon fluid labelPosition='left' color='blue'> <Icon name='checkmark' /><span className='command-approve-buttons-text'>Принять</span></Button>
+                                                <Button fluid icon labelPosition='left' color='red'><Icon name='close' /><span className='command-approve-buttons-text'>Отклонить</span></Button>
                                             </div>
                                             </Table.Cell>
                                         </Table.Row>
@@ -448,7 +448,7 @@ class Profile extends Component {
                                 </Table>
                             </div>
                             <div className="profile-info-container-name-input command-search-link">
-                                <NavLink to="#"><b style={{color: '#2F80ED'}}>+ Вступить в команду</b></NavLink>
+                                <NavLink to="#"><span style={{color: '#2F80ED'}}>+ Вступить в команду</span></NavLink>
                             </div>
                         </div>
                     </div>
