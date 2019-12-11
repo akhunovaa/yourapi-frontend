@@ -78,7 +78,7 @@ class HomeHeader extends Component {
                     </div>
                     <div className='header-center-search-input'>
                         <Input size={'small'} fluid icon={{ name: 'search', link: true}}
-                               placeholder='Поиск...' id="search" name="search"/>
+                               className='header-center-search' placeholder='Поиск...' id="search" name="search"/>
                     </div>
                 </div>
                 <div className="header-right-menu">

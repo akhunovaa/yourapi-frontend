@@ -63,9 +63,17 @@
 
 .header-center-search-input{
     /*padding: 16px 484px 9px 33px;*/
-    padding-top: 16px;
+    padding-top: 14px;
     width: 250px;
     margin-right: 484px;
+}
+
+.header-center-search{
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
 }
 
 .header-center-container{
