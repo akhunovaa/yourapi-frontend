@@ -50,7 +50,7 @@ class Home extends Component {
                                     Разместить API
                                 </Button>
                             </div>
-                            <div className="header-company-create-button">
+                            <div className="header-api-create-button">
                                 <Button className="create-button" style={{background: '#FFFFFF', color: '#4F4F4F'}}
                                         size='large'>
                                     Создать компанию

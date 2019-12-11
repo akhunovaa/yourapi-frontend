@@ -7,7 +7,7 @@
 }
 
 .container-breadcrumb{
-    font-family: Roboto, sans-serif;
+    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -96,7 +96,7 @@
     padding-left: 32px;
     height: 42px;
     overflow: hidden;
-    font-family: Roboto, sans-serif;
+    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
@@ -233,7 +233,7 @@
 }
 
 .profile-info-container-messengers-button{
-    font-family: Roboto, sans-serif;
+    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
