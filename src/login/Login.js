@@ -45,7 +45,7 @@ class Login extends Component {
                     <div id="login-container-right-header">
                         <Header as='h3' className={'login-right-header'}>YourAPI</Header>
                     </div>
-                    <div id="login-container-right-form">
+                    <div className="login-container-right-form">
                         <div className='navigate-links'>
                             <div className='login-nav-link-left'>
                                 <Link to="/login"><b style={{color: '#4F4F4F'}}>Вход</b></Link>
