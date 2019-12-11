@@ -406,7 +406,7 @@ class Profile extends Component {
                                              placeholder='Повторите новый пароль' id="newRePassword" name="newRePassword" required type='password'/>
                                 </div>
                                 <div className="profile-info-container-name-input password-input">
-                                    <Button compact color='blue' style={{width: 165, height:32}}>Изменить пароль</Button>
+                                    <Button compact color='blue' style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Изменить пароль</span></Button>
                                 </div>
                             </div>
                             <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
