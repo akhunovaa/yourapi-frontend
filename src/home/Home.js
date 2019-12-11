@@ -45,13 +45,13 @@ class Home extends Component {
                         </div>
                         <div className="header-buttons">
                             <div className="header-api-create-button">
-                                <Button style={{background: '#F39847', color: 'white'}}
+                                <Button className="create-button" style={{background: '#F39847', color: 'white'}}
                                         size='large'>
                                     Разместить API
                                 </Button>
                             </div>
                             <div className="header-company-create-button">
-                                <Button style={{background: '#FFFFFF', color: '#4F4F4F'}}
+                                <Button className="create-button" style={{background: '#FFFFFF', color: '#4F4F4F'}}
                                         size='large'>
                                     Создать компанию
                                 </Button>
