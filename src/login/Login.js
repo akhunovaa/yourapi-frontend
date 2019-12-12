@@ -120,7 +120,7 @@ class LoginForm2 extends Component {
         return (
             <div className='login-form'>
                 <Grid textAlign='center'>
-                    <Grid.Column width={16} widescreen={20} tablet={16} mobile={16} largeScreen={20} computer={20} stretched>
+                    <Grid.Column width={16} widescreen={20} tablet={16} mobile={16} largeScreen={25} computer={20} stretched>
                         <Form size='tiny' onSubmit={this.handleSubmit}>
                             <Segment className='login-data-segment-form'>
                                 <Form.Field>
