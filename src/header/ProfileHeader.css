@@ -3,6 +3,7 @@
     min-width: 1633px;
     width: auto;
     background-color: #428BEF;
+    color: rgb(255, 255, 255);
 }
 
 
@@ -93,6 +94,7 @@
 .profile-header-language-navlink{
     padding-top: 24px;
     padding-left: 24px;
+    margin-right: 28px;
     font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: normal;
