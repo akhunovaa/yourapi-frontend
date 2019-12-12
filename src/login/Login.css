@@ -27,6 +27,7 @@
 }
 
 #login-container-right-header{
+    min-width: 488px;
     height: 66px;
     min-height: 66px;
     border-bottom: 1px solid #E0E0E0;
@@ -51,11 +52,12 @@
     min-width: 488px;
     padding-top: 64px;
 }
-#login-container-right-footer{
+.login-container-right-footer{
     padding-top: 88px;
     height: 256px;
     min-height: 256px;
     width: 100%;
+    min-width: 488px;
     /*padding: 88px 185px 118px 186px;*/
     display: inline-block;
 }
@@ -121,5 +123,10 @@
     text-align: center;
     padding-top: 12px;
     background-color: #E0E0E0;
+}
+
+.login-form{
+    margin-right: 80px;
+    margin-left: 80px;
 }
 

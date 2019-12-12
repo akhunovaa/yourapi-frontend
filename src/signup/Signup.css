@@ -27,6 +27,7 @@
 }
 
 #login-container-right-header{
+    min-width: 488px;
     height: 66px;
     min-height: 66px;
     border-bottom: 1px solid #E0E0E0;
@@ -55,6 +56,7 @@
     height: 256px;
     min-height: 256px;
     width: 100%;
+    min-width: 488px;
     /*padding: 88px 185px 118px 186px;*/
     display: inline-block;
 }

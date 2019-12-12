@@ -57,7 +57,7 @@ class Login extends Component {
                         <LoginForm2 {...this.props} />
                     </div>
                     <Divider style={{marginTop: 0,  marginBottom: 0}}/>
-                    <div id="login-container-right-footer">
+                    <div className="login-container-right-footer">
                             <div className='footer-icon-group-label'>
                                 <label style={{color: '#4F4F4F'}}>Войти с помощью</label>
                             </div>
@@ -118,10 +118,11 @@ class LoginForm2 extends Component {
 
     render() {
         return (
-            <Grid style={{paddingLeft: '80px', paddingRight: '80px'}} textAlign='center'>
-                <Grid.Column className="grid-column">
-                    <Form size='tiny' onSubmit={this.handleSubmit}>
-                        <Segment className='login-data-segment-form'>
+            <div className='login-form'>
+                <Grid textAlign='center'>
+                    <Grid.Column className="grid-column">
+                        <Form size='tiny' onSubmit={this.handleSubmit}>
+                            <Segment className='login-data-segment-form'>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Логин/Email</label>
                                     <Input onChange={this.handleInputChange} className="form-login-input" id="login" name="login" required placeholder='Логин/Email'/>
@@ -129,8 +130,8 @@ class LoginForm2 extends Component {
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
                                     <Input onChange={this.handleInputChange}
-                                        icon={{ name: 'eye slash outline', link: true}}
-                                        placeholder='Пароль' id="password" name="password" required type='password'
+                                           icon={{ name: 'eye slash outline', link: true}}
+                                           placeholder='Пароль' id="password" name="password" required type='password'
                                     />
                                 </Form.Field>
                                 <Link
@@ -148,10 +149,12 @@ class LoginForm2 extends Component {
                                         size='large'>
                                     Войти
                                 </Button>
-                        </Segment>
-                    </Form>
-                </Grid.Column>
-            </Grid>
+                            </Segment>
+                        </Form>
+                    </Grid.Column>
+                </Grid>
+            </div>
+
         );
     }
 
