@@ -32,7 +32,7 @@ class AdministrationHeader extends Component {
                         <Link to="#" style={{color: 'white'}}>Личный кабинет</Link>
                     </div>
                     <div className='lk-page-link'>
-                        <Link to="#" style={{color: '#A7C8F4'}}>Настройки профиля</Link>
+                        <Link to="/profile" style={{color: '#A7C8F4'}}>Настройки профиля</Link>
                     </div>
                     <div className='admin-page-link'>
                         <Link to="#" style={{color: 'white'}}><b>Администрирование</b></Link>

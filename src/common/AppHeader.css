@@ -44,8 +44,31 @@
 
 
 .header-right-navlink{
+    padding-top: 24px;
+    padding-left: 24px;
+    margin-right: 28px;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    white-space: nowrap;
+    width: 59px;
+}
+
+.header-right-navlink-bell{
     text-align: center;
-    font-family: Roboto;
+    padding: 24px 0px 24px 0px;
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.header-right-navlink-bookmark{
+    text-align: center;
+    padding: 24px 11px 24px 14px;
+    font-family: Roboto, serif;
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
