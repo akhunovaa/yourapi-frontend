@@ -93,10 +93,10 @@ class HomeHeader extends Component {
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    <div className='header-right-navlink'>
+                    <div className='header-right-navlink-bell'>
                         <Icon link size={'large'}  name='bell outline' />
                     </div>
-                    <div className='header-right-navlink'>
+                    <div className='header-right-navlink-bookmark'>
                         <Icon link size={'large'}  name='bookmark outline' />
                     </div>
                     <div className='header-right-navlink-profile'>
