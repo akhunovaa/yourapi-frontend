@@ -2,7 +2,8 @@
     height: auto;
     min-height: 2400px;
     background: #F2F2F2;
-    min-width: 1633px;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
     width: auto;
 }
 
@@ -36,7 +37,7 @@
 .profile-avatar-container{
     padding-top: 72px;
     padding-left: 252px;
-    padding-right: 444px;
+    /*padding-right: 444px;*/
     display: inline-flex;
 }
 
