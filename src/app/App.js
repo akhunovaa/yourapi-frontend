@@ -5,6 +5,7 @@ import Home from '../home/Home';
 import Profile from '../profile/Profile';
 import SignUp from '../signup/SignUp';
 import Login from '../login/Login';
+import Administration from '../profile/administration/Administration';
 import LoadingIndicator from '../common/LoadingIndicator';
 import PrivateRoute from '../common/PrivateRoute';
 import Alert from 'react-s-alert';
@@ -96,8 +97,12 @@ class App extends Component {
                                render={(props) => <Login history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
                         <Route exact path="/signup"
                                render={(props) => <SignUp history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
-                        {/*<Route path='/profile' component={Profile} />*/}
+                        {/*<Route exact path="/profile"*/}
+                               {/*render={(props) => <Profile authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        {/*<Route exact path="/profile/administration"*/}
+                               {/*render={(props) => <Administration authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}/>
+                        <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Administration}/>
                         {/*<Route path='/users/:handle' component={Profile} />*/}
                         <Route component={NotFound}/>
                     </Switch>
