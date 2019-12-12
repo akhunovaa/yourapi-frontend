@@ -24,6 +24,7 @@
     width: 30%;
     float: right;
     height: 100%;
+    min-width: 488px;
 }
 
 #login-container-right-header{
