@@ -3,6 +3,7 @@ import './AppHeader.css';
 import {Link, NavLink, withRouter} from "react-router-dom";
 import {Icon, Input, Dropdown, Portal, Divider, Segment, List} from "semantic-ui-react";
 import ProfileHeader from "../header/ProfileHeader";
+import AdministrationHeader from "../header/AdministrationHeader";
 
 class AppHeader extends Component {
 
@@ -20,6 +21,8 @@ class AppHeader extends Component {
                 return <HomeHeader onLogout={this.props.onLogout}/>;
             case '/profile':
                 return <ProfileHeader onLogout={this.props.onLogout}/>;
+            case '/profile/administration':
+                return <AdministrationHeader onLogout={this.props.onLogout}/>;
             default:
                 return <HomeHeader onLogout={this.props.onLogout}/>;
         }
