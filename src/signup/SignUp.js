@@ -115,7 +115,7 @@ class SignupForm2 extends Component {
     render() {
         return (
             <Grid style={{paddingLeft: '80px', paddingRight: '80px'}} textAlign='center'>
-                <Grid.Column>
+                <Grid.Column width={16} widescreen={20} tablet={16} mobile={16} largeScreen={20} computer={20} stretched>
                     <Form size='tiny' onSubmit={this.handleSubmit}>
                         <Segment className='login-data-segment-form'>
                                 <Form.Field>
