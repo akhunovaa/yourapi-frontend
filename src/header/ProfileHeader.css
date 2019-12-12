@@ -15,6 +15,7 @@
 }
 
 .right-profile-header-links{
+    padding-left: 65px;
     float: right;
     display: inline-flex;
     width: 35%;
