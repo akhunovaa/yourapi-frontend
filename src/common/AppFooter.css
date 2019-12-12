@@ -3,13 +3,15 @@
     width: 100%;
     display: flex;
     background: #4F4F4F;
-    min-width: 1633px;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
 }
 
 .footer-left-logo{
     padding-top: 16px;
     padding-bottom: 16px;
     padding-left: 28px;
+    white-space: nowrap;
 }
 
 .footer-link-container{
@@ -21,6 +23,7 @@
     padding-top: 16px;
     padding-bottom: 16px;
     padding-left: 41px;
+    white-space: nowrap;
 }
 
 .footer-icons-group{
@@ -36,5 +39,7 @@
     font-family: Roboto, serif;
     font-style: normal;
     font-weight: normal;
-    padding: 16px 28px 16px 130px;
+    padding: 16px 28px 16px 0px;
+    white-space: nowrap;
+    background: #4F4F4F;
 }
