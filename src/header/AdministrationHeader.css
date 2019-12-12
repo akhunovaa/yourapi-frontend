@@ -110,3 +110,9 @@
     white-space: nowrap;
     width: 59px;
 }
+
+.header-right-navlink-profile-administration{
+    padding-left: 11px;
+    text-align: center;
+    padding-top: 6px;
+}
