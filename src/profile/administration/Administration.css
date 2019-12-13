@@ -6,3 +6,29 @@
     min-width: 1348px;
     width: auto;
 }
+
+.left-side-administration-body{
+    width: 268px;
+    min-height: 2400px;
+    /* white */
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    height: auto;
+}
+
+.left-side-administration-body-header{
+    height: 79px;
+    border-bottom: 1px solid #E0E0E0;
+    color: white;
+}
+
+.command-create-button{
+    color: white;
+}
+
+.left-side-administration-body-header-button{
+    padding: 20px 28px 19px 32px;
+}
+.ui.labeled.icon.button>.icon{
+    color: white;
+}
