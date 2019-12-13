@@ -89,7 +89,14 @@ class Administration extends Component {
 
         return (
             <div className="administration-main">
+                <div className='left-side-administration-body'>
+                    <div className='left-side-administration-body-header'>
+                        <div className='left-side-administration-body-header-button'>
+                            <Button icon fluid labelPosition='left' style={{background: '#F39847'}}> <Icon name='plus square'/><span className='command-approve-buttons-text command-create-button'>Создать команду</span></Button>
 
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
