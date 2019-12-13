@@ -119,9 +119,10 @@
 }
 
 .header-right-navlink-profile{
-    padding-left: 11px;
     text-align: center;
-    padding-top: 6px;
+    padding-top: 25px;
+    padding-bottom: 12px;
+    font-size: 40px;
 }
 
 
