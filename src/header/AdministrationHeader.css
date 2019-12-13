@@ -15,6 +15,7 @@
 .right-profile-administration-header-links{
     float: right;
     display: inline-flex;
+    height: 100%;
 }
 
 .header-navigation-link{
