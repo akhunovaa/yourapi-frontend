@@ -1,13 +1,14 @@
 .header-authenticated{
     height: 64px;
-    display: flex;
-    min-width: 1633px;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
     width: auto;
+    align-items: baseline;
 }
 
 .header-right-menu{
-    width: 226px;
-    height: 100%;
+    /*width: 226px;*/
+    height: 64px;
     float: right;
     border-left: 1px solid #E0E0E0;
     font-family: Roboto, serif;
@@ -15,16 +16,18 @@
     font-weight: bold;
     font-size: 14px;
     color: #A5A5A5;
-    display: flex;
+    /*display: flex;*/
+    display: inline-flex;
+    /*width: 35%;*/
 }
 
 .header-left-logo{
     width: 114px;
     float: left;
-    height: 100%;
+    height:100%;
     min-height: 64px;
     text-align: center;
-    padding: 24px 28px 24px 28px;
+    padding: 24px 28px 0px 28px;
     background-color: #428BEF;
     font-family: Roboto, serif;
     font-style: normal;
@@ -33,7 +36,30 @@
 }
 
 .header-center-navlink{
-    padding: 24px 36px 24px 36px;
+    padding: 24px 36px 0px 36px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    min-width: 154px;
+}
+
+.header-center-navlink-merch{
+    text-align: center;
+    padding: 24px 18px 0px 36px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    min-width: 154px;
+}
+
+
+.header-center-navlink-integration{
+    text-align: center;
+    padding: 24px 18px 0px 18px;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
@@ -101,12 +127,17 @@
 
 .header-center-search-input{
     /*padding: 16px 484px 9px 33px;*/
-    padding-top: 14px;
+    padding: 14px 18px 24px 18px;
     width: 250px;
-    margin-right: 484px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 .header-center-search{
+    width: 250px;
     font-family: Roboto !important;
     font-style: normal !important;
     font-weight: normal !important;
@@ -115,7 +146,12 @@
 }
 
 .header-center-container{
-    display: flex;
+    /*display: flex;*/
+    float: left;
+    display: inline-flex;
+    /*width: 55%;*/
+    width: 782px;
+    height:100%;
 }
 
 .portal-item{
