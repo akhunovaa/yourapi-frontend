@@ -62,7 +62,7 @@ class AdministrationHeader extends Component {
                     <div className='header-right-navlink-bookmark'>
                         <Icon link size={'large'}  name='bookmark outline' />
                     </div>
-                    <div className='header-right-navlink-profile-administration'>
+                    <div className='header-right-navlink-profile'>
                         <Portal
                             closeOnPortalMouseLeave
                             closeOnTriggerClick
