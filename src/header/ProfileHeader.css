@@ -3,7 +3,6 @@
     min-width: 1348px;
     background-color: #428BEF;
     color: rgb(255, 255, 255);
-    display: flex;
     width: auto;
 }
 
@@ -11,14 +10,11 @@
 .left-profile-header-links{
     float: left;
     display: inline-flex;
-    width: 65%;
 }
 
 .right-profile-header-links{
-    padding-left: 65px;
     float: right;
     display: inline-flex;
-    width: 35%;
 }
 
 .header-navigation-link{
