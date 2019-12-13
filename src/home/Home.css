@@ -2,15 +2,14 @@
     height: auto;
     min-height: 1480px;
     background: #F2F2F2;
-    min-width: 1633px;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
 }
 
-
 .header-picture {
-    min-width: 1633px;
-    width: 100%;
+    min-width: 1348px;
     height: 352px;
-    background: url('../img/img_header.png');
+    background: url('../img/img_header.png') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -59,13 +58,16 @@
 }
 
 .main-body-container{
-    padding: 32px 88px 68px;
+    padding: 32px 120px 68px 138px;
     display: block;
+    min-width: 1348px;
+    width: auto;
 }
 
 .main-body-new-api-container{
     height: auto;
     display: grid;
+    min-width: 1108px;
 }
 
 .main-body-new-api-container-name{
@@ -164,6 +166,7 @@
     padding-top: 20px;
     height: auto;
     display: grid;
+    min-width: 1108px;
 }
 
 .main-body-test-api-container{
