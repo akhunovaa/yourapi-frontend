@@ -105,7 +105,7 @@ class HomeHeader extends Component {
                             closeOnTriggerClick
                             closeOnDocumentClick
                             trigger={
-                                <Icon link size={'huge'} name='user circle' />
+                                <Icon link name='user circle' />
                             }
                             open={open}
                             onOpen={this.handleOpen}
