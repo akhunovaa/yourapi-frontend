@@ -1,6 +1,6 @@
 .footer-authenticated{
     height: 48px;
-    width: 100%;
+    width: auto;
     display: flex;
     background: #4F4F4F;
     /*min-width: 1633px;*/
