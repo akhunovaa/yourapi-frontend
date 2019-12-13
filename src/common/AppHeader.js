@@ -31,7 +31,7 @@ class AppHeader extends Component {
     render() {
         const path=this.props.location.pathname;
         return (
-            <div>
+            <div style={{maxHeight: '64px'}}>
                 { this.props.authenticated ? (
                     this.renderSwitch(path)
                 ) : (
@@ -73,10 +73,10 @@ class HomeHeader extends Component {
                     <Link to="/"><b style={{color: 'white'}}>YourAPI</b></Link>
                 </div>
                 <div className='header-center-container'>
-                    <div className='header-center-navlink'>
+                    <div className='header-center-navlink-merch'>
                         <Link to="/"><b style={{color: '#A5A5A5'}}>Магазин API</b></Link>
                     </div>
-                    <div className='header-center-navlink'>
+                    <div className='header-center-navlink-integration'>
                         <Link to="/"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>
                     </div>
                     <div className='header-center-search-input'>
