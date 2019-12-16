@@ -87,7 +87,6 @@ class Profile extends Component {
 
 
     handleOnPhoneChange(value) {
-        console.log(value)
         this.setState({
             phone: value
         });
