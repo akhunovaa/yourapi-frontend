@@ -61,7 +61,7 @@ class CommandAdministration extends Component {
                     <Breadcrumb.Section as={NavLink} to={'/profile/administration'} link><span className='text-disabled-color'>Администрирование</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right chevron'/>
                     <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color'>{page}</span></Breadcrumb.Section>
-                    <Breadcrumb.Divider icon='right chevron'/>
+                    <Breadcrumb.Divider icon='right arrow'/>
                     <Breadcrumb.Section active><span className='text-disabled-color'>О Команде</span></Breadcrumb.Section>
                 </Breadcrumb>
 
