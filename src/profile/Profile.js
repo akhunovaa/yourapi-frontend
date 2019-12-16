@@ -450,6 +450,15 @@ class Profile extends Component {
                                 <NavLink to="#"><span style={{color: '#2F80ED'}}>+ Вступить в команду</span></NavLink>
                             </div>
                         </div>
+                        <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
+                        <div className="profile-info-buttons">
+                            <div className='apply-button-container'>
+                                <Button fluid className="apply-button" style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Сохранить</span></Button>
+                            </div>
+                            <div className='cancel-button-container'>
+                                <Button fluid className="cancel-button"  style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Отмена</span></Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

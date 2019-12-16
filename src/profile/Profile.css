@@ -1,10 +1,11 @@
 .profile-main{
     height: auto;
-    min-height: 2400px;
+    min-height: 2550px;
     background: #F2F2F2;
     /*min-width: 1633px;*/
     min-width: 1348px;
     width: auto;
+    background: #E5E5E5;
 }
 
 .container-breadcrumb{
@@ -315,5 +316,11 @@
 
 .command-search-link {
     padding-top: 32px;
+}
+
+.profile-info-buttons{
+    display: block;
+    padding: 16px 198px;
+    height: 64px;
 }
 
