@@ -115,8 +115,10 @@ class SignupForm2 extends Component {
             signup(signUpRequest)
                 .then(response => {
                     if (!response.success) {
+                        this.onLoadRecaptcha();
                         Alert.warning(response.message);
                     } else {
+                        this.onLoadRecaptcha();
                         Alert.success("Вы успешно зарегистрировались!");
                         localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                         this.props.history.push("/");
