@@ -51,7 +51,7 @@ class CommandsTreeSet extends Component {
 
                         <List.Item style={{paddingTop: 32}}>
                             <List.Content floated='right'>
-                                <Icon link name={this.state.arrow2} onClick={this.toggle2} className='command-disabled-color'/>
+                                <Icon link name={this.state.arrow2} onClick={this.toggle2} disabled={this.state.hidden2} className='command-disabled-color'/>
                             </List.Content>
                             <Icon name='users' className='command-disabled-color'/>
                             <List.Content><span className="command-operation-text command-disabled-color command-bold-font-weight">Урал</span></List.Content>
