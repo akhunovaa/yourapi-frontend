@@ -1,6 +1,6 @@
 .administration-main{
     height: auto;
-    min-height: 2400px;
+    min-height: 1180px;
     background: #E5E5E5;
     /*min-width: 1633px;*/
     min-width: 1348px;
@@ -9,7 +9,6 @@
 
 .left-side-administration-body{
     width: 268px;
-    min-height: 2400px;
     /* white */
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
@@ -34,15 +33,13 @@
 }
 
 .left-side-administration-body-main-container{
-    min-height: 2321px;
-    height: auto;
 }
 
 .right-side-administration{
     float: right;
     min-width: 1068px;
     width: 100%;
-    min-height: 2400px;
+    min-height: 1290px;
     height: auto;
     font-family: Roboto;
     font-style: normal;
@@ -80,8 +77,7 @@
 }
 
 .administration-body-main{
-    height: 300px;
-    min-width: 1068px;
+    /*min-width: 1068px;*/
     width: auto;
     /*height: auto;*/
     /* white */
@@ -131,12 +127,6 @@
 .command-avatar-footer:hover {
     background-color: #F2F2F2;
     overflow: hidden;
-}
-
-.command-info-container{
-    padding-top: 40px;
-    padding-left: 252px;
-    width: 1000px;
 }
 
 .command-name-container{
@@ -194,4 +184,100 @@
 
 .command-avatar-center{
     padding: 44px 3px;
+}
+
+.command-info-container{
+    padding-top: 32px;
+    padding-left: 252px;
+    width: 1000px;
+}
+
+.command-info-container-name{
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+
+.command-info-container-name-inputs{ /*display: inline-flex;*/
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.command-info-container-name-input{
+    display: grid;
+    min-width: 250px;
+    padding-right: 12px;
+    width: 250px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    padding-top: 20px;
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.ui.input>input {
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+
+    /* Gray 2 */
+    color: #4F4F4F !important;
+}
+
+.ui.button {
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+
+    /* Gray 2 */
+    background: #2F80ED;
+    color: white;
+}
+
+
+.form-input{
+    padding-top: 6px;
+}
+
+.apply-button{
+    background: #2F80ED !important;
+}
+
+.cancel-button{
+    background: #A5A5A5 !important;
+}
+
+.apply-button-container{
+    float: left;
+}
+
+.cancel-button-container{
+    float: right;
+}
+
+.command-info-buttons{
+    display: block;
+    padding: 16px 198px;
+    height: 64px;
 }
