@@ -32,3 +32,8 @@
 .ui.labeled.icon.button>.icon{
     color: white;
 }
+
+.left-side-administration-body-main-container{
+    min-height: 2321px;
+    height: auto;
+}

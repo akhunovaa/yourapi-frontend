@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './Administration.css';
-import {Link, NavLink} from "react-router-dom";
-import {Breadcrumb, Dropdown, Icon, Image, Input, TextArea, Form, Divider, Segment, Portal, List, Button, Checkbox, Table} from "semantic-ui-react";
+import {Button, Icon} from "semantic-ui-react";
 import {loadUser} from "../../util/APIUtils";
+import CommandsTreeSet from './CommandsTreeSet';
 
 class Administration extends Component {
 
@@ -93,8 +93,10 @@ class Administration extends Component {
                     <div className='left-side-administration-body-header'>
                         <div className='left-side-administration-body-header-button'>
                             <Button icon fluid labelPosition='left' style={{background: '#F39847'}}> <Icon name='plus square'/><span className='command-approve-buttons-text command-create-button'>Создать команду</span></Button>
-
                         </div>
+                    </div>
+                    <div className='left-side-administration-body-main-container'>
+                        <CommandsTreeSet/>
                     </div>
                 </div>
             </div>
