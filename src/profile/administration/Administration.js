@@ -3,6 +3,8 @@ import './Administration.css';
 import {Button, Icon} from "semantic-ui-react";
 import {loadUser} from "../../util/APIUtils";
 import CommandsTreeSet from './CommandsTreeSet';
+import CommandAdministration from './CommandAdministration';
+import AdministrationBody from './AdministrationBody';
 
 class Administration extends Component {
 
@@ -14,7 +16,8 @@ class Administration extends Component {
             user: {
 
             },
-            open: false
+            open: false,
+            page: ''
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -24,9 +27,6 @@ class Administration extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const {handle} = this.props.match.params;
-        //this.setState({user: this.props.currentUser})
-        // this.loadUser(handle);
     }
 
 
@@ -97,6 +97,14 @@ class Administration extends Component {
                     </div>
                     <div className='left-side-administration-body-main-container'>
                         <CommandsTreeSet/>
+                    </div>
+                </div>
+                <div className='right-side-administration'>
+                    <div className="administration-breadcrumb">
+                        <CommandAdministration/>
+                    </div>
+                    <div className="administration-body">
+                        <AdministrationBody/>
                     </div>
                 </div>
             </div>
