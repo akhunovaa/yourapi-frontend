@@ -5,6 +5,7 @@ import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} fro
 import { signup } from "../util/APIUtils";
 import {ACCESS_TOKEN} from "../constants";
 import Alert from "react-s-alert";
+import { ReCaptcha } from 'react-recaptcha-google'
 
 class SignUp extends Component {
 
@@ -71,16 +72,30 @@ class SignupForm2 extends Component {
             login: '',
             email: '',
             password: '',
+            captchaToken: '',
             phone: '+78000000000'
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
 
+    componentDidMount() {
+        if (this.captcha) {
+            this.captcha.reset();
+        }
+    }
+    onLoadRecaptcha() {
+        if (this.captcha) {
+            this.captcha.reset();
+        }
     }
 
+    verifyCallback(recaptchaToken) {
+        this.setState({
+            captchaToken : recaptchaToken
+        })
+    }
 
     handleInputChange(event) {
         const target = event.target;
@@ -96,11 +111,12 @@ class SignupForm2 extends Component {
         event.preventDefault();
 
         const signUpRequest = Object.assign({}, this.state);
+        if (signUpRequest.captchaToken != null) {
             signup(signUpRequest)
                 .then(response => {
-                    if (!response.success){
+                    if (!response.success) {
                         Alert.warning(response.message);
-                    }else {
+                    } else {
                         Alert.success("Вы успешно зарегистрировались!");
                         localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                         this.props.history.push("/");
@@ -109,6 +125,7 @@ class SignupForm2 extends Component {
                 }).catch(error => {
                 Alert.error((error && error.message) || 'Что-то пошло не так! Попробуйте заново.');
             });
+        }
 
     }
 
@@ -133,12 +150,22 @@ class SignupForm2 extends Component {
                                         placeholder='Пароль' id="password" name="password" required type='password'
                                     />
                                 </Form.Field>
-                                <label style={{float: 'left', color: '#A5A5A5'}}>Минимум 6 символов</label>
+                                <label style={{float: 'left', color: '#A5A5A5', marginBottom: 6}}>Минимум 6 символов</label>
+                            <ReCaptcha
+                                ref={(el) => {this.captcha = el;}}
+                                size="normal"
+                                data-theme="light"
+                                render="explicit"
+                                sitekey="6LeulZwUAAAAAA07OHdhKen90gZauyUDCBe8GDEn"
+                                onloadCallback={this.onLoadRecaptcha}
+                                verifyCallback={this.verifyCallback}
+                                hl="ru"
+                            />
                                 <Form.Field>
                                     <Checkbox style={{
                                         float: 'left',
                                         color: '#4F4F4F',
-                                        paddingTop: '24px',
+                                        paddingTop: '30px',
                                         paddingBottom: '16px'
                                     }} label='Запомнить меня'/>
                                 </Form.Field>
