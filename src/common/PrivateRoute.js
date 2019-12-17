@@ -8,11 +8,10 @@ import {
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
     <Route
-        exact
         {...rest}
         render={props =>
             authenticated ? (
-                <Component {...rest} {...props} />
+                <Component {...rest} {...props} authenticated />
             ) : (
                 <Redirect
                     to={{
