@@ -15,6 +15,7 @@ class CommandAdministration extends Component {
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
     }
 
     componentDidMount() {
@@ -48,10 +49,19 @@ class CommandAdministration extends Component {
         this.setState({open: false})
     };
 
+    handleCheck(array, val) {
+        return array.some(item => item === val);
+    }
+
+
     render() {
-        let params = queryString.parse(this.props.location.search);
+        const namingArray = ['Волга', 'Урал'];
+        const pagingArray = ['about', 'members'];
+        const params = queryString.parse(this.props.location.search);
+        let naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'Волга';
+        let paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'about';
         let company = params.company ? params.company : 'Волга';
-        let linkToPage = '/profile/administration?company=' + company;
+        let linkToPage = '/profile/administration?company=' + naming;
         return (
                 <Breadcrumb>
                     <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
@@ -60,7 +70,7 @@ class CommandAdministration extends Component {
                     <Breadcrumb.Divider icon='right chevron'/>
                     <Breadcrumb.Section as={NavLink} to={'/profile/administration'} link><span className='text-disabled-color'>Администрирование</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right chevron'/>
-                    <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color'>{company}</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color'>{naming}</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right arrow'/>
                     <Breadcrumb.Section active><span className='text-disabled-color'>О Команде</span></Breadcrumb.Section>
                 </Breadcrumb>
