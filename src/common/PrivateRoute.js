@@ -8,6 +8,7 @@ import {
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
     <Route
+        exact
         {...rest}
         render={props =>
             authenticated ? (
