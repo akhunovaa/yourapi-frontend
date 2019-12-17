@@ -93,7 +93,7 @@
 }
 
 .command-avatar {
-    display: block;
+    display: inline-flex;
     width: 124px;
     height: 124px;
     position: relative;
@@ -183,7 +183,19 @@
 }
 
 .command-avatar-center{
-    padding: 44px 3px;
+    /*padding: 44px 3px;*/
+    /*height: 100%;*/
+    /*vertical-align: middle;*/
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .command-info-container{
