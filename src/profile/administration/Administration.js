@@ -5,6 +5,8 @@ import {loadUser} from "../../util/APIUtils";
 import CommandsTreeSet from './CommandsTreeSet';
 import CommandAdministration from './CommandAdministration';
 import AdministrationBody from './AdministrationBody';
+import queryString from "query-string";
+import {withRouter} from "react-router";
 
 class Administration extends Component {
 
@@ -16,6 +18,10 @@ class Administration extends Component {
             user: {
 
             },
+            company:{
+               name:'',
+               page:''
+            },
             open: false,
             page: ''
         };
@@ -26,6 +32,15 @@ class Administration extends Component {
     }
 
     componentDidMount() {
+        let params = queryString.parse(this.props.location.search);
+        let naming = params.company != null ? params.company : 'Волга';
+        let page = params.page != null ? params.page : 'about';
+        this.setState({
+            company: {
+                page: page,
+                name: naming
+            }
+        });
         this._isMounted = true;
     }
 
@@ -96,20 +111,19 @@ class Administration extends Component {
                         </div>
                     </div>
                     <div className='left-side-administration-body-main-container'>
-                        <CommandsTreeSet/>
+                        <CommandsTreeSet {...this.props}/>
                     </div>
                 </div>
                 <div className='right-side-administration'>
                     <div className="administration-breadcrumb">
-                        <CommandAdministration/>
+                        <CommandAdministration {...this.props}/>
                     </div>
                     <div className="administration-body">
-                        <AdministrationBody/>
+                        <AdministrationBody {...this.props}/>
                     </div>
                 </div>
             </div>
         )
     }
 }
-
-export default Administration;
+export default withRouter(Administration);

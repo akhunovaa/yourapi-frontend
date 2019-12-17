@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Administration.css';
-import {Breadcrumb, Button, Divider, Dropdown, Form, Icon, Image, Input, TextArea} from "semantic-ui-react";
-import {NavLink, withRouter} from "react-router-dom";
+import {Button, Divider, Dropdown, Form, Icon, Image, Input, TextArea} from "semantic-ui-react";
+import {withRouter} from "react-router-dom";
 import queryString from 'query-string';
 import volgaImage from '../../img/volga.png';
 import uralImage from '../../img/ural.png';
@@ -15,7 +15,8 @@ class AdministrationBody extends Component {
         this.state = {
             command: {
                 imageUrl: '',
-                name: ''
+                name: '',
+                page:''
             },
             commandName: 'Волга',
             company_name: '',
@@ -28,25 +29,11 @@ class AdministrationBody extends Component {
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
+        this.handleOnCompanyNameChange = this.handleOnCompanyNameChange.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
     }
 
     componentDidMount() {
-        let params = queryString.parse(this.props.location.search);
-        let naming = params.company != null ? params.company : 'Волга';
-        let imageUrl;
-        switch (naming) {
-            case 'Волга':
-                imageUrl = volgaImage;
-                break;
-            default:
-                imageUrl = uralImage;
-        }
-        this.setState({
-            command: {
-                imageUrl: imageUrl,
-                name: naming
-            }
-        });
         this._isMounted = true;
     }
 
@@ -68,10 +55,25 @@ class AdministrationBody extends Component {
         });
     }
 
+    handleOnCompanyNameChange(value){
+        if (!this._isMounted){
+            return;
+        }
+        this.setState({
+            command:{
+                name: value
+            }
+        });
+    };
+
     handleOnPhoneChange(value) {
         this.setState({
             phone: value
         });
+    }
+
+    handleCheck(array, val) {
+        return array.some(item => item === val);
     }
 
 
@@ -126,17 +128,34 @@ class AdministrationBody extends Component {
                 value: 'Reykjavík, Iceland'
             }
         ];
+
+        const namingArray = ['Волга', 'Урал'];
+        const pagingArray = ['about', 'members'];
+        const params = queryString.parse(this.props.location.search);
+        let naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'Волга';
+        let paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'about';
+        let imageUrl;
+        switch (naming) {
+            case 'Волга':
+                imageUrl = volgaImage;
+                break;
+            default:
+                imageUrl = uralImage;
+        }
+        if (this.state.command.name !== naming) {
+            this.handleOnCompanyNameChange(naming)
+        }
         return (
               <div className='administration-body-main'>
                   <div className="command-avatar-container">
                       <div className="command-avatar">
                           {
-                              this.state.command.imageUrl ? (
-                                  <Image src={this.state.command.imageUrl} verticalAlign='middle' className='command-avatar-center'
-                                         alt={this.state.command.name}/>
+                              imageUrl ? (
+                                  <Image src={imageUrl} verticalAlign='middle' className='command-avatar-center'
+                                         alt={naming}/>
                               ) : (
                                   <div className="text-avatar">
-                                      <span>{this.state.command.name && this.state.command.name[0]}</span>
+                                      <span>{naming && naming[0]}</span>
                                   </div>
                               )
                           }
@@ -145,7 +164,7 @@ class AdministrationBody extends Component {
                           </div>
                       </div>
                       <div className="command-name-container">
-                          <span style={{paddingRight: '8px', height: 28}}>{this.state.command.name}</span>
+                          <span style={{paddingRight: '8px', height: 28}}>{naming}</span>
                           <span className='command-label'>Команда</span>
                       </div>
                       <div className="command-custom-icon-container">
