@@ -4,9 +4,11 @@ import {Button, Icon} from "semantic-ui-react";
 import {loadUser} from "../../util/APIUtils";
 import CommandsTreeSet from './CommandsTreeSet';
 import CommandAdministration from './CommandAdministration';
-import AdministrationBody from './AdministrationBody';
+import AdministrationCommandBody from './AdministrationCommandBody';
+import AdministrationCompanyBody from './AdministrationCompanyBody';
 import queryString from "query-string";
 import {withRouter} from "react-router";
+import ProfileHeader from "../../common/AppHeader";
 
 class Administration extends Component {
 
@@ -15,12 +17,10 @@ class Administration extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {
-
-            },
-            company:{
-               name:'',
-               page:''
+            user: {},
+            command: {
+                name: '',
+                page: ''
             },
             open: false,
             page: ''
@@ -28,19 +28,13 @@ class Administration extends Component {
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
+        this.renderSwitch = this.renderSwitch.bind(this);
+        this.handleOnCompanyNameChange = this.handleOnCompanyNameChange.bind(this);
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
     }
 
     componentDidMount() {
-        let params = queryString.parse(this.props.location.search);
-        let naming = params.company != null ? params.company : 'Волга';
-        let page = params.page != null ? params.page : 'about';
-        this.setState({
-            company: {
-                page: page,
-                name: naming
-            }
-        });
         this._isMounted = true;
     }
 
@@ -86,7 +80,6 @@ class Administration extends Component {
 
 
     handleOnPhoneChange(value) {
-        console.log(value)
         this.setState({
             phone: value
         });
@@ -100,14 +93,48 @@ class Administration extends Component {
         this.setState({open: false})
     };
 
-    render() {
+    renderSwitch(path) {
+        switch(path) {
+            case 'Урал':
+                return <AdministrationCompanyBody onLogout={this.props.onLogout}/>;
+            default:
+                return <AdministrationCommandBody onLogout={this.props.onLogout}/>;
+        }
+    }
 
+
+    handleCheck(array, val) {
+        return array.some(item => item === val);
+    }
+
+    handleOnCompanyNameChange(value) {
+        if (!this._isMounted) {
+            return;
+        }
+        this.setState({
+            command: {
+                name: value
+            }
+        });
+    };
+
+    render() {
+        const namingArray = ['Волга', 'Урал'];
+        const pagingArray = ['about', 'members'];
+        const params = queryString.parse(this.props.location.search);
+        let naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'Волга';
+        let paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'about';
+        if (this.state.command.name !== naming) {
+            this.handleOnCompanyNameChange(naming);
+        }
         return (
             <div className="administration-main">
                 <div className='left-side-administration-body'>
                     <div className='left-side-administration-body-header'>
                         <div className='left-side-administration-body-header-button'>
-                            <Button icon fluid labelPosition='left' style={{background: '#F39847'}}> <Icon name='plus square'/><span className='command-approve-buttons-text command-create-button'>Создать команду</span></Button>
+                            <Button icon fluid labelPosition='left' style={{background: '#F39847'}}> <Icon
+                                name='plus square'/><span
+                                className='command-approve-buttons-text command-create-button'>Создать команду</span></Button>
                         </div>
                     </div>
                     <div className='left-side-administration-body-main-container'>
@@ -119,11 +146,12 @@ class Administration extends Component {
                         <CommandAdministration {...this.props}/>
                     </div>
                     <div className="administration-body">
-                        <AdministrationBody {...this.props}/>
+                        {this.renderSwitch(this.state.command.name)}
                     </div>
                 </div>
             </div>
         )
     }
 }
+
 export default withRouter(Administration);

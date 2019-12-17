@@ -6,7 +6,7 @@ import queryString from 'query-string';
 import volgaImage from '../../img/volga.png';
 import uralImage from '../../img/ural.png';
 
-class AdministrationBody extends Component {
+class AdministrationCommandBody extends Component {
 
     _isMounted = false;
 
@@ -242,4 +242,4 @@ class AdministrationBody extends Component {
         )
     }
 }
-export default withRouter(AdministrationBody);
+export default withRouter(AdministrationCommandBody);

@@ -1,6 +1,6 @@
 .administration-main{
     height: auto;
-    min-height: 1180px;
+    min-height: 1260px;
     background: #E5E5E5;
     /*min-width: 1633px;*/
     min-width: 1348px;
@@ -204,7 +204,24 @@
     width: 1000px;
 }
 
+.company-info-container{
+    padding-top: 56px;
+    padding-left: 252px;
+    width: 1000px;
+}
 .command-info-container-name{
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.company-info-container-name{
 
     font-family: Roboto;
     font-style: normal;
@@ -240,6 +257,21 @@
     font-size: 14px;
     line-height: 16px;
     padding-top: 20px;
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.company-info-container-name-input{
+    display: grid;
+    min-width: 250px;
+    padding-right: 12px;
+    width: 250px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    padding-top: 24px;
     /* Gray 3 */
     color: #A5A5A5;
 }
