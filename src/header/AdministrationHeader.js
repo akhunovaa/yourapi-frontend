@@ -93,7 +93,7 @@ class AdministrationHeader extends Component {
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider/>
+                                            <Divider style={{marginTop: 0,  marginBottom: 0}}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
@@ -101,7 +101,7 @@ class AdministrationHeader extends Component {
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider/>
+                                            <Divider style={{marginTop: 0,  marginBottom: 0}}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
