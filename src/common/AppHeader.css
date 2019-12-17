@@ -162,4 +162,15 @@
     font-size: 14px;
     line-height: 16px;
     color: #A5A5A5;
+    padding-top: 16px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.profile-segment{
+    display: inline-block;
+}
+
+.portal-item-main{
+    color: #4F4F4F;
 }

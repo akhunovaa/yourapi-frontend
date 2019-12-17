@@ -75,37 +75,37 @@ class AdministrationHeader extends Component {
                             onClose={this.handleClose}>
                             <div id='profile-portal' onClick={this.handleClose}>
                                 <Segment className="profile-segment"
-                                         style={{position: 'fixed',  right: 12,  top: '76px', zIndex: 1000, }}>
+                                         style={{position: 'fixed',  right: 12,  top: '76px', zIndex: 1000}}>
                                     <List size={"big"}>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/" style={{color: 'black'}}><span className="portal-item">Личный кабинет</span></NavLink>
+                                                <NavLink to="/"><span className="portal-item portal-item-main">Личный кабинет</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/profile" style={{color: 'gray'}}><span className="portal-item">Настройка профиля</span></NavLink>
+                                                <NavLink to="/profile"><span className="portal-item">Настройка профиля</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/" style={{color: 'gray'}}><span className="portal-item">Администрирование</span></NavLink>
+                                                <NavLink to="/profile/administration"><span className="portal-item">Администрирование</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0}}/>
+                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/" style={{color: 'gray'}}><span className="portal-item">Справка</span></NavLink>
+                                                <NavLink to="/"><span className="portal-item">Справка</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0}}/>
+                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <a onClick={this.props.onLogout} style={{color: 'gray'}}>
+                                                <a onClick={this.props.onLogout}>
                                                     <span className="portal-item">Выйти</span>
                                                 </a>
                                             </List.Content>
