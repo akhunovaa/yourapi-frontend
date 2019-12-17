@@ -60,7 +60,6 @@ class CommandAdministration extends Component {
         const params = queryString.parse(this.props.location.search);
         let naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'Волга';
         let paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'about';
-        let company = params.company ? params.company : 'Волга';
         let linkToPage = '/profile/administration?company=' + naming;
         return (
                 <Breadcrumb>
