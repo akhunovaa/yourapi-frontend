@@ -4,6 +4,7 @@ import {Breadcrumb, Button, Divider, Dropdown, Form, Icon, Image, Input, TextAre
 import {NavLink, withRouter} from "react-router-dom";
 import queryString from 'query-string';
 import volgaImage from '../../img/volga.png';
+import uralImage from '../../img/ural.png';
 
 class AdministrationBody extends Component {
 
@@ -13,8 +14,8 @@ class AdministrationBody extends Component {
         super(props);
         this.state = {
             command: {
-                imageUrl: volgaImage,
-                name: 'Волга'
+                imageUrl: '',
+                name: ''
             },
             commandName: 'Волга',
             company_name: '',
@@ -30,6 +31,22 @@ class AdministrationBody extends Component {
     }
 
     componentDidMount() {
+        let params = queryString.parse(this.props.location.search);
+        let naming = params.company != null ? params.company : 'Волга';
+        let imageUrl;
+        switch (naming) {
+            case 'Волга':
+                imageUrl = volgaImage;
+                break;
+            default:
+                imageUrl = uralImage;
+        }
+        this.setState({
+            command: {
+                imageUrl: imageUrl,
+                name: naming
+            }
+        });
         this._isMounted = true;
     }
 
@@ -67,9 +84,6 @@ class AdministrationBody extends Component {
     };
 
     render() {
-        let params = queryString.parse(this.props.location.search);
-        let page = params.page ? params.page : 'Волга';
-        let linkToPage = '/profile/administration?page=' + page;
         const cityOptions = [
             {
                 city: 'Москва, Россия',
@@ -118,7 +132,7 @@ class AdministrationBody extends Component {
                       <div className="command-avatar">
                           {
                               this.state.command.imageUrl ? (
-                                  <Image src={this.state.command.imageUrl} size='medium' circular verticalAlign='middle' className='command-avatar-center'
+                                  <Image src={this.state.command.imageUrl} verticalAlign='middle' className='command-avatar-center'
                                          alt={this.state.command.name}/>
                               ) : (
                                   <div className="text-avatar">
@@ -145,7 +159,7 @@ class AdministrationBody extends Component {
                       <div className="command-info-container-name-inputs">
                           <div className="command-info-container-name-input">
                               <label>Название</label>
-                              <Input onChange={this.handleInputChange} defaultValue={this.state.commandName}
+                              <Input onChange={this.handleInputChange} defaultValue={this.state.command.name}
                                      className="form-input" id="commandName"
                                      name="commandName" required placeholder='Название команды'/>
                           </div>

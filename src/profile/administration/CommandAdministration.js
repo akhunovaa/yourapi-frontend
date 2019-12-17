@@ -50,8 +50,8 @@ class CommandAdministration extends Component {
 
     render() {
         let params = queryString.parse(this.props.location.search);
-        let page = params.page ? params.page : 'Волга';
-        let linkToPage = '/profile/administration?page=' + page;
+        let company = params.company ? params.company : 'Волга';
+        let linkToPage = '/profile/administration?company=' + company;
         return (
                 <Breadcrumb>
                     <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
@@ -60,7 +60,7 @@ class CommandAdministration extends Component {
                     <Breadcrumb.Divider icon='right chevron'/>
                     <Breadcrumb.Section as={NavLink} to={'/profile/administration'} link><span className='text-disabled-color'>Администрирование</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right chevron'/>
-                    <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color'>{page}</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color'>{company}</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right arrow'/>
                     <Breadcrumb.Section active><span className='text-disabled-color'>О Команде</span></Breadcrumb.Section>
                 </Breadcrumb>
