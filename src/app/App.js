@@ -92,7 +92,7 @@ class App extends Component {
                     <Switch>
                         {/*<Route exact path="/"*/}
                         {/*render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser}><Home/></PrivateRoute>
+                        <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>
                         <Route exact path="/login"
                                render={(props) => <Login history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
                         <Route exact path="/signup"
@@ -101,8 +101,8 @@ class App extends Component {
                                {/*render={(props) => <Profile authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         {/*<Route exact path="/profile/administration"*/}
                                {/*render={(props) => <Administration authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}><Profile/></PrivateRoute>
-                        <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser}><Administration/></PrivateRoute>
+                        <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}/>
+                        <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Administration}/>
                         {/*<Route path='/users/:handle' component={Profile} />*/}
                         <Route component={NotFound}/>
                     </Switch>
