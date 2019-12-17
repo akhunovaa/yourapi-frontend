@@ -7,6 +7,15 @@
     display: flex;
 }
 
+.administration-main-company{
+    min-height: 1750px;
+    height: auto;
+    background: #E5E5E5;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
+    display: flex;
+}
+
 .left-side-administration-body{
     width: 268px;
     /* white */
