@@ -128,7 +128,7 @@ class Administration extends Component {
             this.handleOnCompanyNameChange(naming);
         }
         return (
-            <div className="administration-main">
+            <div className={naming !== 'Волга' ? 'administration-main-company' : 'administration-main'} >
                 <div className='left-side-administration-body'>
                     <div className='left-side-administration-body-header'>
                         <div className='left-side-administration-body-header-button'>
