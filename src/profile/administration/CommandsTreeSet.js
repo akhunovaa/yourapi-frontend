@@ -57,7 +57,7 @@ class CommandsTreeSet extends Component {
                             <List.Content><span className={classNames({ 'command-disabled-color' : naming !== 'Волга'}, 'command-operation-text', 'command-bold-font-weight')}>Волга</span></List.Content>
                             <List.List hidden={this.state.hidden}>
                                 <List.Content className='sub-command'>
-                                    <NavLink to="/profile/administration?company=Волга&page=about"><span className={classNames({ 'command-disabled-color' : naming !== 'Волга'}, { 'command-link-color' : (naming === 'Волга' && page === 'about')}, 'command-operation-text')}>О Команде</span></NavLink>
+                                    <NavLink to="/profile/administration?company=Волга&page=about"><span className={classNames({ 'command-disabled-color' : naming !== 'Волга'}, { 'command-link-color' : (naming === 'Волга' && page === 'about')}, 'command-operation-text')}>О команде</span></NavLink>
                                 </List.Content>
                                 <List.Content className='sub-command'>
                                     <NavLink to="/profile/administration?company=Волга&page=members"><span className={classNames({ 'command-disabled-color' : naming !== 'Волга'}, { 'command-link-color' : (naming === 'Волга' && page === 'members')}, 'command-operation-text')}>Участники</span></NavLink>
@@ -73,7 +73,7 @@ class CommandsTreeSet extends Component {
                             <List.Content><span className={classNames({ 'command-disabled-color' : naming !== 'Урал'}, 'command-operation-text', 'command-bold-font-weight')}>Урал</span></List.Content>
                             <List.List hidden={this.state.hidden2}>
                                 <List.Content className='sub-command'>
-                                    <NavLink to="/profile/administration?company=Урал&page=about"><span className={classNames({ 'command-disabled-color' : naming !== 'Урал'}, { 'command-link-color' : (naming === 'Урал' && page === 'about')}, 'command-operation-text')}>О Команде</span></NavLink>
+                                    <NavLink to="/profile/administration?company=Урал&page=about"><span className={classNames({ 'command-disabled-color' : naming !== 'Урал'}, { 'command-link-color' : (naming === 'Урал' && page === 'about')}, 'command-operation-text')}>О компании</span></NavLink>
                                 </List.Content>
                                 <List.Content className='sub-command'>
                                     <NavLink to="/profile/administration?company=Урал&page=members"><span className={classNames({ 'command-disabled-color' : naming !== 'Урал'}, { 'command-link-color' : (naming === 'Урал' && page === 'members')}, 'command-operation-text')}>Участники</span></NavLink>
