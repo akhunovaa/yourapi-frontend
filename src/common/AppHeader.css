@@ -158,7 +158,7 @@
 .portal-item{
     font-family: Roboto;
     font-style: normal;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 14px;
     line-height: 16px;
     color: #A5A5A5;
@@ -173,4 +173,5 @@
 
 .portal-item-main{
     color: #4F4F4F;
+    font-weight: bold;
 }
