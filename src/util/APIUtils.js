@@ -82,6 +82,10 @@ export function getCurrentUser() {
     });
 }
 
+export function checkLocalStorage() {
+    return localStorage.getItem(ACCESS_TOKEN);
+}
+
 export function login(loginRequest) {
     return request({
         url: API_BASE_URL + "/auth/login",
