@@ -38,7 +38,7 @@ class ProfileHeader extends Component {
                         <Link to="/profile/administration" style={{color: '#A7C8F4'}}>Администрирование</Link>
                     </div>
                     <div className='api-page-link'>
-                        <Link to="#" style={{color: '#A7C8F4'}}>Мои API</Link>
+                        <Link to="/profile/api" style={{color: '#A7C8F4'}}>Мои API</Link>
                     </div>
                     <div className='linked-api-page-link'>
                         <Link to="#" style={{color: '#A7C8F4'}}>Подключенные API</Link>

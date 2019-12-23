@@ -1,0 +1,8 @@
+.api-main{
+    height: auto;
+    min-height: 1290px;
+    background: #E5E5E5;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
+    display: flex;
+}
