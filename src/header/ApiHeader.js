@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import './AdministrationHeader.css';
+import './ApiHeader.css';
 import {Link, NavLink} from "react-router-dom";
 import {Icon, Dropdown, Portal, Divider, Segment, List} from "semantic-ui-react";
 
-class AdministrationHeader extends Component {
+class ApiHeader extends Component {
 
     constructor(props) {
         super(props);
@@ -35,10 +35,10 @@ class AdministrationHeader extends Component {
                         <Link to="/profile" style={{color: '#A7C8F4'}}>Настройки профиля</Link>
                     </div>
                     <div className='admin-page-link'>
-                        <Link to="/profile/administration" style={{color: 'white'}}><b>Администрирование</b></Link>
+                        <Link to="/profile/administration" style={{color: '#A7C8F4'}}>Администрирование</Link>
                     </div>
                     <div className='api-page-link'>
-                        <Link to="/profile/api" style={{color: '#A7C8F4'}}>Мои API</Link>
+                        <Link to="/profile/api" style={{color: 'white'}}><b>Мои API</b></Link>
                     </div>
                     <div className='linked-api-page-link'>
                         <Link to="#" style={{color: '#A7C8F4'}}>Подключенные API</Link>
@@ -121,4 +121,4 @@ class AdministrationHeader extends Component {
     }
 }
 
-export default AdministrationHeader;
+export default ApiHeader;

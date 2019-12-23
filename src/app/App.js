@@ -6,6 +6,7 @@ import Profile from '../profile/Profile';
 import SignUp from '../signup/SignUp';
 import Login from '../login/Login';
 import Administration from '../profile/administration/Administration';
+import Api from '../profile/api/Api';
 import LoadingIndicator from '../common/LoadingIndicator';
 import PrivateRoute from '../common/PrivateRoute';
 import Alert from 'react-s-alert';
@@ -101,8 +102,11 @@ class App extends Component {
                                {/*render={(props) => <Profile authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         {/*<Route exact path="/profile/administration"*/}
                                {/*render={(props) => <Administration authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        {/*<Route exact path="/profile/api"*/}
+                               {/*render={(props) => <Api authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}/>
                         <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Administration}/>
+                        <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Api}/>
                         {/*<Route path='/users/:handle' component={Profile} />*/}
                         <Route component={NotFound}/>
                     </Switch>
