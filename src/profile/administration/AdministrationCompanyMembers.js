@@ -126,12 +126,12 @@ class AdministrationCompanyMembers extends Component {
                                 <Table.Row>
                                     <Table.Cell><div className='command-member-table'><div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div><div className='member-user-text custom-text'><span>ivan_ivanov</span></div></div></Table.Cell>
                                     <Table.Cell><div className='command-member-table'><div className='member-user-text'><span>Роль 1</span></div></div></Table.Cell>
-                                    <Table.Cell><div className='command-member-table'><div className=''><Icon color='green' name='dot circle' size='small'/></div><div className='member-user-text'><span className='member-user-text'>В команде</span></div></div></Table.Cell>
+                                    <Table.Cell><div className='command-member-table habmburger-member-table-cell'><div className=''><Icon color='green' name='dot circle' size='small'/></div><div className='member-user-text'><span className='member-user-text'>В команде</span></div><div className='hamburger-menu'><a href="#" onClick={this.handleClose} className='hamburger-menu-link'>&#8942;</a></div></div></Table.Cell>
                                 </Table.Row>
                                 <Table.Row>
                                     <Table.Cell><div className='command-member-table'><div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div><div className='member-user-text custom-text'><span>petrov@mail.ru</span></div></div></Table.Cell>
                                     <Table.Cell><div className='command-member-table'><div className='member-user-text'><span>Роль 2</span></div></div></Table.Cell>
-                                    <Table.Cell><div className='command-member-table'><div className=''><Icon color='orange' name='dot circle' size='small'/></div><div className='member-user-text'><span className='member-user-text'>Отправлено приглашение</span></div></div></Table.Cell>
+                                    <Table.Cell><div className='command-member-table'><div className=''><Icon color='orange' name='dot circle' size='small'/></div><div className='member-user-text'><span className='member-user-text'>Отправлено приглашение</span></div><div className='hamburger-menu'><a href="#" onClick={this.handleClose} className='hamburger-menu-link'>&#8942;</a></div></div></Table.Cell>
                                 </Table.Row>
                             </Table.Body>
                         </Table>

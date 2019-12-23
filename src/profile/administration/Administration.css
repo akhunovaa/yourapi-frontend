@@ -398,7 +398,7 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
-
+    width: 185px;
     /* Gray 2 */
     color: #4F4F4F;
 }
@@ -411,6 +411,30 @@
 
 .command-add-link {
     padding-top: 24px;
+}
+
+.hamburger-menu{
+    float: right;
+    height: 100%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 16px;
+}
+
+.hamburger-menu-link{
+    color: #C4C4C4;
+}
+
+.hamburger-menu-link:hover{
+    color: #C4C4C4;
+}
+
+
+.habmburger-member-table-cell{
+    display: inline-flex;
+    white-space: nowrap;
 }
 
 
