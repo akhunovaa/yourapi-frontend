@@ -160,7 +160,7 @@ class Administration extends Component {
                 </div>
                 <div className='right-side-administration'>
                     <div className="administration-breadcrumb">
-                        <CommandAdministration {...this.props}/>
+                        <CommandAdministration naming={naming} paging={paging} {...this.props}/>
                     </div>
                     <div className="administration-body">
                         {this.renderSwitchBody()}
