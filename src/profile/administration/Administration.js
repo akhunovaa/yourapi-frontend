@@ -6,9 +6,10 @@ import CommandsTreeSet from './CommandsTreeSet';
 import CommandAdministration from './CommandAdministration';
 import AdministrationCommandBody from './AdministrationCommandBody';
 import AdministrationCompanyBody from './AdministrationCompanyBody';
-import queryString from "query-string";
+import AdministrationCommandMembers from './AdministrationCommandMembers';
+import AdministrationCompanyMembers from './AdministrationCompanyMembers';
 import {withRouter} from "react-router";
-import ProfileHeader from "../../common/AppHeader";
+import queryString from "query-string";
 
 class Administration extends Component {
 
@@ -29,15 +30,17 @@ class Administration extends Component {
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
-        this.renderSwitch = this.renderSwitch.bind(this);
-        this.handleOnCompanyNameChange = this.handleOnCompanyNameChange.bind(this);
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
+        this.renderSwitchBody = this.renderSwitchBody.bind(this);
     }
 
     componentDidMount() {
         this._isMounted = true;
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
 
     loadUser(handle) {
         this.setState({
@@ -57,11 +60,6 @@ class Administration extends Component {
                 loading: false
             });
         });
-    }
-
-
-    componentWillUnmount() {
-        this._isMounted = false;
     }
 
     reload() {
@@ -93,40 +91,37 @@ class Administration extends Component {
         this.setState({open: false})
     };
 
-    renderSwitch(path) {
-        switch(path) {
-            case 'Урал':
-                return <AdministrationCompanyBody onLogout={this.props.onLogout}/>;
-            default:
-                return <AdministrationCommandBody onLogout={this.props.onLogout}/>;
-        }
-    }
-
-
     handleCheck(array, val) {
         return array.some(item => item === val);
     }
 
-    handleOnCompanyNameChange(value) {
-        if (!this._isMounted) {
-            return;
-        }
-        this.setState({
-            command: {
-                name: value
-            }
-        });
-    };
 
-    render() {
+    renderSwitchBody() {
         const namingArray = ['Волга', 'Урал'];
         const pagingArray = ['about', 'members'];
         const params = queryString.parse(this.props.location.search);
-        let naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'Волга';
-        let paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'about';
-        if (this.state.command.name !== naming) {
-            this.handleOnCompanyNameChange(naming);
+        const naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'Волга';
+        const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'about';
+        switch(naming) {
+            case 'Урал':
+                if (paging === 'about') {
+                    return <AdministrationCompanyBody naming={naming}/>;
+                }else{
+                    return <AdministrationCompanyMembers naming={naming}/>;
+                }
+            default:
+                if (paging === 'about') {
+                    return <AdministrationCommandBody naming={naming}/>;
+                }else{
+                    return <AdministrationCommandMembers naming={naming}/>;
+                }
         }
+    }
+
+    render() {
+        const namingArray = ['Волга', 'Урал'];
+        const params = queryString.parse(this.props.location.search);
+        const naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'Волга';
         return (
             <div className={naming !== 'Волга' ? 'administration-main-company' : 'administration-main'} >
                 <div className='left-side-administration-body'>
@@ -146,7 +141,7 @@ class Administration extends Component {
                         <CommandAdministration {...this.props}/>
                     </div>
                     <div className="administration-body">
-                        {this.renderSwitch(this.state.command.name)}
+                        {this.renderSwitchBody()}
                     </div>
                 </div>
             </div>

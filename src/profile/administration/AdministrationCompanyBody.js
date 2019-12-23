@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './Administration.css';
 import {Button, Divider, Dropdown, Form, Icon, Image, Input, TextArea} from "semantic-ui-react";
 import {withRouter} from "react-router-dom";
-import queryString from 'query-string';
 import volgaImage from '../../img/volga.png';
 import uralImage from '../../img/ural.png';
 
@@ -31,7 +30,6 @@ class AdministrationCompanyBody extends Component {
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
-        this.handleOnCompanyNameChange = this.handleOnCompanyNameChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
     }
 
@@ -57,17 +55,6 @@ class AdministrationCompanyBody extends Component {
         });
     }
 
-    handleOnCompanyNameChange(value){
-        if (!this._isMounted){
-            return;
-        }
-        this.setState({
-            company:{
-                name: value
-            }
-        });
-    };
-
     handleOnPhoneChange(value) {
         this.setState({
             phone: value
@@ -88,6 +75,15 @@ class AdministrationCompanyBody extends Component {
     };
 
     render() {
+        const naming = this.props.naming;
+        let imageUrl;
+        switch (naming) {
+            case 'Волга':
+                imageUrl = volgaImage;
+                break;
+            default:
+                imageUrl = uralImage;
+        }
         const cityOptions = [
             {
                 city: 'Москва, Россия',
@@ -159,22 +155,6 @@ class AdministrationCompanyBody extends Component {
             }
         ];
 
-        const namingArray = ['Волга', 'Урал'];
-        const pagingArray = ['about', 'members'];
-        const params = queryString.parse(this.props.location.search);
-        let naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'Волга';
-        let paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'about';
-        let imageUrl;
-        switch (naming) {
-            case 'Волга':
-                imageUrl = volgaImage;
-                break;
-            default:
-                imageUrl = uralImage;
-        }
-        if (this.state.company.name !== naming) {
-            this.handleOnCompanyNameChange(naming)
-        }
         return (
               <div className='administration-body-main'>
                   <div className="command-avatar-container">
