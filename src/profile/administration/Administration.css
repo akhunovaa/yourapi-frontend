@@ -16,6 +16,15 @@
     display: flex;
 }
 
+.administration-command-member{
+    min-height: 870px;
+    height: auto;
+    background: #E5E5E5;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
+    display: flex;
+}
+
 .left-side-administration-body{
     width: 268px;
     /* white */
@@ -230,6 +239,15 @@
     color: #4F4F4F;
 }
 
+.command-info-container-name-members{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+}
+
 .company-info-container-name{
 
     font-family: Roboto;
@@ -334,3 +352,56 @@
     padding: 16px 252px;
     height: 64px;
 }
+
+.command-member-container-table{
+    padding-top: 32px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.member-user-icon{
+    vertical-align: middle;
+    /* Gray 6 */
+    background: #F2F2F2;
+    /* Gray 4 */
+    border: 1px solid #D8D8D8;
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    color:  #4F4F4F;
+    overflow: hidden;
+
+    border-radius: 62px;
+    padding: 8px 10px 10px 8px;
+}
+
+.command-member-table{
+    display: flex;
+    white-space: nowrap;
+}
+
+.member-user-text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.custom-text{
+    padding-left: 20px;
+    padding-top: 12px;
+}
+
+
+.command-add-link {
+    padding-top: 24px;
+}
+
+
