@@ -120,10 +120,32 @@ class Administration extends Component {
 
     render() {
         const namingArray = ['Волга', 'Урал'];
+        const pagingArray = ['about', 'members'];
         const params = queryString.parse(this.props.location.search);
         const naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'Волга';
+        const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'about';
+        let className;
+        switch(naming) {
+            case 'Урал':
+                if (paging === 'about') {
+                    className = 'administration-main-company';
+                    break;
+                }else{
+                    className = 'administration-company-member';
+                    break;
+                }
+            default:
+                if (paging === 'about') {
+                    className = 'administration-main';
+                    break;
+                }else{
+                    className = 'administration-command-member';
+                    break;
+                }
+        }
+
         return (
-            <div className={naming !== 'Волга' ? 'administration-main-company' : 'administration-main'} >
+            <div className={className} >
                 <div className='left-side-administration-body'>
                     <div className='left-side-administration-body-header'>
                         <div className='left-side-administration-body-header-button'>

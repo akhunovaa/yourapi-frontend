@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import './Administration.css';
-import {Button, Divider, Icon, Image} from "semantic-ui-react";
-import {withRouter} from "react-router-dom";
-import queryString from 'query-string';
+import {Table, Divider, Icon, Image, Button} from "semantic-ui-react";
+import {NavLink, withRouter} from "react-router-dom";
 import volgaImage from '../../img/volga.png';
 import uralImage from '../../img/ural.png';
 
@@ -113,18 +112,43 @@ class AdministrationCompanyMembers extends Component {
                     <div className="command-info-container-name">
                         <span>Сотрудники</span>
                     </div>
-                    <div className="command-info-container-name-inputs">
+                    <div className="command-member-container-table">
+                        <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Участник</span></Table.HeaderCell>
+                                    <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Роль</span></Table.HeaderCell>
+                                    <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Статус</span></Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+
+                            <Table.Body>
+                                <Table.Row>
+                                    <Table.Cell><div className='command-member-table'><div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div><div className='member-user-text custom-text'><span>ivan_ivanov</span></div></div></Table.Cell>
+                                    <Table.Cell><div className='command-member-table'><div className='member-user-text'><span>Роль 1</span></div></div></Table.Cell>
+                                    <Table.Cell><div className='command-member-table'><div className=''><Icon color='green' name='dot circle' size='small'/></div><div className='member-user-text'><span className='member-user-text'>В команде</span></div></div></Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell><div className='command-member-table'><div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div><div className='member-user-text custom-text'><span>petrov@mail.ru</span></div></div></Table.Cell>
+                                    <Table.Cell><div className='command-member-table'><div className='member-user-text'><span>Роль 2</span></div></div></Table.Cell>
+                                    <Table.Cell><div className='command-member-table'><div className=''><Icon color='orange' name='dot circle' size='small'/></div><div className='member-user-text'><span className='member-user-text'>Отправлено приглашение</span></div></div></Table.Cell>
+                                </Table.Row>
+                            </Table.Body>
+                        </Table>
                     </div>
-                    <Divider style={{marginTop: '40px', marginBottom: 0}}/>
-                    <div className="command-info-buttons">
-                        <div className='apply-button-container'>
-                            <Button fluid className="apply-button" style={{width: 165, height: 32}}><span
-                                className='command-approve-buttons-text'>Сохранить</span></Button>
-                        </div>
-                        <div className='cancel-button-container'>
-                            <Button fluid className="cancel-button" style={{width: 165, height: 32}}><span
-                                className='command-approve-buttons-text'>Отмена</span></Button>
-                        </div>
+                    <div className="profile-info-container-name-input command-add-link">
+                        <NavLink to="#"><span style={{color: '#2F80ED'}}>+ Добавить сотрудника</span></NavLink>
+                    </div>
+                </div>
+                <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
+                <div className="command-info-buttons">
+                    <div className='apply-button-container'>
+                        <Button fluid className="apply-button" style={{width: 165, height: 32}}><span
+                            className='command-approve-buttons-text'>Сохранить</span></Button>
+                    </div>
+                    <div className='cancel-button-container'>
+                        <Button fluid className="cancel-button" style={{width: 165, height: 32}}><span
+                            className='command-approve-buttons-text'>Отмена</span></Button>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 .administration-main{
     height: auto;
-    min-height: 1260px;
+    min-height: 1290px;
     background: #E5E5E5;
     /*min-width: 1633px;*/
     min-width: 1348px;
@@ -17,7 +17,16 @@
 }
 
 .administration-command-member{
-    min-height: 870px;
+    min-height: 690px;
+    height: auto;
+    background: #E5E5E5;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
+    display: flex;
+}
+
+.administration-company-member{
+    min-height: 690px;
     height: auto;
     background: #E5E5E5;
     /*min-width: 1633px;*/
@@ -57,7 +66,7 @@
     float: right;
     min-width: 1068px;
     width: 100%;
-    min-height: 1290px;
+    min-height: auto;
     height: auto;
     font-family: Roboto;
     font-style: normal;
