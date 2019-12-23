@@ -55,12 +55,29 @@ class CommandAdministration extends Component {
 
 
     render() {
-        const namingArray = ['Волга', 'Урал'];
-        const pagingArray = ['about', 'members'];
-        const params = queryString.parse(this.props.location.search);
-        let naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'Волга';
-        let paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'about';
+        const naming  = this.props.naming;
+        const page  = this.props.paging;
+        let pageName;
+        switch(naming) {
+            case 'Урал':
+                if (page === 'about') {
+                    pageName = 'О компании';
+                    break;
+                }else{
+                    pageName = 'Сотрудники';
+                    break;
+                }
+            default:
+                if (page === 'about') {
+                    pageName = 'О команде';
+                    break;
+                }else{
+                    pageName = 'Участники';
+                    break;
+                }
+        }
         let linkToPage = '/profile/administration?company=' + naming;
+        let linkToDeepPage = '/profile/administration?company=' + naming + '&page=' + page;
         return (
                 <Breadcrumb>
                     <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
@@ -71,7 +88,7 @@ class CommandAdministration extends Component {
                     <Breadcrumb.Divider icon='right chevron'/>
                     <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color'>{naming}</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right arrow'/>
-                    <Breadcrumb.Section active><span className='text-disabled-color'>О Команде</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={linkToDeepPage} link active><span className='text-disabled-color'>{pageName}</span></Breadcrumb.Section>
                 </Breadcrumb>
 
         )
