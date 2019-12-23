@@ -74,7 +74,7 @@ class AdministrationCommandMembers extends Component {
     };
 
     render() {
-        const { naming } = this.props.naming;
+        const naming  = this.props.naming;
         let imageUrl;
         switch (naming) {
             case 'Волга':
