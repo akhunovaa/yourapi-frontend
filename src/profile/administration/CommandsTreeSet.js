@@ -76,7 +76,7 @@ class CommandsTreeSet extends Component {
                                     <NavLink to="/profile/administration?company=Урал&page=about"><span className={classNames({ 'command-disabled-color' : naming !== 'Урал'}, { 'command-link-color' : (naming === 'Урал' && page === 'about')}, 'command-operation-text')}>О компании</span></NavLink>
                                 </List.Content>
                                 <List.Content className='sub-command'>
-                                    <NavLink to="/profile/administration?company=Урал&page=members"><span className={classNames({ 'command-disabled-color' : naming !== 'Урал'}, { 'command-link-color' : (naming === 'Урал' && page === 'members')}, 'command-operation-text')}>Участники</span></NavLink>
+                                    <NavLink to="/profile/administration?company=Урал&page=members"><span className={classNames({ 'command-disabled-color' : naming !== 'Урал'}, { 'command-link-color' : (naming === 'Урал' && page === 'members')}, 'command-operation-text')}>Сотрудники</span></NavLink>
                                 </List.Content>
                             </List.List>
                         </List.Item>
