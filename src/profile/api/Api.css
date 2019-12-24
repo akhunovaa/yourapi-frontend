@@ -246,13 +246,35 @@
 }
 
 .api-upload-container{
-
+    width: 352px;
+    height: 108px;
     /* Gray 6 */
     background: #F2F2F2;
     /* Gray 4 */
     border: 1px dashed #D8D8D8;
     box-sizing: border-box;
     border-radius: 4px;
+}
+
+.api-upload-container-inner-elements{
+    padding: 32px 52px 38px 63px;
+    white-space: nowrap;
+}
+
+.api-upload-icon{
+    color: #2F80ED;
+    padding-top: 10px;
+}
+
+.api-upload-text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /* Gray 3 */
+    color: #A5A5A5;
+    padding-left: 12px;
 }
 
 
