@@ -8,7 +8,8 @@
 }
 
 .left-side-api-body{
-    width: 268px;
+    /*width: 268px;*/
+    width: 320px;
     /* white */
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
@@ -16,7 +17,7 @@
 }
 
 .left-side-api-body-header{
-    height: 112px;
+    height: 123px;
     border-bottom: 1px solid #E0E0E0;
     color: white;
 }
@@ -70,4 +71,37 @@
     /* white */
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+}
+
+.api-command-operation-text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #4F4F4F;
+}
+
+.api-command-operation-icon{
+    color: #4F4F4F;
+}
+
+.active-api-command{
+    color: #2F80ED;
+}
+
+.api-command-bold-font-weight{
+    font-weight: bold;
+}
+
+.header-api-command-element{
+    padding-top: 24px;
+    padding-left: 28px;
+}
+.header-api-command-element-padding-top{
+    padding-top: 28px;
+}
+
+.header-api-command-element-padding-bottom{
+    padding-bottom: 28px;
 }
