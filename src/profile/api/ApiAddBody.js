@@ -116,7 +116,12 @@ class ApiAddBody extends Component {
 
                           <div className="api-add-container-input api-add-container-segment-element">
                               <div className='api-upload-container'>
-                                      <Icon name='cloud download'/>
+                                  <div className='api-upload-container-inner-elements'>
+                                      <Icon className='api-upload-icon' link name='cloud download' size='big'/>
+                                      <span className='api-upload-text' >Перетащите сюда файл API</span><br/>
+                                      <span className='api-upload-text' style={{marginLeft: 36}} >или <a href='#' style={{color: '#2F80ED'}}>загрузите</a> с компьютера</span>
+                                  </div>
+
                               </div>
                           </div>
                       </div>
