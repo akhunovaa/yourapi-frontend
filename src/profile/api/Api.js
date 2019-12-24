@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import './Api.css';
-import {Button, Icon} from "semantic-ui-react";
 import {loadUser} from "../../util/APIUtils";
 import {withRouter} from "react-router";
-import queryString from "query-string";
 
 class Api extends Component {
 
@@ -92,8 +90,22 @@ class Api extends Component {
 
     render() {
         return (
-            <div className='api-main' >
+            <div className='api-main'>
+                <div className='left-side-api-body'>
+                    <div className='left-side-api-body-header'>
+                        <div className='left-side-api-body-main-container'>
 
+                        </div>
+                    </div>
+                </div>
+                <div className='right-side-api'>
+                    <div className="api-breadcrumb">
+
+                    </div>
+                    <div className="api-body">
+
+                    </div>
+                </div>
             </div>
         )
     }
