@@ -30,7 +30,7 @@
     float: right;
     min-width: 1068px;
     width: 100%;
-    min-height: 1290px;
+    min-height: 800px;
     height: auto;
     font-family: Roboto;
     font-style: normal;
@@ -52,7 +52,7 @@
 
 .api-body{
     height: auto;
-    /*padding-top: 20px;*/
+    padding-top: 20px;
     padding-left: 22px;
     padding-right: 36px;
     width: auto;
@@ -144,3 +144,115 @@
 .api-enabled-color{
     color: #2F80ED !important;
 }
+
+
+.api-add-container{
+    padding-top: 40px;
+    padding-left: 356px;
+    width: 352px;
+}
+
+.api-add-container-title{
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    width: 352px;
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.api-add-container-inputs{ /*display: inline-flex;*/
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.api-add-container-input{
+    width: 352px;
+    display: grid;
+    min-width: 250px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.api-add-container-input #category{
+    width: 250px;
+    display: grid;
+    min-width: 250px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /* Gray 3 */
+    color: #4F4F4F;
+}
+
+.api-add-container-input-top{
+    padding-top: 24px;
+}
+
+.api-add-container-input-element{
+    padding-top: 16px;
+}
+
+
+.api-add-container-segment-element{
+    padding-top: 32px;
+}
+
+.api-add-container-input-textarea{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /*!* Gray 2 *!*/
+    /*color: #4F4F4F;*/
+}
+
+.api-add-container-input-textarea #info{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.helper-message{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.api-upload-container{
+
+    /* Gray 6 */
+    background: #F2F2F2;
+    /* Gray 4 */
+    border: 1px dashed #D8D8D8;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+
