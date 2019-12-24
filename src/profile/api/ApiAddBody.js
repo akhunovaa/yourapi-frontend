@@ -129,10 +129,10 @@ class ApiAddBody extends Component {
                   <Divider style={{marginTop: '20px',  marginBottom: 0}}/>
                   <div className="api-info-buttons">
                       <div className='apply-button-container'>
-                          <Button fluid className="apply-button" style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Добавить</span></Button>
+                          <Button fluid className="apply-button" style={{width: 112, height:32}}><span className='command-approve-buttons-text'>Добавить</span></Button>
                       </div>
-                      <div className='cancel-button-container'>
-                          <Button fluid className="cancel-button"  style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Отмена</span></Button>
+                      <div className='cancel-button-container api-info-cancel-button'>
+                          <Button fluid className="cancel-button"  style={{width: 112, height:32}}><span className='command-approve-buttons-text'>Отмена</span></Button>
                       </div>
                   </div>
               </div>
