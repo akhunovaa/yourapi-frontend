@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import './Api.css';
 import {loadUser} from "../../util/APIUtils";
 import {withRouter} from "react-router";
+import ApiBreadCrumb from "./ApiBreadCrumb";
+import ApiAddBody from "./ApiAddBody";
+import queryString from "query-string";
 
 class Api extends Component {
 
@@ -84,10 +87,16 @@ class Api extends Component {
     }
 
 
+
     renderSwitchBody() {
-
+        const pagingArray = ['add'];
+        const params = queryString.parse(this.props.location.search);
+        const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'add';
+        switch(paging) {
+            default:
+                return <ApiAddBody paging={paging}/>;
+        }
     }
-
     render() {
         return (
             <div className='api-main'>
@@ -97,13 +106,16 @@ class Api extends Component {
 
                         </div>
                     </div>
+                    <div className='left-side-api-body-main-container'>
+
+                    </div>
                 </div>
                 <div className='right-side-api'>
                     <div className="api-breadcrumb">
-
+                        <ApiBreadCrumb paging='add' {...this.props}/>
                     </div>
                     <div className="api-body">
-
+                        {this.renderSwitchBody()}
                     </div>
                 </div>
             </div>

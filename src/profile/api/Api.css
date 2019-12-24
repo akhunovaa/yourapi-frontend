@@ -16,12 +16,13 @@
 }
 
 .left-side-api-body-header{
-    height: 79px;
+    height: 112px;
     border-bottom: 1px solid #E0E0E0;
     color: white;
 }
 
 .left-side-api-body-main-container{
+    height: auto;
 }
 
 .right-side-api{
@@ -50,8 +51,23 @@
 
 .api-body{
     height: auto;
-    padding-top: 20px;
+    /*padding-top: 20px;*/
     padding-left: 22px;
     padding-right: 36px;
     width: auto;
+}
+
+.api-info-buttons{
+    display: block;
+    padding: 16px 252px;
+    height: 64px;
+}
+
+.api-body-main{
+    /*min-width: 1068px;*/
+    width: auto;
+    /*height: auto;*/
+    /* white */
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
 }
