@@ -4,6 +4,7 @@ import {loadUser} from "../../util/APIUtils";
 import {withRouter} from "react-router";
 import ApiBreadCrumb from "./ApiBreadCrumb";
 import ApiAddBody from "./ApiAddBody";
+import ApiTreeSet from "./ApiTreeSet";
 import queryString from "query-string";
 import {NavLink} from "react-router-dom";
 import {Icon} from "semantic-ui-react";
@@ -116,7 +117,7 @@ class Api extends Component {
                         </div>
                     </div>
                     <div className='left-side-api-body-main-container'>
-
+                        <ApiTreeSet {...this.props}/>
                     </div>
                 </div>
                 <div className='right-side-api'>

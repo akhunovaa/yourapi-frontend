@@ -82,8 +82,27 @@
     color: #4F4F4F;
 }
 
+.api-list-text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.api-list-padding{
+    padding-left: 8px;
+}
+
 .api-command-operation-icon{
     color: #4F4F4F;
+}
+
+.api-list-icon{
+    font-size: 14px !important;
 }
 
 .active-api-command{
@@ -104,4 +123,24 @@
 
 .header-api-command-element-padding-bottom{
     padding-bottom: 28px;
+}
+
+.api-command-toggle{
+    width: 268px;
+    padding-top: 29px;
+    padding-left: 28px;
+    padding-right: 28px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.api-disabled-color{
+    color: #A5A5A5 !important;
+}
+
+.api-enabled-color{
+    color: #2F80ED !important;
 }
