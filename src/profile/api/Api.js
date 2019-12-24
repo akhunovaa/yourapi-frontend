@@ -5,6 +5,8 @@ import {withRouter} from "react-router";
 import ApiBreadCrumb from "./ApiBreadCrumb";
 import ApiAddBody from "./ApiAddBody";
 import queryString from "query-string";
+import {NavLink} from "react-router-dom";
+import {Icon} from "semantic-ui-react";
 
 class Api extends Component {
 
@@ -103,7 +105,14 @@ class Api extends Component {
                 <div className='left-side-api-body'>
                     <div className='left-side-api-body-header'>
                         <div className='left-side-api-body-main-container'>
-
+                            <div className='header-api-command-element header-api-command-element-padding-top'>
+                                <Icon className='api-command-operation-icon' name='chart line' link size='large'/>
+                                <NavLink to="/profile/api?page=panel"><span className='api-command-operation-text'>Панель управления</span></NavLink>
+                            </div>
+                            <div className='header-api-command-element header-api-command-element-padding-bottom'>
+                                <Icon className='api-command-operation-icon active-api-command' name='plus square' link size='large'/>
+                                <NavLink to="/profile/api?page=add"><span className='api-command-operation-text active-api-command'>Добавить API</span></NavLink>
+                            </div>
                         </div>
                     </div>
                     <div className='left-side-api-body-main-container'>
