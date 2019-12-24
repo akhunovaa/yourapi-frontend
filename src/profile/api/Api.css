@@ -59,9 +59,14 @@
 }
 
 .api-info-buttons{
-    display: block;
-    padding: 16px 356px;
+    display: inline-flex;
+    padding: 16px 356px 16px 356px;
     height: 64px;
+    width: 352px;
+}
+
+.api-info-cancel-button{
+    padding-left: 127px;
 }
 
 .api-body-main{
