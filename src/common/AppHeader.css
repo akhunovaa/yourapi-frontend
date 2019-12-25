@@ -10,7 +10,6 @@
     /*width: 226px;*/
     height: 64px;
     float: right;
-    border-left: 1px solid #E0E0E0;
     font-family: Roboto, serif;
     font-style: normal;
     font-weight: bold;
@@ -129,7 +128,7 @@
 .header-center-search-input{
     /*padding: 16px 484px 9px 33px;*/
     padding: 14px 18px 24px 18px;
-    width: 250px;
+    /*width: 250px;*/
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -151,7 +150,7 @@
     float: left;
     display: inline-flex;
     /*width: 55%;*/
-    width: 782px;
+    width: auto;
     height:100%;
 }
 
@@ -174,4 +173,75 @@
 .portal-item-main{
     color: #4F4F4F;
     font-weight: bold;
+}
+
+.active-header{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    border-bottom: 2px solid #2F80ED;
+    text-align: center;
+}
+
+.inactive-header-link{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    /* Gray 3 */
+    color: #A5A5A5;
+    background-color: #FFFFFF;
+}
+
+.active-logo{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+
+    /* Blue 1 */
+    color: #2F80ED;
+    background-color: #FFFFFF;
+}
+
+.api-create-button-text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /*vertical-align: middle;*/
+    align-items: center;
+    /* white */
+    color: #FFFFFF;
+    vertical-align: center;
+}
+
+.api-create-button-container{
+    padding-top: 14px;
+    /*height: 38px;*/
+    width: 142px;
+    position: relative;
+    display: inline-block;
+    float:right;
+}
+
+.header-right-center-container{
+    /*display: flex;*/
+    display: inline-flex;
+    /*width: 55%;*/
+    height: 100%;
+    float: right;
+    border-right: 1px solid #E0E0E0;
+    padding-right: 32px;
 }
