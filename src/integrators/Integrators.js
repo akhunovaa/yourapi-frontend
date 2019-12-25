@@ -84,16 +84,16 @@ class Integrators extends Component {
     render() {
 
         return (
-            <div className="profile-main">
-                <div className="profile-main-container">
-                    <div className="container-breadcrumb">
+            <div className="integrators-main">
+                <div className="integrators-main-container">
+                    <div className="integrators-container-breadcrumb">
                         <Breadcrumb>
-                            <Breadcrumb.Section as={NavLink} to={'/'} link>Главная</Breadcrumb.Section>
+                            <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
                             <Breadcrumb.Divider icon='right chevron'/>
-                            <Breadcrumb.Section as={NavLink} to={'/profile'} link>Личный кабинет</Breadcrumb.Section>
-                            <Breadcrumb.Divider icon='right arrow'/>
-                            <Breadcrumb.Section active>Настройка профиля</Breadcrumb.Section>
+                            <Breadcrumb.Section as={NavLink} to={'/integrator'} link><span className='text-disabled-color'>Интеграторы</span></Breadcrumb.Section>
                         </Breadcrumb>
+                    </div>
+                    <div className="integrators-form-container">
                     </div>
                 </div>
             </div>
