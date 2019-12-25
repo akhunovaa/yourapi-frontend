@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Integrators.css';
-import {Dropdown, Input} from "semantic-ui-react";
+import {Dropdown, Icon, Input, Table} from "semantic-ui-react";
 import {loadUser} from "../util/APIUtils";
 
 class IntegratorsProfileTable extends Component {
@@ -104,6 +104,391 @@ class IntegratorsProfileTable extends Component {
                                   className="form-input" options={profileOptions}
                                   defaultValue={this.state.profile}/>
                     </div>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='element-input'>
+                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                        <Table.Body>
+                            <Table.Row textAlign={'left'}>
+                                <Table.Cell>
+                                    <div className='member-user-icon'><Icon fitted link name='user outline' size={'large'}/></div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-member-user-text'>Ольга Орлова</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>РусВолга</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-company-user-text'>Профиль</div>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <div className='integrator-star-icon'>
+                                        <Icon fitted link name='star'/>
+                                        <span className='integrator-star-icon-label'>4,9</span>
+                                        <Icon className='integrator-bookmark' fitted link name='bookmark outline'/>
+                                    </div>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </div>
+                <div className='footer-paging'>
+
+                        <Icon className='footer-left-icon' fitted link name='arrow left'/>
+                        <span className='footer-paging-label'>1-14 из 55</span>
+                        <Icon className='footer-right-icon' fitted link name='arrow right'/>
+
                 </div>
 
             </div>
