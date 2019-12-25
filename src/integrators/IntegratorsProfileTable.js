@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
 import './Integrators.css';
-import {Link, NavLink} from "react-router-dom";
-import {Breadcrumb, Dropdown, Icon, Image, Input, TextArea, Form, Divider, Segment, Portal, List, Button, Checkbox, Table} from "semantic-ui-react";
+import {Dropdown, Input} from "semantic-ui-react";
 import {loadUser} from "../util/APIUtils";
-import IntegratorsProfileTable from "./IntegratorsProfileTable";
 
-class Integrators extends Component {
+class IntegratorsProfileTable extends Component {
 
     _isMounted = false;
 
     constructor(props) {
         super(props);
         this.state = {
+            profile: "Выберите профиль"
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -84,23 +83,32 @@ class Integrators extends Component {
 
     render() {
 
+        const profileOptions = [
+            {
+                profile: 'Выберите профиль',
+                text: 'Выберите профиль',
+                value: 'Выберите профиль'
+            }
+        ];
         return (
-            <div className="integrators-main">
-                <div className="integrators-main-container">
-                    <div className="integrators-container-breadcrumb">
-                        <Breadcrumb>
-                            <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
-                            <Breadcrumb.Divider icon='right chevron'/>
-                            <Breadcrumb.Section as={NavLink} to={'/integrator'} link><span className='text-disabled-color'>Интеграторы</span></Breadcrumb.Section>
-                        </Breadcrumb>
+            <div className="integrators-table-main">
+                <div className='header-inputs'>
+                    <div className='header-search-input'>
+                        <Input size={'small'} icon={{name: 'search', link: true}} placeholder='Поиск...' id="search"
+                               name="search"/>
                     </div>
-                    <div className="integrators-form-container">
-                        <IntegratorsProfileTable {...this.props} />
+                    <div className="header-profile-input">
+                        <label style={{paddingBottom: '6px'}}>Профиль</label>
+                        <Dropdown onChange={this.handleDropdownChange} placeholder='Выберите профиль'
+                                  selection id="profile" name="profile" noResultsMessage="Москва - лучший город"
+                                  className="form-input" options={profileOptions}
+                                  defaultValue={this.state.profile}/>
                     </div>
                 </div>
+
             </div>
         )
     }
 }
 
-export default Integrators;
+export default IntegratorsProfileTable;
