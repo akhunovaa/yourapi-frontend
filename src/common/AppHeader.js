@@ -79,7 +79,7 @@ class HomeHeader extends Component {
                 </div>
                 <div className='header-center-container'>
                     <div className='header-center-navlink-merch'>
-                        <Link to="/"><b style={{color: '#A5A5A5'}}>Магазин API</b></Link>
+                        <Link to="/"><b style={{color: '#A5A5A5'}}>Магазин</b></Link>
                     </div>
                     <div className='header-center-navlink-integration'>
                         <Link to="/integrator"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>
@@ -193,7 +193,7 @@ class IntegratorHeader extends Component {
                 </div>
                 <div className='header-center-container'>
                     <div className='header-center-navlink-merch inactive-header-link'>
-                        <Link to="/" style={{color: '#A5A5A5'}}>Магазин API</Link>
+                        <Link to="/" style={{color: '#A5A5A5'}}>Магазин</Link>
                     </div>
                     <div className='header-center-navlink-integration active-header'>
                         <Link to="/integrator">Интеграторы</Link>
