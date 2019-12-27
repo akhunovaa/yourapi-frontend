@@ -164,6 +164,7 @@ class SignupForm2 extends Component {
                                 onloadCallback={this.onLoadRecaptcha}
                                 verifyCallback={this.verifyCallback}
                                 hl="ru"
+                                style={{width: '100%'}}
                             />
                                 <Form.Field>
                                     <Checkbox style={{
@@ -178,11 +179,10 @@ class SignupForm2 extends Component {
                                     Создать аккаунт и войти
                                 </Button>
                                 <div className='license-agreement'>
-                                    <label style={{float: 'left', color: '#A5A5A5', paddingTop: '8px'}}>Создавая аккаунт, вы принимаете</label>
+                                    <label style={{float: 'left', color: '#A5A5A5', paddingTop: '8px', wordWrap: 'break-word'}}>Создавая аккаунт, вы принимаете</label>
                                     <Link
-                                        style={{float: 'left', paddingTop: '0px', color: '#2F80ED'}}
-                                        to="#">пользовательские соглашения и</Link>
-                                    <Link style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#2F80ED'}} to="#">политику конфиденциальности</Link>
+                                        style={{float: 'left', paddingTop: '0px', color: '#2F80ED', wordWrap: 'break-word'}}
+                                        to="#">пользовательские соглашения и политику конфиденциальности</Link>
                                 </div>
                         </Segment>
                     </Form>
