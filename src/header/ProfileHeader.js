@@ -46,7 +46,7 @@ class ProfileHeader extends Component {
                 </div>
                 <div className='right-profile-header-links'>
                     <div className='profile-header-navlink'>
-                        <Link to="#" style={{color: '#FFFFFF'}}>Магазин API</Link>
+                        <Link to="#" style={{color: '#FFFFFF'}}>Магазин</Link>
                     </div>
                     <div className='profile-header-language-navlink'>
                         <Dropdown text='RU' closeOnChange>

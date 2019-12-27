@@ -46,7 +46,7 @@ class AdministrationHeader extends Component {
                 </div>
                 <div className='right-profile-administration-header-links'>
                     <div className='profile-administration-header-navlink'>
-                        <Link to="#" style={{color: '#FFFFFF'}}>Магазин API</Link>
+                        <Link to="#" style={{color: '#FFFFFF'}}>Магазин</Link>
                     </div>
                     <div className='profile-administration-header-language-navlink'>
                         <Dropdown text='RU' closeOnChange>
