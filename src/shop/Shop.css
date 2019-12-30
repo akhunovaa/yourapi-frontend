@@ -1,0 +1,32 @@
+.shop-main{
+    height: auto;
+    min-height: 1180px;
+    background: #F2F2F2;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
+}
+
+.shop-main-container{
+    /*min-height: 2400px;*/
+    padding: 38px 33px 28px 32px;
+}
+
+.shop-container-breadcrumb{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.shop-form-container{
+    /*min-height: 2400px;*/
+    height: auto;
+    min-height: 1120px;
+    /*height: 2400px;*/
+    margin-top: 26px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+}
