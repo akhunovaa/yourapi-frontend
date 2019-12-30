@@ -46,7 +46,7 @@ class ApiHeader extends Component {
                 </div>
                 <div className='right-profile-administration-header-links'>
                     <div className='profile-administration-header-navlink'>
-                        <Link to="#" style={{color: '#FFFFFF'}}>Магазин</Link>
+                        <Link to="/shop" style={{color: '#FFFFFF'}}>Магазин</Link>
                     </div>
                     <div className='profile-administration-header-language-navlink'>
                         <Dropdown text='RU' closeOnChange>
