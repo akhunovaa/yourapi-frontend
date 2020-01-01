@@ -7,8 +7,8 @@
 }
 
 .shop-main-container{
+    display: inline-block;
     /*min-height: 2400px;*/
-    padding: 38px 33px 28px 32px;
 }
 
 .shop-container-breadcrumb{
@@ -19,14 +19,142 @@
     line-height: 16px;
     /* Gray 3 */
     color: #A5A5A5;
+    padding: 38px 33px 28px 32px;
+}
+
+.shop-left-container{
+    height: auto;
+    min-height: 616px;
+    width: 240px;
+    min-width: 240px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    background: #FFFFFF;
+    margin-left: 54px;
+    margin-right: 20px;
 }
 
 .shop-form-container{
     /*min-height: 2400px;*/
     height: auto;
-    min-height: 1120px;
-    /*height: 2400px;*/
+    min-height: 616px;
     margin-top: 26px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    width: auto;
+    min-width: 1002px;
+}
+
+.shop-filter-title{
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.shop-filter-rating{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    padding-top: 20px;
+    display: block;
+}
+
+.shop-filter-rating-stars{
+    padding-top: 4px;
+}
+
+.star:hover{
+    color: #F39847;
+}
+
+.star{
+    color: #A5A5A5;
+}
+
+.shop-inner-filter-container{
+    padding: 16px 24px 23px 24px;
+}
+
+.shop-filter-response-time{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    padding-top: 20px;
+}
+
+.shop-filter-response-time-line{
+    padding-top: 0px;
+}
+
+.MuiSlider-root.shop-filter-response-time-line-slider{
+    color: #2F80ED;
+    padding-top: 5px;
+}
+
+.shop-filter-response-time-label{
+    padding-top: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.left-label{
+    float: left;
+}
+
+.right-label{
+    float: right;
+}
+
+.category-labels{
+
+}
+
+.category-label{
+    padding-top: 16px;
+}
+
+.category-label a{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    padding-left: 8px;
+}
+
+.category-label span{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 3 */
+    color: #A5A5A5;
 }
