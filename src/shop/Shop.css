@@ -7,10 +7,28 @@
 }
 
 .shop-main-container{
-    display: inline-block;
+    display: inline-flex;
     /*min-height: 2400px;*/
 }
 
+.api-element-container-header{
+    padding-bottom: 12px;
+}
+
+.second-api-element{
+    padding-top: 20px;
+}
+
+.main-form-header{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
 .shop-container-breadcrumb{
     font-family: Roboto;
     font-style: normal;
@@ -19,12 +37,12 @@
     line-height: 16px;
     /* Gray 3 */
     color: #A5A5A5;
-    padding: 38px 33px 28px 32px;
+    padding: 38px 33px 20px 32px;
 }
 
 .shop-left-container{
-    height: auto;
-    min-height: 616px;
+    height: 639px;
+    min-height: 639px;
     width: 240px;
     min-width: 240px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
@@ -37,11 +55,10 @@
     /*min-height: 2400px;*/
     height: auto;
     min-height: 616px;
-    margin-top: 26px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    margin-top: -40px;
     width: auto;
     min-width: 1002px;
+    padding-right: 50px;
 }
 
 .shop-filter-title{
@@ -136,6 +153,10 @@
     padding-top: 16px;
 }
 
+.orange-label{
+    color: #F39847 !important;
+}
+
 .category-label a{
     font-family: Roboto;
     font-style: normal;
@@ -157,4 +178,51 @@
 
     /* Gray 3 */
     color: #A5A5A5;
+}
+
+.ui.segment.api-element-container{
+    border: none;
+}
+
+.api-element-data{
+    min-width: 270px;
+    height: 200px;
+    display: block;
+    padding-top: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.api-element-footer{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #A5A5A5;
+    padding-top: 13px;
+}
+
+.api-element-footer .category-label a{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+    /* Red */
+    color: #EB5757;
+}
+
+.main-form-header-count{
+    font-family: Margarine;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    /* Blue 1 */
+    color: #2F80ED;
+    vertical-align: middle;
 }
