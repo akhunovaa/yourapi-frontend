@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './Shop.css';
 import {NavLink} from "react-router-dom";
-import {Breadcrumb, Icon} from "semantic-ui-react";
+import {Breadcrumb, Icon, Image, Segment, Grid} from "semantic-ui-react";
 import {loadUser} from "../util/APIUtils";
 import Slider from '@material-ui/core/Slider';
-import {Table} from "semantic-ui-react/dist/commonjs/collections/Table";
+import grid from "../img/grid-img.png";
 
 
 class Shop extends Component {
@@ -118,7 +118,6 @@ class Shop extends Component {
                     </Breadcrumb>
                 </div>
                 <div className="shop-main-container">
-
                     <div className="shop-left-container">
                         <div className='shop-inner-filter-container'>
                             <div className='shop-filter-title'>Фильтры</div>
@@ -219,7 +218,1059 @@ class Shop extends Component {
 
                     </div>
                     <div className="shop-form-container">
+                        <div className='api-element-container-header'>
+                            <span className='main-form-header'>Данные</span>
+                            <NavLink to='#' className='main-form-header-count right-label'>Посмотреть все (30)</NavLink>
+                        </div>
+                        <Grid columns='3'>
+                            <Grid.Column>
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>API-FOOTBALL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от apisports</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='red' name='dot circle' size='small'/>
+                                                    <NavLink to='#'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,5</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Web Search</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от contextualwebseacr</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>API веб-поиска. Новости API, API изображения</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='red' name='dot circle' size='small'/>
+                                                    <NavLink to='#'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Get Video and Audio URL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от Top-Rated</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Получите прямые ссылки для загрузки видео или аудио файлов практически с любого хостинг-сайта, например Youtube</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='red' name='dot circle' size='small'/>
+                                                    <NavLink to='#'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+                        <div className='api-element-container-header second-api-element'>
+                            <span className='main-form-header'>Финансы</span>
+                            <NavLink to='#' className='main-form-header-count right-label'>Посмотреть все (30)</NavLink>
+                        </div>
+                        <Grid columns='3'>
+                            <Grid.Column>
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>API-FOOTBALL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от apisports</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label orange-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,5</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Web Search</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от contextualwebseacr</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>API веб-поиска. Новости API, API изображения</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Get Video and Audio URL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от Top-Rated</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Получите прямые ссылки для загрузки видео или аудио файлов практически с любого хостинг-сайта, например Youtube</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+                        <div className='api-element-container-header second-api-element'>
+                            <span className='main-form-header'>Мобильные</span>
+                            <NavLink to='#' className='main-form-header-count right-label'>Посмотреть все (30)</NavLink>
+                        </div>
+                        <Grid columns='3'>
+                            <Grid.Column>
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>API-FOOTBALL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от apisports</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label orange-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,5</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Web Search</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от contextualwebseacr</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>API веб-поиска. Новости API, API изображения</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Get Video and Audio URL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от Top-Rated</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Получите прямые ссылки для загрузки видео или аудио файлов практически с любого хостинг-сайта, например Youtube</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+                        <div className='api-element-container-header second-api-element'>
+                            <span className='main-form-header'>Карты</span>
+                            <NavLink to='#' className='main-form-header-count right-label'>Посмотреть все (30)</NavLink>
+                        </div>
+                        <Grid columns='3'>
+                            <Grid.Column>
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>API-FOOTBALL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от apisports</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label orange-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,5</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Web Search</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от contextualwebseacr</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>API веб-поиска. Новости API, API изображения</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Get Video and Audio URL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от Top-Rated</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Получите прямые ссылки для загрузки видео или аудио файлов практически с любого хостинг-сайта, например Youtube</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+                        <div className='api-element-container-header second-api-element'>
+                            <span className='main-form-header'>Реклама</span>
+                            <NavLink to='#' className='main-form-header-count right-label'>Посмотреть все (30)</NavLink>
+                        </div>
+                        <Grid columns='3'>
+                            <Grid.Column>
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>API-FOOTBALL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от apisports</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label orange-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,5</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Web Search</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от contextualwebseacr</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>API веб-поиска. Новости API, API изображения</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Get Video and Audio URL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от Top-Rated</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Получите прямые ссылки для загрузки видео или аудио файлов практически с любого хостинг-сайта, например Youtube</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+                        <div className='api-element-container-header second-api-element'>
+                            <span className='main-form-header'>Социальные сети</span>
+                            <NavLink to='#' className='main-form-header-count right-label'>Посмотреть все (30)</NavLink>
+                        </div>
+                        <Grid columns='3'>
+                            <Grid.Column>
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>API-FOOTBALL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от apisports</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label orange-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,5</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Web Search</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от contextualwebseacr</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>API веб-поиска. Новости API, API изображения</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Get Video and Audio URL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от Top-Rated</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Получите прямые ссылки для загрузки видео или аудио файлов практически с любого хостинг-сайта, например Youtube</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+                        <div className='api-element-container-header second-api-element'>
+                            <span className='main-form-header'>Здравохранение</span>
+                            <NavLink to='#' className='main-form-header-count right-label'>Посмотреть все (30)</NavLink>
+                        </div>
+                        <Grid columns='3'>
+                            <Grid.Column>
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>API-FOOTBALL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от apisports</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label orange-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,5</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Web Search</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от contextualwebseacr</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>API веб-поиска. Новости API, API изображения</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Get Video and Audio URL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от Top-Rated</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Получите прямые ссылки для загрузки видео или аудио файлов практически с любого хостинг-сайта, например Youtube</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+                        <div className='api-element-container-header second-api-element'>
+                            <span className='main-form-header'>Спорт</span>
+                            <NavLink to='#' className='main-form-header-count right-label'>Посмотреть все (30)</NavLink>
+                        </div>
+                        <Grid columns='3'>
+                            <Grid.Column>
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>API-FOOTBALL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от apisports</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label orange-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,5</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Web Search</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от contextualwebseacr</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>API веб-поиска. Новости API, API изображения</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Get Video and Audio URL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от Top-Rated</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Получите прямые ссылки для загрузки видео или аудио файлов практически с любого хостинг-сайта, например Youtube</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+                        <div className='api-element-container-header second-api-element'>
+                            <span className='main-form-header'>Web</span>
+                            <NavLink to='#' className='main-form-header-count right-label'>Посмотреть все (30)</NavLink>
+                        </div>
+                        <Grid columns='3'>
+                            <Grid.Column>
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>API-FOOTBALL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от apisports</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label orange-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,5</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Web Search</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от contextualwebseacr</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>API веб-поиска. Новости API, API изображения</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Get Video and Audio URL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от Top-Rated</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Получите прямые ссылки для загрузки видео или аудио файлов практически с любого хостинг-сайта, например Youtube</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+                        <div className='api-element-container-header second-api-element'>
+                            <span className='main-form-header'>Другое</span>
+                            <NavLink to='#' className='main-form-header-count right-label'>Посмотреть все (30)</NavLink>
+                        </div>
+                        <Grid columns='3'>
+                            <Grid.Column>
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>API-FOOTBALL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от apisports</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label orange-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,5</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Web Search</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от contextualwebseacr</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>API веб-поиска. Новости API, API изображения</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column className="body-data">
+                                <Segment className='api-element-container'>
+                                    <div className="api-element-data">
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                <Image src={grid} />
+                                            </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark outline' />
+                                            </div>
+                                        </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <label>Get Video and Audio URL</label><br />
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от Top-Rated</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>Получите прямые ссылки для загрузки видео или аудио файлов практически с любого хостинг-сайта, например Youtube</label>
+                                            </div>
+                                            <div className="api-element-footer">
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+                        <div style={{paddingTop: 20}}>
 
+                        </div>
                     </div>
                 </div>
             </div>
