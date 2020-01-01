@@ -47,13 +47,13 @@ class Home extends Component {
                             <div className="header-api-create-button">
                                 <Button className="create-button" style={{background: '#F39847', color: 'white'}}
                                         size='large'>
-                                    Разместить API
+                                    <NavLink style={{color: 'white'}} to='/profile/api?page=add'>Разместить API</NavLink>
                                 </Button>
                             </div>
                             <div className="header-api-create-button">
                                 <Button className="create-button" style={{background: '#FFFFFF', color: '#4F4F4F'}}
                                         size='large'>
-                                    Создать компанию
+                                    <NavLink style={{background: '#FFFFFF', color: '#4F4F4F'}} to='/profile/administration'>Создать компанию</NavLink>
                                 </Button>
                             </div>
                         </div>
