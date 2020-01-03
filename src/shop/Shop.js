@@ -165,52 +165,52 @@ class Shop extends Component {
                             <div className='category-labels'>
                                 <div className='category-label'>
                                     <Icon color='red' name='dot circle' size='small'/>
-                                    <NavLink to='#'>Данные</NavLink>
+                                    <NavLink to='/shop/category/data'>Данные</NavLink>
                                     <span className='right-label'>45</span>
                                 </div>
                                 <div className='category-label'>
                                     <Icon color='orange' name='dot circle' size='small'/>
-                                    <NavLink to='#'>Финансы</NavLink>
+                                    <NavLink to='/shop/category/finance'>Финансы</NavLink>
                                     <span className='right-label'>45</span>
                                 </div>
                                 <div className='category-label'>
                                     <Icon color='yellow' name='dot circle' size='small'/>
-                                    <NavLink to='#'>Мобильные</NavLink>
+                                    <NavLink to='/shop/category/mobile'>Мобильные</NavLink>
                                     <span className='right-label'>45</span>
                                 </div>
                                 <div className='category-label'>
                                     <Icon color='green' name='dot circle' size='small'/>
-                                    <NavLink to='#'>Карты</NavLink>
+                                    <NavLink to='/shop/category/map'>Карты</NavLink>
                                     <span className='right-label'>45</span>
                                 </div>
                                 <div className='category-label'>
                                     <Icon color='olive' name='dot circle' size='small'/>
-                                    <NavLink to='#'>Реклама</NavLink>
+                                    <NavLink to='/shop/category/adv'>Реклама</NavLink>
                                     <span className='right-label'>45</span>
                                 </div>
                                 <div className='category-label'>
                                     <Icon color='blue' name='dot circle' size='small'/>
-                                    <NavLink to='#'>Социальные сети</NavLink>
+                                    <NavLink to='/shop/category/social'>Социальные сети</NavLink>
                                     <span className='right-label'>45</span>
                                 </div>
                                 <div className='category-label'>
                                     <Icon color='purple' name='dot circle' size='small'/>
-                                    <NavLink to='#'>Здравохранение</NavLink>
+                                    <NavLink to='/shop/category/health'>Здравохранение</NavLink>
                                     <span className='right-label'>45</span>
                                 </div>
                                 <div className='category-label'>
                                     <Icon color='teal' name='dot circle' size='small'/>
-                                    <NavLink to='#'>Спорт</NavLink>
+                                    <NavLink to='/shop/category/sport'>Спорт</NavLink>
                                     <span className='right-label'>45</span>
                                 </div>
                                 <div className='category-label'>
                                     <Icon color='violet' name='dot circle' size='small'/>
-                                    <NavLink to='#'>Web</NavLink>
+                                    <NavLink to='/shop/category/web'>Web</NavLink>
                                     <span className='right-label'>45</span>
                                 </div>
                                 <div className='category-label'>
                                     <Icon color='grey' name='dot circle' size='small'/>
-                                    <NavLink to='#'>Другое</NavLink>
+                                    <NavLink to='/shop/category/other'>Другое</NavLink>
                                     <span className='right-label'>45</span>
                                 </div>
                             </div>
