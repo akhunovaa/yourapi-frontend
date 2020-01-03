@@ -1,0 +1,18 @@
+.api-shop-main{
+    height: auto;
+    min-height: 1180px;
+    background: #F2F2F2;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
+}
+
+.api-shop-container-breadcrumb{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /* Gray 3 */
+    color: #A5A5A5;
+    padding: 38px 33px 20px 32px;
+}
