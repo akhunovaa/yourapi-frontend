@@ -56,10 +56,15 @@ class ApiCategoryShop extends Component {
         this.setState({open: false})
     };
 
-
     handleSliderChange = (event, newValue) => {
         this.setState({
             responseScale: newValue
+        });
+    };
+
+    handleStableSliderChange = (event, newValue) => {
+        this.setState({
+            responseStableScale: newValue
         });
     };
 
