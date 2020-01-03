@@ -29,6 +29,7 @@
     /* Gray 2 */
     color: #4F4F4F;
 }
+
 .shop-container-breadcrumb{
     font-family: Roboto;
     font-style: normal;
@@ -37,7 +38,7 @@
     line-height: 16px;
     /* Gray 3 */
     color: #A5A5A5;
-    padding: 38px 33px 20px 32px;
+    padding: 38px 33px 20px 57px;
 }
 
 .shop-left-container{
