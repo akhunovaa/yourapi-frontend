@@ -157,6 +157,38 @@
     color: #F39847 !important;
 }
 
+.yellow-label{
+    color: #F2C94C !important;
+}
+
+.green-label{
+    color: #219653 !important;
+}
+
+.olive-label{
+   color: #b5cc18 !important;
+}
+
+.blue-label{
+   color: #2185d0!important;
+}
+
+.purple-label{
+   color: #a333c8!important;
+}
+
+.teal-label{
+   color: #00b5ad!important
+}
+
+.violet-label{
+   color: #6435c9!important
+}
+
+.grey-label{
+   color: #767676!important
+}
+
 .category-label a{
     font-family: Roboto;
     font-style: normal;

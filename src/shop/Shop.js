@@ -249,7 +249,7 @@ class Shop extends Component {
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
                                                     <Icon color='red' name='dot circle' size='small'/>
-                                                    <NavLink to='#'>Категория, подкатегория</NavLink>
+                                                    <NavLink to='/shop/category/data'>Данные</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -282,7 +282,7 @@ class Shop extends Component {
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
                                                     <Icon color='red' name='dot circle' size='small'/>
-                                                    <NavLink to='#'>Категория, подкатегория</NavLink>
+                                                    <NavLink to='/shop/category/data'>Данные</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -315,7 +315,7 @@ class Shop extends Component {
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
                                                     <Icon color='red' name='dot circle' size='small'/>
-                                                    <NavLink to='#'>Категория, подкатегория</NavLink>
+                                                    <NavLink to='/shop/category/data'>Данные</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -354,7 +354,7 @@ class Shop extends Component {
                                             <div className="api-element-footer">
                                                 <div className='category-label orange-label'>
                                                     <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <NavLink to='/shop/category/finance' className='orange-label'>Финансы</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -387,7 +387,7 @@ class Shop extends Component {
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
                                                     <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <NavLink to='/shop/category/finance' className='orange-label'>Финансы</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -420,7 +420,7 @@ class Shop extends Component {
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
                                                     <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <NavLink to='/shop/category/finance' className='orange-label'>Финансы</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -457,9 +457,9 @@ class Shop extends Component {
                                                 <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
                                             </div>
                                             <div className="api-element-footer">
-                                                <div className='category-label orange-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                <div className='category-label'>
+                                                    <Icon color='yellow' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/mobile' className='yellow-label'>Мобильные</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -491,8 +491,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='yellow' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/mobile' className='yellow-label'>Мобильные</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -524,8 +524,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='yellow' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/mobile' className='yellow-label'>Мобильные</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -562,9 +562,9 @@ class Shop extends Component {
                                                 <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
                                             </div>
                                             <div className="api-element-footer">
-                                                <div className='category-label orange-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                <div className='category-label'>
+                                                    <Icon color='green' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/map' className='green-label'>Карты</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -596,8 +596,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='green' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/map' className='green-label'>Карты</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -629,8 +629,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='green' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/map' className='green-label'>Карты</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -667,9 +667,9 @@ class Shop extends Component {
                                                 <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
                                             </div>
                                             <div className="api-element-footer">
-                                                <div className='category-label orange-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                <div className='category-label'>
+                                                    <Icon color='olive' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/adv' className='olive-label'>Реклама</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -701,8 +701,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='olive' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/adv' className='olive-label'>Реклама</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -734,8 +734,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='olive' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/adv' className='olive-label'>Реклама</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -772,9 +772,9 @@ class Shop extends Component {
                                                 <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
                                             </div>
                                             <div className="api-element-footer">
-                                                <div className='category-label orange-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                <div className='category-label'>
+                                                    <Icon color='blue' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/social' className='blue-label'>Социальные сети</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -806,8 +806,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='blue' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/social' className='blue-label'>Социальные сети</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -839,8 +839,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='blue' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/social' className='blue-label'>Социальные сети</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -877,9 +877,9 @@ class Shop extends Component {
                                                 <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
                                             </div>
                                             <div className="api-element-footer">
-                                                <div className='category-label orange-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                <div className='category-label'>
+                                                    <Icon color='purple' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/health' className='purple-label'>Здравохранение</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -911,8 +911,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='purple' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/health' className='purple-label'>Здравохранение</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -944,8 +944,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='purple' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/health' className='purple-label'>Здравохранение</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -982,9 +982,9 @@ class Shop extends Component {
                                                 <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
                                             </div>
                                             <div className="api-element-footer">
-                                                <div className='category-label orange-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                <div className='category-label'>
+                                                    <Icon color='teal' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/sport' className='teal-label'>Спорт</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -1016,8 +1016,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='teal' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/sport' className='teal-label'>Спорт</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -1049,8 +1049,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='teal' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/sport' className='teal-label'>Спорт</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -1087,9 +1087,9 @@ class Shop extends Component {
                                                 <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
                                             </div>
                                             <div className="api-element-footer">
-                                                <div className='category-label orange-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                <div className='category-label'>
+                                                    <Icon color='violet' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/web' className='violet-label'>Web</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -1121,8 +1121,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='violet' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/web' className='violet-label'>Web</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -1154,8 +1154,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='violet' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/web' className='violet-label'>Web</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -1192,9 +1192,9 @@ class Shop extends Component {
                                                 <label>Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная...</label>
                                             </div>
                                             <div className="api-element-footer">
-                                                <div className='category-label orange-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                <div className='category-label'>
+                                                    <Icon color='grey' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/other' className='grey-label'>Другое</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -1226,8 +1226,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='grey' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/other' className='grey-label'>Другое</NavLink>
                                                 </div>
                                             </div>
                                         </div>
@@ -1259,8 +1259,8 @@ class Shop extends Component {
                                             </div>
                                             <div className="api-element-footer">
                                                 <div className='category-label'>
-                                                    <Icon color='orange' name='dot circle' size='small'/>
-                                                    <NavLink to='#' className='orange-label'>Категория, подкатегория</NavLink>
+                                                    <Icon color='grey' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/other' className='grey-label'>Другое</NavLink>
                                                 </div>
                                             </div>
                                         </div>
