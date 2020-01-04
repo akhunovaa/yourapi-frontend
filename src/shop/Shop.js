@@ -105,7 +105,16 @@ class Shop extends Component {
     };
 
     render() {
-
+       const linkData = '/shop/category/data/api';
+       const linkFinance = '/shop/category/finance/api';
+       const linkMobile = '/shop/category/mobile/api';
+       const linkMap = '/shop/category/map/api';
+       const linkAdv = '/shop/category/adv/api';
+       const linkSocial= '/shop/category/social/api';
+       const linkHealth= '/shop/category/health/api';
+       const linkSport= '/shop/category/sport/api';
+       const linkWeb= '/shop/category/web/api';
+       const linkOther= '/shop/category/other/api';
         return (
             <div className="shop-main">
                 <div className="shop-container-breadcrumb">
@@ -238,7 +247,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>API-FOOTBALL</label><br />
+                                                <NavLink to={linkData} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от apisports</label>
@@ -271,7 +280,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Web Search</label><br />
+                                                <NavLink to={linkData} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от contextualwebseacr</label>
@@ -304,7 +313,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Get Video and Audio URL</label><br />
+                                                <NavLink to={linkData} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от Top-Rated</label>
@@ -343,7 +352,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>API-FOOTBALL</label><br />
+                                                <NavLink to={linkFinance} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от apisports</label>
@@ -376,7 +385,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Web Search</label><br />
+                                                <NavLink to={linkFinance} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от contextualwebseacr</label>
@@ -409,7 +418,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Get Video and Audio URL</label><br />
+                                                <NavLink to={linkFinance} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от Top-Rated</label>
@@ -448,7 +457,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>API-FOOTBALL</label><br />
+                                                <NavLink to={linkMobile} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от apisports</label>
@@ -481,7 +490,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Web Search</label><br />
+                                                <NavLink to={linkMobile} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от contextualwebseacr</label>
@@ -514,7 +523,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Get Video and Audio URL</label><br />
+                                                <NavLink to={linkMobile} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от Top-Rated</label>
@@ -553,7 +562,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>API-FOOTBALL</label><br />
+                                                <NavLink to={linkMap} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от apisports</label>
@@ -586,7 +595,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Web Search</label><br />
+                                                <NavLink to={linkMap} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от contextualwebseacr</label>
@@ -619,7 +628,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Get Video and Audio URL</label><br />
+                                                <NavLink to={linkMap} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от Top-Rated</label>
@@ -658,7 +667,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>API-FOOTBALL</label><br />
+                                                <NavLink to={linkAdv} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от apisports</label>
@@ -691,7 +700,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Web Search</label><br />
+                                                <NavLink to={linkAdv} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от contextualwebseacr</label>
@@ -724,7 +733,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Get Video and Audio URL</label><br />
+                                                <NavLink to={linkAdv} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от Top-Rated</label>
@@ -763,7 +772,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>API-FOOTBALL</label><br />
+                                                <NavLink to={linkSocial} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от apisports</label>
@@ -796,7 +805,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Web Search</label><br />
+                                                <NavLink to={linkSocial} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от contextualwebseacr</label>
@@ -829,7 +838,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Get Video and Audio URL</label><br />
+                                                <NavLink to={linkSocial} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от Top-Rated</label>
@@ -868,7 +877,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>API-FOOTBALL</label><br />
+                                                <NavLink to={linkHealth} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от apisports</label>
@@ -901,7 +910,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Web Search</label><br />
+                                                <NavLink to={linkHealth} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от contextualwebseacr</label>
@@ -934,7 +943,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Get Video and Audio URL</label><br />
+                                                <NavLink to={linkHealth} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от Top-Rated</label>
@@ -973,7 +982,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>API-FOOTBALL</label><br />
+                                                <NavLink to={linkSport} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от apisports</label>
@@ -1006,7 +1015,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Web Search</label><br />
+                                                <NavLink to={linkSport} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от contextualwebseacr</label>
@@ -1039,7 +1048,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Get Video and Audio URL</label><br />
+                                                <NavLink to={linkSport} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от Top-Rated</label>
@@ -1078,7 +1087,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>API-FOOTBALL</label><br />
+                                                <NavLink to={linkWeb} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от apisports</label>
@@ -1111,7 +1120,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Web Search</label><br />
+                                                <NavLink to={linkWeb} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от contextualwebseacr</label>
@@ -1144,7 +1153,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Get Video and Audio URL</label><br />
+                                                <NavLink to={linkWeb} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от Top-Rated</label>
@@ -1183,7 +1192,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>API-FOOTBALL</label><br />
+                                                <NavLink to={linkOther} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от apisports</label>
@@ -1216,7 +1225,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Web Search</label><br />
+                                                <NavLink to={linkOther} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от contextualwebseacr</label>
@@ -1249,7 +1258,7 @@ class Shop extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <label>Get Video and Audio URL</label><br />
+                                                <NavLink to={linkOther} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">
                                                 <label>от Top-Rated</label>
