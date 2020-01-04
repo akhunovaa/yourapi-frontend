@@ -16,6 +16,7 @@ class Profile extends Component {
                 name: this.props.currentUser ?  this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login  : 'unknown',
                 surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
                 patrName: this.props.currentUser ?  this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login  : 'unknown',
+                email: this.props.currentUser ?  this.props.currentUser.email ? this.props.currentUser.email : this.props.currentUser.login  : 'unknown',
             },
             open: false,
             surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
@@ -296,7 +297,7 @@ class Profile extends Component {
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{marginBottom: 6}}>Email</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.email}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.email}
                                            id="email"
                                            name="email" placeholder='user@botmasterzzz.com' required/>
                                 </div>
