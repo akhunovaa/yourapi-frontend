@@ -125,7 +125,7 @@ class ApiDetail extends Component {
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Язык
-                                    <span className='description-body-link'>Русский, Английский</span><NavLink to={categoryLink} className='description-body-link description-api-links-color-blue'>и еще +3</NavLink>
+                                    <span className='description-body-link'>Русский, Английский</span><NavLink to='#' className='description-body-link description-api-links-color-blue'>и еще +3</NavLink>
                                 </div>
                                 <div className='api-left-form-elements description-api-links-padder'>
                                     Скорость отдачи
