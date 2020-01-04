@@ -13,17 +13,17 @@ class Profile extends Component {
         this.state = {
             user: {
                 imageUrl: 'https://yourapi.ru/individual/image/4',
-                name: 'Azat',
-                surname: 'Akhunov',
-                patrName: 'Akhmatovich'
+                name: this.props.currentUser ?  this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login  : 'unknown',
+                surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
+                patrName: this.props.currentUser ?  this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login  : 'unknown',
             },
             open: false,
-            surname: 'Akhunov',
-            name: 'Azat',
-            patrName: 'Akhmatovich',
-            nickname: 'leon4uk',
-            dbirth: '12.07.1986',
-            sex: "Мужской",
+            surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
+            name: this.props.currentUser ?  this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login  : 'unknown',
+            patrName: this.props.currentUser ?  this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login  : 'unknown',
+            nickname: this.props.currentUser ?  this.props.currentUser.login ? this.props.currentUser.login : 'unknown'  : 'unknown',
+            dbirth: '01.01.1900',
+            sex: "unknown",
             language: "Русский",
             city: "Москва, Россия",
             phoneNumber: "",
@@ -189,7 +189,7 @@ class Profile extends Component {
                                                alt={this.state.user.name}/>
                                     ) : (
                                         <div className="text-avatar">
-                                            <span>{this.state.user.name && this.state.user.name[0]}</span>
+                                            <span>{this.props.currentUser.name && this.state.user.name[0]}</span>
                                         </div>
                                     )
                                 }
