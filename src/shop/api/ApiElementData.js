@@ -52,7 +52,7 @@ class ApiElementData extends Component {
     };
 
     render() {
-
+        const link = this.props.link + '/' + 'api';
         return (
             <Grid columns='3'>
                 <Grid.Column>
@@ -70,7 +70,7 @@ class ApiElementData extends Component {
                             </div>
                             <div className="cell-grid-body">
                                 <div className="cell-grid-body-text">
-                                    <label>API-FOOTBALL</label><br/>
+                                    <NavLink to={link} className='cell-grid-body-text'>API-FOOTBALL</NavLink><br/>
                                 </div>
                                 <div className="cell-grid-body-label">
                                     <label>от apisports</label>
@@ -104,7 +104,7 @@ class ApiElementData extends Component {
                             </div>
                             <div className="cell-grid-body">
                                 <div className="cell-grid-body-text">
-                                    <label>Web Search</label><br/>
+                                    <NavLink to={link} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                 </div>
                                 <div className="cell-grid-body-label">
                                     <label>от contextualwebseacr</label>
@@ -137,7 +137,7 @@ class ApiElementData extends Component {
                             </div>
                             <div className="cell-grid-body">
                                 <div className="cell-grid-body-text">
-                                    <label>Get Video and Audio URL</label><br/>
+                                    <NavLink to={link} className='cell-grid-body-text'>Get Video and Audio URL</NavLink><br/>
                                 </div>
                                 <div className="cell-grid-body-label">
                                     <label>от Top-Rated</label>
