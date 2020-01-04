@@ -97,10 +97,10 @@ class App extends Component {
                     <Switch>
                         {/*<Route exact path="/" render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>
-                        {/*<Route exact path="/login"*/}
-                               {/*render={(props) => <Login history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>*/}
-                        {/*<Route exact path="/signup"*/}
-                               {/*render={(props) => <SignUp history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>*/}
+                        <Route exact path="/login"
+                               render={(props) => <Login history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
+                        <Route exact path="/signup"
+                               render={(props) => <SignUp history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
                         {/*<Route exact path="/profile"*/}
                                {/*render={(props) => <Profile authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         {/*<Route exact path="/profile/administration"*/}
