@@ -10,6 +10,7 @@ import Api from '../profile/api/Api';
 import Integrators from '../integrators/Integrators';
 import Shop from '../shop/Shop';
 import ApiCategoryShop from '../shop/api/ApiCategoryShop';
+import ApiDetail from '../shop/api/ApiDetail';
 import LoadingIndicator from '../common/LoadingIndicator';
 import PrivateRoute from '../common/PrivateRoute';
 import Alert from 'react-s-alert';
@@ -96,10 +97,10 @@ class App extends Component {
                     <Switch>
                         {/*<Route exact path="/" render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>
-                        <Route exact path="/login"
-                               render={(props) => <Login history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
-                        <Route exact path="/signup"
-                               render={(props) => <SignUp history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
+                        {/*<Route exact path="/login"*/}
+                               {/*render={(props) => <Login history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>*/}
+                        {/*<Route exact path="/signup"*/}
+                               {/*render={(props) => <SignUp history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>*/}
                         {/*<Route exact path="/profile"*/}
                                {/*render={(props) => <Profile authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         {/*<Route exact path="/profile/administration"*/}
@@ -112,12 +113,15 @@ class App extends Component {
                                {/*render={(props) => <Shop authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         {/*<Route exact path="/shop/category/:category?"*/}
                                {/*render={(props) => <ApiCategoryShop authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        {/*<Route exact path="/shop/category/:category?/api/:id?"*/}
+                               {/*render={(props) => <ApiDetail authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}/>
                         <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Administration}/>
                         <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Api}/>
                         <PrivateRoute exact path="/integrator" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Integrators}/>
                         <PrivateRoute exact path="/shop" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Shop}/>
                         <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiCategoryShop}/>
+                        <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiDetail}/>
                         <Route component={NotFound}/>
                     </Switch>
                     <AppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
