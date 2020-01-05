@@ -3,7 +3,8 @@ import './ApiDetail.css';
 import {NavLink} from "react-router-dom";
 import {Breadcrumb, Button, Icon, Image} from "semantic-ui-react";
 import headerLogo from "../../img/api-header-logo.png";
-
+import ApiDetailHeader from "./header/ApiDetailHeader";
+import ApiDetailReviewBody from "./body/ApiDetailReviewBody";
 
 class ApiDetail extends Component {
 
@@ -142,7 +143,12 @@ class ApiDetail extends Component {
                         </div>
                     </div>
                     <div className="api-detail-form-container">
-
+                        <div className='api-detail-form-header-container'>
+                            <ApiDetailHeader {...this.props} />
+                        </div>
+                        <div className='api-detail-form-body-container'>
+                            <ApiDetailReviewBody {...this.props} />
+                        </div>
                     </div>
                 </div>
             </div>
