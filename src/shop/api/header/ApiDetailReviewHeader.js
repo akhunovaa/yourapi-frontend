@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import './ApiDetailHeader.css';
 
-class ApiDetailHeader extends Component {
+class ApiDetailReviewHeader extends Component {
 
     _isMounted = false;
 
@@ -57,7 +57,7 @@ class ApiDetailHeader extends Component {
                     <NavLink to='#' className='inactive-header-link'>Методы</NavLink>
                 </div>
                 <div className='header-links-methods header-links-font'>
-                    <NavLink to='#' className='inactive-header-link'>Версии</NavLink>
+                    <NavLink to='/shop/category/data/api?page=version' className='inactive-header-link'>Версии</NavLink>
                 </div>
                 <div className='header-links-methods-documentation header-links-font'>
                     <NavLink to='#' className='inactive-header-link'>Документация</NavLink>
@@ -66,7 +66,7 @@ class ApiDetailHeader extends Component {
                     <NavLink to='#' className='inactive-header-link'>Цена</NavLink>
                 </div>
                 <div className='header-links-methods header-links-font active-header-container'>
-                    <NavLink to='#' className='active-header-link'>Отзывы</NavLink>
+                    <NavLink to='/shop/category/data/api?page=review' className='active-header-link'>Отзывы</NavLink>
                 </div>
                 <div className='header-links-methods-description header-links-font'>
                     <NavLink to='#' className='inactive-header-link'>Вопросы и обсуждения</NavLink>
@@ -76,4 +76,4 @@ class ApiDetailHeader extends Component {
     }
 }
 
-export default ApiDetailHeader;
+export default ApiDetailReviewHeader;

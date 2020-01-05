@@ -3,8 +3,12 @@ import './ApiDetail.css';
 import {NavLink} from "react-router-dom";
 import {Breadcrumb, Button, Icon, Image} from "semantic-ui-react";
 import headerLogo from "../../img/api-header-logo.png";
-import ApiDetailHeader from "./header/ApiDetailHeader";
+import ApiDetailReviewHeader from "./header/ApiDetailReviewHeader";
+import ApiDetailVersionHeader from "./header/ApiDetailVersionHeader";
 import ApiDetailReviewBody from "./body/ApiDetailReviewBody";
+import ApiDetailVersionBody from "./body/ApiDetailVersionBody";
+import queryString from "query-string";
+import ApiAddBody from "../../profile/api/Api";
 
 class ApiDetail extends Component {
 
@@ -30,6 +34,8 @@ class ApiDetail extends Component {
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
+        this.renderSwitchBody = this.renderSwitchBody.bind(this);
+        this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
     }
 
     componentDidMount() {
@@ -63,6 +69,30 @@ class ApiDetail extends Component {
     handleClose = () => {
         this.setState({open: false})
     };
+
+    renderSwitchBody() {
+        const pagingArray = ['review', 'version'];
+        const params = queryString.parse(this.props.location.search);
+        const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'review';
+        switch(paging) {
+            case 'version':
+                return  <ApiDetailVersionBody {...this.props} />;
+            default:
+                return  <ApiDetailReviewBody {...this.props} />
+        }
+    }
+
+    renderSwitchHeader() {
+        const pagingArray = ['review', 'version'];
+        const params = queryString.parse(this.props.location.search);
+        const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'review';
+        switch(paging) {
+            case 'version':
+                return  <ApiDetailVersionHeader {...this.props} />;
+            default:
+                return  <ApiDetailReviewHeader {...this.props} />
+        }
+    }
 
 
     render() {
@@ -144,10 +174,10 @@ class ApiDetail extends Component {
                     </div>
                     <div className="api-detail-form-container">
                         <div className='api-detail-form-header-container'>
-                            <ApiDetailHeader {...this.props} />
+                            {this.renderSwitchHeader()}
                         </div>
                         <div className='api-detail-form-body-container'>
-                            <ApiDetailReviewBody {...this.props} />
+                            {this.renderSwitchBody()}
                         </div>
                     </div>
                 </div>
