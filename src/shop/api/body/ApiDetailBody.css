@@ -12,6 +12,14 @@
     min-height: 130px;
 }
 
+.detail-review-response-container{
+    padding-top: 9px;
+    padding-left: 195px;
+    padding-right: 192px;
+    height: 392px;
+    min-height: 392px;
+}
+
 .detail-review-rating{
     font-family: Roboto;
     font-style: normal;
@@ -106,4 +114,100 @@
 
     /* Gray 3 */
     color: #A5A5A5;
+}
+
+.detail-review-response-element{
+    padding-top: 24px;
+}
+.detail-review-response-element-header{
+    display: inline-flex;
+    width: 100%;
+}
+
+.review-user-icon{
+    vertical-align: middle;
+    /* Gray 6 */
+    background: #F2F2F2;
+    /* Gray 4 */
+    /*border: 1px solid #D8D8D8;*/
+    box-sizing: border-box;
+    /*width: 40px;*/
+    height: 40px;
+    /*color:  #4F4F4F;*/
+    overflow: hidden;
+
+    border-radius: 62px;
+    padding: 9px 9px 9px 9px;
+}
+
+.reviewer-info{
+    padding-left: 8px;
+    width: 100%;
+}
+
+.review-username{
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    /*width: 48px;*/
+    white-space: nowrap;
+
+}
+
+.review-date{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+    /* Gray 3 */
+    color: #A5A5A5;
+    padding-left: 6px;
+
+}
+
+.review-rate-info{
+    width: 100%;
+    height: 14px;
+}
+
+.review-rate-star{
+    padding-top: 3px;
+    color: #4F4F4F;
+    font-size: 8px;
+    float: left;
+}
+
+.review-like-dislike{
+    float: right;
+}
+
+.review-like{
+    padding-left: 4px;
+    color: #A5A5A5;
+}
+
+.review-dislike{
+    padding-left: 4px;
+    color: #A5A5A5;
+}
+
+.review-text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    padding-top: 8px;
 }
