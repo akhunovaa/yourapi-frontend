@@ -162,6 +162,8 @@
 }
 
 .api-detail-form-body-container{
-    height: 611px;
+    height: auto;
+    min-height: 700px;
     width: 100%;
+    padding-bottom: 28px;
 }
