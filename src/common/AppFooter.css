@@ -5,6 +5,7 @@
     background: #4F4F4F;
     /*min-width: 1633px;*/
     min-width: 1348px;
+    float: bottom;
 }
 
 .footer-left-logo{
