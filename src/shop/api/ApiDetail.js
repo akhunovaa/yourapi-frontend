@@ -9,7 +9,6 @@ import ApiDetailMethodsHeader from "./header/ApiDetailMethodsHeader";
 import ApiDetailReviewBody from "./body/ApiDetailReviewBody";
 import ApiDetailVersionBody from "./body/ApiDetailVersionBody";
 import queryString from "query-string";
-import ApiAddBody from "../../profile/api/Api";
 
 class ApiDetail extends Component {
 
