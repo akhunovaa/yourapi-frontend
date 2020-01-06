@@ -13,12 +13,14 @@
     display: inline-block;
     width: 196px;
     text-align: center;
+    padding: 18px 20px 18px 20px;
 }
 
 .header-links-methods-documentation{
     display: inline-block;
     width: 138px;
     text-align: center;
+    padding: 18px 20px 18px 20px;
 }
 
 .inactive-header-link{
