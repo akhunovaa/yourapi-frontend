@@ -7,6 +7,7 @@
     width: 94px;
     padding: 18px 20px 18px 20px;
     text-align: center;
+    white-space: nowrap;
 }
 
 .header-links-methods-description{
