@@ -8,6 +8,7 @@ import ApiDetailVersionHeader from "./header/ApiDetailVersionHeader";
 import ApiDetailMethodsHeader from "./header/ApiDetailMethodsHeader";
 import ApiDetailReviewBody from "./body/ApiDetailReviewBody";
 import ApiDetailVersionBody from "./body/ApiDetailVersionBody";
+import ApiDetailMethodsBody from "./body/ApiDetailMethodsBody";
 import queryString from "query-string";
 
 class ApiDetail extends Component {
@@ -71,14 +72,16 @@ class ApiDetail extends Component {
     };
 
     renderSwitchBody() {
-        const pagingArray = ['review', 'version'];
+        const pagingArray = ['review', 'version', 'methods'];
         const params = queryString.parse(this.props.location.search);
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'review';
-        switch(paging) {
+        switch (paging) {
+            case 'methods':
+                return <ApiDetailMethodsBody {...this.props} />;
             case 'version':
-                return  <ApiDetailVersionBody {...this.props} />;
+                return <ApiDetailVersionBody {...this.props} />;
             default:
-                return  <ApiDetailReviewBody {...this.props} />
+                return <ApiDetailReviewBody {...this.props} />
         }
     }
 
@@ -86,13 +89,13 @@ class ApiDetail extends Component {
         const pagingArray = ['review', 'version', 'methods'];
         const params = queryString.parse(this.props.location.search);
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'review';
-        switch(paging) {
+        switch (paging) {
             case 'methods':
-                return  <ApiDetailMethodsHeader {...this.props} />;
+                return <ApiDetailMethodsHeader {...this.props} />;
             case 'version':
-                return  <ApiDetailVersionHeader {...this.props} />;
+                return <ApiDetailVersionHeader {...this.props} />;
             default:
-                return  <ApiDetailReviewHeader {...this.props} />
+                return <ApiDetailReviewHeader {...this.props} />
         }
     }
 
@@ -145,8 +148,9 @@ class ApiDetail extends Component {
                             </div>
                             <div className='api-detail-inner-body-container'>
                                 <div className='api-left-form-elements'>
-                                   Категория
-                                    <NavLink to={categoryLink} className='description-body-link description-api-links-color-blue'>{this.state.api.category.description}</NavLink>
+                                    Категория
+                                    <NavLink to={categoryLink}
+                                             className='description-body-link description-api-links-color-blue'>{this.state.api.category.description}</NavLink>
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Версия
@@ -158,7 +162,9 @@ class ApiDetail extends Component {
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Язык
-                                    <span className='description-body-link'>Русский, Английский</span><NavLink to='#' className='description-body-link description-api-links-color-blue'>и еще +3</NavLink>
+                                    <span className='description-body-link'>Русский, Английский</span><NavLink to='#'
+                                                                                                               className='description-body-link description-api-links-color-blue'>и
+                                    еще +3</NavLink>
                                 </div>
                                 <div className='api-left-form-elements description-api-links-padder'>
                                     Скорость отдачи
@@ -168,8 +174,10 @@ class ApiDetail extends Component {
                                     Стабильность
                                     <span className='description-body-link'>100%</span>
                                 </div>
-                                <div className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>
-                                    {this.state.api.description}<NavLink to='#' className='description-body-link description-api-links-color-blue'>...еще</NavLink>
+                                <div
+                                    className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>
+                                    {this.state.api.description}<NavLink to='#'
+                                                                         className='description-body-link description-api-links-color-blue'>...еще</NavLink>
                                 </div>
                             </div>
                         </div>
