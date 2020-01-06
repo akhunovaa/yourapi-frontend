@@ -54,7 +54,7 @@ class ApiDetailVersionHeader extends Component {
         return (
             <div className='header-links-list'>
                 <div className='header-links-methods header-links-font'>
-                    <NavLink to='#' className='inactive-header-link'>Методы</NavLink>
+                    <NavLink to='/shop/category/data/api?page=methods' className='inactive-header-link'>Методы</NavLink>
                 </div>
                 <div className='header-links-methods header-links-font active-header-container'>
                     <NavLink to='/shop/category/data/api?page=version' className='active-header-link'>Версии</NavLink>

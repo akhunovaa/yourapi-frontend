@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import './ApiDetailHeader.css';
 
-class ApiDetailReviewHeader extends Component {
+class ApiDetailMethodsHeader extends Component {
 
     _isMounted = false;
 
@@ -53,8 +53,8 @@ class ApiDetailReviewHeader extends Component {
     render() {
         return (
             <div className='header-links-list'>
-                <div className='header-links-methods header-links-font'>
-                    <NavLink to='/shop/category/data/api?page=methods' className='inactive-header-link'>Методы</NavLink>
+                <div className='header-links-methods header-links-font active-header-container'>
+                    <NavLink to='/shop/category/data/api?page=methods' className='active-header-link'>Методы</NavLink>
                 </div>
                 <div className='header-links-methods header-links-font'>
                     <NavLink to='/shop/category/data/api?page=version' className='inactive-header-link'>Версии</NavLink>
@@ -65,8 +65,8 @@ class ApiDetailReviewHeader extends Component {
                 <div className='header-links-methods header-links-font'>
                     <NavLink to='#' className='inactive-header-link'>Цена</NavLink>
                 </div>
-                <div className='header-links-methods header-links-font active-header-container'>
-                    <NavLink to='/shop/category/data/api?page=review' className='active-header-link'>Отзывы</NavLink>
+                <div className='header-links-methods header-links-font'>
+                    <NavLink to='/shop/category/data/api?page=review' className='inactive-header-link'>Отзывы</NavLink>
                 </div>
                 <div className='header-links-methods-description header-links-font'>
                     <NavLink to='#' className='inactive-header-link'>Вопросы и обсуждения</NavLink>
@@ -76,4 +76,4 @@ class ApiDetailReviewHeader extends Component {
     }
 }
 
-export default ApiDetailReviewHeader;
+export default ApiDetailMethodsHeader;
