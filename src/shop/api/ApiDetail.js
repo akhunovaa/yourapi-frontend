@@ -5,6 +5,7 @@ import {Breadcrumb, Button, Icon, Image} from "semantic-ui-react";
 import headerLogo from "../../img/api-header-logo.png";
 import ApiDetailReviewHeader from "./header/ApiDetailReviewHeader";
 import ApiDetailVersionHeader from "./header/ApiDetailVersionHeader";
+import ApiDetailMethodsHeader from "./header/ApiDetailMethodsHeader";
 import ApiDetailReviewBody from "./body/ApiDetailReviewBody";
 import ApiDetailVersionBody from "./body/ApiDetailVersionBody";
 import queryString from "query-string";
@@ -83,10 +84,12 @@ class ApiDetail extends Component {
     }
 
     renderSwitchHeader() {
-        const pagingArray = ['review', 'version'];
+        const pagingArray = ['review', 'version', 'methods'];
         const params = queryString.parse(this.props.location.search);
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'review';
         switch(paging) {
+            case 'methods':
+                return  <ApiDetailMethodsHeader {...this.props} />;
             case 'version':
                 return  <ApiDetailVersionHeader {...this.props} />;
             default:
