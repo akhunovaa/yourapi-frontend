@@ -3,7 +3,8 @@
     min-height: 1180px;
     background: #F2F2F2;
     /*min-width: 1633px;*/
-    min-width: 1348px;
+    min-width: 1362px;
+    display: block;
 }
 
 .api-detail-container-breadcrumb{
@@ -19,6 +20,9 @@
 
 .api-detail-main-container{
     display: inline-flex;
+    min-width: 1348px;
+    width: 100%;
+    padding-right: 50px;
     /*min-height: 2400px;*/
 }
 
@@ -39,10 +43,12 @@
     height: auto;
     min-height: 616px;
     /*margin-top: -40px;*/
-    width: 904px;
+    /*width: 904px;*/
     /*min-width: 1002px;*/
     /*padding-right: 50px;*/
     background: #FFFFFF;
+    min-width: 800px;
+    width: 100%;
 }
 
 .api-detail-inner-filter-container{
@@ -100,7 +106,7 @@
 
 .api-detail-create-button{
     height: 32px;
-    width: 196px;
+    width: 142px;
     /*vertical-align:middle;*/
     overflow: hidden;
 
@@ -157,13 +163,13 @@
 
 .api-detail-form-header-container{
     height: 52px;
-    width: 100%;
+    /*width: 100%;*/
     border-bottom: 1px solid #E0E0E0;
 }
 
 .api-detail-form-body-container{
     height: auto;
-    min-height: 700px;
-    width: 100%;
+    min-height: 632px;
+    /*width: 100%;*/
     padding-bottom: 28px;
 }
