@@ -59,7 +59,7 @@ class ApiDetailMethodsResponseExampleHeader extends Component {
                     <NavLink to='/shop/category/data/api?page=methods&code=scheme'
                              className='inactive-header-link'>Схема</NavLink>
                 </div>
-                <Icon style={{paddingLeft: 12, color: '#A5A5A5'}} name='copy outline' link
+                <Icon style={{paddingLeft: 30, color: '#A5A5A5'}} name='copy outline' link
                       size='large'/>
             </div>
         )
