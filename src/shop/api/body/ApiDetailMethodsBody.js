@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
-import {Icon, Input, List} from "semantic-ui-react";
+import {Button, Dropdown, Icon, Input, List} from "semantic-ui-react";
 
 class ApiDetailMethodsBody extends Component {
 
@@ -24,7 +24,11 @@ class ApiDetailMethodsBody extends Component {
                 countries: 'chevron down',
                 leagues: 'chevron down',
                 teams: 'chevron down'
-            }
+            },
+            project: 'Мой API',
+            host: 'api-football-v.1p.yourapi...',
+            key: 'dsjghse9gus9pgoj4;ow5...',
+            idNumber: '123456'
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -79,6 +83,18 @@ class ApiDetailMethodsBody extends Component {
     }
 
     render() {
+        const projectOptions = [
+            {
+                language: 'Мой API',
+                text: 'Мой API',
+                value: 'Мой API'
+            },
+            {
+                language: 'Тестовый API',
+                text: 'Тестовый API',
+                value: 'Тестовый API'
+            }
+        ];
         return (
             <div>
                 <div className='detail-methods-body'>
@@ -320,6 +336,48 @@ class ApiDetailMethodsBody extends Component {
                             </div>
                             <div className='detail-methods-title-label'>
                                 <span>Выбранной операции</span>
+                            </div>
+                            <div className='detail-methods-properties-title'>
+                                <span>Описание</span>
+                            </div>
+                            <div className='detail-methods-properties-text'>
+                                <span>Получите несколько прогнозов для одной команды</span>
+                            </div>
+                            <div className='detail-methods-properties-title'>
+                                <span>Параметры</span>
+                            </div>
+                            <div className="detail-methods-parameters">
+                                <label className='detail-methods-parameters-label'>Проект</label>
+                                <div style={{paddingTop: 6}}/>
+                                <Dropdown onChange={this.handleDropdownChange} placeholder='Проект' fluid selection
+                                          id="project" name="project" className="form-input detail-methods-parameters-input chevron-down"
+                                          options={projectOptions} defaultValue={this.state.project}/>
+                            </div>
+                            <div className="detail-methods-parameters">
+                                <label className='detail-methods-parameters-label'>Хост (обязательное поле)</label>
+                                <div style={{paddingTop: 6}}/>
+                                <Input size={'small'} fluid icon={{name: 'check', color: 'green', size: 'large'}}
+                                       placeholder='Хост' id="host"
+                                       name="host" defaultValue={this.state.host}/>
+                            </div>
+                            <div className="detail-methods-parameters">
+                                <label className='detail-methods-parameters-label'>Ключ (обязательное поле)</label>
+                                <div style={{paddingTop: 6}}/>
+                                <Input size={'small'} fluid icon={{name: 'check', color: 'green', size: 'large'}}
+                                       placeholder='Ключ' id="key"
+                                       name="key" defaultValue={this.state.key}/>
+                            </div>
+                            <div className="detail-methods-parameters">
+                                <label className='detail-methods-parameters-label'>Номер ID (обязательное поле)</label>
+                                <div style={{paddingTop: 6}}/>
+                                <Input size={'small'} fluid icon={{name: 'check', color: 'green', size: 'large'}}
+                                       placeholder='Номер ID' id="idNumber"
+                                       name="idNumber" defaultValue={this.state.idNumber}/>
+                            </div>
+                            <div className='detail-methods-test-button-container'>
+                                <Button className='detail-methods-test-button' style={{background: '#2F80ED'}}>
+                                    <span className='detail-methods-test-button-text'>Тестировать</span>
+                                </Button>
                             </div>
                         </div>
                         <div className='detail-methods-code-fragment-container'>
