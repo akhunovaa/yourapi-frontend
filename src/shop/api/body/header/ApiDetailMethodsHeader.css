@@ -1,0 +1,16 @@
+.code-header-links-font{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.code-header-links-methods{
+    display: inline-block;
+    width: 140px;
+    height: 52px;
+    padding: 18px 20px 18px 20px;
+    text-align: center;
+    white-space: nowrap;
+}

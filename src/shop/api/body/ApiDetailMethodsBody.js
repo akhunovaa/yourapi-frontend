@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
 import {Button, Dropdown, Form, Icon, Input, List, TextArea} from "semantic-ui-react";
+import ApiDetailMethodsResponseExampleHeader from "./header/ApiDetailMethodsResponseExampleHeader";
+import ApiDetailMethodsSchemeHeader from "./header/ApiDetailMethodsSchemeHeader";
+import ApiDetailMethodsResponseExampleBody from "./ApiDetailMethodsResponseExampleBody";
+import ApiDetailMethodsSchemeBody from "./ApiDetailMethodsSchemeBody";
+import queryString from "query-string";
 
 class ApiDetailMethodsBody extends Component {
 
@@ -46,6 +51,8 @@ class ApiDetailMethodsBody extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
         this.toggle = this.toggle.bind(this);
+        this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
+        this.renderSwitchBody = this.renderSwitchBody.bind(this);
     }
 
     componentDidMount() {
@@ -93,6 +100,35 @@ class ApiDetailMethodsBody extends Component {
             arrow: arrows
         });
     }
+
+    renderSwitchHeader() {
+        const pagingArray = ['example', 'scheme'];
+        const params = queryString.parse(this.props.location.search);
+        const paging = (params.code !== 'undefined' && this.handleCheck(pagingArray, params.code)) ? params.code : 'example';
+        switch (paging) {
+            case 'example':
+                return <ApiDetailMethodsResponseExampleHeader {...this.props} />;
+            case 'scheme':
+                return <ApiDetailMethodsSchemeHeader {...this.props} />;
+            default:
+                return <ApiDetailMethodsResponseExampleHeader {...this.props} />
+        }
+    }
+
+    renderSwitchBody() {
+        const pagingArray = ['example', 'scheme'];
+        const params = queryString.parse(this.props.location.search);
+        const paging = (params.code !== 'undefined' && this.handleCheck(pagingArray, params.code)) ? params.code : 'example';
+        switch (paging) {
+            case 'example':
+                return <ApiDetailMethodsResponseExampleBody {...this.props} />;
+            case 'scheme':
+                return <ApiDetailMethodsSchemeBody {...this.props} />;
+            default:
+                return <ApiDetailMethodsResponseExampleBody {...this.props} />
+        }
+    }
+
 
     render() {
         const projectOptions = [
@@ -462,6 +498,8 @@ class ApiDetailMethodsBody extends Component {
                                               name="code" defaultValue={this.state.code}/>
                                 </Form>
                             </div>
+                            {this.renderSwitchHeader()}
+                            {this.renderSwitchBody()}
                         </div>
                     </div>
                 </div>
