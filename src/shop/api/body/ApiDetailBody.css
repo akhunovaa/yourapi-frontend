@@ -515,6 +515,10 @@
     color: #4F4F4F;
 }
 
+.detail-methods-parameters-input-margin{
+  margin-right: 8px;
+}
+
 .detail-methods-test-button-container{
     padding-top: 28px;
 }
@@ -542,4 +546,40 @@
     /* Gray 6 */
     color: #F2F2F2;
     vertical-align: middle;
+}
+
+.detail-methods-code-fragment{
+    padding-top: 16px;
+}
+
+.detail-methods-code-sdk{
+    width: 85px;
+    height: 38px;
+    white-space: nowrap;
+    text-align: center;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.detail-methods-code-sdk-text{
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.detail-methods-code-fragment-textarea textarea{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
-import {Button, Dropdown, Icon, Input, List} from "semantic-ui-react";
+import {Button, Dropdown, Form, Icon, Input, List, TextArea} from "semantic-ui-react";
 
 class ApiDetailMethodsBody extends Component {
 
@@ -28,7 +28,19 @@ class ApiDetailMethodsBody extends Component {
             project: 'Мой API',
             host: 'api-football-v.1p.yourapi...',
             key: 'dsjghse9gus9pgoj4;ow5...',
-            idNumber: '123456'
+            idNumber: '123456',
+            language: '(Node.js) Unirest',
+            code: 'var unirest = require("unirest");\n' +
+                '\n' +
+                'var req = unirest("GET", "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/spelling/AutoComplete");\n' +
+                '\n' +
+                'req.query({\n' +
+                '\t"text": "do"\n' +
+                '});\n' +
+                '\n' +
+                'req.headers({\n' +
+                '\t"x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com",\n' +
+                '\t"x-rapidapi-key": "d84d4c60c9msh148bf271be3d9f5p10d2'
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -95,6 +107,28 @@ class ApiDetailMethodsBody extends Component {
                 value: 'Тестовый API'
             }
         ];
+        const languageOptions = [
+            {
+                language: '(Node.js) Unirest',
+                text: '(Node.js) Unirest',
+                value: '(Node.js) Unirest'
+            },
+            {
+                language: 'Python 3.8.1',
+                text: 'Python 3.8.1',
+                value: 'Python 3.8.1'
+            },
+            {
+                language: 'Python 2.7.17',
+                text: 'Python 2.7.17',
+                value: 'Python 2.7.17'
+            },
+            {
+                language: 'Go (Golang) 1.13',
+                text: 'Go (Golang) 1.13',
+                value: 'Go (Golang) 1.13'
+            }
+        ];
         return (
             <div>
                 <div className='detail-methods-body'>
@@ -109,7 +143,7 @@ class ApiDetailMethodsBody extends Component {
                             </div>
                             <div className='detail-methods-search'>
                                 <Input size={'small'} fluid icon={{name: 'search', link: true}}
-                                        placeholder='Поиск...' id="search"
+                                       placeholder='Поиск...' id="search"
                                        name="search"/>
                             </div>
                             <div className='detail-methods-filter-text'>
@@ -125,10 +159,12 @@ class ApiDetailMethodsBody extends Component {
                                             <List.Content>
                                                 <div className='detail-methods-filter-element-header'>
                                                     <span className='detail-methods-filter-text-title'>Фильтр</span>
-                                                    <span className='detail-methods-filter-text-title-main'>Операции</span>
+                                                    <span
+                                                        className='detail-methods-filter-text-title-main'>Операции</span>
                                                 </div>
                                             </List.Content>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.p1}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.p1}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span style={{color: '#219653'}}>GET</span>
@@ -136,7 +172,8 @@ class ApiDetailMethodsBody extends Component {
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content-padded' hidden={this.state.hidden.p1}>
+                                            <List.List className='detail-methods-element-body-content-padded'
+                                                       hidden={this.state.hidden.p1}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span style={{color: '#219653'}}>GET</span>
@@ -159,21 +196,24 @@ class ApiDetailMethodsBody extends Component {
                                                     <span className='detail-methods-filter-text-title'>Fixtures</span>
                                                 </div>
                                             </List.Content>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.fixtures}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.fixtures}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>Adjustable fixture</span>
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.fixtures}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.fixtures}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>Grinding fixtures</span>
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.fixtures}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.fixtures}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>Assembly fixture</span>
@@ -195,21 +235,24 @@ class ApiDetailMethodsBody extends Component {
                                                     <span className='detail-methods-filter-text-title'>Teams</span>
                                                 </div>
                                             </List.Content>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.teams}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.teams}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>Рубин</span>
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.teams}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.teams}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>Манчестер</span>
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.teams}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.teams}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>Ливерпуль</span>
@@ -231,21 +274,24 @@ class ApiDetailMethodsBody extends Component {
                                                     <span className='detail-methods-filter-text-title'>V1</span>
                                                 </div>
                                             </List.Content>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.v1}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.v1}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>1.0</span>
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.v1}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.v1}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>2.0</span>
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.v1}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.v1}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>3.0</span>
@@ -264,24 +310,28 @@ class ApiDetailMethodsBody extends Component {
                                             </List.Content>
                                             <List.Content>
                                                 <div className='detail-methods-filter-element-header'>
-                                                    <span className='detail-methods-filter-text-title'>Countries&Seasons</span>
+                                                    <span
+                                                        className='detail-methods-filter-text-title'>Countries&Seasons</span>
                                                 </div>
                                             </List.Content>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.countries}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.countries}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>1.0</span>
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.countries}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.countries}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>2.0</span>
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.countries}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.countries}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>3.0</span>
@@ -303,21 +353,24 @@ class ApiDetailMethodsBody extends Component {
                                                     <span className='detail-methods-filter-text-title'>Leagues</span>
                                                 </div>
                                             </List.Content>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.leagues}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.leagues}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>1.0</span>
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.leagues}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.leagues}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>2.0</span>
                                                     </div>
                                                 </List.Content>
                                             </List.List>
-                                            <List.List className='detail-methods-element-body-content' hidden={this.state.hidden.leagues}>
+                                            <List.List className='detail-methods-element-body-content'
+                                                       hidden={this.state.hidden.leagues}>
                                                 <List.Content className='detail-methods-element-body'>
                                                     <div className='detail-methods-element-body-paragraph'>
                                                         <span>3.0</span>
@@ -350,7 +403,8 @@ class ApiDetailMethodsBody extends Component {
                                 <label className='detail-methods-parameters-label'>Проект</label>
                                 <div style={{paddingTop: 6}}/>
                                 <Dropdown onChange={this.handleDropdownChange} placeholder='Проект' fluid selection
-                                          id="project" name="project" className="form-input detail-methods-parameters-input chevron-down"
+                                          id="project" name="project"
+                                          className="form-input detail-methods-parameters-input chevron-down"
                                           options={projectOptions} defaultValue={this.state.project}/>
                             </div>
                             <div className="detail-methods-parameters">
@@ -375,7 +429,7 @@ class ApiDetailMethodsBody extends Component {
                                        name="idNumber" defaultValue={this.state.idNumber}/>
                             </div>
                             <div className='detail-methods-test-button-container'>
-                                <Button className='detail-methods-test-button' style={{background: '#2F80ED'}}>
+                                <Button className='detail-methods-test-button' style={{background: '#2F80EFD'}}>
                                     <span className='detail-methods-test-button-text'>Тестировать</span>
                                 </Button>
                             </div>
@@ -387,6 +441,26 @@ class ApiDetailMethodsBody extends Component {
                             </div>
                             <div className='detail-methods-title-label'>
                                 <span>Выбранной операции</span>
+                            </div>
+                            <div className="detail-methods-code-fragment">
+                                <label className='detail-methods-parameters-label'>Язык</label>
+                                <div style={{paddingTop: 6}}/>
+                                <Dropdown onChange={this.handleDropdownChange} placeholder='Язык' selection
+                                          id="language" name="language"
+                                          className="form-input detail-methods-parameters-input detail-methods-parameters-input-margin chevron-down"
+                                          options={languageOptions} defaultValue={this.state.language}/>
+                                <Button basic className='detail-methods-code-sdk'><Icon name='dropbox' color='black'
+                                                                                        size='large'/><span
+                                    className='detail-methods-code-sdk-text'>SDK</span></Button>
+                                <Icon style={{paddingLeft: 12, color: '#A5A5A5'}} name='copy outline' link
+                                      size='large'/>
+                            </div>
+                            <div className="detail-methods-code-fragment-textarea">
+                                <Form style={{paddingTop: '6px'}}>
+                                    <TextArea onChange={this.handleInputChange} placeholder=''
+                                              style={{minHeight: 306, maxHeight: 306, minWidth: 270}} id="code"
+                                              name="code" defaultValue={this.state.code}/>
+                                </Form>
                             </div>
                         </div>
                     </div>
