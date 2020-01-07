@@ -462,3 +462,84 @@
     background-color: #D8D8D8;
     border-radius: 4px;
 }
+
+.detail-methods-properties-title{
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+
+    padding-top: 16px;
+}
+
+.detail-methods-properties-text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+
+    padding-top: 8px;
+}
+
+.detail-methods-parameters{
+    padding-top: 12px;
+}
+
+.detail-methods-parameters-label{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.detail-methods-parameters-input{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.detail-methods-test-button-container{
+    padding-top: 28px;
+}
+
+.detail-methods-test-button{
+    height: 32px;
+    width: 109px;
+    /*vertical-align:middle;*/
+    overflow: hidden;
+
+    text-align: center;
+    /*padding-bottom: 7px;*/
+    /*padding-top: 7px;*/
+    padding: 0 0 !important;
+}
+
+
+.detail-methods-test-button-text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 6 */
+    color: #F2F2F2;
+    vertical-align: middle;
+}
