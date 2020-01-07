@@ -19,6 +19,10 @@
     color: #4F4F4F;
 }
 
+.command-operation-text:hover{
+    cursor: pointer;
+}
+
 .command-link-color{
     color: #2F80ED !important;
 }

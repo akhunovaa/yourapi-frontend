@@ -10,9 +10,9 @@ class ApiTreeSet extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hidden: false,
+            hidden: true,
             hidden2: true,
-            arrow: 'chevron up',
+            arrow: 'chevron down',
             arrow2: 'chevron down'
         };
         this.toggle = this.toggle.bind(this);

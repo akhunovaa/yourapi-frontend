@@ -54,7 +54,7 @@ class CommandsTreeSet extends Component {
                                 <Icon link name={this.state.arrow} onClick={this.toggle} className={naming !== 'Волга' ? 'command-disabled-color' : null}/>
                             </List.Content>
                             <Icon name='users' className={naming !== 'Волга' ? 'command-disabled-color' : null} />
-                            <List.Content><span className={classNames({ 'command-disabled-color' : naming !== 'Волга'}, 'command-operation-text', 'command-bold-font-weight')}>Волга</span></List.Content>
+                            <List.Content><span onClick={this.toggle} className={classNames({ 'command-disabled-color' : naming !== 'Волга'}, 'command-operation-text', 'command-bold-font-weight')}>Волга</span></List.Content>
                             <List.List hidden={this.state.hidden}>
                                 <List.Content className='sub-command'>
                                     <NavLink to="/profile/administration?company=Волга&page=about"><span className={classNames({ 'command-disabled-color' : naming !== 'Волга'}, { 'command-link-color' : (naming === 'Волга' && page === 'about')}, 'command-operation-text')}>О команде</span></NavLink>
@@ -70,7 +70,7 @@ class CommandsTreeSet extends Component {
                                 <Icon link name={this.state.arrow2} onClick={this.toggle2} className={naming !== 'Урал' ? 'command-disabled-color' : null}/>
                             </List.Content>
                             <Icon name='users' className={naming !== 'Урал' ? 'command-disabled-color' : null} />
-                            <List.Content><span className={classNames({ 'command-disabled-color' : naming !== 'Урал'}, 'command-operation-text', 'command-bold-font-weight')}>Урал</span></List.Content>
+                            <List.Content><span onClick={this.toggle2} className={classNames({ 'command-disabled-color' : naming !== 'Урал'}, 'command-operation-text', 'command-bold-font-weight')}>Урал</span></List.Content>
                             <List.List hidden={this.state.hidden2}>
                                 <List.Content className='sub-command'>
                                     <NavLink to="/profile/administration?company=Урал&page=about"><span className={classNames({ 'command-disabled-color' : naming !== 'Урал'}, { 'command-link-color' : (naming === 'Урал' && page === 'about')}, 'command-operation-text')}>О компании</span></NavLink>
