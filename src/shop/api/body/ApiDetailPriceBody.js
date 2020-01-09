@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
 import {Button, Icon, List} from "semantic-ui-react";
-import {NavLink} from "react-router-dom";
 import queryString from "query-string";
 import ApiDetailPriceBodyPlans from "./ApiDetailPriceBodyPlans";
 
@@ -139,6 +138,123 @@ class ApiDetailPriceBody extends Component {
                         <div className='detail-price-body-main-plans'>
                             <ApiDetailPriceBodyPlans {...this.props} />
                         </div>
+                        <div className='detail-price-body-main-plan-scopes'>
+                            <div className='detail-price-body-main-plan-scope-element'>
+                                <div className='detail-price-body-main-plan-scope-element-header'>
+                                    <span>Лиги</span>
+                                </div>
+                                <div className='detail-price-body-main-plan-scope-element-containers'>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='detail-price-body-main-plan-scope-element'>
+                                <div className='detail-price-body-main-plan-scope-element-header'>
+                                    <span>Страны</span>
+                                </div>
+                                <div className='detail-price-body-main-plan-scope-element-containers'>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='detail-price-body-main-plan-scope-element'>
+                                <div className='detail-price-body-main-plan-scope-element-header'>
+                                    <span>Шансы перед матчем</span>
+                                </div>
+                                <div className='detail-price-body-main-plan-scope-element-containers'>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='times' color='red' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                    <div className='detail-price-body-main-plan-scope-element-container'>
+                                        <Icon name='check' color='green' size='large'
+                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='detail-price-body-main-plan-faq'>
+                                <div className='detail-price-body-main-plan-faq-header'>
+                                    <span>Часто задаваемые вопросы</span>
+                                </div>
+                                <div className='detail-price-body-main-plan-faq-subheader'>
+                                    <span>Безопасна ли моя оплата?</span>
+                                </div>
+                                <div className='detail-price-body-main-plan-faq-subheader-label'>
+                                    <span>Кредитные карты обрабатываются через PCI-совместимого банковского партнера</span>
+                                </div>
+                                <div className='detail-price-body-main-plan-faq-subheader subheader-padded'>
+                                    <span>Что делать, если я превышаю пределы моего плана?</span>
+                                </div>
+                                <div className='detail-price-body-main-plan-faq-subheader-label'>
+                                    <span>В зависимости от выбранного варианта вашего плана, вы либо будете отстранены, либо будете платить за перерасход</span>
+                                </div>
+                                <div className='detail-price-body-main-plan-faq-subheader subheader-padded'>
+                                    <span>Когда мне будет выставлен счет?</span>
+                                </div>
+                                <div className='detail-price-body-main-plan-faq-subheader-label'>
+                                    <span>Мы списываем средства с вашей кредитной карты при подписке на тарифный план API и в следующий расчетный  период - 5 число каждого месца</span>
+                                </div>
+                            </div>
+
+                            <div className='individual-plan-support-message'>
+                                <Button basic className='individual-plan-support-message-button'>
+                                    <span className='individual-plan-support-message-button-text'>Связаться со службой поддержки</span>
+                                </Button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+
                     </div>
                 </div>
             </div>
