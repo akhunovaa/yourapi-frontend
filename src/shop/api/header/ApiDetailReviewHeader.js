@@ -60,16 +60,16 @@ class ApiDetailReviewHeader extends Component {
                     <NavLink to='/shop/category/data/api?page=version' className='inactive-header-link'>Версии</NavLink>
                 </div>
                 <div className='header-links-methods-documentation header-links-font'>
-                    <NavLink to='#' className='inactive-header-link'>Документация</NavLink>
+                    <NavLink to='/shop/category/data/api?page=documentation' className='inactive-header-link'>Документация</NavLink>
                 </div>
                 <div className='header-links-methods header-links-font'>
-                    <NavLink to='#' className='inactive-header-link'>Цена</NavLink>
+                    <NavLink to='/shop/category/data/api?page=price' className='inactive-header-link'>Цена</NavLink>
                 </div>
                 <div className='header-links-methods header-links-font active-header-container'>
                     <NavLink to='/shop/category/data/api?page=review' className='active-header-link'>Отзывы</NavLink>
                 </div>
                 <div className='header-links-methods-description header-links-font'>
-                    <NavLink to='#' className='inactive-header-link'>Вопросы и обсуждения</NavLink>
+                    <NavLink to='/shop/category/data/api?page=questions' className='inactive-header-link'>Вопросы и обсуждения</NavLink>
                 </div>
             </div>
         )
