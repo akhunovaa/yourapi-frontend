@@ -13,6 +13,9 @@ import ApiDetailReviewBody from "./body/ApiDetailReviewBody";
 import ApiDetailVersionBody from "./body/ApiDetailVersionBody";
 import ApiDetailMethodsBody from "./body/ApiDetailMethodsBody";
 import queryString from "query-string";
+import ApiDetailPriceBody from "./body/ApiDetailPriceBody";
+import ApiDetailQuestionsBody from "./body/ApiDetailQuestionsBody";
+import ApiDetailDocumentationBody from "./body/ApiDetailDocumentationBody";
 
 class ApiDetail extends Component {
 
@@ -75,7 +78,7 @@ class ApiDetail extends Component {
     };
 
     renderSwitchBody() {
-        const pagingArray = ['review', 'version', 'methods'];
+        const pagingArray = ['review', 'version', 'methods', 'price', 'questions', 'documentation'];
         const params = queryString.parse(this.props.location.search);
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'methods';
         switch (paging) {
@@ -83,6 +86,12 @@ class ApiDetail extends Component {
                 return <ApiDetailReviewBody {...this.props} />;
             case 'version':
                 return <ApiDetailVersionBody {...this.props} />;
+            case 'price':
+                return <ApiDetailPriceBody {...this.props} />;
+            case 'questions':
+                return <ApiDetailQuestionsBody {...this.props} />;
+            case 'documentation':
+                return <ApiDetailDocumentationBody {...this.props} />;
             default:
                 return <ApiDetailMethodsBody {...this.props} />
         }
