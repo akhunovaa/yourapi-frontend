@@ -560,6 +560,11 @@
     padding: 0 0 !important;
 }
 
+.ui.basic.button.detail-methods-test-button {
+    background: #2F80ED !important;
+}
+
+
 
 .detail-methods-test-button-text{
     font-family: Roboto;
@@ -865,4 +870,125 @@
 .slick-prev {
     left: -25px;
     color: black;
+}
+
+.detail-price-body-main-plan-scopes{
+    padding-top: 16px;
+}
+
+.detail-price-body-main-plan-scope-element{
+    padding-left: 42px;
+    padding-top: 12px;
+    text-align: left;
+}
+
+.detail-price-body-main-plan-scope-element-header{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+    /*padding-left: 42px;*/
+    /* Gray 2 */
+    color: #4F4F4F;
+    padding-bottom: 4px;
+}
+
+.detail-price-body-main-plan-scope-element-containers{
+    display: inline-flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.detail-price-body-main-plan-scope-element-container{
+    width: 100%;
+    height: 42px;
+    background-color: #F2F2F2;
+    border-radius: 4px;
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+
+    align-items: center;
+    padding-left: 30px;
+}
+
+.detail-price-body-main-plan-faq{
+    padding-top: 32px;
+    padding-left: 37px;
+    text-align: left;
+}
+
+.detail-price-body-main-plan-faq-header{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    text-align: left;
+}
+
+.detail-price-body-main-plan-faq-subheader{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    padding-top: 12px;
+}
+
+.subheader-padded{
+    padding-top: 20px
+}
+
+.detail-price-body-main-plan-faq-subheader-label{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.individual-plan-support-message{
+    padding: 38px 0 0 0;
+    padding-left: 36px;
+}
+
+.individual-plan-support-message-button{
+    height: 32px;
+    width: 273px;
+    margin: 0 auto;
+    padding: 0 0 !important;
+    float: left;
+}
+
+.ui.basic.button.individual-plan-support-message-button {
+    background: #2F80ED !important;
+}
+
+.individual-plan-support-message-button-text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 6 */
+    color: #F2F2F2;
 }

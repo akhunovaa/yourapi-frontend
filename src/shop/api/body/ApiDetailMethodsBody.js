@@ -465,7 +465,7 @@ class ApiDetailMethodsBody extends Component {
                                        name="idNumber" defaultValue={this.state.idNumber}/>
                             </div>
                             <div className='detail-methods-test-button-container'>
-                                <Button className='detail-methods-test-button' style={{background: '#2F80EFD'}}>
+                                <Button basic className='detail-methods-test-button' style={{background: '#2F80EFD'}}>
                                     <span className='detail-methods-test-button-text'>Тестировать</span>
                                 </Button>
                             </div>
