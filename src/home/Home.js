@@ -374,7 +374,6 @@ class Home extends Component {
                                                 </div>
                                                 <div className="cell-grid-body">
                                                     <div className="cell-grid-body-text">
-                                                        <label>Web Search</label><br />
                                                         <NavLink to={linkWeb} className='cell-grid-body-text'>Web Search</NavLink><br/>
                                                     </div>
                                                     <div className="cell-grid-body-label">
