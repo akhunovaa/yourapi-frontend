@@ -750,7 +750,7 @@
 }
 
 .detail-price-body-main-plans{
-    height: auto;
+    height: 303px;
     padding-left: 76px;
     padding-right: 76px;
 
@@ -758,7 +758,7 @@
 
 .individual-plan-element-container{
     width: 192px !important;
-    height: 303px;
+    height: 303px !important;
 
     /* white */
     background-color: #FFFFFF;
@@ -777,7 +777,7 @@
 .individual-plan-element-inner-container{
     padding: 28px 20px 20px 20px;
     text-align: left;
-    height: 100%;
+    height: auto;
 }
 
 .individual-plan-header{

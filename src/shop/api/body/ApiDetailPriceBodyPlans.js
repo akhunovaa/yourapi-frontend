@@ -61,6 +61,7 @@ class ApiDetailPriceBodyPlans extends Component {
             variableWidth: true,
             autoplaySpeed: 100,
             pauseOnHover: true,
+            adaptiveHeight: true,
             prevArrow: <PlanPrevArrow />,
             nextArrow: <PlanNextArrow />
         };
