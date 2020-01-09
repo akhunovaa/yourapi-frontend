@@ -8,9 +8,7 @@
 }
 
 .detail-price-body{
-    padding-top: 22px;
-    padding-left: 195px;
-    padding-right: 195px;
+    padding: 16px 0 36px 0;
     height: auto;
     /*min-height: 700px;*/
     text-align:center;
@@ -655,3 +653,216 @@
     position: relative;
 }
 
+.detail-price-body-header{
+    height: 56px;
+    /*padding-left: 36px;*/
+
+    padding-left: 36px;
+    padding-right: 48px;
+    /*display: inline-block;*/
+}
+
+.detail-price-body-currency{
+    float: left;
+    /*width: 155px;*/
+    white-space: nowrap;
+    width: 200px;
+    padding-top: 20px;
+}
+
+.detail-price-body-currency-chevron{
+
+    /*padding: 16px 20px 16px 21px;*/
+    padding-left: 8px;
+}
+
+.detail-price-body-currency-text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    float: left;
+    /*padding: 16px 20px 16px 21px;*/
+}
+
+.detail-price-body-currency-text-title{
+    font-weight: bold;
+}
+
+.detail-price-body-currency-text-title-main{
+    font-weight: normal;
+    padding-left: 8px;
+}
+
+.detail-price-body-currency-body-content {
+    padding: 6px 0 0 0 !important;
+    text-align: right;
+    height: auto;
+}
+
+.detail-price-body-currency-body{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.detail-price-body-individual-plan-button-container{
+    float: right;
+    padding-right: 28px;
+}
+
+.detail-price-body-individual-plan-button-button{
+    height: 32px;
+    width: 260px;
+    /*vertical-align:middle;*/
+    overflow: hidden;
+
+    text-align: center;
+    /*padding-bottom: 7px;*/
+    /*padding-top: 7px;*/
+    padding: 0 0 !important;
+}
+
+
+.detail-price-body-individual-plan-button-text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.detail-price-body-main{
+    height: auto;
+}
+
+.detail-price-body-main-plans{
+    height: auto;
+    padding-left: 76px;
+    padding-right: 76px;
+
+}
+
+.individual-plan-element-container{
+    width: 192px !important;
+    height: 303px;
+
+    /* white */
+    background-color: #FFFFFF;
+    /* Gray 5 */
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    border-radius: 4px;
+    margin-right: 24px;
+}
+
+.selected-container{
+    border: 1px solid #2F80ED;
+}
+
+.individual-plan-element-inner-container{
+    padding: 28px 20px 20px 20px;
+    text-align: left;
+    height: 100%;
+}
+
+.individual-plan-header{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+
+    /* Gray 3 */
+    color: #A5A5A5;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.individual-plan-description-footer{
+    padding: 38px 0 0 0;
+}
+
+.padded-footer{
+    padding: 66px 0 0 0;
+}
+
+.doubling-padded-footer{
+    padding: 128px 0 0 0;
+}
+
+.individual-plan-header-label{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.individual-plan-body{
+    font-family: Roboto;
+    font-style: normal;
+}
+
+.individual-plan-price{
+    padding-top: 20px;
+    padding-bottom: 6px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+
+    /* Blue 1 */
+    color: #2F80ED;
+}
+
+.individual-plan-description{
+    padding-top: 14px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.individual-plan-description-select-button{
+    height: 32px;
+    margin: 0 auto;
+    padding: 0 0 !important;
+}
+
+.ui.basic.button.selected-container-button{
+    background: #2F80ED !important;
+}
+
+.selected-span-text{
+    color: white;
+}
+
+.individual-plan-slider{
+
+}
+
+.slick-prev {
+    left: -25px;
+    color: black;
+}
