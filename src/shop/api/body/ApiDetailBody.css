@@ -7,6 +7,33 @@
     text-align:center;
 }
 
+.detail-price-body{
+    padding-top: 22px;
+    padding-left: 195px;
+    padding-right: 195px;
+    height: auto;
+    /*min-height: 700px;*/
+    text-align:center;
+}
+
+.detail-questions-body{
+    padding-top: 22px;
+    padding-left: 195px;
+    padding-right: 195px;
+    height: auto;
+    /*min-height: 700px;*/
+    text-align:center;
+}
+
+.detail-documentation-body{
+    padding-top: 22px;
+    padding-left: 195px;
+    padding-right: 195px;
+    height: auto;
+    /*min-height: 700px;*/
+    text-align:center;
+}
+
 .detail-review-rating-container{
     width: 343px;
     height: auto;
