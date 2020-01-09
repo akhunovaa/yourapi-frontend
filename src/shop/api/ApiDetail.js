@@ -5,6 +5,9 @@ import {Breadcrumb, Button, Icon, Image} from "semantic-ui-react";
 import headerLogo from "../../img/api-header-logo.png";
 import ApiDetailReviewHeader from "./header/ApiDetailReviewHeader";
 import ApiDetailVersionHeader from "./header/ApiDetailVersionHeader";
+import ApiDetailPriceHeader from "./header/ApiDetailPriceHeader";
+import ApiDetailQuestionsHeader from "./header/ApiDetailQuestionsHeader";
+import ApiDetailDocumentationHeader from "./header/ApiDetailDocumentationHeader";
 import ApiDetailMethodsHeader from "./header/ApiDetailMethodsHeader";
 import ApiDetailReviewBody from "./body/ApiDetailReviewBody";
 import ApiDetailVersionBody from "./body/ApiDetailVersionBody";
@@ -74,28 +77,34 @@ class ApiDetail extends Component {
     renderSwitchBody() {
         const pagingArray = ['review', 'version', 'methods'];
         const params = queryString.parse(this.props.location.search);
-        const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'review';
+        const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'methods';
         switch (paging) {
-            case 'methods':
-                return <ApiDetailMethodsBody {...this.props} />;
+            case 'review':
+                return <ApiDetailReviewBody {...this.props} />;
             case 'version':
                 return <ApiDetailVersionBody {...this.props} />;
             default:
-                return <ApiDetailReviewBody {...this.props} />
+                return <ApiDetailMethodsBody {...this.props} />
         }
     }
 
     renderSwitchHeader() {
-        const pagingArray = ['review', 'version', 'methods'];
+        const pagingArray = ['review', 'version', 'methods', 'price', 'questions', 'documentation'];
         const params = queryString.parse(this.props.location.search);
-        const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'review';
+        const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'methods';
         switch (paging) {
-            case 'methods':
-                return <ApiDetailMethodsHeader {...this.props} />;
+            case 'review':
+                return <ApiDetailReviewHeader {...this.props} />;
             case 'version':
                 return <ApiDetailVersionHeader {...this.props} />;
+            case 'price':
+                return <ApiDetailPriceHeader {...this.props} />;
+            case 'questions':
+                return <ApiDetailQuestionsHeader {...this.props} />;
+            case 'documentation':
+                return <ApiDetailDocumentationHeader {...this.props} />;
             default:
-                return <ApiDetailReviewHeader {...this.props} />
+                return <ApiDetailMethodsHeader {...this.props} />
         }
     }
 

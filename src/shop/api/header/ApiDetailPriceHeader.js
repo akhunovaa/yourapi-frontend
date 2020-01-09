@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import './ApiDetailHeader.css';
 
-class ApiDetailVersionHeader extends Component {
+class ApiDetailPriceHeader extends Component {
 
     _isMounted = false;
 
@@ -56,14 +56,14 @@ class ApiDetailVersionHeader extends Component {
                 <div className='header-links-methods header-links-font'>
                     <NavLink to='/shop/category/data/api?page=methods' className='inactive-header-link'>Методы</NavLink>
                 </div>
-                <div className='header-links-methods header-links-font active-header-container'>
-                    <NavLink to='/shop/category/data/api?page=version' className='active-header-link'>Версии</NavLink>
+                <div className='header-links-methods header-links-font'>
+                    <NavLink to='/shop/category/data/api?page=version' className='inactive-header-link'>Версии</NavLink>
                 </div>
                 <div className='header-links-methods-documentation header-links-font'>
                     <NavLink to='/shop/category/data/api?page=documentation' className='inactive-header-link'>Документация</NavLink>
                 </div>
-                <div className='header-links-methods header-links-font'>
-                    <NavLink to='/shop/category/data/api?page=price' className='inactive-header-link'>Цена</NavLink>
+                <div className='header-links-methods header-links-font active-header-container'>
+                    <NavLink to='/shop/category/data/api?page=price' className='active-header-link'>Цена</NavLink>
                 </div>
                 <div className='header-links-methods header-links-font'>
                     <NavLink to='/shop/category/data/api?page=review' className='inactive-header-link'>Отзывы</NavLink>
@@ -76,4 +76,4 @@ class ApiDetailVersionHeader extends Component {
     }
 }
 
-export default ApiDetailVersionHeader;
+export default ApiDetailPriceHeader;
