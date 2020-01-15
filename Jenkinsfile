@@ -72,9 +72,6 @@ pipeline {
             steps {
                 echo "Removing image: $registry:$BUILD_NUMBER"
                 sh "docker rmi --force $registry:$BUILD_NUMBER"
-                sshagent(credentials: ['second']) {
-                    sh "ssh root@$remoteHost docker rmi --force $registry:$BUILD_NUMBER"
-                }
             }
         }
 
