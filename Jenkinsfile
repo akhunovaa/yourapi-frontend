@@ -73,8 +73,8 @@ pipeline {
                 echo "Removing image: $registry:$BUILD_NUMBER"
                 sh "docker rmi --force $registry:$BUILD_NUMBER"
                 sshagent(credentials: ['second']) {
-                    echo "Removing remote image: $registry:$currentBuild.previousBuild.getNumber()"
-                    sh "ssh root@$remoteHost docker rmi --force $registry:$currentBuild.previousBuild.getNumber()"
+                    echo "Removing remote image: $registry:${currentBuild.previousBuild.getNumber()}"
+                    sh "ssh root@$remoteHost docker rmi --force $registry:${currentBuild.previousBuild.getNumber()}"
                 }
             }
         }
