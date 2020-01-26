@@ -133,7 +133,7 @@ pipeline {
 }
 
 def get_port() {
-    def stend = ${env.UPGRADE_NAMESPACE}
+    def stend = "${env.UPGRADE_NAMESPACE}"
     switch (stend) {
         case 'dev':
             return '8040'
