@@ -8,7 +8,11 @@ pipeline {
         remoteHost = "5.189.146.63"
         helmFilesDirectoryName = "helm/botmasterzzz-yourapi-frontend"
         remoteWorkSpace = "/home/jenkins/workspace"
+        namespace4upgrade = ${env.UPGRADE_NAMESPACE}
+        dockerImageTag = ${env.DOCKER_IMAGE_TAG}
         KUBECONFIG = "/home/jenkins/.kube/config"
+        portForDeploy = get_port()
+        replicaCount = ${env.REPLICA_COUNT}
     }
 
     agent any
@@ -120,10 +124,24 @@ pipeline {
                     echo "Removing remote pre-build image: $registry:${currentBuild.previousBuild.getNumber()}"
                     sh "ssh root@$remoteHost docker rmi --force $registry:${currentBuild.previousBuild.getNumber()}"
                     echo "Installing via Helm an image: $registry via helm files from directory $remoteWorkSpace/$dockerImageName-$BUILD_NUMBER"
-                    sh "ssh root@$remoteHost helm upgrade --install $dockerImageName $remoteWorkSpace/$dockerImageName-$BUILD_NUMBER/$helmFilesDirectoryName --namespace dev"
+                    sh "ssh root@$remoteHost helm upgrade --install $dockerImageName($namespace4upgrade) $remoteWorkSpace/$dockerImageName-$BUILD_NUMBER/$helmFilesDirectoryName --namespace $namespace4upgrade --set appVersion=$namespace4upgrade --set service.port=$portForDeploy --set replicaCount=$replicaCount"
                 }
                 sh 'printenv'
             }
         }
+    }
+}
+
+def get_port() {
+    def stend = $ { env.UPGRADE_NAMESPACE }
+    switch (stend) {
+        case 'dev':
+            return '8040'
+        case 'master':
+            return '8041'
+        case 'prom':
+            return '8042'
+        default:
+            return '8040'
     }
 }

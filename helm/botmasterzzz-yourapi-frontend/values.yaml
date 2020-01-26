@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 2
+appVersion: 180
 
 image:
   repository: rusberbank.ru/botmasterzzz-yourapi-frontend
