@@ -39,6 +39,15 @@ pipeline {
             }
         }
 
+        stage('Build NPM') {
+            steps {
+                echo 'Building npm'
+                nodejs('Node 10.15.0 LTS') {
+                    sh 'npm run-script build'
+                }
+            }
+        }
+
         stage('SonarQube') {
             environment {
                 scannerHome = tool 'botmasterzzz-sonar-scanner'
@@ -49,15 +58,6 @@ pipeline {
                 }
                 timeout(time: 20, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
-                }
-            }
-        }
-
-        stage('Build NPM') {
-            steps {
-                echo 'Building npm'
-                nodejs('Node 10.15.0 LTS') {
-                    sh 'npm run-script build'
                 }
             }
         }
