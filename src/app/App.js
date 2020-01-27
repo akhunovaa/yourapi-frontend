@@ -2,24 +2,26 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import NotFound from '../common/NotFound';
 import Home from '../home/Home';
-import SignUp from '../home/SignUp';
-import Login from '../home/Login';
-import Feedback from '../home/Feedback';
-import Contacts from '../home/Contacts';
+import Profile from '../profile/Profile';
+import SignUp from '../signup/SignUp';
+import Login from '../login/Login';
+import Administration from '../profile/administration/Administration';
+import Api from '../profile/api/Api';
+import Integrators from '../integrators/Integrators';
+import Shop from '../shop/Shop';
+import ApiCategoryShop from '../shop/api/ApiCategoryShop';
+import ApiDetail from '../shop/api/ApiDetail';
 import LoadingIndicator from '../common/LoadingIndicator';
+import PrivateRoute from '../common/PrivateRoute';
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
 import AppHeader from '../common/AppHeader';
 import AppFooter from '../common/AppFooter';
-import PrivateRoute from '../common/PrivateRoute';
-import MobileAppHeader from "../common/mobile/MobileAppHeader";
-import MobileAppFooter from "../common/mobile/MobileAppFooter";
 import {getCurrentUser} from '../util/APIUtils';
 import {ACCESS_TOKEN} from '../constants';
 import {loadReCaptcha} from 'react-recaptcha-google'
-import DashBoard from "../dashboard/DashBoard";
 
 class App extends Component {
 
@@ -89,44 +91,37 @@ class App extends Component {
             return <LoadingIndicator/>
         }
 
-        if (isMobile) {
-            return (
-                <div>
-                    <MobileAppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
-                    <Switch>
-                        <Route exact path="/"
-                               render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>
-                        {/*<PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>*/}
-                        <Route exact path="/login"
-                               render={(props) => <Login authenticated={this.state.authenticated} {...props} />}/>
-                        <Route exact path="/signup"
-                               render={(props) => <SignUp authenticated={this.state.authenticated} {...props} />}/>
-                        <Route exact path="/feedback" component={Feedback}/>
-                        <Route exact path="/contacts" component={Contacts}/>
-                        <PrivateRoute exact path="/dashboard" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={DashBoard}/>
-                        <Route component={NotFound}/>
-                    </Switch>
-                    <MobileAppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
-                    <Alert stack={{limit: 3}}
-                           timeout={3000}
-                           position='top-right' effect='slide' offset={65}/>
-                </div>
-            );
-        }else {
             return (
                 <div>
                     <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
                     <Switch>
-                        <Route exact path="/"
-                        render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>
-                        {/*<PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>*/}
+                        {/*<Route exact path="/" render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>
                         <Route exact path="/login"
-                               render={(props) => <Login authenticated={this.state.authenticated} {...props} />}/>
+                               render={(props) => <Login history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
                         <Route exact path="/signup"
-                               render={(props) => <SignUp authenticated={this.state.authenticated} {...props} />}/>
-                        <Route exact path="/feedback" component={Feedback}/>
-                        <Route exact path="/contacts" component={Contacts}/>
-                        <PrivateRoute exact path="/dashboard" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={DashBoard}/>
+                               render={(props) => <SignUp history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
+                        {/*<Route exact path="/profile"*/}
+                               {/*render={(props) => <Profile authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        {/*<Route exact path="/profile/administration"*/}
+                               {/*render={(props) => <Administration authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        {/*<Route exact path="/profile/api"*/}
+                               {/*render={(props) => <Api authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        {/*<Route exact path="/integrator"*/}
+                               {/*render={(props) => <Integrators authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        {/*<Route exact path="/shop"*/}
+                               {/*render={(props) => <Shop authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        {/*<Route exact path="/shop/category/:category?"*/}
+                               {/*render={(props) => <ApiCategoryShop authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        {/*<Route exact path="/shop/category/:category?/api/:id?"*/}
+                               {/*render={(props) => <ApiDetail authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}/>
+                        <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Administration}/>
+                        <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Api}/>
+                        <PrivateRoute exact path="/integrator" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Integrators}/>
+                        <PrivateRoute exact path="/shop" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Shop}/>
+                        <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiCategoryShop}/>
+                        <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiDetail}/>
                         <Route component={NotFound}/>
                     </Switch>
                     <AppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
@@ -135,8 +130,6 @@ class App extends Component {
                            position='top-right' effect='slide' offset={65}/>
                 </div>
             );
-        }
-
     }
 }
 

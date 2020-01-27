@@ -1,0 +1,261 @@
+.shop-main{
+    height: auto;
+    min-height: 1180px;
+    background: #F2F2F2;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
+}
+
+.shop-main-container{
+    display: inline-flex;
+    /*min-height: 2400px;*/
+}
+
+.api-element-container-header{
+    padding-bottom: 12px;
+}
+
+.second-api-element{
+    padding-top: 20px;
+}
+
+.main-form-header{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.shop-container-breadcrumb{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /* Gray 3 */
+    color: #A5A5A5;
+    padding: 38px 33px 20px 57px;
+}
+
+.shop-left-container{
+    height: 639px;
+    min-height: 639px;
+    width: 240px;
+    min-width: 240px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    background: #FFFFFF;
+    margin-left: 54px;
+    margin-right: 20px;
+}
+
+.shop-form-container{
+    /*min-height: 2400px;*/
+    height: auto;
+    min-height: 616px;
+    margin-top: -40px;
+    width: auto;
+    min-width: 1002px;
+    padding-right: 50px;
+}
+
+.shop-filter-title{
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.shop-filter-rating{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    padding-top: 20px;
+    display: block;
+}
+
+.shop-filter-rating-stars{
+    padding-top: 4px;
+}
+
+.star:hover{
+    color: #F39847;
+}
+
+.star{
+    color: #A5A5A5;
+}
+
+.shop-inner-filter-container{
+    padding: 16px 24px 23px 24px;
+}
+
+.shop-filter-response-time{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    padding-top: 20px;
+}
+
+.shop-filter-response-time-line{
+    padding-top: 0px;
+}
+
+.MuiSlider-root.shop-filter-response-time-line-slider{
+    color: #2F80ED;
+    padding-top: 5px;
+}
+
+.shop-filter-response-time-label{
+    padding-top: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.left-label{
+    float: left;
+}
+
+.right-label{
+    float: right;
+}
+
+.category-labels{
+
+}
+
+.category-label{
+    padding-top: 16px;
+}
+
+.orange-label{
+    color: #F39847 !important;
+}
+
+.yellow-label{
+    color: #F2C94C !important;
+}
+
+.green-label{
+    color: #219653 !important;
+}
+
+.olive-label{
+   color: #b5cc18 !important;
+}
+
+.blue-label{
+   color: #2185d0!important;
+}
+
+.purple-label{
+   color: #a333c8!important;
+}
+
+.teal-label{
+   color: #00b5ad!important
+}
+
+.violet-label{
+   color: #6435c9!important
+}
+
+.grey-label{
+   color: #767676!important
+}
+
+.category-label a{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+    padding-left: 8px;
+}
+
+.category-label span{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.ui.segment.api-element-container{
+    border: none;
+}
+
+.api-element-data{
+    min-width: 270px;
+    height: 200px;
+    display: block;
+    padding-top: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.api-element-footer{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #A5A5A5;
+    padding-top: 13px;
+}
+
+.api-element-footer .category-label a{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+    /* Red */
+    color: #EB5757;
+}
+
+.main-form-header-count{
+    font-family: Margarine;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    /* Blue 1 */
+    color: #2F80ED;
+    vertical-align: middle;
+}

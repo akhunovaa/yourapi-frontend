@@ -82,6 +82,10 @@ export function getCurrentUser() {
     });
 }
 
+export function checkLocalStorage() {
+    return localStorage.getItem(ACCESS_TOKEN);
+}
+
 export function login(loginRequest) {
     return request({
         url: API_BASE_URL + "/auth/login",
@@ -150,6 +154,17 @@ export function deviceDeleteRequestSend(deviceId) {
     return requestGet({
         url: API_BASE_URL + "/mobile/data/delete"  + query,
         method: 'GET',
+    });
+}
+
+export function loadUser(paramData) {
+    let query = Object.keys(paramData)
+        .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(paramData[k]))
+        .join('&');
+
+    return request({
+        url: API_BASE_URL + "/individual/info"  + query,
+        method: 'GET'
     });
 }
 

@@ -1,32 +1,51 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
-import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";
 import './AppFooter.css';
+import {NavLink} from "react-router-dom";
+import {Icon, Dropdown} from "semantic-ui-react";
 
 class AppFooter extends Component {
     render() {
         return (
-            <div id="footer">
+            <div>
                 {this.props.authenticated ? (
-                        <div id="footer-center">
-                            <ul>
-                                <li><NavLink to="/feedback">ОБРАТНАЯ СВЯЗЬ</NavLink></li>
-                                <li><a href="/contacts">КОНТАКТЫ</a></li>
-                                <NavLink style={{float: 'right'}} to="/profile">ПРОФИЛЬ</NavLink>
-                                <a style={{float: 'right'}} onClick={this.props.onLogout}>ВЫЙТИ</a>
+                    <div className="footer-authenticated">
+                        <div className='footer-left-logo'>
+                            <NavLink to="/"><span style={{color: '#F2F2F2'}}>© 2019 YourAPI</span></NavLink>
+                        </div>
 
-                            </ul>
+                        <div className="footer-link-container">
+                            <NavLink to="/"><span style={{color: '#F2F2F2'}}>Политика конфиденциальности</span></NavLink>
                         </div>
+                        <div className="footer-link-container">
+                            <NavLink to="/"><span style={{color: '#F2F2F2'}}>Пользовательское соглашение</span></NavLink>
+                        </div>
+                        <div className='footer-icons-group'>
+                            <div className='footer-icon-container'>
+                                <Icon link size={'large'}  name='twitter' />
+                            </div>
+                            <div className='footer-icon-container'>
+                                <Icon link size={'large'}  name='linkedin' />
+                            </div>
+                            <div className='footer-icon-container'>
+                                <Icon link size={'large'}  name='facebook f' />
+                            </div>
+                            <div className='footer-icon-container'>
+                                <Icon link size={'large'}  name='vk' />
+                            </div>
+                        </div>
+                        <div className="footer-right-link-container">
+                            <Dropdown text='Помощь' closeOnChange>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item text='Помощь' description='Помощь' />
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                    </div>
                 ) : (
-                        <div id="footer-center">
-                            <ul>
-                                <li><NavLink to="/feedback">ОБРАТНАЯ СВЯЗЬ</NavLink></li>
-                                <li><a href="/contacts">КОНТАКТЫ</a></li>
-                                <NavLink style={{float: 'right'}} to="/signup">РЕГИСТРАЦИЯ</NavLink>
-                            </ul>
-                        </div>
+                    <div className="footer">
+
+                    </div>
                 )}
-                <ScrollUpButton EasingType="easeOutCubic"/>
             </div>
         )
     }

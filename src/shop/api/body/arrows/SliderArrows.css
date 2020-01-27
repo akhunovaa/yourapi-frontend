@@ -1,0 +1,24 @@
+.slick-prev:before{
+    font-family: 'Roboto';
+    font-size: 27px;
+    line-height: 1;
+    opacity: .75;
+    color: #4F4F4F !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-left: -6px;
+    /*padding-right: 6px;*/
+    margin-right: 4px;
+}
+
+.slick-next:before {
+    font-family: 'Roboto';
+    font-size: 27px;
+    line-height: 1;
+    opacity: .75;
+    color: #4F4F4F !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-right: 31px;
+    padding-left: 6px;
+}

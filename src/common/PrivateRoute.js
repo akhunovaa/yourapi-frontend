@@ -1,17 +1,13 @@
 import React from 'react';
-
-import {
-    Route,
-    Redirect
-} from "react-router-dom";
-
+import {Route, Redirect} from "react-router-dom";
+import { checkLocalStorage } from "../util/APIUtils";
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
     <Route
         {...rest}
         render={props =>
-            authenticated ? (
-                <Component {...rest} {...props} />
+            (checkLocalStorage() || authenticated) ? (
+                <Component {...rest} {...props} authenticated />
             ) : (
                 <Redirect
                     to={{
