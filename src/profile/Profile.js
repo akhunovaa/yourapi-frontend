@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import './Profile.css';
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {Breadcrumb, Dropdown, Icon, Image, Input, TextArea, Form, Divider, Segment, Portal, List, Button, Checkbox, Table} from "semantic-ui-react";
-import {loadUser} from "../util/APIUtils";
+import {profileInfoUpdate, loadUser, profilePasswordUpdate, profileImageUpdate} from "../util/APIUtils";
+import Alert from "react-s-alert";
 
 class Profile extends Component {
 
@@ -35,6 +36,7 @@ class Profile extends Component {
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
+        this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -100,6 +102,31 @@ class Profile extends Component {
     handleClose = () => {
         this.setState({open: false})
     };
+
+    handlePasswordSubmit(event) {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        const passData = data.get('oldPassword');
+        const passDataNew = data.get('newPassword');
+        const passDataNewTwo = data.get('newRePassword');
+        if (passDataNew !== passDataNewTwo){
+            Alert.warning('Пароли должны совпадать.');
+            return
+        }
+        const passDataRequest = Object.assign({}, {'password': passDataNew, 'passwordVerifier': passDataNewTwo, 'passwordMain': passData });
+        profilePasswordUpdate(passDataRequest)
+            .then(response => {
+                if (response.error) {
+                    Alert.warning(response.error + '. Необходимо заново авторизоваться.');
+                }else if (response.success === false) {
+                    Alert.warning(response.message);
+                } else {
+                    Alert.success('Данные успешно сохранены');
+                }
+            }).catch(error => {
+            Alert.error('Что-то пошло не так! Попробуйте заново.' || (error && error.message));
+        });
+    }
 
     render() {
         const { open } = this.state;
@@ -386,6 +413,7 @@ class Profile extends Component {
                             <div className="profile-info-container-name">
                                 <span>Безопасность</span>
                             </div>
+                            <form onSubmit={this.handlePasswordSubmit}>
                             <div className="profile-info-container-name-inputs password">
                                 <div className="profile-info-container-name-input password-input">
                                     <label style={{marginBottom: 6}}>Старый пароль</label>
@@ -409,6 +437,7 @@ class Profile extends Component {
                                     <Button compact color='blue' style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Изменить пароль</span></Button>
                                 </div>
                             </div>
+                            </form>
                             <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
                         </div>
                         <div className="profile-info-container">
