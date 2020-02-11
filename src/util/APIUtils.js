@@ -104,7 +104,8 @@ export function profileInfoUpdate(mainInfoRequest) {
 
 export function profilePasswordUpdate(passDataRequest) {
     return request({
-        url: API_BASE_URL + "/admin/user/password",
+        url: API_BASE_URL + "/individual/password",
+        //url: "http://127.0.0.1:7000/individual/password",
         method: 'POST',
         body: JSON.stringify(passDataRequest)
     });
