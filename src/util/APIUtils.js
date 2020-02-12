@@ -113,7 +113,8 @@ export function profilePasswordUpdate(passDataRequest) {
 
 export function profileImageUpdate(formData) {
     return requestImage({
-        url: API_BASE_URL + "/admin/user/image/upload",
+        url: API_BASE_URL + "/individual/image/upload",
+        //url: "http://127.0.0.1:7000/individual/image/upload",
         method: 'POST',
         body: formData
     });
