@@ -96,7 +96,7 @@ export function login(loginRequest) {
 
 export function profileInfoUpdate(mainInfoRequest) {
     return request({
-        url: API_BASE_URL + "/admin/user/update",
+        url: API_BASE_URL + "/individual/update",
         method: 'POST',
         body: JSON.stringify(mainInfoRequest)
     });
