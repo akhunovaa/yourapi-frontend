@@ -34,12 +34,12 @@ class Profile extends Component {
                 surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
                 patrName: this.props.currentUser ? this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login : 'unknown',
                 email: this.props.currentUser ? this.props.currentUser.email ? this.props.currentUser.email : this.props.currentUser.login : 'unknown',
-                nickname: this.props.currentUser ? this.props.currentUser.nickname ? this.props.currentUser.nickname : this.props.currentUser.login : 'unknown',
+                nickname: this.props.currentUser ? this.props.currentUser.nickname ? this.props.currentUser.nickname : this.props.currentUser.nickname : 'unknown',
                 phone: this.props.currentUser ? this.props.currentUser.phone ? this.props.currentUser.phone : this.props.currentUser.phone : 'unknown',
                 birthDate: this.props.currentUser ? this.props.currentUser.birthDate ? this.props.currentUser.birthDate : this.props.currentUser.birthDate : 'unknown',
-                gender: this.props.currentUser ? this.props.currentUser.gender ? this.props.currentUser.gender : this.props.currentUser.gender : 'Male',
-                language: this.props.currentUser ? this.props.currentUser.language ? this.props.currentUser.language : this.props.currentUser.language : 'Russian',
-                city: this.props.currentUser ? this.props.currentUser.city ? this.props.currentUser.city : this.props.currentUser.city : 'Moscow',
+                gender: this.props.currentUser ? this.props.currentUser.gender ? this.props.currentUser.gender : this.props.currentUser.gender : 'Мужской',
+                language: this.props.currentUser ? this.props.currentUser.language ? this.props.currentUser.language : this.props.currentUser.language : 'Русский',
+                city: this.props.currentUser ? this.props.currentUser.city ? this.props.currentUser.city : this.props.currentUser.city : 'Москва, Россия',
                 info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown',
             },
             open: false,
@@ -397,7 +397,7 @@ class Profile extends Component {
                             <div className="profile-info-container-date-birth-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Дата рождения</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.dbirth}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.birthDate}
                                            className="form-input" id="dbirth"
                                            name="dbirth" required placeholder='Дата рождения'/>
                                 </div>
