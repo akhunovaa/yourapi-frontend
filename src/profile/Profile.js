@@ -386,7 +386,7 @@ class Profile extends Component {
                                            name="patrName" required placeholder='Отчество'/>
                                 </div>
                             </div>
-                            <div className="profile-info-container-nickname-input">Profile.
+                            <div className="profile-info-container-nickname-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Имя профиля</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.user.nickName}
