@@ -415,7 +415,7 @@ class Profile extends Component {
                                     <label style={{paddingBottom: '6px'}}>Язык</label>
                                     <Dropdown onChange={this.handleDropdownChange} placeholder='Язык' fluid selection
                                               id="language" name="language" className="form-input"
-                                              options={languageOptions} defaultValue={this.state.state.language}/>
+                                              options={languageOptions} defaultValue={this.state.user.language}/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
