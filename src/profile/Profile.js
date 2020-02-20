@@ -42,7 +42,10 @@ class Profile extends Component {
                 city: this.props.currentUser ? this.props.currentUser.city ? this.props.currentUser.city : this.props.currentUser.city : 'Москва, Россия',
                 info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown',
             },
-            open: false
+            open: false,
+            updatedUser:{
+
+            }
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -96,7 +99,7 @@ class Profile extends Component {
         const inputValue = target.value;
 
         this.setState({
-            user: {
+            updatedUser: {
                 [inputName]: inputValue
             }
         });
@@ -107,7 +110,9 @@ class Profile extends Component {
 
     handleOnPhoneChange(value) {
         this.setState({
-            phone: value
+            updatedUser: {
+               phone: value
+            }
         });
     }
 
@@ -150,18 +155,28 @@ class Profile extends Component {
 
     handleMainInformationSubmit(event) {
         event.preventDefault();
+        const name = this.state.updatedUser.name ? this.state.updatedUser.name : this.state.user.name;
+        const surname = this.state.updatedUser.surname ? this.state.updatedUser.surname : this.state.user.surname;
+        const patrName = this.state.updatedUser.patrName ? this.state.updatedUser.patrName : this.state.user.patrName;
+        const nickName = this.state.updatedUser.nickName ? this.state.updatedUser.nickName : this.state.user.nickName;
+        const phone = this.state.updatedUser.phone ? this.state.updatedUser.phone : this.state.user.phone;
+        const birthDate = this.state.updatedUser.birthDate ? this.state.updatedUser.birthDate : this.state.user.birthDate;
+        const gender = this.state.updatedUser.gender ? this.state.updatedUser.gender : this.state.user.gender;
+        const language = this.state.updatedUser.language ? this.state.updatedUser.language : this.state.user.language;
+        const city = this.state.updatedUser.city ? this.state.updatedUser.city : this.state.user.city;
+        const info = this.state.updatedUser.info ? this.state.updatedUser.info : this.state.user.info;
 
         const mainInfoRequest = Object.assign({}, {
-            'name': this.state.name,
-            'surname': this.state.surname,
-            'patrName': this.state.patrName,
-            'nickName': this.state.nickName,
-            'phone': this.state.phone,
-            'birthDate': this.state.birthDate,
-            'gender': this.state.gender,
-            'language': this.state.language,
-            'city': this.state.city,
-            'info': this.state.info
+            'name': name,
+            'surname': surname,
+            'patrName': patrName,
+            'nickName': nickName,
+            'phone': phone,
+            'birthDate': birthDate,
+            'gender': gender,
+            'language': language,
+            'city':city,
+            'info': info
         });
 
         profileInfoUpdate(mainInfoRequest)
