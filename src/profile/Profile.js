@@ -34,7 +34,7 @@ class Profile extends Component {
                 surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
                 patrName: this.props.currentUser ? this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login : 'unknown',
                 email: this.props.currentUser ? this.props.currentUser.email ? this.props.currentUser.email : this.props.currentUser.login : 'unknown',
-                nickname: this.props.currentUser ? this.props.currentUser.nickname ? this.props.currentUser.nickname : this.props.currentUser.nickname : 'unknown',
+                nickName: this.props.currentUser ? this.props.currentUser.nickName : 'unknown',
                 phone: this.props.currentUser ? this.props.currentUser.phone ? this.props.currentUser.phone : this.props.currentUser.phone : 'unknown',
                 birthDate: this.props.currentUser ? this.props.currentUser.birthDate ? this.props.currentUser.birthDate : this.props.currentUser.birthDate : 'unknown',
                 gender: this.props.currentUser ? this.props.currentUser.gender ? this.props.currentUser.gender : this.props.currentUser.gender : 'Мужской',
@@ -46,7 +46,7 @@ class Profile extends Component {
             surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
             name: this.props.currentUser ? this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login : 'unknown',
             patrName: this.props.currentUser ? this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login : 'unknown',
-            nickname: this.props.currentUser ? this.props.currentUser.nickname ? this.props.currentUser.nickname : this.props.currentUser.nickname : 'unknown',
+            nickName: this.props.currentUser ? this.props.currentUser.nickName ? this.props.currentUser.nickName : this.props.currentUser.nickName : 'unknown',
             dbirth: '01.01.1900',
             sex: "unknown",
             language: "Русский",
@@ -386,10 +386,10 @@ class Profile extends Component {
                                            name="patrName" required placeholder='Отчество'/>
                                 </div>
                             </div>
-                            <div className="profile-info-container-nickname-input">
+                            <div className="profile-info-container-nickname-input">Profile.
                                 <div className="profile-info-container-name-input">
                                     <label>Имя профиля</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.nickname}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.nickName}
                                            className="form-input" id="nickname"
                                            name="nickname" required placeholder='Имя профиля'/>
                                 </div>
