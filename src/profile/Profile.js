@@ -42,18 +42,7 @@ class Profile extends Component {
                 city: this.props.currentUser ? this.props.currentUser.city ? this.props.currentUser.city : this.props.currentUser.city : 'Москва, Россия',
                 info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown',
             },
-            open: false,
-            surname: 'unknown',
-            name:  'unknown',
-            patrName: 'unknown',
-            nickName: 'unknown',
-            birthDate: '01.01.1900',
-            gender: "Мужской",
-            language: "Русский",
-            city: "Москва, Россия",
-            phone: "",
-            email: "",
-            info: "И даже с языками, использующими латинский алфавит, могут возникнуть небольшие проблемы: в различных языках те или иные буквы встречаются с разной частотой, имеется разница в длине наиболее распространенных слов. Отсюда напрашивается вывод, что все же лучше использовать в качестве «рыбы» текст на том языке, который планируется использовать при запуске проекта. Сегодня существует несколько вариантов Lorem ipsum, кроме того, есть специальные генераторы, создающие собственные варианты текста на основе оригинального трактата, благодаря чему появляется возможность получить более длинный неповторяющийся набор слов."
+            open: false
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -107,7 +96,9 @@ class Profile extends Component {
         const inputValue = target.value;
 
         this.setState({
-            [inputName]: inputValue
+            user: {
+                [inputName]: inputValue
+            }
         });
     }
 
