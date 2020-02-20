@@ -40,12 +40,21 @@ class Profile extends Component {
                 gender: this.props.currentUser ? this.props.currentUser.gender ? this.props.currentUser.gender : this.props.currentUser.gender : 'Мужской',
                 language: this.props.currentUser ? this.props.currentUser.language ? this.props.currentUser.language : this.props.currentUser.language : 'Русский',
                 city: this.props.currentUser ? this.props.currentUser.city ? this.props.currentUser.city : this.props.currentUser.city : 'Москва, Россия',
-                info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown',
+                info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown'
             },
             open: false,
-            updatedUser:{
+            name: '',
+            surname: '',
+            patrName: '',
+            email: '',
+            nickName: '',
+            phone: '',
+            birthDate: '',
+            gender: '',
+            language: '',
+            city: '',
+            info: ''
 
-            }
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -99,20 +108,16 @@ class Profile extends Component {
         const inputValue = target.value;
 
         this.setState({
-            updatedUser: {
-                [inputName]: inputValue
-            }
+            [inputName]: inputValue
         });
     }
 
-    handleDropdownChange = (e, {key, value}) => this.setState({[key]: value});
+    handleDropdownChange = (e, {name, value}) => this.setState({[name]: value});
 
 
     handleOnPhoneChange(value) {
         this.setState({
-            updatedUser: {
-               phone: value
-            }
+            phone: value
         });
     }
 
@@ -155,16 +160,16 @@ class Profile extends Component {
 
     handleMainInformationSubmit(event) {
         event.preventDefault();
-        const name = this.state.updatedUser.name ? this.state.updatedUser.name : this.state.user.name;
-        const surname = this.state.updatedUser.surname ? this.state.updatedUser.surname : this.state.user.surname;
-        const patrName = this.state.updatedUser.patrName ? this.state.updatedUser.patrName : this.state.user.patrName;
-        const nickName = this.state.updatedUser.nickName ? this.state.updatedUser.nickName : this.state.user.nickName;
-        const phone = this.state.updatedUser.phone ? this.state.updatedUser.phone : this.state.user.phone;
-        const birthDate = this.state.updatedUser.birthDate ? this.state.updatedUser.birthDate : this.state.user.birthDate;
-        const gender = this.state.updatedUser.gender ? this.state.updatedUser.gender : this.state.user.gender;
-        const language = this.state.updatedUser.language ? this.state.updatedUser.language : this.state.user.language;
-        const city = this.state.updatedUser.city ? this.state.updatedUser.city : this.state.user.city;
-        const info = this.state.updatedUser.info ? this.state.updatedUser.info : this.state.user.info;
+        const name = this.state.name ? this.state.name : this.state.user.name;
+        const surname = this.state.surname ? this.state.surname : this.state.user.surname;
+        const patrName = this.state.patrName ? this.state.patrName : this.state.user.patrName;
+        const nickName = this.state.nickName ? this.state.nickName : this.state.user.nickName;
+        const phone = this.state.phone ? this.state.phone : this.state.user.phone;
+        const birthDate = this.state.birthDate ? this.state.birthDate : this.state.user.birthDate;
+        const gender = this.state.gender ? this.state.gender : this.state.user.gender;
+        const language = this.state.language ? this.state.language : this.state.user.language;
+        const city = this.state.city ? this.state.city : this.state.user.city;
+        const info = this.state.info ? this.state.info : this.state.user.info;
 
         const mainInfoRequest = Object.assign({}, {
             'name': name,
@@ -175,7 +180,7 @@ class Profile extends Component {
             'birthDate': birthDate,
             'gender': gender,
             'language': language,
-            'city':city,
+            'city': city,
             'info': info
         });
 
@@ -468,7 +473,7 @@ class Profile extends Component {
                                 <div className="profile-info-container-name-textarea">
                                     <label style={{paddingBottom: '6px'}}>О себе</label>
                                     <Form style={{paddingTop: '6px'}}>
-                                        <TextArea onChange={this.handleDropdownChange} placeholder='Расскажите о себе'
+                                        <TextArea onChange={this.handleInputChange} placeholder='Расскажите о себе'
                                                   style={{minHeight: 265, maxHeight: 265, minWidth: 382}} id="info"
                                                   name="info" defaultValue={this.state.user.info}/>
                                     </Form>
@@ -561,7 +566,8 @@ class Profile extends Component {
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <Input onChange={this.handleInputChange} style={{paddingTop: 0, height: 32}}
-                                           className="form-input" id="messenger-login" defaultValue={this.state.user.phone}
+                                           className="form-input" id="messenger-login"
+                                           defaultValue={this.state.user.phone}
                                            name="messenger-login" required placeholder='Телефон или имя'/>
                                 </div>
                             </div>
@@ -675,11 +681,13 @@ class Profile extends Component {
                         <Divider style={{marginTop: '40px', marginBottom: 0}}/>
                         <div className="profile-info-buttons">
                             <div className='apply-button-container'>
-                                <Button fluid className="apply-button" style={{width: 165, height: 32}} onClick={this.handleMainInformationSubmit}><span
+                                <Button fluid className="apply-button" style={{width: 165, height: 32}}
+                                        onClick={this.handleMainInformationSubmit}><span
                                     className='command-approve-buttons-text'>Сохранить</span></Button>
                             </div>
                             <div className='cancel-button-container'>
-                                <Button fluid className="cancel-button" style={{width: 165, height: 32}} onClick={this.reload}><span
+                                <Button fluid className="cancel-button" style={{width: 165, height: 32}}
+                                        onClick={this.reload}><span
                                     className='command-approve-buttons-text'>Отмена</span></Button>
                             </div>
                         </div>
