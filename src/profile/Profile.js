@@ -46,7 +46,7 @@ class Profile extends Component {
             surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
             name: this.props.currentUser ? this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login : 'unknown',
             patrName: this.props.currentUser ? this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login : 'unknown',
-            nickname: this.props.currentUser ? this.props.currentUser.login ? this.props.currentUser.login : 'unknown' : 'unknown',
+            nickname: this.props.currentUser ? this.props.currentUser.nickname ? this.props.currentUser.nickname : this.props.currentUser.nickname : 'unknown',
             dbirth: '01.01.1900',
             sex: "unknown",
             language: "Русский",
