@@ -369,19 +369,19 @@ class Profile extends Component {
                             <div className="profile-info-container-name-inputs">
                                 <div className="profile-info-container-name-input">
                                     <label>Фамилия</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.surname}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.surname}
                                            className="form-input" id="surname"
                                            name="surname" required placeholder='Фамилия'/>
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <label>Имя</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.name}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.name}
                                            className="form-input" id="name"
                                            name="name" required placeholder='Имя'/>
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <label>Отчество</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.patrName}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.patrName}
                                            className="form-input" id="patrName"
                                            name="patrName" required placeholder='Отчество'/>
                                 </div>
@@ -389,7 +389,7 @@ class Profile extends Component {
                             <div className="profile-info-container-nickname-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Имя профиля</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.nickname}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.nickname}
                                            className="form-input" id="nickname"
                                            name="nickname" required placeholder='Имя профиля'/>
                                 </div>
@@ -397,7 +397,7 @@ class Profile extends Component {
                             <div className="profile-info-container-date-birth-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Дата рождения</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.dbirth}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.dbirth}
                                            className="form-input" id="dbirth"
                                            name="dbirth" required placeholder='Дата рождения'/>
                                 </div>
@@ -407,7 +407,7 @@ class Profile extends Component {
                                     <label style={{paddingBottom: '6px'}}>Пол</label>
                                     <Dropdown onChange={this.handleDropdownChange} placeholder='Пол' fluid selection
                                               id="sex" name="sex" className="form-input" options={sexOptions}
-                                              defaultValue={this.state.sex}/>
+                                              defaultValue={this.state.user.gender}/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
@@ -415,7 +415,7 @@ class Profile extends Component {
                                     <label style={{paddingBottom: '6px'}}>Язык</label>
                                     <Dropdown onChange={this.handleDropdownChange} placeholder='Язык' fluid selection
                                               id="language" name="language" className="form-input"
-                                              options={languageOptions} defaultValue={this.state.language}/>
+                                              options={languageOptions} defaultValue={this.state.state.language}/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
@@ -424,7 +424,7 @@ class Profile extends Component {
                                     <Dropdown onChange={this.handleDropdownChange} placeholder='Город' fluid search
                                               selection id="city" name="city" noResultsMessage="Москва - лучший город"
                                               className="form-input" options={cityOptions}
-                                              defaultValue={this.state.city}/>
+                                              defaultValue={this.state.user.city}/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
@@ -433,7 +433,7 @@ class Profile extends Component {
                                     <Form style={{paddingTop: '6px'}}>
                                         <TextArea onChange={this.handleDropdownChange} placeholder='Расскажите о себе'
                                                   style={{minHeight: 265, maxHeight: 265, minWidth: 382}} id="info"
-                                                  name="info" defaultValue={this.state.info}/>
+                                                  name="info" defaultValue={this.state.user.info}/>
                                     </Form>
                                 </div>
                             </div>
@@ -446,7 +446,7 @@ class Profile extends Component {
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{marginBottom: 6}}>Телефон</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.phoneNumber}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.phone}
                                            id="phoneNumber"
                                            name="phoneNumber" placeholder='+7( ___ ) ___ - __ - __ ' required/>
                                 </div>
