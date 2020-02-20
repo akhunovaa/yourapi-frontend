@@ -17,7 +17,7 @@ import {
     Table,
     TextArea
 } from "semantic-ui-react";
-import {loadUser, profileImageUpdate, profilePasswordUpdate} from "../util/APIUtils";
+import {loadUser, profileImageUpdate, profileInfoUpdate, profilePasswordUpdate} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import ImageUploader from 'react-images-upload';
 
@@ -43,15 +43,15 @@ class Profile extends Component {
                 info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown',
             },
             open: false,
-            surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
-            name: this.props.currentUser ? this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login : 'unknown',
-            patrName: this.props.currentUser ? this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login : 'unknown',
-            nickName: this.props.currentUser ? this.props.currentUser.nickName ? this.props.currentUser.nickName : this.props.currentUser.nickName : 'unknown',
-            dbirth: '01.01.1900',
-            sex: "unknown",
+            surname: 'unknown',
+            name:  'unknown',
+            patrName: 'unknown',
+            nickName: 'unknown',
+            birthDate: '01.01.1900',
+            gender: "Мужской",
             language: "Русский",
             city: "Москва, Россия",
-            phoneNumber: "",
+            phone: "",
             email: "",
             info: "И даже с языками, использующими латинский алфавит, могут возникнуть небольшие проблемы: в различных языках те или иные буквы встречаются с разной частотой, имеется разница в длине наиболее распространенных слов. Отсюда напрашивается вывод, что все же лучше использовать в качестве «рыбы» текст на том языке, который планируется использовать при запуске проекта. Сегодня существует несколько вариантов Lorem ipsum, кроме того, есть специальные генераторы, создающие собственные варианты текста на основе оригинального трактата, благодаря чему появляется возможность получить более длинный неповторяющийся набор слов."
         };
@@ -61,6 +61,7 @@ class Profile extends Component {
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
         this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
         this.handleImageUpload = this.handleImageUpload.bind(this);
+        this.handleMainInformationSubmit = this.handleMainInformationSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -143,6 +144,36 @@ class Profile extends Component {
             'passwordMain': passData
         });
         profilePasswordUpdate(passDataRequest)
+            .then(response => {
+                if (response.error) {
+                    Alert.warning(response.error + '. Необходимо заново авторизоваться.');
+                } else if (response.success === false) {
+                    Alert.warning(response.message);
+                } else {
+                    Alert.success('Данные успешно сохранены');
+                }
+            }).catch(error => {
+            Alert.error('Что-то пошло не так! Попробуйте заново.' || (error && error.message));
+        });
+    }
+
+    handleMainInformationSubmit(event) {
+        event.preventDefault();
+
+        const mainInfoRequest = Object.assign({}, {
+            'name': this.state.name,
+            'surname': this.state.surname,
+            'patrName': this.state.patrName,
+            'nickName': this.state.nickName,
+            'phone': this.state.phone,
+            'birthDate': this.state.birthDate,
+            'gender': this.state.gender,
+            'language': this.state.language,
+            'city': this.state.city,
+            'info': this.state.info
+        });
+
+        profileInfoUpdate(mainInfoRequest)
             .then(response => {
                 if (response.error) {
                     Alert.warning(response.error + '. Необходимо заново авторизоваться.');
@@ -390,23 +421,23 @@ class Profile extends Component {
                                 <div className="profile-info-container-name-input">
                                     <label>Имя профиля</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.user.nickName}
-                                           className="form-input" id="nickname"
-                                           name="nickname" required placeholder='Имя профиля'/>
+                                           className="form-input" id="nickName"
+                                           name="nickName" required placeholder='Имя профиля'/>
                                 </div>
                             </div>
                             <div className="profile-info-container-date-birth-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Дата рождения</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.user.birthDate}
-                                           className="form-input" id="dbirth"
-                                           name="dbirth" required placeholder='Дата рождения'/>
+                                           className="form-input" id="birthDate"
+                                           name="birthDate" required placeholder='Дата рождения'/>
                                 </div>
                             </div>
                             <div className="profile-info-container-sex-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Пол</label>
                                     <Dropdown onChange={this.handleDropdownChange} placeholder='Пол' fluid selection
-                                              id="sex" name="sex" className="form-input" options={sexOptions}
+                                              id="gender" name="gender" className="form-input" options={sexOptions}
                                               defaultValue={this.state.user.gender}/>
                                 </div>
                             </div>
@@ -447,16 +478,14 @@ class Profile extends Component {
                                 <div className="profile-info-container-name-input">
                                     <label style={{marginBottom: 6}}>Телефон</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.user.phone}
-                                           id="phoneNumber"
-                                           name="phoneNumber" placeholder='+7( ___ ) ___ - __ - __ ' required/>
+                                           id="phone" name="phone" placeholder='+7( ___ ) ___ - __ - __ ' required/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{marginBottom: 6}}>Email</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.user.email}
-                                           id="email"
-                                           name="email" placeholder='user@botmasterzzz.com' required/>
+                                           id="email" name="email" placeholder='user@botmasterzzz.com' required/>
                                 </div>
                             </div>
                             <div className="profile-info-container-messengers">
@@ -526,7 +555,7 @@ class Profile extends Component {
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <Input onChange={this.handleInputChange} style={{paddingTop: 0, height: 32}}
-                                           className="form-input" id="messenger-login"
+                                           className="form-input" id="messenger-login" defaultValue={this.state.user.phone}
                                            name="messenger-login" required placeholder='Телефон или имя'/>
                                 </div>
                             </div>
@@ -640,11 +669,11 @@ class Profile extends Component {
                         <Divider style={{marginTop: '40px', marginBottom: 0}}/>
                         <div className="profile-info-buttons">
                             <div className='apply-button-container'>
-                                <Button fluid className="apply-button" style={{width: 165, height: 32}}><span
+                                <Button fluid className="apply-button" style={{width: 165, height: 32}} onClick={this.handleMainInformationSubmit}><span
                                     className='command-approve-buttons-text'>Сохранить</span></Button>
                             </div>
                             <div className='cancel-button-container'>
-                                <Button fluid className="cancel-button" style={{width: 165, height: 32}}><span
+                                <Button fluid className="cancel-button" style={{width: 165, height: 32}} onClick={this.reload}><span
                                     className='command-approve-buttons-text'>Отмена</span></Button>
                             </div>
                         </div>
