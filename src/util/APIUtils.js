@@ -1,5 +1,4 @@
 import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
-import Alert from "react-s-alert";
 
 const request = (options) => {
     const headers = new Headers({
@@ -169,16 +168,6 @@ export function newApiUploadSend(preparedRequest, formData) {
         preparedRequest.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN));
     }
     preparedRequest.send(formData);
-    let jobLst = preparedRequest.responseText;
-    preparedRequest.onreadystatechange = function() {
-        if(preparedRequest.readyState === XMLHttpRequest.DONE && preparedRequest.status === 200) {
-            jobLst = preparedRequest.responseText;
-            Alert.success('Данные успешно сохранены');
-        }else {
-            Alert.warning(jobLst.message);
-        }
-    }
-
 }
 
 export function loadUser(paramData) {
