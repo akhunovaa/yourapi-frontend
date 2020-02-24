@@ -138,8 +138,8 @@ export function feedback(feedbackRequest) {
 
 export function apiProjectListGet() {
     return requestGet({
-        //url: API_BASE_URL + "/api-data/list",
-        url: "http://localhost:7100" + "/api-data/list",
+        url: API_BASE_URL + "/api-data/list",
+        //url: "http://localhost:7100" + "/api-data/list",
         method: 'GET'
     });
 }
