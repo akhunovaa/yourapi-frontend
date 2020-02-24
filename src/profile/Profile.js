@@ -53,8 +53,8 @@ class Profile extends Component {
             gender: '',
             language: '',
             city: '',
-            info: ''
-
+            info: '',
+            loaded: false
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -63,15 +63,26 @@ class Profile extends Component {
         this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
         this.handleImageUpload = this.handleImageUpload.bind(this);
         this.handleMainInformationSubmit = this.handleMainInformationSubmit.bind(this);
+
+        this.handleImageLoaded = this.handleImageLoaded.bind(this);
+        this.image = React.createRef();
     }
 
     componentDidMount() {
         this._isMounted = true;
-        const {handle} = this.props.match.params;
-        //this.setState({user: this.props.currentUser})
-        // this.loadUser(handle);
+
+        const img = this.image.current;
+        if (img && img.complete) {
+            this.handleImageLoaded();
+        }
     }
 
+    handleImageLoaded() {
+        if (!this.state.loaded) {
+            console.log('image loaded');
+            this.setState({ loaded: true });
+        }
+    }
 
     loadUser(handle) {
         this.setState({
@@ -346,7 +357,7 @@ class Profile extends Component {
                                 {
                                     this.state.user.imageUrl ? (
                                         <Image src={this.state.user.imageUrl} size='medium' circular verticalAlign='top'
-                                               alt={this.state.user.name}/>
+                                               alt={this.state.user.name} ref={this.image} onLoad={this.handleImageLoaded}/>
                                     ) : (
                                         <div className="text-avatar">
                                             <span>{this.state.user.name && this.state.user.name[0]}</span>
