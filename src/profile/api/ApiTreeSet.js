@@ -25,6 +25,8 @@ class ApiTreeSet extends Component {
         if (!this.state.projects) return;
         apiProjectListGet()
             .then(response => {
+                console.log(response);
+                console.log(response.response);
                 if (this._isMounted) {
                     this.setState({
                         projects : response.response
