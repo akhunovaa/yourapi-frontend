@@ -51,7 +51,7 @@ class ApiTreeSet extends Component {
     }
 
     handleCheck(array, val) {
-        return array.some(item => item === val);
+        return array.some(item => item.name === val);
     }
 
     render() {
@@ -62,7 +62,7 @@ class ApiTreeSet extends Component {
         }
         const pagingArray = ['about', 'members', 'list', 'update'];
         const params = queryString.parse(this.props.location.search);
-        let naming = (params.company !== 'undefined' && this.handleCheck(namingArray.name, params.company)) ? params.company : 'API-FOOTBALL';
+        let naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'API-FOOTBALL';
 
 
 
