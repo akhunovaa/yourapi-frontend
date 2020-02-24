@@ -1,4 +1,5 @@
 import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
+import Alert from "react-s-alert";
 
 const request = (options) => {
     const headers = new Headers({
@@ -151,12 +152,33 @@ export function dataListGet(roleAdmin) {
         });
     }
 }
+
 export function deviceDeleteRequestSend(deviceId) {
     const query = "?device_id=" + deviceId;
     return requestGet({
         url: API_BASE_URL + "/mobile/data/delete"  + query,
         method: 'GET',
     });
+}
+
+export function newApiUploadSend(preparedRequest, formData) {
+    const url = API_BASE_URL + "/api-data/create";
+    preparedRequest.open("POST", url);
+    preparedRequest.setRequestHeader('Accept','application/json;charset=UTF-8');
+    if(localStorage.getItem(ACCESS_TOKEN)) {
+        preparedRequest.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN));
+    }
+    preparedRequest.send(formData);
+    let jobLst = preparedRequest.responseText;
+    preparedRequest.onreadystatechange = function() {
+        if(preparedRequest.readyState === XMLHttpRequest.DONE && preparedRequest.status === 200) {
+            jobLst = preparedRequest.responseText;
+            Alert.success('Данные успешно сохранены');
+        }else {
+            Alert.warning(jobLst.message);
+        }
+    }
+
 }
 
 export function loadUser(paramData) {

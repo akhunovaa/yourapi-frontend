@@ -341,11 +341,29 @@
 }
 
 .apply-button{
-    background: #2F80ED !important;
+    height: 32px;
+    width: 112px;
+    /*vertical-align:middle;*/
+    overflow: hidden;
+
+    text-align: center;
+    /*padding-bottom: 7px;*/
+    /*padding-top: 7px;*/
+    padding: 0 0 !important;
 }
 
 .cancel-button{
-    background: #A5A5A5 !important;
+    /*background: #A5A5A5 !important;*/
+    height: 32px;
+    width: 112px;
+    /*vertical-align:middle;*/
+    overflow: hidden;
+
+    text-align: center;
+    /*padding-bottom: 7px;*/
+    /*padding-top: 7px;*/
+    padding: 0 0 !important;
+
 }
 
 .apply-button-container{

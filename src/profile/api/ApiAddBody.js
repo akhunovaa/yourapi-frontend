@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import './Api.css';
-import {Button, Divider, Dropdown, Form, Icon, Input, TextArea} from "semantic-ui-react";
+import {Button, Divider, Dropdown, Form, Input, TextArea} from "semantic-ui-react";
 import {withRouter} from "react-router-dom";
-import queryString from "query-string";
+import Upload from "../../upload/Upload";
+import {newApiUploadSend} from "../../util/APIUtils";
 
 class ApiAddBody extends Component {
 
@@ -11,17 +12,111 @@ class ApiAddBody extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            api:{
+            api: {
                 name: 'Sportspage Feeds',
                 info: 'Результаты в реальном времени, расписание и коэффициенты ставок для лиг США',
                 category: 'Новости'
             },
-            apiName: ''
+            apiName: '',
+            description: '',
+            category: 'Новости',
+            files: [],
+            uploading: false,
+            uploadProgress: {},
+            successfullUploaded: false,
+            hasErrorFiles: false
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
+
+        this.onFilesAdded = this.onFilesAdded.bind(this);
+        this.uploadFiles = this.uploadFiles.bind(this);
+        this.onClickReset = this.onClickReset.bind(this);
+        this.uploadNewApi = this.uploadNewApi.bind(this);
+        this.handleDropdownChange = this.handleDropdownChange.bind(this);
+        this.setErrorFileState = this.setErrorFileState.bind(this);
+    }
+
+    onFilesAdded(files) {
+        this.setState(prevState => ({
+            files: files
+        }));
+    }
+
+    setErrorFileState(state) {
+        this.setState(prevState => ({
+            hasErrorFiles: prevState ? prevState : state
+        }));
+    }
+
+    hasExtension(fileName, exts) {
+        return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
+    }
+
+    onClickReset() {
+        this.setState({ files: [], successfullUploaded: false,  hasErrorFiles: false})
+    }
+
+    uploadNewApi(file) {
+        return new Promise((resolve, reject) => {
+            const req = new XMLHttpRequest();
+
+            req.upload.addEventListener("progress", event => {
+                if (event.lengthComputable) {
+                    const copy = { ...this.state.uploadProgress };
+                    copy[file.name] = {
+                        state: "pending",
+                        percentage: (event.loaded / event.total) * 100
+                    };
+                    this.setState({ uploadProgress: copy });
+                }
+            });
+
+            req.upload.addEventListener("load", event => {
+                const copy = { ...this.state.uploadProgress };
+                copy[file.name] = { state: "done", percentage: 100 };
+                this.setState({ uploadProgress: copy });
+                resolve(req.response);
+            });
+
+            req.upload.addEventListener("error", event => {
+                const copy = { ...this.state.uploadProgress };
+                copy[file.name] = { state: "error", percentage: 0 };
+                this.setState({ uploadProgress: copy });
+                reject(req.response);
+            });
+
+            const apiName = this.state.apiName;
+            const description = this.state.description;
+            const category = this.state.category;
+            const formData = new FormData();
+            formData.append("file", file, file.name);
+            formData.append("name", apiName);
+            formData.append("description", description);
+            formData.append("category", category);
+            newApiUploadSend(req, formData);
+        });
+    }
+
+    async uploadFiles() {
+        this.setState({ uploadProgress: {}, uploading: true });
+        const promises = [];
+        if (!this.state.hasErrorFiles) {
+            this.state.files.forEach(file => {
+                promises.push(this.uploadNewApi(file));
+            });
+        }
+
+        try {
+            await Promise.all(promises);
+
+            this.setState({ successfullUploaded: true, uploading: false });
+        } catch (e) {
+            // Not Production ready! Do some error handling here instead...
+            this.setState({ successfullUploaded: true, uploading: false });
+        }
     }
 
     componentDidMount() {
@@ -40,11 +135,15 @@ class ApiAddBody extends Component {
         const target = event.target;
         const inputName = target.name;
         const inputValue = target.value;
-
         this.setState({
             [inputName]: inputValue
         });
     }
+
+    handleDropdownChange (e, {name, value}) {
+        this.setState({[name]: value});
+    }
+
 
     handleOnPhoneChange(value) {
         this.setState({
@@ -66,78 +165,80 @@ class ApiAddBody extends Component {
     };
 
     render() {
-        const page = this.props.paging;
         const apiCategoryOptions = [
             {
-                category: 'Спорт',
+                name: 'Спорт',
                 text: 'Спорт',
                 value: 'Спорт'
             },
             {
-                category: 'Порно',
+                name: 'Порно',
                 text: 'Порно',
                 value: 'Порно'
             },
             {
-                category: 'Новости',
+                name: 'Новости',
                 text: 'Новости',
                 value: 'Новости'
             }
         ];
         return (
-              <div className='api-body-main'>
-                  <div className="api-add-container">
-                      <div className="api-add-container-title">
-                          <span>Добавить API</span>
-                      </div>
-                      <div className="api-add-container-inputs">
-                          <div className="api-add-container-input api-add-container-input-top">
-                              <label>Название (обязательно)</label>
-                              <Input fluid onChange={this.handleInputChange} defaultValue={this.state.api.name}
-                                     className="form-input" id="apiName"
-                                     name="apiName" required placeholder='Название API'/>
-                          </div>
-                          <div className="api-add-container-input api-add-container-input-element">
-                              <div className="api-add-container-input-textarea">
-                                  <label style={{paddingBottom: '6px'}}>Краткое описание</label>
-                                  <Form style={{paddingTop: '6px'}}>
-                                      <TextArea onChange={this.handleInputChange} placeholder='Краткое описание создаваемого API' style={{minHeight: 64, maxHeight: 64, minWidth: 352 }}  id="info" name="info" defaultValue={this.state.api.info}/>
-                                  </Form>
-                                  <label className='helper-message'>70-80 символов</label>
-                              </div>
-                          </div>
-                          <div className="api-add-container-input api-add-container-input-element">
-                              <label style={{paddingBottom: '6px'}}>Категория</label>
-                              <Dropdown onChange={this.handleDropdownChange} placeholder='Категория' fluid search
-                                        selection id="category" name="category" noResultsMessage="Москва - лучший город"
-                                        className="form-input" options={apiCategoryOptions}
-                                        defaultValue={this.state.api.category}/>
-                          </div>
+            <div className='api-body-main'>
+                <div className="api-add-container">
+                    <div className="api-add-container-title">
+                        <span>Добавить API</span>
+                    </div>
+                    <div className="api-add-container-inputs">
+                        <div className="api-add-container-input api-add-container-input-top">
+                            <label>Название (обязательно)</label>
+                            <Input fluid onChange={this.handleInputChange}
+                                   className="form-input" id="apiName"
+                                   name="apiName" required placeholder='Название API'/>
+                        </div>
+                        <div className="api-add-container-input api-add-container-input-element">
+                            <div className="api-add-container-input-textarea">
+                                <label style={{paddingBottom: '6px'}}>Краткое описание</label>
+                                <Form style={{paddingTop: '6px'}}>
+                                    <TextArea onChange={this.handleInputChange}
+                                              placeholder='Краткое описание создаваемого API'
+                                              style={{minHeight: 64, maxHeight: 64, minWidth: 352}} id="description"
+                                              name="description"/>
+                                </Form>
+                                <label className='helper-message'>70-80 символов</label>
+                            </div>
+                        </div>
+                        <div className="api-add-container-input api-add-container-input-element">
+                            <label style={{paddingBottom: '6px'}}>Категория</label>
+                            <Dropdown onChange={this.handleDropdownChange} placeholder='Категория' fluid search
+                                      selection id="category" name="category" noResultsMessage="Москва - лучший город"
+                                      className="form-input" options={apiCategoryOptions}
+                                      defaultValue={this.state.category}/>
+                        </div>
 
-                          <div className="api-add-container-input api-add-container-segment-element">
-                              <div className='api-upload-container'>
-                                  <div className='api-upload-container-inner-elements'>
-                                      <Icon className='api-upload-icon' link name='cloud download' size='big'/>
-                                      <span className='api-upload-text' >Перетащите сюда файл API</span><br/>
-                                      <span className='api-upload-text' style={{marginLeft: 36}} >или <a href='#' style={{color: '#2F80ED'}}>загрузите</a> с компьютера</span>
-                                  </div>
-
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <Divider style={{marginTop: '20px',  marginBottom: 0}}/>
-                  <div className="api-info-buttons">
-                      <div className='apply-button-container'>
-                          <Button fluid className="apply-button" style={{width: 112, height:32}}><span className='command-approve-buttons-text'>Добавить</span></Button>
-                      </div>
-                      <div className='cancel-button-container api-info-cancel-button'>
-                          <Button fluid className="cancel-button"  style={{width: 112, height:32}}><span className='command-approve-buttons-text'>Отмена</span></Button>
-                      </div>
-                  </div>
-              </div>
+                        <div className="api-add-container-input api-add-container-segment-element">
+                            <Upload onFilesAdded={this.onFilesAdded} uploadFiles={this.uploadFiles} onClickReset={this.onClickReset} sendRequest={this.uploadNewApi} hasExtension={this.hasExtension}
+                                    setErrorFileState={this.setErrorFileState} hasErrorFiles={this.state.hasErrorFiles} files={this.state.files} uploading={this.state.uploading} uploadProgress={this.state.uploadProgress} successfullUploaded={this.state.successfullUploaded}/>
+                        </div>
+                    </div>
+                </div>
+                <Divider style={{marginTop: '20px', marginBottom: 0}}/>
+                <div className="api-info-buttons">
+                    <div className='apply-button-container'>
+                        <Button fluid className="apply-button" style={{width: 112, height: 32, background: '#2F80ED'}}
+                                onClick={this.uploadFiles}><span
+                            className='command-approve-buttons-text'>Добавить</span></Button>
+                    </div>
+                    <div className='cancel-button-container api-info-cancel-button'>
+                        <Button onClick={this.onClickReset}
+                                fluid className="cancel-button" style={{background: '#A5A5A5', width: 112, height: 32}}>
+                            <span className='command-approve-buttons-text'>Отмена</span>
+                        </Button>
+                    </div>
+                </div>
+            </div>
 
         )
     }
 }
+
 export default withRouter(ApiAddBody);
