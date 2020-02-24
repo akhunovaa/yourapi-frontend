@@ -86,6 +86,7 @@
     font-size: 14px;
     line-height: 16px;
     color: #4F4F4F;
+    overflow: hidden;
 }
 
 .api-list-text {
@@ -145,6 +146,7 @@
 
 .api-disabled-color{
     color: #A5A5A5 !important;
+    overflow: hidden;
 }
 
 .api-enabled-color{

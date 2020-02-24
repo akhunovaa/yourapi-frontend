@@ -4,6 +4,8 @@ import {Icon, List} from "semantic-ui-react";
 import {NavLink, withRouter} from 'react-router-dom';
 import queryString from "query-string";
 import classNames from 'classnames/bind';
+import Alert from "react-s-alert";
+import {apiProjectListGet} from "../../util/APIUtils";
 
 class ApiTreeSet extends Component {
 
@@ -11,23 +13,41 @@ class ApiTreeSet extends Component {
         super(props);
         this.state = {
             hidden: true,
-            hidden2: true,
             arrow: 'chevron down',
-            arrow2: 'chevron down'
+            projects:[]
         };
         this.toggle = this.toggle.bind(this);
-        this.toggle2 = this.toggle2.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
     }
 
-    toggle() {
-        const open = this.state.hidden;
-        this.setState({hidden: !open, arrow: open ? 'chevron up' : 'chevron down'})
+    componentDidMount() {
+        this._isMounted = true;
+        if (!this.state.projects) return;
+        apiProjectListGet()
+            .then(response => {
+                if (this._isMounted) {
+                    this.setState({
+                        projects : response.response
+                    })
+                }
+            }).catch(error => {
+            Alert.error('Ошибка получения списка проектов' || (error && error.message));
+        });
+        console.log(this.state.projects)
     }
 
-    toggle2() {
-        const open = this.state.hidden2;
-        this.setState({hidden2: !open, arrow2: open ? 'chevron up' : 'chevron down'})
+    toggle(event) {
+        const target = event.target;
+        const inputName = target.id;
+        let hidden = this.state.hidden;
+        let arrows = this.state.arrow;
+        const open = hidden[inputName];
+        hidden[inputName] = !open;
+        arrows[inputName] = open ? 'chevron up' : 'chevron down';
+        this.setState({
+            hidden: hidden,
+            arrow: arrows
+        });
     }
 
     handleCheck(array, val) {
@@ -35,11 +55,44 @@ class ApiTreeSet extends Component {
     }
 
     render() {
-        const namingArray = ['API-FOOTBALL', 'API-BASKETBALL'];
+
+        const namingArray = [];
+        for (let i = 0; i < this.state.projects.length; i++) {
+            namingArray.push(this.state.projects.item(i).name);
+        }
         const pagingArray = ['about', 'members', 'list', 'update'];
         const params = queryString.parse(this.props.location.search);
         let naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'API-FOOTBALL';
+
+
+
+        const Projects = ({items}) => (
+            <>
+                {
+                    items.map(item => (
+                            <List.Item key={item.id} style={{paddingTop: 28, paddingLeft: 22}}>
+                                <List.Content floated='right'>
+                                    <Icon link id='currency' name={this.state.arrow} onClick={this.toggle}
+                                          className={naming !== item.name ? 'api-disabled-color' : null}/>
+                                </List.Content>
+                                <List.Content><span
+                                    className={classNames({'api-disabled-color': naming !== item.name}, 'api-command-operation-text')}>{item.name}</span></List.Content>
+                                <List.List hidden='false'>
+                                    <List.Content className='sub-command'>
+                                        <NavLink to={"/profile/api?name=" + item.name + "&page=update"}><span
+                                            className={classNames({'api-disabled-color': naming !== item.name}, {'api-enabled-color': (naming === item.name && page === 'update')}, 'api-command-operation-text')}>Редактировать</span></NavLink>
+                                    </List.Content>
+                                </List.List>
+                            </List.Item>
+                    ))}
+            </>
+        );
+
+
+
         let page = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'update';
+
+
 
         return (
             <div className='api-command-toggle'>
@@ -52,35 +105,9 @@ class ApiTreeSet extends Component {
                             </div>
                         </List.Content>
                     </List.Item>
-                    <List.Item  style={{paddingTop: 28, paddingLeft: 22}}>
-                        <List.Content floated='right'>
-                            <Icon link name={this.state.arrow} onClick={this.toggle}
-                                  className={naming !== 'API-FOOTBALL' ? 'api-disabled-color' : null}/>
-                        </List.Content>
-                        <List.Content><span
-                            className={classNames({'api-disabled-color': naming !== 'API-FOOTBALL'}, 'api-command-operation-text')}>API-FOOTBALL</span></List.Content>
-                        <List.List hidden={this.state.hidden}>
-                            <List.Content className='sub-command'>
-                                <NavLink to="/profile/api?name=API-FOOTBALL&page=update"><span
-                                    className={classNames({'api-disabled-color': naming !== 'API-FOOTBALL'}, {'api-enabled-color': (naming === 'API-FOOTBALL' && page === 'update')}, 'api-command-operation-text')}>Редактировать</span></NavLink>
-                            </List.Content>
-                        </List.List>
-                    </List.Item>
 
-                    <List.Item style={{paddingTop: 24, paddingLeft: 22}}>
-                        <List.Content floated='right'>
-                            <Icon link name={this.state.arrow2} onClick={this.toggle2}
-                                  className={naming !== 'API-BASKETBALL' ? 'api-disabled-color' : null}/>
-                        </List.Content>
-                        <List.Content><span
-                            className={classNames({'api-disabled-color': naming !== 'API-BASKETBALL'}, 'api-command-operation-text')}>API-BASKETBALL</span></List.Content>
-                        <List.List hidden={this.state.hidden2}>
-                            <List.Content className='sub-command'>
-                                <NavLink to="/profile/api?name=API-BASKETBALL&page=update"><span
-                                    className={classNames({'api-disabled-color': naming !== 'API-BASKETBALL'}, {'api-enabled-color': (naming === 'API-BASKETBALL' && page === 'update')}, 'api-command-operation-text')}>Редактировать</span></NavLink>
-                            </List.Content>
-                        </List.List>
-                    </List.Item>
+                    <Projects items={this.state.projects}/>
+
                 </List>
             </div>
         );
