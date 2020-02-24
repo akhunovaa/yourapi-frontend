@@ -4,6 +4,7 @@ import {Button, Divider, Dropdown, Form, Input, TextArea} from "semantic-ui-reac
 import {withRouter} from "react-router-dom";
 import Upload from "../../upload/Upload";
 import {newApiUploadSend} from "../../util/APIUtils";
+import Alert from "react-s-alert";
 
 class ApiAddBody extends Component {
 
@@ -96,7 +97,11 @@ class ApiAddBody extends Component {
             formData.append("name", apiName);
             formData.append("description", description);
             formData.append("category", category);
-            newApiUploadSend(req, formData);
+            if (apiName && apiName.length >= 3){
+                newApiUploadSend(req, formData);
+            } else {
+                Alert.warning("Ошибка в наименовании")
+            }
         });
     }
 
