@@ -58,11 +58,11 @@ class ApiTreeSet extends Component {
 
         const namingArray = [];
         for (let i = 0; i < this.state.projects.length; i++) {
-            namingArray.push(this.state.projects.item(i).name);
+            namingArray.push(this.state.projects.item(i));
         }
         const pagingArray = ['about', 'members', 'list', 'update'];
         const params = queryString.parse(this.props.location.search);
-        let naming = (params.company !== 'undefined' && this.handleCheck(namingArray, params.company)) ? params.company : 'API-FOOTBALL';
+        let naming = (params.company !== 'undefined' && this.handleCheck(namingArray.name, params.company)) ? params.company : 'API-FOOTBALL';
 
 
 
