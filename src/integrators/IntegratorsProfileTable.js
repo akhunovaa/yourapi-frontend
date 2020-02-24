@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Integrators.css';
+import {NavLink} from 'react-router-dom';
 import {Dropdown, Icon, Input, Table} from "semantic-ui-react";
 import {loadUser} from "../util/APIUtils";
 
@@ -106,7 +107,8 @@ class IntegratorsProfileTable extends Component {
                     </div>
                 </div>
                 <div className='element-input'>
-                    <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
+                    <NavLink to='/integrator/profile/1'>
+                        <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
                         <Table.Body>
                             <Table.Row textAlign={'left'}>
                                 <Table.Cell>
@@ -130,7 +132,7 @@ class IntegratorsProfileTable extends Component {
                                 </Table.Cell>
                             </Table.Row>
                         </Table.Body>
-                    </Table>
+                    </Table> </NavLink>
                 </div>
                 <div className='element-input'>
                     <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
