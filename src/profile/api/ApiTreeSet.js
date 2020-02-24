@@ -25,8 +25,6 @@ class ApiTreeSet extends Component {
         if (!this.state.projects) return;
         apiProjectListGet()
             .then(response => {
-                console.log(response);
-                console.log(response.response);
                 if (this._isMounted) {
                     this.setState({
                         projects : response.response
@@ -60,7 +58,7 @@ class ApiTreeSet extends Component {
 
         const namingArray = [];
         for (let i = 0; i < this.state.projects.length; i++) {
-            namingArray.push(this.state.projects.item(i));
+            namingArray.push(this.state.projects[i]);
         }
         const pagingArray = ['about', 'members', 'list', 'update'];
         const params = queryString.parse(this.props.location.search);
