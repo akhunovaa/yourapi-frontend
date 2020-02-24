@@ -60,7 +60,7 @@
 
 .api-info-buttons{
     display: inline-flex;
-    padding: 16px 356px 16px 356px;
+    padding: 16px 356px 16px 0px;
     height: 64px;
     width: 352px;
 }
@@ -71,11 +71,12 @@
 
 .api-body-main{
     /*min-width: 1068px;*/
-    width: auto;
+    width: 100%;
     /*height: auto;*/
     /* white */
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    text-align: center;
 }
 
 .api-command-operation-text {
@@ -153,8 +154,11 @@
 
 .api-add-container{
     padding-top: 40px;
-    padding-left: 356px;
-    width: 352px;
+    /*padding-left: 356px;*/
+    /*width: 352px;*/
+    margin: 0 auto;
+    text-align: left;
+    display: inline-block;
 }
 
 .api-add-container-title{
