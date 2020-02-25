@@ -72,11 +72,10 @@ class ApiTreeSet extends Component {
                                     <Icon link id='currency' name={this.state.arrow} onClick={this.toggle} className={naming !== item.name ? 'api-disabled-color' : null}/>
                                 </List.Content>
                                 <List.Content>
-                                    <span className={classNames({'api-disabled-color': naming !== item.name}, 'api-command-operation-text')}>{item.name}</span></List.Content>
+                                    <NavLink to={"/profile/api?name=" + item.name}><span className={classNames({'api-disabled-color': naming !== item.name}, {'api-enabled-color': (naming === item.name)}, 'api-command-operation-text')}>{item.name}</span></NavLink></List.Content>
                                 <List.List hidden={false}>
                                     <List.Content className='sub-command'>
-                                        <NavLink to={"/profile/api?name=" + item.name + "&page=update"}><span
-                                            className={classNames({'api-disabled-color': naming !== item.name}, {'api-enabled-color': (naming === item.name && page === 'update')}, 'api-command-operation-text')}>Редактировать</span></NavLink>
+                                        <NavLink to={"/profile/api?name=" + item.name + "&page=update"}><span className={classNames({'api-disabled-color': naming !== item.name}, {'api-enabled-color': (naming === item.name && page === 'update')}, 'api-command-operation-text')}>Редактировать</span></NavLink>
                                     </List.Content>
                                 </List.List>
                             </List.Item>
