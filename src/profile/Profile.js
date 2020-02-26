@@ -43,6 +43,7 @@ class Profile extends Component {
                 info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown'
             },
             open: false,
+            id: this.props.currentUser ? this.props.currentUser.id : 0,
             name: '',
             surname: '',
             patrName: '',
@@ -171,6 +172,7 @@ class Profile extends Component {
 
     handleMainInformationSubmit(event) {
         event.preventDefault();
+        const id = this.state.id ? this.state.id : 0;
         const name = this.state.name ? this.state.name : this.state.user.name;
         const surname = this.state.surname ? this.state.surname : this.state.user.surname;
         const patrName = this.state.patrName ? this.state.patrName : this.state.user.patrName;
@@ -183,6 +185,7 @@ class Profile extends Component {
         const info = this.state.info ? this.state.info : this.state.user.info;
 
         const mainInfoRequest = Object.assign({}, {
+            'id': id,
             'name': name,
             'surname': surname,
             'patrName': patrName,
