@@ -29,7 +29,6 @@ class Profile extends Component {
         super(props);
         this.state = {
             user: {
-                imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl ? this.props.currentUser.imageUrl : '' : '',
                 name: this.props.currentUser ? this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login : 'unknown',
                 surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
                 patrName: this.props.currentUser ? this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login : 'unknown',
@@ -42,6 +41,7 @@ class Profile extends Component {
                 city: this.props.currentUser ? this.props.currentUser.city ? this.props.currentUser.city : this.props.currentUser.city : 'Москва, Россия',
                 info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown'
             },
+            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl ? this.props.currentUser.imageUrl : '' : '',
             open: false,
             id: this.props.currentUser ? this.props.currentUser.id : 0,
             name: '',
@@ -81,7 +81,7 @@ class Profile extends Component {
     handleImageLoaded() {
         if (!this.state.loaded) {
             console.log('image loaded');
-            this.setState({ loaded: true });
+            this.setState({loaded: true});
         }
     }
 
@@ -234,16 +234,12 @@ class Profile extends Component {
                     const reader = new FileReader();
                     reader.onloadend = () => {
                         this.setState({
-                            user: {
-                                imageUrl: reader.result
-                            }
+                            imageUrl: reader.result
                         })
                     };
                     reader.readAsDataURL(item.files[0]);
                     this.setState({
-                        user: {
-                            imageUrl: reader.result
-                        }
+                        imageUrl: reader.result
                     });
 
                     const imageData = item.files[0];
@@ -265,9 +261,7 @@ class Profile extends Component {
 
                 } else {
                     this.setState({
-                        user: {
-                            imageUrl: ''
-                        }
+                        imageUrl: ''
                     })
                 }
             }
@@ -358,9 +352,10 @@ class Profile extends Component {
                         <div className="profile-avatar-container">
                             <div className="profile-avatar">
                                 {
-                                    this.state.user.imageUrl ? (
-                                        <Image src={this.state.user.imageUrl} size='medium' circular verticalAlign='top'
-                                               alt={this.state.user.name} ref={this.image} onLoad={this.handleImageLoaded}/>
+                                    this.state.imageUrl ? (
+                                        <Image src={this.state.imageUrl} size='medium' circular verticalAlign='top'
+                                               alt={this.state.user.name} ref={this.image}
+                                               onLoad={this.handleImageLoaded}/>
                                     ) : (
                                         <div className="text-avatar">
                                             <span>{this.state.user.name && this.state.user.name[0]}</span>
