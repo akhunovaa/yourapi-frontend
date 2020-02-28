@@ -144,6 +144,14 @@ export function apiProjectListGet() {
     });
 }
 
+export function apiProjectFullListGet() {
+    return requestGet({
+        url: API_BASE_URL + "/api-data/full",
+        //url: "http://localhost:7100" + "/api-data/list",
+        method: 'GET'
+    });
+}
+
 export function dataListGet(roleAdmin) {
     if (roleAdmin) {
         return requestGet({
