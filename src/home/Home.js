@@ -131,7 +131,7 @@ class Home extends Component {
                                 <label>Новинки</label>
                             </div>
                             <div className="main-body-new-api-container-show-link">
-                                <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все (30)</NavLink>
+                                <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все ({this.state.projects.length})</NavLink>
                             </div>
                         </div>
                         <div className="body-data">
@@ -146,7 +146,7 @@ class Home extends Component {
                                 <label>Популярные</label>
                             </div>
                             <div className="main-body-new-api-container-show-link">
-                                <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все (30)</NavLink>
+                                <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все ({this.state.projects.length})</NavLink>
                             </div>
                         </div>
                         <div className="body-data">
@@ -172,7 +172,7 @@ class Home extends Component {
                                     <label>Рекомендации</label>
                                 </div>
                                 <div className="main-body-new-api-container-show-link">
-                                    <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все (30)</NavLink>
+                                    <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все ({this.state.projects.length})</NavLink>
                                 </div>
                             </div>
                             <div className="body-data">
@@ -187,7 +187,7 @@ class Home extends Component {
                                     <label>Данные</label>
                                 </div>
                                 <div className="main-body-new-api-container-show-link">
-                                    <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все (30)</NavLink>
+                                    <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все ({this.state.projects.length})</NavLink>
                                 </div>
                             </div>
                             <div className="body-data">
