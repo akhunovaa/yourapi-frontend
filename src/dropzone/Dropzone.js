@@ -75,7 +75,7 @@ class Dropzone extends Component {
                     onChange={this.onFilesAdded}
                 />
                 <Icon className='api-upload-icon' link name='cloud download' size='big'/>
-                <span className='api-upload-text' >Перетащите сюда файл OpenAPI</span><br/>
+                <span className='api-upload-text' >Перетащите сюда файл OpenAPI 3.0</span><br/>
                 <span className='api-upload-text' style={{marginLeft: 36}} >или <a href='#' style={{color: '#2F80ED'}}>загрузите</a> с компьютера</span>
             </div>
         );
