@@ -4,8 +4,6 @@ import {Icon, List} from "semantic-ui-react";
 import {NavLink, withRouter} from 'react-router-dom';
 import queryString from "query-string";
 import classNames from 'classnames/bind';
-import Alert from "react-s-alert";
-import {apiProjectListGet} from "../../util/APIUtils";
 
 class ApiTreeSet extends Component {
 
@@ -17,9 +15,7 @@ class ApiTreeSet extends Component {
             },
             arrow: {
                 id: 'chevron down'
-            },
-            //projects: [{"id":25,"name":"25.Best-Test-API","fullName":"Best Test API","description":"This is a first API for a BIG start!","category":"Данные","banned":false,"approved":false,"private":false,"username":{"id":2,"username":"admin","email":"azat@ya.ru"}},{"id":26,"name":"26.Second-Test-API","fullName":"Second Test API","description":"This is a second API for a BIG start!","category":"Спорт","banned":false,"approved":false,"private":false,"username":{"id":2,"username":"admin","email":"azat@ya.ru"}}]
-            projects: []
+            }
         };
         this.toggle = this.toggle.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
@@ -27,17 +23,6 @@ class ApiTreeSet extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        if (this.state.projects.length > 0) return;
-        apiProjectListGet()
-            .then(response => {
-                if (this._isMounted) {
-                    this.setState({
-                        projects : response.response
-                    })
-                }
-            }).catch(error => {
-            Alert.error('Ошибка получения списка проектов' || (error && error.message));
-        });
     }
 
     toggle(event) {
@@ -61,8 +46,8 @@ class ApiTreeSet extends Component {
     render() {
 
         const namingArray = [];
-        for (let i = 0; i < this.state.projects.length; i++) {
-            namingArray.push(this.state.projects[i]);
+        for (let i = 0; i < this.props.projects.length; i++) {
+            namingArray.push(this.props.projects[i]);
         }
         const pagingArray = ['about', 'members', 'list', 'update'];
         const params = queryString.parse(this.props.location.search);
@@ -105,7 +90,7 @@ class ApiTreeSet extends Component {
                         </List.Content>
                     </List.Item>
 
-                    <Projects items={this.state.projects}/>
+                    <Projects items={this.props.projects}/>
 
                 </List>
             </div>
