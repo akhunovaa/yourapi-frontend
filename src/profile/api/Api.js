@@ -106,32 +106,41 @@ class Api extends Component {
         return array.some(item => item === val);
     }
 
+    handleNamingCheck(array, val) {
+        return array.some(item => item.name === val);
+    }
+
     renderSwitchBody() {
         const pagingArray = ['add', 'update'];
         const params = queryString.parse(this.props.location.search);
-        const naming = (params.name !== 'undefined' && this.handleCheck(pagingArray, params.name)) ? params.name : '1-TT';
+        const naming = (params.name !== 'undefined' && this.handleNamingCheck(this.state.projects, params.name)) ? params.name : 'undefined';
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'add';
         switch(paging) {
             case 'update':
-                return <ApiUpdateBody naming={naming}/>;
+                if (naming !== 'undefined') {
+                    return <ApiUpdateBody projects={this.state.projects} naming={naming}/>;
+                }else {
+                    return <ApiAddBody projects={this.state.projects} paging={paging}/>;
+                }
             case 'add':
                 return <ApiAddBody projects={this.state.projects} paging={paging}/>;
             default:
-                return <ApiUpdateBody naming={naming}/>;
+                return <ApiAddBody projects={this.state.projects} paging={paging}/>;
         }
     }
 
     renderSwitchHeader() {
         const pagingArray = ['add', 'update'];
         const params = queryString.parse(this.props.location.search);
+        const naming = (params.name !== 'undefined' && this.handleNamingCheck(this.state.projects, params.name)) ? params.name : 'undefined';
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'add';
         switch(paging) {
             case 'update':
-                return <ApiBreadCrumb paging='update' {...this.props}/>
+                return <ApiBreadCrumb paging='update' naming={naming} {...this.props}/>
             case 'add':
                 return <ApiBreadCrumb paging='add' {...this.props}/>
             default:
-                return <ApiBreadCrumb paging='update' {...this.props}/>
+                return <ApiBreadCrumb paging='update' naming={naming} {...this.props}/>
         }
     }
     render() {
@@ -151,7 +160,7 @@ class Api extends Component {
                         </div>
                     </div>
                     <div className='left-side-api-body-main-container'>
-                        <ApiTreeSet projects={this.state.projects} {...this.props}/>
+                        <ApiTreeSet projects={this.state.projects}/>
                     </div>
                 </div>
                 <div className='right-side-api'>

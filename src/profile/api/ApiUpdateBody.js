@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './Api.css';
-import {Button, Divider, Dropdown, Form, Input, TextArea} from "semantic-ui-react";
 import {withRouter} from "react-router-dom";
+import queryString from "query-string";
+import ApiUpdateOverviewHeader from "./update/header/ApiUpdateOverviewHeader";
+import ApiUpdateOverviewBody from "./update/body/ApiUpdateOverviewBody";
 
 class ApiUpdateBody extends Component {
 
@@ -11,12 +13,13 @@ class ApiUpdateBody extends Component {
         super(props);
         this.state = {
             api: {
-                name: 'Sportspage Feeds',
-                info: 'Результаты в реальном времени, расписание и коэффициенты ставок для лиг США',
-                category: 'Новости'
+
             }
         };
         this.reload = this.reload.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
+        this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
+        this.renderSwitchBody = this.renderSwitchBody.bind(this);
     }
 
     componentDidMount() {
@@ -40,11 +43,40 @@ class ApiUpdateBody extends Component {
         });
     }
 
+    handleCheck(array, val) {
+        return array.some(item => item === val);
+    }
+
+    renderSwitchHeader() {
+        const pagingArray = ['overview', 'settings', 'endpoints', 'price', 'docs', 'announcements'];
+        const params = queryString.parse(this.props.location.search);
+        const paging = (params.definition !== 'undefined' && this.handleCheck(pagingArray, params.definition)) ? params.definition : 'overview';
+        switch (paging) {
+            default:
+                return <ApiUpdateOverviewHeader naming={this.props.naming} {...this.props}/>
+        }
+    }
+
+    renderSwitchBody() {
+        const pagingArray = ['overview', 'settings', 'endpoints', 'price', 'docs', 'announcements'];
+        const params = queryString.parse(this.props.location.search);
+        const paging = (params.definition !== 'undefined' && this.handleCheck(pagingArray, params.definition)) ? params.definition : 'overview';
+        switch (paging) {
+            default:
+                return <ApiUpdateOverviewBody naming={this.props.naming} {...this.props}/>
+        }
+    }
+
     render() {
 
         return (
             <div className='api-body-main'>
-                <span>Редактировать API</span>
+                <div className='api-detail-form-header-container'>
+                    {this.renderSwitchHeader()}
+                </div>
+                <div className='api-detail-form-body-container'>
+                    {this.renderSwitchBody()}
+                </div>
             </div>
 
         )
