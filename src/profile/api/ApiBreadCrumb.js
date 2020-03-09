@@ -57,8 +57,9 @@ class ApiBreadCrumb extends Component {
     render() {
 
         const page  = this.props.paging;
+        const naming  = this.props.naming;
 
-        let linkToPage = '/profile/api?page=' + page;
+        let linkToPage = '/profile/api?page=' + page + "&name=" + naming;
 
         let message = 'Добавить API';
 
