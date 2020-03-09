@@ -12,10 +12,14 @@ class ApiTreeSet extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hidden: true,
-            arrow: 'chevron down',
-            //projects: [{"id":25,"name":"25.Best-Test-API","description":"This is a first API for a BIG start!","category":"Данные","banned":false,"approved":false,"private":false,"username":{"id":2,"username":"admin","email":"azat@ya.ru"}},{"id":26,"name":"26.Second-Test-API","description":"This is a second API for a BIG start!","category":"Спорт","banned":false,"approved":false,"private":false,"username":{"id":2,"username":"admin","email":"azat@ya.ru"}}]
-            projects: []
+            hidden: {
+                id: true,
+            },
+            arrow: {
+                id: 'chevron down'
+            },
+            projects: [{"id":25,"name":"25.Best-Test-API","fullName":"Best Test API","description":"This is a first API for a BIG start!","category":"Данные","banned":false,"approved":false,"private":false,"username":{"id":2,"username":"admin","email":"azat@ya.ru"}},{"id":26,"name":"26.Second-Test-API","fullName":"Second Test API","description":"This is a second API for a BIG start!","category":"Спорт","banned":false,"approved":false,"private":false,"username":{"id":2,"username":"admin","email":"azat@ya.ru"}}]
+            //projects: []
         };
         this.toggle = this.toggle.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
@@ -43,7 +47,7 @@ class ApiTreeSet extends Component {
         let arrows = this.state.arrow;
         const open = hidden[inputName];
         hidden[inputName] = !open;
-        arrows[inputName] = open ? 'chevron up' : 'chevron down';
+        arrows[inputName] = open ? 'chevron down' : 'chevron up';
         this.setState({
             hidden: hidden,
             arrow: arrows
@@ -69,11 +73,11 @@ class ApiTreeSet extends Component {
                     items.map(item => (
                             <List.Item key={item.id} style={{paddingTop: 28, paddingLeft: 22, whiteSpace: 'nowrap'}}>
                                 <List.Content floated='right'>
-                                    <Icon link id='currency' name={this.state.arrow} onClick={this.toggle} className={naming !== item.name ? 'api-disabled-color' : null}/>
+                                    <Icon link id={item.id} name={this.state.arrow[item.id] ? this.state.arrow[item.id] : 'chevron down'} onClick={this.toggle} className={naming !== item.name ? 'api-disabled-color' : null}/>
                                 </List.Content>
                                 <List.Content>
                                     <NavLink to={"/profile/api?name=" + item.name}><span className={classNames({'api-disabled-color': naming !== item.name}, {'api-enabled-color': (naming === item.name)}, 'api-command-operation-text')}>{item.name}</span></NavLink></List.Content>
-                                <List.List hidden={false}>
+                                <List.List hidden={!this.state.hidden[item.id]}>
                                     <List.Content className='sub-command'>
                                         <NavLink to={"/profile/api?name=" + item.name + "&page=update"}><span className={classNames({'api-disabled-color': naming !== item.name}, {'api-enabled-color': (naming === item.name && page === 'update')}, 'api-command-operation-text')}>Редактировать</span></NavLink>
                                     </List.Content>
