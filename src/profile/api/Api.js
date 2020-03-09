@@ -4,10 +4,13 @@ import {loadUser} from "../../util/APIUtils";
 import {withRouter} from "react-router";
 import ApiBreadCrumb from "./ApiBreadCrumb";
 import ApiAddBody from "./ApiAddBody";
+import ApiUpdateBody from "./ApiUpdateBody";
 import ApiTreeSet from "./ApiTreeSet";
 import queryString from "query-string";
 import {NavLink} from "react-router-dom";
 import {Icon} from "semantic-ui-react";
+import {apiProjectListGet} from "../../util/APIUtils";
+import Alert from "react-s-alert";
 
 class Api extends Component {
 
@@ -18,7 +21,9 @@ class Api extends Component {
         this.state = {
             user: {},
             open: false,
-            page: ''
+            page: '',
+            //projects: [{"id":25,"name":"25.Best-Test-API","fullName":"Best Test API","description":"This is a first API for a BIG start!","category":"Данные","banned":false,"approved":false,"private":false,"username":{"id":2,"username":"admin","email":"azat@ya.ru"}},{"id":26,"name":"26.Second-Test-API","fullName":"Second Test API","description":"This is a second API for a BIG start!","category":"Спорт","banned":false,"approved":false,"private":false,"username":{"id":2,"username":"admin","email":"azat@ya.ru"}}]
+            projects: []
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -26,10 +31,22 @@ class Api extends Component {
         this.handleCheck = this.handleCheck.bind(this);
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
         this.renderSwitchBody = this.renderSwitchBody.bind(this);
+        this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
     }
 
     componentDidMount() {
         this._isMounted = true;
+        if (this.state.projects.length > 0) return;
+        apiProjectListGet()
+            .then(response => {
+                if (this._isMounted) {
+                    this.setState({
+                        projects : response.response
+                    })
+                }
+            }).catch(error => {
+            Alert.error('Ошибка получения списка проектов' || (error && error.message));
+        });
     }
 
     componentWillUnmount() {
@@ -89,15 +106,28 @@ class Api extends Component {
         return array.some(item => item === val);
     }
 
-
-
     renderSwitchBody() {
-        const pagingArray = ['add'];
+        const pagingArray = ['add', 'update'];
+        const params = queryString.parse(this.props.location.search);
+        const naming = (params.name !== 'undefined' && this.handleCheck(pagingArray, params.name)) ? params.name : '1-TT';
+        const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'add';
+        switch(paging) {
+            case 'update':
+                return <ApiUpdateBody naming={naming}/>;
+            default:
+                return <ApiAddBody projects={this.state.projects} paging={paging}/>;
+        }
+    }
+
+    renderSwitchHeader() {
+        const pagingArray = ['add', 'update'];
         const params = queryString.parse(this.props.location.search);
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'add';
         switch(paging) {
+            case 'update':
+                return <ApiBreadCrumb paging='update' {...this.props}/>
             default:
-                return <ApiAddBody paging={paging}/>;
+                return <ApiBreadCrumb paging='add' {...this.props}/>
         }
     }
     render() {
@@ -117,12 +147,12 @@ class Api extends Component {
                         </div>
                     </div>
                     <div className='left-side-api-body-main-container'>
-                        <ApiTreeSet {...this.props}/>
+                        <ApiTreeSet projects={this.state.projects} {...this.props}/>
                     </div>
                 </div>
                 <div className='right-side-api'>
                     <div className="api-breadcrumb">
-                        <ApiBreadCrumb paging='add' {...this.props}/>
+                        {this.renderSwitchHeader()}
                     </div>
                     <div className="api-body">
                         {this.renderSwitchBody()}

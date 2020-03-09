@@ -60,6 +60,16 @@ class ApiBreadCrumb extends Component {
 
         let linkToPage = '/profile/api?page=' + page;
 
+        let message = 'Добавить API';
+
+        switch(page) {
+            case 'update':
+                message = 'Редактировать API';
+                break;
+            default:
+                message = 'Добавить API';
+        }
+
         return (
                 <Breadcrumb>
                     <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
@@ -68,7 +78,7 @@ class ApiBreadCrumb extends Component {
                     <Breadcrumb.Divider icon='right chevron'/>
                     <Breadcrumb.Section as={NavLink} to={'/profile/api'} link><span className='text-disabled-color'>Мои API</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right chevron'/>
-                    <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color'>Добавить API</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color'>{message}</span></Breadcrumb.Section>
                 </Breadcrumb>
 
         )
