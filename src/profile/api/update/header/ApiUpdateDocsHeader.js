@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import './ApiDetailHeader.css';
 
-class ApiUpdateOverviewHeader extends Component {
+class ApiUpdateDocsHeader extends Component {
 
     _isMounted = false;
 
@@ -52,8 +52,8 @@ class ApiUpdateOverviewHeader extends Component {
     render() {
         return (
             <div className='update-header-links-list'>
-                <div className='update-header-links-methods update-header-links-font update-active-header-container'>
-                    <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=overview'} className='update-active-header-link'>Описание</NavLink>
+                <div className='update-header-links-methods update-header-links-font'>
+                    <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=overview'} className='update-inactive-header-link'>Описание</NavLink>
                 </div>
                 <div className='update-header-links-methods update-header-links-font'>
                     <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=settings'} className='update-inactive-header-link'>Основные</NavLink>
@@ -64,8 +64,8 @@ class ApiUpdateOverviewHeader extends Component {
                 <div className='update-header-links-methods update-header-links-font'>
                     <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=price'} className='update-inactive-header-link'>Цены</NavLink>
                 </div>
-                <div className='update-header-links-methods update-header-links-font'>
-                    <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=docs'} className='update-inactive-header-link'>Документация</NavLink>
+                <div className='update-header-links-methods update-header-links-font update-active-header-container'>
+                    <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=docs'} className='update-active-header-link'>Документация</NavLink>
                 </div>
                 <div className='update-header-links-methods-description update-header-links-font'>
                     <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=announcements'} className='update-inactive-header-link'>Оповещения</NavLink>
@@ -75,4 +75,4 @@ class ApiUpdateOverviewHeader extends Component {
     }
 }
 
-export default ApiUpdateOverviewHeader;
+export default ApiUpdateDocsHeader;

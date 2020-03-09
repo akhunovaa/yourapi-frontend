@@ -289,4 +289,9 @@
     padding-left: 12px;
 }
 
+.update-api-detail-form-header-container{
+    /*width: 100%;*/
+    border-bottom: 1px solid #E0E0E0;
+}
+
 

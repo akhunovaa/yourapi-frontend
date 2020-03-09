@@ -3,7 +3,12 @@ import './Api.css';
 import {withRouter} from "react-router-dom";
 import queryString from "query-string";
 import ApiUpdateOverviewHeader from "./update/header/ApiUpdateOverviewHeader";
+import ApiUpdateMainHeader from "./update/header/ApiUpdateMainHeader";
 import ApiUpdateOverviewBody from "./update/body/ApiUpdateOverviewBody";
+import ApiUpdateEndpointsHeader from "./update/header/ApiUpdateEndpointsHeader";
+import ApiUpdatePriceHeader from "./update/header/ApiUpdatePriceHeader";
+import ApiUpdateDocsHeader from "./update/header/ApiUpdateDocsHeader";
+import ApiUpdateAnnouncementsHeader from "./update/header/ApiUpdateAnnouncementsHeader";
 
 class ApiUpdateBody extends Component {
 
@@ -52,6 +57,18 @@ class ApiUpdateBody extends Component {
         const params = queryString.parse(this.props.location.search);
         const paging = (params.definition !== 'undefined' && this.handleCheck(pagingArray, params.definition)) ? params.definition : 'overview';
         switch (paging) {
+            case 'overview':
+                return <ApiUpdateOverviewHeader naming={this.props.naming} {...this.props}/>;
+            case 'settings':
+                return <ApiUpdateMainHeader naming={this.props.naming} {...this.props}/>;
+            case 'endpoints':
+                return <ApiUpdateEndpointsHeader naming={this.props.naming} {...this.props}/>;
+            case 'price':
+                return <ApiUpdatePriceHeader naming={this.props.naming} {...this.props}/>;
+            case 'docs':
+                return <ApiUpdateDocsHeader naming={this.props.naming} {...this.props}/>;
+            case 'announcements':
+                return <ApiUpdateAnnouncementsHeader naming={this.props.naming} {...this.props}/>;
             default:
                 return <ApiUpdateOverviewHeader naming={this.props.naming} {...this.props}/>
         }
@@ -71,7 +88,7 @@ class ApiUpdateBody extends Component {
 
         return (
             <div className='api-body-main'>
-                <div className='api-detail-form-header-container'>
+                <div className='update-api-detail-form-header-container'>
                     {this.renderSwitchHeader()}
                 </div>
                 <div className='api-detail-form-body-container'>
