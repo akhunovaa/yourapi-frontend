@@ -4,12 +4,16 @@ import {withRouter} from "react-router-dom";
 import queryString from "query-string";
 import ApiUpdateOverviewHeader from "./update/header/ApiUpdateOverviewHeader";
 import ApiUpdateMainHeader from "./update/header/ApiUpdateMainHeader";
-import ApiUpdateOverviewBody from "./update/body/ApiUpdateOverviewBody";
 import ApiUpdateEndpointsHeader from "./update/header/ApiUpdateEndpointsHeader";
 import ApiUpdatePriceHeader from "./update/header/ApiUpdatePriceHeader";
 import ApiUpdateDocsHeader from "./update/header/ApiUpdateDocsHeader";
 import ApiUpdateAnnouncementsHeader from "./update/header/ApiUpdateAnnouncementsHeader";
-
+import ApiUpdateAnnouncementsBody from "./update/body/ApiUpdateAnnouncementsBody";
+import ApiUpdateMainBody from "./update/body/ApiUpdateMainBody";
+import ApiUpdateEndpointsBody from "./update/body/ApiUpdateEndpointsBody";
+import ApiUpdatePriceBody from "./update/body/ApiUpdatePriceBody";
+import ApiUpdateDocsBody from "./update/body/ApiUpdateDocsBody";
+import ApiUpdateOverviewBody from "./update/body/ApiUpdateOverviewBody";
 class ApiUpdateBody extends Component {
 
     _isMounted = false;
@@ -79,6 +83,18 @@ class ApiUpdateBody extends Component {
         const params = queryString.parse(this.props.location.search);
         const paging = (params.definition !== 'undefined' && this.handleCheck(pagingArray, params.definition)) ? params.definition : 'overview';
         switch (paging) {
+            case 'overview':
+                return <ApiUpdateOverviewBody naming={this.props.naming} {...this.props}/>;
+            case 'settings':
+                return <ApiUpdateMainBody naming={this.props.naming} {...this.props}/>;
+            case 'endpoints':
+                return <ApiUpdateEndpointsBody naming={this.props.naming} {...this.props}/>;
+            case 'price':
+                return <ApiUpdatePriceBody naming={this.props.naming} {...this.props}/>;
+            case 'docs':
+                return <ApiUpdateDocsBody naming={this.props.naming} {...this.props}/>;
+            case 'announcements':
+                return <ApiUpdateAnnouncementsBody naming={this.props.naming} {...this.props}/>;
             default:
                 return <ApiUpdateOverviewBody naming={this.props.naming} {...this.props}/>
         }
