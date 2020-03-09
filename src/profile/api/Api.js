@@ -114,8 +114,10 @@ class Api extends Component {
         switch(paging) {
             case 'update':
                 return <ApiUpdateBody naming={naming}/>;
-            default:
+            case 'add':
                 return <ApiAddBody projects={this.state.projects} paging={paging}/>;
+            default:
+                return <ApiUpdateBody naming={naming}/>;
         }
     }
 
@@ -126,8 +128,10 @@ class Api extends Component {
         switch(paging) {
             case 'update':
                 return <ApiBreadCrumb paging='update' {...this.props}/>
-            default:
+            case 'add':
                 return <ApiBreadCrumb paging='add' {...this.props}/>
+            default:
+                return <ApiBreadCrumb paging='update' {...this.props}/>
         }
     }
     render() {
