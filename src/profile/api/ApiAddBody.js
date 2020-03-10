@@ -117,6 +117,7 @@ class ApiAddBody extends Component {
         try {
             await Promise.all(promises);
             this.setState({successfullUploaded: true, uploading: false});
+            this.forceUpdate();
         } catch (e) {
             // Not Production ready! Do some error handling here instead...
             this.setState({successfullUploaded: true, uploading: false});
