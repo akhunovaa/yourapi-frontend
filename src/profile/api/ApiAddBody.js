@@ -99,6 +99,7 @@ class ApiAddBody extends Component {
             formData.append("category", category);
             if (apiName && apiName.length >= 3) {
                 newApiUploadSend(req, formData);
+                this.reload()
             } else {
                 Alert.warning("Ошибка в наименовании")
             }
