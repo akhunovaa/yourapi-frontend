@@ -99,7 +99,6 @@ class ApiAddBody extends Component {
             formData.append("category", category);
             if (apiName && apiName.length >= 3) {
                 newApiUploadSend(req, formData);
-                this.reload()
             } else {
                 Alert.warning("Ошибка в наименовании")
             }
@@ -117,8 +116,8 @@ class ApiAddBody extends Component {
 
         try {
             await Promise.all(promises);
-
             this.setState({successfullUploaded: true, uploading: false});
+            this.reload()
         } catch (e) {
             // Not Production ready! Do some error handling here instead...
             this.setState({successfullUploaded: true, uploading: false});
