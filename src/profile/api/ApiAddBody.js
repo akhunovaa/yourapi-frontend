@@ -119,9 +119,7 @@ class ApiAddBody extends Component {
             this.setState({successfullUploaded: true, uploading: false});
             setTimeout(function() {
             }, 2000);
-            console.log(this.state.uploaderResponse);
             this.reload();
-            console.log(this.state.uploaderResponse);
         } catch (e) {
             // Not Production ready! Do some error handling here instead...
             this.setState({successfullUploaded: true, uploading: false});
