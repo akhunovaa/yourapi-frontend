@@ -63,7 +63,6 @@ class ApiAddBody extends Component {
     uploadNewApi(file) {
         return new Promise((resolve, reject) => {
             const req = new XMLHttpRequest();
-
             req.upload.addEventListener("progress", event => {
                 if (event.lengthComputable) {
                     const copy = {...this.state.uploadProgress};
@@ -79,6 +78,7 @@ class ApiAddBody extends Component {
                 const copy = {...this.state.uploadProgress};
                 copy[file.name] = {state: "done", percentage: 100};
                 this.setState({uploadProgress: copy});
+                this.setState({uploaderResponse: req.response});
                 resolve(req.response);
             });
 
@@ -117,7 +117,11 @@ class ApiAddBody extends Component {
         try {
             await Promise.all(promises);
             this.setState({successfullUploaded: true, uploading: false});
-            this.reload()
+            setTimeout(function() {
+            }, 2000);
+            console.log(this.state.uploaderResponse);
+            this.reload();
+            console.log(this.state.uploaderResponse);
         } catch (e) {
             // Not Production ready! Do some error handling here instead...
             this.setState({successfullUploaded: true, uploading: false});
