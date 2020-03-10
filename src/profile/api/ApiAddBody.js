@@ -117,9 +117,6 @@ class ApiAddBody extends Component {
         try {
             await Promise.all(promises);
             this.setState({successfullUploaded: true, uploading: false});
-            setTimeout(function() {
-            }, 2000);
-            this.reload();
         } catch (e) {
             // Not Production ready! Do some error handling here instead...
             this.setState({successfullUploaded: true, uploading: false});
