@@ -22,6 +22,7 @@ import AppFooter from '../common/AppFooter';
 import {getCurrentUser} from '../util/APIUtils';
 import {ACCESS_TOKEN} from '../constants';
 import {loadReCaptcha} from 'react-recaptcha-google'
+import OAuth2RedirectHandler from '../login/oauth2/OAuth2RedirectHandler';
 
 class App extends Component {
 
@@ -109,6 +110,8 @@ class App extends Component {
                                {/*render={(props) => <Api authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         {/*<Route exact path="/integrator"*/}
                                {/*render={(props) => <Integrators authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                        {/*<Route exact path="/integrator/profile/:id?"*/}
+                               {/*render={(props) => <Integrators authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         {/*<Route exact path="/shop"*/}
                                {/*render={(props) => <Shop authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         {/*<Route exact path="/shop/category/:category?"*/}
@@ -122,6 +125,7 @@ class App extends Component {
                         <PrivateRoute exact path="/shop" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Shop}/>
                         <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiCategoryShop}/>
                         <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiDetail}/>
+                        <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
                         <Route component={NotFound}/>
                     </Switch>
                     <AppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
