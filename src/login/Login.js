@@ -3,13 +3,20 @@ import './Login.css';
 import Alert from 'react-s-alert';
 import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import {login} from "../util/APIUtils";
-import {ACCESS_TOKEN} from "../constants";
 import {Link, Redirect} from "react-router-dom";
+import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN } from '../constants';
 
 class Login extends Component {
 
-    state = {};
+    constructor(props) {
+        super(props);
+        this.state = {
+            previousUrl: '',
+            windowObjectReference: null
 
+        };
+        this.openSignInWindow = this.openSignInWindow.bind(this);
+    }
     componentDidMount() {
         // If the OAuth2 login encounters an error, the user is redirected to the /login page with an error.
         // Here we display the error and then remove the error query parameter from the location.
@@ -25,6 +32,57 @@ class Login extends Component {
             }, 100);
         }
     }
+
+    // receiveMessage = event => {
+    //     // Do we trust the sender of this message? (might be
+    //     // different from what we originally opened, for example).
+    //     if (event.origin !== "http://localhost:3000") {
+    //         return;
+    //     }
+    //     const { data } = event;
+    //     // if we trust the sender and the source is our popup
+    //     if (data.source === 'lma-login-redirect') {
+    //         // get the URL params and redirect to our server to use Passport to auth/login
+    //         const { payload } = data;
+    //         const redirectUrl = `/auth/google/login${payload}`;
+    //         window.location.pathname = redirectUrl;
+    //     }
+    // };
+
+    openSignInWindow(){
+        let url = 'https://yourapi.ru/auth/oauth2/authorize/google?redirect_uri=https://yourapi.ru/oauth2/redirect';
+        let name = 'Авторизация при помощи Google';
+        let windowObjectReference = this.state.windowObjectReference;
+        let previousUrl = this.state.previousUrl;
+        // remove any existing event listeners
+        //window.removeEventListener('message', this.receiveMessage);
+
+        // window features
+        const strWindowFeatures = 'toolbar=no, menubar=no, width=600, height=700, top=100, left=100';
+
+        if (windowObjectReference === null || windowObjectReference.closed) {
+            /* if the pointer to the window object in memory does not exist
+             or if such pointer exists but the window was closed */
+            windowObjectReference = window.open(url, name, strWindowFeatures);
+        } else if (previousUrl !== url) {
+            /* if the resource to load is different,
+             then we load it in the already opened secondary window and then
+             we bring such window back on top/in front of its parent window. */
+            windowObjectReference = window.open(url, name, strWindowFeatures);
+            windowObjectReference.focus();
+        } else {
+            /* else the window reference must exist and the window
+             is not closed; therefore, we can bring it back on top of any other
+             window with the focus() method. There would be no need to re-create
+             the window or to reload the referenced resource. */
+            windowObjectReference.focus();
+        }
+
+        // add the listener for receiving a message from the popup
+        //window.addEventListener('message', event => this.receiveMessage(event), false);
+        // assign the previous URL
+        previousUrl = url;
+    };
 
     render() {
         if (this.props.authenticated) {
@@ -63,7 +121,7 @@ class Login extends Component {
                             </div>
 
                             <div className='footer-icon-group'>
-                                <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} />
+                                <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} onClick={this.openSignInWindow}/>
                                 <Icon style={{marginRight: 44, color: '#A5A5A5'}}  link name='facebook' size={'large'} />
                                 <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'} />
                                 <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
