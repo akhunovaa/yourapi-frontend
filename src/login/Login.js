@@ -60,39 +60,23 @@ class Login extends Component {
         let leftPosition, topPosition;
         let windowObjectReference = this.state.windowObjectReference;
         let previousUrl = this.state.previousUrl;
-        // remove any existing event listeners
         window.removeEventListener('message', this.receiveMessage);
-        //Allow for borders.
         leftPosition = (window.screen.width / 2) - ((width / 2) + 10);
-        //Allow for title and status bars.
         topPosition = (window.screen.height / 2) - ((height / 2) + 50);
-        // window features
-        // const strWindowFeatures = 'toolbar=no, menubar=no, width=600, height=700, top=300, left=600';
         const strWindowFeatures = "status=no, height=" + height + ",width=" + width + ",resizable=yes,left="
             + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY="
             + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
 
         if (windowObjectReference === null || windowObjectReference.closed) {
-            /* if the pointer to the window object in memory does not exist
-             or if such pointer exists but the window was closed */
             windowObjectReference = window.open(url, 'Окно авторизации', strWindowFeatures);
         } else if (previousUrl !== url) {
-            /* if the resource to load is different,
-             then we load it in the already opened secondary window and then
-             we bring such window back on top/in front of its parent window. */
             windowObjectReference = window.open(url, 'Окно авторизации', strWindowFeatures);
             windowObjectReference.focus();
         } else {
-            /* else the window reference must exist and the window
-             is not closed; therefore, we can bring it back on top of any other
-             window with the focus() method. There would be no need to re-create
-             the window or to reload the referenced resource. */
             windowObjectReference.focus();
         }
 
-        // add the listener for receiving a message from the popup
         window.addEventListener('message', event => this.receiveMessage(event), false);
-        // assign the previous URL
         previousUrl = url;
         registerServiceWorker();
     };
@@ -134,8 +118,8 @@ class Login extends Component {
                             </div>
 
                             <div className='footer-icon-group'>
-                                <a href="https://yourapi.ru/auth/oauth2/authorize/google?redirect_uri=https://yourapi.ru/oauth2/redirect" onClick={this.openSignInWindow}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a>
-                                <Icon style={{marginRight: 44, color: '#A5A5A5'}}  link name='facebook' size={'large'} />
+                                <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} onClick={this.openSignInWindow}/>
+                                <Icon style={{marginRight: 44, color: '#A5A5A5'}}  link name='facebook' size={'large'}/>
                                 <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'} />
                                 <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
                             </div>
