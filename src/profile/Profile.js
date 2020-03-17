@@ -574,7 +574,7 @@ class Profile extends Component {
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <Input onChange={this.handleInputChange} style={{paddingTop: 0, height: 32}}
-                                           className="form-input" id="messenger-login"
+                                           className="form-input" id="messenger-login-two"
                                            defaultValue={this.state.user.phone}
                                            name="messenger-login" required placeholder='Телефон или имя'/>
                                 </div>
