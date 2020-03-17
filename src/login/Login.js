@@ -37,18 +37,7 @@ class Login extends Component {
     }
 
     receiveMessage = event => {
-        if (event.origin !== API_BASE_URL) {
-            return;
-        }
-        const { data } = event;
-        if (data.source === 'login-redirect') {
-            const { payload } = data;
-            const redirectUrl = OAUTH2_REDIRECT_URI + payload;
-            return <Redirect to={{
-                pathname: redirectUrl,
-                state: { from: this.props.location }
-            }}/>;
-        }
+        window.location.reload();
     };
 
     openSignInWindow(event){
