@@ -4,7 +4,7 @@ import Alert from 'react-s-alert';
 import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import {login} from "../util/APIUtils";
 import {Link, Redirect} from "react-router-dom";
-import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN } from '../constants';
+import {GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN} from '../constants';
 import registerServiceWorker from '../util/../registerServiceWorker';
 import {unregister} from '../util/../registerServiceWorker';
 
@@ -37,20 +37,13 @@ class Login extends Component {
     }
 
     receiveMessage = event => {
-        console.log(event.origin)
         if (event.origin !== "https://yourapi.ru") {
             return;
         }
-        const { data } = event;
-        console.log(data)
-        if (data.source === 'lma-login-redirect') {
-            const { payload } = data;
-            const redirectUrl = `/auth/google/login${payload}`;
-            window.location.pathname = redirectUrl;
-        }
+        window.location.reload();
     };
 
-    openSignInWindow(event){
+    openSignInWindow(event) {
         event.preventDefault();
         unregister();
         let url = 'https://yourapi.ru/auth/oauth2/authorize/google?redirect_uri=https://yourapi.ru/oauth2/redirect';
@@ -66,7 +59,7 @@ class Login extends Component {
             + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
 
         if (windowObjectReference === null || windowObjectReference.closed) {
-           window.open(url, 'Окно авторизации', strWindowFeatures);
+            window.open(url, 'Окно авторизации', strWindowFeatures);
         } else if (previousUrl !== url) {
             windowObjectReference = window.open(url, 'Окно авторизации', strWindowFeatures);
             windowObjectReference.focus();
@@ -112,19 +105,20 @@ class Login extends Component {
                         </div>
                         <LoginForm2 {...this.props} />
                     </div>
-                    <Divider style={{marginTop: 0,  marginBottom: 0}}/>
+                    <Divider style={{marginTop: 0, marginBottom: 0}}/>
                     <div className="login-container-right-footer">
-                            <div className='footer-icon-group-label'>
-                                <label style={{color: '#4F4F4F'}}>Войти с помощью</label>
-                            </div>
-
-                            <div className='footer-icon-group'>
-                                <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} onClick={this.openSignInWindow}/>
-                                <Icon style={{marginRight: 44, color: '#A5A5A5'}}  link name='facebook' size={'large'}/>
-                                <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'} />
-                                <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
-                            </div>
+                        <div className='footer-icon-group-label'>
+                            <label style={{color: '#4F4F4F'}}>Войти с помощью</label>
                         </div>
+
+                        <div className='footer-icon-group'>
+                            <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}
+                                  onClick={this.openSignInWindow}/>
+                            <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='facebook' size={'large'}/>
+                            <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'}/>
+                            <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'}/>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -160,9 +154,9 @@ class LoginForm2 extends Component {
 
         login(loginRequest)
             .then(response => {
-                if (!response.success){
+                if (!response.success) {
                     Alert.warning(response.message);
-                }else {
+                } else {
                     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
                     Alert.success("Вы авторизовались в системе!");
                     window.location.reload();
@@ -181,12 +175,13 @@ class LoginForm2 extends Component {
                             <Segment className='login-data-segment-form'>
                                 <Form.Field>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Логин/Email</label>
-                                    <Input onChange={this.handleInputChange} className="form-login-input" id="login" name="login" required placeholder='Логин/Email'/>
+                                    <Input onChange={this.handleInputChange} className="form-login-input" id="login"
+                                           name="login" required placeholder='Логин/Email'/>
                                 </Form.Field>
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
                                     <Input onChange={this.handleInputChange}
-                                           icon={{ name: 'eye slash outline', link: true}}
+                                           icon={{name: 'eye slash outline', link: true}}
                                            placeholder='Пароль' id="password" name="password" required type='password'
                                     />
                                 </Form.Field>
