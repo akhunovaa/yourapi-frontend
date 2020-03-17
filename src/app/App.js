@@ -99,9 +99,9 @@ class App extends Component {
                         {/*<Route exact path="/" render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>
                         <Route exact path="/login"
-                               render={(props) => <Login history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
+                               render={(props) => <Login isMobile={isMobile} history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
                         <Route exact path="/signup"
-                               render={(props) => <SignUp history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
+                               render={(props) => <SignUp isMobile={isMobile} history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
                         {/*<Route exact path="/profile"*/}
                                {/*render={(props) => <Profile authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         {/*<Route exact path="/profile/administration"*/}
@@ -125,7 +125,7 @@ class App extends Component {
                         <PrivateRoute exact path="/shop" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Shop}/>
                         <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiCategoryShop}/>
                         <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiDetail}/>
-                        <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
+                        <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}/>
                         <Route component={NotFound}/>
                     </Switch>
                     <AppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>

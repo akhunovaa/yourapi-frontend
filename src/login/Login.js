@@ -83,6 +83,10 @@ class Login extends Component {
                 }}/>;
         }
 
+        let host = window.location.origin.toString();
+        let redirectUri = host + OAUTH2_REDIRECT_URI;
+        const authUrl = host + GOOGLE_AUTH_URL + redirectUri;
+
         return (
             <div id="login-container">
 
@@ -111,7 +115,7 @@ class Login extends Component {
                             </div>
 
                             <div className='footer-icon-group'>
-                                <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} onClick={this.openSignInWindow}/>
+                                {this.props.isMobile ?  <a href={authUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} onClick={this.openSignInWindow}/>}
                                 <Icon style={{marginRight: 44, color: '#A5A5A5'}}  link name='facebook' size={'large'}/>
                                 <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'} />
                                 <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
