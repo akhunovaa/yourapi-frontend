@@ -5,7 +5,7 @@ import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} fro
 import {login} from "../util/APIUtils";
 import {Link, Redirect} from "react-router-dom";
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN } from '../constants';
-import { OAuth2PopupFlow } from 'oauth2-popup-flow';
+
 
 class Login extends Component {
 
