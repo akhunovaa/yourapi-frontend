@@ -80,7 +80,6 @@ class Profile extends Component {
 
     handleImageLoaded() {
         if (!this.state.loaded) {
-            console.log('image loaded');
             this.setState({loaded: true});
         }
     }
