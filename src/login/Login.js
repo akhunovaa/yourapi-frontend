@@ -4,7 +4,7 @@ import Alert from 'react-s-alert';
 import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import {login} from "../util/APIUtils";
 import {Link, Redirect} from "react-router-dom";
-import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, API_BASE_URL } from '../constants';
+import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, API_BASE_URL, OAUTH2_REDIRECT_URI } from '../constants';
 import registerServiceWorker from '../util/../registerServiceWorker';
 import {unregister} from '../util/../registerServiceWorker';
 
@@ -43,7 +43,7 @@ class Login extends Component {
         const { data } = event;
         if (data.source === 'login-redirect') {
             const { payload } = data;
-            const redirectUrl = `/oauth2/redirect${payload}`;
+            const redirectUrl = OAUTH2_REDIRECT_URI + payload;
             return <Redirect to={{
                 pathname: redirectUrl,
                 state: { from: this.props.location }
@@ -54,7 +54,9 @@ class Login extends Component {
     openSignInWindow(event){
         event.preventDefault();
         unregister();
-        let url = GOOGLE_AUTH_URL;
+        let host = window.location.origin.toString();
+        let redirectUri = host + OAUTH2_REDIRECT_URI;
+        let authUrl = host + GOOGLE_AUTH_URL + redirectUri;
         let width = 600, height = 700;
         let leftPosition, topPosition;
         let windowObjectReference = this.state.windowObjectReference;
@@ -67,16 +69,16 @@ class Login extends Component {
             + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
 
         if (windowObjectReference === null || windowObjectReference.closed) {
-           window.open(url, 'Окно авторизации', strWindowFeatures);
-        } else if (previousUrl !== url) {
-            windowObjectReference = window.open(url, 'Окно авторизации', strWindowFeatures);
+           window.open(authUrl, 'Окно авторизации', strWindowFeatures);
+        } else if (previousUrl !== authUrl) {
+            windowObjectReference = window.open(authUrl, 'Окно авторизации', strWindowFeatures);
             windowObjectReference.focus();
         } else {
             windowObjectReference.focus();
         }
 
         window.addEventListener('message', event => this.receiveMessage(event), false);
-        previousUrl = url;
+        previousUrl = authUrl;
         this.setState({
             previousUrl: previousUrl
         });
