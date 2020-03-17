@@ -20,8 +20,6 @@ class OAuth2RedirectHandler extends Component {
             window.close();
         }
 
-
-
         if(token) {
             localStorage.setItem(ACCESS_TOKEN, token);
             return <Redirect to={{
