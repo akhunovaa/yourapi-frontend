@@ -3,13 +3,61 @@ import './Signup.css';
 import {Link, Redirect} from 'react-router-dom'
 import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import { signup } from "../util/APIUtils";
-import {ACCESS_TOKEN} from "../constants";
+import {ACCESS_TOKEN, GOOGLE_AUTH_URL, OAUTH2_REDIRECT_URI} from "../constants";
 import Alert from "react-s-alert";
 import { ReCaptcha } from 'react-recaptcha-google'
+import {unregister} from "../registerServiceWorker";
+import registerServiceWorker from "../registerServiceWorker";
 
 class SignUp extends Component {
 
-    state = {};
+    constructor(props) {
+        super(props);
+        this.state = {
+            previousUrl: '',
+            windowObjectReference: null
+
+        };
+        this.openSignInWindow = this.openSignInWindow.bind(this);
+    }
+
+    receiveMessage = event => {
+        window.location.reload();
+    };
+
+    openSignInWindow(event){
+        event.preventDefault();
+        unregister();
+        let host = window.location.origin.toString();
+        let redirectUri = host + OAUTH2_REDIRECT_URI;
+        let authUrl = host + GOOGLE_AUTH_URL + redirectUri;
+        let width = 600, height = 700;
+        let leftPosition, topPosition;
+        let windowObjectReference = this.state.windowObjectReference;
+        let previousUrl = this.state.previousUrl;
+        window.removeEventListener('message', this.receiveMessage);
+        leftPosition = (window.screen.width / 2) - ((width / 2) + 10);
+        topPosition = (window.screen.height / 2) - ((height / 2) + 50);
+        const strWindowFeatures = "status=no, height=" + height + ",width=" + width + ",resizable=yes,left="
+            + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY="
+            + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
+
+        if (windowObjectReference === null || windowObjectReference.closed) {
+            window.open(authUrl, 'Окно авторизации', strWindowFeatures);
+        } else if (previousUrl !== authUrl) {
+            windowObjectReference = window.open(authUrl, 'Окно авторизации', strWindowFeatures);
+            windowObjectReference.focus();
+        } else {
+            windowObjectReference.focus();
+        }
+
+        window.addEventListener('message', event => this.receiveMessage(event), false);
+        previousUrl = authUrl;
+        this.setState({
+            previousUrl: previousUrl
+        });
+        registerServiceWorker();
+    };
 
     render() {
         if (this.props.authenticated) {
@@ -19,6 +67,8 @@ class SignUp extends Component {
                     state: {from: this.props.location}
                 }}/>;
         }
+
+
         return (
             <div id="login-container">
 
@@ -47,7 +97,7 @@ class SignUp extends Component {
                         </div>
 
                         <div className='footer-icon-group'>
-                            <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} />
+                            <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} onClick={this.openSignInWindow}/>
                             <Icon style={{marginRight: 44, color: '#A5A5A5'}}  link name='facebook' size={'large'} />
                             <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'} />
                             <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
