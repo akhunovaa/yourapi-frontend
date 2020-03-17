@@ -37,17 +37,15 @@ class Login extends Component {
     }
 
     receiveMessage = event => {
-        // Do we trust the sender of this message? (might be
-        // different from what we originally opened, for example).
+        console.log(event.origin)
         if (event.origin !== "https://yourapi.ru") {
             return;
         }
         const { data } = event;
-        // if we trust the sender and the source is our popup
+        console.log(data)
         if (data.source === 'lma-login-redirect') {
-            // get the URL params and redirect to our server to use Passport to auth/login
             const { payload } = data;
-            const redirectUrl = `https://yourapi.ru/oauth2/redirect`;
+            const redirectUrl = `/auth/google/login${payload}`;
             window.location.pathname = redirectUrl;
         }
     };
@@ -68,7 +66,7 @@ class Login extends Component {
             + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
 
         if (windowObjectReference === null || windowObjectReference.closed) {
-            windowObjectReference = window.open(url, 'Окно авторизации', strWindowFeatures);
+           window.open(url, 'Окно авторизации', strWindowFeatures);
         } else if (previousUrl !== url) {
             windowObjectReference = window.open(url, 'Окно авторизации', strWindowFeatures);
             windowObjectReference.focus();
@@ -78,6 +76,9 @@ class Login extends Component {
 
         window.addEventListener('message', event => this.receiveMessage(event), false);
         previousUrl = url;
+        this.setState({
+            previousUrl: previousUrl
+        });
         registerServiceWorker();
     };
 
