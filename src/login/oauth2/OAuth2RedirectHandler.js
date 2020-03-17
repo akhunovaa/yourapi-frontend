@@ -14,6 +14,13 @@ class OAuth2RedirectHandler extends Component {
     render() {        
         const token = this.getUrlParameter('token');
         const error = this.getUrlParameter('error');
+        const params = window.location.search;
+        if (window.opener) {
+            window.opener.postMessage(params);
+            window.close();
+        }
+
+
 
         if(token) {
             localStorage.setItem(ACCESS_TOKEN, token);
