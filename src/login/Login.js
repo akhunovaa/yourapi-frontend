@@ -5,7 +5,8 @@ import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} fro
 import {login} from "../util/APIUtils";
 import {Link, Redirect} from "react-router-dom";
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN } from '../constants';
-
+import registerServiceWorker from '../util/../registerServiceWorker';
+import {unregister} from '../util/../registerServiceWorker';
 
 class Login extends Component {
 
@@ -52,7 +53,8 @@ class Login extends Component {
     };
 
     openSignInWindow(event){
-        event.preventDefault()
+        event.preventDefault();
+        unregister();
         let url = 'https://yourapi.ru/auth/oauth2/authorize/google?redirect_uri=https://yourapi.ru/oauth2/redirect';
         let width = 600, height = 700;
         let leftPosition, topPosition;
@@ -92,6 +94,7 @@ class Login extends Component {
         window.addEventListener('message', event => this.receiveMessage(event), false);
         // assign the previous URL
         previousUrl = url;
+        registerServiceWorker();
     };
 
     render() {
