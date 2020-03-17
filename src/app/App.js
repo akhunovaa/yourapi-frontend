@@ -86,7 +86,7 @@ class App extends Component {
     render() {
 
         const { width } = this.state;
-        const isMobile = width <= 500;
+        const isMobile = width <= 700;
 
         if (this.state.loading) {
             return <LoadingIndicator/>
