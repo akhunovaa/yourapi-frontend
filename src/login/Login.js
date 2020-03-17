@@ -5,6 +5,7 @@ import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} fro
 import {login} from "../util/APIUtils";
 import {Link, Redirect} from "react-router-dom";
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN } from '../constants';
+import { OAuth2PopupFlow } from 'oauth2-popup-flow';
 
 class Login extends Component {
 
@@ -17,6 +18,7 @@ class Login extends Component {
         };
         this.openSignInWindow = this.openSignInWindow.bind(this);
     }
+
     componentDidMount() {
         // If the OAuth2 login encounters an error, the user is redirected to the /login page with an error.
         // Here we display the error and then remove the error query parameter from the location.
@@ -33,42 +35,50 @@ class Login extends Component {
         }
     }
 
-    // receiveMessage = event => {
-    //     // Do we trust the sender of this message? (might be
-    //     // different from what we originally opened, for example).
-    //     if (event.origin !== "http://localhost:3000") {
-    //         return;
-    //     }
-    //     const { data } = event;
-    //     // if we trust the sender and the source is our popup
-    //     if (data.source === 'lma-login-redirect') {
-    //         // get the URL params and redirect to our server to use Passport to auth/login
-    //         const { payload } = data;
-    //         const redirectUrl = `/auth/google/login${payload}`;
-    //         window.location.pathname = redirectUrl;
-    //     }
-    // };
+    receiveMessage = event => {
+        // Do we trust the sender of this message? (might be
+        // different from what we originally opened, for example).
+        if (event.origin !== "https://yourapi.ru") {
+            return;
+        }
+        const { data } = event;
+        // if we trust the sender and the source is our popup
+        if (data.source === 'lma-login-redirect') {
+            // get the URL params and redirect to our server to use Passport to auth/login
+            const { payload } = data;
+            const redirectUrl = `https://yourapi.ru/oauth2/redirect`;
+            window.location.pathname = redirectUrl;
+        }
+    };
 
-    openSignInWindow(){
+    openSignInWindow(event){
+        event.preventDefault()
         let url = 'https://yourapi.ru/auth/oauth2/authorize/google?redirect_uri=https://yourapi.ru/oauth2/redirect';
-        let name = 'Авторизация при помощи Google';
+        let width = 600, height = 700;
+        let leftPosition, topPosition;
         let windowObjectReference = this.state.windowObjectReference;
         let previousUrl = this.state.previousUrl;
         // remove any existing event listeners
-        //window.removeEventListener('message', this.receiveMessage);
-
+        window.removeEventListener('message', this.receiveMessage);
+        //Allow for borders.
+        leftPosition = (window.screen.width / 2) - ((width / 2) + 10);
+        //Allow for title and status bars.
+        topPosition = (window.screen.height / 2) - ((height / 2) + 50);
         // window features
-        const strWindowFeatures = 'toolbar=no, menubar=no, width=600, height=700, top=100, left=100';
+        // const strWindowFeatures = 'toolbar=no, menubar=no, width=600, height=700, top=300, left=600';
+        const strWindowFeatures = "status=no, height=" + height + ",width=" + width + ",resizable=yes,left="
+            + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY="
+            + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
 
         if (windowObjectReference === null || windowObjectReference.closed) {
             /* if the pointer to the window object in memory does not exist
              or if such pointer exists but the window was closed */
-            windowObjectReference = window.open(url, name, strWindowFeatures);
+            windowObjectReference = window.open(url, 'Окно авторизации', strWindowFeatures);
         } else if (previousUrl !== url) {
             /* if the resource to load is different,
              then we load it in the already opened secondary window and then
              we bring such window back on top/in front of its parent window. */
-            windowObjectReference = window.open(url, name, strWindowFeatures);
+            windowObjectReference = window.open(url, 'Окно авторизации', strWindowFeatures);
             windowObjectReference.focus();
         } else {
             /* else the window reference must exist and the window
@@ -79,7 +89,7 @@ class Login extends Component {
         }
 
         // add the listener for receiving a message from the popup
-        //window.addEventListener('message', event => this.receiveMessage(event), false);
+        window.addEventListener('message', event => this.receiveMessage(event), false);
         // assign the previous URL
         previousUrl = url;
     };
@@ -121,7 +131,7 @@ class Login extends Component {
                             </div>
 
                             <div className='footer-icon-group'>
-                                <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} onClick={this.openSignInWindow}/>
+                                <a href="https://yourapi.ru/auth/oauth2/authorize/google?redirect_uri=https://yourapi.ru/oauth2/redirect" onClick={this.openSignInWindow}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a>
                                 <Icon style={{marginRight: 44, color: '#A5A5A5'}}  link name='facebook' size={'large'} />
                                 <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'} />
                                 <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
