@@ -126,7 +126,7 @@ class App extends Component {
                         <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiCategoryShop}/>
                         <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiDetail}/>
                         <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}/>
-                        <Route component={NotFound}/>
+                        <Route path='*' exact={true} component={NotFound}/>
                     </Switch>
                     <AppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
                     <Alert stack={{limit: 3}}
