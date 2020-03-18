@@ -20,6 +20,7 @@ import {
 import {loadUser, profileImageUpdate, profileInfoUpdate, profilePasswordUpdate} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import ImageUploader from 'react-images-upload';
+import LoadingIndicator from "../home/Home";
 
 class Profile extends Component {
 
@@ -55,7 +56,7 @@ class Profile extends Component {
             language: '',
             city: '',
             info: '',
-            loaded: false
+            loading: false
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
@@ -76,6 +77,9 @@ class Profile extends Component {
         if (img && img.complete) {
             this.handleImageLoaded();
         }
+        this.setState({
+            loading: false
+        });
     }
 
     handleImageLoaded() {
@@ -124,7 +128,6 @@ class Profile extends Component {
     }
 
     handleDropdownChange = (e, {name, value}) => this.setState({[name]: value});
-
 
     handleOnPhoneChange(value) {
         this.setState({
@@ -268,6 +271,11 @@ class Profile extends Component {
     }
 
     render() {
+
+        if (this.state.loading) {
+            return <LoadingIndicator/>
+        }
+
         const {open} = this.state;
         const sexOptions = [
             {
