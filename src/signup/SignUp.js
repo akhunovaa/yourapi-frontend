@@ -258,9 +258,10 @@ class SignupForm2 extends Component {
                                 </Button>
                                 <div className='license-agreement'>
                                     <label style={{float: 'left', color: '#A5A5A5', paddingTop: '8px', wordWrap: 'break-word'}}>Создавая аккаунт, вы принимаете</label>
-                                    <Link
-                                        style={{float: 'left', paddingTop: '0px', color: '#2F80ED', wordWrap: 'break-word'}}
-                                        to="#">пользовательские соглашения и политику конфиденциальности</Link>
+                                    <div style={{float: 'left', paddingTop: '0px', color: '#2F80ED', wordWrap: 'break-word'}}>
+                                             <a href="/agreement.html" target="_blank" rel="noopener noreferrer">пользовательские соглашения </a><span style={{color: '#A5A5A5'}}>и</span>
+                                             <a href="/privacy.html" target="_blank" rel="noopener noreferrer"> политику конфиденциальности</a>
+                                    </div>
                                 </div>
                         </Segment>
                     </Form>
