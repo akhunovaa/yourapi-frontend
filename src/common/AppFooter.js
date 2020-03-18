@@ -14,10 +14,10 @@ class AppFooter extends Component {
                         </div>
 
                         <div className="footer-link-container">
-                            <NavLink to="/"><span style={{color: '#F2F2F2'}}>Политика конфиденциальности</span></NavLink>
+                            <a href="/privacy.html" target="_blank" rel="noopener noreferrer"><span style={{color: '#F2F2F2'}}>Политика конфиденциальности</span></a>
                         </div>
                         <div className="footer-link-container">
-                            <NavLink to="/"><span style={{color: '#F2F2F2'}}>Пользовательское соглашение</span></NavLink>
+                            <a href="/agreement.html" target="_blank" rel="noopener noreferrer"><span style={{color: '#F2F2F2'}}>Пользовательское соглашение</span></a>
                         </div>
                         <div className='footer-icons-group'>
                             <div className='footer-icon-container'>
