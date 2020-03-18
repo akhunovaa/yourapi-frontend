@@ -7,6 +7,7 @@ import {Link, Redirect} from "react-router-dom";
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, API_BASE_URL, OAUTH2_REDIRECT_URI } from '../constants';
 import registerServiceWorker from '../util/../registerServiceWorker';
 import {unregister} from '../util/../registerServiceWorker';
+import LoadingIndicator from "../home/Home";
 
 class Login extends Component {
 
@@ -14,8 +15,8 @@ class Login extends Component {
         super(props);
         this.state = {
             previousUrl: '',
-            windowObjectReference: null
-
+            windowObjectReference: null,
+            loading: true
         };
         this.openSignInWindow = this.openSignInWindow.bind(this);
     }
@@ -23,7 +24,7 @@ class Login extends Component {
     componentDidMount() {
         // If the OAuth2 login encounters an error, the user is redirected to the /login page with an error.
         // Here we display the error and then remove the error query parameter from the location.
-        if (this.props.location.state && this.props.location.state.error) {
+        if (this.props.location && this.props.location.state && this.props.location.state.error) {
             setTimeout(() => {
                 Alert.error(this.props.location.state.error, {
                     timeout: 5000
@@ -34,6 +35,7 @@ class Login extends Component {
                 });
             }, 100);
         }
+        this.setState({loading: false})
     }
 
     receiveMessage = event => {
@@ -93,12 +95,14 @@ class Login extends Component {
                 }}/>;
         }
 
+        if (this.state.loading) {
+            return <LoadingIndicator/>
+        }
+
         let host = window.location.origin.toString();
         let redirectUri = host + OAUTH2_REDIRECT_URI;
         const googleAuthUrl = host + GOOGLE_AUTH_URL + redirectUri;
         const facebookAuthUrl = host + FACEBOOK_AUTH_URL + redirectUri;
-        console.log(googleAuthUrl)
-        console.log(facebookAuthUrl)
         return (
             <div id="login-container">
 

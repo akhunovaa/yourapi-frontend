@@ -8,6 +8,7 @@ import Alert from "react-s-alert";
 import { ReCaptcha } from 'react-recaptcha-google'
 import {unregister} from "../registerServiceWorker";
 import registerServiceWorker from "../registerServiceWorker";
+import LoadingIndicator from "../login/Login";
 
 class SignUp extends Component {
 
@@ -15,10 +16,19 @@ class SignUp extends Component {
         super(props);
         this.state = {
             previousUrl: '',
-            windowObjectReference: null
-
+            windowObjectReference: null,
+            loading: true
         };
         this.openSignInWindow = this.openSignInWindow.bind(this);
+    }
+
+    componentDidMount() {
+
+        if (this.captcha) {
+            this.captcha.reset();
+        }
+
+        this.setState({loading: false});
     }
 
     receiveMessage = event => {
@@ -76,6 +86,10 @@ class SignUp extends Component {
                     pathname: "/",
                     state: {from: this.props.location}
                 }}/>;
+        }
+
+        if (this.state.loading) {
+            return <LoadingIndicator/>
         }
 
         let host = window.location.origin.toString();
