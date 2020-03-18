@@ -3,7 +3,7 @@ import './Signup.css';
 import {Link, Redirect} from 'react-router-dom'
 import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import { signup } from "../util/APIUtils";
-import {ACCESS_TOKEN, GOOGLE_AUTH_URL, OAUTH2_REDIRECT_URI} from "../constants";
+import {ACCESS_TOKEN, FACEBOOK_AUTH_URL, GOOGLE_AUTH_URL, OAUTH2_REDIRECT_URI} from "../constants";
 import Alert from "react-s-alert";
 import { ReCaptcha } from 'react-recaptcha-google'
 import {unregister} from "../registerServiceWorker";
@@ -27,10 +27,20 @@ class SignUp extends Component {
 
     openSignInWindow(event){
         event.preventDefault();
+        const target = event.target;
+        const inputId = target.id;
         unregister();
         let host = window.location.origin.toString();
         let redirectUri = host + OAUTH2_REDIRECT_URI;
-        let authUrl = host + GOOGLE_AUTH_URL + redirectUri;
+        let authUrl;
+        switch (inputId) {
+            case "google":
+                authUrl = host + GOOGLE_AUTH_URL + redirectUri;
+                break;
+            case "facebook":
+                authUrl = host + FACEBOOK_AUTH_URL + redirectUri;
+                break;
+        }
         let width = 600, height = 700;
         let leftPosition, topPosition;
         let windowObjectReference = this.state.windowObjectReference;
@@ -100,8 +110,8 @@ class SignUp extends Component {
                         </div>
 
                         <div className='footer-icon-group'>
-                            {this.props.isMobile ?  <a href={authUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'} onClick={this.openSignInWindow}/>}
-                            <Icon style={{marginRight: 44, color: '#A5A5A5'}}  link name='facebook' size={'large'} />
+                            {this.props.isMobile ?  <a href={authUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='google' name='google' size={'large'} onClick={this.openSignInWindow}/>}
+                            {this.props.isMobile ?  <a href={authUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='facebook' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='facebook' name='facebook' size={'large'} onClick={this.openSignInWindow}/>}
                             <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'} />
                             <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
                         </div>
