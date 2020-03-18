@@ -80,7 +80,8 @@ class SignUp extends Component {
 
         let host = window.location.origin.toString();
         let redirectUri = host + OAUTH2_REDIRECT_URI;
-        const authUrl = host + GOOGLE_AUTH_URL + redirectUri;
+        const googleAuthUrl = host + GOOGLE_AUTH_URL + redirectUri;
+        const facebookAuthUrl = host + FACEBOOK_AUTH_URL + redirectUri;
 
         return (
             <div id="login-container">
@@ -110,8 +111,8 @@ class SignUp extends Component {
                         </div>
 
                         <div className='footer-icon-group'>
-                            {this.props.isMobile ?  <a href={authUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='google' name='google' size={'large'} onClick={this.openSignInWindow}/>}
-                            {this.props.isMobile ?  <a href={authUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='facebook' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='facebook' name='facebook' size={'large'} onClick={this.openSignInWindow}/>}
+                            {this.props.isMobile ?  <a href={googleAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='google' name='google' size={'large'} onClick={this.openSignInWindow}/>}
+                            {this.props.isMobile ?  <a href={facebookAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='facebook' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='facebook' name='facebook' size={'large'} onClick={this.openSignInWindow}/>}
                             <Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'} />
                             <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
                         </div>
