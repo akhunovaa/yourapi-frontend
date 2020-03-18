@@ -11,6 +11,7 @@ import {NavLink} from "react-router-dom";
 import {Icon} from "semantic-ui-react";
 import {apiProjectListGet} from "../../util/APIUtils";
 import Alert from "react-s-alert";
+import LoadingIndicator from "../Profile";
 
 class Api extends Component {
 
@@ -19,6 +20,7 @@ class Api extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: false,
             user: {},
             open: false,
             page: '',
@@ -37,6 +39,9 @@ class Api extends Component {
     componentDidMount() {
         this._isMounted = true;
         if (this.state.projects.length > 0) return;
+        this.setState({
+            loading: true
+        });
         apiProjectListGet()
             .then(response => {
                 if (this._isMounted) {
@@ -46,6 +51,9 @@ class Api extends Component {
                 }
             }).catch(error => {
             Alert.error('Ошибка получения списка проектов' || (error && error.message));
+        });
+        this.setState({
+            loading: false
         });
     }
 
@@ -86,7 +94,6 @@ class Api extends Component {
             [inputName]: inputValue
         });
     }
-
 
     handleOnPhoneChange(value) {
         this.setState({
@@ -144,6 +151,11 @@ class Api extends Component {
         }
     }
     render() {
+
+        if (this.state.loading) {
+            return <LoadingIndicator/>
+        }
+
         return (
             <div className='api-main'>
                 <div className='left-side-api-body'>
