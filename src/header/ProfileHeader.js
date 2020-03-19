@@ -79,7 +79,7 @@ class ProfileHeader extends Component {
                                     <List size={"big"}>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/"><span className="portal-item portal-item-main">Личный кабинет</span></NavLink>
+                                                <NavLink to="/"><span className="portal-item portal-item-main">Главная страница</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
