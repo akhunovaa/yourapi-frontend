@@ -4,7 +4,7 @@ import Alert from 'react-s-alert';
 import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import {login} from "../util/APIUtils";
 import {Link, Redirect} from "react-router-dom";
-import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, VK_AUTH_URL, OAUTH2_REDIRECT_URI } from '../constants';
+import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, VK_AUTH_URL, YANDEX_AUTH_URL, OAUTH2_REDIRECT_URI } from '../constants';
 import registerServiceWorker from '../util/../registerServiceWorker';
 import {unregister} from '../util/../registerServiceWorker';
 import LoadingIndicator from "../home/Home";
@@ -60,6 +60,9 @@ class Login extends Component {
             case "vk":
                 authUrl = host + VK_AUTH_URL + redirectUri;
                 break;
+            case "yandex":
+                authUrl = host + YANDEX_AUTH_URL + redirectUri;
+                break;
         }
         let width = 600, height = 700;
         let leftPosition, topPosition;
@@ -107,6 +110,7 @@ class Login extends Component {
         const googleAuthUrl = host + GOOGLE_AUTH_URL + redirectUri;
         const facebookAuthUrl = host + FACEBOOK_AUTH_URL + redirectUri;
         const vkAuthUrl = host + VK_AUTH_URL + redirectUri;
+        const yandexAuthUrl = host + YANDEX_AUTH_URL + redirectUri;
 
         return (
             <div id="login-container">
@@ -139,7 +143,7 @@ class Login extends Component {
                                 {this.props.isMobile ?  <a href={googleAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='google' name='google' size={'large'} onClick={this.openSignInWindow}/>}
                                 {this.props.isMobile ?  <a href={facebookAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='facebook' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='facebook' name='facebook' size={'large'} onClick={this.openSignInWindow}/>}
                                 {this.props.isMobile ?  <a href={vkAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='vk' name='vk' size={'large'} onClick={this.openSignInWindow}/>}
-                                <Icon style={{color: '#A5A5A5'}} link name='yandex' size={'large'} />
+                                {this.props.isMobile ?  <a href={yandexAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='yandex' name='yandex' size={'large'} onClick={this.openSignInWindow}/>}
                             </div>
                         </div>
                 </div>
