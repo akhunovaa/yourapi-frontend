@@ -86,6 +86,7 @@ class Profile extends Component {
         if (!this.state.loaded) {
             this.setState({loaded: true});
         }
+        this.setState({loading: false});
     }
 
     loadUser(handle) {
