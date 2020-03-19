@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@iconify/icons-fa-brands": "^1.0.10",
+    "@iconify/react": "^1.1.3",
     "@material-ui/core": "^4.8.2",
     "classnames": "^2.2.6",
     "history": "^4.9.0",
