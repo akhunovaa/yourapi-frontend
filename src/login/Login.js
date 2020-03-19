@@ -8,6 +8,9 @@ import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, VK_AUTH_URL, YANDEX_A
 import registerServiceWorker from '../util/../registerServiceWorker';
 import {unregister} from '../util/../registerServiceWorker';
 import LoadingIndicator from "../home/Home";
+import { Icon as Iconx } from '@iconify/react';
+import battleNet from '@iconify/icons-fa-brands/battle-net';
+
 
 class Login extends Component {
 
@@ -143,7 +146,8 @@ class Login extends Component {
                                 {this.props.isMobile ?  <a href={googleAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='google' name='google' size={'large'} onClick={this.openSignInWindow}/>}
                                 {this.props.isMobile ?  <a href={facebookAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='facebook' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='facebook' name='facebook' size={'large'} onClick={this.openSignInWindow}/>}
                                 {this.props.isMobile ?  <a href={vkAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='vk' name='vk' size={'large'} onClick={this.openSignInWindow}/>}
-                                {this.props.isMobile ?  <a href={yandexAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='yandex' name='yandex' size={'large'} onClick={this.openSignInWindow}/>}
+                                {this.props.isMobile ?  <a href={yandexAuthUrl}><Icon style={{marginRight: 20, color: '#A5A5A5'}} link name='vk' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='yandex' name='yandex' size={'large'} onClick={this.openSignInWindow}/>}
+                                <Iconx style={{marginRight: 20, color: '#A5A5A5', width: 24, height: 24, verticalAlign: "middle"}} icon={battleNet} />
                             </div>
                         </div>
                 </div>
