@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './AppHeader.css';
 import {Link, NavLink, withRouter} from "react-router-dom";
-import {Icon, Input, Dropdown, Portal, Divider, Segment, List, Button} from "semantic-ui-react";
+import {Icon, Input, Dropdown, Portal, Divider, Segment, List, Button, Image} from "semantic-ui-react";
 import ProfileHeader from "../header/ProfileHeader";
 import AdministrationHeader from "../header/AdministrationHeader";
 import ApiHeader from "../header/ApiHeader";
@@ -19,39 +19,39 @@ class AppHeader extends Component {
     renderSwitch(path) {
         switch(path) {
             case '/':
-                return <HomeHeader onLogout={this.props.onLogout}/>;
+                return <HomeHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/integrator':
-                return <IntegratorHeader onLogout={this.props.onLogout}/>;
+                return <IntegratorHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop':
-                return <ShopHeader onLogout={this.props.onLogout}/>;
+                return <ShopHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/profile':
-                return <ProfileHeader onLogout={this.props.onLogout}/>;
+                return <ProfileHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/profile/administration':
-                return <AdministrationHeader onLogout={this.props.onLogout}/>;
+                return <AdministrationHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/profile/api':
-                return <ApiHeader onLogout={this.props.onLogout}/>;
+                return <ApiHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/data':
-                return <ShopCategoryHeader onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/finance':
-                return <ShopCategoryHeader onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/mobile':
-                return <ShopCategoryHeader onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/map':
-                return <ShopCategoryHeader onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/adv':
-                return <ShopCategoryHeader onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/social':
-                return <ShopCategoryHeader onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/health':
-                return <ShopCategoryHeader onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/sport':
-                return <ShopCategoryHeader onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/web':
-                return <ShopCategoryHeader onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/other':
-                return <ShopCategoryHeader onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
             default:
-                return <HomeHeader onLogout={this.props.onLogout}/>;
+                return <HomeHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
         }
     }
 
@@ -76,7 +76,8 @@ class HomeHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
         };
     }
 
@@ -132,7 +133,13 @@ class HomeHeader extends Component {
                             closeOnTriggerClick
                             closeOnDocumentClick
                             trigger={
-                                <Icon link name='user circle' />
+                                    this.state.imageUrl ? (
+                                        <div className="profile-header-avatar">
+                                            <Image src={this.state.imageUrl} size='small' circular verticalAlign='center'/>
+                                        </div>
+                                    ) : (
+                                        <Icon link name='user circle' />
+                                    )
                             }
                             open={open}
                             onOpen={this.handleOpen}
@@ -190,7 +197,8 @@ class IntegratorHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
         };
     }
 
@@ -251,7 +259,13 @@ class IntegratorHeader extends Component {
                             closeOnTriggerClick
                             closeOnDocumentClick
                             trigger={
-                                <Icon link name='user circle' />
+                                this.state.imageUrl ? (
+                                    <div className="profile-header-avatar">
+                                        <Image src={this.state.imageUrl} size='small' circular verticalAlign='center'/>
+                                    </div>
+                                ) : (
+                                    <Icon link name='user circle' />
+                                )
                             }
                             open={open}
                             onOpen={this.handleOpen}
@@ -310,7 +324,8 @@ class ShopHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
         };
     }
 
@@ -371,7 +386,13 @@ class ShopHeader extends Component {
                             closeOnTriggerClick
                             closeOnDocumentClick
                             trigger={
-                                <Icon link name='user circle' />
+                                this.state.imageUrl ? (
+                                    <div className="profile-header-avatar">
+                                        <Image src={this.state.imageUrl} size='small' circular verticalAlign='center'/>
+                                    </div>
+                                ) : (
+                                    <Icon link name='user circle' />
+                                )
                             }
                             open={open}
                             onOpen={this.handleOpen}
@@ -430,7 +451,8 @@ class ShopCategoryHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
         };
     }
 
@@ -491,7 +513,13 @@ class ShopCategoryHeader extends Component {
                             closeOnTriggerClick
                             closeOnDocumentClick
                             trigger={
-                                <Icon link name='user circle' />
+                                this.state.imageUrl ? (
+                                    <div className="profile-header-avatar">
+                                        <Image src={this.state.imageUrl} size='small' circular verticalAlign='center'/>
+                                    </div>
+                                ) : (
+                                    <Icon link name='user circle' />
+                                )
                             }
                             open={open}
                             onOpen={this.handleOpen}

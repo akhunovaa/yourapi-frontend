@@ -94,7 +94,7 @@ class App extends Component {
 
             return (
                 <div>
-                    <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
+                    <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} currentUser={this.state.currentUser}/>
                     <Switch>
                         {/*<Route exact path="/" render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>

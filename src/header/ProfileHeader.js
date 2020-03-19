@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import './ProfileHeader.css';
 import {Link, NavLink} from "react-router-dom";
-import {Icon, Input, Dropdown, Portal, Divider, Segment, List} from "semantic-ui-react";
+import {Icon, Dropdown, Portal, Divider, Segment, List, Image} from "semantic-ui-react";
 
 class ProfileHeader extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
         };
     }
 
@@ -68,7 +69,13 @@ class ProfileHeader extends Component {
                             closeOnTriggerClick
                             closeOnDocumentClick
                             trigger={
-                                <Icon link name='user circle' />
+                                this.state.imageUrl ? (
+                                    <div className="profile-header-avatar">
+                                        <Image src={this.state.imageUrl} size='small' circular verticalAlign='center'/>
+                                    </div>
+                                ) : (
+                                    <Icon link name='user circle' />
+                                )
                             }
                             open={open}
                             onOpen={this.handleOpen}
