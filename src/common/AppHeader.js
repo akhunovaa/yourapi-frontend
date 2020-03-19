@@ -19,39 +19,39 @@ class AppHeader extends Component {
     renderSwitch(path) {
         switch(path) {
             case '/':
-                return <HomeHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <HomeHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/integrator':
-                return <IntegratorHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <IntegratorHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop':
-                return <ShopHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/profile':
-                return <ProfileHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ProfileHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/profile/administration':
-                return <AdministrationHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <AdministrationHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/profile/api':
-                return <ApiHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ApiHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/data':
-                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/finance':
-                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/mobile':
-                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/map':
-                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/adv':
-                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/social':
-                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/health':
-                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/sport':
-                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/web':
-                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/shop/category/other':
-                return <ShopCategoryHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             default:
-                return <HomeHeader currentUser={this.state.currentUser} onLogout={this.props.onLogout}/>;
+                return <HomeHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
         }
     }
 
