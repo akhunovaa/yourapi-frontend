@@ -1,6 +1,7 @@
 .profile-header{
     height: 64px;
-    min-width: 1348px;
+    /*min-width: 1348px;*/
+    min-width: 1235px;
     background-color: #2F80ED;
     color: rgb(255, 255, 255);
     width: auto;
