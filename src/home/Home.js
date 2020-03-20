@@ -118,8 +118,8 @@ class Home extends Component {
                             <NavLink to="/"><b style={{color: '#F2F2F2'}}>YourAPI</b></NavLink>
                         </div>
                         <div className="header-slogan">
-                            <label>Небольшой рекламный</label><br />
-                            <label>слоган. Может в две строчки</label>
+                            <label>Your Marketplace Your's API</label><br />
+                            <label>Artificial. Programmable. Intelligence.</label>
                         </div>
                         <div className="header-buttons">
                             <div className="header-api-create-button">
