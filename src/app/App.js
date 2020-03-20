@@ -96,28 +96,11 @@ class App extends Component {
                 <div>
                     <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} currentUser={this.state.currentUser}/>
                     <Switch>
-                        {/*<Route exact path="/" render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>
                         <Route exact path="/login"
                                render={(props) => <Login isMobile={isMobile} history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
                         <Route exact path="/signup"
                                render={(props) => <SignUp isMobile={isMobile} history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
-                        {/*<Route exact path="/profile"*/}
-                               {/*render={(props) => <Profile authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/profile/administration"*/}
-                               {/*render={(props) => <Administration authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/profile/api"*/}
-                               {/*render={(props) => <Api authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/integrator"*/}
-                               {/*render={(props) => <Integrators authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/integrator/profile/:id?"*/}
-                               {/*render={(props) => <Integrators authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/shop"*/}
-                               {/*render={(props) => <Shop authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/shop/category/:category?"*/}
-                               {/*render={(props) => <ApiCategoryShop authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/shop/category/:category?/api/:id?"*/}
-                               {/*render={(props) => <ApiDetail authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}/>
                         <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Administration}/>
                         <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Api}/>
