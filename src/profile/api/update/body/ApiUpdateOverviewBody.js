@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './ApiDetailsBody.css';
-import {Button, Divider, Dropdown, Form, Input, TextArea} from "semantic-ui-react";
+import {Button, Dropdown, Form, Image, Input, TextArea} from "semantic-ui-react";
+import ApiImageDropzone from "../../../../dropzone/ApiImageDropzone";
 
 class ApiUpdateOverviewBody extends Component {
 
@@ -13,15 +14,19 @@ class ApiUpdateOverviewBody extends Component {
             apiDescription: 'Описание',
             category: 'Финансы',
             terms: 'Особые условия',
-            formUpdateDisabled: true
+            formUpdateDisabled: true,
+            apiProjectImageUrl: '',
+            loading: false
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
+        this.onClickReset = this.onClickReset.bind(this);
     }
 
     componentDidMount() {
         this._isMounted = true;
+        this.setState({loading: false});
     }
 
     componentWillUnmount() {
@@ -52,6 +57,9 @@ class ApiUpdateOverviewBody extends Component {
         this.setState({open: false})
     };
 
+    onClickReset() {
+       this.reload();
+    }
 
     render() {
         const apiCategoryOptions = [
@@ -129,22 +137,38 @@ class ApiUpdateOverviewBody extends Component {
                     <div className="detail-overview-api-name-input">
                         <label style={{textAlign: 'left', paddingBottom: 6}}>Описание</label>
                         <Form>
-                                        <TextArea className='detail-overview-api-name-textarea' onChange={this.handleInputChange} placeholder='Расскажите о своем API'
+                                        <TextArea className='detail-overview-api-name-textarea'
+                                                  onChange={this.handleInputChange} placeholder='Расскажите о своем API'
                                                   id="apiDescription" disabled={this.state.formUpdateDisabled}
                                                   name="apiDescription" defaultValue={this.state.apiDescription}/>
                         </Form>
                     </div>
+
+                    <div className="detail-overview-api-name-input">
+                        <label style={{textAlign: 'left', paddingBottom: 6}}>Загрузка изображения (JPEG/PNG 500x500)</label>
+                        <ApiImageDropzone onFilesAdded={this.onFilesAdded} uploadFiles={this.uploadFiles}
+                                onClickReset={this.onClickReset} sendRequest={this.uploadNewImage}
+                                hasExtension={this.hasExtension}
+                                file={this.state.file} uploading={this.state.uploading}
+                                uploadProgress={this.state.uploadProgress}
+                                successfullUploaded={this.state.successfullUploaded} setErrorFileState={this.setErrorFileState} apiName={this.state.apiName}/>
+
+                    </div>
+
                     <div className="api-add-container-input api-add-container-input-element">
-                        <label style={{textAlign: 'left', paddingBottom: 6}}>Описание</label>
+                        <label style={{textAlign: 'left', paddingBottom: 6}}>Категория</label>
                         <Dropdown onChange={this.handleDropdownChange} placeholder='Категория' fluid search
                                   selection id="category" name="category" noResultsMessage="Москва - лучший город"
-                                  className="form-input" options={apiCategoryOptions} disabled={this.state.formUpdateDisabled}
+                                  className="form-input" options={apiCategoryOptions}
+                                  disabled={this.state.formUpdateDisabled}
                                   defaultValue={this.state.category}/>
                     </div>
                     <div className="detail-overview-api-name-input">
                         <label style={{textAlign: 'left', paddingBottom: 6}}>Условия использования</label>
                         <Form>
-                                        <TextArea className='detail-overview-api-name-textarea' onChange={this.handleInputChange} placeholder='Опишите условия по использованию'
+                                        <TextArea className='detail-overview-api-name-textarea'
+                                                  onChange={this.handleInputChange}
+                                                  placeholder='Опишите условия по использованию'
                                                   id="terms" disabled={this.state.formUpdateDisabled}
                                                   name="terms" defaultValue={this.state.terms}/>
                         </Form>
@@ -152,11 +176,13 @@ class ApiUpdateOverviewBody extends Component {
 
                     <div className="api-update-buttons">
                         <div className='apply-button-container'>
-                            <Button fluid className="apply-button" style={{width: 112, height: 32, background: '#2F80ED'}}><span
+                            <Button fluid className="apply-button"
+                                    style={{width: 112, height: 32, background: '#2F80ED'}}><span
                                 className='command-approve-buttons-text'>Сохранить</span></Button>
                         </div>
                         <div className='cancel-button-container api-info-cancel-button'>
-                            <Button fluid className="cancel-button" style={{background: '#A5A5A5', width: 112, height: 32}}>
+                            <Button fluid className="cancel-button"
+                                    style={{background: '#A5A5A5', width: 112, height: 32}}>
                                 <span className='command-approve-buttons-text'>Отмена</span>
                             </Button>
                         </div>
