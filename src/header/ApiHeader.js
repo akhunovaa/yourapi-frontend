@@ -71,7 +71,7 @@ class ApiHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <Image src={this.state.imageUrl} size='small' circular verticalAlign='center'/>
+                                        <Image src={this.state.imageUrl} size='small' circular verticalAlign='middle'/>
                                     </div>
                                 ) : (
                                     <Icon link name='user circle' />

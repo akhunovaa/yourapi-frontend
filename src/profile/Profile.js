@@ -20,7 +20,7 @@ import {
 import {loadUser, profileImageUpdate, profileInfoUpdate, profilePasswordUpdate} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import ImageUploader from 'react-images-upload';
-import LoadingIndicator from "../home/Home";
+import LoadingIndicator from '../common/LoadingIndicator';
 
 class Profile extends Component {
 
@@ -362,7 +362,7 @@ class Profile extends Component {
                                 {
                                     this.state.imageUrl ? (
                                         <Image src={this.state.imageUrl} size='medium' circular verticalAlign='top'
-                                               alt={this.state.user.name} ref={this.image}
+                                               alt={this.state.user.name}
                                                onLoad={this.handleImageLoaded}/>
                                     ) : (
                                         <div className="text-avatar">
