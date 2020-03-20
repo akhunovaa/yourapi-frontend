@@ -20,6 +20,9 @@ class AppFooter extends Component {
                         <div className="footer-link-container">
                             <a href="/agreement.html" target="_blank" rel="noopener noreferrer"><span style={{color: '#F2F2F2'}}>Пользовательское соглашение</span></a>
                         </div>
+                        <div className="footer-link-container">
+                            <a href={"mailto:support@yourapi.ru"} rel="noopener noreferrer"><span style={{color: '#F2F2F2'}}>Служба поддержки</span></a>
+                        </div>
                         <div className='footer-icons-group'>
                             <div className='footer-icon-container'>
                                 <Icon link size={'large'}  name='twitter' />
