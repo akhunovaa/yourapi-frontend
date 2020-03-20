@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './AppFooter.css';
 import {NavLink} from "react-router-dom";
 import {Icon, Dropdown} from "semantic-ui-react";
+import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";
 
 class AppFooter extends Component {
     render() {
@@ -40,6 +41,7 @@ class AppFooter extends Component {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
+                        <ScrollUpButton EasingType="easeOutCubic"/>
                     </div>
                 ) : (
                     <div className="footer">
