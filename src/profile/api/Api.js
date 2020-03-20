@@ -11,7 +11,7 @@ import {NavLink} from "react-router-dom";
 import {Icon} from "semantic-ui-react";
 import {apiProjectListGet} from "../../util/APIUtils";
 import Alert from "react-s-alert";
-import LoadingIndicator from "../Profile";
+import LoadingIndicator from '../../common/LoadingIndicator';
 
 class Api extends Component {
 

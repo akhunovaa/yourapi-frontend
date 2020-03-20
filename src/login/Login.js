@@ -7,7 +7,7 @@ import {Link, Redirect} from "react-router-dom";
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, VK_AUTH_URL, YANDEX_AUTH_URL, OAUTH2_REDIRECT_URI, BATTLE_NET_AUTH_URL } from '../constants';
 import registerServiceWorker from '../util/../registerServiceWorker';
 import {unregister} from '../util/../registerServiceWorker';
-import LoadingIndicator from "../home/Home";
+import LoadingIndicator from '../common/LoadingIndicator';
 import { Icon as Iconx } from '@iconify/react';
 import battleNet from '@iconify/icons-fa-brands/battle-net';
 
@@ -38,6 +38,10 @@ class Login extends Component {
                 });
             }, 100);
         }
+        this.setState({loading: false})
+    }
+
+    componentWillUnmount() {
         this.setState({loading: false})
     }
 

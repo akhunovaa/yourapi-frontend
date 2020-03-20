@@ -8,7 +8,7 @@ import Alert from "react-s-alert";
 import { ReCaptcha } from 'react-recaptcha-google'
 import {unregister} from "../registerServiceWorker";
 import registerServiceWorker from "../registerServiceWorker";
-import LoadingIndicator from "../login/Login";
+import LoadingIndicator from '../common/LoadingIndicator';
 import {Icon as Iconx} from "@iconify/react";
 import battleNet from "@iconify/icons-fa-brands/battle-net";
 
