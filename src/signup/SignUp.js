@@ -3,12 +3,14 @@ import './Signup.css';
 import {Link, Redirect} from 'react-router-dom'
 import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import { signup } from "../util/APIUtils";
-import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, VK_AUTH_URL, YANDEX_AUTH_URL, OAUTH2_REDIRECT_URI } from '../constants';
+import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, VK_AUTH_URL, YANDEX_AUTH_URL, OAUTH2_REDIRECT_URI, BATTLE_NET_AUTH_URL } from '../constants';
 import Alert from "react-s-alert";
 import { ReCaptcha } from 'react-recaptcha-google'
 import {unregister} from "../registerServiceWorker";
 import registerServiceWorker from "../registerServiceWorker";
 import LoadingIndicator from "../login/Login";
+import {Icon as Iconx} from "@iconify/react";
+import battleNet from "@iconify/icons-fa-brands/battle-net";
 
 class SignUp extends Component {
 
@@ -55,6 +57,9 @@ class SignUp extends Component {
                 break;
             case "yandex":
                 authUrl = host + YANDEX_AUTH_URL + redirectUri;
+                break;
+            case "battlenet":
+                authUrl = host + BATTLE_NET_AUTH_URL + redirectUri;
                 break;
         }
         let width = 600, height = 700;
@@ -104,6 +109,7 @@ class SignUp extends Component {
         const facebookAuthUrl = host + FACEBOOK_AUTH_URL + redirectUri;
         const vkAuthUrl = host + VK_AUTH_URL + redirectUri;
         const yandexAuthUrl = host + YANDEX_AUTH_URL + redirectUri;
+        const battlenetAuthUrl = host + BATTLE_NET_AUTH_URL + redirectUri;
 
         return (
             <div id="login-container">
@@ -137,6 +143,7 @@ class SignUp extends Component {
                             {this.props.isMobile ?  <a href={facebookAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='facebook' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='facebook' name='facebook' size={'large'} onClick={this.openSignInWindow}/>}
                             {this.props.isMobile ?  <a href={vkAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='vk' name='vk' size={'large'} onClick={this.openSignInWindow}/>}
                             {this.props.isMobile ?  <a href={yandexAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='yandex' name='yandex' size={'large'} onClick={this.openSignInWindow}/>}
+                            {this.props.isMobile ?  <a href={battlenetAuthUrl}><Iconx className='battle-net-auth-icon' icon={battleNet} id='battlenet' name='battlenet'/></a> : <Iconx className='battle-net-auth-icon' icon={battleNet} id='battlenet' name='battlenet' onClick={this.openSignInWindow}/>}
                         </div>
 
 
