@@ -44,7 +44,7 @@ class AppFooter extends Component {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
-                        <ScrollUpButton EasingType="easeOutCubic"/>
+                        <ScrollUpButton style={{bottom: 50, backgroundColor: 'none', border: 'none'}} EasingType="easeOutCubic"/>
                     </div>
                 ) : (
                     <div className="footer">
