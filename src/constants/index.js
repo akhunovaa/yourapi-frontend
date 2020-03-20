@@ -5,3 +5,4 @@ export const GOOGLE_AUTH_URL = '/auth/oauth2/authorize/google?redirect_uri=';
 export const FACEBOOK_AUTH_URL = '/auth/oauth2/authorize/facebook?redirect_uri=';
 export const VK_AUTH_URL = '/auth/oauth2/authorize/vk?redirect_uri=';
 export const YANDEX_AUTH_URL = '/auth/oauth2/authorize/yandex?redirect_uri=';
+export const BATTLE_NET_AUTH_URL = '/auth/oauth2/authorize/battlenet?redirect_uri=';
