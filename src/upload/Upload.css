@@ -7,6 +7,17 @@
     overflow: hidden;
 }
 
+.image-upload {
+    display: inline-block;
+    flex-direction: column;
+    flex: 1;
+    align-items: flex-start;
+    text-align: left;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+}
+
 .Content {
     display: flex;
     flex-direction: row;
