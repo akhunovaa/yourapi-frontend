@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Api.css';
-import {withRouter} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import queryString from "query-string";
 import ApiUpdateOverviewHeader from "./update/header/ApiUpdateOverviewHeader";
 import ApiUpdateMainHeader from "./update/header/ApiUpdateMainHeader";
@@ -14,6 +14,7 @@ import ApiUpdateEndpointsBody from "./update/body/ApiUpdateEndpointsBody";
 import ApiUpdatePriceBody from "./update/body/ApiUpdatePriceBody";
 import ApiUpdateDocsBody from "./update/body/ApiUpdateDocsBody";
 import ApiUpdateOverviewBody from "./update/body/ApiUpdateOverviewBody";
+
 class ApiUpdateBody extends Component {
 
     _isMounted = false;
@@ -29,10 +30,12 @@ class ApiUpdateBody extends Component {
         this.handleCheck = this.handleCheck.bind(this);
         this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
         this.renderSwitchBody = this.renderSwitchBody.bind(this);
+        this.iterateApiProjectList = this.iterateApiProjectList.bind(this);
     }
 
     componentDidMount() {
         this._isMounted = true;
+        this.forceUpdate()
     }
 
     componentWillUnmount() {
@@ -54,6 +57,22 @@ class ApiUpdateBody extends Component {
 
     handleCheck(array, val) {
         return array.some(item => item === val);
+    }
+
+    iterateApiProjectList(array, val) {
+        for (const arrayElement of array) {
+            if(arrayElement.name === val){
+                return arrayElement;
+            }
+        }
+    }
+
+    iterateApiProjectList(array, val) {
+        for (const arrayElement of array) {
+            if(arrayElement.name === val){
+                return arrayElement;
+            }
+        }
     }
 
     renderSwitchHeader() {
@@ -82,9 +101,10 @@ class ApiUpdateBody extends Component {
         const pagingArray = ['overview', 'settings', 'endpoints', 'price', 'docs', 'announcements'];
         const params = queryString.parse(this.props.location.search);
         const paging = (params.definition !== 'undefined' && this.handleCheck(pagingArray, params.definition)) ? params.definition : 'overview';
+        const apiProject = this.iterateApiProjectList(this.props.projects, this.props.naming);
         switch (paging) {
             case 'overview':
-                return <ApiUpdateOverviewBody naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateOverviewBody key={apiProject.id} naming={this.props.naming} projects={this.props.projects} apiProject={apiProject} {...this.props}/>;
             case 'settings':
                 return <ApiUpdateMainBody naming={this.props.naming} {...this.props}/>;
             case 'endpoints':

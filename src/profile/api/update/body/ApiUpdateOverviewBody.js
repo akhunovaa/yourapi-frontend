@@ -10,22 +10,27 @@ class ApiUpdateOverviewBody extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            apiName: 'Тест',
-            apiDescription: 'Описание',
+            id: 0,
+            name: '',
+            description: 'Описание',
             category: 'Финансы',
             terms: 'Особые условия',
-            formUpdateDisabled: true,
+            formUpdateDisabled: false,
             apiProjectImageUrl: '',
-            loading: false
+            loading: false,
+            api: this.props.apiProject
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
         this.onClickReset = this.onClickReset.bind(this);
+        this.iterateApiProjectList = this.iterateApiProjectList.bind(this);
+        this.handleNamingCheck = this.handleNamingCheck.bind(this);
     }
 
     componentDidMount() {
         this._isMounted = true;
+        this.iterateApiProjectList(this.props.projects, this.props.naming);
         this.setState({loading: false});
     }
 
@@ -59,6 +64,24 @@ class ApiUpdateOverviewBody extends Component {
 
     onClickReset() {
        this.reload();
+    }
+
+    handleNamingCheck(array, val) {
+        return array.some(item => item.name === val);
+    }
+
+    iterateApiProjectList(array, val) {
+        for (const arrayElement of array) {
+            if(arrayElement.name === val){
+                this.setState({
+                    id: arrayElement.id,
+                    name: arrayElement.fullName,
+                    category: arrayElement.category,
+                    description: arrayElement.description
+                });
+                return arrayElement;
+            }
+        }
     }
 
     render() {
@@ -124,23 +147,24 @@ class ApiUpdateOverviewBody extends Component {
                 value: 'Другое'
             }
         ];
+
         return (
             <div className='detail-overview-body'>
                 <h1 className="title"><span>Описание API</span></h1>
                 <form>
                     <div className="detail-overview-api-name-input">
                         <label style={{textAlign: 'left'}}>Наименование API</label>
-                        <Input onChange={this.handleInputChange} defaultValue={this.props.naming}
-                               className="form-input" id="apiName" disabled={this.state.formUpdateDisabled}
-                               name="apiName" required placeholder='Наименование API'/>
+                        <Input onChange={this.handleInputChange} value={this.state.name}
+                               className="form-input" id="apiName" disabled
+                               name="name" required placeholder='Наименование API'/>
                     </div>
                     <div className="detail-overview-api-name-input">
                         <label style={{textAlign: 'left', paddingBottom: 6}}>Описание</label>
                         <Form>
                                         <TextArea className='detail-overview-api-name-textarea'
                                                   onChange={this.handleInputChange} placeholder='Расскажите о своем API'
-                                                  id="apiDescription" disabled={this.state.formUpdateDisabled}
-                                                  name="apiDescription" defaultValue={this.state.apiDescription}/>
+                                                  id="description" disabled={this.state.formUpdateDisabled}
+                                                  name="description" value={this.state.description}/>
                         </Form>
                     </div>
 
@@ -151,7 +175,7 @@ class ApiUpdateOverviewBody extends Component {
                                 hasExtension={this.hasExtension}
                                 file={this.state.file} uploading={this.state.uploading}
                                 uploadProgress={this.state.uploadProgress}
-                                successfullUploaded={this.state.successfullUploaded} setErrorFileState={this.setErrorFileState} apiName={this.state.apiName}/>
+                                successfullUploaded={this.state.successfullUploaded} setErrorFileState={this.setErrorFileState} apiName={this.state.name}/>
 
                     </div>
 
@@ -161,7 +185,7 @@ class ApiUpdateOverviewBody extends Component {
                                   selection id="category" name="category" noResultsMessage="Москва - лучший город"
                                   className="form-input" options={apiCategoryOptions}
                                   disabled={this.state.formUpdateDisabled}
-                                  defaultValue={this.state.category}/>
+                                  value={this.state.category}/>
                     </div>
                     <div className="detail-overview-api-name-input">
                         <label style={{textAlign: 'left', paddingBottom: 6}}>Условия использования</label>
@@ -170,7 +194,7 @@ class ApiUpdateOverviewBody extends Component {
                                                   onChange={this.handleInputChange}
                                                   placeholder='Опишите условия по использованию'
                                                   id="terms" disabled={this.state.formUpdateDisabled}
-                                                  name="terms" defaultValue={this.state.terms}/>
+                                                  name="terms" value={this.state.terms}/>
                         </Form>
                     </div>
 
