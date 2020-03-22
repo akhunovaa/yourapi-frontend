@@ -110,7 +110,7 @@ export function overviewInformationUpdate(mainInfoRequest) {
     if(!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
     }
-    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:7100' : API_BASE_URL;
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
         url: apiBaseUrl + "/api-data/update",
         method: 'POST',
