@@ -52,7 +52,7 @@ class ApiUpdateOverviewBody extends Component {
         });
     }
 
-    handleDropdownChange = (e, {key, value}) => this.setState({[key]: value});
+    handleDropdownChange = (e, {name, value}) => this.setState({[name]: value});
 
     handleCheck(array, val) {
         return array.some(item => item === val);
