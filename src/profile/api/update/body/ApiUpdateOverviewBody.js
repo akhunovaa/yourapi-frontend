@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './ApiDetailsBody.css';
 import {Button, Dropdown, Form, Image, Input, TextArea} from "semantic-ui-react";
 import ApiImageDropzone from "../../../../dropzone/ApiImageDropzone";
+import {overviewInformationUpdate} from "../../../../util/APIUtils";
+import Alert from "react-s-alert";
 
 class ApiUpdateOverviewBody extends Component {
 
@@ -26,6 +28,7 @@ class ApiUpdateOverviewBody extends Component {
         this.onClickReset = this.onClickReset.bind(this);
         this.iterateApiProjectList = this.iterateApiProjectList.bind(this);
         this.handleNamingCheck = this.handleNamingCheck.bind(this);
+        this.handleOverviewInformationSubmit = this.handleOverviewInformationSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -83,6 +86,36 @@ class ApiUpdateOverviewBody extends Component {
                 return arrayElement;
             }
         }
+    }
+
+    handleOverviewInformationSubmit(event) {
+        event.preventDefault();
+        const id = this.state.id ? this.state.id : 0;
+        const name = this.state.name;
+        const description = this.state.description;
+        const category = this.state.category;
+        const terms = this.state.terms;
+
+        const mainInfoRequest = Object.assign({}, {
+            'id': id,
+            'fullName': name,
+            'description': description,
+            'category': category,
+            'terms': terms
+        });
+
+        overviewInformationUpdate(mainInfoRequest)
+            .then(response => {
+                if (response.error) {
+                    Alert.warning(response.error + '. Необходимо заново авторизоваться.');
+                } else if (response.success === false) {
+                    Alert.warning(response.message);
+                } else {
+                    Alert.success('Данные успешно сохранены');
+                }
+            }).catch(error => {
+            Alert.error('Что-то пошло не так! Попробуйте заново.' || (error && error.message));
+        });
     }
 
     render() {
@@ -203,11 +236,11 @@ class ApiUpdateOverviewBody extends Component {
                         <div className='apply-button-container'>
                             <Button fluid className="apply-button"
                                     style={{width: 112, height: 32, background: '#2F80ED'}}><span
-                                className='command-approve-buttons-text'>Сохранить</span></Button>
+                                className='command-approve-buttons-text' onClick={this.handleOverviewInformationSubmit}>Сохранить</span></Button>
                         </div>
                         <div className='cancel-button-container api-info-cancel-button'>
                             <Button fluid className="cancel-button"
-                                    style={{background: '#A5A5A5', width: 112, height: 32}}>
+                                    style={{background: '#A5A5A5', width: 112, height: 32}} onClick={this.reload}>
                                 <span className='command-approve-buttons-text'>Отмена</span>
                             </Button>
                         </div>
