@@ -77,7 +77,8 @@ class ApiUpdateOverviewBody extends Component {
                     id: arrayElement.id,
                     name: arrayElement.fullName,
                     category: arrayElement.category,
-                    description: arrayElement.description
+                    description: arrayElement.description,
+                    terms: arrayElement.terms
                 });
                 return arrayElement;
             }
