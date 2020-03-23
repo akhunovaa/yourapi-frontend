@@ -205,7 +205,7 @@ class ApiUpdateOverviewBody extends Component {
 
                     <div className="detail-overview-api-name-input">
                         <label style={{textAlign: 'left', paddingBottom: 6}}>Загрузка изображения (JPEG/PNG 500x500)</label>
-                        <ApiImageDropzone onFilesAdded={this.onFilesAdded} uploadFiles={this.uploadFiles}
+                        <ApiImageDropzone key={this.state.id} onFilesAdded={this.onFilesAdded} uploadFiles={this.uploadFiles}
                                 onClickReset={this.onClickReset}
                                 hasExtension={this.hasExtension}
                                 file={this.state.file} uploading={this.state.uploading}
