@@ -117,7 +117,7 @@ class ApiImageDropzone extends Component {
 
     render() {
         const host = window.location.origin.toString();
-        console.log(host + "/api-data/image/" + this.state.imageUrl + "73/73" )
+
         return (
             <div className="image-upload">
                 <div className='api-image-upload-container'>
@@ -130,8 +130,8 @@ class ApiImageDropzone extends Component {
                         style={{cursor: this.props.disabled ? "default" : "pointer"}}>
                         <div className="api-project-avatar">
                             {
-                                this.state.imageUrl ? (
-                                    <Image src={host + "/api-data/image/" + this.state.imageUrl + "73/73" } size='medium' circular verticalAlign='top'
+                                this.props.apiImage ? (
+                                    <Image src={host + "/api-data/image/" + this.props.apiImage+ "73/73" } size='medium' circular verticalAlign='top'
                                            alt={this.props.apiName}/>
                                 ) : (
                                     <div className="api-text-avatar">
