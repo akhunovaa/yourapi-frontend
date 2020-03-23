@@ -142,6 +142,18 @@ export function profileImageUpdate(formData) {
     });
 }
 
+export function apiProjectImageUpdate(formData) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return requestImage({
+        url: apiBaseUrl + "/api-data/image/upload",
+        method: 'POST',
+        body: formData
+    });
+}
+
 export function signup(signupRequest) {
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
