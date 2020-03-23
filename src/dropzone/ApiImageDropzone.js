@@ -8,7 +8,10 @@ import Alert from "react-s-alert";
 class ApiImageDropzone extends Component {
     constructor(props) {
         super(props);
-        this.state = {hightlight: false};
+        this.state = {
+            hightlight: false,
+            imageUrl: this.props.apiImage
+        };
         this.imageInputRef = React.createRef();
 
         this.openFileDialog = this.openFileDialog.bind(this);
@@ -112,6 +115,7 @@ class ApiImageDropzone extends Component {
     }
 
     render() {
+        const host = window.location.origin.toString();
         return (
             <div className="image-upload">
                 <div className='api-image-upload-container'>
@@ -125,7 +129,7 @@ class ApiImageDropzone extends Component {
                         <div className="api-project-avatar">
                             {
                                 !this.hasExtension(this.state.imageFile, ['.jpg', '.jpeg', '.png']) && this.state.imageUrl ? (
-                                    <Image src={this.state.imageUrl} size='medium' circular verticalAlign='top'
+                                    <Image src={host + "/api-data/image/" + this.state.imageUrl + "/73/73" } size='medium' circular verticalAlign='top'
                                            alt={this.props.apiName}/>
                                 ) : (
                                     <div className="api-text-avatar">

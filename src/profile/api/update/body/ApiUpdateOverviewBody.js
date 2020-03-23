@@ -81,7 +81,8 @@ class ApiUpdateOverviewBody extends Component {
                     name: arrayElement.fullName,
                     category: arrayElement.category,
                     description: arrayElement.description,
-                    terms: arrayElement.terms
+                    terms: arrayElement.terms,
+                    apiProjectImageUrl: arrayElement.image
                 });
                 return arrayElement;
             }
@@ -212,7 +213,7 @@ class ApiUpdateOverviewBody extends Component {
                                 successfullUploaded={this.state.successfullUploaded}
                                           setErrorFileState={this.setErrorFileState}
                                           apiName={this.state.name}
-                                          apiId={this.state.id}/>
+                                          apiId={this.state.id} apiImage={this.state.apiProjectImageUrl}/>
 
                     </div>
 
