@@ -114,8 +114,10 @@ class ApiImageDropzone extends Component {
         return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
     }
 
+
     render() {
         const host = window.location.origin.toString();
+
         return (
             <div className="image-upload">
                 <div className='api-image-upload-container'>
@@ -128,8 +130,8 @@ class ApiImageDropzone extends Component {
                         style={{cursor: this.props.disabled ? "default" : "pointer"}}>
                         <div className="api-project-avatar">
                             {
-                                !this.hasExtension(this.state.imageFile, ['.jpg', '.jpeg', '.png']) && this.state.imageUrl ? (
-                                    <Image src={host + "/api-data/image/" + this.state.imageUrl + "/73/73" } size='medium' circular verticalAlign='top'
+                                this.state.imageUrl ? (
+                                    <Image src={host + "/api-data/image/" + this.state.imageUrl + "73/73" } size='medium' circular verticalAlign='top'
                                            alt={this.props.apiName}/>
                                 ) : (
                                     <div className="api-text-avatar">
