@@ -117,7 +117,7 @@ class ApiImageDropzone extends Component {
 
     render() {
         const host = window.location.origin.toString();
-
+        console.log(host + "/api-data/image/" + this.state.imageUrl + "73/73" )
         return (
             <div className="image-upload">
                 <div className='api-image-upload-container'>
