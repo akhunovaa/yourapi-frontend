@@ -134,7 +134,7 @@ class ApiImageDropzone extends Component {
                         style={{cursor: this.props.disabled ? "default" : "pointer"}}>
                         <div className="api-project-avatar">
                             {
-                                this.state.imageUrl ? (
+                                this.props.apiImage ? (
                                     <Image src={this.state.imageUrl} size='medium' circular verticalAlign='top'
                                            alt={this.props.apiName}/>
                                 ) : (
