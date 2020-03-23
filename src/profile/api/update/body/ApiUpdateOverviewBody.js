@@ -205,11 +205,14 @@ class ApiUpdateOverviewBody extends Component {
                     <div className="detail-overview-api-name-input">
                         <label style={{textAlign: 'left', paddingBottom: 6}}>Загрузка изображения (JPEG/PNG 500x500)</label>
                         <ApiImageDropzone onFilesAdded={this.onFilesAdded} uploadFiles={this.uploadFiles}
-                                onClickReset={this.onClickReset} sendRequest={this.uploadNewImage}
+                                onClickReset={this.onClickReset}
                                 hasExtension={this.hasExtension}
                                 file={this.state.file} uploading={this.state.uploading}
                                 uploadProgress={this.state.uploadProgress}
-                                successfullUploaded={this.state.successfullUploaded} setErrorFileState={this.setErrorFileState} apiName={this.state.name}/>
+                                successfullUploaded={this.state.successfullUploaded}
+                                          setErrorFileState={this.setErrorFileState}
+                                          apiName={this.state.name}
+                                          apiId={this.state.id}/>
 
                     </div>
 
