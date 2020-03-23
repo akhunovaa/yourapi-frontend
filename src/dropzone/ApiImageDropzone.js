@@ -131,7 +131,7 @@ class ApiImageDropzone extends Component {
                         <div className="api-project-avatar">
                             {
                                 this.props.apiImage ? (
-                                    <Image src={host + "/api-data/image/" + this.props.apiImage+ "73/73" } size='medium' circular verticalAlign='top'
+                                    <Image src={host + "/api-data/image/" + this.props.apiImage+ "/73/73" } size='medium' circular verticalAlign='top'
                                            alt={this.props.apiName}/>
                                 ) : (
                                     <div className="api-text-avatar">
