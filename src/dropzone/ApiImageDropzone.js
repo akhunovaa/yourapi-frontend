@@ -10,7 +10,7 @@ class ApiImageDropzone extends Component {
         super(props);
         this.state = {
             hightlight: false,
-            imageUrl: this.props.apiImage
+            imageUrl: ''
         };
         this.imageInputRef = React.createRef();
 
@@ -24,6 +24,11 @@ class ApiImageDropzone extends Component {
         this.onFileAdded = this.onFileAdded.bind(this);
         this.hasExtension = this.hasExtension.bind(this);
         this.handleImageUpload = this.handleImageUpload.bind(this);
+    }
+
+    componentDidMount() {
+        const host = window.location.origin.toString();
+        this.setState({imageUrl: host + "/api-data/image/" + this.props.apiImage + "/73/73"});
     }
 
     openFileDialog() {
@@ -57,7 +62,7 @@ class ApiImageDropzone extends Component {
     }
 
     onFileAdded(file) {
-        this.handleImageUpload(file);
+        const imageFile = file;
         const reader = new FileReader();
         reader.onloadend = () => {
             this.setState({
@@ -68,6 +73,7 @@ class ApiImageDropzone extends Component {
         this.setState({
             imageUrl: reader.result
         });
+        this.handleImageUpload(imageFile);
     }
 
     handleImageUpload(imageFile) {
@@ -116,8 +122,6 @@ class ApiImageDropzone extends Component {
 
 
     render() {
-        const host = window.location.origin.toString();
-
         return (
             <div className="image-upload">
                 <div className='api-image-upload-container'>
@@ -130,8 +134,8 @@ class ApiImageDropzone extends Component {
                         style={{cursor: this.props.disabled ? "default" : "pointer"}}>
                         <div className="api-project-avatar">
                             {
-                                this.props.apiImage ? (
-                                    <Image src={host + "/api-data/image/" + this.props.apiImage+ "/73/73" } size='medium' circular verticalAlign='top'
+                                this.state.imageUrl ? (
+                                    <Image src={this.state.imageUrl} size='medium' circular verticalAlign='top'
                                            alt={this.props.apiName}/>
                                 ) : (
                                     <div className="api-text-avatar">
