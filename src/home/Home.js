@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Home.css';
-import {Grid, Segment, Image, Form, Button, Icon} from "semantic-ui-react";
+import {Button, Grid, Icon, Image, Segment} from "semantic-ui-react";
 import {NavLink} from "react-router-dom";
 import grid from '../img/grid-img.png';
 import {apiProjectFullListGet} from "../util/APIUtils";
@@ -23,7 +23,7 @@ class Home extends Component {
         this.reload = this.reload.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this._isMounted = true;
         this.setState({
             loading: true
@@ -33,7 +33,7 @@ class Home extends Component {
             .then(response => {
                 if (this._isMounted) {
                     this.setState({
-                        projects : response.response,
+                        projects: response.response,
                         loading: false
                     })
                 }
@@ -50,7 +50,7 @@ class Home extends Component {
         this._isMounted = false;
     }
 
-    reload (){
+    reload() {
         window.location.reload();
     };
 
@@ -60,11 +60,11 @@ class Home extends Component {
         const linkMobile = '/shop/category/mobile/api';
         const linkMap = '/shop/category/map/api';
         const linkAdv = '/shop/category/adv/api';
-        const linkSocial= '/shop/category/social/api';
-        const linkHealth= '/shop/category/health/api';
-        const linkSport= '/shop/category/sport/api';
-        const linkWeb= '/shop/category/web/api';
-        const linkOther= '/shop/category/other/api';
+        const linkSocial = '/shop/category/social/api';
+        const linkHealth = '/shop/category/health/api';
+        const linkSport = '/shop/category/sport/api';
+        const linkWeb = '/shop/category/web/api';
+        const linkOther = '/shop/category/other/api';
         const host = window.location.origin.toString();
 
         const Projects = ({items}) => (
@@ -78,10 +78,12 @@ class Home extends Component {
                                         <div className="grid-logo">
                                             {
                                                 item.image ? (
-                                                    <Image src={item.image ? host + "/api-data/image/" + item.image + "/32/32" : grid} />
+                                                    <NavLink to={linkWeb}><Image
+                                                        src={item.image ? host + "/api-data/image/" + item.image + "/32/32" : grid}/></NavLink>
                                                 ) : (
                                                     <div className="home-api-text-avatar">
-                                                        <NavLink to={linkWeb} ><span>{item.fullName && item.fullName[0]}</span></NavLink>
+                                                        <NavLink
+                                                            to={linkWeb}><span>{item.fullName && item.fullName[0]}</span></NavLink>
                                                     </div>
                                                 )
                                             }
@@ -89,12 +91,13 @@ class Home extends Component {
                                         <div className="grid-labels">
                                             <Icon link name='star' style={{color: '#F39847'}}/>
                                             <label style={{color: '#F39847'}}>{item.id}</label>
-                                            <Icon style={{paddingLeft: '16px'}} link name='bookmark' />
+                                            <Icon style={{paddingLeft: '16px'}} link name='bookmark'/>
                                         </div>
                                     </div>
                                     <div className="cell-grid-body">
                                         <div className="cell-grid-body-text">
-                                            <NavLink to={linkWeb} className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
+                                            <NavLink to={linkWeb}
+                                                     className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
                                         </div>
                                         <div className="cell-grid-body-label">
                                             <label>от {item.username.username}</label>
@@ -125,20 +128,22 @@ class Home extends Component {
                             <NavLink to="/"><b style={{color: '#F2F2F2'}}>YourAPI</b></NavLink>
                         </div>
                         <div className="header-slogan">
-                            <label>Your Marketplace Your's API</label><br />
+                            <label>Your Marketplace Your's API</label><br/>
                             <label>Artificial. Programmable. Intelligence.</label>
                         </div>
                         <div className="header-buttons">
                             <div className="header-api-create-button">
                                 <Button className="create-button" style={{background: '#F39847', color: 'white'}}
                                         size='large'>
-                                    <NavLink style={{color: 'white'}} to='/profile/api?page=add'>Разместить API</NavLink>
+                                    <NavLink style={{color: 'white'}} to='/profile/api?page=add'>Разместить
+                                        API</NavLink>
                                 </Button>
                             </div>
                             <div className="header-api-create-button">
                                 <Button className="create-button" style={{background: '#FFFFFF', color: '#4F4F4F'}}
                                         size='large'>
-                                    <NavLink style={{background: '#FFFFFF', color: '#4F4F4F'}} to='/profile/administration'>Создать компанию</NavLink>
+                                    <NavLink style={{background: '#FFFFFF', color: '#4F4F4F'}}
+                                             to='/profile/administration'>Создать компанию</NavLink>
                                 </Button>
                             </div>
                         </div>
@@ -151,7 +156,8 @@ class Home extends Component {
                                 <label>Новинки</label>
                             </div>
                             <div className="main-body-new-api-container-show-link">
-                                <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все ({this.state.projects.length})</NavLink>
+                                <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все
+                                    ({this.state.projects.length})</NavLink>
                             </div>
                         </div>
                         <div className="body-data">
@@ -166,7 +172,8 @@ class Home extends Component {
                                 <label>Популярные</label>
                             </div>
                             <div className="main-body-new-api-container-show-link">
-                                <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все ({this.state.projects.length})</NavLink>
+                                <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все
+                                    ({this.state.projects.length})</NavLink>
                             </div>
                         </div>
                         <div className="body-data">
@@ -177,7 +184,7 @@ class Home extends Component {
                         <div className="main-body-test-api-container">
                             <div className="main-body-header-links">
                                 <div className="main-body-new-api-container-name">
-                                    <label>Мои тестовые API</label> <Icon name='user outline' />
+                                    <label>Мои тестовые API</label> <Icon name='user outline'/>
                                 </div>
                             </div>
                             <div className="body-data">
@@ -192,7 +199,8 @@ class Home extends Component {
                                     <label>Рекомендации</label>
                                 </div>
                                 <div className="main-body-new-api-container-show-link">
-                                    <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все ({this.state.projects.length})</NavLink>
+                                    <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все
+                                        ({this.state.projects.length})</NavLink>
                                 </div>
                             </div>
                             <div className="body-data">
@@ -207,7 +215,8 @@ class Home extends Component {
                                     <label>Данные</label>
                                 </div>
                                 <div className="main-body-new-api-container-show-link">
-                                    <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все ({this.state.projects.length})</NavLink>
+                                    <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все
+                                        ({this.state.projects.length})</NavLink>
                                 </div>
                             </div>
                             <div className="body-data">
