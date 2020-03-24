@@ -62,8 +62,8 @@ class Home extends Component {
         window.location.reload();
     };
 
-    getLink4Description(description){
-        switch (description) {
+    getLink4Description(category){
+        switch (category) {
             case 'Данные':
                 return '/shop/category/data/api?id=';
             case 'Финансы':
