@@ -16,8 +16,13 @@ class Home extends Component {
         this.state = {
             //roleAdmin: this.props.currentUser.role ? this.props.currentUser.role.role_name  === "ROLE_ADMIN" : false,
             roleAdmin: true,
-            projects: [],
-            loading: false
+            noveltyProjects: [],
+            topProjects: [],
+            recommendedProjects: [],
+            loading: false,
+            noveltyHidden: true,
+            topHidden: true,
+            recommendedHidden: true
         };
 
         this.reload = this.reload.bind(this);
@@ -28,12 +33,14 @@ class Home extends Component {
         this.setState({
             loading: true
         });
-        if (this.state.projects.length > 0) return;
+        if (this.state.noveltyProjects.length > 0 || this.state.topProjects.length > 0 || this.state.recommendedProjects.length > 0) return;
         apiProjectFullListGet()
             .then(response => {
                 if (this._isMounted) {
                     this.setState({
-                        projects: response.response,
+                        noveltyProjects: response.response.new_api_list,
+                        topProjects: response.response.top_api_list,
+                        recommendedProjects: response.response.recommended_api_list,
                         loading: false
                     })
                 }
@@ -157,41 +164,29 @@ class Home extends Component {
                             </div>
                             <div className="main-body-new-api-container-show-link">
                                 <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все
-                                    ({this.state.projects.length})</NavLink>
+                                    ({this.state.noveltyProjects ? this.state.noveltyProjects.length : 0})</NavLink>
                             </div>
                         </div>
                         <div className="body-data">
                             <Grid columns='3'>
-                                <Projects items={this.state.projects}/>
+                                <Projects items={this.state.noveltyProjects} hidden={this.state.noveltyHidden}/>
                             </Grid>
                         </div>
                     </div>
                     <div className="main-body-popular-api-container">
                         <div className="main-body-header-links">
                             <div className="main-body-new-api-container-name">
-                                <label>Популярные</label>
+                                <label>Популярные/Топ</label>
                             </div>
                             <div className="main-body-new-api-container-show-link">
                                 <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все
-                                    ({this.state.projects.length})</NavLink>
+                                    ({this.state.topProjects ? this.state.topProjects.length : 0})</NavLink>
                             </div>
                         </div>
                         <div className="body-data">
                             <Grid columns='3'>
-                                <Projects items={this.state.projects}/>
+                                <Projects items={this.state.topProjects} hidden={this.state.topHidden}/>
                             </Grid>
-                        </div>
-                        <div className="main-body-test-api-container">
-                            <div className="main-body-header-links">
-                                <div className="main-body-new-api-container-name">
-                                    <label>Мои тестовые API</label> <Icon name='user outline'/>
-                                </div>
-                            </div>
-                            <div className="body-data">
-                                <Grid columns='3'>
-                                    <Projects items={this.state.projects}/>
-                                </Grid>
-                            </div>
                         </div>
                         <div className="main-body-test-api-container">
                             <div className="main-body-header-links">
@@ -200,28 +195,12 @@ class Home extends Component {
                                 </div>
                                 <div className="main-body-new-api-container-show-link">
                                     <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все
-                                        ({this.state.projects.length})</NavLink>
+                                        ({this.state.recommendedProjects ? this.state.recommendedProjects.length : 0})</NavLink>
                                 </div>
                             </div>
                             <div className="body-data">
                                 <Grid columns='3'>
-                                    <Projects items={this.state.projects}/>
-                                </Grid>
-                            </div>
-                        </div>
-                        <div className="main-body-test-api-container">
-                            <div className="main-body-header-links">
-                                <div className="main-body-new-api-container-name">
-                                    <label>Данные</label>
-                                </div>
-                                <div className="main-body-new-api-container-show-link">
-                                    <NavLink to="#" style={{color: '#2F80ED'}}>Посмотреть все
-                                        ({this.state.projects.length})</NavLink>
-                                </div>
-                            </div>
-                            <div className="body-data">
-                                <Grid columns='3'>
-                                    <Projects items={this.state.projects}/>
+                                    <Projects items={this.state.recommendedProjects} hidden={this.state.recommendedHidden}/>
                                 </Grid>
                             </div>
                         </div>
