@@ -114,9 +114,8 @@ class SignUp extends Component {
         return (
             <div id="login-container">
 
-                <div id="login-container-left">
+                {this.props.isMobile ? <div/> :  <div id="login-container-left"/>}
 
-                </div>
                 <div id="login-container-right">
                     <div id="login-container-right-header">
                         <Header as='h3' className={'login-right-header'}>YourAPI</Header>

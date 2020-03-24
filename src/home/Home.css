@@ -61,7 +61,7 @@
 .main-body-container{
     padding: 32px 120px 68px 138px;
     display: block;
-    min-width: 1348px;
+    /*min-width: 1348px;*/
     width: auto;
 }
 
