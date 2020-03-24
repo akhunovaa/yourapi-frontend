@@ -10,7 +10,8 @@ class ApiImageDropzone extends Component {
         super(props);
         this.state = {
             hightlight: false,
-            imageUrl: ''
+            imageUrl: '',
+            locallyUploaded: false
         };
         this.imageInputRef = React.createRef();
 
@@ -27,8 +28,7 @@ class ApiImageDropzone extends Component {
     }
 
     componentDidMount() {
-        const host = window.location.origin.toString();
-        this.setState({imageUrl: host + "/api-data/image/" + this.props.apiImage + "/73/73"});
+        this.setState({imageUrl: this.props.apiImage});
     }
 
     openFileDialog() {
@@ -71,7 +71,8 @@ class ApiImageDropzone extends Component {
         };
         reader.readAsDataURL(file);
         this.setState({
-            imageUrl: reader.result
+            imageUrl: reader.result,
+            locallyUploaded: true
         });
         this.handleImageUpload(imageFile);
     }
@@ -122,6 +123,9 @@ class ApiImageDropzone extends Component {
 
 
     render() {
+        const host = window.location.origin.toString();
+        const imageFullUrl = this.state.locallyUploaded ? this.state.imageUrl : host + "/api-data/image/" + this.state.imageUrl + "/73/73";
+
         return (
             <div className="image-upload">
                 <div className='api-image-upload-container'>
@@ -134,14 +138,14 @@ class ApiImageDropzone extends Component {
                         style={{cursor: this.props.disabled ? "default" : "pointer"}}>
                         <div className="api-project-avatar">
                             {
-                                this.props.apiImage ? (
-                                    <Image src={this.state.imageUrl} size='medium' circular verticalAlign='top'
-                                           alt={this.props.apiName}/>
-                                ) : (
-                                    <div className="api-text-avatar">
-                                        <span>{this.props.apiName && this.props.apiName[0]}</span>
-                                    </div>
-                                )
+                                this.state.imageUrl ? (
+                                        <Image src={imageFullUrl} size='medium' circular verticalAlign='top'
+                                               alt={this.props.apiName}/>
+                                    ) : (
+                                        <div className="api-text-avatar">
+                                            <span>{this.props.apiName && this.props.apiName[0]}</span>
+                                        </div>
+                                    )
                             }
                         </div>
                         <input
