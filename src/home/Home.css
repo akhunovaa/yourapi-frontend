@@ -3,7 +3,8 @@
     min-height: 1480px;
     background: #F2F2F2;
     /*min-width: 1633px;*/
-    min-width: 1348px;
+    /*min-width: 1348px;*/
+    min-width: 1250px;
 }
 
 .header-picture {
