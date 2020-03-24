@@ -5,7 +5,7 @@
     background: #4F4F4F;
     /*min-width: 1633px;*/
     /*min-width: 1348px;*/
-    min-width: 1250px;
+    /*min-width: 1250px;*/
     float: bottom;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .footer-icons-group{
-    padding: 18px 130px 18px 384px;
+    padding: 18px 130px 18px 130px;
     display: flex;
     justify-content: space-between;
 }
