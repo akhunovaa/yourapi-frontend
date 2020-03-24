@@ -231,9 +231,9 @@ class ApiDetail extends Component {
                                 <div className="api-header-logo-picture">
                                     {
                                         this.state.image ? (
-                                           <Image src={this.state.image ? host + "/api-data/image/" + this.state.image + "/77/64" : grid}/>
+                                           <Image src={this.state.image ? host + "/api-data/image/" + this.state.image + "/77/77" : grid}/>
                                         ) : (
-                                            <div className="home-api-text-avatar">
+                                            <div className="api-detail-text-avatar">
                                                 <span>{this.state.name && this.state.name[0]}</span>
                                             </div>
                                         )
