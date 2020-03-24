@@ -76,7 +76,15 @@ class Home extends Component {
                                 <div className="body-cell-data">
                                     <div className="cell-header">
                                         <div className="grid-logo">
-                                            <Image src={item.image ? host + "/api-data/image/" + item.image + "/32/32" : grid} />
+                                            {
+                                                item.image ? (
+                                                    <Image src={item.image ? host + "/api-data/image/" + item.image + "/32/32" : grid} />
+                                                ) : (
+                                                    <div className="home-api-text-avatar">
+                                                        <NavLink to={linkWeb} ><span>{item.fullName && item.fullName[0]}</span></NavLink>
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                         <div className="grid-labels">
                                             <Icon link name='star' style={{color: '#F39847'}}/>
