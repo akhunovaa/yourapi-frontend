@@ -159,3 +159,14 @@
     vertical-align: middle;
     cursor: pointer;
 }
+
+.signup-grid-form{
+    padding-left: 80px !important;
+    padding-right: 80px !important;
+}
+
+.signup-wide-grid-form{
+    padding-left: 0;
+    padding-right: 0;
+}
+

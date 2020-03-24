@@ -165,7 +165,8 @@ class SignupForm2 extends Component {
             email: '',
             password: '',
             captchaToken: '',
-            phone: '+78000000000'
+            phone: '+78000000000',
+            width: window.innerWidth
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -183,6 +184,19 @@ class SignupForm2 extends Component {
         if (this.captcha) {
             this.captcha.reset();
         }
+    }
+
+
+    handleWindowSizeChange = () => {
+        this.setState({ width: window.innerWidth });
+    };
+
+    componentWillMount() {
+        window.addEventListener('resize', this.handleWindowSizeChange);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowSizeChange);
     }
 
     verifyCallback(recaptchaToken) {
@@ -226,8 +240,11 @@ class SignupForm2 extends Component {
     }
 
     render() {
+        const { width } = this.state;
+        const isWide = width >= 2200;
         return (
-            <Grid style={{paddingLeft: '80px', paddingRight: '80px'}}>
+            <Grid className={isWide ? 'signup-wide-grid-form' : 'signup-grid-form'}>
+
                 <Grid.Column widescreen={16} tablet={16} mobile={16} largeScreen={16} computer={16} stretched>
                     <Form size='tiny' onSubmit={this.handleSubmit}>
                         <Segment className='login-data-segment-form'>

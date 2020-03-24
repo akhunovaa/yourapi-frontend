@@ -148,3 +148,13 @@
     cursor: pointer;
 }
 
+.login-grid-form{
+    padding-left: 80px !important;
+    padding-right: 80px !important;
+}
+
+.login-wide-grid-form{
+    padding-left: 0;
+    padding-right: 0;
+}
+
