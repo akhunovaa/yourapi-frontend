@@ -26,6 +26,7 @@ class Home extends Component {
         };
 
         this.reload = this.reload.bind(this);
+        this.getLink4Description = this.getLink4Description.bind(this);
     }
 
     componentDidMount() {
@@ -61,17 +62,32 @@ class Home extends Component {
         window.location.reload();
     };
 
+    getLink4Description(description){
+        switch (description) {
+            case 'Данные':
+                return '/shop/category/data/api?id=';
+            case 'Финансы':
+                return '/shop/category/finance/api?id=';
+            case 'Мобильные':
+                return '/shop/category/mobile/api?id=';
+            case 'Карты':
+                return '/shop/category/map/api?id=';
+            case 'Реклама':
+                return '/shop/category/adv/api?id=';
+            case 'Социальные сети':
+                return '/shop/category/social/api?id=';
+            case 'Здравохранение':
+                return '/shop/category/health/api?id=';
+            case 'Спорт':
+                return '/shop/category/sport/api?id=';
+            case 'Web':
+                return '/shop/category/web/api?id=';
+            default:
+                return '/shop/category/other/api?id=';
+        }
+    }
+
     render() {
-        const linkData = '/shop/category/data/api';
-        const linkFinance = '/shop/category/finance/api';
-        const linkMobile = '/shop/category/mobile/api';
-        const linkMap = '/shop/category/map/api';
-        const linkAdv = '/shop/category/adv/api';
-        const linkSocial = '/shop/category/social/api';
-        const linkHealth = '/shop/category/health/api';
-        const linkSport = '/shop/category/sport/api';
-        const linkWeb = '/shop/category/web/api';
-        const linkOther = '/shop/category/other/api';
         const host = window.location.origin.toString();
 
         const Projects = ({items}) => (
@@ -85,12 +101,12 @@ class Home extends Component {
                                         <div className="grid-logo">
                                             {
                                                 item.image ? (
-                                                    <NavLink to={linkWeb}><Image
+                                                    <NavLink to={this.getLink4Description(item.category) + item.id}><Image
                                                         src={item.image ? host + "/api-data/image/" + item.image + "/32/32" : grid}/></NavLink>
                                                 ) : (
                                                     <div className="home-api-text-avatar">
                                                         <NavLink
-                                                            to={linkWeb}><span>{item.fullName && item.fullName[0]}</span></NavLink>
+                                                            to={this.getLink4Description(item.category) + item.id}><span>{item.fullName && item.fullName[0]}</span></NavLink>
                                                     </div>
                                                 )
                                             }
@@ -103,8 +119,7 @@ class Home extends Component {
                                     </div>
                                     <div className="cell-grid-body">
                                         <div className="cell-grid-body-text">
-                                            <NavLink to={linkWeb}
-                                                     className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
+                                            <NavLink to={this.getLink4Description(item.category) + item.id} className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
                                         </div>
                                         <div className="cell-grid-body-label">
                                             <label>от {item.username.username}</label>
