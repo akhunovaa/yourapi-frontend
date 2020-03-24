@@ -45,6 +45,8 @@ class ApiDetail extends Component {
         this.handleCheck = this.handleCheck.bind(this);
         this.renderSwitchBody = this.renderSwitchBody.bind(this);
         this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
+        this.getLink4CategoryFilter = this.getLink4CategoryFilter.bind(this);
+        this.getLink4Description = this.getLink4Description.bind(this);
     }
 
     componentDidMount() {
@@ -149,14 +151,62 @@ class ApiDetail extends Component {
         }
     }
 
+    getLink4Description(category){
+        switch (category) {
+            case 'Данные':
+                return '/shop/category/data/api?id=';
+            case 'Финансы':
+                return '/shop/category/finance/api?id=';
+            case 'Мобильные':
+                return '/shop/category/mobile/api?id=';
+            case 'Карты':
+                return '/shop/category/map/api?id=';
+            case 'Реклама':
+                return '/shop/category/adv/api?id=';
+            case 'Социальные сети':
+                return '/shop/category/social/api?id=';
+            case 'Здравохранение':
+                return '/shop/category/health/api?id=';
+            case 'Спорт':
+                return '/shop/category/sport/api?id=';
+            case 'Web':
+                return '/shop/category/web/api?id=';
+            default:
+                return '/shop/category/other/api?id=';
+        }
+    }
+
+    getLink4CategoryFilter(category){
+        switch (category) {
+            case 'Данные':
+                return '/shop/category/data';
+            case 'Финансы':
+                return '/shop/category/finance';
+            case 'Мобильные':
+                return '/shop/category/mobile';
+            case 'Карты':
+                return '/shop/category/map';
+            case 'Реклама':
+                return '/shop/category/adv';
+            case 'Социальные сети':
+                return '/shop/category/social';
+            case 'Здравохранение':
+                return '/shop/category/health';
+            case 'Спорт':
+                return '/shop/category/sport';
+            case 'Web':
+                return '/shop/category/web';
+            default:
+                return '/shop/category/other';
+        }
+    }
+
 
     render() {
         if (this.state.loading) {
             return <LoadingIndicator/>
         }
         const host = window.location.origin.toString();
-        const categoryLink = '/shop' + '/category' + '/' + this.state.api.category.name;
-        const apiLink = '/shop' + '/category' + '/' + this.state.api.category.name + '/api' + '/' + this.state.api.id;
         return (
             <div className="api-detail-main">
                 <div className="api-detail-container-breadcrumb">
@@ -167,10 +217,10 @@ class ApiDetail extends Component {
                         <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
                             className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={categoryLink} link><span
+                        <Breadcrumb.Section as={NavLink} to={this.getLink4CategoryFilter(this.state.category)} link><span
                             className='text-disabled-color'>{this.state.category}</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={apiLink} link><span
+                        <Breadcrumb.Section as={NavLink} to={this.getLink4Description(this.state.category) + this.state.id} link><span
                             className='text-disabled-color'>{this.state.name}</span></Breadcrumb.Section>
                     </Breadcrumb>
                 </div>
@@ -211,7 +261,7 @@ class ApiDetail extends Component {
                             <div className='api-detail-inner-body-container'>
                                 <div className='api-left-form-elements'>
                                     Категория
-                                    <NavLink to={categoryLink} className='description-body-link description-api-links-color-blue'>{this.state.category}</NavLink>
+                                    <NavLink to={this.getLink4CategoryFilter(this.state.category)} className='description-body-link description-api-links-color-blue'>{this.state.category}</NavLink>
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Версия
