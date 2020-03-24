@@ -37,15 +37,15 @@ class ApiDetailMethodsBody extends Component {
             language: '(Node.js) Unirest',
             code: 'var unirest = require("unirest");\n' +
                 '\n' +
-                'var req = unirest("GET", "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/spelling/AutoComplete");\n' +
+                'var req = unirest("GET", "https://1-test-api.p.yourapi.ru/api/spelling/AutoComplete");\n' +
                 '\n' +
                 'req.query({\n' +
                 '\t"text": "do"\n' +
                 '});\n' +
                 '\n' +
                 'req.headers({\n' +
-                '\t"x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com",\n' +
-                '\t"x-rapidapi-key": "d84d4c60c9msh148bf271be3d9f5p10d2'
+                '\t"x-yourapi-host": "1-test-api.p.yourapi.ru",\n' +
+                '\t"x-yourapi-key": "d84d4c60c9msh148bf271be3d9f5p10d2'
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);

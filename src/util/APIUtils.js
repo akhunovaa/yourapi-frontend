@@ -174,6 +174,17 @@ export function apiProjectListGet() {
     });
 }
 
+export function apiProjectGet(apiProjectId) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return requestGet({
+        url: apiBaseUrl + "/api-data/get/" + apiProjectId,
+        method: 'GET'
+    });
+}
+
 export function apiProjectFullListGet() {
     if(!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
