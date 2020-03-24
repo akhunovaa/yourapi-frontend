@@ -167,7 +167,8 @@ class LoginForm2 extends Component {
         super(props);
         this.state = {
             login: '',
-            password: ''
+            password: '',
+            width: window.innerWidth
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -181,6 +182,18 @@ class LoginForm2 extends Component {
         this.setState({
             [inputName]: inputValue
         });
+    }
+
+    handleWindowSizeChange = () => {
+        this.setState({ width: window.innerWidth });
+    };
+
+    componentWillMount() {
+        window.addEventListener('resize', this.handleWindowSizeChange);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowSizeChange);
     }
 
     handleSubmit(event) {
@@ -203,9 +216,11 @@ class LoginForm2 extends Component {
     }
 
     render() {
+        const { width } = this.state;
+        const isWide = width >= 2200;
         return (
             <div className='login-form'>
-                <Grid style={{paddingLeft: '80px', paddingRight: '80px'}}>
+                <Grid className={!isWide ? 'login-grid-form' : 'login-wide-grid-form'}>
                     <Grid.Column widescreen={16} tablet={16} mobile={16} largeScreen={16} computer={16} stretched>
                         <Form size='tiny' onSubmit={this.handleSubmit}>
                             <Segment className='login-data-segment-form'>
