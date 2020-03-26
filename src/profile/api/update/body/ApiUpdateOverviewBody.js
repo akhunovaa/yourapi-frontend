@@ -81,7 +81,7 @@ class ApiUpdateOverviewBody extends Component {
                     name: arrayElement.fullName,
                     category: arrayElement.category,
                     description: arrayElement.description,
-                    terms: arrayElement.terms,
+                    terms: arrayElement.info.termsOfService,
                     apiProjectImageUrl: arrayElement.image
                 });
                 return arrayElement;
