@@ -60,7 +60,7 @@
 
 .api-info-buttons{
     display: inline-flex;
-    padding: 16px 356px 16px 356px;
+    padding: 16px 356px 16px 0px;
     height: 64px;
     width: 352px;
 }
@@ -71,11 +71,12 @@
 
 .api-body-main{
     /*min-width: 1068px;*/
-    width: auto;
+    width: 100%;
     /*height: auto;*/
     /* white */
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    text-align: center;
 }
 
 .api-command-operation-text {
@@ -85,6 +86,7 @@
     font-size: 14px;
     line-height: 16px;
     color: #4F4F4F;
+    overflow: hidden;
 }
 
 .api-list-text {
@@ -144,6 +146,7 @@
 
 .api-disabled-color{
     color: #A5A5A5 !important;
+    overflow: hidden;
 }
 
 .api-enabled-color{
@@ -153,8 +156,11 @@
 
 .api-add-container{
     padding-top: 40px;
-    padding-left: 356px;
-    width: 352px;
+    /*padding-left: 356px;*/
+    /*width: 352px;*/
+    margin: 0 auto;
+    text-align: left;
+    display: inline-block;
 }
 
 .api-add-container-title{
@@ -262,8 +268,9 @@
 }
 
 .api-upload-container-inner-elements{
-    padding: 32px 52px 38px 63px;
+    /*padding: 32px 52px 38px 63px;*/
     white-space: nowrap;
+    width: 100%;
 }
 
 .api-upload-icon{
@@ -280,6 +287,11 @@
     /* Gray 3 */
     color: #A5A5A5;
     padding-left: 12px;
+}
+
+.update-api-detail-form-header-container{
+    /*width: 100%;*/
+    border-bottom: 1px solid #E0E0E0;
 }
 
 

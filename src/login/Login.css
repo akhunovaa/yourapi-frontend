@@ -130,3 +130,31 @@
 
 }
 
+.battle-net-auth-icon{
+    margin-right: 20px;
+    color: #A5A5A5;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.battle-net-auth-icon:hover{
+    margin-right: 20px;
+    color: #2F80EC;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.login-grid-form{
+    padding-left: 80px !important;
+    padding-right: 80px !important;
+}
+
+.login-wide-grid-form{
+    padding-left: 0;
+    padding-right: 0;
+}
+

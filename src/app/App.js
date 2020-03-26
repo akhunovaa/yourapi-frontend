@@ -22,6 +22,7 @@ import AppFooter from '../common/AppFooter';
 import {getCurrentUser} from '../util/APIUtils';
 import {ACCESS_TOKEN} from '../constants';
 import {loadReCaptcha} from 'react-recaptcha-google'
+import OAuth2RedirectHandler from '../login/oauth2/OAuth2RedirectHandler';
 
 class App extends Component {
 
@@ -45,7 +46,7 @@ class App extends Component {
         getCurrentUser()
             .then(response => {
                 this.setState({
-                    currentUser: response,
+                    currentUser: response.response,
                     authenticated: true,
                     loading: false
                 });
@@ -85,7 +86,7 @@ class App extends Component {
     render() {
 
         const { width } = this.state;
-        const isMobile = width <= 500;
+        const isMobile = width <= 700;
 
         if (this.state.loading) {
             return <LoadingIndicator/>
@@ -93,28 +94,13 @@ class App extends Component {
 
             return (
                 <div>
-                    <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
+                    <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} currentUser={this.state.currentUser}/>
                     <Switch>
-                        {/*<Route exact path="/" render={(props) => <Home authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
                         <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>
                         <Route exact path="/login"
-                               render={(props) => <Login history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
+                               render={(props) => <Login isMobile={isMobile} history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
                         <Route exact path="/signup"
-                               render={(props) => <SignUp history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
-                        {/*<Route exact path="/profile"*/}
-                               {/*render={(props) => <Profile authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/profile/administration"*/}
-                               {/*render={(props) => <Administration authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/profile/api"*/}
-                               {/*render={(props) => <Api authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/integrator"*/}
-                               {/*render={(props) => <Integrators authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/shop"*/}
-                               {/*render={(props) => <Shop authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/shop/category/:category?"*/}
-                               {/*render={(props) => <ApiCategoryShop authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
-                        {/*<Route exact path="/shop/category/:category?/api/:id?"*/}
-                               {/*render={(props) => <ApiDetail authenticated={this.state.authenticated} currentUser={this.state.currentUser} {...props} />}/>*/}
+                               render={(props) => <SignUp isMobile={isMobile} history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
                         <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}/>
                         <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Administration}/>
                         <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Api}/>
@@ -122,7 +108,8 @@ class App extends Component {
                         <PrivateRoute exact path="/shop" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Shop}/>
                         <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiCategoryShop}/>
                         <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiDetail}/>
-                        <Route component={NotFound}/>
+                        <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}/>
+                        <Route path='*' exact={true} component={NotFound}/>
                     </Switch>
                     <AppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
                     <Alert stack={{limit: 3}}

@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import './AdministrationHeader.css';
 import {Link, NavLink} from "react-router-dom";
-import {Icon, Dropdown, Portal, Divider, Segment, List} from "semantic-ui-react";
+import {Icon, Dropdown, Portal, Divider, Segment, List, Image} from "semantic-ui-react";
 
 class AdministrationHeader extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
         };
     }
 
@@ -68,7 +69,13 @@ class AdministrationHeader extends Component {
                             closeOnTriggerClick
                             closeOnDocumentClick
                             trigger={
-                                <Icon link name='user circle' />
+                                this.state.imageUrl ? (
+                                    <div className="profile-header-avatar">
+                                        <Image src={this.state.imageUrl} size='small' circular verticalAlign='middle'/>
+                                    </div>
+                                ) : (
+                                    <Icon link name='user circle' />
+                                )
                             }
                             open={open}
                             onOpen={this.handleOpen}
@@ -79,7 +86,7 @@ class AdministrationHeader extends Component {
                                     <List size={"big"}>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/"><span className="portal-item portal-item-main">Личный кабинет</span></NavLink>
+                                                <NavLink to="/"><span className="portal-item portal-item-main">Главная страница</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>

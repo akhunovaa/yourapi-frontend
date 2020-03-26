@@ -1,0 +1,47 @@
+.update-header-links-list{
+
+}
+
+.update-header-links-methods{
+    display: inline-block;
+    padding: 18px 20px 18px 20px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.update-header-links-methods-description{
+    display: inline-block;
+    width: 196px;
+    text-align: center;
+    padding: 18px 20px 18px 20px;
+    white-space: nowrap;
+}
+
+.update-header-links-methods-documentation{
+    display: inline-block;
+    width: 138px;
+    text-align: center;
+    padding: 18px 20px 18px 20px;
+}
+
+.update-inactive-header-link{
+    /* Gray 3 */
+    color: #A5A5A5;
+}
+
+.update-active-header-container{
+    border-bottom: 2px solid #2F80ED;
+}
+
+.update-active-header-link{
+    /* Gray 3 */
+    color: #4F4F4F;
+}
+
+.update-header-links-font{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+}

@@ -170,7 +170,28 @@
 
 .api-detail-form-body-container{
     height: auto;
-    min-height: 632px;
+    min-height: 507px;
     /*width: 100%;*/
     padding-bottom: 23px;
+}
+
+.api-detail-text-avatar{
+    cursor: pointer;
+    width: 77px;
+    height: 77px;
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 30px;
+    border-radius: 50%;
+    color: white !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 77px;
+    background: #46b5e5;
+    background: linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -ms-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -moz-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -o-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -webkit-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
 }

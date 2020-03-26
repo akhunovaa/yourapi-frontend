@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './ApiDetail.css';
 import {NavLink} from "react-router-dom";
 import {Breadcrumb, Button, Icon, Image} from "semantic-ui-react";
-import headerLogo from "../../img/api-header-logo.png";
 import ApiDetailReviewHeader from "./header/ApiDetailReviewHeader";
 import ApiDetailVersionHeader from "./header/ApiDetailVersionHeader";
 import ApiDetailPriceHeader from "./header/ApiDetailPriceHeader";
@@ -16,6 +15,10 @@ import queryString from "query-string";
 import ApiDetailPriceBody from "./body/ApiDetailPriceBody";
 import ApiDetailQuestionsBody from "./body/ApiDetailQuestionsBody";
 import ApiDetailDocumentationBody from "./body/ApiDetailDocumentationBody";
+import LoadingIndicator from '../../common/LoadingIndicator';
+import {apiProjectGet} from "../../util/APIUtils";
+import Alert from "react-s-alert";
+import grid from "../../img/grid-img.png";
 
 class ApiDetail extends Component {
 
@@ -23,19 +26,18 @@ class ApiDetail extends Component {
 
     constructor(props) {
         super(props);
-        const {category} = this.props.match.params;
-        const {id} = this.props.match.params;
         this.state = {
             api: {
-                id: id ? id : 1,
-                name: this.props.api ? this.props.api.name : 'API-FOOTBALL',
-                dealer: this.props.api ? this.props.api.dealer : 'apisports',
-                category: {
-                    name: this.props.api ? this.props.api.category.name : category,
-                    description: this.props.api ? this.props.api.category.description : 'Данные',
-                },
-                description: this.props.api ? this.props.api.description : 'Коэффициенты перед матчем, события, составы команд. Это дескрипшн.' +
-                    ' Коэффициенты перед матчем, события, составы команд, тренеры, игроки, лучшие бомбардиры, турнирная таблица, статистика, трансферы,прогнозы. Коэффициенты перед матчем, события, составы команд, тренеры, игроки'
+                loading: false,
+                id: 1,
+                name: '',
+                dealer: '',
+                category: '',
+                terms: '',
+                image: '',
+                description: '',
+                updated: '',
+                approved: false
             }
         };
         this.reload = this.reload.bind(this);
@@ -43,10 +45,42 @@ class ApiDetail extends Component {
         this.handleCheck = this.handleCheck.bind(this);
         this.renderSwitchBody = this.renderSwitchBody.bind(this);
         this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
+        this.getLink4CategoryFilter = this.getLink4CategoryFilter.bind(this);
+        this.getLink4Description = this.getLink4Description.bind(this);
     }
 
     componentDidMount() {
         this._isMounted = true;
+        this.setState({
+            loading: true
+        });
+        const params = queryString.parse(this.props.location.search);
+        let id = params.id !== 'undefined' ? params.id : '1';
+        apiProjectGet(id)
+            .then(response => {
+                if (this._isMounted) {
+                    this.setState({
+                        id: response.response.id,
+                        name: response.response.fullName,
+                        description: response.response.description,
+                        category: response.response.category,
+                        terms: response.response.terms,
+                        image: response.response.image,
+                        approved: response.response.approved,
+                        dealer: response.response.username.username,
+                        updated: response.response.updated,
+                        loading: false
+                    })
+                }
+            }).catch(error => {
+            Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
+            this.setState({
+                loading: false
+            });
+        });
+        this.setState({
+            loading: true
+        });
     }
 
     componentWillUnmount() {
@@ -117,10 +151,62 @@ class ApiDetail extends Component {
         }
     }
 
+    getLink4Description(category){
+        switch (category) {
+            case 'Данные':
+                return '/shop/category/data/api?id=';
+            case 'Финансы':
+                return '/shop/category/finance/api?id=';
+            case 'Мобильные':
+                return '/shop/category/mobile/api?id=';
+            case 'Карты':
+                return '/shop/category/map/api?id=';
+            case 'Реклама':
+                return '/shop/category/adv/api?id=';
+            case 'Социальные сети':
+                return '/shop/category/social/api?id=';
+            case 'Здравохранение':
+                return '/shop/category/health/api?id=';
+            case 'Спорт':
+                return '/shop/category/sport/api?id=';
+            case 'Web':
+                return '/shop/category/web/api?id=';
+            default:
+                return '/shop/category/other/api?id=';
+        }
+    }
+
+    getLink4CategoryFilter(category){
+        switch (category) {
+            case 'Данные':
+                return '/shop/category/data';
+            case 'Финансы':
+                return '/shop/category/finance';
+            case 'Мобильные':
+                return '/shop/category/mobile';
+            case 'Карты':
+                return '/shop/category/map';
+            case 'Реклама':
+                return '/shop/category/adv';
+            case 'Социальные сети':
+                return '/shop/category/social';
+            case 'Здравохранение':
+                return '/shop/category/health';
+            case 'Спорт':
+                return '/shop/category/sport';
+            case 'Web':
+                return '/shop/category/web';
+            default:
+                return '/shop/category/other';
+        }
+    }
+
 
     render() {
-        const categoryLink = '/shop' + '/category' + '/' + this.state.api.category.name;
-        const apiLink = '/shop' + '/category' + '/' + this.state.api.category.name + '/api' + '/' + this.state.api.id;
+        if (this.state.loading) {
+            return <LoadingIndicator/>
+        }
+        const host = window.location.origin.toString();
         return (
             <div className="api-detail-main">
                 <div className="api-detail-container-breadcrumb">
@@ -131,11 +217,11 @@ class ApiDetail extends Component {
                         <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
                             className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={categoryLink} link><span
-                            className='text-disabled-color'>{this.state.api.category.description}</span></Breadcrumb.Section>
+                        <Breadcrumb.Section as={NavLink} to={this.getLink4CategoryFilter(this.state.category)} link><span
+                            className='text-disabled-color'>{this.state.category}</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={apiLink} link><span
-                            className='text-disabled-color'>{this.state.api.name}</span></Breadcrumb.Section>
+                        <Breadcrumb.Section as={NavLink} to={this.getLink4Description(this.state.category) + this.state.id} link><span
+                            className='text-disabled-color'>{this.state.name}</span></Breadcrumb.Section>
                     </Breadcrumb>
                 </div>
                 <div className="api-detail-main-container">
@@ -143,7 +229,15 @@ class ApiDetail extends Component {
                         <div className='api-detail-inner-filter-container'>
                             <div className='api-detail-inner-header-container'>
                                 <div className="api-header-logo-picture">
-                                    <Image src={headerLogo}/>
+                                    {
+                                        this.state.image ? (
+                                           <Image src={this.state.image ? host + "/api-data/image/" + this.state.image + "/77/77" : grid}/>
+                                        ) : (
+                                            <div className="api-detail-text-avatar">
+                                                <span>{this.state.name && this.state.name[0]}</span>
+                                            </div>
+                                        )
+                                    }
                                 </div>
                                 <div className="grid-labels">
                                     <Icon style={{paddingLeft: '16px', color: '#A5A5A5'}} link name='bookmark outline'/>
@@ -151,13 +245,13 @@ class ApiDetail extends Component {
                                     <Icon style={{paddingLeft: '32px', color: '#A5A5A5'}} link name='info circle'/>
                                 </div>
                             </div>
-                            <div className='api-detail-title'>{this.state.api.name}</div>
-                            <div className='api-detail-dealer'>от <NavLink to='#'>{this.state.api.dealer}</NavLink>
+                            <div className='api-detail-title'>{this.state.name}</div>
+                            <div className='api-detail-dealer'>от <NavLink to='#'>{this.state.dealer}</NavLink>
                             </div>
                             <div className="api-detail-rating">
                                 <Icon link name='star' style={{color: '#F39847'}}/>
                                 <label style={{color: '#F39847'}}>4,9</label>
-                                <label style={{color: '#A5A5A5', paddingLeft: 4}}>(79)</label>
+                                <label style={{color: '#A5A5A5', paddingLeft: 4}}>({this.state.id})</label>
                             </div>
                             <div className='api-detail-add-button'>
                                 <Button className='api-detail-create-button' style={{background: '#2F80ED'}}>
@@ -167,8 +261,7 @@ class ApiDetail extends Component {
                             <div className='api-detail-inner-body-container'>
                                 <div className='api-left-form-elements'>
                                     Категория
-                                    <NavLink to={categoryLink}
-                                             className='description-body-link description-api-links-color-blue'>{this.state.api.category.description}</NavLink>
+                                    <NavLink to={this.getLink4CategoryFilter(this.state.category)} className='description-body-link description-api-links-color-blue'>{this.state.category}</NavLink>
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Версия
@@ -176,7 +269,7 @@ class ApiDetail extends Component {
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Последнее обновление
-                                    <span className='description-body-link'>19.10.2019</span>
+                                    <span className='description-body-link'>{new Date(this.state.updated).toLocaleDateString()}</span>
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Язык
@@ -194,8 +287,7 @@ class ApiDetail extends Component {
                                 </div>
                                 <div
                                     className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>
-                                    {this.state.api.description}<NavLink to='#'
-                                                                         className='description-body-link description-api-links-color-blue'>...еще</NavLink>
+                                    {this.state.description}<NavLink to='#' className='description-body-link description-api-links-color-blue'>...еще</NavLink>
                                 </div>
                             </div>
                         </div>

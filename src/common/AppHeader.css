@@ -1,7 +1,7 @@
 .header-authenticated{
     height: 64px;
     /*min-width: 1633px;*/
-    min-width: 1348px;
+    min-width: 1250px;
     width: auto;
     align-items: baseline;
 }
@@ -247,4 +247,15 @@
     float: right;
     border-right: 1px solid #E0E0E0;
     padding-right: 32px;
+}
+
+.profile-header-avatar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    margin-top: -10px;
+    margin-right: 10px;
+    cursor: pointer;
 }

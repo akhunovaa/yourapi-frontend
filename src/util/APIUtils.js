@@ -1,6 +1,6 @@
 import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
 
-const request = (options) => {
+const request = async (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json;charset=UTF-8',
         'Accept': 'application/json;charset=UTF-8'
@@ -12,8 +12,7 @@ const request = (options) => {
 
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
-
-    return fetch(options.url, options)
+    return await fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
                 if(!response.ok) {
@@ -24,7 +23,7 @@ const request = (options) => {
         );
 };
 
-const requestGet = (options) => {
+const requestGet = async (options) => {
     const headers = new Headers({
         'Accept': 'application/json;charset=UTF-8'
     });
@@ -36,7 +35,7 @@ const requestGet = (options) => {
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
 
-    return fetch(options.url, options)
+    return await fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
                 if(!response.ok) {
@@ -75,9 +74,9 @@ export function getCurrentUser() {
     if(!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
     }
-
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
-        url: API_BASE_URL + "/auth/user/me",
+        url: apiBaseUrl + "/individual/me",
         method: 'GET'
     });
 }
@@ -87,74 +86,128 @@ export function checkLocalStorage() {
 }
 
 export function login(loginRequest) {
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
-        url: API_BASE_URL + "/auth/login",
+        url: apiBaseUrl + "/auth/login",
         method: 'POST',
         body: JSON.stringify(loginRequest)
     });
 }
 
 export function profileInfoUpdate(mainInfoRequest) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
-        url: API_BASE_URL + "/admin/user/update",
+        url: apiBaseUrl + "/individual/update",
+        method: 'POST',
+        body: JSON.stringify(mainInfoRequest)
+    });
+}
+
+export function overviewInformationUpdate(mainInfoRequest) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return request({
+        url: apiBaseUrl + "/api-data/update",
         method: 'POST',
         body: JSON.stringify(mainInfoRequest)
     });
 }
 
 export function profilePasswordUpdate(passDataRequest) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
-        url: API_BASE_URL + "/admin/user/password",
+        url: apiBaseUrl + "/individual/password",
         method: 'POST',
         body: JSON.stringify(passDataRequest)
     });
 }
 
 export function profileImageUpdate(formData) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return requestImage({
-        url: API_BASE_URL + "/admin/user/image/upload",
+        url: apiBaseUrl + "/individual/image/upload",
+        method: 'POST',
+        body: formData
+    });
+}
+
+export function apiProjectImageUpdate(formData) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return requestImage({
+        url: apiBaseUrl + "/api-data/image/upload",
         method: 'POST',
         body: formData
     });
 }
 
 export function signup(signupRequest) {
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
-        url: API_BASE_URL + "/auth/signup",
+        url: apiBaseUrl + "/auth/signup",
         method: 'POST',
         body: JSON.stringify(signupRequest)
     });
 }
 
-export function feedback(feedbackRequest) {
-    return request({
-        url: API_BASE_URL + "/admin/feedback",
-        method: 'POST',
-        body: JSON.stringify(feedbackRequest)
+export function apiProjectListGet() {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return requestGet({
+        url: apiBaseUrl + "/api-data/list",
+        method: 'GET'
     });
 }
 
-export function dataListGet(roleAdmin) {
-    if (roleAdmin) {
-        return requestGet({
-            //url: API_BASE_URL + "/mobile/full",
-            url: "http://localhost:8016" + "/mobile/full",
-            method: 'GET'
-        });
-    }else {
-        return requestGet({
-            //url: API_BASE_URL + "/mobile/list",
-            url: "http://localhost:8016" + "/mobile/list",
-            method: 'GET'
-        });
+export function apiProjectGet(apiProjectId) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
     }
-}
-export function deviceDeleteRequestSend(deviceId) {
-    const query = "?device_id=" + deviceId;
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return requestGet({
-        url: API_BASE_URL + "/mobile/data/delete"  + query,
-        method: 'GET',
+        url: apiBaseUrl + "/api-data/get/" + apiProjectId,
+        method: 'GET'
     });
+}
+
+export function apiProjectFullListGet() {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return requestGet({
+        url: apiBaseUrl + "/api-data/full",
+        method: 'GET'
+    });
+}
+
+export function newApiUploadSend(preparedRequest, formData) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    const url = apiBaseUrl + "/api-data/create";
+    preparedRequest.open("POST", url);
+    preparedRequest.setRequestHeader('Accept','application/json;charset=UTF-8');
+    if(localStorage.getItem(ACCESS_TOKEN)) {
+        preparedRequest.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN));
+    }
+    preparedRequest.send(formData);
 }
 
 export function loadUser(paramData) {

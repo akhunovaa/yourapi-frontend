@@ -49,6 +49,13 @@
     overflow: hidden;
 }
 
+/*.profile-avatar img{*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+    /*opacity: 0;*/
+/*}*/
+
 .profile-avatar-footer {
     position: absolute;
     text-align: center;
@@ -311,6 +318,7 @@
     font-weight: normal !important;
     font-size: 14px !important;
     line-height: 16px !important;
+    color: white;
 }
 
 .command-search-link {

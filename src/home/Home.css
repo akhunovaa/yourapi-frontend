@@ -3,11 +3,12 @@
     min-height: 1480px;
     background: #F2F2F2;
     /*min-width: 1633px;*/
-    min-width: 1348px;
+    /*min-width: 1348px;*/
+    min-width: 1250px;
 }
 
 .header-picture {
-    min-width: 1348px;
+    /*min-width: 1348px;*/
     height: 352px;
     background: url('../img/img_header.png') no-repeat center center;
     -webkit-background-size: cover;
@@ -60,7 +61,7 @@
 .main-body-container{
     padding: 32px 120px 68px 138px;
     display: block;
-    min-width: 1348px;
+    /*min-width: 1348px;*/
     width: auto;
 }
 
@@ -151,6 +152,7 @@
     line-height: 16px;
     color: #4F4F4F;
     padding-top: 12px;
+    overflow: overlay;
 }
 .cell-grid-body-category{
     font-family: Roboto, serif;
@@ -241,6 +243,30 @@
     margin-bottom: initial;
 }
 
+.home-api-text-avatar{
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 50%;
+    color: white !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    background: #46b5e5;
+    background: linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -ms-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -moz-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -o-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -webkit-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+}
+
+.home-api-text-avatar a{
+    color: white !important;
+}
 
 /*
   ##Device = Most of the Smartphones Mobiles (Portrait)

@@ -1,8 +1,26 @@
 import React, {Component} from 'react';
 import './Profile.css';
-import {Link, NavLink} from "react-router-dom";
-import {Breadcrumb, Dropdown, Icon, Image, Input, TextArea, Form, Divider, Segment, Portal, List, Button, Checkbox, Table} from "semantic-ui-react";
-import {loadUser} from "../util/APIUtils";
+import {NavLink} from "react-router-dom";
+import {
+    Breadcrumb,
+    Button,
+    Checkbox,
+    Divider,
+    Dropdown,
+    Form,
+    Icon,
+    Image,
+    Input,
+    List,
+    Portal,
+    Segment,
+    Table,
+    TextArea
+} from "semantic-ui-react";
+import {loadUser, profileImageUpdate, profileInfoUpdate, profilePasswordUpdate} from "../util/APIUtils";
+import Alert from "react-s-alert";
+import ImageUploader from 'react-images-upload';
+import LoadingIndicator from '../common/LoadingIndicator';
 
 class Profile extends Component {
 
@@ -12,38 +30,64 @@ class Profile extends Component {
         super(props);
         this.state = {
             user: {
-                imageUrl: 'https://yourapi.ru/individual/image/4',
-                name: this.props.currentUser ?  this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login  : 'unknown',
+                name: this.props.currentUser ? this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login : 'unknown',
                 surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
-                patrName: this.props.currentUser ?  this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login  : 'unknown',
-                email: this.props.currentUser ?  this.props.currentUser.email ? this.props.currentUser.email : this.props.currentUser.login  : 'unknown',
+                patrName: this.props.currentUser ? this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login : 'unknown',
+                email: this.props.currentUser ? this.props.currentUser.email ? this.props.currentUser.email : this.props.currentUser.login : 'unknown',
+                nickName: this.props.currentUser ? this.props.currentUser.nickName : 'unknown',
+                phone: this.props.currentUser ? this.props.currentUser.phone ? this.props.currentUser.phone : this.props.currentUser.phone : 'unknown',
+                birthDate: this.props.currentUser ? this.props.currentUser.birthDate ? this.props.currentUser.birthDate : this.props.currentUser.birthDate : 'unknown',
+                gender: this.props.currentUser ? this.props.currentUser.gender ? this.props.currentUser.gender : this.props.currentUser.gender : 'Мужской',
+                language: this.props.currentUser ? this.props.currentUser.language ? this.props.currentUser.language : this.props.currentUser.language : 'Русский',
+                city: this.props.currentUser ? this.props.currentUser.city ? this.props.currentUser.city : this.props.currentUser.city : 'Москва, Россия',
+                info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown'
             },
+            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl ? this.props.currentUser.imageUrl : '' : '',
             open: false,
-            surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
-            name: this.props.currentUser ?  this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login  : 'unknown',
-            patrName: this.props.currentUser ?  this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login  : 'unknown',
-            nickname: this.props.currentUser ?  this.props.currentUser.login ? this.props.currentUser.login : 'unknown'  : 'unknown',
-            dbirth: '01.01.1900',
-            sex: "unknown",
-            language: "Русский",
-            city: "Москва, Россия",
-            phoneNumber: "",
-            email: "",
-            info: "И даже с языками, использующими латинский алфавит, могут возникнуть небольшие проблемы: в различных языках те или иные буквы встречаются с разной частотой, имеется разница в длине наиболее распространенных слов. Отсюда напрашивается вывод, что все же лучше использовать в качестве «рыбы» текст на том языке, который планируется использовать при запуске проекта. Сегодня существует несколько вариантов Lorem ipsum, кроме того, есть специальные генераторы, создающие собственные варианты текста на основе оригинального трактата, благодаря чему появляется возможность получить более длинный неповторяющийся набор слов."
+            id: this.props.currentUser ? this.props.currentUser.id : 0,
+            name: '',
+            surname: '',
+            patrName: '',
+            email: '',
+            nickName: '',
+            phone: '',
+            birthDate: '',
+            gender: '',
+            language: '',
+            city: '',
+            info: '',
+            loading: false
         };
         this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
+        this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
+        this.handleImageUpload = this.handleImageUpload.bind(this);
+        this.handleMainInformationSubmit = this.handleMainInformationSubmit.bind(this);
+
+        this.handleImageLoaded = this.handleImageLoaded.bind(this);
+        this.image = React.createRef();
     }
 
     componentDidMount() {
         this._isMounted = true;
-        const {handle} = this.props.match.params;
-        //this.setState({user: this.props.currentUser})
-        // this.loadUser(handle);
+
+        const img = this.image.current;
+        if (img && img.complete) {
+            this.handleImageLoaded();
+        }
+        this.setState({
+            loading: false
+        });
     }
 
+    handleImageLoaded() {
+        if (!this.state.loaded) {
+            this.setState({loaded: true});
+        }
+        this.setState({loading: false});
+    }
 
     loadUser(handle) {
         this.setState({
@@ -84,8 +128,7 @@ class Profile extends Component {
         });
     }
 
-    handleDropdownChange = (e, {key, value}) => this.setState({[key]: value});
-
+    handleDropdownChange = (e, {name, value}) => this.setState({[name]: value});
 
     handleOnPhoneChange(value) {
         this.setState({
@@ -101,8 +144,140 @@ class Profile extends Component {
         this.setState({open: false})
     };
 
+    handlePasswordSubmit(event) {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        const passData = data.get('oldPassword');
+        const passDataNew = data.get('newPassword');
+        const passDataNewTwo = data.get('newRePassword');
+        if (passDataNew !== passDataNewTwo) {
+            Alert.warning('Пароли должны совпадать.');
+            return
+        }
+        const passDataRequest = Object.assign({}, {
+            'password': passDataNew,
+            'passwordVerifier': passDataNewTwo,
+            'passwordMain': passData
+        });
+        profilePasswordUpdate(passDataRequest)
+            .then(response => {
+                if (response.error) {
+                    Alert.warning(response.error + '. Необходимо заново авторизоваться.');
+                } else if (response.success === false) {
+                    Alert.warning(response.message);
+                } else {
+                    Alert.success('Данные успешно сохранены');
+                }
+            }).catch(error => {
+            Alert.error('Что-то пошло не так! Попробуйте заново.' || (error && error.message));
+        });
+    }
+
+    handleMainInformationSubmit(event) {
+        event.preventDefault();
+        const id = this.state.id ? this.state.id : 0;
+        const name = this.state.name ? this.state.name : this.state.user.name;
+        const surname = this.state.surname ? this.state.surname : this.state.user.surname;
+        const patrName = this.state.patrName ? this.state.patrName : this.state.user.patrName;
+        const nickName = this.state.nickName ? this.state.nickName : this.state.user.nickName;
+        const phone = this.state.phone ? this.state.phone : this.state.user.phone;
+        const birthDate = this.state.birthDate ? this.state.birthDate : this.state.user.birthDate;
+        const gender = this.state.gender ? this.state.gender : this.state.user.gender;
+        const language = this.state.language ? this.state.language : this.state.user.language;
+        const city = this.state.city ? this.state.city : this.state.user.city;
+        const info = this.state.info ? this.state.info : this.state.user.info;
+
+        const mainInfoRequest = Object.assign({}, {
+            'id': id,
+            'name': name,
+            'surname': surname,
+            'patrName': patrName,
+            'nickName': nickName,
+            'phone': phone,
+            'birthDate': birthDate,
+            'gender': gender,
+            'language': language,
+            'city': city,
+            'info': info
+        });
+
+        profileInfoUpdate(mainInfoRequest)
+            .then(response => {
+                if (response.error) {
+                    Alert.warning(response.error + '. Необходимо заново авторизоваться.');
+                } else if (response.success === false) {
+                    Alert.warning(response.message);
+                } else {
+                    Alert.success('Данные успешно сохранены');
+                }
+            }).catch(error => {
+            Alert.error('Что-то пошло не так! Попробуйте заново.' || (error && error.message));
+        });
+    }
+
+    handleImageUpload() {
+        let element = document.getElementsByClassName('errorMessage');
+        if (element) {
+            for (let item of element) {
+                if (item) {
+                    item.style.animation = 'cssAnimation 6s forwards';
+                    item.style.webkitAnimation = 'cssAnimation 6s forwards';
+                    setTimeout(function () {
+                        item.style.display = 'none';
+                    }, 6000);
+                }
+            }
+        }
+
+
+        let photo = document.getElementsByName('photo');
+        if (photo) {
+            for (let item of photo) {
+                if (item) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        this.setState({
+                            imageUrl: reader.result
+                        })
+                    };
+                    reader.readAsDataURL(item.files[0]);
+                    this.setState({
+                        imageUrl: reader.result
+                    });
+
+                    const imageData = item.files[0];
+                    const formData = new FormData();
+                    formData.append('file', imageData);
+
+                    profileImageUpdate(formData)
+                        .then(response => {
+                            if (response.error) {
+                                Alert.warning(response.error + '. Необходимо заново авторизоваться');
+                            } else if (response.success === false) {
+                                Alert.warning(response.message);
+                            } else {
+                                Alert.success('Данные успешно сохранены');
+                            }
+                        }).catch(error => {
+                        Alert.error('Что-то пошло не так! Попробуйте заново.' || (error && error.message));
+                    });
+
+                } else {
+                    this.setState({
+                        imageUrl: ''
+                    })
+                }
+            }
+        }
+    }
+
     render() {
-        const { open } = this.state;
+
+        if (this.state.loading) {
+            return <LoadingIndicator/>
+        }
+
+        const {open} = this.state;
         const sexOptions = [
             {
                 sex: 'Мужской',
@@ -185,18 +360,57 @@ class Profile extends Component {
                         <div className="profile-avatar-container">
                             <div className="profile-avatar">
                                 {
-                                    this.state.user.imageUrl ? (
-                                        <Image src={this.state.user.imageUrl} size='medium' circular verticalAlign='top'
-                                               alt={this.state.user.name}/>
+                                    this.state.imageUrl ? (
+                                        <Image src={this.state.imageUrl} size='medium' circular verticalAlign='top'
+                                               alt={this.state.user.name}
+                                               onLoad={this.handleImageLoaded}/>
                                     ) : (
                                         <div className="text-avatar">
-                                            <span>{this.props.currentUser.name && this.state.user.name[0]}</span>
+                                            <span>{this.state.user.name && this.state.user.name[0]}</span>
                                         </div>
                                     )
                                 }
                                 <div className="profile-avatar-footer">
-                                    <Icon link name='photo' size={'large'} color={'grey'}/>
+                                    <Icon link name='photo' size={'large'} color={'grey'}>
+                                        <ImageUploader
+                                            buttonText='Загрузить фото'
+                                            onChange={this.handleImageUpload}
+                                            imgExtension={['.jpg', '.jpeg']}
+                                            maxFileSize={5242880}
+                                            withIcon={false}
+                                            withLabel={false}
+                                            label={'Максимальный объем 5 мб. Допустимые форматы - jpg, jpeg'}
+                                            singleImage={true}
+                                            withPreview={false}
+                                            name={'photo'}
+                                            fileSizeError={'размер файла первышает допустимые нормы'}
+                                            fileTypeError={'тип файла не соответствует допустимым нормам'}
+                                            buttonStyles={{
+                                                fontWeight: 700,
+                                                borderRadius: '.28571429rem',
+                                                width: '100%',
+                                                backgroundColor: 'none',
+                                                padding: '.78571429em 1.5em .78571429em',
+                                                marginTop: '0px'
+                                            }}
+                                            fileContainerStyle={{
+                                                boxShadow: 'none',
+                                                display: 'flex',
+                                                flexDirection: 'column-reverse',
+                                                paddingTop: '0px',
+                                                marginTop: '0px'
+                                            }}
+                                            errorStyle={{}}
+                                            labelStyle={{
+                                                color: 'none',
+                                                fontSize: '12px',
+                                                textAlign: 'center',
+                                                marginTop: '6px'
+                                            }}
+                                        />
+                                    </Icon>
                                 </div>
+
                             </div>
                             <div className="user-name-container">
                                 <span style={{paddingRight: '8px'}}>{this.state.user.surname}</span>
@@ -214,19 +428,19 @@ class Profile extends Component {
                             <div className="profile-info-container-name-inputs">
                                 <div className="profile-info-container-name-input">
                                     <label>Фамилия</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.surname}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.surname}
                                            className="form-input" id="surname"
                                            name="surname" required placeholder='Фамилия'/>
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <label>Имя</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.name}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.name}
                                            className="form-input" id="name"
                                            name="name" required placeholder='Имя'/>
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <label>Отчество</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.patrName}
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.patrName}
                                            className="form-input" id="patrName"
                                            name="patrName" required placeholder='Отчество'/>
                                 </div>
@@ -234,25 +448,25 @@ class Profile extends Component {
                             <div className="profile-info-container-nickname-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Имя профиля</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.nickname}
-                                           className="form-input" id="nickname"
-                                           name="nickname" required placeholder='Имя профиля'/>
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.nickName}
+                                           className="form-input" id="nickName"
+                                           name="nickName" required placeholder='Имя профиля'/>
                                 </div>
                             </div>
                             <div className="profile-info-container-date-birth-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Дата рождения</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.dbirth}
-                                           className="form-input" id="dbirth"
-                                           name="dbirth" required placeholder='Дата рождения'/>
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.birthDate}
+                                           className="form-input" id="birthDate"
+                                           name="birthDate" required placeholder='Дата рождения'/>
                                 </div>
                             </div>
                             <div className="profile-info-container-sex-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Пол</label>
                                     <Dropdown onChange={this.handleDropdownChange} placeholder='Пол' fluid selection
-                                              id="sex" name="sex" className="form-input" options={sexOptions}
-                                              defaultValue={this.state.sex}/>
+                                              id="gender" name="gender" className="form-input" options={sexOptions}
+                                              defaultValue={this.state.user.gender}/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
@@ -260,7 +474,7 @@ class Profile extends Component {
                                     <label style={{paddingBottom: '6px'}}>Язык</label>
                                     <Dropdown onChange={this.handleDropdownChange} placeholder='Язык' fluid selection
                                               id="language" name="language" className="form-input"
-                                              options={languageOptions} defaultValue={this.state.language}/>
+                                              options={languageOptions} defaultValue={this.state.user.language}/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
@@ -269,18 +483,20 @@ class Profile extends Component {
                                     <Dropdown onChange={this.handleDropdownChange} placeholder='Город' fluid search
                                               selection id="city" name="city" noResultsMessage="Москва - лучший город"
                                               className="form-input" options={cityOptions}
-                                              defaultValue={this.state.city}/>
+                                              defaultValue={this.state.user.city}/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-textarea">
                                     <label style={{paddingBottom: '6px'}}>О себе</label>
                                     <Form style={{paddingTop: '6px'}}>
-                                        <TextArea onChange={this.handleDropdownChange} placeholder='Расскажите о себе' style={{minHeight: 265, maxHeight: 265, minWidth: 382 }}  id="info" name="info" defaultValue={this.state.info}/>
+                                        <TextArea onChange={this.handleInputChange} placeholder='Расскажите о себе'
+                                                  style={{minHeight: 265, maxHeight: 265, minWidth: 382}} id="info"
+                                                  name="info" defaultValue={this.state.user.info}/>
                                     </Form>
                                 </div>
                             </div>
-                            <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
+                            <Divider style={{marginTop: '40px', marginBottom: 0}}/>
                         </div>
                         <div className="profile-info-container">
                             <div className="profile-info-container-name">
@@ -289,17 +505,15 @@ class Profile extends Component {
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{marginBottom: 6}}>Телефон</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={this.state.phoneNumber}
-                                           id="phoneNumber"
-                                           name="phoneNumber" placeholder='+7( ___ ) ___ - __ - __ ' required/>
+                                    <Input onChange={this.handleInputChange} defaultValue={this.state.user.phone}
+                                           id="phone" name="phone" placeholder='+7( ___ ) ___ - __ - __ ' required/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{marginBottom: 6}}>Email</label>
                                     <Input onChange={this.handleInputChange} defaultValue={this.state.user.email}
-                                           id="email"
-                                           name="email" placeholder='user@botmasterzzz.com' required/>
+                                           id="email" name="email" placeholder='user@botmasterzzz.com' required/>
                                 </div>
                             </div>
                             <div className="profile-info-container-messengers">
@@ -312,7 +526,8 @@ class Profile extends Component {
                                     closeOnTriggerClick
                                     closeOnDocumentClick
                                     trigger={
-                                        <Button className="profile-info-container-messengers-button" basic>+ Добавить</Button>
+                                        <Button className="profile-info-container-messengers-button" basic>+
+                                            Добавить</Button>
                                     }
                                     open={open}
                                     onOpen={this.handleOpen}
@@ -323,27 +538,34 @@ class Profile extends Component {
                                             <List size={"big"}>
                                                 <List.Item>
                                                     <List.Content>
-                                                        <Checkbox defaultChecked/><Icon style={{paddingLeft: 12}} name='telegram plane'><span className="messenger-list">Telegram</span></Icon>
+                                                        <Checkbox defaultChecked/><Icon style={{paddingLeft: 12}}
+                                                                                        name='telegram plane'><span
+                                                        className="messenger-list">Telegram</span></Icon>
                                                     </List.Content>
                                                 </List.Item>
                                                 <List.Item>
                                                     <List.Content>
-                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='whatsapp'><span className="messenger-list">WhatsApp</span></Icon>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='whatsapp'><span
+                                                        className="messenger-list">WhatsApp</span></Icon>
                                                     </List.Content>
                                                 </List.Item>
                                                 <List.Item>
                                                     <List.Content>
-                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='viber'><span className="messenger-list">Viber</span></Icon>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='viber'><span
+                                                        className="messenger-list">Viber</span></Icon>
                                                     </List.Content>
                                                 </List.Item>
                                                 <List.Item>
                                                     <List.Content>
-                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='skype'><span className="messenger-list">Skype</span></Icon>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='skype'><span
+                                                        className="messenger-list">Skype</span></Icon>
                                                     </List.Content>
                                                 </List.Item>
                                                 <List.Item>
                                                     <List.Content>
-                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='facebook messenger'><span className="messenger-list">Facebook-messenger</span></Icon>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}}
+                                                                         name='facebook messenger'><span
+                                                        className="messenger-list">Facebook-messenger</span></Icon>
                                                     </List.Content>
                                                 </List.Item>
                                             </List>
@@ -356,11 +578,13 @@ class Profile extends Component {
                                 <div className="profile-info-container-name-input">
                                     <Input disabled style={{paddingTop: 0, height: 32}}
                                            className="form-input" id="messenger-login"
-                                           name="messenger-login" required placeholder='Telegram' iconPosition='left' icon='telegram plane'/>
+                                           name="messenger-login" required placeholder='Telegram' iconPosition='left'
+                                           icon='telegram plane'/>
                                 </div>
                                 <div className="profile-info-container-name-input">
-                                    <Input onChange={this.handleInputChange}  style={{paddingTop: 0, height: 32}}
-                                           className="form-input" id="messenger-login"
+                                    <Input onChange={this.handleInputChange} style={{paddingTop: 0, height: 32}}
+                                           className="form-input" id="messenger-login-two"
+                                           defaultValue={this.state.user.phone}
                                            name="messenger-login" required placeholder='Телефон или имя'/>
                                 </div>
                             </div>
@@ -373,43 +597,53 @@ class Profile extends Component {
                                 <div style={{paddingBottom: 16}}>
                                     <Checkbox/><span className="messenger-list">Электронное письмо</span>
                                 </div>
-                               <div style={{paddingBottom: 16}}>
-                                   <Checkbox defaultChecked/><span className="messenger-list">Звонок</span>
-                               </div>
                                 <div style={{paddingBottom: 16}}>
-                                    <Checkbox defaultChecked/><span className="messenger-list">Сообщение в мессенджер</span>
+                                    <Checkbox defaultChecked/><span className="messenger-list">Звонок</span>
+                                </div>
+                                <div style={{paddingBottom: 16}}>
+                                    <Checkbox defaultChecked/><span
+                                    className="messenger-list">Сообщение в мессенджер</span>
                                 </div>
                             </div>
-                            <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
+                            <Divider style={{marginTop: '40px', marginBottom: 0}}/>
                         </div>
                         <div className="profile-info-container">
                             <div className="profile-info-container-name">
                                 <span>Безопасность</span>
                             </div>
-                            <div className="profile-info-container-name-inputs password">
-                                <div className="profile-info-container-name-input password-input">
-                                    <label style={{marginBottom: 6}}>Старый пароль</label>
-                                    <Input style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
-                                           icon={{ name: 'eye slash outline', link: true }} defaultValue="123456"
-                                           placeholder='Старый пароль' id="oldPassword" name="oldPassword" required type='password'/>
+                            <form onSubmit={this.handlePasswordSubmit}>
+                                <div className="profile-info-container-name-inputs password">
+                                    <div className="profile-info-container-name-input password-input">
+                                        <label style={{marginBottom: 6}}>Старый пароль</label>
+                                        <Input style={{paddingTop: 0, height: 32, width: 250}}
+                                               onChange={this.handleInputChange}
+                                               icon={{name: 'eye slash outline', link: true}} defaultValue="123456"
+                                               placeholder='Старый пароль' id="oldPassword" name="oldPassword" required
+                                               type='password'/>
+                                    </div>
+                                    <div className="profile-info-container-name-input password-input">
+                                        <label style={{marginBottom: 6}}>Новый пароль</label>
+                                        <Input style={{paddingTop: 0, height: 32, width: 250}}
+                                               onChange={this.handleInputChange}
+                                               icon={{name: 'eye slash outline', link: true}} defaultValue="123456"
+                                               placeholder='Старый пароль' id="newPassword" name="newPassword" required
+                                               type='password'/>
+                                    </div>
+                                    <div className="profile-info-container-name-input password-input">
+                                        <label style={{marginBottom: 6}}>Повторите новый пароль</label>
+                                        <Input style={{paddingTop: 0, height: 32, width: 250}}
+                                               onChange={this.handleInputChange}
+                                               icon={{name: 'eye slash outline', link: true}} defaultValue="123456"
+                                               placeholder='Повторите новый пароль' id="newRePassword"
+                                               name="newRePassword" required type='password'/>
+                                    </div>
+                                    <div className="profile-info-container-name-input password-input">
+                                        <Button compact color='blue' style={{width: 165, height: 32}}><span
+                                            className='command-approve-buttons-text'>Изменить пароль</span></Button>
+                                    </div>
                                 </div>
-                                <div className="profile-info-container-name-input password-input">
-                                    <label style={{marginBottom: 6}}>Новый пароль</label>
-                                    <Input   style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
-                                             icon={{ name: 'eye slash outline', link: true }} defaultValue="123456"
-                                             placeholder='Старый пароль' id="newPassword" name="newPassword" required type='password'/>
-                                </div>
-                                <div className="profile-info-container-name-input password-input">
-                                    <label style={{marginBottom: 6}}>Повторите новый пароль</label>
-                                    <Input   style={{paddingTop: 0, height: 32, width: 250}} onChange={this.handleInputChange}
-                                             icon={{ name: 'eye slash outline', link: true }} defaultValue="123456"
-                                             placeholder='Повторите новый пароль' id="newRePassword" name="newRePassword" required type='password'/>
-                                </div>
-                                <div className="profile-info-container-name-input password-input">
-                                    <Button compact color='blue' style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Изменить пароль</span></Button>
-                                </div>
-                            </div>
-                            <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
+                            </form>
+                            <Divider style={{marginTop: '40px', marginBottom: 0}}/>
                         </div>
                         <div className="profile-info-container">
                             <div className="profile-info-container-name">
@@ -419,10 +653,14 @@ class Profile extends Component {
                                 <Table basic='very' verticalAlign={'middle'} textAlign={'left'}>
                                     <Table.Header>
                                         <Table.Row>
-                                            <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Команда</span></Table.HeaderCell>
-                                            <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Роль</span></Table.HeaderCell>
-                                            <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Статус</span></Table.HeaderCell>
-                                            <Table.HeaderCell><span style={{color: '#A5A5A5'}}>Действие</span></Table.HeaderCell>
+                                            <Table.HeaderCell><span
+                                                style={{color: '#A5A5A5'}}>Команда</span></Table.HeaderCell>
+                                            <Table.HeaderCell><span
+                                                style={{color: '#A5A5A5'}}>Роль</span></Table.HeaderCell>
+                                            <Table.HeaderCell><span
+                                                style={{color: '#A5A5A5'}}>Статус</span></Table.HeaderCell>
+                                            <Table.HeaderCell><span
+                                                style={{color: '#A5A5A5'}}>Действие</span></Table.HeaderCell>
                                         </Table.Row>
                                     </Table.Header>
 
@@ -430,18 +668,24 @@ class Profile extends Component {
                                         <Table.Row>
                                             <Table.Cell>Волга</Table.Cell>
                                             <Table.Cell>Роль 1</Table.Cell>
-                                            <Table.Cell><Icon color='green' name='dot circle' size='small'/>В команде</Table.Cell>
+                                            <Table.Cell><Icon color='green' name='dot circle' size='small'/>В
+                                                команде</Table.Cell>
                                             <Table.Cell><NavLink to="#"><span style={{color: '#EB5757'}}>Выйти из команды </span></NavLink></Table.Cell>
                                         </Table.Row>
                                         <Table.Row>
                                             <Table.Cell>Урал</Table.Cell>
                                             <Table.Cell>Роль 3</Table.Cell>
-                                            <Table.Cell><Icon color='orange' name='dot circle' size='small'/>Запрос на участие</Table.Cell>
+                                            <Table.Cell><Icon color='orange' name='dot circle' size='small'/>Запрос на
+                                                участие</Table.Cell>
                                             <Table.Cell>
-                                            <div className='command-approve'>
-                                                <Button icon fluid labelPosition='left' color='blue'> <Icon name='checkmark' /><span className='command-approve-buttons-text'>Принять</span></Button>
-                                                <Button fluid icon labelPosition='left' color='red'><Icon name='close' /><span className='command-approve-buttons-text'>Отклонить</span></Button>
-                                            </div>
+                                                <div className='command-approve'>
+                                                    <Button icon fluid labelPosition='left' color='blue'> <Icon
+                                                        name='checkmark'/><span
+                                                        className='command-approve-buttons-text'>Принять</span></Button>
+                                                    <Button fluid icon labelPosition='left' color='red'><Icon
+                                                        name='close'/><span
+                                                        className='command-approve-buttons-text'>Отклонить</span></Button>
+                                                </div>
                                             </Table.Cell>
                                         </Table.Row>
                                     </Table.Body>
@@ -451,13 +695,17 @@ class Profile extends Component {
                                 <NavLink to="#"><span style={{color: '#2F80ED'}}>+ Вступить в команду</span></NavLink>
                             </div>
                         </div>
-                        <Divider style={{marginTop: '40px',  marginBottom: 0}}/>
+                        <Divider style={{marginTop: '40px', marginBottom: 0}}/>
                         <div className="profile-info-buttons">
                             <div className='apply-button-container'>
-                                <Button fluid className="apply-button" style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Сохранить</span></Button>
+                                <Button fluid className="apply-button" style={{width: 165, height: 32}}
+                                        onClick={this.handleMainInformationSubmit}><span
+                                    className='command-approve-buttons-text'>Сохранить</span></Button>
                             </div>
                             <div className='cancel-button-container'>
-                                <Button fluid className="cancel-button"  style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Отмена</span></Button>
+                                <Button fluid className="cancel-button" style={{width: 165, height: 32}}
+                                        onClick={this.reload}><span
+                                    className='command-approve-buttons-text'>Отмена</span></Button>
                             </div>
                         </div>
                     </div>
