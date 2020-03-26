@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
-import {Button, Dropdown, Form, Icon, Input, List, TextArea} from "semantic-ui-react";
+import {Button, Dropdown, Form, Icon, Image, Input, List, Segment, TextArea} from "semantic-ui-react";
 import ApiDetailMethodsResponseExampleHeader from "./header/ApiDetailMethodsResponseExampleHeader";
 import ApiDetailMethodsSchemeHeader from "./header/ApiDetailMethodsSchemeHeader";
 import ApiDetailMethodsResponseExampleBody from "./ApiDetailMethodsResponseExampleBody";
 import ApiDetailMethodsSchemeBody from "./ApiDetailMethodsSchemeBody";
 import queryString from "query-string";
 import LoadingIndicator from "../../../common/LoadingIndicator";
+import {Grid} from "semantic-ui-react/dist/commonjs/collections/Grid";
 
 class ApiDetailMethodsBody extends Component {
 
@@ -151,6 +152,7 @@ class ApiDetailMethodsBody extends Component {
         }
 
         const {host} = this.state;
+        const {operations} = this.state;
 
         const projectOptions = [
             {
@@ -187,6 +189,22 @@ class ApiDetailMethodsBody extends Component {
             }
         ];
 
+        const HttpMethods = ({items}, {index}) => (
+            <>
+                {
+                    items.map(item => (
+                        <List.List key={index + item.path} className='detail-methods-element-body-content'
+                                   hidden={this.state.hidden.p1}>
+                            <List.Content className='detail-methods-element-body'>
+                                <div className='detail-methods-element-body-paragraph'>
+                                    <span style={{color: '#219653'}}>{item.method}</span>  <span>{item.path}</span>
+                                </div>
+                            </List.Content>
+                        </List.List>
+                    ))}
+            </>
+        );
+
         return (
             <div>
                 <div className='detail-methods-body'>
@@ -221,221 +239,206 @@ class ApiDetailMethodsBody extends Component {
                                                         className='detail-methods-filter-text-title-main'>Операции</span>
                                                 </div>
                                             </List.Content>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.p1}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span style={{color: '#219653'}}>GET</span>
-                                                        <span> predictions</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content-padded'
-                                                       hidden={this.state.hidden.p1}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span style={{color: '#219653'}}>GET</span>
-                                                        <span> timezone</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
+                                            {
+                                                operations ? <HttpMethods items={operations}/> : <div/>
+                                            }
                                         </div>
                                     </List.Item>
                                     <List.Item>
-                                        <div className='detail-methods-filter-element-second'>
-                                            <List.Content floated='left' style={{marginRight: 5}}>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <Icon link id='fixtures' name={this.state.arrow.fixtures}
-                                                          onClick={this.toggle} style={{paddingRight: 0}}/>
-                                                </div>
-                                            </List.Content>
-                                            <List.Content>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <span className='detail-methods-filter-text-title'>Fixtures</span>
-                                                </div>
-                                            </List.Content>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.fixtures}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>Adjustable fixture</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.fixtures}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>Grinding fixtures</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.fixtures}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>Assembly fixture</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                        </div>
+                                        {/*<div className='detail-methods-filter-element-second'>*/}
+                                            {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
+                                                {/*<div className='detail-methods-filter-element-header'>*/}
+                                                    {/*<Icon link id='fixtures' name={this.state.arrow.fixtures}*/}
+                                                          {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
+                                                {/*</div>*/}
+                                            {/*</List.Content>*/}
+                                            {/*<List.Content>*/}
+                                                {/*<div className='detail-methods-filter-element-header'>*/}
+                                                    {/*<span className='detail-methods-filter-text-title'>Fixtures</span>*/}
+                                                {/*</div>*/}
+                                            {/*</List.Content>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.fixtures}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>Adjustable fixture</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.fixtures}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>Grinding fixtures</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.fixtures}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>Assembly fixture</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                        {/*</div>*/}
                                     </List.Item>
                                     <List.Item>
-                                        <div className='detail-methods-filter-element-second'>
-                                            <List.Content floated='left' style={{marginRight: 5}}>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <Icon link id='teams' name={this.state.arrow.teams}
-                                                          onClick={this.toggle} style={{paddingRight: 0}}/>
-                                                </div>
-                                            </List.Content>
-                                            <List.Content>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <span className='detail-methods-filter-text-title'>Teams</span>
-                                                </div>
-                                            </List.Content>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.teams}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>Рубин</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.teams}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>Манчестер</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.teams}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>Ливерпуль</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                        </div>
+                                        {/*<div className='detail-methods-filter-element-second'>*/}
+                                            {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
+                                                {/*<div className='detail-methods-filter-element-header'>*/}
+                                                    {/*<Icon link id='teams' name={this.state.arrow.teams}*/}
+                                                          {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
+                                                {/*</div>*/}
+                                            {/*</List.Content>*/}
+                                            {/*<List.Content>*/}
+                                                {/*<div className='detail-methods-filter-element-header'>*/}
+                                                    {/*<span className='detail-methods-filter-text-title'>Teams</span>*/}
+                                                {/*</div>*/}
+                                            {/*</List.Content>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.teams}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>Рубин</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.teams}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>Манчестер</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.teams}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>Ливерпуль</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                        {/*</div>*/}
                                     </List.Item>
                                     <List.Item>
-                                        <div className='detail-methods-filter-element-second'>
-                                            <List.Content floated='left' style={{marginRight: 5}}>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <Icon link id='v1' name={this.state.arrow.v1}
-                                                          onClick={this.toggle} style={{paddingRight: 0}}/>
-                                                </div>
-                                            </List.Content>
-                                            <List.Content>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <span className='detail-methods-filter-text-title'>V1</span>
-                                                </div>
-                                            </List.Content>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.v1}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>1.0</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.v1}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>2.0</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.v1}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>3.0</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                        </div>
+                                        {/*<div className='detail-methods-filter-element-second'>*/}
+                                            {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
+                                                {/*<div className='detail-methods-filter-element-header'>*/}
+                                                    {/*<Icon link id='v1' name={this.state.arrow.v1}*/}
+                                                          {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
+                                                {/*</div>*/}
+                                            {/*</List.Content>*/}
+                                            {/*<List.Content>*/}
+                                                {/*<div className='detail-methods-filter-element-header'>*/}
+                                                    {/*<span className='detail-methods-filter-text-title'>V1</span>*/}
+                                                {/*</div>*/}
+                                            {/*</List.Content>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.v1}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>1.0</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.v1}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>2.0</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.v1}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>3.0</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                        {/*</div>*/}
                                     </List.Item>
                                     <List.Item>
-                                        <div className='detail-methods-filter-element-second'>
-                                            <List.Content floated='left' style={{marginRight: 5}}>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <Icon link id='countries' name={this.state.arrow.countries}
-                                                          onClick={this.toggle} style={{paddingRight: 0}}/>
-                                                </div>
-                                            </List.Content>
-                                            <List.Content>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <span
-                                                        className='detail-methods-filter-text-title'>Countries&Seasons</span>
-                                                </div>
-                                            </List.Content>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.countries}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>1.0</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.countries}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>2.0</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.countries}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>3.0</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                        </div>
+                                        {/*<div className='detail-methods-filter-element-second'>*/}
+                                            {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
+                                                {/*<div className='detail-methods-filter-element-header'>*/}
+                                                    {/*<Icon link id='countries' name={this.state.arrow.countries}*/}
+                                                          {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
+                                                {/*</div>*/}
+                                            {/*</List.Content>*/}
+                                            {/*<List.Content>*/}
+                                                {/*<div className='detail-methods-filter-element-header'>*/}
+                                                    {/*<span*/}
+                                                        {/*className='detail-methods-filter-text-title'>Countries&Seasons</span>*/}
+                                                {/*</div>*/}
+                                            {/*</List.Content>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.countries}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>1.0</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.countries}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>2.0</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.countries}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>3.0</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                        {/*</div>*/}
                                     </List.Item>
                                     <List.Item>
-                                        <div className='detail-methods-filter-element-second'>
-                                            <List.Content floated='left' style={{marginRight: 5}}>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <Icon link id='leagues' name={this.state.arrow.leagues}
-                                                          onClick={this.toggle} style={{paddingRight: 0}}/>
-                                                </div>
-                                            </List.Content>
-                                            <List.Content>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <span className='detail-methods-filter-text-title'>Leagues</span>
-                                                </div>
-                                            </List.Content>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.leagues}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>1.0</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.leagues}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>2.0</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                            <List.List className='detail-methods-element-body-content'
-                                                       hidden={this.state.hidden.leagues}>
-                                                <List.Content className='detail-methods-element-body'>
-                                                    <div className='detail-methods-element-body-paragraph'>
-                                                        <span>3.0</span>
-                                                    </div>
-                                                </List.Content>
-                                            </List.List>
-                                        </div>
+                                        {/*<div className='detail-methods-filter-element-second'>*/}
+                                            {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
+                                                {/*<div className='detail-methods-filter-element-header'>*/}
+                                                    {/*<Icon link id='leagues' name={this.state.arrow.leagues}*/}
+                                                          {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
+                                                {/*</div>*/}
+                                            {/*</List.Content>*/}
+                                            {/*<List.Content>*/}
+                                                {/*<div className='detail-methods-filter-element-header'>*/}
+                                                    {/*<span className='detail-methods-filter-text-title'>Leagues</span>*/}
+                                                {/*</div>*/}
+                                            {/*</List.Content>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.leagues}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>1.0</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.leagues}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>2.0</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                            {/*<List.List className='detail-methods-element-body-content'*/}
+                                                       {/*hidden={this.state.hidden.leagues}>*/}
+                                                {/*<List.Content className='detail-methods-element-body'>*/}
+                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                                        {/*<span>3.0</span>*/}
+                                                    {/*</div>*/}
+                                                {/*</List.Content>*/}
+                                            {/*</List.List>*/}
+                                        {/*</div>*/}
                                     </List.Item>
                                 </List>
                             </div>

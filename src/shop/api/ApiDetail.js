@@ -124,7 +124,7 @@ class ApiDetail extends Component {
             case 'documentation':
                 return <ApiDetailDocumentationBody {...this.props} />;
             default:
-                return <ApiDetailMethodsBody key={this.state.id} info={this.state.info} host={this.state.host} operations={this.state.operations} {...this.props} />
+                return <ApiDetailMethodsBody key={this.state.id} host={this.state.host} operations={this.state.operations} {...this.props} />
         }
     }
 
