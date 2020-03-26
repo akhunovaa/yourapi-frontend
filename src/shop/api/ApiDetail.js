@@ -28,7 +28,7 @@ class ApiDetail extends Component {
         super(props);
         this.state = {
             api: {
-                loading: false,
+                loading: true,
                 id: 1,
                 name: '',
                 dealer: '',
@@ -51,15 +51,13 @@ class ApiDetail extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        this.setState({
-            loading: true
-        });
         const params = queryString.parse(this.props.location.search);
-        let id = params.id !== 'undefined' ? params.id : '1';
+        let id = params.id != null ? params.id : '1';
         apiProjectGet(id)
             .then(response => {
                 if (this._isMounted) {
                     this.setState({
+                        loading: false,
                         id: response.response.id,
                         name: response.response.fullName,
                         description: response.response.description,
@@ -69,17 +67,16 @@ class ApiDetail extends Component {
                         approved: response.response.approved,
                         dealer: response.response.username.username,
                         updated: response.response.updated,
-                        loading: false
-                    })
+                        info: response.response.info,
+                        host: response.response.host,
+                        operations: response.response.operations
+                    });
                 }
             }).catch(error => {
             Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
-            this.setState({
-                loading: false
-            });
-        });
-        this.setState({
-            loading: true
+            if (this._isMounted) {
+                this.setState({loading: false})
+            }
         });
     }
 
@@ -127,7 +124,7 @@ class ApiDetail extends Component {
             case 'documentation':
                 return <ApiDetailDocumentationBody {...this.props} />;
             default:
-                return <ApiDetailMethodsBody {...this.props} />
+                return <ApiDetailMethodsBody key={this.state.id} info={this.state.info} host={this.state.host} operations={this.state.operations} {...this.props} />
         }
     }
 

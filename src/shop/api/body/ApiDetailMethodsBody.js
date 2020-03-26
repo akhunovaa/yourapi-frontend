@@ -6,6 +6,7 @@ import ApiDetailMethodsSchemeHeader from "./header/ApiDetailMethodsSchemeHeader"
 import ApiDetailMethodsResponseExampleBody from "./ApiDetailMethodsResponseExampleBody";
 import ApiDetailMethodsSchemeBody from "./ApiDetailMethodsSchemeBody";
 import queryString from "query-string";
+import LoadingIndicator from "../../../common/LoadingIndicator";
 
 class ApiDetailMethodsBody extends Component {
 
@@ -14,6 +15,12 @@ class ApiDetailMethodsBody extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: true,
+            info: null,
+            host: {
+                url: ''
+            },
+            operations: [],
             hidden: {
                 p1: false,
                 fixtures: true,
@@ -31,7 +38,6 @@ class ApiDetailMethodsBody extends Component {
                 teams: 'chevron down'
             },
             project: 'Мой API',
-            host: 'api-football-v.1p.yourapi...',
             key: 'dsjghse9gus9pgoj4;ow5...',
             idNumber: '123456',
             language: '(Node.js) Unirest',
@@ -57,6 +63,14 @@ class ApiDetailMethodsBody extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        this.setState({
+                info: this.props.info,
+                host: this.props.host,
+                operations: this.props.operations
+            });
+        if (this._isMounted) {
+            this.setState({loading: false});
+        }
     }
 
     componentWillUnmount() {
@@ -131,6 +145,13 @@ class ApiDetailMethodsBody extends Component {
 
 
     render() {
+
+        if (this.state.loading) {
+            return <LoadingIndicator/>
+        }
+
+        const {host} = this.state;
+
         const projectOptions = [
             {
                 language: 'Мой API',
@@ -165,6 +186,7 @@ class ApiDetailMethodsBody extends Component {
                 value: 'Go (Golang) 1.13'
             }
         ];
+
         return (
             <div>
                 <div className='detail-methods-body'>
@@ -448,7 +470,7 @@ class ApiDetailMethodsBody extends Component {
                                 <div style={{paddingTop: 6}}/>
                                 <Input size={'small'} fluid icon={{name: 'check', color: 'green', size: 'large'}}
                                        placeholder='Хост' id="host"
-                                       name="host" defaultValue={this.state.host}/>
+                                       name="host" defaultValue={host ? host.url : 'https://1-test.p.yourapi.ru'}/>
                             </div>
                             <div className="detail-methods-parameters">
                                 <label className='detail-methods-parameters-label'>Ключ (обязательное поле)</label>
