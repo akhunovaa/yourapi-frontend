@@ -74,9 +74,19 @@ class ApiDetailMethodsOperation extends Component {
     }
 
     apiTest() {
+        const operations = this.props.operations ? this.props.operations : [];
+
+        const operationNameArray = [];
+        for (let i = 0; i < operations.length; i++) {
+            operationNameArray.push(operations[i].path);
+        }
+
+        const params = queryString.parse(this.props.location.search);
+        let operationNaming = (params.operation !== 'undefined' && this.handleCheck(operationNameArray, params.operation)) ? params.operation : '/';
+
         const {host} = this.props;
         if (host) {
-            let url = host.url + this.path;
+            let url = host.url + operationNaming;
             apiTestRequestSend(url)
                 .then(response => {
                     this.setState({
