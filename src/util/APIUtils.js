@@ -1,4 +1,5 @@
 import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
+import Alert from "react-s-alert";
 
 const request = async (options) => {
     const headers = new Headers({
@@ -44,6 +45,21 @@ const requestGet = async (options) => {
                 return json;
             })
         );
+};
+
+const requestApiTestGet = async (options) => {
+
+    options = Object.assign({}, options);
+
+    return await fetch(options.url, options)
+        .then(response =>
+            response.json().then(json => {
+                if(!response.ok) {
+                    return Promise.reject(json);
+                }
+                return json;
+            })
+        )
 };
 
 const requestImage = (options) => {
@@ -181,6 +197,16 @@ export function apiProjectGet(apiProjectId) {
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return requestGet({
         url: apiBaseUrl + "/api-data/get/" + apiProjectId,
+        method: 'GET'
+    });
+}
+
+export function apiTestRequestSend(url) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+    return requestApiTestGet({
+        url: url,
         method: 'GET'
     });
 }

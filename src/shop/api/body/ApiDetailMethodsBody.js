@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
-import {Button, Dropdown, Form, Icon, Image, Input, List, Segment, TextArea} from "semantic-ui-react";
+import {Button, Dropdown, Form, Icon, Input, List, TextArea} from "semantic-ui-react";
 import ApiDetailMethodsResponseExampleHeader from "./header/ApiDetailMethodsResponseExampleHeader";
 import ApiDetailMethodsSchemeHeader from "./header/ApiDetailMethodsSchemeHeader";
 import ApiDetailMethodsResponseExampleBody from "./ApiDetailMethodsResponseExampleBody";
@@ -8,19 +8,23 @@ import ApiDetailMethodsSchemeBody from "./ApiDetailMethodsSchemeBody";
 import queryString from "query-string";
 import LoadingIndicator from "../../../common/LoadingIndicator";
 import {Grid} from "semantic-ui-react/dist/commonjs/collections/Grid";
+import {apiTestRequestSend} from "../../../util/APIUtils";
 
 class ApiDetailMethodsBody extends Component {
 
     _isMounted = false;
+    path = '';
 
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
+            selectedPath: '',
             info: null,
             host: {
                 url: ''
             },
+            response: '',
             operations: [],
             hidden: {
                 p1: false,
@@ -60,15 +64,17 @@ class ApiDetailMethodsBody extends Component {
         this.toggle = this.toggle.bind(this);
         this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
         this.renderSwitchBody = this.renderSwitchBody.bind(this);
+        this.apiTest = this.apiTest.bind(this);
+        this.selected = this.selected.bind(this);
     }
 
     componentDidMount() {
         this._isMounted = true;
         this.setState({
-                info: this.props.info,
-                host: this.props.host,
-                operations: this.props.operations
-            });
+            info: this.props.info,
+            host: this.props.host,
+            operations: this.props.operations
+        });
         if (this._isMounted) {
             this.setState({loading: false});
         }
@@ -136,11 +142,37 @@ class ApiDetailMethodsBody extends Component {
         const paging = (params.code !== 'undefined' && this.handleCheck(pagingArray, params.code)) ? params.code : 'example';
         switch (paging) {
             case 'example':
-                return <ApiDetailMethodsResponseExampleBody {...this.props} />;
+                return <ApiDetailMethodsResponseExampleBody key={paging} response={this.state.response} {...this.props} />;
             case 'scheme':
                 return <ApiDetailMethodsSchemeBody {...this.props} />;
             default:
-                return <ApiDetailMethodsResponseExampleBody {...this.props} />
+                return <ApiDetailMethodsResponseExampleBody key={paging} response={this.state.response} {...this.props} />
+        }
+    }
+
+    selected(event) {
+        let elem = event.target;
+        this.path = elem.id;
+    }
+
+    apiTest() {
+        if (this.state.host.url) {
+            let url = this.state.host.url + this.path;
+            apiTestRequestSend(url)
+                .then(response => {
+                    this.setState({
+                        response: response
+                    })
+                }).catch(error => {
+                this.setState({
+                    response: error.message
+                })
+            });
+
+        } else {
+            this.setState({
+                response: ''
+            })
         }
     }
 
@@ -196,8 +228,8 @@ class ApiDetailMethodsBody extends Component {
                         <List.List key={index + item.path} className='detail-methods-element-body-content'
                                    hidden={this.state.hidden.p1}>
                             <List.Content className='detail-methods-element-body'>
-                                <div className='detail-methods-element-body-paragraph'>
-                                    <span style={{color: '#219653'}}>{item.method}</span>  <span>{item.path}</span>
+                                <div tabIndex="-1" className='detail-methods-element-body-paragraph' id={item.path} onClick={this.selected}>
+                                    <span id={item.path} style={{color: '#219653'}}>{item.method}</span> <span id={item.path}>{item.path}</span>
                                 </div>
                             </List.Content>
                         </List.List>
@@ -246,198 +278,198 @@ class ApiDetailMethodsBody extends Component {
                                     </List.Item>
                                     <List.Item>
                                         {/*<div className='detail-methods-filter-element-second'>*/}
-                                            {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
-                                                {/*<div className='detail-methods-filter-element-header'>*/}
-                                                    {/*<Icon link id='fixtures' name={this.state.arrow.fixtures}*/}
-                                                          {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
-                                                {/*</div>*/}
-                                            {/*</List.Content>*/}
-                                            {/*<List.Content>*/}
-                                                {/*<div className='detail-methods-filter-element-header'>*/}
-                                                    {/*<span className='detail-methods-filter-text-title'>Fixtures</span>*/}
-                                                {/*</div>*/}
-                                            {/*</List.Content>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.fixtures}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>Adjustable fixture</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.fixtures}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>Grinding fixtures</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.fixtures}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>Assembly fixture</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
+                                        {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
+                                        {/*<div className='detail-methods-filter-element-header'>*/}
+                                        {/*<Icon link id='fixtures' name={this.state.arrow.fixtures}*/}
+                                        {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*<List.Content>*/}
+                                        {/*<div className='detail-methods-filter-element-header'>*/}
+                                        {/*<span className='detail-methods-filter-text-title'>Fixtures</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.fixtures}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>Adjustable fixture</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.fixtures}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>Grinding fixtures</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.fixtures}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>Assembly fixture</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
                                         {/*</div>*/}
                                     </List.Item>
                                     <List.Item>
                                         {/*<div className='detail-methods-filter-element-second'>*/}
-                                            {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
-                                                {/*<div className='detail-methods-filter-element-header'>*/}
-                                                    {/*<Icon link id='teams' name={this.state.arrow.teams}*/}
-                                                          {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
-                                                {/*</div>*/}
-                                            {/*</List.Content>*/}
-                                            {/*<List.Content>*/}
-                                                {/*<div className='detail-methods-filter-element-header'>*/}
-                                                    {/*<span className='detail-methods-filter-text-title'>Teams</span>*/}
-                                                {/*</div>*/}
-                                            {/*</List.Content>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.teams}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>Рубин</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.teams}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>Манчестер</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.teams}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>Ливерпуль</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
+                                        {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
+                                        {/*<div className='detail-methods-filter-element-header'>*/}
+                                        {/*<Icon link id='teams' name={this.state.arrow.teams}*/}
+                                        {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*<List.Content>*/}
+                                        {/*<div className='detail-methods-filter-element-header'>*/}
+                                        {/*<span className='detail-methods-filter-text-title'>Teams</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.teams}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>Рубин</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.teams}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>Манчестер</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.teams}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>Ливерпуль</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
                                         {/*</div>*/}
                                     </List.Item>
                                     <List.Item>
                                         {/*<div className='detail-methods-filter-element-second'>*/}
-                                            {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
-                                                {/*<div className='detail-methods-filter-element-header'>*/}
-                                                    {/*<Icon link id='v1' name={this.state.arrow.v1}*/}
-                                                          {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
-                                                {/*</div>*/}
-                                            {/*</List.Content>*/}
-                                            {/*<List.Content>*/}
-                                                {/*<div className='detail-methods-filter-element-header'>*/}
-                                                    {/*<span className='detail-methods-filter-text-title'>V1</span>*/}
-                                                {/*</div>*/}
-                                            {/*</List.Content>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.v1}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>1.0</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.v1}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>2.0</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.v1}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>3.0</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
+                                        {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
+                                        {/*<div className='detail-methods-filter-element-header'>*/}
+                                        {/*<Icon link id='v1' name={this.state.arrow.v1}*/}
+                                        {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*<List.Content>*/}
+                                        {/*<div className='detail-methods-filter-element-header'>*/}
+                                        {/*<span className='detail-methods-filter-text-title'>V1</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.v1}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>1.0</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.v1}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>2.0</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.v1}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>3.0</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
                                         {/*</div>*/}
                                     </List.Item>
                                     <List.Item>
                                         {/*<div className='detail-methods-filter-element-second'>*/}
-                                            {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
-                                                {/*<div className='detail-methods-filter-element-header'>*/}
-                                                    {/*<Icon link id='countries' name={this.state.arrow.countries}*/}
-                                                          {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
-                                                {/*</div>*/}
-                                            {/*</List.Content>*/}
-                                            {/*<List.Content>*/}
-                                                {/*<div className='detail-methods-filter-element-header'>*/}
-                                                    {/*<span*/}
-                                                        {/*className='detail-methods-filter-text-title'>Countries&Seasons</span>*/}
-                                                {/*</div>*/}
-                                            {/*</List.Content>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.countries}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>1.0</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.countries}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>2.0</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.countries}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>3.0</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
+                                        {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
+                                        {/*<div className='detail-methods-filter-element-header'>*/}
+                                        {/*<Icon link id='countries' name={this.state.arrow.countries}*/}
+                                        {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*<List.Content>*/}
+                                        {/*<div className='detail-methods-filter-element-header'>*/}
+                                        {/*<span*/}
+                                        {/*className='detail-methods-filter-text-title'>Countries&Seasons</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.countries}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>1.0</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.countries}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>2.0</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.countries}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>3.0</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
                                         {/*</div>*/}
                                     </List.Item>
                                     <List.Item>
                                         {/*<div className='detail-methods-filter-element-second'>*/}
-                                            {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
-                                                {/*<div className='detail-methods-filter-element-header'>*/}
-                                                    {/*<Icon link id='leagues' name={this.state.arrow.leagues}*/}
-                                                          {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
-                                                {/*</div>*/}
-                                            {/*</List.Content>*/}
-                                            {/*<List.Content>*/}
-                                                {/*<div className='detail-methods-filter-element-header'>*/}
-                                                    {/*<span className='detail-methods-filter-text-title'>Leagues</span>*/}
-                                                {/*</div>*/}
-                                            {/*</List.Content>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.leagues}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>1.0</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.leagues}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>2.0</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
-                                            {/*<List.List className='detail-methods-element-body-content'*/}
-                                                       {/*hidden={this.state.hidden.leagues}>*/}
-                                                {/*<List.Content className='detail-methods-element-body'>*/}
-                                                    {/*<div className='detail-methods-element-body-paragraph'>*/}
-                                                        {/*<span>3.0</span>*/}
-                                                    {/*</div>*/}
-                                                {/*</List.Content>*/}
-                                            {/*</List.List>*/}
+                                        {/*<List.Content floated='left' style={{marginRight: 5}}>*/}
+                                        {/*<div className='detail-methods-filter-element-header'>*/}
+                                        {/*<Icon link id='leagues' name={this.state.arrow.leagues}*/}
+                                        {/*onClick={this.toggle} style={{paddingRight: 0}}/>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*<List.Content>*/}
+                                        {/*<div className='detail-methods-filter-element-header'>*/}
+                                        {/*<span className='detail-methods-filter-text-title'>Leagues</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.leagues}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>1.0</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.leagues}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>2.0</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
+                                        {/*<List.List className='detail-methods-element-body-content'*/}
+                                        {/*hidden={this.state.hidden.leagues}>*/}
+                                        {/*<List.Content className='detail-methods-element-body'>*/}
+                                        {/*<div className='detail-methods-element-body-paragraph'>*/}
+                                        {/*<span>3.0</span>*/}
+                                        {/*</div>*/}
+                                        {/*</List.Content>*/}
+                                        {/*</List.List>*/}
                                         {/*</div>*/}
                                     </List.Item>
                                 </List>
@@ -490,7 +522,8 @@ class ApiDetailMethodsBody extends Component {
                                        name="idNumber" defaultValue={this.state.idNumber}/>
                             </div>
                             <div className='detail-methods-test-button-container'>
-                                <Button basic className='detail-methods-test-button' style={{background: '#2F80EFD'}}>
+                                <Button basic className='detail-methods-test-button' style={{background: '#2F80EFD'}}
+                                        onClick={this.apiTest}>
                                     <span className='detail-methods-test-button-text'>Тестировать</span>
                                 </Button>
                             </div>

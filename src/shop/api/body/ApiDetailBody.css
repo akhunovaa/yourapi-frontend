@@ -454,6 +454,10 @@
     padding: 16px 0 0 0 !important;
 }
 
+.detail-methods-element-body-content:focus {
+    padding: 16px 0 0 0 !important;
+}
+
 .detail-methods-element-body-content-padded{
     padding: 10px 0 0 0 !important;
 }
@@ -478,14 +482,16 @@
     padding: 10px 104px 10px 10px;
 }
 
-.detail-methods-element-body-paragraph:hover{
-    background-color: #D8D8D8;
+.detail-methods-element-body-paragraph:focus{
+    background-color: #2d4373;
     border-radius: 4px;
+    color: white;
 }
 
-.detail-methods-element-body-paragraph:active{
-    background-color: #D8D8D8;
+.detail-methods-element-body-paragraph-selected{
+    background-color: #2d4373;
     border-radius: 4px;
+    color: white;
 }
 
 .detail-methods-properties-title{

@@ -57,7 +57,7 @@ class ApiDetailMethodsResponseExampleBody extends Component {
                             <TextArea className='detail-methods-example-code-fragment-textarea'
                                       onChange={this.handleInputChange} placeholder=''
                                       style={{minHeight: 342, maxHeight: 342, minWidth: 298}} id="example"
-                                      name="example" defaultValue={this.state.example}/>
+                                      name="example" defaultValue={this.props.response}/>
                     </Form>
                 </div>
                 <div className='detail-methods-code-fragment-textarea-inner-response-code'>
