@@ -159,9 +159,10 @@ class ApiDetailMethodsBody extends Component {
         if (this.state.host.url) {
             let url = this.state.host.url + this.path;
             apiTestRequestSend(url)
+                .then(response => { return response.json();})
                 .then(response => {
                     this.setState({
-                        response: response.response
+                        response: response
                     })
                 }).catch(error => {
                 this.setState({
