@@ -108,7 +108,7 @@ class ApiDetail extends Component {
         this.setState({open: false})
     };
 
-    renderSwitchBody() {
+    renderSwitchBody(link4Description) {
         const pagingArray = ['review', 'version', 'methods', 'price', 'questions', 'documentation'];
         const params = queryString.parse(this.props.location.search);
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'methods';
@@ -124,11 +124,11 @@ class ApiDetail extends Component {
             case 'documentation':
                 return <ApiDetailDocumentationBody {...this.props} />;
             default:
-                return <ApiDetailMethodsBody key={this.state.id} host={this.state.host} operations={this.state.operations} {...this.props} />
+                return <ApiDetailMethodsBody link={link4Description + "&page=methods"} host={this.state.host} operations={this.state.operations}/>
         }
     }
 
-    renderSwitchHeader() {
+    renderSwitchHeader(link4Description) {
         const pagingArray = ['review', 'version', 'methods', 'price', 'questions', 'documentation'];
         const params = queryString.parse(this.props.location.search);
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'methods';
@@ -144,7 +144,7 @@ class ApiDetail extends Component {
             case 'documentation':
                 return <ApiDetailDocumentationHeader {...this.props} />;
             default:
-                return <ApiDetailMethodsHeader {...this.props} />
+                return <ApiDetailMethodsHeader link={link4Description} {...this.props} />
         }
     }
 
@@ -199,26 +199,25 @@ class ApiDetail extends Component {
     }
 
 
+
     render() {
         if (this.state.loading) {
             return <LoadingIndicator/>
         }
         const host = window.location.origin.toString();
+        const link = this.getLink4CategoryFilter(this.state.category);
+        const link4Description = this.getLink4Description(this.state.category) + this.state.id;
         return (
             <div className="api-detail-main">
                 <div className="api-detail-container-breadcrumb">
                     <Breadcrumb>
-                        <Breadcrumb.Section as={NavLink} to={'/'} link><span
-                            className='text-disabled-color'>Главная</span></Breadcrumb.Section>
+                        <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
-                            className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
+                        <Breadcrumb.Section as={NavLink} to={'/shop'} link><span className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={this.getLink4CategoryFilter(this.state.category)} link><span
-                            className='text-disabled-color'>{this.state.category}</span></Breadcrumb.Section>
+                        <Breadcrumb.Section as={NavLink} to={link} link><span className='text-disabled-color'>{this.state.category}</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={this.getLink4Description(this.state.category) + this.state.id} link><span
-                            className='text-disabled-color'>{this.state.name}</span></Breadcrumb.Section>
+                        <Breadcrumb.Section as={NavLink} to={link4Description} link><span className='text-disabled-color'>{this.state.name}</span></Breadcrumb.Section>
                     </Breadcrumb>
                 </div>
                 <div className="api-detail-main-container">
@@ -258,7 +257,7 @@ class ApiDetail extends Component {
                             <div className='api-detail-inner-body-container'>
                                 <div className='api-left-form-elements'>
                                     Категория
-                                    <NavLink to={this.getLink4CategoryFilter(this.state.category)} className='description-body-link description-api-links-color-blue'>{this.state.category}</NavLink>
+                                    <NavLink to={link} className='description-body-link description-api-links-color-blue'>{this.state.category}</NavLink>
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Версия
@@ -291,10 +290,10 @@ class ApiDetail extends Component {
                     </div>
                     <div className="api-detail-form-container">
                         <div className='api-detail-form-header-container'>
-                            {this.renderSwitchHeader()}
+                            {this.renderSwitchHeader(link4Description)}
                         </div>
                         <div className='api-detail-form-body-container'>
-                            {this.renderSwitchBody()}
+                            {this.renderSwitchBody(link4Description)}
                         </div>
                     </div>
                 </div>

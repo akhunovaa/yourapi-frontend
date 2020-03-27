@@ -480,18 +480,21 @@
     font-size: 14px;
     line-height: 16px;
     padding: 10px 104px 10px 10px;
+    cursor: pointer;
 }
 
 .detail-methods-element-body-paragraph:focus{
     background-color: #2d4373;
     border-radius: 4px;
     color: white;
+    cursor: pointer;
 }
 
 .detail-methods-element-body-paragraph-selected{
     background-color: #2d4373;
     border-radius: 4px;
     color: white;
+    cursor: pointer;
 }
 
 .detail-methods-properties-title{
