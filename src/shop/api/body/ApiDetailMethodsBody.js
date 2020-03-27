@@ -161,7 +161,7 @@ class ApiDetailMethodsBody extends Component {
             apiTestRequestSend(url)
                 .then(response => {
                     this.setState({
-                        response: response
+                        response: response.response
                     })
                 }).catch(error => {
                 this.setState({
