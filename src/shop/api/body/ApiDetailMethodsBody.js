@@ -138,15 +138,16 @@ class ApiDetailMethodsBody extends Component {
 
     renderSwitchBody() {
         const pagingArray = ['example', 'scheme'];
+        const responseValue = this.state.response;
         const params = queryString.parse(this.props.location.search);
         const paging = (params.code !== 'undefined' && this.handleCheck(pagingArray, params.code)) ? params.code : 'example';
         switch (paging) {
             case 'example':
-                return <ApiDetailMethodsResponseExampleBody key={paging} response={this.state.response} {...this.props} />;
+                return <ApiDetailMethodsResponseExampleBody key={paging} response={responseValue} {...this.props} />;
             case 'scheme':
                 return <ApiDetailMethodsSchemeBody {...this.props} />;
             default:
-                return <ApiDetailMethodsResponseExampleBody key={paging} response={this.state.response} {...this.props} />
+                return <ApiDetailMethodsResponseExampleBody key={paging} response={responseValue} {...this.props} />
         }
     }
 
@@ -159,17 +160,15 @@ class ApiDetailMethodsBody extends Component {
         if (this.state.host.url) {
             let url = this.state.host.url + this.path;
             apiTestRequestSend(url)
-                .then(response => { return response.json();})
                 .then(response => {
                     this.setState({
                         response: response
                     })
                 }).catch(error => {
                 this.setState({
-                    response: error.message
+                    response: error
                 })
             });
-
         } else {
             this.setState({
                 response: ''
