@@ -14,3 +14,25 @@
     text-align: center;
     white-space: nowrap;
 }
+
+.response-header-icons-links-methods{
+    display: inline-block;
+    height: 52px;
+    padding: 18px 20px 18px 20px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.response-header-display-rule{
+    display: flex;
+}
+
+.response-paste{
+    color: #A5A5A5;
+    padding-left: 30px;
+}
+
+.response-copy{
+    color: #A5A5A5;
+    padding-left: 30px;
+}

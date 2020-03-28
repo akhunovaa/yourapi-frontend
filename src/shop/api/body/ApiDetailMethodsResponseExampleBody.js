@@ -48,23 +48,16 @@ class ApiDetailMethodsResponseExampleBody extends Component {
         this.setState({open: false})
     };
 
-    jsonPrettify = (json) => {
-        if (typeof json === 'object' && json !== null) {
-            return JSON.stringify(json, undefined, 4);
-        }
-    };
-
-
     render() {
-        const response = this.jsonPrettify(this.props.response);
+
         return (
             <div className="detail-methods-example-code-fragment-container">
                 <div className='detail-methods-example-code-fragment-textarea-container'>
                     <Form style={{paddingTop: '8px'}}>
                             <TextArea className='detail-methods-example-code-fragment-textarea'
-                                      onChange={this.handleInputChange} placeholder='Пример ответа'
+                                      onChange={this.props.onChange} placeholder='Пример ответа'
                                       style={{minHeight: 342, maxHeight: 342, minWidth: 298}} id="example"
-                                      name="example" value={response}/>
+                                      name="example" value={this.props.value}/>
                     </Form>
                 </div>
                 <div className='detail-methods-code-fragment-textarea-inner-response-code'>

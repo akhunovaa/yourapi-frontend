@@ -90,9 +90,9 @@ class ApiDetailMethodsSchemeBody extends Component {
                 <div className='detail-methods-example-code-fragment-textarea-container'>
                     <Form style={{paddingTop: '8px'}}>
                             <TextArea className='detail-methods-example-code-fragment-textarea'
-                                      onChange={this.handleInputChange} placeholder=''
+                                      onChange={this.props.onChange} placeholder=''
                                       style={{minHeight: 342, maxHeight: 342, minWidth: 298}} id="example"
-                                      name="example" defaultValue={this.state.schema}/>
+                                      name="example" value={this.props.value}/>
                     </Form>
                 </div>
                 <div className='detail-methods-code-fragment-textarea-inner-response-code'>

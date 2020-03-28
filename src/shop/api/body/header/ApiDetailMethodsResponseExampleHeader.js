@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
 import './ApiDetailMethodsHeader.css';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Icon} from "semantic-ui-react";
 
 class ApiDetailMethodsResponseExampleHeader extends Component {
@@ -51,14 +52,18 @@ class ApiDetailMethodsResponseExampleHeader extends Component {
     render() {
         const link = this.props.link;
         return (
-            <div className='code-header-links-font'>
+            <div className='code-header-links-font response-header-display-rule'>
                 <div className='code-header-links-methods code-header-links-font active-header-container'>
-                    <NavLink to={link + "&code=example"} className='active-header-link'>Пример ответа</NavLink>
+                    <NavLink to={link + "&code=example"} className='active-header-link blue-hover'>Пример ответа</NavLink>
                 </div>
                 <div className='code-header-links-methods code-header-links-font'>
-                    <NavLink to={link + "&code=scheme"} className='inactive-header-link'>Схема</NavLink>
+                    <NavLink to={link + "&code=scheme"} className='inactive-header-link blue-hover'>Схема</NavLink>
                 </div>
-                <Icon style={{paddingLeft: 30, color: '#A5A5A5'}} name='copy outline' link size='large'/>
+                <div className='response-header-icons-links-methods code-header-links-font'>
+                    <CopyToClipboard text={this.props.text} onCopy={this.props.onCopy}>
+                        {this.props.copied ? <Icon className='response-paste fadeInLeft animated3' name='paste' size='large'/> : <Icon className='response-copy blue-hover' name='copy outline' link size='large'/>}
+                    </CopyToClipboard>
+                </div>
             </div>
         )
     }

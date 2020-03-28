@@ -1001,3 +1001,13 @@
     /* Gray 6 */
     color: #F2F2F2;
 }
+
+.code-paste {
+    color: #A5A5A5;
+    padding-left: 19px;
+}
+
+.code-copy{
+    color: #A5A5A5;
+    padding-left: 19px;
+}

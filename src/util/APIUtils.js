@@ -1,5 +1,4 @@
 import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
-import Alert from "react-s-alert";
 
 const request = async (options) => {
     const headers = new Headers({

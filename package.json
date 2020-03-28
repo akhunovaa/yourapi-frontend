@@ -10,6 +10,7 @@
     "history": "^4.9.0",
     "query-string": "^6.9.0",
     "react": "^16.8.6",
+    "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.8.6",
     "react-images-upload": "^1.2.7",
     "react-recaptcha-google": "^1.1.1",
