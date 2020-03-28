@@ -42,7 +42,7 @@ const requestGet = async (options) => {
                 if (!response.ok) {
                     return Promise.reject(json);
                 }
-                checkResponseForAvalidToken();
+                checkResponseForAvalidToken(json);
                 return json;
             })
         );
@@ -82,7 +82,7 @@ const requestImage = async (options) => {
                 if (!response.ok) {
                     return Promise.reject(json);
                 }
-                checkResponseForAvalidToken();
+                checkResponseForAvalidToken(json);
                 return json;
             })
         );
