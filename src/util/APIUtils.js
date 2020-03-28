@@ -1,4 +1,4 @@
-import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
+import { API_BASE_URL, ACCESS_TOKEN, ACCESS_DENIED_MESSAGE} from '../constants';
 
 const request = async (options) => {
     const headers = new Headers({
@@ -16,6 +16,11 @@ const request = async (options) => {
         .then(response =>
             response.json().then(json => {
                 if(!response.ok) {
+                    return Promise.reject(json);
+                }
+                if(json.success === false && json.message === ACCESS_DENIED_MESSAGE) {
+                    localStorage.removeItem(ACCESS_TOKEN);
+                    window.location.reload();
                     return Promise.reject(json);
                 }
                 return json;
@@ -39,6 +44,11 @@ const requestGet = async (options) => {
         .then(response =>
             response.json().then(json => {
                 if(!response.ok) {
+                    return Promise.reject(json);
+                }
+                if(json.success === false && json.message === ACCESS_DENIED_MESSAGE) {
+                    localStorage.removeItem(ACCESS_TOKEN);
+                    window.location.reload();
                     return Promise.reject(json);
                 }
                 return json;
