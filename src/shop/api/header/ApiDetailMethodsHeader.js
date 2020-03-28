@@ -51,25 +51,26 @@ class ApiDetailMethodsHeader extends Component {
 
 
     render() {
+        const link = this.props.link;
         return (
             <div className='header-links-list'>
                 <div className='header-links-methods header-links-font active-header-container'>
-                    <NavLink to={this.props.link + '&page=methods'} className='active-header-link'>Методы</NavLink>
+                    <NavLink to={link + '&page=methods'} className='active-header-link'>Методы</NavLink>
                 </div>
                 <div className='header-links-methods header-links-font'>
-                    <NavLink to={this.props.link + '&page=version'} className='inactive-header-link'>Версии</NavLink>
+                    <NavLink to={link+ '&page=version'} className='inactive-header-link'>Версии</NavLink>
                 </div>
                 <div className='header-links-methods-documentation header-links-font'>
-                    <NavLink to={this.props.link + '&page=documentation'} className='inactive-header-link'>Документация</NavLink>
+                    <NavLink to={link + '&page=documentation'} className='inactive-header-link'>Документация</NavLink>
                 </div>
                 <div className='header-links-methods header-links-font'>
-                    <NavLink to={this.props.link + '&page=price'} className='inactive-header-link'>Цена</NavLink>
+                    <NavLink to={link + '&page=price'} className='inactive-header-link'>Цена</NavLink>
                 </div>
                 <div className='header-links-methods header-links-font'>
-                    <NavLink to={this.props.link + '&page=review'} className='inactive-header-link'>Отзывы</NavLink>
+                    <NavLink to={link + '&page=review'} className='inactive-header-link'>Отзывы</NavLink>
                 </div>
                 <div className='header-links-methods-description header-links-font'>
-                    <NavLink to={this.props.link + '&page=questions'} className='inactive-header-link'>Вопросы и обсуждения</NavLink>
+                    <NavLink to={link + '&page=questions'} className='inactive-header-link'>Вопросы и обсуждения</NavLink>
                 </div>
             </div>
         )

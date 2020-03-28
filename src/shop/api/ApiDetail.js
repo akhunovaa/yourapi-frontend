@@ -134,15 +134,15 @@ class ApiDetail extends Component {
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'methods';
         switch (paging) {
             case 'review':
-                return <ApiDetailReviewHeader {...this.props} />;
+                return <ApiDetailReviewHeader link={link4Description} {...this.props} />;
             case 'version':
-                return <ApiDetailVersionHeader {...this.props} />;
+                return <ApiDetailVersionHeader link={link4Description} {...this.props} />;
             case 'price':
-                return <ApiDetailPriceHeader {...this.props} />;
+                return <ApiDetailPriceHeader link={link4Description} {...this.props} />;
             case 'questions':
-                return <ApiDetailQuestionsHeader {...this.props} />;
+                return <ApiDetailQuestionsHeader link={link4Description} {...this.props} />;
             case 'documentation':
-                return <ApiDetailDocumentationHeader {...this.props} />;
+                return <ApiDetailDocumentationHeader link={link4Description} {...this.props} />;
             default:
                 return <ApiDetailMethodsHeader link={link4Description} {...this.props} />
         }

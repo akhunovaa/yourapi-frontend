@@ -122,16 +122,28 @@ class ApiDetailMethodsOperation extends Component {
 
 
     renderSwitchHeader() {
-        const pagingArray = ['example', 'scheme'];
+        const operations = this.props.operations ? this.props.operations : [];
+
+        const operationNameArray = [];
+        for (let i = 0; i < operations.length; i++) {
+            operationNameArray.push(operations[i].path);
+        }
+
         const params = queryString.parse(this.props.location.search);
+        let operationNaming = (params.operation !== 'undefined' && this.handleCheck(operationNameArray, params.operation)) ? params.operation : '/';
+
+        const link = this.props.link + operationNaming;
+
+        const pagingArray = ['example', 'scheme'];
         const paging = (params.code !== 'undefined' && this.handleCheck(pagingArray, params.code)) ? params.code : 'example';
+
         switch (paging) {
             case 'example':
-                return <ApiDetailMethodsResponseExampleHeader {...this.props} />;
+                return <ApiDetailMethodsResponseExampleHeader link={link} {...this.props} />;
             case 'scheme':
-                return <ApiDetailMethodsSchemeHeader {...this.props} />;
+                return <ApiDetailMethodsSchemeHeader link={link} {...this.props} />;
             default:
-                return <ApiDetailMethodsResponseExampleHeader {...this.props} />
+                return <ApiDetailMethodsResponseExampleHeader link={link} {...this.props} />
         }
     }
 

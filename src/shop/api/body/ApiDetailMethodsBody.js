@@ -171,7 +171,7 @@ class ApiDetailMethodsBody extends Component {
                                 </List>
                             </div>
                         </div>
-                        <ApiDetailMethodsOperation {...this.props}/>
+                        <ApiDetailMethodsOperation link={link} operations={operations} {...this.props}/>
                     </div>
                 </div>
             </div>
