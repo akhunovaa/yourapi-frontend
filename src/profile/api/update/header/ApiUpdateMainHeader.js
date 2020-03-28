@@ -41,6 +41,9 @@ class ApiUpdateMainHeader extends Component {
     handleDropdownChange = (e, {key, value}) => this.setState({[key]: value});
 
     handleCheck(array, val) {
+        if (array === undefined) {
+            return false
+        }
         return array.some(item => item === val);
     }
 

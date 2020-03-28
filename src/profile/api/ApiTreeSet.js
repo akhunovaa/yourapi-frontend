@@ -40,14 +40,17 @@ class ApiTreeSet extends Component {
     }
 
     handleCheck(array, val) {
+        if (array === undefined) {
+            return false
+        }
         return array.some(item => item.name === val);
     }
 
     render() {
-
+        const projects = this.props.projects ? this.props.projects : [];
         const namingArray = [];
-        for (let i = 0; i < this.props.projects.length; i++) {
-            namingArray.push(this.props.projects[i]);
+        for (let i = 0; i < projects.length; i++) {
+            namingArray.push(projects[i]);
         }
         const pagingArray = ['about', 'members', 'list', 'update'];
         const params = queryString.parse(this.props.location.search);
@@ -90,7 +93,7 @@ class ApiTreeSet extends Component {
                         </List.Content>
                     </List.Item>
 
-                    <Projects items={this.props.projects}/>
+                    <Projects items={projects}/>
 
                 </List>
             </div>

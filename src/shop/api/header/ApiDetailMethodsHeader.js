@@ -8,7 +8,6 @@ class ApiDetailMethodsHeader extends Component {
 
     constructor(props) {
         super(props);
-        const {category} = this.props.match.params;
         this.state = {
 
         };
@@ -42,6 +41,9 @@ class ApiDetailMethodsHeader extends Component {
     handleDropdownChange = (e, {key, value}) => this.setState({[key]: value});
 
     handleCheck(array, val) {
+        if (array === undefined) {
+            return false
+        }
         return array.some(item => item === val);
     }
 

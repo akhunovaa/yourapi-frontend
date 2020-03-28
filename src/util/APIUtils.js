@@ -1,4 +1,4 @@
-import { API_BASE_URL, ACCESS_TOKEN, ACCESS_DENIED_MESSAGE} from '../constants';
+import {ACCESS_DENIED_MESSAGE, ACCESS_TOKEN, API_BASE_URL} from '../constants';
 
 const request = async (options) => {
     const headers = new Headers({
@@ -6,7 +6,7 @@ const request = async (options) => {
         'Accept': 'application/json;charset=UTF-8'
     });
 
-    if(localStorage.getItem(ACCESS_TOKEN)) {
+    if (localStorage.getItem(ACCESS_TOKEN)) {
         headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
     }
 
@@ -15,14 +15,10 @@ const request = async (options) => {
     return await fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
-                if(!response.ok) {
+                if (!response.ok) {
                     return Promise.reject(json);
                 }
-                if(json.success === false && json.message === ACCESS_DENIED_MESSAGE) {
-                    localStorage.removeItem(ACCESS_TOKEN);
-                    window.location.reload();
-                    return Promise.reject(json);
-                }
+                checkResponseForAvalidToken(json);
                 return json;
             })
         );
@@ -33,7 +29,7 @@ const requestGet = async (options) => {
         'Accept': 'application/json;charset=UTF-8'
     });
 
-    if(localStorage.getItem(ACCESS_TOKEN)) {
+    if (localStorage.getItem(ACCESS_TOKEN)) {
         headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
     }
 
@@ -43,14 +39,10 @@ const requestGet = async (options) => {
     return await fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
-                if(!response.ok) {
+                if (!response.ok) {
                     return Promise.reject(json);
                 }
-                if(json.success === false && json.message === ACCESS_DENIED_MESSAGE) {
-                    localStorage.removeItem(ACCESS_TOKEN);
-                    window.location.reload();
-                    return Promise.reject(json);
-                }
+                checkResponseForAvalidToken();
                 return json;
             })
         );
@@ -63,7 +55,7 @@ const requestApiTestGet = async (options) => {
     return await fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
-                if(!response.ok) {
+                if (!response.ok) {
                     return Promise.reject(json);
                 }
                 return json;
@@ -71,34 +63,47 @@ const requestApiTestGet = async (options) => {
         )
 };
 
-const requestImage = (options) => {
+const requestImage = async (options) => {
 
     const headers = new Headers({
         'Accept': 'application/json'
     });
 
-    if(localStorage.getItem(ACCESS_TOKEN)) {
+    if (localStorage.getItem(ACCESS_TOKEN)) {
         headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
     }
 
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
 
-    return fetch(options.url, options)
+    return await fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
-                if(!response.ok) {
+                if (!response.ok) {
                     return Promise.reject(json);
                 }
+                checkResponseForAvalidToken();
                 return json;
             })
         );
 };
 
-export function getCurrentUser() {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
+const prevalidateTokenState = () => {
+    if (localStorage !== undefined && !localStorage.getItem(ACCESS_TOKEN)) {
+        window.location.reload();
         return Promise.reject("No access token set.");
     }
+};
+
+const checkResponseForAvalidToken = (message) => {
+    if (message.success === false && message.message === ACCESS_DENIED_MESSAGE) {
+        localStorage.removeItem(ACCESS_TOKEN);
+        window.location.reload();
+        return Promise.reject(message);
+    }
+};
+
+export function getCurrentUser() {
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
         url: apiBaseUrl + "/individual/me",
@@ -120,9 +125,7 @@ export function login(loginRequest) {
 }
 
 export function profileInfoUpdate(mainInfoRequest) {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
-        return Promise.reject("No access token set.");
-    }
+    prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
         url: apiBaseUrl + "/individual/update",
@@ -132,9 +135,7 @@ export function profileInfoUpdate(mainInfoRequest) {
 }
 
 export function overviewInformationUpdate(mainInfoRequest) {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
-        return Promise.reject("No access token set.");
-    }
+    prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
         url: apiBaseUrl + "/api-data/update",
@@ -144,9 +145,7 @@ export function overviewInformationUpdate(mainInfoRequest) {
 }
 
 export function profilePasswordUpdate(passDataRequest) {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
-        return Promise.reject("No access token set.");
-    }
+    prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
         url: apiBaseUrl + "/individual/password",
@@ -156,9 +155,7 @@ export function profilePasswordUpdate(passDataRequest) {
 }
 
 export function profileImageUpdate(formData) {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
-        return Promise.reject("No access token set.");
-    }
+    prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return requestImage({
         url: apiBaseUrl + "/individual/image/upload",
@@ -168,9 +165,7 @@ export function profileImageUpdate(formData) {
 }
 
 export function apiProjectImageUpdate(formData) {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
-        return Promise.reject("No access token set.");
-    }
+    prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return requestImage({
         url: apiBaseUrl + "/api-data/image/upload",
@@ -189,31 +184,25 @@ export function signup(signupRequest) {
 }
 
 export function apiProjectListGet() {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
-        return Promise.reject("No access token set.");
-    }
+    prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
-    return requestGet({
+    return request({
         url: apiBaseUrl + "/api-data/list",
         method: 'GET'
     });
 }
 
 export function apiProjectGet(apiProjectId) {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
-        return Promise.reject("No access token set.");
-    }
+    prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
-    return requestGet({
+    return request({
         url: apiBaseUrl + "/api-data/get/" + apiProjectId,
         method: 'GET'
     });
 }
 
 export function apiTestRequestSend(url) {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
-        return Promise.reject("No access token set.");
-    }
+    prevalidateTokenState();
     return requestApiTestGet({
         url: url,
         method: 'GET'
@@ -221,26 +210,24 @@ export function apiTestRequestSend(url) {
 }
 
 export function apiProjectFullListGet() {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
-        return Promise.reject("No access token set.");
-    }
+    prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
-    return requestGet({
+    return request({
         url: apiBaseUrl + "/api-data/full",
         method: 'GET'
     });
 }
 
 export function newApiUploadSend(preparedRequest, formData) {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
-        return Promise.reject("No access token set.");
-    }
+    prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     const url = apiBaseUrl + "/api-data/create";
     preparedRequest.open("POST", url);
-    preparedRequest.setRequestHeader('Accept','application/json;charset=UTF-8');
-    if(localStorage.getItem(ACCESS_TOKEN)) {
+    preparedRequest.setRequestHeader('Accept', 'application/json;charset=UTF-8');
+    if (localStorage.getItem(ACCESS_TOKEN)) {
         preparedRequest.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN));
+    }else {
+        prevalidateTokenState();
     }
     preparedRequest.send(formData);
 }
@@ -251,7 +238,7 @@ export function loadUser(paramData) {
         .join('&');
 
     return request({
-        url: API_BASE_URL + "/individual/info"  + query,
+        url: API_BASE_URL + "/individual/info" + query,
         method: 'GET'
     });
 }

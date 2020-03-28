@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Api.css';
-import {loadUser} from "../../util/APIUtils";
+import {apiProjectListGet, loadUser} from "../../util/APIUtils";
 import {withRouter} from "react-router";
 import ApiBreadCrumb from "./ApiBreadCrumb";
 import ApiAddBody from "./ApiAddBody";
@@ -9,7 +9,6 @@ import ApiTreeSet from "./ApiTreeSet";
 import queryString from "query-string";
 import {NavLink} from "react-router-dom";
 import {Icon} from "semantic-ui-react";
-import {apiProjectListGet} from "../../util/APIUtils";
 import Alert from "react-s-alert";
 import LoadingIndicator from '../../common/LoadingIndicator';
 
@@ -45,7 +44,7 @@ class Api extends Component {
             .then(response => {
                 if (this._isMounted) {
                     this.setState({
-                        projects : response.response
+                        projects: response.response
                     })
                 }
             }).catch(error => {
@@ -109,10 +108,16 @@ class Api extends Component {
     };
 
     handleCheck(array, val) {
+        if (array === undefined) {
+            return false
+        }
         return array.some(item => item === val);
     }
 
     handleNamingCheck(array, val) {
+        if (array === undefined) {
+            return false
+        }
         return array.some(item => item.name === val);
     }
 
@@ -121,11 +126,11 @@ class Api extends Component {
         const params = queryString.parse(this.props.location.search);
         const naming = (params.name !== 'undefined' && this.handleNamingCheck(this.state.projects, params.name)) ? params.name : 'undefined';
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'add';
-        switch(paging) {
+        switch (paging) {
             case 'update':
                 if (naming !== 'undefined') {
                     return <ApiUpdateBody projects={this.state.projects} naming={naming}/>;
-                }else {
+                } else {
                     return <ApiAddBody projects={this.state.projects} paging={paging}/>;
                 }
             case 'add':
@@ -140,7 +145,7 @@ class Api extends Component {
         const params = queryString.parse(this.props.location.search);
         const naming = (params.name !== 'undefined' && this.handleNamingCheck(this.state.projects, params.name)) ? params.name : 'undefined';
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'add';
-        switch(paging) {
+        switch (paging) {
             case 'update':
                 return <ApiBreadCrumb paging='update' naming={naming} {...this.props}/>
             case 'add':
@@ -149,6 +154,7 @@ class Api extends Component {
                 return <ApiBreadCrumb paging='update' naming={naming} {...this.props}/>
         }
     }
+
     render() {
 
         if (this.state.loading) {
@@ -165,8 +171,10 @@ class Api extends Component {
                                 <NavLink to="/profile/api?page=panel"><span className='api-command-operation-text'>Панель управления</span></NavLink>
                             </div>
                             <div className='header-api-command-element header-api-command-element-padding-bottom'>
-                                <Icon className='api-command-operation-icon active-api-command' name='plus square' link size='large'/>
-                                <NavLink to="/profile/api?page=add"><span className='api-command-operation-text active-api-command'>Добавить API</span></NavLink>
+                                <Icon className='api-command-operation-icon active-api-command' name='plus square' link
+                                      size='large'/>
+                                <NavLink to="/profile/api?page=add"><span
+                                    className='api-command-operation-text active-api-command'>Добавить API</span></NavLink>
                             </div>
                         </div>
                     </div>

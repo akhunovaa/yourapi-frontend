@@ -79,7 +79,6 @@ class ApiDetailMethodsOperation extends Component {
     };
 
     onCodeChange({target: {value}}) {
-        console.log(value)
         this.setState({value, codeCopied: false});
     };
 

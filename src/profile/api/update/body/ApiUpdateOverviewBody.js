@@ -58,6 +58,9 @@ class ApiUpdateOverviewBody extends Component {
     handleDropdownChange = (e, {name, value}) => this.setState({[name]: value});
 
     handleCheck(array, val) {
+        if (array === undefined) {
+            return false
+        }
         return array.some(item => item === val);
     }
 
@@ -70,6 +73,9 @@ class ApiUpdateOverviewBody extends Component {
     }
 
     handleNamingCheck(array, val) {
+        if (array === undefined) {
+            return false
+        }
         return array.some(item => item.name === val);
     }
 

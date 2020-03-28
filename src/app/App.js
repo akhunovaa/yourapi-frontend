@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import NotFound from '../common/NotFound';
 import Home from '../home/Home';
 import Profile from '../profile/Profile';
@@ -43,6 +43,18 @@ class App extends Component {
         this.setState({
             loading: true
         });
+        if (localStorage !== undefined && !localStorage.getItem(ACCESS_TOKEN)) {
+            this.setState({
+                authenticated: false,
+                currentUser: null,
+                loading: false
+            });
+            return <Redirect
+                to={{
+                    pathname: "/login",
+                    state: {from: this.props.location}
+                }}/>;
+        }
         getCurrentUser()
             .then(response => {
                 this.setState({
@@ -80,43 +92,55 @@ class App extends Component {
     }
 
     handleWindowSizeChange = () => {
-        this.setState({ width: window.innerWidth });
+        this.setState({width: window.innerWidth});
     };
 
     render() {
 
-        const { width } = this.state;
+        const {width} = this.state;
         const isMobile = width <= 700;
 
         if (this.state.loading) {
             return <LoadingIndicator/>
         }
 
-            return (
-                <div>
-                    <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} currentUser={this.state.currentUser}/>
-                    <Switch>
-                        <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Home}/>
-                        <Route exact path="/login"
-                               render={(props) => <Login isMobile={isMobile} history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
-                        <Route exact path="/signup"
-                               render={(props) => <SignUp isMobile={isMobile} history={this.props.history} authenticated={this.state.authenticated} {...props} />}/>
-                        <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile}/>
-                        <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Administration}/>
-                        <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Api}/>
-                        <PrivateRoute exact path="/integrator" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Integrators}/>
-                        <PrivateRoute exact path="/shop" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Shop}/>
-                        <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiCategoryShop}/>
-                        <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiDetail}/>
-                        <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}/>
-                        <Route path='*' exact={true} component={NotFound}/>
-                    </Switch>
-                    <AppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
-                    <Alert stack={{limit: 3}}
-                           timeout={3000}
-                           position='top-right' effect='slide' offset={65}/>
-                </div>
-            );
+        return (
+            <div>
+                <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout}
+                           currentUser={this.state.currentUser}/>
+                <Switch>
+                    <PrivateRoute exact path="/" authenticated={this.state.authenticated}
+                                  currentUser={this.state.currentUser} component={Home}/>
+                    <Route exact path="/login"
+                           render={(props) => <Login isMobile={isMobile} history={this.props.history}
+                                                     authenticated={this.state.authenticated} {...props} />}/>
+                    <Route exact path="/signup"
+                           render={(props) => <SignUp isMobile={isMobile} history={this.props.history}
+                                                      authenticated={this.state.authenticated} {...props} />}/>
+                    <PrivateRoute exact path="/profile" authenticated={this.state.authenticated}
+                                  currentUser={this.state.currentUser} component={Profile}/>
+                    <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated}
+                                  currentUser={this.state.currentUser} component={Administration}/>
+                    <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated}
+                                  currentUser={this.state.currentUser} component={Api}/>
+                    <PrivateRoute exact path="/integrator" authenticated={this.state.authenticated}
+                                  currentUser={this.state.currentUser} component={Integrators}/>
+                    <PrivateRoute exact path="/shop" authenticated={this.state.authenticated}
+                                  currentUser={this.state.currentUser} component={Shop}/>
+                    <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated}
+                                  currentUser={this.state.currentUser} component={ApiCategoryShop}/>
+                    <PrivateRoute exact path="/shop/category/:category?/api/:id?"
+                                  authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                                  component={ApiDetail}/>
+                    <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}/>
+                    <Route path='*' exact={true} component={NotFound}/>
+                </Switch>
+                <AppFooter authenticated={this.state.authenticated} onLogout={this.handleLogout}/>
+                <Alert stack={{limit: 3}}
+                       timeout={3000}
+                       position='top-right' effect='slide' offset={65}/>
+            </div>
+        );
     }
 }
 
