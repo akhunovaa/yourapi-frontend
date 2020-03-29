@@ -200,6 +200,15 @@
     color: #A5A5A5;
 }
 
+.api-add-container-input label.required:after {
+    color: red;
+    font-weight: bolder;
+    content: " *";
+}
+
+.api-add-container-input label.control-label {
+    content: " *";
+}
 .api-add-container-input #category{
     width: 250px;
     display: grid;
@@ -266,6 +275,28 @@
     box-sizing: border-box;
     border-radius: 4px;
 }
+
+.api-empty-upload-container{
+    border: 2px dotted #d85965;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background: #F2F2F2;
+    -webkit-animation: fadeOutX 0.5s;
+    animation: fadeOutX 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeOutX {
+    0% { opacity: 0;}
+    50% { opacity: 0.5;}
+    100% { opacity: 1;}
+}
+@keyframes fadeOutX {
+    0% { opacity: 0;}
+    50% { opacity: 0.5;}
+    100% { opacity: 1;}
+}
+
 
 .api-upload-container-inner-elements{
     /*padding: 32px 52px 38px 63px;*/

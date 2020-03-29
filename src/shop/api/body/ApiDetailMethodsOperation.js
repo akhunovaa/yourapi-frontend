@@ -50,7 +50,6 @@ class ApiDetailMethodsOperation extends Component {
         this.getInitialState = this.getInitialState.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onCodeChange = this.onCodeChange.bind(this);
-        this.onCopy = this.onCopy.bind(this);
         this.onCodeCopy = this.onCodeCopy.bind(this);
     }
 
@@ -80,12 +79,6 @@ class ApiDetailMethodsOperation extends Component {
 
     onCodeChange({target: {value}}) {
         this.setState({value, codeCopied: false});
-    };
-
-    onCopy() {
-        this.setState({copied: true});
-        const timer = setTimeout(() => this.setState({copied: false}), 3000);
-        return () => clearTimeout(timer);
     };
 
     onCodeCopy() {

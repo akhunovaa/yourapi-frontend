@@ -45,7 +45,6 @@ class ApiImageDropzone extends Component {
 
     onDragOver(event) {
         event.preventDefault();
-        if (this.props.disabed) return;
         this.setState({hightlight: true});
     }
 
@@ -55,9 +54,8 @@ class ApiImageDropzone extends Component {
 
     onDrop(event) {
         event.preventDefault();
-        if (this.props.disabed) return;
         const file = event.dataTransfer.files[0];
-        this.onFileAdded(file)
+        this.onFileAdded(file);
         this.setState({hightlight: false});
     }
 

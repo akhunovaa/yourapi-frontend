@@ -3,12 +3,13 @@ import './Api.css';
 import {Button, Divider, Dropdown, Form, Input, TextArea} from "semantic-ui-react";
 import {withRouter} from "react-router-dom";
 import Upload from "../../upload/Upload";
-import {newApiUploadSend} from "../../util/APIUtils";
 import Alert from "react-s-alert";
+import {newApiUploadSend} from "../../util/APIUtils";
 
 class ApiAddBody extends Component {
 
     _isMounted = false;
+    apiId = 0;
 
     constructor(props) {
         super(props);
@@ -18,37 +19,49 @@ class ApiAddBody extends Component {
                 info: 'Результаты в реальном времени, расписание и коэффициенты ставок для лиг США',
                 category: 'Новости'
             },
+            apiId: 0,
             apiName: '',
             description: '',
             category: 'Новости',
-            files: [],
+            file: null,
             uploading: false,
             uploadProgress: {},
             successfullUploaded: false,
-            hasErrorFiles: false
+            hasError: false,
+            emptyFile: false,
+            emptyName: false
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
 
-        this.onFilesAdded = this.onFilesAdded.bind(this);
-        this.uploadFiles = this.uploadFiles.bind(this);
+        this.onFileAdded = this.onFileAdded.bind(this);
+        this.uploadFile = this.uploadFile.bind(this);
         this.onClickReset = this.onClickReset.bind(this);
         this.uploadNewApi = this.uploadNewApi.bind(this);
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.setErrorFileState = this.setErrorFileState.bind(this);
+        this.setEmptyFileState = this.setEmptyFileState.bind(this);
+        this.onValidate = this.onValidate.bind(this);
     }
 
-    onFilesAdded(files) {
+    onFileAdded(file) {
         this.setState(prevState => ({
-            files: files
+            file: file,
+            emptyFile: false
         }));
     }
 
     setErrorFileState(state) {
         this.setState(prevState => ({
-            hasErrorFiles: prevState ? prevState : state
+            hasError: prevState ? prevState : state
+        }));
+    }
+
+    setEmptyFileState(state) {
+        this.setState(prevState => ({
+            emptyFile: prevState ? prevState : state
         }));
     }
 
@@ -57,71 +70,73 @@ class ApiAddBody extends Component {
     }
 
     onClickReset() {
-        this.setState({files: [], successfullUploaded: false, hasErrorFiles: false})
+        this.setState({file: null, successfullUploaded: false, hasError: false, emptyFile: false, emptyName: false})
     }
+
+    jsonPrettify = (json) => {
+        if (typeof json === 'object' && json !== null) {
+            return JSON.stringify(json, undefined, 4);
+        }
+    };
+
 
     uploadNewApi(file) {
-        return new Promise((resolve, reject) => {
-            const req = new XMLHttpRequest();
-            req.upload.addEventListener("progress", event => {
-                if (event.lengthComputable) {
-                    const copy = {...this.state.uploadProgress};
-                    copy[file.name] = {
-                        state: "pending",
-                        percentage: (event.loaded / event.total) * 100
-                    };
-                    this.setState({uploadProgress: copy});
-                }
-            });
+        const apiName = this.state.apiName;
+        const description = this.state.description;
+        const category = this.state.category;
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("name", apiName);
+        formData.append("description", description);
+        formData.append("category", category);
+        if (apiName && apiName !== '' && apiName.length >= 3) {
+            newApiUploadSend(formData)
+                .then(response => {
+                    this.setState({
+                        createdApi: response.response,
+                        uploadProgress: {
+                            percentage: 100,
+                            state: 'done'
+                        }
+                    });
+                    if (this.state.createdApi) {
+                        const redirectUrl = '/profile/api?page=update&name=';
+                        const link = redirectUrl + this.state.createdApi.name;
+                        this.props.history.push(link);
+                        this.reload();
+                    }
 
-            req.upload.addEventListener("load", event => {
-                const copy = {...this.state.uploadProgress};
-                copy[file.name] = {state: "done", percentage: 100};
-                this.setState({uploadProgress: copy});
-                this.setState({uploaderResponse: req.response});
-                resolve(req.response);
+                }).catch(error => {
+                const data = this.jsonPrettify(error);
+                this.setState({
+                    createdApi: data
+                })
             });
-
-            req.upload.addEventListener("error", event => {
-                const copy = {...this.state.uploadProgress};
-                copy[file.name] = {state: "error", percentage: 0};
-                this.setState({uploadProgress: copy});
-                reject(req.response);
-            });
-
-            const apiName = this.state.apiName;
-            const description = this.state.description;
-            const category = this.state.category;
-            const formData = new FormData();
-            formData.append("file", file, file.name);
-            formData.append("name", apiName);
-            formData.append("description", description);
-            formData.append("category", category);
-            if (apiName && apiName.length >= 3) {
-                newApiUploadSend(req, formData);
-            } else {
-                Alert.warning("Ошибка в наименовании")
-            }
-        });
+        } else {
+            console.log('error: empty name');
+            this.onValidate('emptyName', 3000);
+        }
     }
 
-    async uploadFiles() {
+    uploadFile() {
         this.setState({uploadProgress: {}, uploading: true});
-        const promises = [];
-        if (!this.state.hasErrorFiles) {
-            this.state.files.forEach(file => {
-                promises.push(this.uploadNewApi(file));
-            });
+        if (!this.state.file) {
+            this.onValidate('emptyFile', 3000);
+        }
+        if (this.state.file && !this.hasExtension(this.state.file.name, ['.yaml', '.yml', '.json'])) {
+            this.setErrorFileState(true);
+        }
+        try {
+            if (this.state.file) {
+                this.uploadNewApi(this.state.file);
+            }
+            this.setState({successfullUploaded: true, uploading: false});
+        } catch (e) {
+            console.log(e);
+            Alert.error("Возникла ошибка в процессе загрузке файла");
+            this.setState({successfullUploaded: true, uploading: false});
         }
 
-        try {
-            await Promise.all(promises);
-            this.setState({successfullUploaded: true, uploading: false});
-            this.forceUpdate();
-        } catch (e) {
-            // Not Production ready! Do some error handling here instead...
-            this.setState({successfullUploaded: true, uploading: false});
-        }
     }
 
     componentDidMount() {
@@ -136,6 +151,17 @@ class ApiAddBody extends Component {
         window.location.reload();
     };
 
+    onValidate(value, time) {
+        this.setState({[value]: true});
+        const timer = setTimeout(() => this.setState({
+            [value]: false,
+            successfullUploaded: false,
+            hasError: false,
+            emptyName: false
+        }), time);
+        return () => clearTimeout(timer);
+    };
+
     handleInputChange(event) {
         const target = event.target;
         const inputName = target.name;
@@ -148,7 +174,6 @@ class ApiAddBody extends Component {
     handleDropdownChange(e, {name, value}) {
         this.setState({[name]: value});
     }
-
 
     handleOnPhoneChange(value) {
         this.setState({
@@ -245,7 +270,8 @@ class ApiAddBody extends Component {
                     </div>
                     <div className="api-add-container-inputs">
                         <div className="api-add-container-input api-add-container-input-top">
-                            <label>Название (обязательно)</label>
+                            <label className={this.state.emptyName ? 'required control-label' : 'control-label'}>Название
+                                (обязательно)</label>
                             <Input fluid onChange={this.handleInputChange}
                                    className="form-input" id="apiName"
                                    name="apiName" required placeholder='Название API'/>
@@ -271,12 +297,13 @@ class ApiAddBody extends Component {
                         </div>
 
                         <div className="api-add-container-input api-add-container-segment-element">
-                            <Upload onFilesAdded={this.onFilesAdded} uploadFiles={this.uploadFiles}
+                            <Upload onFileAdded={this.onFileAdded} uploadFiles={this.uploadFile}
                                     onClickReset={this.onClickReset} sendRequest={this.uploadNewApi}
                                     hasExtension={this.hasExtension}
-                                    setErrorFileState={this.setErrorFileState} hasErrorFiles={this.state.hasErrorFiles}
-                                    files={this.state.files} uploading={this.state.uploading}
-                                    uploadProgress={this.state.uploadProgress}
+                                    setErrorFileState={this.setErrorFileState} hasError={this.state.hasError}
+                                    file={this.state.file} uploading={this.state.uploading}
+                                    setEmptyFileState={this.setEmptyFileState}
+                                    uploadProgress={this.state.uploadProgress} emptyFile={this.state.emptyFile}
                                     successfullUploaded={this.state.successfullUploaded}/>
                         </div>
                     </div>
@@ -285,12 +312,11 @@ class ApiAddBody extends Component {
                 <div className="api-info-buttons">
                     <div className='apply-button-container'>
                         <Button fluid className="apply-button" style={{width: 112, height: 32, background: '#2F80ED'}}
-                                onClick={this.uploadFiles}><span
-                            className='command-approve-buttons-text'>Добавить</span></Button>
+                                onClick={this.uploadFile}><span className='command-approve-buttons-text'>Добавить</span></Button>
                     </div>
                     <div className='cancel-button-container api-info-cancel-button'>
-                        <Button onClick={this.onClickReset}
-                                fluid className="cancel-button" style={{background: '#A5A5A5', width: 112, height: 32}}>
+                        <Button onClick={this.onClickReset} fluid className="cancel-button"
+                                style={{background: '#A5A5A5', width: 112, height: 32}}>
                             <span className='command-approve-buttons-text'>Отмена</span>
                         </Button>
                     </div>

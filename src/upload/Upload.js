@@ -3,16 +3,19 @@ import Dropzone from "../dropzone/Dropzone";
 import "./Upload.css";
 import Progress from "../progress/Progress";
 import check from '../img/ok.png';
-import error from '../img/error.png';
+import error from "../img/error.png";
 
 class Upload extends Component {
 
     constructor(props) {
         super(props);
+        this.renderErrorProgress = this.renderErrorProgress.bind(this);
+        this.renderErrorState = this.renderErrorState.bind(this);
+        this.renderEmptyFileState = this.renderEmptyFileState.bind(this);
     }
 
-    renderProgress(file) {
-        const uploadProgress = this.props.uploadProgress[file.name];
+    renderProgress() {
+        const uploadProgress = this.props.uploadProgress;
         if (this.props.uploading || this.props.successfullUploaded) {
             return (
                 <div className="ProgressWrapper">
@@ -22,8 +25,7 @@ class Upload extends Component {
                         alt="Done"
                         src={check}
                         style={{
-                            opacity:
-                                uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
+                            opacity: uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
                         }}
                     />
                 </div>
@@ -45,46 +47,61 @@ class Upload extends Component {
     }
 
     renderErrorState() {
-        if (!this.props.hasErrorFiles) {
+        if (!this.props.hasError) {
             this.props.setErrorFileState(true)
         }
     }
 
-    render() {
-        return (
-            <div className="Upload">
-                <div className='api-upload-container'>
-                    <Dropzone onFilesAdded={this.props.onFilesAdded}
-                              disabled={this.props.uploading || this.props.successfullUploaded}/>
-                </div>
-                <div className='api-upload-container-inner-elements'>
-                    <div className="Files">
-                        {this.props.files.map(file => {
-                            if (this.props.hasExtension(file.name, ['.yaml', '.yml', '.json'])) {
-                                return (
-                                    <div key={file.name} className="Row">
-                                        <span className="Filename">{file.name}</span>
-                                        {this.renderProgress(file)}
-                                    </div>
-                                );
-                            } else {
-                                return (
-                                    <div key={file.name} className="Row" onClick={this.props.onClickReset}>
-                                        <span
-                                            className="not-valid-filename">Недопустимый формат файла ({file.name})</span>
-                                        <a href="https://swagger.io/docs/specification/about/" target="_blank">Спецификация
-                                            файлов</a>
-                                        {this.renderErrorState()}
-                                        {this.renderErrorProgress()}
-                                    </div>
-                                );
-                            }
+    renderEmptyFileState() {
+        if (!this.props.emptyFile) {
+            this.props.setEmptyFileState(true)
+        }
+    }
 
-                        })}
+    render() {
+        const fileName = this.props.file ? this.props.file.name : '';
+
+        if (!this.props.hasError && this.props.file) {
+            return (
+                <div className="Upload">
+                    <div className='api-upload-container'>
+                        <Dropzone onFileAdded={this.props.onFileAdded}
+                                  disabled={this.props.uploading || this.props.successfullUploaded}/>
+                    </div>
+                    <div className='api-upload-container-inner-elements'>
+                        <div className="Files">
+                            <div key={fileName} className="Row">
+                                <span className="Filename">{fileName}</span>
+                                {this.renderProgress()}
+                            </div>
+                        </div>
+                    </div>
+                </div>)
+        } else if (this.props.hasError) {
+            return (
+                <div className="Upload">
+                    <div className='api-upload-container'>
+                        <Dropzone onFileAdded={this.props.onFileAdded}
+                                  disabled={this.props.uploading || this.props.successfullUploaded}/>
+                    </div>
+                    <div key={fileName} className="Row" onClick={this.props.onClickReset}>
+                        <span className="not-valid-filename">Недопустимый формат файла ({fileName})</span>
+                        <a href="https://swagger.io/docs/specification/about/" target="_blank">Спецификация файлов</a>
+                        {this.renderErrorState()}
+                        {this.renderErrorProgress()}
                     </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div className="Upload">
+                    <div
+                        className={this.props.emptyFile ? 'api-upload-container api-empty-upload-container' : 'api-upload-container'}>
+                        <Dropzone onFileAdded={this.props.onFileAdded}
+                                  disabled={this.props.uploading || this.props.successfullUploaded}/>
+                    </div>
+                </div>)
+        }
     }
 }
 

@@ -10,29 +10,27 @@ class Dropzone extends Component {
         this.fileInputRef = React.createRef();
 
         this.openFileDialog = this.openFileDialog.bind(this);
-        this.onFilesAdded = this.onFilesAdded.bind(this);
+        this.onFileAdded = this.onFileAdded.bind(this);
         this.onDragOver = this.onDragOver.bind(this);
         this.onDragLeave = this.onDragLeave.bind(this);
         this.onDrop = this.onDrop.bind(this);
     }
 
     openFileDialog() {
-        if (this.props.disabled) return;
         this.fileInputRef.current.click();
     }
 
-    onFilesAdded(evt) {
+    onFileAdded(evt) {
         if (this.props.disabled) return;
-        const files = evt.target.files;
-        if (this.props.onFilesAdded) {
-            const array = this.fileListToArray(files);
-            this.props.onFilesAdded(array);
+        const file = evt.target.files[0];
+        this.setState({file: file});
+        if (this.props.onFileAdded) {
+            this.props.onFileAdded(file);
         }
     }
 
     onDragOver(event) {
         event.preventDefault();
-        if (this.props.disabed) return;
         this.setState({ hightlight: true });
     }
 
@@ -42,22 +40,13 @@ class Dropzone extends Component {
 
     onDrop(event) {
         event.preventDefault();
-        if (this.props.disabed) return;
-        const files = event.dataTransfer.files;
-        if (this.props.onFilesAdded) {
-            const array = this.fileListToArray(files);
-            this.props.onFilesAdded(array);
+        const file = event.dataTransfer.files[0];
+        if (this.props.onFileAdded) {
+            this.props.onFileAdded(file);
         }
         this.setState({ hightlight: false });
     }
 
-    fileListToArray(list) {
-        const array = [];
-        for (var i = 0; i < list.length; i++) {
-            array.push(list.item(i));
-        }
-        return array;
-    }
     render() {
         return (
             <div
@@ -66,13 +55,13 @@ class Dropzone extends Component {
                 onDragLeave={this.onDragLeave}
                 onDrop={this.onDrop}
                 onClick={this.openFileDialog}
-                style={{ cursor: this.props.disabled ? "default" : "pointer" }}>
+                style={{ cursor: 'pointer'}}>
                 <input
+                    accept="application/x-yaml,application/json"
                     ref={this.fileInputRef}
                     className="FileInput"
                     type="file"
-                    multiple
-                    onChange={this.onFilesAdded}
+                    onChange={this.onFileAdded}
                 />
                 <Icon className='api-upload-icon' link name='cloud download' size='big'/>
                 <span className='api-upload-text' >Перетащите сюда файл OpenAPI 3.0</span><br/>

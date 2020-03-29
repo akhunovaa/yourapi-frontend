@@ -238,7 +238,7 @@ class ApiUpdateOverviewBody extends Component {
                                                   onChange={this.handleInputChange}
                                                   placeholder='Опишите условия по использованию'
                                                   id="terms" disabled={this.state.formUpdateDisabled}
-                                                  name="terms" value={this.state.terms}/>
+                                                  name="terms" value={this.state.terms ? this.state.terms : ' '}/>
                         </Form>
                     </div>
 

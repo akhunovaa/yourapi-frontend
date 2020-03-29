@@ -88,6 +88,31 @@ const requestImage = async (options) => {
         );
 };
 
+const requestFileSend = async (options) => {
+
+    const headers = new Headers({
+        'Accept': 'application/json'
+    });
+
+    if (localStorage.getItem(ACCESS_TOKEN)) {
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
+    }
+
+    const defaults = {headers: headers};
+    options = Object.assign({}, defaults, options);
+
+    return await fetch(options.url, options)
+        .then(response =>
+            response.json().then(json => {
+                if (!response.ok) {
+                    return Promise.reject(json);
+                }
+                checkResponseForAvalidToken(json);
+                return json;
+            })
+        );
+};
+
 const prevalidateTokenState = () => {
     if (localStorage !== undefined && !localStorage.getItem(ACCESS_TOKEN)) {
         window.location.reload();
@@ -218,18 +243,15 @@ export function apiProjectFullListGet() {
     });
 }
 
-export function newApiUploadSend(preparedRequest, formData) {
+export function newApiUploadSend(formData) {
     prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     const url = apiBaseUrl + "/api-data/create";
-    preparedRequest.open("POST", url);
-    preparedRequest.setRequestHeader('Accept', 'application/json;charset=UTF-8');
-    if (localStorage.getItem(ACCESS_TOKEN)) {
-        preparedRequest.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN));
-    }else {
-        prevalidateTokenState();
-    }
-    preparedRequest.send(formData);
+    return requestFileSend({
+        url: url,
+        method: 'POST',
+        body: formData
+    });
 }
 
 export function loadUser(paramData) {
@@ -241,5 +263,23 @@ export function loadUser(paramData) {
         url: API_BASE_URL + "/individual/info" + query,
         method: 'GET'
     });
+}
+
+export function consume(reader) {
+    let total = 0;
+    return new Promise((resolve, reject) => {
+        function pump() {
+            reader.read().then(({done, value}) => {
+                if (done) {
+                    resolve();
+                    return
+                }
+                total += value.byteLength;
+                console.log((`received ${value.byteLength} bytes (${total} bytes in total)`))
+                pump()
+            }).catch(reject)
+        }
+        pump()
+    })
 }
 
