@@ -1,13 +1,18 @@
 .update-header-links-list{
-
+    height: 53px;
+    /*padding: 18px 20px 18px 20px;*/
 }
 
 .update-header-links-methods{
     display: inline-block;
-    padding: 18px 20px 18px 20px;
+
     text-align: center;
     white-space: nowrap;
+    width: 135px;
+    padding-top: 18px;
+    height: 53px;
 }
+
 
 .update-header-links-methods-description{
     display: inline-block;
@@ -44,4 +49,12 @@
     font-weight: bold;
     font-size: 14px;
     line-height: 16px;
+}
+
+.external-link-header-font{
+    float: right;
+}
+
+.left-link-header-font{
+    float: left;
 }

@@ -161,6 +161,8 @@ class Api extends Component {
             return <LoadingIndicator/>
         }
 
+        const apiProjects = this.state.projects ? this.state.projects : [];
+
         return (
             <div className='api-main'>
                 <div className='left-side-api-body'>
@@ -173,13 +175,12 @@ class Api extends Component {
                             <div className='header-api-command-element header-api-command-element-padding-bottom'>
                                 <Icon className='api-command-operation-icon active-api-command' name='plus square' link
                                       size='large'/>
-                                <NavLink to="/profile/api?page=add"><span
-                                    className='api-command-operation-text active-api-command'>Добавить API</span></NavLink>
+                                <NavLink to="/profile/api?page=add"><span className='api-command-operation-text active-api-command'>Добавить API</span></NavLink>
                             </div>
                         </div>
                     </div>
                     <div className='left-side-api-body-main-container'>
-                        <ApiTreeSet projects={this.state.projects}/>
+                        <ApiTreeSet projects={apiProjects}/>
                     </div>
                 </div>
                 <div className='right-side-api'>

@@ -31,6 +31,7 @@ class ApiUpdateBody extends Component {
         this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
         this.renderSwitchBody = this.renderSwitchBody.bind(this);
         this.iterateApiProjectList = this.iterateApiProjectList.bind(this);
+        this.getCategoryLink = this.getCategoryLink.bind(this);
     }
 
     componentDidMount() {
@@ -70,11 +71,28 @@ class ApiUpdateBody extends Component {
         }
     }
 
-    iterateApiProjectList(array, val) {
-        for (const arrayElement of array) {
-            if(arrayElement.name === val){
-                return arrayElement;
-            }
+    getCategoryLink(category, id){
+        switch (category) {
+            case 'Данные':
+                return '/shop/category/data/api?id=' + id;
+            case 'Финансы':
+                return '/shop/category/finance/api?id=' + id;
+            case 'Мобильные':
+                return '/shop/category/mobile/api?id=' + id;
+            case 'Карты':
+                return '/shop/category/map/api?id=' + id;
+            case 'Реклама':
+                return '/shop/category/adv/api?id=' + id;
+            case 'Социальные сети':
+                return '/shop/category/social/api?id=' + id;
+            case 'Здравохранение':
+                return '/shop/category/health/api?id=' + id;
+            case 'Спорт':
+                return '/shop/category/sport/api?id=' + id;
+            case 'Web':
+                return '/shop/category/web/api?id=' + id;
+            default:
+                return '/shop/category/other/api?id=' + id;
         }
     }
 
@@ -82,21 +100,25 @@ class ApiUpdateBody extends Component {
         const pagingArray = ['overview', 'settings', 'endpoints', 'price', 'docs', 'announcements'];
         const params = queryString.parse(this.props.location.search);
         const paging = (params.definition !== 'undefined' && this.handleCheck(pagingArray, params.definition)) ? params.definition : 'overview';
+        const apiProject = this.iterateApiProjectList(this.props.projects, this.props.naming);
+        const {category} = apiProject;
+        const {id} = apiProject;
+        const externalLink = this.getCategoryLink(category, id);
         switch (paging) {
             case 'overview':
-                return <ApiUpdateOverviewHeader naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateOverviewHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
             case 'settings':
-                return <ApiUpdateMainHeader naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateMainHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
             case 'endpoints':
-                return <ApiUpdateEndpointsHeader naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateEndpointsHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
             case 'price':
-                return <ApiUpdatePriceHeader naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdatePriceHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
             case 'docs':
-                return <ApiUpdateDocsHeader naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateDocsHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
             case 'announcements':
-                return <ApiUpdateAnnouncementsHeader naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateAnnouncementsHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
             default:
-                return <ApiUpdateOverviewHeader naming={this.props.naming} {...this.props}/>
+                return <ApiUpdateOverviewHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>
         }
     }
 
