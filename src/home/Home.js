@@ -122,7 +122,7 @@ class Home extends Component {
                                             <NavLink to={this.getLink4Description(item.category) + item.id} className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
                                         </div>
                                         <div className="cell-grid-body-label">
-                                            <label>от {item.username.username}</label>
+                                            <label>от {item.username.email}</label>
                                         </div>
                                         <div className="cell-grid-body-description">
                                             <label>{item.description}</label>
