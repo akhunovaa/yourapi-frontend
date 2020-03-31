@@ -361,7 +361,7 @@ class Profile extends Component {
                             <div className="profile-avatar">
                                 {
                                     this.state.imageUrl ? (
-                                        <Image src={this.state.imageUrl} size='medium' circular verticalAlign='top'
+                                        <Image src={this.state.imageUrl + '/150/150'} size='medium' circular verticalAlign='top'
                                                alt={this.state.user.name}
                                                onLoad={this.handleImageLoaded}/>
                                     ) : (
