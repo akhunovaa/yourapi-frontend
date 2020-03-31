@@ -76,7 +76,7 @@ class ApiUpdateAnnouncementsHeader extends Component {
                     <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=announcements'} className='update-active-header-link'>Оповещения</NavLink>
                 </div>
                 <div className='update-header-links-methods update-header-links-font external-link-header-font'>
-                    <a target='_blank' href={externalLink} className='update-inactive-header-link'><Icon name='external share' link/>На Marketplace</a>
+                    <a target='_blank' href={externalLink} className='update-inactive-header-link colored-to-blue'><Icon name='external share' link/>На Marketplace</a>
                 </div>
             </div>
         )
