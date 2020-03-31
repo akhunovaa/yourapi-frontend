@@ -135,7 +135,7 @@ class HomeHeader extends Component {
                             trigger={
                                     this.state.imageUrl ? (
                                         <div className="profile-header-avatar">
-                                            <Image src={this.state.imageUrl} size='small' circular verticalAlign='middle'/>
+                                            <Image src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle'/>
                                         </div>
                                     ) : (
                                         <Icon link name='user circle' />
@@ -261,7 +261,7 @@ class IntegratorHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <Image src={this.state.imageUrl} size='small' circular verticalAlign='middle'/>
+                                        <Image src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle'/>
                                     </div>
                                 ) : (
                                     <Icon link name='user circle' />
@@ -388,7 +388,7 @@ class ShopHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <Image src={this.state.imageUrl} size='small' circular verticalAlign='middle'/>
+                                        <Image src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle'/>
                                     </div>
                                 ) : (
                                     <Icon link name='user circle' />
@@ -515,7 +515,7 @@ class ShopCategoryHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <Image src={this.state.imageUrl} size='small' circular verticalAlign='middle'/>
+                                        <Image src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle'/>
                                     </div>
                                 ) : (
                                     <Icon link name='user circle' />
