@@ -134,9 +134,7 @@
 
 .api-command-toggle{
     width: 268px;
-    padding-top: 29px;
-    padding-left: 28px;
-    padding-right: 28px;
+    padding: 29px 28px 28px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
