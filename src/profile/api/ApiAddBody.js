@@ -29,7 +29,8 @@ class ApiAddBody extends Component {
             successfullUploaded: false,
             hasError: false,
             emptyFile: false,
-            emptyName: false
+            emptyName: false,
+            disabledButton: true
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -70,7 +71,7 @@ class ApiAddBody extends Component {
     }
 
     onClickReset() {
-        this.setState({file: null, successfullUploaded: false, hasError: false, emptyFile: false, emptyName: false})
+        this.setState({file: null, successfullUploaded: false, hasError: false, emptyFile: false, emptyName: false, disabledButton: true, apiName: '', description: ''})
     }
 
     jsonPrettify = (json) => {
@@ -125,14 +126,17 @@ class ApiAddBody extends Component {
         }
         if (this.state.file && !this.hasExtension(this.state.file.name, ['.yaml', '.yml', '.json'])) {
             this.setErrorFileState(true);
+            this.setState({disabledButton: true});
         }
         try {
             if (this.state.file) {
                 this.uploadNewApi(this.state.file);
             }
             this.setState({successfullUploaded: true, uploading: false});
+            this.setState({disabledButton: true});
         } catch (e) {
             console.log(e);
+            this.setState({disabledButton: true});
             Alert.error("Возникла ошибка в процессе загрузке файла");
             this.setState({successfullUploaded: true, uploading: false});
         }
@@ -169,9 +173,11 @@ class ApiAddBody extends Component {
         this.setState({
             [inputName]: inputValue
         });
+        inputName === 'apiName' && inputValue.length > 3 && this.state.category.length > 3 ? this.setState({disabledButton: false}) : this.setState({disabledButton: true});
     }
 
     handleDropdownChange(e, {name, value}) {
+        name === 'category' && value.length > 3 && this.state.apiName.length > 3  ? this.setState({disabledButton: false}) : this.setState({disabledButton: true});
         this.setState({[name]: value});
     }
 
@@ -270,8 +276,7 @@ class ApiAddBody extends Component {
                     </div>
                     <div className="api-add-container-inputs">
                         <div className="api-add-container-input api-add-container-input-top">
-                            <label className={this.state.emptyName ? 'required control-label' : 'control-label'}>Название
-                                (обязательно)</label>
+                            <label className={this.state.emptyName ? 'required control-label' : 'control-label'}>Название (обязательно)</label>
                             <Input fluid onChange={this.handleInputChange}
                                    className="form-input" id="apiName"
                                    name="apiName" required placeholder='Название API'/>
@@ -312,7 +317,7 @@ class ApiAddBody extends Component {
                 <div className="api-info-buttons">
                     <div className='apply-button-container'>
                         <Button fluid className="apply-button" style={{width: 112, height: 32, background: '#2F80ED'}}
-                                onClick={this.uploadFile}><span className='command-approve-buttons-text'>Добавить</span></Button>
+                                onClick={this.uploadFile} disabled={this.state.disabledButton}><span className='command-approve-buttons-text'>Добавить</span></Button>
                     </div>
                     <div className='cancel-button-container api-info-cancel-button'>
                         <Button onClick={this.onClickReset} fluid className="cancel-button"

@@ -65,6 +65,13 @@ body h1.title {
     position: relative;
     overflow: hidden;
 }
+.api-project-avatar-disabled{
+    cursor: no-drop;
+}
+
+.api-project-avatar-enabled{
+    cursor: pointer;
+}
 
 .api-project-avatar:hover{
     width: 75px;

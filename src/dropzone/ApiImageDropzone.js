@@ -133,8 +133,8 @@ class ApiImageDropzone extends Component {
                         onDragLeave={this.onDragLeave}
                         onDrop={this.onDrop}
                         onClick={this.openFileDialog}
-                        style={{cursor: this.props.disabled ? "default" : "pointer"}}>
-                        <div className="api-project-avatar">
+                        style={{cursor: this.props.disabled ? "no-drop " : "pointer"}}>
+                        <div className="api-project-avatar" >
                             {
                                 this.state.imageUrl ? (
                                         <Image src={imageFullUrl} size='medium' circular verticalAlign='top'
@@ -146,7 +146,7 @@ class ApiImageDropzone extends Component {
                                     )
                             }
                         </div>
-                        <input
+                        <input disabled={this.state.editable}
                             accept="image/x-png,image/jpeg"
                             ref={this.imageInputRef}
                             className="FileInput"

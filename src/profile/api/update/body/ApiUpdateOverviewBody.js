@@ -20,6 +20,7 @@ class ApiUpdateOverviewBody extends Component {
             formUpdateDisabled: false,
             apiProjectImageUrl: '',
             loading: true,
+            editable: true,
             api: []
         };
         this.reload = this.reload.bind(this);
@@ -29,6 +30,7 @@ class ApiUpdateOverviewBody extends Component {
         this.iterateApiProjectList = this.iterateApiProjectList.bind(this);
         this.handleNamingCheck = this.handleNamingCheck.bind(this);
         this.handleOverviewInformationSubmit = this.handleOverviewInformationSubmit.bind(this);
+        this.editableHandle = this.editableHandle.bind(this);
     }
 
     componentDidMount() {
@@ -78,6 +80,12 @@ class ApiUpdateOverviewBody extends Component {
         return array.some(item => item.name === val);
     }
 
+    editableHandle(event){
+        event.preventDefault();
+        const edit = !this.state.editable;
+        this.setState({editable: edit});
+    }
+
     iterateApiProjectList(array, val) {
         for (const arrayElement of array) {
             if(arrayElement.name === val){
@@ -114,13 +122,17 @@ class ApiUpdateOverviewBody extends Component {
         overviewInformationUpdate(mainInfoRequest)
             .then(response => {
                 if (response.error) {
+                    this.setState({editable: true});
                     Alert.warning(response.error + '. Необходимо заново авторизоваться.');
                 } else if (response.success === false) {
+                    this.setState({editable: true});
                     Alert.warning(response.message);
                 } else {
+                    this.setState({editable: true});
                     Alert.success('Данные успешно сохранены');
                 }
             }).catch(error => {
+            this.setState({editable: true});
             Alert.error('Что-то пошло не так! Попробуйте заново.' || (error && error.message));
         });
     }
@@ -204,14 +216,14 @@ class ApiUpdateOverviewBody extends Component {
                         <Form>
                                         <TextArea className='detail-overview-api-name-textarea'
                                                   onChange={this.handleInputChange} placeholder='Расскажите о своем API'
-                                                  id="description" disabled={this.state.formUpdateDisabled}
+                                                  id="description" disabled={this.state.editable}
                                                   name="description" value={this.state.description}/>
                         </Form>
                     </div>
 
                     <div className="detail-overview-api-name-input">
                         <label style={{textAlign: 'left', paddingBottom: 6}}>Загрузка изображения (JPEG/PNG 500x500)</label>
-                        <ApiImageDropzone key={this.state.id} onFilesAdded={this.onFilesAdded} uploadFiles={this.uploadFiles}
+                        <ApiImageDropzone key={this.state.id} onFilesAdded={this.onFilesAdded} editable={this.state.editable} disabled={this.state.editable}
                                 onClickReset={this.onClickReset}
                                 hasExtension={this.hasExtension}
                                 file={this.state.file} uploading={this.state.uploading}
@@ -228,7 +240,7 @@ class ApiUpdateOverviewBody extends Component {
                         <Dropdown onChange={this.handleDropdownChange} placeholder='Категория' fluid search
                                   selection id="category" name="category" noResultsMessage="Москва - лучший город"
                                   className="form-input" options={apiCategoryOptions}
-                                  disabled={this.state.formUpdateDisabled}
+                                  disabled={this.state.editable}
                                   value={this.state.category}/>
                     </div>
                     <div className="detail-overview-api-name-input">
@@ -237,24 +249,31 @@ class ApiUpdateOverviewBody extends Component {
                                         <TextArea className='detail-overview-api-name-textarea'
                                                   onChange={this.handleInputChange}
                                                   placeholder='Опишите условия по использованию'
-                                                  id="terms" disabled={this.state.formUpdateDisabled}
+                                                  id="terms" disabled={this.state.editable}
                                                   name="terms" value={this.state.terms ? this.state.terms : ' '}/>
                         </Form>
                     </div>
 
                     <div className="api-update-buttons">
-                        <div className='apply-button-container'>
-                            <Button fluid className="apply-button"
-                                    style={{width: 112, height: 32, background: '#2F80ED'}}><span
-                                className='command-approve-buttons-text' onClick={this.handleOverviewInformationSubmit}>Сохранить</span></Button>
+                        {this.state.editable ?
+                                <div className='apply-button-container'>
+                                    <Button fluid className="apply-button"
+                                            style={{width: 112, height: 32, background: '#2F80ED'}}><span
+                                        className='command-approve-buttons-text' onClick={this.editableHandle}>Редактировать</span></Button>
+                                </div>
+                            : <><div className='apply-button-container'>
+                                <Button fluid className="apply-button"
+                                        style={{width: 112, height: 32, background: '#2F80ED'}}><span
+                                    className='command-approve-buttons-text' onClick={this.handleOverviewInformationSubmit}>Сохранить</span></Button>
+                            </div>
+                            <div className='cancel-button-container api-info-cancel-button'>
+                                <Button fluid className="cancel-button"
+                                        style={{background: '#A5A5A5', width: 112, height: 32}} onClick={this.editableHandle}>
+                                    <span className='command-approve-buttons-text'>Отмена</span>
+                                </Button>
+                            </div></>
+                        }
                         </div>
-                        <div className='cancel-button-container api-info-cancel-button'>
-                            <Button fluid className="cancel-button"
-                                    style={{background: '#A5A5A5', width: 112, height: 32}} onClick={this.reload}>
-                                <span className='command-approve-buttons-text'>Отмена</span>
-                            </Button>
-                        </div>
-                    </div>
                 </form>
             </div>
 
