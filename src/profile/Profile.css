@@ -335,3 +335,12 @@
     display: none;
 }
 
+.command-apply-button{
+    /*vertical-align:middle;*/
+    overflow: hidden;
+    background-color: #2F80ED !important;
+    text-align: center;
+    /*padding-bottom: 7px;*/
+    /*padding-top: 7px;*/
+    padding: 0 0 !important;
+}

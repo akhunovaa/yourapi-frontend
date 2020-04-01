@@ -168,10 +168,12 @@ class LoginForm2 extends Component {
         this.state = {
             login: '',
             password: '',
+            showPassword: false,
             width: window.innerWidth
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePasswordShow = this.handlePasswordShow.bind(this);
     }
 
     handleInputChange(event) {
@@ -194,6 +196,11 @@ class LoginForm2 extends Component {
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleWindowSizeChange);
+    }
+
+    handlePasswordShow(){
+        const show = !this.state.showPassword;
+        this.setState({showPassword: show, passwordDisabled: false});
     }
 
     handleSubmit(event) {
@@ -231,13 +238,11 @@ class LoginForm2 extends Component {
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
                                     <Input onChange={this.handleInputChange}
-                                           icon={{ name: 'eye slash outline', link: true}}
-                                           placeholder='Пароль' id="password" name="password" required type='password'
+                                           icon={<Icon name={this.state.showPassword ? 'eye' : 'eye slash outline'} link onClick={this.handlePasswordShow}/>}
+                                           placeholder='Пароль' id="password" name="password" required type={this.state.showPassword ? 'text' : 'password'}
                                     />
                                 </Form.Field>
-                                <Link
-                                    style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#2F80ED'}}
-                                    to="#">Забыли пароль?</Link>
+                                <Link style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#2F80ED'}} to="#">Забыли пароль?</Link>
                                 <Form.Field>
                                     <Checkbox style={{
                                         float: 'left',
@@ -246,8 +251,7 @@ class LoginForm2 extends Component {
                                         paddingBottom: '16px'
                                     }} label='Запомнить меня'/>
                                 </Form.Field>
-                                <Button type='submit' className='submit-button' fluid
-                                        size='large'>
+                                <Button type='submit' className='submit-button' fluid size='large'>
                                     Войти
                                 </Button>
                             </Segment>

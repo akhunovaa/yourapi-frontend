@@ -86,7 +86,6 @@ class Profile extends Component {
 
     handlePasswordShow(){
         const show = !this.state.showPassword;
-        const disabledPassword = !this.state.passwordDisabled;
         this.setState({showPassword: show, passwordDisabled: false});
     }
 
@@ -649,8 +648,9 @@ class Profile extends Component {
                                                type={this.state.showPassword ? 'text' : 'password'}/>
                                     </div>
                                     <div className="profile-info-container-name-input password-input">
-                                        <Button compact color='blue' style={{width: 165, height: 32}} disabled={this.state.passwordDisabled}><span
-                                            className='command-approve-buttons-text'>Изменить пароль</span></Button>
+                                        <Button compact color='blue' style={{width: 165, height: 32}} className='apply-button' disabled={this.state.passwordDisabled}>
+                                            <span className='command-approve-buttons-text'>Изменить пароль</span>
+                                        </Button>
                                     </div>
                                 </div>
                             </form>
@@ -679,20 +679,18 @@ class Profile extends Component {
                                         <Table.Row>
                                             <Table.Cell>Волга</Table.Cell>
                                             <Table.Cell>Роль 1</Table.Cell>
-                                            <Table.Cell><Icon color='green' name='dot circle' size='small'/>В
-                                                команде</Table.Cell>
+                                            <Table.Cell><Icon color='green' name='dot circle' size='small'/>В команде</Table.Cell>
                                             <Table.Cell><NavLink to="#"><span style={{color: '#EB5757'}}>Выйти из команды </span></NavLink></Table.Cell>
                                         </Table.Row>
                                         <Table.Row>
                                             <Table.Cell>Урал</Table.Cell>
                                             <Table.Cell>Роль 3</Table.Cell>
-                                            <Table.Cell><Icon color='orange' name='dot circle' size='small'/>Запрос на
-                                                участие</Table.Cell>
+                                            <Table.Cell><Icon color='orange' name='dot circle' size='small'/>Запрос на участие</Table.Cell>
                                             <Table.Cell>
                                                 <div className='command-approve'>
-                                                    <Button icon fluid labelPosition='left' color='blue'> <Icon
-                                                        name='checkmark'/><span
-                                                        className='command-approve-buttons-text'>Принять</span></Button>
+                                                    <Button icon fluid labelPosition='left' color='blue' className="command-apply-button" ><Icon name='checkmark'/>
+                                                        <span className='command-approve-buttons-text'>Принять</span>
+                                                    </Button>
                                                     <Button fluid icon labelPosition='left' color='red'><Icon
                                                         name='close'/><span
                                                         className='command-approve-buttons-text'>Отклонить</span></Button>
