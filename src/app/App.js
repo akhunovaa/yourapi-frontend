@@ -45,7 +45,8 @@ class App extends Component {
         if (localStorage !== undefined && !localStorage.getItem(ACCESS_TOKEN)) {
             this.setState({
                 authenticated: false,
-                currentUser: null
+                currentUser: null,
+                loading: false
             });
             return <Redirect
                 to={{
