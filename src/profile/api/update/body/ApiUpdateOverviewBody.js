@@ -208,7 +208,7 @@ class ApiUpdateOverviewBody extends Component {
                     <div className="detail-overview-api-name-input">
                         <label style={{textAlign: 'left'}}>Наименование API</label>
                         <Input onChange={this.handleInputChange} value={this.state.name}
-                               className="form-input" id="apiName" disabled
+                               className="form-input" id="apiName" disabled style={{cursor: this.state.editable ? "no-drop " : "default"}}
                                name="name" required placeholder='Наименование API'/>
                     </div>
                     <div className="detail-overview-api-name-input">
@@ -217,7 +217,7 @@ class ApiUpdateOverviewBody extends Component {
                                         <TextArea className='detail-overview-api-name-textarea'
                                                   onChange={this.handleInputChange} placeholder='Расскажите о своем API'
                                                   id="description" disabled={this.state.editable}
-                                                  name="description" value={this.state.description}/>
+                                                  name="description" value={this.state.description} style={{cursor: this.state.editable ? "no-drop " : "default"}}/>
                         </Form>
                     </div>
 
@@ -241,7 +241,7 @@ class ApiUpdateOverviewBody extends Component {
                                   selection id="category" name="category" noResultsMessage="Москва - лучший город"
                                   className="form-input" options={apiCategoryOptions}
                                   disabled={this.state.editable}
-                                  value={this.state.category}/>
+                                  value={this.state.category} style={{cursor: this.state.editable ? "no-drop " : "default"}}/>
                     </div>
                     <div className="detail-overview-api-name-input">
                         <label style={{textAlign: 'left', paddingBottom: 6}}>Условия использования</label>
@@ -250,7 +250,7 @@ class ApiUpdateOverviewBody extends Component {
                                                   onChange={this.handleInputChange}
                                                   placeholder='Опишите условия по использованию'
                                                   id="terms" disabled={this.state.editable}
-                                                  name="terms" value={this.state.terms ? this.state.terms : ' '}/>
+                                                  name="terms" value={this.state.terms ? this.state.terms : ' '} style={{cursor: this.state.editable ? "no-drop " : "default"}}/>
                         </Form>
                     </div>
 
