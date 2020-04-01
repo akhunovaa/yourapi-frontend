@@ -4,6 +4,7 @@ import {Icon, List} from "semantic-ui-react";
 import {NavLink, withRouter} from 'react-router-dom';
 import queryString from "query-string";
 import classNames from 'classnames/bind';
+import {TreesetLoadingIndicator} from '../../common/LoadingIndicator';
 
 class ApiTreeSet extends Component {
 
@@ -23,6 +24,7 @@ class ApiTreeSet extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+
     }
 
     toggle(event) {
@@ -75,11 +77,7 @@ class ApiTreeSet extends Component {
             </>
         );
 
-
-
         let page = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'update';
-
-
 
         return (
             <div className='api-command-toggle'>
@@ -92,9 +90,7 @@ class ApiTreeSet extends Component {
                             </div>
                         </List.Content>
                     </List.Item>
-
-                    <Projects items={projects}/>
-
+                    {this.props.loading ? (<TreesetLoadingIndicator/>) : ( <Projects items={projects}/>)}
                 </List>
             </div>
         );

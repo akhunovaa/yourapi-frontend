@@ -6,9 +6,46 @@
     min-width: 1348px;
 }
 
+.grid-logo-text-avatar{
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 25px;
+    border-radius: 50%;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    background: #46b5e5;
+    background: linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -ms-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -moz-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -o-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+    background-image: -webkit-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+}
+
+.grid-logo{
+    float: left;
+    width: 32px;
+    height: 32px;
+    /*float: left;*/
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-logo:hover{
+    cursor: pointer;
+}
+
 .shop-main-container{
     display: inline-flex;
     /*min-height: 2400px;*/
+    width: 100%;
+    min-width: 600px;
 }
 
 .api-element-container-header{
@@ -57,9 +94,13 @@
     height: auto;
     min-height: 616px;
     margin-top: -40px;
-    width: auto;
     min-width: 1002px;
     padding-right: 50px;
+    width: 100%;
+}
+
+.shop-form-element-container{
+    /*min-height: 2400px;*/
 }
 
 .shop-filter-title{

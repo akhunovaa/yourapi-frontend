@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Api.css';
-import {Route, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import queryString from "query-string";
 import ApiUpdateOverviewHeader from "./update/header/ApiUpdateOverviewHeader";
 import ApiUpdateMainHeader from "./update/header/ApiUpdateMainHeader";
@@ -36,7 +36,6 @@ class ApiUpdateBody extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        this.forceUpdate()
     }
 
     componentWillUnmount() {
@@ -129,19 +128,19 @@ class ApiUpdateBody extends Component {
         const apiProject = this.iterateApiProjectList(this.props.projects, this.props.naming);
         switch (paging) {
             case 'overview':
-                return <ApiUpdateOverviewBody key={apiProject.id} naming={this.props.naming} projects={this.props.projects} apiProject={apiProject} {...this.props}/>;
+                return <ApiUpdateOverviewBody loading={this.state.loading} key={apiProject.id} naming={this.props.naming} projects={this.props.projects} apiProject={apiProject} {...this.props}/>;
             case 'settings':
-                return <ApiUpdateMainBody naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateMainBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>;
             case 'endpoints':
-                return <ApiUpdateEndpointsBody naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateEndpointsBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>;
             case 'price':
-                return <ApiUpdatePriceBody naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdatePriceBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>;
             case 'docs':
-                return <ApiUpdateDocsBody naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateDocsBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>;
             case 'announcements':
-                return <ApiUpdateAnnouncementsBody naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateAnnouncementsBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>;
             default:
-                return <ApiUpdateOverviewBody naming={this.props.naming} {...this.props}/>
+                return <ApiUpdateOverviewBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>
         }
     }
 

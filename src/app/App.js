@@ -26,12 +26,14 @@ import OAuth2RedirectHandler from '../login/oauth2/OAuth2RedirectHandler';
 
 class App extends Component {
 
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
             authenticated: false,
             currentUser: null,
-            loading: false,
+            loading: true,
             width: window.innerWidth
         };
 
@@ -40,14 +42,10 @@ class App extends Component {
     }
 
     loadCurrentlyLoggedInUser() {
-        this.setState({
-            loading: true
-        });
         if (localStorage !== undefined && !localStorage.getItem(ACCESS_TOKEN)) {
             this.setState({
                 authenticated: false,
-                currentUser: null,
-                loading: false
+                currentUser: null
             });
             return <Redirect
                 to={{
@@ -79,6 +77,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         loadReCaptcha();
         this.loadCurrentlyLoggedInUser();
     }
@@ -88,6 +87,7 @@ class App extends Component {
     }
 
     componentWillUnmount() {
+        this._isMounted = false;
         window.removeEventListener('resize', this.handleWindowSizeChange);
     }
 

@@ -10,7 +10,8 @@ import queryString from "query-string";
 import {NavLink} from "react-router-dom";
 import {Icon} from "semantic-ui-react";
 import Alert from "react-s-alert";
-import LoadingIndicator from '../../common/LoadingIndicator';
+import {ApiUpdatePageLoadingIndicator} from "../../common/LoadingIndicator";
+
 
 class Api extends Component {
 
@@ -19,7 +20,7 @@ class Api extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: false,
+            loading: true,
             user: {},
             open: false,
             page: '',
@@ -36,23 +37,18 @@ class Api extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        if (this.state.projects.length > 0) return;
-        this.setState({
-            loading: true
-        });
-        apiProjectListGet()
-            .then(response => {
-                if (this._isMounted) {
+        if (this._isMounted) {
+            apiProjectListGet()
+                .then(response => {
+
                     this.setState({
-                        projects: response.response
+                        projects: response.response,
+                        loading: false
                     })
-                }
-            }).catch(error => {
-            Alert.error('Ошибка получения списка проектов' || (error && error.message));
-        });
-        this.setState({
-            loading: false
-        });
+                }).catch(error => {
+                Alert.error('Ошибка получения списка проектов' || (error && error.message));
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -129,9 +125,9 @@ class Api extends Component {
         switch (paging) {
             case 'update':
                 if (naming !== 'undefined') {
-                    return <ApiUpdateBody projects={this.state.projects} naming={naming}/>;
+                    return <ApiUpdateBody loading={this.state.loading} projects={this.state.projects} naming={naming}/>;
                 } else {
-                    return <ApiAddBody projects={this.state.projects} paging={paging}/>;
+                    return <ApiAddBody loading={this.state.loading} projects={this.state.projects} paging={paging}/>;
                 }
             case 'add':
                 return <ApiAddBody projects={this.state.projects} paging={paging}/>;
@@ -157,10 +153,6 @@ class Api extends Component {
 
     render() {
 
-        if (this.state.loading) {
-            return <LoadingIndicator/>
-        }
-
         const apiProjects = this.state.projects ? this.state.projects : [];
 
         return (
@@ -180,7 +172,7 @@ class Api extends Component {
                         </div>
                     </div>
                     <div className='left-side-api-body-main-container'>
-                        <ApiTreeSet projects={apiProjects}/>
+                       <ApiTreeSet loading={this.state.loading} projects={apiProjects}/>
                     </div>
                 </div>
                 <div className='right-side-api'>
@@ -188,7 +180,7 @@ class Api extends Component {
                         {this.renderSwitchHeader()}
                     </div>
                     <div className="api-body">
-                        {this.renderSwitchBody()}
+                        {this.state.loading ? (<ApiUpdatePageLoadingIndicator/>) : (this.renderSwitchBody())}
                     </div>
                 </div>
             </div>

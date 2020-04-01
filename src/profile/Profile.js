@@ -17,10 +17,9 @@ import {
     Table,
     TextArea
 } from "semantic-ui-react";
-import {loadUser, profileImageUpdate, profileInfoUpdate, profilePasswordUpdate} from "../util/APIUtils";
+import {profileImageUpdate, profileInfoUpdate, profilePasswordUpdate} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import ImageUploader from 'react-images-upload';
-import LoadingIndicator from '../common/LoadingIndicator';
 
 class Profile extends Component {
 
@@ -56,16 +55,16 @@ class Profile extends Component {
             language: '',
             city: '',
             info: '',
-            loading: false
+            loading: true,
+            passwordDisabled: true
         };
-        this.loadUser = this.loadUser.bind(this);
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleOnPhoneChange = this.handleOnPhoneChange.bind(this);
         this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
         this.handleImageUpload = this.handleImageUpload.bind(this);
         this.handleMainInformationSubmit = this.handleMainInformationSubmit.bind(this);
-
+        this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
         this.handleImageLoaded = this.handleImageLoaded.bind(this);
         this.image = React.createRef();
     }
@@ -77,45 +76,20 @@ class Profile extends Component {
         if (img && img.complete) {
             this.handleImageLoaded();
         }
-        this.setState({
-            loading: false
-        });
     }
 
     handleImageLoaded() {
-        if (!this.state.loaded) {
-            this.setState({loaded: true});
-        }
         this.setState({loading: false});
     }
-
-    loadUser(handle) {
-        this.setState({
-            loading: true
-        });
-        let data = {
-            "id": handle
-        };
-        loadUser(data)
-            .then(response => {
-                this.setState({
-                    user: response.response,
-                    loading: false
-                });
-            }).catch(error => {
-            this.setState({
-                loading: false
-            });
-        });
-    }
-
 
     componentWillUnmount() {
         this._isMounted = false;
     }
 
     reload() {
+        this.setState({loading: true});
         window.location.reload();
+        this.setState({loading: false});
     };
 
     handleInputChange(event) {
@@ -126,6 +100,17 @@ class Profile extends Component {
         this.setState({
             [inputName]: inputValue
         });
+    }
+
+    handlePasswordInputChange(event) {
+        const target = event.target;
+        const inputName = target.name;
+        const inputValue = target.value;
+
+        this.setState({
+            [inputName]: inputValue
+        });
+        this.setState({passwordDisabled: false});
     }
 
     handleDropdownChange = (e, {name, value}) => this.setState({[name]: value});
@@ -146,6 +131,7 @@ class Profile extends Component {
 
     handlePasswordSubmit(event) {
         event.preventDefault();
+        this.setState({loading: true});
         const data = new FormData(event.target);
         const passData = data.get('oldPassword');
         const passDataNew = data.get('newPassword');
@@ -162,19 +148,25 @@ class Profile extends Component {
         profilePasswordUpdate(passDataRequest)
             .then(response => {
                 if (response.error) {
+                    this.setState({loading: false});
                     Alert.warning(response.error + '. Необходимо заново авторизоваться.');
                 } else if (response.success === false) {
+                    this.setState({loading: false});
                     Alert.warning(response.message);
                 } else {
+                    this.setState({loading: false});
                     Alert.success('Данные успешно сохранены');
+                    this.setState({passwordDisabled: true});
                 }
             }).catch(error => {
+            this.setState({loading: false});
             Alert.error('Что-то пошло не так! Попробуйте заново.' || (error && error.message));
         });
     }
 
     handleMainInformationSubmit(event) {
         event.preventDefault();
+        this.setState({loading: true});
         const id = this.state.id ? this.state.id : 0;
         const name = this.state.name ? this.state.name : this.state.user.name;
         const surname = this.state.surname ? this.state.surname : this.state.user.surname;
@@ -204,13 +196,25 @@ class Profile extends Component {
         profileInfoUpdate(mainInfoRequest)
             .then(response => {
                 if (response.error) {
+                    this.setState({
+                        loading: false
+                    });
                     Alert.warning(response.error + '. Необходимо заново авторизоваться.');
                 } else if (response.success === false) {
+                    this.setState({
+                        loading: false
+                    });
                     Alert.warning(response.message);
                 } else {
+                    this.setState({
+                        loading: false
+                    });
                     Alert.success('Данные успешно сохранены');
                 }
             }).catch(error => {
+            this.setState({
+                loading: false
+            });
             Alert.error('Что-то пошло не так! Попробуйте заново.' || (error && error.message));
         });
     }
@@ -272,10 +276,6 @@ class Profile extends Component {
     }
 
     render() {
-
-        if (this.state.loading) {
-            return <LoadingIndicator/>
-        }
 
         const {open} = this.state;
         const sexOptions = [
@@ -361,7 +361,8 @@ class Profile extends Component {
                             <div className="profile-avatar">
                                 {
                                     this.state.imageUrl ? (
-                                        <Image src={this.state.imageUrl + '/150/150'} size='medium' circular verticalAlign='top'
+                                        <Image src={this.state.imageUrl + '/150/150'} size='medium' circular
+                                               verticalAlign='top'
                                                alt={this.state.user.name}
                                                onLoad={this.handleImageLoaded}/>
                                     ) : (
@@ -616,7 +617,7 @@ class Profile extends Component {
                                     <div className="profile-info-container-name-input password-input">
                                         <label style={{marginBottom: 6}}>Старый пароль</label>
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
-                                               onChange={this.handleInputChange}
+                                               onChange={this.handlePasswordInputChange}
                                                icon={{name: 'eye slash outline', link: true}} defaultValue="123456"
                                                placeholder='Старый пароль' id="oldPassword" name="oldPassword" required
                                                type='password'/>
@@ -624,7 +625,7 @@ class Profile extends Component {
                                     <div className="profile-info-container-name-input password-input">
                                         <label style={{marginBottom: 6}}>Новый пароль</label>
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
-                                               onChange={this.handleInputChange}
+                                               onChange={this.handlePasswordInputChange} disabled={this.state.passwordDisabled}
                                                icon={{name: 'eye slash outline', link: true}} defaultValue="123456"
                                                placeholder='Старый пароль' id="newPassword" name="newPassword" required
                                                type='password'/>
@@ -632,13 +633,13 @@ class Profile extends Component {
                                     <div className="profile-info-container-name-input password-input">
                                         <label style={{marginBottom: 6}}>Повторите новый пароль</label>
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
-                                               onChange={this.handleInputChange}
+                                               onChange={this.handlePasswordInputChange} disabled={this.state.passwordDisabled}
                                                icon={{name: 'eye slash outline', link: true}} defaultValue="123456"
                                                placeholder='Повторите новый пароль' id="newRePassword"
                                                name="newRePassword" required type='password'/>
                                     </div>
                                     <div className="profile-info-container-name-input password-input">
-                                        <Button compact color='blue' style={{width: 165, height: 32}}><span
+                                        <Button compact color='blue' style={{width: 165, height: 32}} disabled={this.state.loading}><span
                                             className='command-approve-buttons-text'>Изменить пароль</span></Button>
                                     </div>
                                 </div>
@@ -699,13 +700,14 @@ class Profile extends Component {
                         <div className="profile-info-buttons">
                             <div className='apply-button-container'>
                                 <Button fluid className="apply-button" style={{width: 165, height: 32}}
+                                        disabled={this.state.loading}
                                         onClick={this.handleMainInformationSubmit}><span
                                     className='command-approve-buttons-text'>Сохранить</span></Button>
                             </div>
                             <div className='cancel-button-container'>
                                 <Button fluid className="cancel-button" style={{width: 165, height: 32}}
-                                        onClick={this.reload}><span
-                                    className='command-approve-buttons-text'>Отмена</span></Button>
+                                        disabled={this.state.loading}
+                                        onClick={this.reload}><span className='command-approve-buttons-text'>Отмена</span></Button>
                             </div>
                         </div>
                     </div>

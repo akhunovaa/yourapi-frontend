@@ -19,8 +19,8 @@ class ApiUpdateOverviewBody extends Component {
             terms: 'Особые условия',
             formUpdateDisabled: false,
             apiProjectImageUrl: '',
-            loading: false,
-            api: this.props.apiProject
+            loading: true,
+            api: []
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -34,7 +34,6 @@ class ApiUpdateOverviewBody extends Component {
     componentDidMount() {
         this._isMounted = true;
         this.iterateApiProjectList(this.props.projects, this.props.naming);
-        this.setState({loading: false});
     }
 
     componentWillUnmount() {
@@ -88,7 +87,8 @@ class ApiUpdateOverviewBody extends Component {
                     category: arrayElement.category,
                     description: arrayElement.description,
                     terms: arrayElement.info ? arrayElement.info.termsOfService : '',
-                    apiProjectImageUrl: arrayElement.image
+                    apiProjectImageUrl: arrayElement.image,
+                    loading: false
                 });
                 return arrayElement;
             }

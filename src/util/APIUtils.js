@@ -21,7 +21,7 @@ const request = async (options) => {
                 checkResponseForAvalidToken(json);
                 return json;
             })
-        );
+        ).catch(error => console.log(error))
 };
 
 const requestGet = async (options) => {
@@ -239,6 +239,15 @@ export function apiProjectFullListGet() {
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
         url: apiBaseUrl + "/api-data/full",
+        method: 'GET'
+    });
+}
+
+export function apiFullListGet() {
+    prevalidateTokenState();
+    const apiBaseUrl = process.env.NODE_ENV   !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return request({
+        url: apiBaseUrl + "/api-data/shop/filter",
         method: 'GET'
     });
 }

@@ -19,6 +19,7 @@
 
 .api-shop-main-container{
     display: inline-flex;
+    width: 100%;
     /*min-height: 2400px;*/
 }
 
