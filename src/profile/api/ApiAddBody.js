@@ -279,7 +279,7 @@ class ApiAddBody extends Component {
                             <label className={this.state.emptyName ? 'required control-label' : 'control-label'}>Название (обязательно)</label>
                             <Input fluid onChange={this.handleInputChange}
                                    className="form-input" id="apiName"
-                                   name="apiName" required placeholder='Название API'/>
+                                   name="apiName" required placeholder='Название API' value={this.state.apiName}/>
                         </div>
                         <div className="api-add-container-input api-add-container-input-element">
                             <div className="api-add-container-input-textarea">
@@ -288,7 +288,7 @@ class ApiAddBody extends Component {
                                     <TextArea onChange={this.handleInputChange}
                                               placeholder='Краткое описание создаваемого API'
                                               style={{minHeight: 64, maxHeight: 64, minWidth: 352}} id="description"
-                                              name="description"/>
+                                              name="description" value={this.state.description}/>
                                 </Form>
                                 <label className='helper-message'>70-80 символов</label>
                             </div>
