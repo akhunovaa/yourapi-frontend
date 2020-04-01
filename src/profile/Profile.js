@@ -56,7 +56,8 @@ class Profile extends Component {
             city: '',
             info: '',
             loading: true,
-            passwordDisabled: true
+            passwordDisabled: true,
+            showPassword: false
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -66,6 +67,7 @@ class Profile extends Component {
         this.handleMainInformationSubmit = this.handleMainInformationSubmit.bind(this);
         this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
         this.handleImageLoaded = this.handleImageLoaded.bind(this);
+        this.handlePasswordShow = this.handlePasswordShow.bind(this);
         this.image = React.createRef();
     }
 
@@ -80,6 +82,12 @@ class Profile extends Component {
 
     handleImageLoaded() {
         this.setState({loading: false});
+    }
+
+    handlePasswordShow(){
+        const show = !this.state.showPassword;
+        const disabledPassword = !this.state.passwordDisabled;
+        this.setState({showPassword: show, passwordDisabled: false});
     }
 
     componentWillUnmount() {
@@ -132,10 +140,11 @@ class Profile extends Component {
     handlePasswordSubmit(event) {
         event.preventDefault();
         this.setState({loading: true});
+        const showPassword = this.state.showPassword;
         const data = new FormData(event.target);
         const passData = data.get('oldPassword');
         const passDataNew = data.get('newPassword');
-        const passDataNewTwo = data.get('newRePassword');
+        const passDataNewTwo = showPassword ? passDataNew : data.get('newRePassword');
         if (passDataNew !== passDataNewTwo) {
             Alert.warning('Пароли должны совпадать.');
             return
@@ -618,28 +627,29 @@ class Profile extends Component {
                                         <label style={{marginBottom: 6}}>Старый пароль</label>
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange}
-                                               icon={{name: 'eye slash outline', link: true}} defaultValue="123456"
+                                               icon={<Icon name={this.state.showPassword ? 'eye' : 'eye slash outline'} link onClick={this.handlePasswordShow}/>}
                                                placeholder='Старый пароль' id="oldPassword" name="oldPassword" required
-                                               type='password'/>
+                                               type={this.state.showPassword ? 'text' : 'password'}/>
                                     </div>
                                     <div className="profile-info-container-name-input password-input">
                                         <label style={{marginBottom: 6}}>Новый пароль</label>
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange} disabled={this.state.passwordDisabled}
-                                               icon={{name: 'eye slash outline', link: true}} defaultValue="123456"
+                                               icon={<Icon name={this.state.showPassword ? 'eye' : 'eye slash outline'} link onClick={this.handlePasswordShow}/>}
                                                placeholder='Старый пароль' id="newPassword" name="newPassword" required
-                                               type='password'/>
+                                               type={this.state.showPassword ? 'text' : 'password'}/>
                                     </div>
-                                    <div className="profile-info-container-name-input password-input">
-                                        <label style={{marginBottom: 6}}>Повторите новый пароль</label>
+                                    <div className={this.state.showPassword ? 'profile-password-hide profile-info-container-name-input password-input' : 'profile-info-container-name-input password-input'}>
+                                        <label style={{marginBottom: 6}}>Подтвердите новый пароль</label>
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange} disabled={this.state.passwordDisabled}
-                                               icon={{name: 'eye slash outline', link: true}} defaultValue="123456"
-                                               placeholder='Повторите новый пароль' id="newRePassword"
-                                               name="newRePassword" required type='password'/>
+                                               icon={<Icon name={this.state.showPassword ? 'eye' : 'eye slash outline'} link onClick={this.handlePasswordShow}/>}
+                                               placeholder='Подтвердите новый пароль' id="newRePassword"
+                                               name="newRePassword" required
+                                               type={this.state.showPassword ? 'text' : 'password'}/>
                                     </div>
                                     <div className="profile-info-container-name-input password-input">
-                                        <Button compact color='blue' style={{width: 165, height: 32}} disabled={this.state.loading}><span
+                                        <Button compact color='blue' style={{width: 165, height: 32}} disabled={this.state.passwordDisabled}><span
                                             className='command-approve-buttons-text'>Изменить пароль</span></Button>
                                     </div>
                                 </div>
@@ -700,13 +710,12 @@ class Profile extends Component {
                         <div className="profile-info-buttons">
                             <div className='apply-button-container'>
                                 <Button fluid className="apply-button" style={{width: 165, height: 32}}
-                                        disabled={this.state.loading}
-                                        onClick={this.handleMainInformationSubmit}><span
-                                    className='command-approve-buttons-text'>Сохранить</span></Button>
+                                        disabled={this.state.loading} color='blue'
+                                        onClick={this.handleMainInformationSubmit}>Сохранить</Button>
                             </div>
                             <div className='cancel-button-container'>
                                 <Button fluid className="cancel-button" style={{width: 165, height: 32}}
-                                        disabled={this.state.loading}
+                                        disabled={this.state.loading} color='red'
                                         onClick={this.reload}><span className='command-approve-buttons-text'>Отмена</span></Button>
                             </div>
                         </div>

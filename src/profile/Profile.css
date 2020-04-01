@@ -331,3 +331,7 @@
     height: 64px;
 }
 
+.profile-password-hide{
+    display: none;
+}
+
