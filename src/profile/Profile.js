@@ -636,7 +636,7 @@ class Profile extends Component {
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange} disabled={this.state.passwordDisabled}
                                                icon={<Icon name={this.state.showPassword ? 'eye' : 'eye slash outline'} link onClick={this.handlePasswordShow}/>}
-                                               placeholder='Старый пароль' id="newPassword" name="newPassword" required
+                                               placeholder='Новый пароль' id="newPassword" name="newPassword" required
                                                type={this.state.showPassword ? 'text' : 'password'}/>
                                     </div>
                                     <div className={this.state.showPassword ? 'profile-password-hide profile-info-container-name-input password-input' : 'profile-info-container-name-input password-input'}>
