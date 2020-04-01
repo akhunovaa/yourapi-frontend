@@ -715,7 +715,7 @@ class Profile extends Component {
                             </div>
                             <div className='cancel-button-container'>
                                 <Button fluid className="cancel-button" style={{width: 165, height: 32}}
-                                        disabled={this.state.loading} color='red'
+                                        disabled={this.state.loading} color='grey'
                                         onClick={this.reload}><span className='command-approve-buttons-text'>Отмена</span></Button>
                             </div>
                         </div>
