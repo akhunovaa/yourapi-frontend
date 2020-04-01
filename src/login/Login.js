@@ -238,7 +238,7 @@ class LoginForm2 extends Component {
                                 <Form.Field style={{}}>
                                     <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
                                     <Input onChange={this.handleInputChange}
-                                           icon={<Icon name={this.state.showPassword ? 'eye' : 'eye slash outline'} link onClick={this.handlePasswordShow}/>}
+                                           icon={<Icon name={this.state.showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
                                            placeholder='Пароль' id="password" name="password" required type={this.state.showPassword ? 'text' : 'password'}
                                     />
                                 </Form.Field>

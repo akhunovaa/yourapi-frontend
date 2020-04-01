@@ -626,7 +626,7 @@ class Profile extends Component {
                                         <label style={{marginBottom: 6}}>Старый пароль</label>
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange}
-                                               icon={<Icon name={this.state.showPassword ? 'eye' : 'eye slash outline'} link onClick={this.handlePasswordShow}/>}
+                                               icon={<Icon name={this.state.showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
                                                placeholder='Старый пароль' id="oldPassword" name="oldPassword" required
                                                type={this.state.showPassword ? 'text' : 'password'}/>
                                     </div>
@@ -634,7 +634,7 @@ class Profile extends Component {
                                         <label style={{marginBottom: 6}}>Новый пароль</label>
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange} disabled={this.state.passwordDisabled}
-                                               icon={<Icon name={this.state.showPassword ? 'eye' : 'eye slash outline'} link onClick={this.handlePasswordShow}/>}
+                                               icon={<Icon name={this.state.showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
                                                placeholder='Новый пароль' id="newPassword" name="newPassword" required
                                                type={this.state.showPassword ? 'text' : 'password'}/>
                                     </div>
@@ -642,7 +642,7 @@ class Profile extends Component {
                                         <label style={{marginBottom: 6}}>Подтвердите новый пароль</label>
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange} disabled={this.state.passwordDisabled}
-                                               icon={<Icon name={this.state.showPassword ? 'eye' : 'eye slash outline'} link onClick={this.handlePasswordShow}/>}
+                                               icon={<Icon name={this.state.showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
                                                placeholder='Подтвердите новый пароль' id="newRePassword"
                                                name="newRePassword" required
                                                type={this.state.showPassword ? 'text' : 'password'}/>
