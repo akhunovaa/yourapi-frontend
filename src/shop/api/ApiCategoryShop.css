@@ -14,7 +14,10 @@
     line-height: 16px;
     /* Gray 3 */
     color: #A5A5A5;
-    padding: 38px 33px 20px 57px;
+    padding: 38px 0 20px 57px;
+    width: 305px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .api-shop-main-container{
