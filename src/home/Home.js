@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 import './Home.css';
 import {Button, Grid, Icon, Image, Segment} from "semantic-ui-react";
 import {NavLink} from "react-router-dom";
-import grid from '../img/grid-img.png';
 import {apiProjectFullListGet} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import {HomeCellLoadingIndicator, HomeLoadingIndicator} from '../common/LoadingIndicator';
-import LazyImage from "../shop/ShopBody";
+import LazyImage from '../util/LazyImage';
 
 class Home extends Component {
 
@@ -98,7 +97,7 @@ class Home extends Component {
                                                     item.image ? (
                                                         <NavLink
                                                             to={this.getLink4Description(item.category) + item.id}>
-                                                            <Image src={item.image ? host + "/api-data/image/" + item.image + "/32/32" : grid}/>
+                                                            {/*<Image src={item.image ? host + "/api-data/image/" + item.image + "/32/32" : grid}/>*/}
                                                             <LazyImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
                                                         </NavLink>
                                                     ) : (

@@ -13,7 +13,7 @@ import {
     getLink4Category,
     getLink4Description
 } from "../../util/ElementsDataUtils";
-import LazyImage from "../ShopBody";
+import LazyImage from '../../util/LazyImage';
 
 
 class ApiCategoryShop extends Component {
