@@ -5,7 +5,8 @@ import {NavLink} from "react-router-dom";
 import grid from '../img/grid-img.png';
 import {apiProjectFullListGet} from "../util/APIUtils";
 import Alert from "react-s-alert";
-import {HomeLoadingIndicator, HomeCellLoadingIndicator} from '../common/LoadingIndicator';
+import {HomeCellLoadingIndicator, HomeLoadingIndicator} from '../common/LoadingIndicator';
+import LazyImage from "../shop/ShopBody";
 
 class Home extends Component {
 
@@ -90,44 +91,46 @@ class Home extends Component {
                         <Grid.Column key={item.id} className="body-data">
                             <Segment>
                                 <div className="body-cell-data">
-                                        <div>
-                                            <div className="cell-header">
-                                                <div className="grid-logo">
-                                                    {
-                                                        item.image ? (
+                                    <div>
+                                        <div className="cell-header">
+                                            <div className="grid-logo">
+                                                {
+                                                    item.image ? (
+                                                        <NavLink
+                                                            to={this.getLink4Description(item.category) + item.id}>
+                                                            <Image src={item.image ? host + "/api-data/image/" + item.image + "/32/32" : grid}/>
+                                                            <LazyImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
+                                                        </NavLink>
+                                                    ) : (
+                                                        <div className="home-api-text-avatar">
                                                             <NavLink
-                                                                to={this.getLink4Description(item.category) + item.id}><Image
-                                                                src={item.image ? host + "/api-data/image/" + item.image + "/32/32" : grid}/></NavLink>
-                                                        ) : (
-                                                            <div className="home-api-text-avatar">
-                                                                <NavLink
-                                                                    to={this.getLink4Description(item.category) + item.id}><span>{item.fullName && item.fullName[0]}</span></NavLink>
-                                                            </div>
-                                                        )
-                                                    }
-                                                </div>
-                                                <div className="grid-labels">
-                                                    <Icon link name='star' style={{color: '#F39847'}}/>
-                                                    <label style={{color: '#F39847'}}>{item.id}</label>
-                                                    <Icon style={{paddingLeft: '16px'}} link name='bookmark'/>
-                                                </div>
+                                                                to={this.getLink4Description(item.category) + item.id}><span>{item.fullName && item.fullName[0]}</span></NavLink>
+                                                        </div>
+                                                    )
+                                                }
                                             </div>
-                                            <div className="cell-grid-body">
-                                                <div className="cell-grid-body-text">
-                                                    <NavLink to={this.getLink4Description(item.category) + item.id}
-                                                             className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
-                                                </div>
-                                                <div className="cell-grid-body-label">
-                                                    <label>от {item.username.email}</label>
-                                                </div>
-                                                <div className="cell-grid-body-description">
-                                                    <label>{item.description}</label>
-                                                </div>
-                                                <div className="cell-grid-body-category">
-                                                    <span>&#183; {item.category}</span>
-                                                </div>
+                                            <div className="grid-labels">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>{item.id}</label>
+                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark'/>
                                             </div>
                                         </div>
+                                        <div className="cell-grid-body">
+                                            <div className="cell-grid-body-text">
+                                                <NavLink to={this.getLink4Description(item.category) + item.id}
+                                                         className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
+                                            </div>
+                                            <div className="cell-grid-body-label">
+                                                <label>от {item.username.email}</label>
+                                            </div>
+                                            <div className="cell-grid-body-description">
+                                                <label>{item.description}</label>
+                                            </div>
+                                            <div className="cell-grid-body-category">
+                                                <span>&#183; {item.category}</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </Segment>
                         </Grid.Column>
@@ -181,7 +184,8 @@ class Home extends Component {
                         </div>
                         <div className="body-data">
                             <Grid columns='3'>
-                                {this.state.loading ? (<HomeCellLoadingIndicator/>) : (<Projects items={this.state.noveltyProjects} hidden={this.state.noveltyHidden}/>)}
+                                {this.state.loading ? (<HomeCellLoadingIndicator/>) : (
+                                    <Projects items={this.state.noveltyProjects} hidden={this.state.noveltyHidden}/>)}
                             </Grid>
                         </div>
                     </div>
@@ -200,7 +204,8 @@ class Home extends Component {
                         </div>
                         <div className="body-data">
                             <Grid columns='3'>
-                                {this.state.loading ? (<HomeCellLoadingIndicator/>) : (<Projects items={this.state.topProjects} hidden={this.state.topProjects}/>)}
+                                {this.state.loading ? (<HomeCellLoadingIndicator/>) : (
+                                    <Projects items={this.state.topProjects} hidden={this.state.topProjects}/>)}
                             </Grid>
                         </div>
                         <div className="main-body-test-api-container">
@@ -218,7 +223,9 @@ class Home extends Component {
                             </div>
                             <div className="body-data">
                                 <Grid columns='3'>
-                                    {this.state.loading ? (<HomeCellLoadingIndicator/>) : (<Projects items={this.state.recommendedProjects} hidden={this.state.recommendedProjects}/>)}
+                                    {this.state.loading ? (<HomeCellLoadingIndicator/>) : (
+                                        <Projects items={this.state.recommendedProjects}
+                                                  hidden={this.state.recommendedProjects}/>)}
                                 </Grid>
                             </div>
                         </div>

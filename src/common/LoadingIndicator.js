@@ -25,6 +25,19 @@ export function ShopLoadingIndicator() {
     );
 }
 
+export function CategoryShopLoadingIndicator() {
+    return (
+        <Loader active indeterminate inline size='medium' style={{
+            textAlign: 'center',
+            width: '100%',
+            height: '100%',
+            minHeight: 150,
+            minWidth: 150,
+            marginTop: 125
+        }}/>
+    );
+}
+
 export function HomeLoadingIndicator() {
     return (
         <Loader active inline='centered' size='mini'/>

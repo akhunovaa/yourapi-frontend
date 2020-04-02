@@ -159,9 +159,30 @@
     height: auto;
     min-height: 616px;
     /*margin-top: -40px;*/
-    width: auto;
+    width: 100%;
     min-width: 1002px;
     padding-right: 50px;
+    margin-top: -40px;
+}
+
+.api-category-shop-empty{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+    /* Gray 2 */
+    color: #6f6f6f;
+    height: 309px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 309px;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 

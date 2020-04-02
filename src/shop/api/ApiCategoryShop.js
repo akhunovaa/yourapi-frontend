@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
 import './ApiCategoryShop.css';
 import {NavLink, Redirect} from "react-router-dom";
-import {Breadcrumb, Icon} from "semantic-ui-react";
+import {Breadcrumb, Grid, Icon, Segment} from "semantic-ui-react";
 import Slider from '@material-ui/core/Slider';
-import ApiElementData from './ApiElementData';
+import {apiFullCriteriaListGet} from "../../util/APIUtils";
+import Alert from "react-s-alert";
+import {CategoryShopLoadingIndicator} from "../../common/LoadingIndicator";
+import {
+    getCategoryName,
+    getClassName4Color,
+    getIconColor,
+    getLink4Category,
+    getLink4Description
+} from "../../util/ElementsDataUtils";
+import LazyImage from "../ShopBody";
 
 
 class ApiCategoryShop extends Component {
@@ -14,6 +24,7 @@ class ApiCategoryShop extends Component {
         super(props);
         const {category} = this.props.match.params;
         this.state = {
+            loading: true,
             categoryName: category,
             permittedCategory: ['data', 'finance', 'mobile', 'map', 'adv', 'social', 'health', 'sport', 'web', 'other'],
             responseScale: [0, 1000],
@@ -26,6 +37,21 @@ class ApiCategoryShop extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        const criteria = this.state.categoryName;
+        if (this._isMounted) {
+            apiFullCriteriaListGet(criteria)
+                .then(response => {
+
+                    this.setState({
+                        loading: false,
+                        apiList: response.response
+                    });
+
+                }).catch(error => {
+                Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
+                this.setState({loading: false})
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -70,6 +96,7 @@ class ApiCategoryShop extends Component {
 
 
     render() {
+
         if (!this.handleCheck(this.state.permittedCategory, this.state.categoryName)) {
             return <Redirect
                 to={{
@@ -77,66 +104,74 @@ class ApiCategoryShop extends Component {
                     state: {from: this.props.location}
                 }}/>;
         }
+
+        const projects = this.state.apiList ? this.state.apiList : [];
+
+        const host = window.location.origin.toString();
+        const hasFirstRow = projects[0] && projects[0].size > 0 ? projects[0] && projects[0].size > 0 : projects[1] && projects[1].size > 0;
+
+        const Projects = ({items}) => (
+            <>
+                {
+                    items.map(item => (
+                        <Grid.Column key={item.id + item.name} className="body-data">
+                            <Segment className='api-element-container'>
+                                <div className="api-element-data">
+                                    <div className="cell-header">
+                                        <div className="grid-logo">
+                                            {
+                                                item.image ? (
+                                                    <NavLink
+                                                        to={getLink4Description(item.category) + item.id}>
+                                                        <LazyImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
+                                                    </NavLink>
+                                                ) : (
+                                                    <div className="home-api-text-avatar">
+                                                        <NavLink
+                                                            to={getLink4Description(item.category) + item.id}><span>{item.fullName && item.fullName[0]}</span></NavLink>
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                        <div className="grid-labels">
+                                            <Icon link name='star' style={{color: '#F39847'}}/>
+                                            <label style={{color: '#F39847'}}>{item.id}</label>
+                                            <Icon style={{paddingLeft: '16px'}} link name='bookmark'/>
+                                        </div>
+                                    </div>
+                                    <div className="cell-grid-body">
+                                        <div className="cell-grid-body-text">
+                                            <NavLink to={getLink4Description(item.category) + item.id}
+                                                     className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
+                                        </div>
+                                        <div className="cell-grid-body-label">
+                                            <label>от {item.username.email}</label>
+                                        </div>
+                                        <div className="cell-grid-body-description">
+                                            <label>{item.description}</label>
+                                        </div>
+                                        <div className="api-element-footer">
+                                            <div className={getClassName4Color(item.category)}>
+                                                <Icon color={getIconColor(item.category)} name='dot circle'
+                                                      size='small'/>
+                                                <NavLink to={getLink4Category(item.category)}
+                                                         className={getClassName4Color(item.category)}>{item.category}</NavLink>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Segment>
+                        </Grid.Column>
+                    ))}
+            </>
+        );
+
         const link = '/shop/category/' + this.state.categoryName;
-         let categoryValue;
-         let color;
-         let labelColor;
-         switch (this.state.categoryName) {
-             case 'data':
-                 categoryValue = 'Данные';
-                 color = 'red';
-                 labelColor = 'red';
-                 break;
-             case 'finance':
-                 categoryValue = 'Финансы';
-                 color = 'orange';
-                 labelColor = 'orange-label';
-                 break;
-             case 'mobile':
-                 categoryValue = 'Мобильные';
-                 color = 'yellow';
-                 labelColor = 'yellow-label';
-                 break;
-             case 'map':
-                 categoryValue = 'Карты';
-                 color = 'green';
-                 labelColor = 'green-label';
-                 break;
-             case 'adv':
-                 categoryValue = 'Реклама';
-                 color = 'olive';
-                 labelColor = 'olive-label';
-                 break;
-             case 'social':
-                 categoryValue = 'Социальные сети';
-                 color = 'blue';
-                 labelColor = 'blue-label';
-                 break;
-             case 'health':
-                 categoryValue = 'Здравохранение';
-                 color = 'purple';
-                 labelColor = 'purple-label';
-                 break;
-             case 'sport':
-                 categoryValue = 'Спорт';
-                 color = 'teal';
-                 labelColor = 'teal-label';
-                 break;
-             case 'web':
-                 categoryValue = 'Web';
-                 color = 'violet';
-                 labelColor = 'violet-label';
-                 break;
-             case 'other':
-                 categoryValue = 'Другое';
-                 color = 'grey';
-                 labelColor = 'grey-label';
-                 break;
-             default:
-                 categoryValue = 'Данные';
-                 color = 'red';
-                 labelColor = 'red';
-         }
+        const category = this.state.categoryName;
+
+        const responseScaleOne = this.state.responseScale[0];
+        const responseScaleTwo = this.state.responseScale[1];
+
         return (
             <div className="api-shop-main">
                 <div className="api-shop-container-breadcrumb">
@@ -148,7 +183,7 @@ class ApiCategoryShop extends Component {
                             className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
                         <Breadcrumb.Section as={NavLink} to={link} link><span
-                            className='text-disabled-color'>{categoryValue}</span></Breadcrumb.Section>
+                            className='text-disabled-color'>{getCategoryName(category)}</span></Breadcrumb.Section>
                     </Breadcrumb>
                 </div>
                 <div className="api-shop-main-container">
@@ -165,8 +200,8 @@ class ApiCategoryShop extends Component {
                             </div>
                             <div className='api-shop-filter-response-time'>Скорость отдачи</div>
                             <div className='api-shop-filter-response-time-label'>
-                                <span className='left-label'>{this.state.responseScale[0] + 'mS'}</span>
-                                <span className='right-label'>{this.state.responseScale[1] + 'mS'}</span>
+                                <span className='left-label'>{responseScaleOne + 'mS'}</span>
+                                <span className='right-label'>{responseScaleTwo + 'mS'}</span>
                             </div>
                             <div className='api-shop-filter-response-time-line'>
                                 <Slider
@@ -195,43 +230,28 @@ class ApiCategoryShop extends Component {
                                     max={100}
                                 />
                             </div>
-                            <div className='api-shop-filter-response-time'>Разделы</div>
-                            <div className='category-labels'>
-                                <div className='category-label'>
-                                    <NavLink to='#'>Аналитика</NavLink>
-                                    <span className='right-label'>15</span>
-                                </div>
-                                <div className='category-label'>
-                                    <NavLink to='#'>Поиск</NavLink>
-                                    <span className='right-label'>14</span>
-                                </div>
-                                <div className='category-label'>
-                                    <NavLink to='#'>Формы</NavLink>
-                                    <span className='right-label'>15</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div className="api-shop-form-container">
-                        <ApiElementData name={categoryValue} color={color} link={link} labelColor={labelColor}/>
-                        <ApiElementData name={categoryValue} color={color} link={link} labelColor={labelColor}/>
-                        <ApiElementData name={categoryValue} color={color} link={link} labelColor={labelColor}/>
-                        <ApiElementData name={categoryValue} color={color} link={link} labelColor={labelColor}/>
-                        <ApiElementData name={categoryValue} color={color} link={link} labelColor={labelColor}/>
-                        <ApiElementData name={categoryValue} color={color} link={link} labelColor={labelColor}/>
-                        <div style={{paddingTop: 20}}>
-
-                        </div>
-                        <div className='footer-paging'>
-
-                            <Icon className='footer-left-icon' fitted link name='arrow left'/>
-                            <span className='footer-paging-label'>1-18 из 45</span>
-                            <Icon className='footer-right-icon' fitted link name='arrow right'/>
-
-                            <div style={{paddingTop: 20}}>
-
-                            </div>
-                        </div>
+                        {this.state.loading ? (<CategoryShopLoadingIndicator/>) : (
+                            projects[0] && projects[0].size > 0 ?
+                                (
+                                    <div id={projects[0].data_name}>
+                                        <div
+                                            className='api-element-container-header'>
+                                            <span
+                                                className='main-form-header'>{projects[0] ? projects[0].data_name : ''}</span>
+                                        </div>
+                                        <Grid columns='3'>
+                                            <Projects items={projects[0] ? projects[0].list : []}/>
+                                        </Grid>
+                                    </div>
+                                )
+                                :
+                                (<div unselectable='on' className='api-category-shop-empty'>
+                                    Данные отсутствуют
+                                </div>)
+                        )}
                     </div>
                 </div>
             </div>

@@ -195,6 +195,10 @@
     padding-top: 16px;
 }
 
+.red-label{
+  color: #db2828 !important
+}
+
 .orange-label{
     color: #F39847 !important;
 }
@@ -291,12 +295,12 @@
 }
 
 .main-form-header-count{
-    font-family: Margarine;
+    font-family: Roboto, serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 19px;
     /* Blue 1 */
     color: #2F80ED;
-    vertical-align: middle;
+    padding-top: 6px;
 }

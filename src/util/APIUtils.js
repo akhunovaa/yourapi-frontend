@@ -252,6 +252,15 @@ export function apiFullListGet() {
     });
 }
 
+export function apiFullCriteriaListGet(criteria) {
+    prevalidateTokenState();
+    const apiBaseUrl = process.env.NODE_ENV   !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return request({
+        url: apiBaseUrl + "/api-data/shop/filter?category=" + criteria,
+        method: 'GET'
+    });
+}
+
 export function newApiUploadSend(formData) {
     prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;

@@ -22,7 +22,8 @@
     "react-slick": "^0.25.2",
     "redux": "^4.0.4",
     "semantic-ui-react": "^0.88.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "prop-types": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

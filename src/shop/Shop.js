@@ -38,9 +38,7 @@ class Shop extends Component {
 
                 }).catch(error => {
                 Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
-                if (this._isMounted) {
-                    this.setState({loading: false})
-                }
+                this.setState({loading: false})
             });
         }
     }
@@ -214,7 +212,7 @@ class Shop extends Component {
                             </div>
                         </div>
                     </div>
-                    <ShopBody loading={this.state.loading} apiList={this.state.apiList} {...this.props}/>
+                    <ShopBody loading={this.state.loading} apiList={projects} {...this.props}/>
                 </div>
             </div>
         )
