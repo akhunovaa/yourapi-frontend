@@ -64,7 +64,7 @@ class ApiUpdateDocsHeader extends Component {
                     <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=settings'} className='update-inactive-header-link'>Основные</NavLink>
                 </div>
                 <div className='left-link-header-font update-header-links-methods update-header-links-font'>
-                    <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=endpoints'} className='update-active-header-link'>Endpoint'ы</NavLink>
+                    <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=endpoints'} className='update-inactive-header-link'>Endpoint'ы</NavLink>
                 </div>
                 <div className='left-link-header-font update-header-links-methods update-header-links-font'>
                     <NavLink to={'/profile/api?page=update&name=' + this.props.naming + '&definition=price'} className='update-inactive-header-link'>Цены</NavLink>
