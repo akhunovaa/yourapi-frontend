@@ -20,6 +20,7 @@ import {
 import {profileImageUpdate, profileInfoUpdate, profilePasswordUpdate} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import ImageUploader from 'react-images-upload';
+import LazyImage from '../util/LazyImage';
 
 class Profile extends Component {
 
@@ -369,10 +370,11 @@ class Profile extends Component {
                             <div className="profile-avatar">
                                 {
                                     this.state.imageUrl ? (
-                                        <Image src={this.state.imageUrl + '/150/150'} size='medium' circular
-                                               verticalAlign='top'
-                                               alt={this.state.user.name}
-                                               onLoad={this.handleImageLoaded}/>
+
+                                        <LazyImage src={this.state.imageUrl + '/150/150'} size='medium' circular
+                                    verticalAlign='top'
+                                    alt={this.state.user.name}
+                                    onLoad={this.handleImageLoaded}/>
                                     ) : (
                                         <div className="text-avatar">
                                             <span>{this.state.user.name && this.state.user.name[0]}</span>

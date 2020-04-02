@@ -36,7 +36,6 @@ export default class LazyImage extends Component {
                 </Visibility>
             )
         }
-        console.log(...this.props)
         return <Image {...this.props} />
     }
 }
