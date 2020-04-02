@@ -6,7 +6,7 @@ import {apiProjectFullListGet} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import {getLink4Description} from "../util/ElementsDataUtils";
 import {HomeCellLoadingIndicator, HomeLoadingIndicator} from '../common/LoadingIndicator';
-import LazyImage from '../util/LazyImage';
+import LazyMiniImage from '../util/LazyMiniImage';
 
 class Home extends Component {
 
@@ -73,7 +73,7 @@ class Home extends Component {
                                                         <NavLink
                                                             to={getLink4Description(item.category) + item.id}>
                                                             {/*<Image src={host + "/api-data/image/" + item.image + "/32/32"} onLoad={() => this.setState({imageLoaded: true})}/>*/}
-                                                            <LazyImage src={host + "/api-data/image/" + item.image + "/32/32"} alt={item.fullName}/>
+                                                            <LazyMiniImage src={host + "/api-data/image/" + item.image + "/32/32"} alt={item.fullName}/>
                                                         </NavLink>
                                                     ) : (
                                                         <div className="home-api-text-avatar">

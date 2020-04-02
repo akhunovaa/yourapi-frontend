@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import {Grid, Icon, Image, Segment} from "semantic-ui-react";
 import {ShopLoadingIndicator} from "../common/LoadingIndicator";
 import {getClassName4Color, getIconColor, getLink4Category, getLink4Description} from "../util/ElementsDataUtils";
-import LazyImage from '../util/LazyImage';
+import LazyMiniImage from '../util/LazyMiniImage';
 
 class ShopBody extends Component {
 
@@ -73,7 +73,7 @@ class ShopBody extends Component {
                                                     <NavLink
                                                         to={getLink4Description(item.category) + item.id}>
                                                         {/*<Image src={host + "/api-data/image/" + item.image + "/32/32"}/>*/}
-                                                        <LazyImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
+                                                        <LazyMiniImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
                                                     </NavLink>
                                                 ) : (
                                                     <div className="home-api-text-avatar">

@@ -13,7 +13,7 @@ import {
     getLink4Category,
     getLink4Description
 } from "../../util/ElementsDataUtils";
-import LazyImage from '../../util/LazyImage';
+import LazyMiniImage from '../../util/LazyMiniImage';
 
 
 class ApiCategoryShop extends Component {
@@ -123,7 +123,7 @@ class ApiCategoryShop extends Component {
                                                 item.image ? (
                                                     <NavLink
                                                         to={getLink4Description(item.category) + item.id}>
-                                                        <LazyImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
+                                                        <LazyMiniImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
                                                     </NavLink>
                                                 ) : (
                                                     <div className="home-api-text-avatar">
