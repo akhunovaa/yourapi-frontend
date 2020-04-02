@@ -5,6 +5,7 @@ import {Icon, Input, Dropdown, Portal, Divider, Segment, List, Button, Image} fr
 import ProfileHeader from "../header/ProfileHeader";
 import AdministrationHeader from "../header/AdministrationHeader";
 import ApiHeader from "../header/ApiHeader";
+import LazyImage from '../util/LazyImage';
 
 class AppHeader extends Component {
 
@@ -135,7 +136,7 @@ class HomeHeader extends Component {
                             trigger={
                                     this.state.imageUrl ? (
                                         <div className="profile-header-avatar">
-                                            <Image src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle'/>
+                                            <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
                                         </div>
                                     ) : (
                                         <Icon link name='user circle' />
@@ -261,7 +262,7 @@ class IntegratorHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <Image src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle'/>
+                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
                                     </div>
                                 ) : (
                                     <Icon link name='user circle' />
@@ -388,7 +389,7 @@ class ShopHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <Image src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle'/>
+                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
                                     </div>
                                 ) : (
                                     <Icon link name='user circle' />
@@ -515,7 +516,7 @@ class ShopCategoryHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <Image src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle'/>
+                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
                                     </div>
                                 ) : (
                                     <Icon link name='user circle' />

@@ -1,41 +1,34 @@
-import * as PropTypes from 'prop-types'
-import { Visibility, Image, Loader } from 'semantic-ui-react'
-import React, {Component} from 'react';
+import {Image, Loader} from 'semantic-ui-react'
+import React from "react";
 
-export default class LazyImage extends Component {
+class LazyImage extends  React.Component  {
 
-    static propTypes = {
-        src: PropTypes.string.isRequired,
-        size: PropTypes.string,
-        alt: PropTypes.string,
-        onLoad: PropTypes.func,
-        circular: PropTypes.bool,
-        verticalAlign: PropTypes.string,
+    constructor(props) {
+        super(props);
+        this.state = {loaded: false, imageStatus: "loading"};
+    }
+
+
+    handleImageLoaded= () => {
+        this.setState({ imageStatus: "loaded", loaded: true });
     };
 
-    static defaultProps = {
-        size: `small`,
-    };
-
-    state = {
-        show: false,
-    };
-
-    showImage = () => {
-        this.setState({
-            show: true,
-        })
+    handleImageErrored = () => {
+        this.setState({ imageStatus: "failed to load", loaded: false });
     };
 
     render() {
-        const { size } = this.props;
-        if (!this.state.show) {
-            return (
-                <Visibility as="span" onTopVisible={this.showImage}>
-                    <Loader active inline="centered" size={size} />
-                </Visibility>
-            )
-        }
-        return <Image {...this.props} />
+        const {src} = this.props;
+
+        return (
+            <>
+                    {this.state.loaded ? null :
+                        <Loader inline='centered' active size={"mini"} style={{height: '75px', width: '75px', top: 40}}/>
+                    }
+                    <Image src={src} onLoad={this.handleImageLoaded} style={this.state.loaded ? {} : {display: 'none'}} {...this.props} onError={this.handleImageErrored} />
+            </>
+        )
     }
 }
+
+export default LazyImage;

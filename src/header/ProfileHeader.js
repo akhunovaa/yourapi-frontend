@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './ProfileHeader.css';
 import {Link, NavLink} from "react-router-dom";
 import {Icon, Dropdown, Portal, Divider, Segment, List, Image} from "semantic-ui-react";
+import LazyImage from '../util/LazyImage';
 
 class ProfileHeader extends Component {
 
@@ -71,7 +72,7 @@ class ProfileHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <Image src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle'/>
+                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
                                     </div>
                                 ) : (
                                     <Icon link name='user circle' />

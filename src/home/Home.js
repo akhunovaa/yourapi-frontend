@@ -4,6 +4,7 @@ import {Button, Grid, Icon, Image, Segment} from "semantic-ui-react";
 import {NavLink} from "react-router-dom";
 import {apiProjectFullListGet} from "../util/APIUtils";
 import Alert from "react-s-alert";
+import {getLink4Description} from "../util/ElementsDataUtils";
 import {HomeCellLoadingIndicator, HomeLoadingIndicator} from '../common/LoadingIndicator';
 import LazyImage from '../util/LazyImage';
 
@@ -26,7 +27,6 @@ class Home extends Component {
         };
 
         this.reload = this.reload.bind(this);
-        this.getLink4Description = this.getLink4Description.bind(this);
     }
 
     componentDidMount() {
@@ -55,31 +55,6 @@ class Home extends Component {
         window.location.reload();
     };
 
-    getLink4Description(category) {
-        switch (category) {
-            case 'Данные':
-                return '/shop/category/data/api?id=';
-            case 'Финансы':
-                return '/shop/category/finance/api?id=';
-            case 'Мобильные':
-                return '/shop/category/mobile/api?id=';
-            case 'Карты':
-                return '/shop/category/map/api?id=';
-            case 'Реклама':
-                return '/shop/category/adv/api?id=';
-            case 'Социальные сети':
-                return '/shop/category/social/api?id=';
-            case 'Здравохранение':
-                return '/shop/category/health/api?id=';
-            case 'Спорт':
-                return '/shop/category/sport/api?id=';
-            case 'Web':
-                return '/shop/category/web/api?id=';
-            default:
-                return '/shop/category/other/api?id=';
-        }
-    }
-
     render() {
         const host = window.location.origin.toString();
 
@@ -96,14 +71,13 @@ class Home extends Component {
                                                 {
                                                     item.image ? (
                                                         <NavLink
-                                                            to={this.getLink4Description(item.category) + item.id}>
-                                                            {/*<Image src={item.image ? host + "/api-data/image/" + item.image + "/32/32" : grid}/>*/}
-                                                            <LazyImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
+                                                            to={getLink4Description(item.category) + item.id}>
+                                                            {/*<Image src={host + "/api-data/image/" + item.image + "/32/32"} onLoad={() => this.setState({imageLoaded: true})}/>*/}
+                                                            <LazyImage src={host + "/api-data/image/" + item.image + "/32/32"} alt={item.fullName}/>
                                                         </NavLink>
                                                     ) : (
                                                         <div className="home-api-text-avatar">
-                                                            <NavLink
-                                                                to={this.getLink4Description(item.category) + item.id}><span>{item.fullName && item.fullName[0]}</span></NavLink>
+                                                            <NavLink to={getLink4Description(item.category) + item.id}><span>{item.fullName && item.fullName[0]}</span></NavLink>
                                                         </div>
                                                     )
                                                 }
@@ -116,7 +90,7 @@ class Home extends Component {
                                         </div>
                                         <div className="cell-grid-body">
                                             <div className="cell-grid-body-text">
-                                                <NavLink to={this.getLink4Description(item.category) + item.id}
+                                                <NavLink to={getLink4Description(item.category) + item.id}
                                                          className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
                                             </div>
                                             <div className="cell-grid-body-label">

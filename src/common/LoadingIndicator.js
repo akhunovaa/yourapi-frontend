@@ -14,7 +14,7 @@ export default function LoadingIndicator() {
 
 export function ShopLoadingIndicator() {
     return (
-        <Loader active indeterminate inline size='medium' style={{
+        <Loader active indeterminate inline size='small' style={{
             textAlign: 'center',
             width: '100%',
             height: '100%',
@@ -27,7 +27,7 @@ export function ShopLoadingIndicator() {
 
 export function CategoryShopLoadingIndicator() {
     return (
-        <Loader active indeterminate inline size='medium' style={{
+        <Loader active indeterminate inline size='small' style={{
             textAlign: 'center',
             width: '100%',
             height: '100%',
@@ -48,7 +48,7 @@ export function TreesetLoadingIndicator() {
     return (
         <div style={{paddingTop: 103}}>
             <Loader indeterminate active inline='centered'
-                    size='medium'/>
+                    size='small'/>
         </div>
     );
 }
@@ -56,7 +56,7 @@ export function TreesetLoadingIndicator() {
 export function ApiUpdatePageLoadingIndicator() {
     return (
         <div className='api-body-main' style={{paddingTop: 103}}>
-            <Loader active inline indeterminate size='medium' style={{
+            <Loader active inline indeterminate size='small' style={{
                 width: '100%',
                 height: '100%',
                 minHeight: 150,
@@ -73,17 +73,17 @@ export function HomeCellLoadingIndicator() {
         <>
             <Grid.Column>
                 <Segment style={{textAlign: 'center', height: 180}}>
-                    <Loader active indeterminate size='medium' style={{textAlign: 'center'}}/>
+                    <Loader active indeterminate size='small' style={{textAlign: 'center'}}/>
                 </Segment>
             </Grid.Column>
             <Grid.Column>
                 <Segment style={{textAlign: 'center', height: 180}}>
-                    <Loader active indeterminate size='medium' style={{textAlign: 'center'}}/>
+                    <Loader active indeterminate size='small' style={{textAlign: 'center'}}/>
                 </Segment>
             </Grid.Column>
             <Grid.Column>
                 <Segment style={{textAlign: 'center', height: 180}}>
-                    <Loader active indeterminate size='medium' style={{textAlign: 'center'}}/>
+                    <Loader active indeterminate size='small' style={{textAlign: 'center'}}/>
                 </Segment>
             </Grid.Column>
         </>

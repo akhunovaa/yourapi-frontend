@@ -20,6 +20,7 @@ import {
 import {profileImageUpdate, profileInfoUpdate, profilePasswordUpdate} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import ImageUploader from 'react-images-upload';
+import LazyImage from '../util/LazyImage';
 
 class Profile extends Component {
 
@@ -41,7 +42,7 @@ class Profile extends Component {
                 city: this.props.currentUser ? this.props.currentUser.city ? this.props.currentUser.city : this.props.currentUser.city : 'Москва, Россия',
                 info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown'
             },
-            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl ? this.props.currentUser.imageUrl : '' : '',
+            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl ? this.props.currentUser.imageUrl + '/150/150' : '' : '',
             open: false,
             id: this.props.currentUser ? this.props.currentUser.id : 0,
             name: '',
@@ -369,10 +370,7 @@ class Profile extends Component {
                             <div className="profile-avatar">
                                 {
                                     this.state.imageUrl ? (
-                                        <Image src={this.state.imageUrl + '/150/150'} size='medium' circular
-                                               verticalAlign='top'
-                                               alt={this.state.user.name}
-                                               onLoad={this.handleImageLoaded}/>
+                                        <LazyImage src={this.state.imageUrl} size='medium' circular verticalAlign='top' alt={this.state.user.name} />
                                     ) : (
                                         <div className="text-avatar">
                                             <span>{this.state.user.name && this.state.user.name[0]}</span>
