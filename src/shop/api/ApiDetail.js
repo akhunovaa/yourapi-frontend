@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './ApiDetail.css';
 import {NavLink} from "react-router-dom";
-import {Breadcrumb, Button, Icon, Image} from "semantic-ui-react";
+import {Breadcrumb, Button, Icon} from "semantic-ui-react";
 import ApiDetailReviewHeader from "./header/ApiDetailReviewHeader";
 import ApiDetailVersionHeader from "./header/ApiDetailVersionHeader";
 import ApiDetailPriceHeader from "./header/ApiDetailPriceHeader";
@@ -15,10 +15,9 @@ import queryString from "query-string";
 import ApiDetailPriceBody from "./body/ApiDetailPriceBody";
 import ApiDetailQuestionsBody from "./body/ApiDetailQuestionsBody";
 import ApiDetailDocumentationBody from "./body/ApiDetailDocumentationBody";
-import LoadingIndicator from '../../common/LoadingIndicator';
 import {apiProjectGet} from "../../util/APIUtils";
 import Alert from "react-s-alert";
-import grid from "../../img/grid-img.png";
+import LazyApiDetailImage from '../../util/LazyApiDetailImage';
 
 class ApiDetail extends Component {
 
@@ -124,7 +123,8 @@ class ApiDetail extends Component {
             case 'documentation':
                 return <ApiDetailDocumentationBody {...this.props} />;
             default:
-                return <ApiDetailMethodsBody link={link4Description + "&page=methods"} host={this.state.host} operations={this.state.operations}/>
+                return <ApiDetailMethodsBody link={link4Description + "&page=methods"} host={this.state.host}
+                                             operations={this.state.operations}/>
         }
     }
 
@@ -148,7 +148,7 @@ class ApiDetail extends Component {
         }
     }
 
-    getLink4Description(category){
+    getLink4Description(category) {
         switch (category) {
             case 'Данные':
                 return '/shop/category/data/api?id=';
@@ -173,7 +173,7 @@ class ApiDetail extends Component {
         }
     }
 
-    getLink4CategoryFilter(category){
+    getLink4CategoryFilter(category) {
         switch (category) {
             case 'Данные':
                 return '/shop/category/data';
@@ -199,25 +199,29 @@ class ApiDetail extends Component {
     }
 
 
-
     render() {
-        if (this.state.loading) {
-            return <LoadingIndicator/>
-        }
+
+
+        const {loading, name, dealer, category, updated, description, image, id} = this.state;
         const host = window.location.origin.toString();
-        const link = this.getLink4CategoryFilter(this.state.category);
-        const link4Description = this.getLink4Description(this.state.category) + this.state.id;
+        const link = this.getLink4CategoryFilter(category);
+        const link4Description = this.getLink4Description(category) + id;
+
         return (
             <div className="api-detail-main">
                 <div className="api-detail-container-breadcrumb">
                     <Breadcrumb>
-                        <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
+                        <Breadcrumb.Section as={NavLink} to={'/'} link><span
+                            className='text-disabled-color'>Главная</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={'/shop'} link><span className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
+                        <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
+                            className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={link} link><span className='text-disabled-color'>{this.state.category}</span></Breadcrumb.Section>
+                        <Breadcrumb.Section as={NavLink} to={link} link><span
+                            className='text-disabled-color'>{category}</span></Breadcrumb.Section>
                         <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={link4Description} link><span className='text-disabled-color'>{this.state.name}</span></Breadcrumb.Section>
+                        <Breadcrumb.Section as={NavLink} to={link4Description} link><span
+                            className='text-disabled-color'>{name}</span></Breadcrumb.Section>
                     </Breadcrumb>
                 </div>
                 <div className="api-detail-main-container">
@@ -226,11 +230,12 @@ class ApiDetail extends Component {
                             <div className='api-detail-inner-header-container'>
                                 <div className="api-header-logo-picture">
                                     {
-                                        this.state.image ? (
-                                           <Image src={this.state.image ? host + "/api-data/image/" + this.state.image + "/77/77" : grid}/>
+                                        image && !loading ? (
+                                            <LazyApiDetailImage src={host + "/api-data/image/" + image + "/77/77"}
+                                                       alt={name}/>
                                         ) : (
-                                            <div className="api-detail-text-avatar">
-                                                <span>{this.state.name && this.state.name[0]}</span>
+                                            <div className={image ? '' : 'api-detail-text-avatar' }>
+                                                <span>{name && name[0]}</span>
                                             </div>
                                         )
                                     }
@@ -241,8 +246,8 @@ class ApiDetail extends Component {
                                     <Icon style={{paddingLeft: '32px', color: '#A5A5A5'}} link name='info circle'/>
                                 </div>
                             </div>
-                            <div className='api-detail-title'>{this.state.name}</div>
-                            <div className='api-detail-dealer'>от <NavLink to='#'>{this.state.dealer}</NavLink>
+                            <div className='api-detail-title'>{name}</div>
+                            <div className='api-detail-dealer'>от <NavLink to='#'>{dealer}</NavLink>
                             </div>
                             <div className="api-detail-rating">
                                 <Icon link name='star' style={{color: '#F39847'}}/>
@@ -257,7 +262,8 @@ class ApiDetail extends Component {
                             <div className='api-detail-inner-body-container'>
                                 <div className='api-left-form-elements'>
                                     Категория
-                                    <NavLink to={link} className='description-body-link description-api-links-color-blue'>{this.state.category}</NavLink>
+                                    <NavLink to={link}
+                                             className='description-body-link description-api-links-color-blue'>{category}</NavLink>
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Версия
@@ -265,7 +271,8 @@ class ApiDetail extends Component {
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Последнее обновление
-                                    <span className='description-body-link'>{new Date(this.state.updated).toLocaleDateString()}</span>
+                                    <span
+                                        className='description-body-link'>{new Date(updated).toLocaleDateString()}</span>
                                 </div>
                                 <div className='api-left-form-elements'>
                                     Язык
@@ -283,7 +290,8 @@ class ApiDetail extends Component {
                                 </div>
                                 <div
                                     className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>
-                                    {this.state.description}<NavLink to='#' className='description-body-link description-api-links-color-blue'>...еще</NavLink>
+                                    {description}<NavLink to='#'
+                                                                     className='description-body-link description-api-links-color-blue'>...еще</NavLink>
                                 </div>
                             </div>
                         </div>
