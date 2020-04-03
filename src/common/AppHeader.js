@@ -5,6 +5,7 @@ import {Icon, Input, Dropdown, Portal, Divider, Segment, List, Button, Image} fr
 import ProfileHeader from "../header/ProfileHeader";
 import AdministrationHeader from "../header/AdministrationHeader";
 import ApiHeader from "../header/ApiHeader";
+import SearchBox from "./SearchBox";
 import LazyImage from '../util/LazyImage';
 
 class AppHeader extends Component {
@@ -105,9 +106,9 @@ class HomeHeader extends Component {
                     <div className='header-center-navlink-merch'>
                         <Link to="/shop"><b style={{color: '#A5A5A5'}}>Магазин</b></Link>
                     </div>
-                    <div className='header-center-navlink-integration'>
-                        <Link to="/integrator"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>
-                    </div>
+                    {/*<div className='header-center-navlink-integration'>*/}
+                        {/*<Link to="/integrator"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>*/}
+                    {/*</div>*/}
                     <div className='header-center-search-input'>
                         <Input size={'small'} fluid icon={{ name: 'search', link: true}}
                                className='header-center-search' placeholder='Поиск...' id="search" name="search"/>
@@ -226,9 +227,9 @@ class IntegratorHeader extends Component {
                     <div className='header-center-navlink-merch inactive-header-link'>
                         <Link to="/shop" style={{color: '#A5A5A5'}}>Магазин</Link>
                     </div>
-                    <div className='header-center-navlink-integration active-header'>
-                        <Link to="/integrator" style={{color: '#4F4F4F'}}>Интеграторы</Link>
-                    </div>
+                    {/*<div className='header-center-navlink-integration active-header'>*/}
+                        {/*<Link to="/integrator" style={{color: '#4F4F4F'}}>Интеграторы</Link>*/}
+                    {/*</div>*/}
                     <div className='header-center-search-input'>
                         <Input size={'small'} fluid icon={{ name: 'search', link: true}}
                                className='header-center-search' placeholder='Поиск...' id="search" name="search"/>
@@ -353,9 +354,9 @@ class ShopHeader extends Component {
                     <div className='header-center-navlink-merch active-header'>
                         <Link to="/shop" style={{color: '#4F4F4F'}}>Магазин</Link>
                     </div>
-                    <div className='header-center-navlink-integration inactive-header-link'>
-                        <Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>
-                    </div>
+                    {/*<div className='header-center-navlink-integration inactive-header-link'>*/}
+                        {/*<Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>*/}
+                    {/*</div>*/}
                     <div className='header-center-search-input'>
                         <Input size={'small'} fluid icon={{ name: 'search', link: true}}
                                className='header-center-search' placeholder='Поиск...' id="search" name="search"/>
@@ -480,9 +481,9 @@ class ShopCategoryHeader extends Component {
                     <div className='header-center-navlink-merch active-header no-border-header-link'>
                         <Link to="/shop" style={{color: '#4F4F4F'}}>Магазин</Link>
                     </div>
-                    <div className='header-center-navlink-integration inactive-header-link'>
-                        <Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>
-                    </div>
+                    {/*<div className='header-center-navlink-integration inactive-header-link'>*/}
+                        {/*<Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>*/}
+                    {/*</div>*/}
                     <div className='header-center-search-input'>
                         <Input size={'small'} fluid icon={{ name: 'search', link: true}}
                                className='header-center-search' placeholder='Поиск...' id="search" name="search"/>
