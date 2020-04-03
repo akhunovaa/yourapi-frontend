@@ -62,13 +62,13 @@ class SearchBox extends Component {
     handleSearchResultRenderer = ({api, title, description, category, image }) => {
         return ([image && (
             <a href={getLink4Description(category) + api}>
-                <div key={'image' + api} className='result-image'>
+                <div key='image' className='result-image'>
                     <LazySearchMiniImage src={image}/>
                 </div>
             </a>
         ),
             <a href={getLink4Description(category) + api}>
-                <div key={'image' + api}  className='result-content'>
+                <div key='content' className='result-content'>
                     {title && <div className='title'>{title}</div>}
                     {description && <div className='description'>{description}</div>}
                 </div>
