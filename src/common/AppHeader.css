@@ -2,8 +2,8 @@
     height: 64px;
     /*min-width: 1633px;*/
     min-width: 1250px;
-    width: auto;
-    align-items: baseline;
+    /*width: auto;*/
+    /*align-items: baseline;*/
 }
 
 .header-right-menu{
@@ -21,12 +21,12 @@
 }
 
 .header-left-logo{
-    width: 114px;
+    min-width: 114px;
     float: left;
     height:100%;
     min-height: 64px;
     text-align: center;
-    padding: 24px 28px 0px 28px;
+    padding: 24px 28px 11px 28px;
     background-color: #428BEF;
     font-family: Roboto, serif;
     font-style: normal;
@@ -45,13 +45,14 @@
 
 .header-center-navlink-merch{
     text-align: center;
-    padding: 24px 18px 0px 18px;
+    padding: 24px 18px 11px 18px;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
     line-height: 16px;
     min-width: 127px;
+    width: 127px;
 }
 
 
@@ -69,6 +70,7 @@
 
 .header-right-navlink{
     padding-top: 24px;
+    padding-bottom: 24px;
     padding-left: 24px;
     margin-right: 28px;
     font-family: Roboto, sans-serif;
@@ -82,7 +84,7 @@
 
 .header-right-navlink-bell{
     text-align: center;
-    padding: 24px 0px 24px 0px;
+    padding: 22px 0px 21px 0px;
     font-family: Roboto, serif;
     font-style: normal;
     font-weight: bold;
@@ -109,7 +111,7 @@
 
 .header-right-navlink-bookmark{
     text-align: center;
-    padding: 24px 11px 24px 14px;
+    padding: 22px 11px 21px 14px;
     font-family: Roboto, serif;
     font-style: normal;
     font-weight: bold;
@@ -118,21 +120,9 @@
 
 .header-right-navlink-profile{
     text-align: center;
-    padding-top: 25px;
+    padding-top: 12px;
     padding-bottom: 12px;
     font-size: 40px;
-}
-
-
-.header-center-search-input{
-    /*padding: 16px 484px 9px 33px;*/
-    padding: 14px 18px 24px 18px;
-    /*width: 250px;*/
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
 }
 
 .header-center-search{
@@ -149,7 +139,7 @@
     float: left;
     display: inline-flex;
     /*width: 55%;*/
-    width: auto;
+    min-width: 800px;
     height:100%;
 }
 
@@ -255,7 +245,7 @@
     height: 40px;
     position: relative;
     overflow: hidden;
-    margin-top: -10px;
+    /*margin-top: -10px;*/
     margin-right: 10px;
     cursor: pointer;
 }

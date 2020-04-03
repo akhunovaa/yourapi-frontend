@@ -110,8 +110,7 @@ class HomeHeader extends Component {
                         {/*<Link to="/integrator"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>*/}
                     {/*</div>*/}
                     <div className='header-center-search-input'>
-                        <Input size={'small'} fluid icon={{ name: 'search', link: true}}
-                               className='header-center-search' placeholder='Поиск...' id="search" name="search"/>
+                        <SearchBox/>
                     </div>
                 </div>
                 <div className="header-right-menu">
