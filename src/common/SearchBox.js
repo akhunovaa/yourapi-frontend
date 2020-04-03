@@ -5,6 +5,7 @@ import './SearchBox.css';
 import {apiFullListGet} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import LazySearchMiniImage from "../util/LazySearchMiniImage";
+import {getLink4Description} from "../util/ElementsDataUtils";
 
 const initialState = {isLoading: false, results: [], value: ''};
 const host = window.location.origin.toString();
@@ -18,7 +19,8 @@ class SearchBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true
+            loading: true,
+            wide: false
         };
     }
 
@@ -27,10 +29,10 @@ class SearchBox extends Component {
         if (this._isMounted) {
             apiFullListGet()
                 .then(response => {
-                    response.response.map((category) =>{
-                        category.list.map((api) =>{
+                    response.response.map((category) => {
+                        category.list.map((api) => {
                             const data = {
-                                id: api.id,
+                                api: api.id,
                                 title: api.fullName,
                                 description: api.description,
                                 category: api.category,
@@ -57,17 +59,20 @@ class SearchBox extends Component {
         this.setState({value: result.title});
     };
 
-    handleSearchResultRenderer = ({image, title, category, description })=> {
-        return ([
-            image && (
-                <div key='image' className='result-image'>
+    handleSearchResultRenderer = ({api, title, description, category, image }) => {
+        return ([image && (
+            <a href={getLink4Description(category) + api}>
+                <div key={'image' + api} className='result-image'>
                     <LazySearchMiniImage src={image}/>
                 </div>
-            ),
-            <div key={'content' + description } className='result-content'>
-                {title && <div className='title'>{title}</div>}
-                {description && <div className='description'>{description}</div>}
-            </div>,
+            </a>
+        ),
+            <a href={getLink4Description(category) + api}>
+                <div key={'image' + api}  className='result-content'>
+                    {title && <div className='title'>{title}</div>}
+                    {description && <div className='description'>{description}</div>}
+                </div>
+            </a>
         ])
     };
 
@@ -91,11 +96,10 @@ class SearchBox extends Component {
 
 
     render() {
-        const {isLoading, value, results} = this.state;
-
+        const {isLoading, value, results, wide} = this.state;
         return (
             <Grid>
-                <Grid.Column width={10}>
+                <Grid.Column width={ wide ? 10 : 6 }>
                     <Search className='header-center-search-box'
                             noResultsMessage={'Ничего не найдено...'}
                             loading={isLoading}
@@ -107,6 +111,8 @@ class SearchBox extends Component {
                             value={value}
                             placeholder='Поиск...'
                             resultRenderer={this.handleSearchResultRenderer}
+                            onFocus={()=>this.setState({wide: true})}
+                            onBlur={()=>this.setState({wide: false})}
                             {...this.props}
                             id="searchInput" name="searchInput"/>
                 </Grid.Column>

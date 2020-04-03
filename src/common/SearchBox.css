@@ -66,3 +66,29 @@
     height: 45px;
     border-radius: .25em;
 }
+
+.more-wide-search-input.ui.grid>[class*="ten wide"].column {
+    width: 700px;
+    -webkit-animation: fadeIn 0.5s;
+    animation: fadeIn 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 1
+}
+
+.wide-search-input.ui.grid>[class*="ten wide"].column {
+    width: 300px;
+    -webkit-animation: fadeOutX 0.5s;
+    animation: fadeOutX 0.5s;
+    animation-fill-mode: backwards;
+}
+
+@-webkit-keyframes fadeIn {
+    0% { opacity: 1;}
+    50% { opacity: 0.5;}
+    100% { opacity: 0;}
+}
+@keyframes fadeOutX {
+    0% { opacity: 0;}
+    50% { opacity: 0.5;}
+    100% { opacity: 1;}
+}

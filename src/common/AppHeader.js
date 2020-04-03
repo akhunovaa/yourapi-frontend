@@ -87,6 +87,27 @@ class HomeHeader extends Component {
         this.setState({open: true})
     };
 
+    handleOpenSearchOpen = () => {
+        let element = document.getElementById('searchInput');
+        let childNodes = element.parentNode.childNodes;
+        for (let item of childNodes) {
+            let classes = item.classList;
+            if (classes.contains('clicked')) {
+                // setTimeout(function () {
+                //     item.classList.remove('clicked');
+                // }, 100);
+                item.classList.remove('clicked');
+            }
+        }
+        if (element.classList.contains('clicked')) {
+            setTimeout(function () {
+                element.classList.remove('clicked');
+            }, 50);
+        } else {
+            element.classList.add('clicked');
+        }
+    };
+
     handleClose = () => {
         this.setState({open: false})
     };
@@ -110,7 +131,7 @@ class HomeHeader extends Component {
                         {/*<Link to="/integrator"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>*/}
                     {/*</div>*/}
                     <div className='header-center-search-input'>
-                        <SearchBox/>
+                        <SearchBox onClick={this.handleOpenSearchOpen}/>
                     </div>
                 </div>
                 <div className="header-right-menu">
@@ -230,8 +251,7 @@ class IntegratorHeader extends Component {
                         {/*<Link to="/integrator" style={{color: '#4F4F4F'}}>Интеграторы</Link>*/}
                     {/*</div>*/}
                     <div className='header-center-search-input'>
-                        <Input size={'small'} fluid icon={{ name: 'search', link: true}}
-                               className='header-center-search' placeholder='Поиск...' id="search" name="search"/>
+                        <SearchBox onClick={this.handleOpenSearchOpen}/>
                     </div>
                 </div>
                 <div className="header-right-menu">
@@ -357,8 +377,7 @@ class ShopHeader extends Component {
                         {/*<Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>*/}
                     {/*</div>*/}
                     <div className='header-center-search-input'>
-                        <Input size={'small'} fluid icon={{ name: 'search', link: true}}
-                               className='header-center-search' placeholder='Поиск...' id="search" name="search"/>
+                        <SearchBox onClick={this.handleOpenSearchOpen}/>
                     </div>
                 </div>
                 <div className="header-right-menu">
@@ -484,8 +503,7 @@ class ShopCategoryHeader extends Component {
                         {/*<Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>*/}
                     {/*</div>*/}
                     <div className='header-center-search-input'>
-                        <Input size={'small'} fluid icon={{ name: 'search', link: true}}
-                               className='header-center-search' placeholder='Поиск...' id="search" name="search"/>
+                        <SearchBox onClick={this.handleOpenSearchOpen}/>
                     </div>
                 </div>
                 <div className="header-right-menu">
