@@ -38,6 +38,12 @@
     min-height: 130px;
     margin: 0 auto;
     text-align:left;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .detail-review-response-container{
