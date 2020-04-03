@@ -3,14 +3,14 @@ import './AppFooter.css';
 import {NavLink} from "react-router-dom";
 import {Icon, Dropdown} from "semantic-ui-react";
 import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types'
 
 class AppFooter extends Component {
     render() {
         const {authenticated} = this.props;
-        var social = ["twitter", "linkedin", "facebook", "vk"];
+        const social = ["twitter", "linkedin", "facebook", "vk"];
 
-        var styles = {
+        const styles = {
             spanOfContainer: {
                 color: '#F2F2F2'
             },
