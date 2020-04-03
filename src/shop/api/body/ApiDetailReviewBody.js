@@ -52,7 +52,7 @@ class ApiDetailReviewBody extends Component {
         return (
             <div>
                 <div className='detail-review-body'>
-                    <div className='detail-review-rating-container'>
+                    <div unselectable='on' className='detail-review-rating-container'>
                         <div className='left-label detail-review-rating'>
                             <div>
                                 <span>4,9</span>
