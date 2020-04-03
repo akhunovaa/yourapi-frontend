@@ -46,8 +46,8 @@ class AppFooter extends Component {
                         </div>
                         <div className='footer-icons-group'>
                             {
-                                social.map((item) => {
-                                    return (<div className='footer-icon-container'>
+                                social.map((item, index) => {
+                                    return (<div key={index + item} className='footer-icon-container'>
                                         <Icon link size={'large'} name={item}/>
                                     </div>)
                                 })
