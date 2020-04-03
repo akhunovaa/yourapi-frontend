@@ -9,8 +9,6 @@ import {getLink4Description} from "../util/ElementsDataUtils";
 
 const initialState = {isLoading: false, results: [], value: ''};
 const host = window.location.origin.toString();
-const apiData = [];
-
 class SearchBox extends Component {
 
     state = initialState;
@@ -20,7 +18,8 @@ class SearchBox extends Component {
         super(props);
         this.state = {
             loading: true,
-            wide: false
+            wide: false,
+            apiData: []
         };
     }
 
@@ -29,6 +28,7 @@ class SearchBox extends Component {
         if (this._isMounted) {
             apiFullListGet()
                 .then(response => {
+                    const apiData = [];
                     response.response.map((category) => {
                         category.list.map((api) => {
                             const data = {
@@ -42,7 +42,8 @@ class SearchBox extends Component {
                         });
                     });
                     this.setState({
-                        loading: false
+                        loading: false,
+                        apiData: apiData
                     });
                 }).catch(error => {
                 Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
@@ -52,6 +53,9 @@ class SearchBox extends Component {
     }
 
     componentWillUnmount() {
+        this.setState({
+            results: []
+        });
         this._isMounted = false;
     }
 
@@ -79,13 +83,12 @@ class SearchBox extends Component {
 
     handleSearchChange = (e, {value}) => {
         this.setState({isLoading: true, value});
-
+        const {apiData} = this.state;
 
         setTimeout(() => {
             if (this.state.value.length < 1) return this.setState(initialState);
             const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
             const isMatch = (result) => re.test(result.title);
-            console.log(_.filter(apiData, isMatch))
             this.setState({
                 isLoading: false,
                 results: _.filter(apiData, isMatch),
@@ -112,7 +115,7 @@ class SearchBox extends Component {
                             placeholder='Поиск...'
                             resultRenderer={this.handleSearchResultRenderer}
                             onFocus={()=>this.setState({wide: true})}
-                            onBlur={()=>this.setState({wide: false})}
+                            onBlur={()=>this.setState({wide: false, results: []})}
                             {...this.props}
                             id="searchInput" name="searchInput"/>
                 </Grid.Column>
