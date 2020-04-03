@@ -79,6 +79,7 @@ class Profile extends Component {
         if (img && img.complete) {
             this.handleImageLoaded();
         }
+        this.setState({loading: false});
     }
 
     handleImageLoaded() {
