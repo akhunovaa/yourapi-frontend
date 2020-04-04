@@ -126,7 +126,8 @@
     font-size: 18px;
     line-height: 21px;
     /* identical to box height */
-
+    overflow: hidden;
+    white-space: nowrap;
     /* Gray 2 */
     color: #4F4F4F;
 }
