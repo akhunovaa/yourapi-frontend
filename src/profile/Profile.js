@@ -641,7 +641,7 @@ class Profile extends Component {
                                     <div className={showPassword ? 'profile-password-hide profile-info-container-name-input password-input' : 'profile-info-container-name-input password-input'}>
                                         <label style={{marginBottom: 6}}>Подтвердите новый пароль</label>
                                         <Input style={{paddingTop: 0, height: 32, width: 250}}
-                                               onChange={this.handlePasswordInputChange} disabled={passwordDisabled}
+                                               onChange={this.handlePasswordInputChange} disabled={passwordDisabled ? passwordDisabled : showPassword}
                                                icon={<Icon name={showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
                                                placeholder='Подтвердите новый пароль' id="newRePassword"
                                                name="newRePassword" required
