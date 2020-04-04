@@ -10,9 +10,6 @@ import {
     Form,
     Icon,
     Input,
-    List,
-    Portal,
-    Segment,
     Table,
     TextArea
 } from "semantic-ui-react";
@@ -20,6 +17,7 @@ import {profileImageUpdate, profileInfoUpdate, profilePasswordUpdate} from "../u
 import Alert from "react-s-alert";
 import ImageUploader from 'react-images-upload';
 import LazyImage from '../util/LazyImage';
+import HeaderUserPortal from "../header/HeaderUserPortal";
 
 class Profile extends Component {
 
@@ -288,7 +286,8 @@ class Profile extends Component {
 
     render() {
 
-        const {open, user, imageUrl, showPassword, passwordDisabled, loading} = this.state;
+        const {user, imageUrl, showPassword, passwordDisabled, loading} = this.state;
+        const {currentUser, onLogout} = this.props;
         const sexOptions = [
             {
                 sex: 'Мужской',
@@ -355,6 +354,7 @@ class Profile extends Component {
                 value: 'Reykjavík, Iceland'
             }
         ];
+
         return (
             <div className="profile-main">
                 <div className="profile-main-container">
@@ -530,57 +530,7 @@ class Profile extends Component {
                             </div>
 
                             <div className="profile-info-container-input">
-                                <Portal
-                                    closeOnPortalMouseLeave
-                                    closeOnTriggerClick
-                                    closeOnDocumentClick
-                                    trigger={
-                                        <Button className="profile-info-container-messengers-button" basic>+
-                                            Добавить</Button>
-                                    }
-                                    open={open}
-                                    onOpen={this.handleOpen}
-                                    onClose={this.handleClose}>
-                                    <div id='profile-messenger-portal'>
-                                        <Segment className="profile-messenger-portal"
-                                                 style={{position: 'fixed', top: '234px', left: 407}}>
-                                            <List size={"big"}>
-                                                <List.Item>
-                                                    <List.Content>
-                                                        <Checkbox defaultChecked/><Icon style={{paddingLeft: 12}}
-                                                                                        name='telegram plane'><span
-                                                        className="messenger-list">Telegram</span></Icon>
-                                                    </List.Content>
-                                                </List.Item>
-                                                <List.Item>
-                                                    <List.Content>
-                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='whatsapp'><span
-                                                        className="messenger-list">WhatsApp</span></Icon>
-                                                    </List.Content>
-                                                </List.Item>
-                                                <List.Item>
-                                                    <List.Content>
-                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='viber'><span
-                                                        className="messenger-list">Viber</span></Icon>
-                                                    </List.Content>
-                                                </List.Item>
-                                                <List.Item>
-                                                    <List.Content>
-                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='skype'><span
-                                                        className="messenger-list">Skype</span></Icon>
-                                                    </List.Content>
-                                                </List.Item>
-                                                <List.Item>
-                                                    <List.Content>
-                                                        <Checkbox/><Icon style={{paddingLeft: 12}}
-                                                                         name='facebook messenger'><span
-                                                        className="messenger-list">Facebook-messenger</span></Icon>
-                                                    </List.Content>
-                                                </List.Item>
-                                            </List>
-                                        </Segment>
-                                    </div>
-                                </Portal>
+                                <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>
                             </div>
 
                             <div className="profile-info-container-name-inputs messengers">

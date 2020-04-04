@@ -1,71 +1,87 @@
 import React, {Component} from 'react';
 import './AppHeader.css';
-import {Link, NavLink, withRouter} from "react-router-dom";
-import {Button, Divider, Dropdown, Icon, List, Portal, Segment} from "semantic-ui-react";
+import {Link, NavLink, Switch, withRouter} from "react-router-dom";
+import {Button, Dropdown, Icon} from "semantic-ui-react";
 import ProfileHeader from "../header/ProfileHeader";
 import AdministrationHeader from "../header/AdministrationHeader";
 import ApiHeader from "../header/ApiHeader";
+import HeaderUserPortal from "../header/HeaderUserPortal";
 import SearchBox from "./SearchBox";
-import LazyImage from '../util/LazyImage';
+// import Login from "../app/App";
+// import OAuth2RedirectHandler from "../login/oauth2/OAuth2RedirectHandler";
+// import Api from "../profile/api/Api";
+import PrivateRoute from '../common/PrivateRoute';
+import HelpHeader from "../header/HelpHeader";
 
 class AppHeader extends Component {
 
     constructor(props) {
         super(props);
         this.state = {};
-        this.renderSwitch = this.renderSwitch.bind(this);
+        // this.renderSwitch = this.renderSwitch.bind(this);
     }
 
-    renderSwitch(path) {
-        switch (path) {
-            case '/':
-                return <HomeHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/integrator':
-                return <IntegratorHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop':
-                return <ShopHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/profile':
-                return <ProfileHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/profile/administration':
-                return <AdministrationHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/profile/api':
-                return <ApiHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop/category/data':
-                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop/category/finance':
-                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop/category/mobile':
-                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop/category/map':
-                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop/category/adv':
-                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop/category/social':
-                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop/category/health':
-                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop/category/sport':
-                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop/category/web':
-                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            case '/shop/category/other':
-                return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-            default:
-                return <HomeHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-        }
-    }
+    // renderSwitch(path) {
+    //     switch (path) {
+    //         case '/':
+    //             return <HomeHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/integrator':
+    //             return <IntegratorHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop':
+    //             return <ShopHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/profile':
+    //             return <ProfileHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/profile/administration':
+    //             return <AdministrationHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/profile/api':
+    //             return <ApiHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop/category/data':
+    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop/category/finance':
+    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop/category/mobile':
+    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop/category/map':
+    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop/category/adv':
+    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop/category/social':
+    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop/category/health':
+    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop/category/sport':
+    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop/category/web':
+    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         case '/shop/category/other':
+    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //         default:
+    //             return <HomeHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
+    //     }
+    // }
 
     render() {
-        const path = this.props.location.pathname;
+        const {onLogout, authenticated, currentUser} = this.props;
         return (
             <div style={{maxHeight: '64px'}}>
-                {this.props.authenticated ? (
-                    this.renderSwitch(path)
-                ) : (
-                    <div className="header">
+                <Switch>
+                     <PrivateRoute exact path="/" authenticated={authenticated} currentUser={currentUser} component={HomeHeader} onLogout={onLogout}/>
+                     <PrivateRoute exact path="/help" authenticated={authenticated} currentUser={currentUser} component={HelpHeader} onLogout={onLogout}/>
+                     <PrivateRoute exact path="/integrator" authenticated={authenticated} currentUser={currentUser} component={IntegratorHeader} onLogout={onLogout}/>
+                     <PrivateRoute exact path="/shop" authenticated={authenticated} currentUser={currentUser} component={ShopHeader} onLogout={onLogout}/>
+                     <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={currentUser} component={ProfileHeader} onLogout={onLogout}/>
+                     <PrivateRoute exact path="/profile/api" authenticated={authenticated} currentUser={currentUser} component={ApiHeader} onLogout={onLogout}/>
+                     <PrivateRoute exact path="/profile/administration" authenticated={authenticated} currentUser={currentUser} component={AdministrationHeader} onLogout={onLogout}/>
+                     <PrivateRoute exact path="/shop/category/:category?" authenticated={authenticated} currentUser={currentUser} component={ShopHeader} onLogout={onLogout}/>
+                     <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={authenticated} currentUser={currentUser}component={ShopHeader} onLogout={onLogout}/>
+                </Switch>
+                {/*{this.props.authenticated ? (*/}
+                    {/*this.renderSwitch(path)*/}
+                {/*) : (*/}
+                    {/*<div className="header">*/}
 
-                    </div>
-                )}
+                    {/*</div>*/}
+                {/*)}*/}
             </div>
         )
     }
@@ -75,15 +91,8 @@ class HomeHeader extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            open: false,
-            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
-        };
+        this.state = {};
     }
-
-    handleOpen = () => {
-        this.setState({open: true})
-    };
 
     handleOpenSearchOpen = () => {
         let element = document.getElementById('searchInput');
@@ -106,16 +115,10 @@ class HomeHeader extends Component {
         }
     };
 
-    handleClose = () => {
-        this.setState({open: false})
-    };
-
-    componentDidMount() {
-
-    }
 
     render() {
-        const {open} = this.state;
+        const {currentUser, onLogout} = this.props;
+
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo'>
@@ -148,78 +151,7 @@ class HomeHeader extends Component {
                         <Icon link size={'large'} name='bookmark outline'/>
                     </div>
                     <div className='header-right-navlink-profile'>
-                        <Portal
-                            closeOnPortalMouseLeave
-                            closeOnTriggerClick
-                            closeOnDocumentClick
-                            trigger={
-                                this.state.imageUrl ? (
-                                    <div className="profile-header-avatar">
-                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular
-                                                   verticalAlign='middle' alt={this.props.currentUser.name}/>
-                                    </div>
-                                ) : (
-                                    <div className="header-right-navlink-profile-icon">
-                                        <Icon link name='user circle'/>
-                                    </div>
-                                )
-                            }
-                            open={open}
-                            onOpen={this.handleOpen}
-                            onClose={this.handleClose}>
-                            <div id='profile-portal' onClick={this.handleClose}>
-                                <Segment className="profile-segment"
-                                         style={{position: 'fixed', right: 12, top: '76px', zIndex: 1000}}>
-                                    <List size={"big"}>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/"><span className="portal-item portal-item-main">Главная страница</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/profile"><span
-                                                    className="portal-item">Настройка профиля</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/profile/administration"><span
-                                                    className="portal-item">Администрирование</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <Divider style={{
-                                                marginTop: 0,
-                                                marginBottom: 0,
-                                                paddingTop: 0,
-                                                paddingBottom: 0
-                                            }}/>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/"><span className="portal-item">Справка</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <Divider style={{
-                                                marginTop: 0,
-                                                marginBottom: 0,
-                                                paddingTop: 0,
-                                                paddingBottom: 0
-                                            }}/>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <a onClick={this.props.onLogout}>
-                                                    <span className="portal-item">Выйти</span>
-                                                </a>
-                                            </List.Content>
-                                        </List.Item>
-                                    </List>
-                                </Segment>
-                            </div>
-                        </Portal>
+                        <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>
                     </div>
                 </div>
             </div>
@@ -231,26 +163,12 @@ class IntegratorHeader extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            open: false,
-            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
-        };
-    }
-
-    handleOpen = () => {
-        this.setState({open: true})
-    };
-
-    handleClose = () => {
-        this.setState({open: false})
-    };
-
-    componentDidMount() {
-
+        this.state = {};
     }
 
     render() {
-        const {open} = this.state;
+        const {currentUser, onLogout} = this.props;
+
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo active-logo'>
@@ -290,78 +208,7 @@ class IntegratorHeader extends Component {
                         <Icon link size={'large'} name='bookmark outline'/>
                     </div>
                     <div className='header-right-navlink-profile'>
-                        <Portal
-                            closeOnPortalMouseLeave
-                            closeOnTriggerClick
-                            closeOnDocumentClick
-                            trigger={
-                                this.state.imageUrl ? (
-                                    <div className="profile-header-avatar">
-                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular
-                                                   verticalAlign='middle' alt={this.props.currentUser.name}/>
-                                    </div>
-                                ) : (
-                                    <div className="header-right-navlink-profile-icon">
-                                        <Icon link name='user circle'/>
-                                    </div>
-                                )
-                            }
-                            open={open}
-                            onOpen={this.handleOpen}
-                            onClose={this.handleClose}>
-                            <div id='profile-portal' onClick={this.handleClose}>
-                                <Segment className="profile-segment"
-                                         style={{position: 'fixed', right: 12, top: '76px', zIndex: 1000}}>
-                                    <List size={"big"}>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/"><span className="portal-item portal-item-main">Главная страница</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/profile"><span
-                                                    className="portal-item">Настройка профиля</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/profile/administration"><span
-                                                    className="portal-item">Администрирование</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <Divider style={{
-                                                marginTop: 0,
-                                                marginBottom: 0,
-                                                paddingTop: 0,
-                                                paddingBottom: 0
-                                            }}/>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/"><span className="portal-item">Справка</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <Divider style={{
-                                                marginTop: 0,
-                                                marginBottom: 0,
-                                                paddingTop: 0,
-                                                paddingBottom: 0
-                                            }}/>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <a onClick={this.props.onLogout}>
-                                                    <span className="portal-item">Выйти</span>
-                                                </a>
-                                            </List.Content>
-                                        </List.Item>
-                                    </List>
-                                </Segment>
-                            </div>
-                        </Portal>
+                        <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>
                     </div>
                 </div>
 
@@ -374,26 +221,12 @@ class ShopHeader extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            open: false,
-            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
-        };
-    }
-
-    handleOpen = () => {
-        this.setState({open: true})
-    };
-
-    handleClose = () => {
-        this.setState({open: false})
-    };
-
-    componentDidMount() {
-
+        this.state = {};
     }
 
     render() {
-        const {open} = this.state;
+        const {currentUser, onLogout} = this.props;
+
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo active-logo'>
@@ -433,81 +266,9 @@ class ShopHeader extends Component {
                         <Icon link size={'large'} name='bookmark outline'/>
                     </div>
                     <div className='header-right-navlink-profile'>
-                        <Portal
-                            closeOnPortalMouseLeave
-                            closeOnTriggerClick
-                            closeOnDocumentClick
-                            trigger={
-                                this.state.imageUrl ? (
-                                    <div className="profile-header-avatar">
-                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular
-                                                   verticalAlign='middle' alt={this.props.currentUser.name}/>
-                                    </div>
-                                ) : (
-                                    <div className="header-right-navlink-profile-icon">
-                                        <Icon link name='user circle'/>
-                                    </div>
-                                )
-                            }
-                            open={open}
-                            onOpen={this.handleOpen}
-                            onClose={this.handleClose}>
-                            <div id='profile-portal' onClick={this.handleClose}>
-                                <Segment className="profile-segment"
-                                         style={{position: 'fixed', right: 12, top: '76px', zIndex: 1000}}>
-                                    <List size={"big"}>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/"><span className="portal-item portal-item-main">Главная страница</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/profile"><span
-                                                    className="portal-item">Настройка профиля</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/profile/administration"><span
-                                                    className="portal-item">Администрирование</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <Divider style={{
-                                                marginTop: 0,
-                                                marginBottom: 0,
-                                                paddingTop: 0,
-                                                paddingBottom: 0
-                                            }}/>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/"><span className="portal-item">Справка</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <Divider style={{
-                                                marginTop: 0,
-                                                marginBottom: 0,
-                                                paddingTop: 0,
-                                                paddingBottom: 0
-                                            }}/>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <a onClick={this.props.onLogout}>
-                                                    <span className="portal-item">Выйти</span>
-                                                </a>
-                                            </List.Content>
-                                        </List.Item>
-                                    </List>
-                                </Segment>
-                            </div>
-                        </Portal>
+                        <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>
                     </div>
                 </div>
-
             </div>
         );
     }
@@ -517,26 +278,12 @@ class ShopCategoryHeader extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            open: false,
-            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
-        };
-    }
-
-    handleOpen = () => {
-        this.setState({open: true})
-    };
-
-    handleClose = () => {
-        this.setState({open: false})
-    };
-
-    componentDidMount() {
-
+        this.state = {};
     }
 
     render() {
-        const {open} = this.state;
+        const {currentUser, onLogout} = this.props;
+
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo active-logo'>
@@ -576,78 +323,7 @@ class ShopCategoryHeader extends Component {
                         <Icon link size={'large'} name='bookmark outline'/>
                     </div>
                     <div className='header-right-navlink-profile'>
-                        <Portal
-                            closeOnPortalMouseLeave
-                            closeOnTriggerClick
-                            closeOnDocumentClick
-                            trigger={
-                                this.state.imageUrl ? (
-                                    <div className="profile-header-avatar">
-                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular
-                                                   verticalAlign='middle' alt={this.props.currentUser.name}/>
-                                    </div>
-                                ) : (
-                                    <div className="header-right-navlink-profile-icon">
-                                        <Icon link name='user circle'/>
-                                    </div>
-                                )
-                            }
-                            open={open}
-                            onOpen={this.handleOpen}
-                            onClose={this.handleClose}>
-                            <div id='profile-portal' onClick={this.handleClose}>
-                                <Segment className="profile-segment"
-                                         style={{position: 'fixed', right: 12, top: '76px', zIndex: 1000}}>
-                                    <List size={"big"}>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/"><span className="portal-item portal-item-main">Главная страница</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/profile"><span
-                                                    className="portal-item">Настройка профиля</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/profile/administration"><span
-                                                    className="portal-item">Администрирование</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <Divider style={{
-                                                marginTop: 0,
-                                                marginBottom: 0,
-                                                paddingTop: 0,
-                                                paddingBottom: 0
-                                            }}/>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/"><span className="portal-item">Справка</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <Divider style={{
-                                                marginTop: 0,
-                                                marginBottom: 0,
-                                                paddingTop: 0,
-                                                paddingBottom: 0
-                                            }}/>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <a onClick={this.props.onLogout}>
-                                                    <span className="portal-item">Выйти</span>
-                                                </a>
-                                            </List.Content>
-                                        </List.Item>
-                                    </List>
-                                </Segment>
-                            </div>
-                        </Portal>
+                        <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>
                     </div>
                 </div>
 

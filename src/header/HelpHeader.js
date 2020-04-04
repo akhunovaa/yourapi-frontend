@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import './ProfileHeader.css';
+import './HelpHeader.css';
 import {Link} from "react-router-dom";
 import {Icon, Dropdown} from "semantic-ui-react";
-import HeaderUserPortal from "./HeaderUserPortal";
+import HeaderUserPortal from "../header/HeaderUserPortal";
 
-class ProfileHeader extends Component {
+class HelpHeader extends Component {
 
     constructor(props) {
         super(props);
@@ -12,11 +12,28 @@ class ProfileHeader extends Component {
     }
 
     render() {
+
+
+        const styles = {
+            spanOfContainer: {
+                color: '#F2F2F2'
+            },
+            Loader: {
+                marginTop: 22,
+                marginBottom: 22,
+                marginLeft: 22,
+                border: 'none'
+            },
+            Image:{
+                display: 'none'
+            }
+        };
+
         const {currentUser, onLogout} = this.props;
 
         return (
-            <div className="profile-header">
-                <div className='left-profile-header-links'>
+            <div className="profile-administration-header">
+                <div className='left-profile-administration-header-links'>
                     <div className='header-left-logo'>
                         <Link to="/"><b style={{color: 'white'}}>YourAPI</b></Link>
                     </div>
@@ -24,23 +41,23 @@ class ProfileHeader extends Component {
                         <Link to="#" style={{color: 'white'}}>Личный кабинет</Link>
                     </div>
                     <div className='lk-page-link'>
-                        <Link to="#" style={{color: 'white'}}><b>Настройки профиля</b></Link>
+                        <Link to="/profile" style={{color: '#A7C8F4'}}>Настройки профиля</Link>
                     </div>
                     <div className='admin-page-link'>
                         <Link to="/profile/administration" style={{color: '#A7C8F4'}}>Администрирование</Link>
                     </div>
                     <div className='api-page-link'>
-                        <Link to="/profile/api" style={{color: '#A7C8F4'}}>Мои API</Link>
+                        <Link to="/profile/api" style={{color: 'white'}}><b>Мои API</b></Link>
                     </div>
                     <div className='linked-api-page-link'>
                         <Link to="#" style={{color: '#A7C8F4'}}>Подключенные API</Link>
                     </div>
                 </div>
-                <div className='right-profile-header-links'>
-                    <div className='profile-header-navlink'>
+                <div className='right-profile-administration-header-links'>
+                    <div className='profile-administration-header-navlink'>
                         <Link to="/shop" style={{color: '#FFFFFF'}}>Магазин</Link>
                     </div>
-                    <div className='profile-header-language-navlink'>
+                    <div className='profile-administration-header-language-navlink'>
                         <Dropdown text='RU' closeOnChange>
                             <Dropdown.Menu>
                                 <Dropdown.Item text='RU' description='Русский' />
@@ -63,4 +80,4 @@ class ProfileHeader extends Component {
     }
 }
 
-export default ProfileHeader;
+export default HelpHeader;

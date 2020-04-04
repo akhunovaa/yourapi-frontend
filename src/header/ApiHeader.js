@@ -1,29 +1,20 @@
 import React, {Component} from 'react';
 import './ApiHeader.css';
-import {Link, NavLink} from "react-router-dom";
-import {Icon, Dropdown, Portal, Divider, Segment, List} from "semantic-ui-react";
-import LazyImage from '../util/LazyImage';
+import {Link} from "react-router-dom";
+import {Icon, Dropdown} from "semantic-ui-react";
+import HeaderUserPortal from "./HeaderUserPortal";
 
 class ApiHeader extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            open: false,
-            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl : ''
-        };
+        this.state = {};
+
     }
 
-    handleOpen = () => {
-        this.setState({open: true})
-    };
-
-    handleClose = () => {
-        this.setState({open: false})
-    };
-
     render() {
-        const { open } = this.state;
+        const {currentUser, onLogout} = this.props;
+
         return (
             <div className="profile-administration-header">
                 <div className='left-profile-administration-header-links'>
@@ -65,65 +56,7 @@ class ApiHeader extends Component {
                         <Icon link size={'large'}  name='bookmark outline' />
                     </div>
                     <div className='header-right-navlink-profile'>
-                        <Portal
-                            closeOnPortalMouseLeave
-                            closeOnTriggerClick
-                            closeOnDocumentClick
-                            trigger={
-                                this.state.imageUrl ? (
-                                    <div className="profile-header-avatar">
-                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
-                                    </div>
-                                ) : (
-                                    <div className="header-right-navlink-profile-icon">
-                                        <Icon link name='user circle'/>
-                                    </div>
-                                )
-                            }
-                            open={open}
-                            onOpen={this.handleOpen}
-                            onClose={this.handleClose}>
-                            <div id='profile-portal' onClick={this.handleClose}>
-                                <Segment className="profile-segment"
-                                         style={{position: 'fixed',  right: 12,  top: '76px', zIndex: 1000}}>
-                                    <List size={"big"}>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/"><span className="portal-item portal-item-main">Главная страница</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/profile"><span className="portal-item">Настройка профиля</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/profile/administration"><span className="portal-item">Администрирование</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <NavLink to="/"><span className="portal-item">Справка</span></NavLink>
-                                            </List.Content>
-                                        </List.Item>
-                                        <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
-                                        </List.Item>
-                                        <List.Item>
-                                            <List.Content>
-                                                <a onClick={this.props.onLogout}>
-                                                    <span className="portal-item">Выйти</span>
-                                                </a>
-                                            </List.Content>
-                                        </List.Item>
-                                    </List>
-                                </Segment>
-                            </div>
-                        </Portal>
+                        <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>
                     </div>
                 </div>
             </div>

@@ -107,8 +107,7 @@ class App extends Component {
 
         return (
             <div>
-                <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout}
-                           currentUser={this.state.currentUser}/>
+                <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} currentUser={this.state.currentUser}/>
                 <Switch>
                     <PrivateRoute exact path="/" authenticated={this.state.authenticated}
                                   currentUser={this.state.currentUser} component={Home}/>
@@ -119,7 +118,7 @@ class App extends Component {
                            render={(props) => <SignUp isMobile={isMobile} history={this.props.history}
                                                       authenticated={this.state.authenticated} {...props} />}/>
                     <PrivateRoute exact path="/profile" authenticated={this.state.authenticated}
-                                  currentUser={this.state.currentUser} component={Profile}/>
+                                  currentUser={this.state.currentUser} component={Profile} onLogout={this.handleLogout}/>
                     <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated}
                                   currentUser={this.state.currentUser} component={Administration}/>
                     <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated}
