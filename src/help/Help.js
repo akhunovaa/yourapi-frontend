@@ -32,7 +32,7 @@ class Help extends Component {
 
         return (
             <div className="help-main">
-                <div className="help-header-picture">
+                <div className="help-header-picture"  unselectable='on'>
                     <div className='header-text'>
                         <div className="header-slogan">
                             <span>Здесь можно узнать о том,</span><br/>
