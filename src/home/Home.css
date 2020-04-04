@@ -4,7 +4,7 @@
     background: #F2F2F2;
     /*min-width: 1633px;*/
     /*min-width: 1348px;*/
-    min-width: 1250px;
+    min-width: 1235px;
 }
 
 .header-picture {
@@ -18,8 +18,8 @@
 }
 
 .header-text{
-    padding-top: 87px;
-    padding-left: 152px;
+    padding-top: 50px;
+    padding-left: 292px;
 }
 
 .header-text-main{
@@ -29,8 +29,8 @@
     font-size: 48px;
     line-height: 56px;
     padding-top: 7px;
-
 }
+
 .header-slogan{
     font-family: Roboto, serif;
     font-style: normal;
@@ -41,6 +41,7 @@
     /* Gray 6 */
     color: #F2F2F2;
 }
+
 .header-buttons{
     padding-top: 16px;
     display: inline-flex;

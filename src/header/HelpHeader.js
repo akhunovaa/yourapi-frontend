@@ -13,49 +13,33 @@ class HelpHeader extends Component {
 
     render() {
 
-
         const styles = {
-            spanOfContainer: {
-                color: '#F2F2F2'
+            b: {
+                color: 'white',
+                fontSize: '16px',
+                width: '100%'
             },
-            Loader: {
-                marginTop: 22,
-                marginBottom: 22,
-                marginLeft: 22,
-                border: 'none'
-            },
-            Image:{
-                display: 'none'
-            }
+            span:
+                {
+                    color: 'white'
+                }
         };
 
         const {currentUser, onLogout} = this.props;
 
         return (
-            <div className="profile-administration-header">
-                <div className='left-profile-administration-header-links'>
-                    <div className='header-left-logo'>
-                        <Link to="/"><b style={{color: 'white'}}>YourAPI</b></Link>
+            <div className="help-header">
+                <div className='left-help-header-links'>
+                    <div className='header-help-logo'>
+                        <Link to="/"><b style={styles.b}>YourAPI</b></Link>
                     </div>
-                    <div className='header-navigation-link'>
-                        <Link to="#" style={{color: 'white'}}>Личный кабинет</Link>
-                    </div>
-                    <div className='lk-page-link'>
-                        <Link to="/profile" style={{color: '#A7C8F4'}}>Настройки профиля</Link>
-                    </div>
-                    <div className='admin-page-link'>
-                        <Link to="/profile/administration" style={{color: '#A7C8F4'}}>Администрирование</Link>
-                    </div>
-                    <div className='api-page-link'>
-                        <Link to="/profile/api" style={{color: 'white'}}><b>Мои API</b></Link>
-                    </div>
-                    <div className='linked-api-page-link'>
-                        <Link to="#" style={{color: '#A7C8F4'}}>Подключенные API</Link>
+                    <div className='header-help-sub'>
+                        <Link to="/"><span style={styles.span}>Справка</span></Link>
                     </div>
                 </div>
                 <div className='right-profile-administration-header-links'>
-                    <div className='profile-administration-header-navlink'>
-                        <Link to="/shop" style={{color: '#FFFFFF'}}>Магазин</Link>
+                    <div className='help-header-navlink'>
+                        <Link to="/shop" style={{color: '#FFFFFF'}}>Магазин API</Link>
                     </div>
                     <div className='profile-administration-header-language-navlink'>
                         <Dropdown text='RU' closeOnChange>

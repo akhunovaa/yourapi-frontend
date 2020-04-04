@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import NotFound from '../common/NotFound';
 import Home from '../home/Home';
+import Help from '../help/Help';
 import Profile from '../profile/Profile';
 import SignUp from '../signup/SignUp';
 import Login from '../login/Login';
@@ -117,6 +118,9 @@ class App extends Component {
                     <Route exact path="/signup"
                            render={(props) => <SignUp isMobile={isMobile} history={this.props.history}
                                                       authenticated={this.state.authenticated} {...props} />}/>
+
+                    <PrivateRoute exact path="/help" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Help}/>
+
                     <PrivateRoute exact path="/profile" authenticated={this.state.authenticated}
                                   currentUser={this.state.currentUser} component={Profile} onLogout={this.handleLogout}/>
                     <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated}

@@ -108,7 +108,7 @@ class HeaderUserPortal extends Component {
                             </List.Item>
                             <List.Item>
                                 <List.Content>
-                                    <NavLink to="/"><span className="portal-item">Справка</span></NavLink>
+                                    <NavLink to="/help"><span className="portal-item">Справка</span></NavLink>
                                 </List.Content>
                             </List.Item>
                             <List.Item>

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import './AppFooter.css';
 import {NavLink} from "react-router-dom";
-import {Icon, Dropdown} from "semantic-ui-react";
-import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";
+import {Icon} from "semantic-ui-react";
 import * as PropTypes from 'prop-types'
 
 class AppFooter extends Component {
@@ -40,8 +39,8 @@ class AppFooter extends Component {
                             </a>
                         </div>
                         <div className="footer-link-container">
-                            <a href={"mailto:support@yourapi.ru"} rel="noopener noreferrer">
-                                <span style={styles.spanOfContainer}>Служба поддержки</span>
+                            <a href='/help' rel="noopener noreferrer">
+                                <span style={styles.spanOfContainer}>Справка</span>
                             </a>
                         </div>
                         <div className='footer-icons-group'>
@@ -53,14 +52,11 @@ class AppFooter extends Component {
                                 })
                             }
                         </div>
-                        <div className="footer-right-link-container">
-                            <Dropdown text='Помощь' closeOnChange>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item text='Помощь' description='Помощь'/>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                        <div className="footer-link-container">
+                            <a href={"mailto:support@yourapi.ru"} rel="noopener noreferrer">
+                                <span style={styles.spanOfContainer}>Служба поддержки</span>
+                            </a>
                         </div>
-                        <ScrollUpButton style={styles.ScrollUpButton} EasingType="easeOutCubic"/>
                     </div>
                 ) : (
                     <div className="footer"/>
