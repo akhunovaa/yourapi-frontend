@@ -16,6 +16,7 @@ import ApiDetailPriceBody from "./body/ApiDetailPriceBody";
 import ApiDetailQuestionsBody from "./body/ApiDetailQuestionsBody";
 import ApiDetailDocumentationBody from "./body/ApiDetailDocumentationBody";
 import {apiProjectGet} from "../../util/APIUtils";
+import {getLink4Category, getLink4Description} from "../../util/ElementsDataUtils";
 import Alert from "react-s-alert";
 import LazyApiDetailImage from '../../util/LazyApiDetailImage';
 
@@ -26,35 +27,34 @@ class ApiDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            api: {
-                loading: true,
-                id: 1,
-                name: '',
-                dealer: '',
-                category: '',
-                terms: '',
-                image: '',
-                description: '',
-                updated: '',
-                approved: false
-            }
+            loading: true,
+            id: 0,
+            name: '',
+            description: '',
+            category: '',
+            terms: '',
+            image: '',
+            approved: '',
+            dealer: '',
+            updated: '',
+            info: '',
+            host: '',
+            operations: ''
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
         this.renderSwitchBody = this.renderSwitchBody.bind(this);
         this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
-        this.getLink4CategoryFilter = this.getLink4CategoryFilter.bind(this);
-        this.getLink4Description = this.getLink4Description.bind(this);
     }
 
     componentDidMount() {
         this._isMounted = true;
         const params = queryString.parse(this.props.location.search);
         let id = params.id != null ? params.id : '1';
-        apiProjectGet(id)
-            .then(response => {
-                if (this._isMounted) {
+        if (this._isMounted) {
+            apiProjectGet(id)
+                .then(response => {
                     this.setState({
                         loading: false,
                         id: response.response.id,
@@ -64,19 +64,18 @@ class ApiDetail extends Component {
                         terms: response.response.terms,
                         image: response.response.image,
                         approved: response.response.approved,
-                        dealer: response.response.username.username,
+                        dealer: response.response.username,
                         updated: response.response.updated,
                         info: response.response.info,
                         host: response.response.host,
                         operations: response.response.operations
                     });
-                }
-            }).catch(error => {
-            Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
-            if (this._isMounted) {
+
+                }).catch(error => {
+                Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
                 this.setState({loading: false})
-            }
-        });
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -148,64 +147,13 @@ class ApiDetail extends Component {
         }
     }
 
-    getLink4Description(category) {
-        switch (category) {
-            case 'Данные':
-                return '/shop/category/data/api?id=';
-            case 'Финансы':
-                return '/shop/category/finance/api?id=';
-            case 'Мобильные':
-                return '/shop/category/mobile/api?id=';
-            case 'Карты':
-                return '/shop/category/map/api?id=';
-            case 'Реклама':
-                return '/shop/category/adv/api?id=';
-            case 'Социальные сети':
-                return '/shop/category/social/api?id=';
-            case 'Здравохранение':
-                return '/shop/category/health/api?id=';
-            case 'Спорт':
-                return '/shop/category/sport/api?id=';
-            case 'Web':
-                return '/shop/category/web/api?id=';
-            default:
-                return '/shop/category/other/api?id=';
-        }
-    }
-
-    getLink4CategoryFilter(category) {
-        switch (category) {
-            case 'Данные':
-                return '/shop/category/data';
-            case 'Финансы':
-                return '/shop/category/finance';
-            case 'Мобильные':
-                return '/shop/category/mobile';
-            case 'Карты':
-                return '/shop/category/map';
-            case 'Реклама':
-                return '/shop/category/adv';
-            case 'Социальные сети':
-                return '/shop/category/social';
-            case 'Здравохранение':
-                return '/shop/category/health';
-            case 'Спорт':
-                return '/shop/category/sport';
-            case 'Web':
-                return '/shop/category/web';
-            default:
-                return '/shop/category/other';
-        }
-    }
-
-
     render() {
 
-
         const {loading, name, dealer, category, updated, description, image, id} = this.state;
+
         const host = window.location.origin.toString();
-        const link = this.getLink4CategoryFilter(category);
-        const link4Description = this.getLink4Description(category) + id;
+        const link = getLink4Category(category);
+        const link4Description = getLink4Description(category) + id;
 
         return (
             <div className="api-detail-main">
@@ -232,9 +180,9 @@ class ApiDetail extends Component {
                                     {
                                         image && !loading ? (
                                             <LazyApiDetailImage src={host + "/api-data/image/" + image + "/77/77"}
-                                                       alt={name}/>
+                                                                alt={name}/>
                                         ) : (
-                                            <div className={image ? '' : 'api-detail-text-avatar' }>
+                                            <div className={image ? '' : 'api-detail-text-avatar'}>
                                                 <span>{name && name[0]}</span>
                                             </div>
                                         )
@@ -247,7 +195,8 @@ class ApiDetail extends Component {
                                 </div>
                             </div>
                             <div className='api-detail-title'>{name}</div>
-                            <div className='api-detail-dealer'>от <NavLink to='#'>{dealer}</NavLink>
+                            <div className='api-detail-dealer'>от <NavLink
+                                to='#'>{dealer.nickname ? dealer.nickname : dealer.name}</NavLink>
                             </div>
                             <div className="api-detail-rating">
                                 <Icon link name='star' style={{color: '#F39847'}}/>
@@ -291,7 +240,7 @@ class ApiDetail extends Component {
                                 <div
                                     className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>
                                     {description}<NavLink to='#'
-                                                                     className='description-body-link description-api-links-color-blue'>...еще</NavLink>
+                                                          className='description-body-link description-api-links-color-blue'>...еще</NavLink>
                                 </div>
                             </div>
                         </div>

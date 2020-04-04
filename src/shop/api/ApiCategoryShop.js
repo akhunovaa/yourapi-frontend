@@ -145,7 +145,7 @@ class ApiCategoryShop extends Component {
                                                      className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
                                         </div>
                                         <div className="cell-grid-body-label">
-                                            <label>от {item.username.email}</label>
+                                            <label>от {item.username.nickname ? item.username.nickname : item.username.name}</label>
                                         </div>
                                         <div className="cell-grid-body-description">
                                             <label>{item.description}</label>
