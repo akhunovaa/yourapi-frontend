@@ -34,7 +34,7 @@ class HelpHeader extends Component {
                         <Link to="/"><b style={styles.b}>YourAPI</b></Link>
                     </div>
                     <div className='header-help-sub'>
-                        <Link to="/"><span style={styles.span}>Справка</span></Link>
+                        <Link to="/help"><span style={styles.span}>Справка</span></Link>
                     </div>
                 </div>
                 <div className='right-profile-administration-header-links'>
