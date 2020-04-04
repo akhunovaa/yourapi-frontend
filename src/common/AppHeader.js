@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './AppHeader.css';
 import {Link, NavLink, withRouter} from "react-router-dom";
-import {Icon, Input, Dropdown, Portal, Divider, Segment, List, Button, Image} from "semantic-ui-react";
+import {Button, Divider, Dropdown, Icon, List, Portal, Segment} from "semantic-ui-react";
 import ProfileHeader from "../header/ProfileHeader";
 import AdministrationHeader from "../header/AdministrationHeader";
 import ApiHeader from "../header/ApiHeader";
@@ -12,14 +12,12 @@ class AppHeader extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
         this.renderSwitch = this.renderSwitch.bind(this);
     }
 
     renderSwitch(path) {
-        switch(path) {
+        switch (path) {
             case '/':
                 return <HomeHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
             case '/integrator':
@@ -58,10 +56,10 @@ class AppHeader extends Component {
     }
 
     render() {
-        const path=this.props.location.pathname;
+        const path = this.props.location.pathname;
         return (
             <div style={{maxHeight: '64px'}}>
-                { this.props.authenticated ? (
+                {this.props.authenticated ? (
                     this.renderSwitch(path)
                 ) : (
                     <div className="header">
@@ -117,7 +115,7 @@ class HomeHeader extends Component {
     }
 
     render() {
-        const { open } = this.state;
+        const {open} = this.state;
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo'>
@@ -128,7 +126,7 @@ class HomeHeader extends Component {
                         <Link to="/shop"><b style={{color: '#A5A5A5'}}>Магазин</b></Link>
                     </div>
                     {/*<div className='header-center-navlink-integration'>*/}
-                        {/*<Link to="/integrator"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>*/}
+                    {/*<Link to="/integrator"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>*/}
                     {/*</div>*/}
                     <div className='header-center-search-input'>
                         <SearchBox onClick={this.handleOpenSearchOpen}/>
@@ -138,16 +136,16 @@ class HomeHeader extends Component {
                     <div className='header-right-navlink'>
                         <Dropdown text='RU' closeOnChange>
                             <Dropdown.Menu>
-                                <Dropdown.Item text='RU' description='Русский' />
-                                <Dropdown.Item text='EN' description='English' />
+                                <Dropdown.Item text='RU' description='Русский'/>
+                                <Dropdown.Item text='EN' description='English'/>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
                     <div className='header-right-navlink-bell'>
-                        <Icon link size={'large'}  name='bell outline' />
+                        <Icon link size={'large'} name='bell outline'/>
                     </div>
                     <div className='header-right-navlink-bookmark'>
-                        <Icon link size={'large'}  name='bookmark outline' />
+                        <Icon link size={'large'} name='bookmark outline'/>
                     </div>
                     <div className='header-right-navlink-profile'>
                         <Portal
@@ -155,20 +153,23 @@ class HomeHeader extends Component {
                             closeOnTriggerClick
                             closeOnDocumentClick
                             trigger={
-                                    this.state.imageUrl ? (
-                                        <div className="profile-header-avatar">
-                                            <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
-                                        </div>
-                                    ) : (
-                                        <Icon link name='user circle' />
-                                    )
+                                this.state.imageUrl ? (
+                                    <div className="profile-header-avatar">
+                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular
+                                                   verticalAlign='middle' alt={this.props.currentUser.name}/>
+                                    </div>
+                                ) : (
+                                    <div className="header-right-navlink-profile-icon">
+                                        <Icon link name='user circle'/>
+                                    </div>
+                                )
                             }
                             open={open}
                             onOpen={this.handleOpen}
                             onClose={this.handleClose}>
                             <div id='profile-portal' onClick={this.handleClose}>
                                 <Segment className="profile-segment"
-                                         style={{position: 'fixed',  right: 12,  top: '76px', zIndex: 1000}}>
+                                         style={{position: 'fixed', right: 12, top: '76px', zIndex: 1000}}>
                                     <List size={"big"}>
                                         <List.Item>
                                             <List.Content>
@@ -177,16 +178,23 @@ class HomeHeader extends Component {
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/profile"><span className="portal-item">Настройка профиля</span></NavLink>
+                                                <NavLink to="/profile"><span
+                                                    className="portal-item">Настройка профиля</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/profile/administration"><span className="portal-item">Администрирование</span></NavLink>
+                                                <NavLink to="/profile/administration"><span
+                                                    className="portal-item">Администрирование</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
+                                            <Divider style={{
+                                                marginTop: 0,
+                                                marginBottom: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0
+                                            }}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
@@ -194,7 +202,12 @@ class HomeHeader extends Component {
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
+                                            <Divider style={{
+                                                marginTop: 0,
+                                                marginBottom: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0
+                                            }}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
@@ -237,7 +250,7 @@ class IntegratorHeader extends Component {
     }
 
     render() {
-        const { open } = this.state;
+        const {open} = this.state;
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo active-logo'>
@@ -248,7 +261,7 @@ class IntegratorHeader extends Component {
                         <Link to="/shop" style={{color: '#A5A5A5'}}>Магазин</Link>
                     </div>
                     {/*<div className='header-center-navlink-integration active-header'>*/}
-                        {/*<Link to="/integrator" style={{color: '#4F4F4F'}}>Интеграторы</Link>*/}
+                    {/*<Link to="/integrator" style={{color: '#4F4F4F'}}>Интеграторы</Link>*/}
                     {/*</div>*/}
                     <div className='header-center-search-input'>
                         <SearchBox onClick={this.handleOpenSearchOpen}/>
@@ -257,22 +270,24 @@ class IntegratorHeader extends Component {
                 <div className="header-right-menu">
                     <div className='header-right-center-container'>
                         <div className='api-create-button-container'>
-                            <NavLink to='/profile/api?page=add' ><Button fluid className='api-create-button' style={{background: '#F39847'}}><span className='api-create-button-text'>Добавить API</span></Button></NavLink>
+                            <NavLink to='/profile/api?page=add'><Button fluid className='api-create-button'
+                                                                        style={{background: '#F39847'}}><span
+                                className='api-create-button-text'>Добавить API</span></Button></NavLink>
                         </div>
                     </div>
                     <div className='header-right-navlink'>
                         <Dropdown text='RU' closeOnChange>
                             <Dropdown.Menu>
-                                <Dropdown.Item text='RU' description='Русский' />
-                                <Dropdown.Item text='EN' description='English' />
+                                <Dropdown.Item text='RU' description='Русский'/>
+                                <Dropdown.Item text='EN' description='English'/>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
                     <div className='header-right-navlink-bell'>
-                        <Icon link size={'large'}  name='bell outline' />
+                        <Icon link size={'large'} name='bell outline'/>
                     </div>
                     <div className='header-right-navlink-bookmark'>
-                        <Icon link size={'large'}  name='bookmark outline' />
+                        <Icon link size={'large'} name='bookmark outline'/>
                     </div>
                     <div className='header-right-navlink-profile'>
                         <Portal
@@ -282,10 +297,13 @@ class IntegratorHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
+                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular
+                                                   verticalAlign='middle' alt={this.props.currentUser.name}/>
                                     </div>
                                 ) : (
-                                    <Icon link name='user circle' />
+                                    <div className="header-right-navlink-profile-icon">
+                                        <Icon link name='user circle'/>
+                                    </div>
                                 )
                             }
                             open={open}
@@ -293,7 +311,7 @@ class IntegratorHeader extends Component {
                             onClose={this.handleClose}>
                             <div id='profile-portal' onClick={this.handleClose}>
                                 <Segment className="profile-segment"
-                                         style={{position: 'fixed',  right: 12,  top: '76px', zIndex: 1000}}>
+                                         style={{position: 'fixed', right: 12, top: '76px', zIndex: 1000}}>
                                     <List size={"big"}>
                                         <List.Item>
                                             <List.Content>
@@ -302,16 +320,23 @@ class IntegratorHeader extends Component {
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/profile"><span className="portal-item">Настройка профиля</span></NavLink>
+                                                <NavLink to="/profile"><span
+                                                    className="portal-item">Настройка профиля</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/profile/administration"><span className="portal-item">Администрирование</span></NavLink>
+                                                <NavLink to="/profile/administration"><span
+                                                    className="portal-item">Администрирование</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
+                                            <Divider style={{
+                                                marginTop: 0,
+                                                marginBottom: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0
+                                            }}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
@@ -319,7 +344,12 @@ class IntegratorHeader extends Component {
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
+                                            <Divider style={{
+                                                marginTop: 0,
+                                                marginBottom: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0
+                                            }}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
@@ -363,7 +393,7 @@ class ShopHeader extends Component {
     }
 
     render() {
-        const { open } = this.state;
+        const {open} = this.state;
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo active-logo'>
@@ -374,7 +404,7 @@ class ShopHeader extends Component {
                         <Link to="/shop" style={{color: '#4F4F4F'}}>Магазин</Link>
                     </div>
                     {/*<div className='header-center-navlink-integration inactive-header-link'>*/}
-                        {/*<Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>*/}
+                    {/*<Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>*/}
                     {/*</div>*/}
                     <div className='header-center-search-input'>
                         <SearchBox onClick={this.handleOpenSearchOpen}/>
@@ -383,22 +413,24 @@ class ShopHeader extends Component {
                 <div className="header-right-menu">
                     <div className='header-right-center-container'>
                         <div className='api-create-button-container'>
-                            <NavLink to='/profile/api?page=add' ><Button fluid className='api-create-button' style={{background: '#F39847'}}><span className='api-create-button-text'>Добавить API</span></Button></NavLink>
+                            <NavLink to='/profile/api?page=add'><Button fluid className='api-create-button'
+                                                                        style={{background: '#F39847'}}><span
+                                className='api-create-button-text'>Добавить API</span></Button></NavLink>
                         </div>
                     </div>
                     <div className='header-right-navlink'>
                         <Dropdown text='RU' closeOnChange>
                             <Dropdown.Menu>
-                                <Dropdown.Item text='RU' description='Русский' />
-                                <Dropdown.Item text='EN' description='English' />
+                                <Dropdown.Item text='RU' description='Русский'/>
+                                <Dropdown.Item text='EN' description='English'/>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
                     <div className='header-right-navlink-bell'>
-                        <Icon link size={'large'}  name='bell outline' />
+                        <Icon link size={'large'} name='bell outline'/>
                     </div>
                     <div className='header-right-navlink-bookmark'>
-                        <Icon link size={'large'}  name='bookmark outline' />
+                        <Icon link size={'large'} name='bookmark outline'/>
                     </div>
                     <div className='header-right-navlink-profile'>
                         <Portal
@@ -408,10 +440,13 @@ class ShopHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
+                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular
+                                                   verticalAlign='middle' alt={this.props.currentUser.name}/>
                                     </div>
                                 ) : (
-                                    <Icon link name='user circle' />
+                                    <div className="header-right-navlink-profile-icon">
+                                        <Icon link name='user circle'/>
+                                    </div>
                                 )
                             }
                             open={open}
@@ -419,7 +454,7 @@ class ShopHeader extends Component {
                             onClose={this.handleClose}>
                             <div id='profile-portal' onClick={this.handleClose}>
                                 <Segment className="profile-segment"
-                                         style={{position: 'fixed',  right: 12,  top: '76px', zIndex: 1000}}>
+                                         style={{position: 'fixed', right: 12, top: '76px', zIndex: 1000}}>
                                     <List size={"big"}>
                                         <List.Item>
                                             <List.Content>
@@ -428,16 +463,23 @@ class ShopHeader extends Component {
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/profile"><span className="portal-item">Настройка профиля</span></NavLink>
+                                                <NavLink to="/profile"><span
+                                                    className="portal-item">Настройка профиля</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/profile/administration"><span className="portal-item">Администрирование</span></NavLink>
+                                                <NavLink to="/profile/administration"><span
+                                                    className="portal-item">Администрирование</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
+                                            <Divider style={{
+                                                marginTop: 0,
+                                                marginBottom: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0
+                                            }}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
@@ -445,7 +487,12 @@ class ShopHeader extends Component {
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
+                                            <Divider style={{
+                                                marginTop: 0,
+                                                marginBottom: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0
+                                            }}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
@@ -489,7 +536,7 @@ class ShopCategoryHeader extends Component {
     }
 
     render() {
-        const { open } = this.state;
+        const {open} = this.state;
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo active-logo'>
@@ -500,7 +547,7 @@ class ShopCategoryHeader extends Component {
                         <Link to="/shop" style={{color: '#4F4F4F'}}>Магазин</Link>
                     </div>
                     {/*<div className='header-center-navlink-integration inactive-header-link'>*/}
-                        {/*<Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>*/}
+                    {/*<Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>*/}
                     {/*</div>*/}
                     <div className='header-center-search-input'>
                         <SearchBox onClick={this.handleOpenSearchOpen}/>
@@ -509,22 +556,24 @@ class ShopCategoryHeader extends Component {
                 <div className="header-right-menu">
                     <div className='header-right-center-container'>
                         <div className='api-create-button-container'>
-                            <NavLink to='/profile/api?page=add' ><Button fluid className='api-create-button' style={{background: '#F39847'}}><span className='api-create-button-text'>Добавить API</span></Button></NavLink>
+                            <NavLink to='/profile/api?page=add'><Button fluid className='api-create-button'
+                                                                        style={{background: '#F39847'}}><span
+                                className='api-create-button-text'>Добавить API</span></Button></NavLink>
                         </div>
                     </div>
                     <div className='header-right-navlink'>
                         <Dropdown text='RU' closeOnChange>
                             <Dropdown.Menu>
-                                <Dropdown.Item text='RU' description='Русский' />
-                                <Dropdown.Item text='EN' description='English' />
+                                <Dropdown.Item text='RU' description='Русский'/>
+                                <Dropdown.Item text='EN' description='English'/>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
                     <div className='header-right-navlink-bell'>
-                        <Icon link size={'large'}  name='bell outline' />
+                        <Icon link size={'large'} name='bell outline'/>
                     </div>
                     <div className='header-right-navlink-bookmark'>
-                        <Icon link size={'large'}  name='bookmark outline' />
+                        <Icon link size={'large'} name='bookmark outline'/>
                     </div>
                     <div className='header-right-navlink-profile'>
                         <Portal
@@ -534,10 +583,13 @@ class ShopCategoryHeader extends Component {
                             trigger={
                                 this.state.imageUrl ? (
                                     <div className="profile-header-avatar">
-                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
+                                        <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular
+                                                   verticalAlign='middle' alt={this.props.currentUser.name}/>
                                     </div>
                                 ) : (
-                                    <Icon link name='user circle' />
+                                    <div className="header-right-navlink-profile-icon">
+                                        <Icon link name='user circle'/>
+                                    </div>
                                 )
                             }
                             open={open}
@@ -545,7 +597,7 @@ class ShopCategoryHeader extends Component {
                             onClose={this.handleClose}>
                             <div id='profile-portal' onClick={this.handleClose}>
                                 <Segment className="profile-segment"
-                                         style={{position: 'fixed',  right: 12,  top: '76px', zIndex: 1000}}>
+                                         style={{position: 'fixed', right: 12, top: '76px', zIndex: 1000}}>
                                     <List size={"big"}>
                                         <List.Item>
                                             <List.Content>
@@ -554,16 +606,23 @@ class ShopCategoryHeader extends Component {
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/profile"><span className="portal-item">Настройка профиля</span></NavLink>
+                                                <NavLink to="/profile"><span
+                                                    className="portal-item">Настройка профиля</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
-                                                <NavLink to="/profile/administration"><span className="portal-item">Администрирование</span></NavLink>
+                                                <NavLink to="/profile/administration"><span
+                                                    className="portal-item">Администрирование</span></NavLink>
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
+                                            <Divider style={{
+                                                marginTop: 0,
+                                                marginBottom: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0
+                                            }}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
@@ -571,7 +630,12 @@ class ShopCategoryHeader extends Component {
                                             </List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <Divider style={{marginTop: 0,  marginBottom: 0, paddingTop: 0, paddingBottom: 0}}/>
+                                            <Divider style={{
+                                                marginTop: 0,
+                                                marginBottom: 0,
+                                                paddingTop: 0,
+                                                paddingBottom: 0
+                                            }}/>
                                         </List.Item>
                                         <List.Item>
                                             <List.Content>
@@ -591,4 +655,5 @@ class ShopCategoryHeader extends Component {
         );
     }
 }
+
 export default withRouter(AppHeader);

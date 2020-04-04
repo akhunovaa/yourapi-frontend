@@ -75,7 +75,9 @@ class ProfileHeader extends Component {
                                         <LazyImage src={this.state.imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={this.props.currentUser.name}/>
                                     </div>
                                 ) : (
-                                    <Icon link name='user circle' />
+                                    <div className="header-right-navlink-profile-icon">
+                                        <Icon link name='user circle'/>
+                                    </div>
                                 )
                             }
                             open={open}

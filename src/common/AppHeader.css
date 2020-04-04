@@ -125,6 +125,10 @@
     font-size: 40px;
 }
 
+.header-right-navlink-profile-icon{
+    margin-top: 12px;
+}
+
 .header-center-search{
     width: 250px;
     font-family: Roboto !important;

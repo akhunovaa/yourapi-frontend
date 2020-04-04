@@ -76,7 +76,9 @@ class AdministrationHeader extends Component {
                                         {/*<LazyImage src={host + "/api-data/image/" + item.image + "/32/32"} />*/}
                                     </div>
                                 ) : (
-                                    <Icon link name='user circle' />
+                                    <div className="header-right-navlink-profile-icon">
+                                        <Icon link name='user circle'/>
+                                    </div>
                                 )
                             }
                             open={open}
