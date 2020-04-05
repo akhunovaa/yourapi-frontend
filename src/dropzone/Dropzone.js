@@ -1,12 +1,13 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./Dropzone.css";
 import {Icon} from "semantic-ui-react";
+import * as PropTypes from "prop-types";
 
 
 class Dropzone extends Component {
     constructor(props) {
         super(props);
-        this.state = { hightlight: false };
+        this.state = {isHightlighted: false};
         this.fileInputRef = React.createRef();
 
         this.openFileDialog = this.openFileDialog.bind(this);
@@ -21,41 +22,62 @@ class Dropzone extends Component {
     }
 
     onFileAdded(evt) {
-        if (this.props.disabled) return;
+        const {disabled, onFileAdded} = this.props;
+
+        if (disabled) return;
         const file = evt.target.files[0];
         this.setState({file: file});
-        if (this.props.onFileAdded) {
-            this.props.onFileAdded(file);
+
+        //todo for what do you add this if statement? (maybe remove it)
+        if (onFileAdded) {
+            onFileAdded(file);
         }
     }
 
     onDragOver(event) {
         event.preventDefault();
-        this.setState({ hightlight: true });
+        this.setState({isHightlighted: true});
     }
 
     onDragLeave(event) {
-        this.setState({ hightlight: false });
+        this.setState({isHightlighted: false});
     }
 
     onDrop(event) {
+        const {onFileAdded} = this.props;
         event.preventDefault();
         const file = event.dataTransfer.files[0];
-        if (this.props.onFileAdded) {
-            this.props.onFileAdded(file);
+
+        //todo for what do you add this if statement? (maybe remove it)
+        if (onFileAdded) {
+            onFileAdded(file);
         }
-        this.setState({ hightlight: false });
+        this.setState({isHightlighted: false});
     }
 
     render() {
+        const {isHightlighted} = this.state;
+
+        const styles = {
+            dropZoneDivBlock: {
+                cursor: 'pointer'
+            },
+            dropZoneSpan: {
+                marginLeft: 36
+            },
+            dropZoneLinkColor: {
+                color: '#2F80ED'
+            }
+        };
+
         return (
             <div
-                className={`Dropzone ${this.state.hightlight ? "Highlight" : ""}` }
+                className={`Dropzone ${isHightlighted ? "Highlight" : ""}`}
                 onDragOver={this.onDragOver}
                 onDragLeave={this.onDragLeave}
                 onDrop={this.onDrop}
                 onClick={this.openFileDialog}
-                style={{ cursor: 'pointer'}}>
+                style={styles.dropZoneDivBlock}>
                 <input
                     accept="application/x-yaml,application/json"
                     ref={this.fileInputRef}
@@ -64,11 +86,16 @@ class Dropzone extends Component {
                     onChange={this.onFileAdded}
                 />
                 <Icon className='api-upload-icon' link name='cloud download' size='big'/>
-                <span className='api-upload-text' >Перетащите сюда файл OpenAPI 3.0</span><br/>
-                <span className='api-upload-text' style={{marginLeft: 36}} >или <a href='#' style={{color: '#2F80ED'}}>загрузите</a> с компьютера</span>
+                <span className='api-upload-text'>Перетащите сюда файл OpenAPI 3.0</span><br/>
+                <span className='api-upload-text' style={styles.dropZoneSpan}>или <a href='#' style={styles.dropZoneLinkColor}>загрузите</a> с компьютера</span>
             </div>
         );
     }
 }
+
+Dropzone.propTypes = {
+    onFileAdded: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired
+};
 
 export default Dropzone;
