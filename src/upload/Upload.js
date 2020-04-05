@@ -93,7 +93,7 @@ Upload.propTypes = {
     onClickReset: PropTypes.func.isRequired,
     setErrorFileState: PropTypes.func.isRequired,
     hasError: PropTypes.bool.isRequired,
-    file: PropTypes.func.isRequired,
+    file: PropTypes.any.isRequired, //todo probably need to remove
     uploading: PropTypes.bool.isRequired,
     setEmptyFileState: PropTypes.func.isRequired,
     uploadProgress: PropTypes.any.isRequired,
