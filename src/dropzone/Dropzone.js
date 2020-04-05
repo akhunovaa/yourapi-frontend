@@ -9,19 +9,13 @@ class Dropzone extends Component {
         super(props);
         this.state = {isHightlighted: false};
         this.fileInputRef = React.createRef();
-
-        this.openFileDialog = this.openFileDialog.bind(this);
-        this.onFileAdded = this.onFileAdded.bind(this);
-        this.onDragOver = this.onDragOver.bind(this);
-        this.onDragLeave = this.onDragLeave.bind(this);
-        this.onDrop = this.onDrop.bind(this);
     }
 
-    openFileDialog() {
+    openFileDialog = () => {
         this.fileInputRef.current.click();
-    }
+    };
 
-    onFileAdded(evt) {
+    onFileAdded = (evt) => {
         const {disabled, onFileAdded} = this.props;
 
         if (disabled) return;
@@ -32,18 +26,18 @@ class Dropzone extends Component {
         if (onFileAdded) {
             onFileAdded(file);
         }
-    }
+    };
 
-    onDragOver(event) {
+    onDragOver = (event) => {
         event.preventDefault();
         this.setState({isHightlighted: true});
-    }
+    };
 
-    onDragLeave(event) {
+    onDragLeave = (event) => {
         this.setState({isHightlighted: false});
-    }
+    };
 
-    onDrop(event) {
+    onDrop = (event) => {
         const {onFileAdded} = this.props;
         event.preventDefault();
         const file = event.dataTransfer.files[0];
@@ -53,7 +47,7 @@ class Dropzone extends Component {
             onFileAdded(file);
         }
         this.setState({isHightlighted: false});
-    }
+    };
 
     render() {
         const {isHightlighted} = this.state;
