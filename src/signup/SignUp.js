@@ -11,6 +11,7 @@ import registerServiceWorker from "../registerServiceWorker";
 import LoadingIndicator from '../common/LoadingIndicator';
 import {Icon as Iconx} from "@iconify/react";
 import battleNet from "@iconify/icons-fa-brands/battle-net";
+import * as PropTypes from "prop-types";
 
 class SignUp extends Component {
 
@@ -91,11 +92,13 @@ class SignUp extends Component {
     };
 
     render() {
-        if (this.props.authenticated) {
+        const { authenticated, isMobile, location } = this.props;
+
+        if (authenticated) {
             return <Redirect
                 to={{
                     pathname: "/",
-                    state: {from: this.props.location}
+                    state: {from: location}
                 }}/>;
         }
 
@@ -111,10 +114,25 @@ class SignUp extends Component {
         const yandexAuthUrl = host + YANDEX_AUTH_URL + redirectUri;
         const battlenetAuthUrl = host + BATTLE_NET_AUTH_URL + redirectUri;
 
+        const styles = {
+            iconStyle: {
+                marginRight: 44,
+                color: '#A5A5A5'
+            },
+            linkStyle: {
+                color: '#4F4F4F'
+            },
+            dividerStyle: {
+                marginTop: 24,
+                marginBottom: 0
+            }
+        };
+
+
         return (
             <div id="login-container">
 
-                {this.props.isMobile ? <div/> :  <div id="login-container-left"/>}
+                {isMobile ? <div/> :  <div id="login-container-left"/>}
 
                 <div id="login-container-right">
                     <div id="login-container-right-header">
@@ -123,29 +141,26 @@ class SignUp extends Component {
                     <div className="signup-container-right-form">
                         <div className='navigate-links'>
                             <div className='login-nav-link-left-login'>
-                                <Link to="/login"><b style={{color: '#4F4F4F'}}>Вход</b></Link>
+                                <Link to="/login"><b style={styles.linkStyle}>Вход</b></Link>
                             </div>
                             <div className='signup-nav-link-right-1'>
-                                <Link to="/signup"><b style={{color: '#4F4F4F'}}>Регистрация</b></Link>
+                                <Link to="/signup"><b style={styles.linkStyle}>Регистрация</b></Link>
                             </div>
                         </div>
                         <SignupForm2 {...this.props} />
-                        <Divider style={{marginTop: 24,  marginBottom: 0}}/>
+                        <Divider style={styles.dividerStyle}/>
                     </div>
                     <div className="signup-container-right-footer">
                         <div className='footer-icon-group-label'>
-                            <label style={{color: '#4F4F4F'}}>Войти с помощью</label>
+                            <label style={styles.linkStyle}>Войти с помощью</label>
                         </div>
-
                         <div className='footer-icon-group'>
-                            {this.props.isMobile ?  <a href={googleAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='google' name='google' size={'large'} onClick={this.openSignInWindow}/>}
-                            {this.props.isMobile ?  <a href={facebookAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='facebook' size={'large'}/></a>:  <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='facebook' name='facebook' size={'large'} onClick={this.openSignInWindow}/>}
-                            {this.props.isMobile ?  <a href={vkAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='vk' name='vk' size={'large'} onClick={this.openSignInWindow}/>}
-                            {this.props.isMobile ?  <a href={yandexAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='yandex' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='yandex' name='yandex' size={'large'} onClick={this.openSignInWindow}/>}
-                            {this.props.isMobile ?  <a href={battlenetAuthUrl}><Iconx className='battle-net-auth-icon' icon={battleNet} id='battlenet' name='battlenet'/></a> : <Iconx className='battle-net-auth-icon' icon={battleNet} id='battlenet' name='battlenet' onClick={this.openSignInWindow}/>}
+                            {isMobile ?  <a href={googleAuthUrl}><Icon style={styles.iconStyle} link name='google' size={'large'}/></a>:  <Icon style={styles.iconStyle} link id='google' name='google' size={'large'} onClick={this.openSignInWindow}/>}
+                            {isMobile ?  <a href={facebookAuthUrl}><Icon style={styles.iconStyle} link name='facebook' size={'large'}/></a>:  <Icon style={styles.iconStyle} link id='facebook' name='facebook' size={'large'} onClick={this.openSignInWindow}/>}
+                            {isMobile ?  <a href={vkAuthUrl}><Icon style={styles.iconStyle} link name='vk' size={'large'}/></a> : <Icon style={styles.iconStyle} link id='vk' name='vk' size={'large'} onClick={this.openSignInWindow}/>}
+                            {isMobile ?  <a href={yandexAuthUrl}><Icon style={styles.iconStyle} link name='yandex' size={'large'}/></a> : <Icon style={styles.iconStyle} link id='yandex' name='yandex' size={'large'} onClick={this.openSignInWindow}/>}
+                            {isMobile ?  <a href={battlenetAuthUrl}><Iconx className='battle-net-auth-icon' icon={battleNet} id='battlenet' name='battlenet'/></a> : <Iconx className='battle-net-auth-icon' icon={battleNet} id='battlenet' name='battlenet' onClick={this.openSignInWindow}/>}
                         </div>
-
-
                     </div>
                 </div>
 
@@ -248,27 +263,65 @@ class SignupForm2 extends Component {
     render() {
         const { width } = this.state;
         const isWide = width >= 2200;
+
+        const styles = {
+            labelStyle: {
+                float: 'left',
+                color: '#A5A5A5'
+            },
+            labelStyleWithMargin: {
+                float: 'left',
+                color: '#A5A5A5',
+                marginBottom: 6
+            },
+            checkBoxStyle: {
+                float: 'left',
+                color: '#4F4F4F',
+                paddingTop: '30px',
+                paddingBottom: '16px'
+            },
+            reCaptchaStyle: {
+                width: '100%'
+            },
+            licenseAgreementLabel: {
+                float: 'left',
+                color: '#A5A5A5',
+                paddingTop: '8px',
+                wordWrap: 'break-word'
+            },
+            licenseAgreementDiv: {
+                float: 'left',
+                paddingTop: '0px',
+                color: '#2F80ED',
+                wordWrap: 'break-word'
+            },
+            licenseAgreementDivColor: {
+                color: '#A5A5A5'
+            }
+        }
+
+
+
         return (
             <Grid className={isWide ? 'signup-wide-grid-form' : 'signup-grid-form'}>
-
                 <Grid.Column widescreen={16} tablet={16} mobile={16} largeScreen={16} computer={16} stretched>
                     <Form size='tiny' onSubmit={this.handleSubmit}>
                         <Segment className='login-data-segment-form'>
-                                <Form.Field>
-                                    <label style={{float: 'left', color: '#A5A5A5'}}>Имя/Логин</label>
-                                    <Input onChange={this.handleInputChange} className="form-login-input" id="login" name="login" required placeholder='Имя/Логин'/>
-                                </Form.Field>
-                                <Form.Field>
-                                    <label style={{float: 'left', color: '#A5A5A5'}}>Электронная почта</label>
-                                    <Input onChange={this.handleInputChange} className="form-login-input" type="email" id="email" name="email" required placeholder='Email'/>
-                                </Form.Field>
-                                <Form.Field style={{}}>
-                                    <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
-                                    <Input onChange={this.handleInputChange}
-                                        icon={<Icon name={this.state.showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
-                                        placeholder='Пароль' id="password" name="password" required type={this.state.showPassword ? 'text' : 'password'}/>
-                                </Form.Field>
-                                <label style={{float: 'left', color: '#A5A5A5', marginBottom: 6}}>Минимум 6 символов</label>
+                            <Form.Field>
+                                <label style={styles.labelStyle}>Имя/Логин</label>
+                                <Input onChange={this.handleInputChange} className="form-login-input" id="login" name="login" required placeholder='Имя/Логин'/>
+                            </Form.Field>
+                            <Form.Field>
+                                <label style={styles.labelStyle}>Электронная почта</label>
+                                <Input onChange={this.handleInputChange} className="form-login-input" type="email" id="email" name="email" required placeholder='Email'/>
+                            </Form.Field>
+                            <Form.Field style={{}}>
+                                <label style={styles.labelStyle}>Пароль</label>
+                                <Input onChange={this.handleInputChange}
+                                    icon={<Icon name={this.state.showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
+                                    placeholder='Пароль' id="password" name="password" required type={this.state.showPassword ? 'text' : 'password'}/>
+                            </Form.Field>
+                            <label style={styles.labelStyleWithMargin}>Минимум 6 символов</label>
                             <ReCaptcha
                                 ref={(el) => {this.captcha = el;}}
                                 size="normal"
@@ -278,27 +331,22 @@ class SignupForm2 extends Component {
                                 onloadCallback={this.onLoadRecaptcha}
                                 verifyCallback={this.verifyCallback}
                                 hl="ru"
-                                style={{width: '100%'}}
+                                style={styles.reCaptchaStyle}
                             />
-                                <Form.Field>
-                                    <Checkbox style={{
-                                        float: 'left',
-                                        color: '#4F4F4F',
-                                        paddingTop: '30px',
-                                        paddingBottom: '16px'
-                                    }} label='Запомнить меня'/>
-                                </Form.Field>
-                                <Button type='submit' className='submit-button' fluid
-                                        size='large'>
-                                    Создать аккаунт и войти
-                                </Button>
-                                <div className='license-agreement'>
-                                    <label style={{float: 'left', color: '#A5A5A5', paddingTop: '8px', wordWrap: 'break-word'}}>Создавая аккаунт, вы принимаете</label>
-                                    <div style={{float: 'left', paddingTop: '0px', color: '#2F80ED', wordWrap: 'break-word'}}>
-                                             <a href="/agreement.html" target="_blank" rel="noopener noreferrer">пользовательские соглашения </a><span style={{color: '#A5A5A5'}}>и</span>
-                                             <a href="/privacy.html" target="_blank" rel="noopener noreferrer"> политику конфиденциальности</a>
-                                    </div>
+                            <Form.Field>
+                                <Checkbox style={styles.checkBoxStyle} label='Запомнить меня'/>
+                            </Form.Field>
+                            <Button type='submit' className='submit-button' fluid size='large' >
+                                Создать аккаунт и войти
+                            </Button>
+                            <div className='license-agreement'>
+                                <label style={styles.licenseAgreementLabel}>Создавая аккаунт, вы принимаете</label>
+                                <div style={styles.licenseAgreementDiv}>
+                                     <a href="/agreement.html" target="_blank" rel="noopener noreferrer">пользовательские соглашения </a>
+                                     <span style={styles.licenseAgreementDivColor}>и</span>
+                                     <a href="/privacy.html" target="_blank" rel="noopener noreferrer"> политику конфиденциальности</a>
                                 </div>
+                            </div>
                         </Segment>
                     </Form>
                 </Grid.Column>
@@ -308,5 +356,11 @@ class SignupForm2 extends Component {
 
 }
 
+SignUp.propTypes = {
+    isMobile: PropTypes.bool.isRequired,
+    history: PropTypes.any.isRequired,
+    authenticated: PropTypes.bool.isRequired,
+    location: PropTypes.any
+};
 
 export default SignUp;
