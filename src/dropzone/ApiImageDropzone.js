@@ -16,16 +16,6 @@ class ApiImageDropzone extends Component {
         };
         this.imageInputRef = React.createRef();
 
-        this.openFileDialog = this.openFileDialog.bind(this);
-        this.onFilesAdded = this.onFilesAdded.bind(this);
-        this.onDragOver = this.onDragOver.bind(this);
-        this.onDragLeave = this.onDragLeave.bind(this);
-        this.onDrop = this.onDrop.bind(this);
-        this.renderErrorProgress = this.renderErrorProgress.bind(this);
-        this.renderErrorState = this.renderErrorState.bind(this);
-        this.onFileAdded = this.onFileAdded.bind(this);
-        this.hasExtension = this.hasExtension.bind(this);
-        this.handleImageUpload = this.handleImageUpload.bind(this);
     }
 
     componentDidMount() {
@@ -33,35 +23,35 @@ class ApiImageDropzone extends Component {
         this.setState({imageUrl: apiImage});
     }
 
-    openFileDialog() {
+    openFileDialog = () => {
         if (this.props.disabled) return;
         this.imageInputRef.current.click();
     }
 
-    onFilesAdded(evt) {
+    onFilesAdded = (evt) => {
         if (this.props.disabled) return;
         const file = evt.target.files[0];
         this.setState({imageFile: file});
         this.onFileAdded(file)
     }
 
-    onDragOver(event) {
+    onDragOver= (event) => {
         event.preventDefault();
         this.setState({isHightlighted: true});
     }
 
-    onDragLeave(event) {
+    onDragLeave = (event) => {
         this.setState({isHightlighted: false});
     }
 
-    onDrop(event) {
+    onDrop = (event) => {
         event.preventDefault();
         const file = event.dataTransfer.files[0];
         this.onFileAdded(file);
         this.setState({isHightlighted: false});
     }
 
-    onFileAdded(file) {
+    onFileAdded = (file) => {
         const imageFile = file;
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -77,7 +67,7 @@ class ApiImageDropzone extends Component {
         this.handleImageUpload(imageFile);
     }
 
-    handleImageUpload(imageFile) {
+    handleImageUpload = (imageFile) => {
         const {apiId} = this.props;
 
         const image = imageFile;
@@ -100,7 +90,7 @@ class ApiImageDropzone extends Component {
     }
 
 
-    renderErrorProgress() {
+    renderErrorProgress = () => {
         return (
             <div className="ProgressWrapper">
                 <div className="error-progressBar"/>
@@ -113,14 +103,14 @@ class ApiImageDropzone extends Component {
         );
     }
 
-    renderErrorState() {
+    renderErrorState = () => {
         const {hasErrorFiles, setErrorFileState} = this.props;
         if (!hasErrorFiles) {
             setErrorFileState(true)
         }
     }
 
-    hasExtension(fileName, exts) {
+    hasExtension= (fileName, exts) => {
         return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
     }
 
