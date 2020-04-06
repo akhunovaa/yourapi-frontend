@@ -90,6 +90,18 @@
     width: 100%;
 }
 
+.help-header-label-link{
+    color: #4F4F4F;
+}
+
+.help-header-label-link:hover{
+    color: #2F80ED;
+}
+
+.help-header-label-link:focus{
+    color: #2F80ED;
+}
+
 .help-body-element{
     min-width: 303px;
     margin: 0 auto;
@@ -101,6 +113,10 @@
 
 .help-body-element-padded{
     padding-top: 74px;
+}
+
+.help-link-element-padded{
+    padding-top: 44px;
 }
 
 .help-body-element-padded-second{
@@ -127,4 +143,107 @@
     line-height: 16px;
     color: #A5A5A5;
     padding-top: 20px;
+}
+
+.help-page-main{
+    height: auto;
+    min-height: 900px;
+    background: #F2F2F2;
+    /*min-width: 1633px;*/
+    min-width: 1348px;
+    display: flex;
+}
+
+
+.left-side-help-body{
+    /*width: 268px;*/
+    width: 240px;
+    height: 1015px;
+    /* white */
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+}
+
+.right-side-help-body{
+    float: right;
+    min-width: 1068px;
+    width: 100%;
+    min-height: 800px;
+    height: auto;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.help-left-container-page-links-body{
+    padding-top: 56px;
+    padding-left: 32px;
+}
+
+.help-links-element{
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.help-header-elements-label{
+    font-family:var(--font-family);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+
+    /* Gray 2 */
+    color: #4F4F4F;
+
+    width: 100%;
+}
+
+.help-header-elements-label{
+    color: #4F4F4F;
+}
+
+.help-link{
+    color: #4F4F4F;
+}
+
+.help-link:hover{
+    color: #2F80ED;
+}
+
+.help-link:focus{
+    color: #2F80ED;
+}
+
+.help-sub-link{
+    color: #A5A5A5;
+}
+
+.help-sub-link:hover{
+    color: #2F80ED;
+}
+
+.help-sub-link:focus{
+    color: #2F80ED;
+}
+
+.help-header-body-linkshelp-header-link-set{
+    padding-top: 20px;
+    font-family:  var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* Gray 3 */
+    color: #A5A5A5;
 }

@@ -3,6 +3,7 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import NotFound from '../common/NotFound';
 import Home from '../home/Home';
 import Help from '../help/Help';
+import HelpInner from '../help/HelpInner';
 import Profile from '../profile/Profile';
 import SignUp from '../signup/SignUp';
 import Login from '../login/Login';
@@ -120,6 +121,7 @@ class App extends Component {
                                                       authenticated={this.state.authenticated} {...props} />}/>
 
                     <PrivateRoute exact path="/help" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Help}/>
+                    <PrivateRoute exact path="/help/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpInner}/>
 
                     <PrivateRoute exact path="/profile" authenticated={this.state.authenticated}
                                   currentUser={this.state.currentUser} component={Profile} onLogout={this.handleLogout}/>

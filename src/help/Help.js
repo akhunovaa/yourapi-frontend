@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Help.css';
+import {NavLink} from "react-router-dom";
 
 class Help extends Component {
 
@@ -51,32 +52,32 @@ class Help extends Component {
                     <div className="help-inner-body-container">
                         <div className="help-inner-left-container">
                             <div className='help-body-element'>
-                                <span className='help-header-label'>FAQ</span>
-                                <span className='help-header-body'>Здесь мы соберем самые распространенные вопросы о продукте</span><br/>
+                                <NavLink to='/help/faq' className='help-header-elements-label-link'><span className='help-header-label help-link'>FAQ</span></NavLink>
+                                <span className='help-header-body'>Здесь мы соберем самые распространенные вопросы о продукте</span>
                             </div>
                             <div className='help-body-element help-body-element-padded'>
-                                <span className='help-header-label'>Магазин API</span>
-                                <span className='help-header-body-links'>О Магазине</span>
-                                <span className='help-header-body-links'>Настройка фильтрации</span>
-                                <span className='help-header-body-links'>Подключение API</span>
+                                <NavLink to='/help/shop' className='help-header-elements-label-link'><span className='help-header-label help-link'>Магазин API</span></NavLink>
+                                <NavLink to='/help/shop/about' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>О Магазине</span></NavLink>
+                                <NavLink to='/help/shop/filter' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Настройка фильтрации</span></NavLink>
+                                <NavLink to='/help/shop/connection' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Подключение API</span></NavLink>
                             </div>
                             <div className='help-body-element help-body-element-padded-second'>
-                                <span className='help-header-label'>Личный кабинет</span>
-                                <span className='help-header-body-links'>Настройка профиля</span>
-                                <span className='help-header-body-links'>Загрузка API</span>
-                                <span className='help-header-body-links'>Администрирование</span>
+                                <NavLink to='/help/account' className='help-header-label-link'><span className='help-header-label'>Личный кабинет</span></NavLink>
+                                <NavLink to='/help/account/setup' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Настройка профиля</span></NavLink>
+                                <NavLink to='/help/account/loader' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Загрузка API</span></NavLink>
+                                <NavLink to='/help/account/administration' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Администрирование</span></NavLink>
                             </div>
                         </div>
                         <div className="help-inner-right-container">
                             <div className='help-body-element'>
-                                <span className='help-header-label'>Учетная запись</span>
-                                <span className='help-header-body-links'>Регистрация</span>
-                                <span className='help-header-body-links'>Авторизация и выход</span>
+                                <NavLink to='/help/profile' className='help-header-elements-label-link'><span className='help-header-label help-link'>Учетная запись</span></NavLink>
+                                <NavLink to='/help/profile/registration' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Регистрация</span></NavLink>
+                                <NavLink to='/help/profile/login' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Авторизация и выход</span></NavLink>
                             </div>
                             <div className='help-body-element help-body-element-padded'>
-                                <span className='help-header-label'>Интеграторы</span>
-                                <span className='help-header-body-links'>Об интеграторах</span>
-                                <span className='help-header-body-links'>Работа с интеграторами</span>
+                                <NavLink to='/help/integrator' className='help-header-elements-label-link'><span className='help-header-label help-link'>Интеграторы</span></NavLink>
+                                <NavLink to='/help/integrator/about' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Об интеграторах</span></NavLink>
+                                <NavLink to='/help/integrator/work' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Работа с интеграторами</span></NavLink>
                             </div>
                         </div>
                     </div>

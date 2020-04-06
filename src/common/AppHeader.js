@@ -66,7 +66,7 @@ class AppHeader extends Component {
             <div style={{maxHeight: '64px'}}>
                 <Switch>
                      <PrivateRoute exact path="/" authenticated={authenticated} currentUser={currentUser} component={HomeHeader} onLogout={onLogout}/>
-                     <PrivateRoute exact path="/help" authenticated={authenticated} currentUser={currentUser} component={HelpHeader} onLogout={onLogout}/>
+                     <PrivateRoute path="/help" authenticated={authenticated} currentUser={currentUser} component={HelpHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/integrator" authenticated={authenticated} currentUser={currentUser} component={IntegratorHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/shop" authenticated={authenticated} currentUser={currentUser} component={ShopHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={currentUser} component={ProfileHeader} onLogout={onLogout}/>
