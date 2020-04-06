@@ -21,19 +21,19 @@ class Login extends Component {
             windowObjectReference: null,
             loading: true
         };
-        this.openSignInWindow = this.openSignInWindow.bind(this);
     }
 
     componentDidMount() {
+        const {location, history} = this.props;
         // If the OAuth2 login encounters an error, the user is redirected to the /login page with an error.
         // Here we display the error and then remove the error query parameter from the location.
-        if (this.props.location && this.props.location.state && this.props.location.state.error) {
+        if (location && location.state && location.state.error) {
             setTimeout(() => {
-                Alert.error(this.props.location.state.error, {
+                Alert.error(location.state.error, {
                     timeout: 5000
                 });
-                this.props.history.replace({
-                    pathname: this.props.location.pathname,
+                history.replace({
+                    pathname: location.pathname,
                     state: {}
                 });
             }, 100);
@@ -49,7 +49,7 @@ class Login extends Component {
         window.location.reload();
     };
 
-    openSignInWindow(event){
+    openSignInWindow = (event) => {
         event.preventDefault();
         const target = event.target;
         const inputId = target.id;
@@ -85,6 +85,7 @@ class Login extends Component {
             + leftPosition + ",top=" + topPosition + ",screenX=" + leftPosition + ",screenY="
             + topPosition + ",toolbar=no,menubar=no,scrollbars=no,location=no,directories=no";
 
+        //todo WTF???? =)))
         if (windowObjectReference === null || windowObjectReference.closed) {
            window.open(authUrl, 'Окно авторизации', strWindowFeatures);
         } else if (previousUrl !== authUrl) {
@@ -94,6 +95,7 @@ class Login extends Component {
             windowObjectReference.focus();
         }
 
+        //todo WTF???? =)))
         window.addEventListener('message', event => this.receiveMessage(event), false);
         previousUrl = authUrl;
         this.setState({
@@ -103,15 +105,17 @@ class Login extends Component {
     };
 
     render() {
-        if (this.props.authenticated) {
+        const {authenticated, location, isMobile} = this.props;
+        const {loading} = this.state;
+        if (authenticated) {
             return <Redirect
                 to={{
                     pathname: "/",
-                    state: {from: this.props.location}
+                    state: {from: location}
                 }}/>;
         }
 
-        if (this.state.loading) {
+        if (loading) {
             return <LoadingIndicator/>
         }
 
@@ -123,9 +127,23 @@ class Login extends Component {
         const yandexAuthUrl = host + YANDEX_AUTH_URL + redirectUri;
         const battlenetAuthUrl = host + BATTLE_NET_AUTH_URL + redirectUri;
 
+        const styles = {
+            iconStyle: {
+                marginRight: 44,
+                color: '#A5A5A5'
+            },
+            linkStyle: {
+                color: '#4F4F4F'
+            },
+            dividerStyle: {
+                marginTop: 0,
+                marginBottom: 0
+            }
+        };
+
         return (
             <div id="login-container">
-                {this.props.isMobile ? <div/> :  <div id="login-container-left"/>}
+                {isMobile ? <div/> :  <div id="login-container-left"/>}
                 <div id="login-container-right">
                     <div id="login-container-right-header">
                         <Header as='h3' className={'login-right-header'}>YourAPI</Header>
@@ -133,26 +151,26 @@ class Login extends Component {
                     <div className="login-container-right-form">
                         <div className='navigate-links'>
                             <div className='login-nav-link-left'>
-                                <Link to="/login"><b style={{color: '#4F4F4F'}}>Вход</b></Link>
+                                <Link to="/login"><b style={styles.linkStyle}>Вход</b></Link>
                             </div>
                             <div className='signup-nav-link-right-login'>
-                                <Link to="/signup"><b style={{color: '#4F4F4F'}}>Регистрация</b></Link>
+                                <Link to="/signup"><b style={styles.linkStyle}>Регистрация</b></Link>
                             </div>
                         </div>
                         <LoginForm2 {...this.props} />
                     </div>
-                    <Divider style={{marginTop: 0,  marginBottom: 0}}/>
+                    <Divider style={styles.dividerStyle}/>
                     <div className="login-container-right-footer">
                             <div className='footer-icon-group-label'>
                                 <label style={{color: '#4F4F4F'}}>Войти с помощью</label>
                             </div>
 
                             <div className='footer-icon-group'>
-                                {this.props.isMobile ?  <a href={googleAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='google' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='google' name='google' size={'large'} onClick={this.openSignInWindow}/>}
-                                {this.props.isMobile ?  <a href={facebookAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='facebook' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='facebook' name='facebook' size={'large'} onClick={this.openSignInWindow}/>}
-                                {this.props.isMobile ?  <a href={vkAuthUrl}><Icon style={{marginRight: 44, color: '#A5A5A5'}} link name='vk' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='vk' name='vk' size={'large'} onClick={this.openSignInWindow}/>}
-                                {this.props.isMobile ?  <a href={yandexAuthUrl}><Icon style={{marginRight: 20, color: '#A5A5A5'}} link name='yandex' size={'large'}/></a> : <Icon style={{marginRight: 44, color: '#A5A5A5'}} link id='yandex' name='yandex' size={'large'} onClick={this.openSignInWindow}/>}
-                                {this.props.isMobile ?  <a href={battlenetAuthUrl}><Iconx className='battle-net-auth-icon' icon={battleNet} id='battlenet' name='battlenet'/></a> : <Iconx className='battle-net-auth-icon' icon={battleNet} id='battlenet' name='battlenet' onClick={this.openSignInWindow}/>}
+                                {isMobile ?  <a href={googleAuthUrl}><Icon style={styles.iconStyle} link name='google' size={'large'}/></a> : <Icon style={styles.iconStyle} link id='google' name='google' size={'large'} onClick={this.openSignInWindow}/>}
+                                {isMobile ?  <a href={facebookAuthUrl}><Icon style={styles.iconStyle} link name='facebook' size={'large'}/></a> : <Icon style={styles.iconStyle} link id='facebook' name='facebook' size={'large'} onClick={this.openSignInWindow}/>}
+                                {isMobile ?  <a href={vkAuthUrl}><Icon style={styles.iconStyle} link name='vk' size={'large'}/></a> : <Icon style={styles.iconStyle} link id='vk' name='vk' size={'large'} onClick={this.openSignInWindow}/>}
+                                {isMobile ?  <a href={yandexAuthUrl}><Icon style={styles.iconStyle} link name='yandex' size={'large'}/></a> : <Icon style={styles.iconStyle} link id='yandex' name='yandex' size={'large'} onClick={this.openSignInWindow}/>}
+                                {isMobile ?  <a href={battlenetAuthUrl}><Iconx className='battle-net-auth-icon' icon={battleNet} id='battlenet' name='battlenet'/></a> : <Iconx className='battle-net-auth-icon' icon={battleNet} id='battlenet' name='battlenet' onClick={this.openSignInWindow}/>}
                             </div>
                         </div>
                 </div>
@@ -223,8 +241,29 @@ class LoginForm2 extends Component {
     }
 
     render() {
-        const { width } = this.state;
+        const {width} = this.state;
         const isWide = width >= 2200;
+
+        const styles = {
+            labelStyle: {
+                float: 'left',
+                color: '#A5A5A5'
+            },
+            linkStyleForgetPwd: {
+                float: 'left',
+                paddingTop: '0px',
+                paddingBottom: '12px',
+                color: '#2F80ED'
+            },
+            checkBoxRememberMeStyle: {
+                float: 'left',
+                color: '#4F4F4F',
+                paddingTop: '12px',
+                paddingBottom: '16px'
+            }
+
+        }
+
         return (
             <div className='login-form'>
                 <Grid className={!isWide ? 'login-grid-form' : 'login-wide-grid-form'}>
@@ -232,34 +271,29 @@ class LoginForm2 extends Component {
                         <Form size='tiny' onSubmit={this.handleSubmit}>
                             <Segment className='login-data-segment-form'>
                                 <Form.Field>
-                                    <label style={{float: 'left', color: '#A5A5A5'}}>Логин/Email</label>
-                                    <Input onChange={this.handleInputChange} className="form-login-input" id="login" name="login" required placeholder='Логин/Email'/>
+                                    <label style={styles.labelStyle}>Логин/Email</label>
+                                    <Input onChange={this.handleInputChange} className="form-login-input" id="login"
+                                           name="login" required placeholder='Логин/Email'/>
                                 </Form.Field>
                                 <Form.Field style={{}}>
-                                    <label style={{float: 'left', color: '#A5A5A5'}}>Пароль</label>
+                                    <label style={styles.labelStyle}>Пароль</label>
                                     <Input onChange={this.handleInputChange}
-                                           icon={<Icon name={this.state.showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
-                                           placeholder='Пароль' id="password" name="password" required type={this.state.showPassword ? 'text' : 'password'}
+                                           icon={<Icon name={this.state.showPassword ? 'eye slash outline' : 'eye'} link
+                                                       onClick={this.handlePasswordShow}/>}
+                                           placeholder='Пароль' id="password" name="password" required
+                                           type={this.state.showPassword ? 'text' : 'password'}
                                     />
                                 </Form.Field>
-                                <Link style={{float: 'left', paddingTop: '0px', paddingBottom: '12px', color: '#2F80ED'}} to="#">Забыли пароль?</Link>
+                                <Link style={styles.linkStyleForgetPwd} to="#">Забыли пароль?</Link>
                                 <Form.Field>
-                                    <Checkbox style={{
-                                        float: 'left',
-                                        color: '#4F4F4F',
-                                        paddingTop: '12px',
-                                        paddingBottom: '16px'
-                                    }} label='Запомнить меня'/>
+                                    <Checkbox style={styles.checkBoxRememberMeStyle} label='Запомнить меня'/>
                                 </Form.Field>
-                                <Button type='submit' className='submit-button' fluid size='large'>
-                                    Войти
-                                </Button>
+                                <Button type='submit' className='submit-button' fluid size='large'>Войти</Button>
                             </Segment>
                         </Form>
                     </Grid.Column>
                 </Grid>
             </div>
-
         );
     }
 
