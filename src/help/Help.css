@@ -235,8 +235,12 @@
 }
 
 .help-sub-link:focus{
-    color: #2F80ED;
-}
+     color: #2F80ED;
+ }
+
+.help-sub-link-active{
+     color: #2F80ED;
+ }
 
 .help-header-body-linkshelp-header-link-set{
     padding-top: 20px;

@@ -3,7 +3,11 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import NotFound from '../common/NotFound';
 import Home from '../home/Home';
 import Help from '../help/Help';
-import HelpInner from '../help/HelpInner';
+import HelpProfile from '../help/HelpProfile';
+import HelpAccount from '../help/HelpAccount';
+import HelpShop from '../help/HelpShop';
+import HelpFaq from '../help/HelpFaq';
+import HelpIntegrator from '../help/HelpIntegrator';
 import Profile from '../profile/Profile';
 import SignUp from '../signup/SignUp';
 import Login from '../login/Login';
@@ -121,7 +125,11 @@ class App extends Component {
                                                       authenticated={this.state.authenticated} {...props} />}/>
 
                     <PrivateRoute exact path="/help" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Help}/>
-                    <PrivateRoute exact path="/help/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpInner}/>
+                    <PrivateRoute path="/help/account/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpAccount}/>
+                    <PrivateRoute path="/help/profile/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpProfile}/>
+                    <PrivateRoute path="/help/shop/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpShop}/>
+                    <PrivateRoute path="/help/faq/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpFaq}/>
+                    <PrivateRoute path="/help/integrator/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpIntegrator}/>
 
                     <PrivateRoute exact path="/profile" authenticated={this.state.authenticated}
                                   currentUser={this.state.currentUser} component={Profile} onLogout={this.handleLogout}/>

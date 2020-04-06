@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './Help.css';
-import HelpInnerLinksSet from './HelpInnerLinksSet.js';
+import HelpInnerLinksSet from './HelpInnerLinksSet';
 
-class HelpInner extends Component {
+class HelpShop extends Component {
 
     _isMounted = false;
 
@@ -58,17 +58,20 @@ class HelpInner extends Component {
 
     render() {
 
+        const {page} = this.props.match.params;
+
         return (
             <div className='help-page-main'>
                 <div className='left-side-help-body'>
                     <HelpInnerLinksSet {...this.props}/>
                 </div>
                 <div className='right-side-help-body'>
-
+                    <h1>Shop</h1>
+                    <h2>{page}</h2>
                 </div>
             </div>
         )
     }
 }
 
-export default HelpInner;
+export default HelpShop;
