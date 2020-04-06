@@ -89,7 +89,7 @@ class HelpAccountApiUpload extends Component {
                             обращении будет присылать нам различные факты о наших пушистых друзьях.
                         </div>
                         <br/>
-                        <div id='prepare' className='help-sub-page-right-body-header-text'>
+                        <div id='prepare' className='help-sub-page-right-body-header-text help-sub-page-right-body-header-next-text'>
                             1. Переходим по ссылке <a href='https://openapi.yourapi.ru'
                                                       target='_blank'>openapi.yourapi.ru</a> и заполняем все необходимые
                             поля. Для примера я создам файл с заголовком «API для тестирования».
