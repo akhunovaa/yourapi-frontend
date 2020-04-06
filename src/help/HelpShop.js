@@ -67,7 +67,6 @@ class HelpShop extends Component {
                 </div>
                 <div className='right-side-help-body'>
                     <h1>Shop</h1>
-                    <h2>{page}</h2>
                 </div>
             </div>
         )

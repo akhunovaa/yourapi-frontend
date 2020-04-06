@@ -1,3 +1,11 @@
+:root {
+    --font-family: Roboto, serif;
+    --background-color: #F39847;
+    height: auto;
+    min-width: 1235px;
+    --background-inactive-color: #F2F2F2;
+}
+
 .help-main{
     height: auto;
     min-height: 1015px;
@@ -158,7 +166,6 @@
     /*width: 268px;*/
     width: 240px;
     min-width: 240px;
-    height: 1015px;
     /* white */
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
@@ -260,4 +267,102 @@
 
 .first-link-padded{
     padding-top: 20px
+}
+
+.help-sub-page{
+    height: auto;
+    min-height: 1063px;
+    background: var(--background-inactive-color);
+    /* min-width: 1633px; */
+    min-width: 1126px;
+    display: flex;
+}
+
+.help-sub-page-left{
+    display: block;
+    width: 274px;
+    min-width: 240px;
+    height: auto;
+    padding-top: 154px;
+    padding-left: 60px;
+    padding-right: 30px;
+}
+
+.help-sub-page-right{
+    width: 100%;
+    min-width: 852px;
+    height: auto;
+    padding-right: 222px;
+}
+
+.help-sub-paragraph{
+    width: 123px;
+    height: auto;
+    padding-top: 16px;
+
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.help-sub-page-right-body{
+    padding-top: 44px;
+}
+
+.help-sub-page-right-body-header{
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.help-sub-page-right-body-header-sub{
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    padding-top: 24px;
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.help-sub-page-right-body-header-text{
+    padding-top: 12px;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+
+    /* Gray 2 */
+    color: #4F4F4F;
+}
+
+.help-sub-page-right-body-header-next-text{
+    padding-top: 36px;
+    margin-bottom: 12px;
+}
+
+.help-sub-page-right-body-header-image{
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    width: 630px;
+    height: 400px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.fake-footer-of-body{
+    margin-bottom: 40px;
 }

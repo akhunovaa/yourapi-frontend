@@ -67,7 +67,6 @@ class HelpProfile extends Component {
                 </div>
                 <div className='right-side-help-body'>
                     <h1>Profile</h1>
-                    <h2>{page}</h2>
                 </div>
             </div>
         )

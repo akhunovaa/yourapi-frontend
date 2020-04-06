@@ -77,7 +77,7 @@ class HelpInnerLinksSet extends Component {
                 <div className='help-body-element help-link-element-padded'>
                     <NavLink to='/help/account/setup' className='help-header-elements-label-link'><span className='help-header-elements-label help-link'>Личный кабинет</span></NavLink>
                     <NavLink to='/help/account/setup' className='help-header-link-set first-link-padded'><span className={page === 'setup' ? 'help-header-link-set help-sub-link-active': 'help-header-link-set help-sub-link'}>Настройка профиля</span></NavLink>
-                    <NavLink to='/help/account/loader' className='help-header-link-set'><span className={page === 'loader' ? 'help-header-link-set help-sub-link-active': 'help-header-link-set help-sub-link'}>Загрузка API</span></NavLink>
+                    <NavLink to='/help/account/upload' className='help-header-link-set'><span className={page === 'upload' ? 'help-header-link-set help-sub-link-active': 'help-header-link-set help-sub-link'}>Загрузка API</span></NavLink>
                     <NavLink to='/help/account/api' className='help-header-link-set'><span className={page === 'api' ? 'help-header-link-set help-sub-link-active': 'help-header-link-set help-sub-link'}>Работа c API</span></NavLink>
                     <NavLink to='/help/account/administration' className='help-header-link-set'><span className={page === 'administration' ? 'help-header-link-set help-sub-link-active': 'help-header-link-set help-sub-link'}>Администрирование</span></NavLink>
                 </div>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Help.css';
 import HelpInnerLinksSet from "./HelpInnerLinksSet";
+import HelpAccountApiUpload from "./HelpAccountApiUpload";
 
 class HelpAccount extends Component {
 
@@ -35,11 +36,17 @@ class HelpAccount extends Component {
         });
     }
 
-    handleOnPhoneChange(value) {
-        this.setState({
-            phone: value
-        });
-    }
+    renderBody = (page) => {
+
+        switch (page) {
+            case 'upload':
+                return <HelpAccountApiUpload {...this.props}/>;
+            default:
+                return  <HelpAccountApiUpload {...this.props}/>;
+
+        }
+
+    };
 
     handleOpen = () => {
         this.setState({open: true})
@@ -59,8 +66,7 @@ class HelpAccount extends Component {
                     <HelpInnerLinksSet {...this.props}/>
                 </div>
                 <div className='right-side-help-body'>
-                    <h1>Account</h1>
-                    <h2>{page}</h2>
+                    {this.renderBody(page)}
                 </div>
             </div>
         )
