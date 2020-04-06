@@ -103,10 +103,8 @@
 }
 
 .help-body-element{
-    min-width: 303px;
     margin: 0 auto;
     text-align: left;
-
     display: grid;
 
 }
@@ -143,6 +141,7 @@
     line-height: 16px;
     color: #A5A5A5;
     padding-top: 20px;
+    width: 240px;
 }
 
 .help-page-main{
@@ -158,6 +157,7 @@
 .left-side-help-body{
     /*width: 268px;*/
     width: 240px;
+    min-width: 240px;
     height: 1015px;
     /* white */
     background: #FFFFFF;
@@ -180,6 +180,8 @@
 .help-left-container-page-links-body{
     padding-top: 56px;
     padding-left: 32px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .help-links-element{
@@ -246,4 +248,12 @@
 
     /* Gray 3 */
     color: #A5A5A5;
+}
+
+.help-header-link-set{
+    padding-top: 16px
+}
+
+.first-link-padded{
+    padding-top: 20px
 }

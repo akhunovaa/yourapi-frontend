@@ -65,6 +65,7 @@ class Help extends Component {
                                 <NavLink to='/help/account' className='help-header-label-link'><span className='help-header-label'>Личный кабинет</span></NavLink>
                                 <NavLink to='/help/account/setup' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Настройка профиля</span></NavLink>
                                 <NavLink to='/help/account/loader' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Загрузка API</span></NavLink>
+                                <NavLink to='/help/account/work' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Работа c API</span></NavLink>
                                 <NavLink to='/help/account/administration' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Администрирование</span></NavLink>
                             </div>
                         </div>

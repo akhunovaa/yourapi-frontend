@@ -65,25 +65,26 @@ class HelpInnerLinksSet extends Component {
                 </div>
                 <div className='help-body-element help-link-element-padded'>
                     <NavLink to='/help/profile' className='help-header-elements-label-link'><span className='help-header-elements-label help-link'>Учетная запись</span></NavLink>
-                    <NavLink to='/help/profile/registration' className='help-header-link-set'><span className='help-header-link-set help-link'>Регистрация</span></NavLink>
-                    <NavLink to='/help/profile/login' className='help-header-link-set'><span className='help-header-link-set help-link'>Авторизация и выход</span></NavLink>
+                    <NavLink to='/help/profile/registration' className='help-header-link-set first-link-padded'><span className='help-header-link-set help-sub-link'>Регистрация</span></NavLink>
+                    <NavLink to='/help/profile/login' className='help-header-link-set'><span className='help-header-link-set help-sub-link'>Авторизация и выход</span></NavLink>
                 </div>
                 <div className='help-body-element help-link-element-padded'>
                     <NavLink to='/help/shop' className='help-header-elements-label-link'><span className='help-header-elements-label help-link'>Магазин API</span></NavLink>
-                    <NavLink to='/help/shop/about' className='help-header-link-set'><span className='help-header-link-set help-link'>О Магазине</span></NavLink>
-                    <NavLink to='/help/shop/filter' className='help-header-link-set'><span className='help-header-link-set help-link'>Настрока фильтрации</span></NavLink>
-                    <NavLink to='/help/shop/connection' className='help-header-link-set'><span className='help-header-link-set help-link'>Подключение API</span></NavLink>
+                    <NavLink to='/help/shop/about' className='help-header-link-set first-link-padded'><span className='help-header-link-set help-sub-link'>О Магазине</span></NavLink>
+                    <NavLink to='/help/shop/filter' className='help-header-link-set'><span className='help-header-link-set help-sub-link'>Настрока фильтрации</span></NavLink>
+                    <NavLink to='/help/shop/connection' className='help-header-link-set'><span className='help-header-link-set help-sub-link'>Подключение API</span></NavLink>
                 </div>
                 <div className='help-body-element help-link-element-padded'>
                     <NavLink to='/help/integrator' className='help-header-elements-label-link'><span className='help-header-elements-label help-link'>Интеграторы</span></NavLink>
-                    <NavLink to='/help/integrator/about' className='help-header-link-set'><span className='help-header-link-set help-link'>Об интеграторах</span></NavLink>
-                    <NavLink to='/help/integrator/work' className='help-header-link-set'><span className='help-header-link-set help-link'>Работа с интеграторами</span></NavLink>
+                    <NavLink to='/help/integrator/about' className='help-header-link-set first-link-padded'><span className='help-header-link-set help-sub-link'>Об интеграторах</span></NavLink>
+                    <NavLink to='/help/integrator/work' className='help-header-link-set'><span className='help-header-link-set help-sub-link'>Работа с интеграторами</span></NavLink>
                 </div>
                 <div className='help-body-element help-link-element-padded'>
                     <NavLink to='/help/account' className='help-header-elements-label-link'><span className='help-header-elements-label help-link'>Личный кабинет</span></NavLink>
-                    <NavLink to='/help/account/setup' className='help-header-link-set'><span className='help-header-link-set help-link'>Настройка профиля</span></NavLink>
-                    <NavLink to='/help/account/loader' className='help-header-link-set'><span className='help-header-link-set help-link'>Загрузка API</span></NavLink>
-                    <NavLink to='/help/account/administration' className='help-header-link-set'><span className='help-header-link-set help-link'>Администрирование</span></NavLink>
+                    <NavLink to='/help/account/setup' className='help-header-link-set first-link-padded'><span className='help-header-link-set help-sub-link'>Настройка профиля</span></NavLink>
+                    <NavLink to='/help/account/loader' className='help-header-link-set'><span className='help-header-link-set help-sub-link'>Загрузка API</span></NavLink>
+                    <NavLink to='/help/account/work' className='help-header-link-set'><span className='help-header-link-set help-sub-link'>Работа c API</span></NavLink>
+                    <NavLink to='/help/account/administration' className='help-header-link-set'><span className='help-header-link-set help-sub-link'>Администрирование</span></NavLink>
                 </div>
             </div>
         )
