@@ -3,6 +3,7 @@ import './AppFooter.css';
 import {NavLink} from "react-router-dom";
 import {Icon} from "semantic-ui-react";
 import * as PropTypes from 'prop-types'
+import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";
 
 class AppFooter extends Component {
     render() {
@@ -57,6 +58,7 @@ class AppFooter extends Component {
                                 <span style={styles.spanOfContainer}>Служба поддержки</span>
                             </a>
                         </div>
+                        <ScrollUpButton EasingType="easeOutCubic" style={styles.ScrollUpButton}/>
                     </div>
                 ) : (
                     <div className="footer"/>
