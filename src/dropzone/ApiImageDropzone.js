@@ -4,62 +4,54 @@ import error from "../img/error.png";
 import {Image} from "semantic-ui-react";
 import {apiProjectImageUpdate} from "../util/APIUtils";
 import Alert from "react-s-alert";
+import * as PropTypes from "prop-types";
 
 class ApiImageDropzone extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hightlight: false,
+            isHightlighted: false,
             imageUrl: '',
             locallyUploaded: false
         };
         this.imageInputRef = React.createRef();
 
-        this.openFileDialog = this.openFileDialog.bind(this);
-        this.onFilesAdded = this.onFilesAdded.bind(this);
-        this.onDragOver = this.onDragOver.bind(this);
-        this.onDragLeave = this.onDragLeave.bind(this);
-        this.onDrop = this.onDrop.bind(this);
-        this.renderErrorProgress = this.renderErrorProgress.bind(this);
-        this.renderErrorState = this.renderErrorState.bind(this);
-        this.onFileAdded = this.onFileAdded.bind(this);
-        this.hasExtension = this.hasExtension.bind(this);
-        this.handleImageUpload = this.handleImageUpload.bind(this);
     }
 
     componentDidMount() {
-        this.setState({imageUrl: this.props.apiImage});
+        const {apiImage} = this.props;
+        this.setState({imageUrl: apiImage});
     }
 
-    openFileDialog() {
+    openFileDialog = () => {
         if (this.props.disabled) return;
         this.imageInputRef.current.click();
     }
 
-    onFilesAdded(evt) {
+    onFilesAdded = (evt) => {
         if (this.props.disabled) return;
         const file = evt.target.files[0];
         this.setState({imageFile: file});
         this.onFileAdded(file)
     }
 
-    onDragOver(event) {
+    onDragOver= (event) => {
         event.preventDefault();
-        this.setState({hightlight: true});
+        this.setState({isHightlighted: true});
     }
 
-    onDragLeave(event) {
-        this.setState({hightlight: false});
+    onDragLeave = (event) => {
+        this.setState({isHightlighted: false});
     }
 
-    onDrop(event) {
+    onDrop = (event) => {
         event.preventDefault();
         const file = event.dataTransfer.files[0];
         this.onFileAdded(file);
-        this.setState({hightlight: false});
+        this.setState({isHightlighted: false});
     }
 
-    onFileAdded(file) {
+    onFileAdded = (file) => {
         const imageFile = file;
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -75,11 +67,13 @@ class ApiImageDropzone extends Component {
         this.handleImageUpload(imageFile);
     }
 
-    handleImageUpload(imageFile) {
+    handleImageUpload = (imageFile) => {
+        const {apiId} = this.props;
+
         const image = imageFile;
         const formData = new FormData();
         formData.append('file', image);
-        formData.append('id', this.props.apiId);
+        formData.append('id', apiId);
 
         apiProjectImageUpdate(formData)
             .then(response => {
@@ -96,7 +90,7 @@ class ApiImageDropzone extends Component {
     }
 
 
-    renderErrorProgress() {
+    renderErrorProgress = () => {
         return (
             <div className="ProgressWrapper">
                 <div className="error-progressBar"/>
@@ -109,49 +103,52 @@ class ApiImageDropzone extends Component {
         );
     }
 
-    renderErrorState() {
-        if (!this.props.hasErrorFiles) {
-            this.props.setErrorFileState(true)
+    renderErrorState = () => {
+        const {hasErrorFiles, setErrorFileState} = this.props;
+        if (!hasErrorFiles) {
+            setErrorFileState(true)
         }
     }
 
-    hasExtension(fileName, exts) {
+    hasExtension= (fileName, exts) => {
         return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
     }
 
 
     render() {
+        const {locallyUploaded, imageUrl, editable, isHightlighted} = this.state;
+        const {disabled, apiName} = this.props;
+
         const host = window.location.origin.toString();
-        const imageFullUrl = this.state.locallyUploaded ? this.state.imageUrl : host + "/api-data/image/" + this.state.imageUrl + "/73/73";
+        const imageFullUrl = locallyUploaded ? imageUrl : host + "/api-data/image/" + imageUrl + "/73/73";
 
         return (
             <div className="image-upload">
                 <div className='api-image-upload-container'>
                     <div
-                        className={`api-image-Dropzone ${this.state.hightlight ? "Highlight" : ""}`}
+                        className={`api-image-Dropzone ${isHightlighted ? "Highlight" : ""}`}
                         onDragOver={this.onDragOver}
                         onDragLeave={this.onDragLeave}
                         onDrop={this.onDrop}
                         onClick={this.openFileDialog}
-                        style={{cursor: this.props.disabled ? "no-drop " : "pointer"}}>
-                        <div className="api-project-avatar" >
+                        style={{cursor: disabled ? "no-drop " : "pointer"}}>
+                        <div className="api-project-avatar">
                             {
-                                this.state.imageUrl ? (
-                                        <Image src={imageFullUrl} size='medium' circular verticalAlign='top'
-                                               alt={this.props.apiName}/>
-                                    ) : (
-                                        <div className="api-text-avatar">
-                                            <span>{this.props.apiName && this.props.apiName[0]}</span>
-                                        </div>
-                                    )
+                                imageUrl ? (
+                                    <Image src={imageFullUrl} size='medium' circular verticalAlign='top' alt={apiName}/>
+                                ) : (
+                                    <div className="api-text-avatar">
+                                        <span>{apiName && apiName[0]}</span>
+                                    </div>
+                                )
                             }
                         </div>
-                        <input disabled={this.state.editable}
-                            accept="image/x-png,image/jpeg"
-                            ref={this.imageInputRef}
-                            className="FileInput"
-                            type="file"
-                            onChange={this.onFilesAdded}
+                        <input disabled={editable}
+                               accept="image/x-png,image/jpeg"
+                               ref={this.imageInputRef}
+                               className="FileInput"
+                               type="file"
+                               onChange={this.onFilesAdded}
                         />
                     </div>
                 </div>
@@ -159,5 +156,22 @@ class ApiImageDropzone extends Component {
         );
     }
 }
+
+//todo there are a lot of props that is set in parent, probably need remove some of them
+ApiImageDropzone.propTypes = {
+    onFilesAdded: PropTypes.func.isRequired,
+    editable: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    onClickReset: PropTypes.func.isRequired,
+    hasExtension: PropTypes.bool.isRequired,
+    file: PropTypes.any.isRequired,
+    uploading: PropTypes.any.isRequired,
+    uploadProgress: PropTypes.any.isRequired,
+    successfullUploaded: PropTypes.any.isRequired,
+    setErrorFileState: PropTypes.any.isRequired,
+    apiName: PropTypes.any.isRequired,
+    apiId: PropTypes.any.isRequired,
+    apiImage: PropTypes.any.isRequired
+};
 
 export default ApiImageDropzone;

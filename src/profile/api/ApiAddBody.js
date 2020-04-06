@@ -303,8 +303,7 @@ class ApiAddBody extends Component {
 
                         <div className="api-add-container-input api-add-container-segment-element">
                             <Upload onFileAdded={this.onFileAdded} uploadFiles={this.uploadFile}
-                                    onClickReset={this.onClickReset} sendRequest={this.uploadNewApi}
-                                    hasExtension={this.hasExtension}
+                                    onClickReset={this.onClickReset}
                                     setErrorFileState={this.setErrorFileState} hasError={this.state.hasError}
                                     file={this.state.file} uploading={this.state.uploading}
                                     setEmptyFileState={this.setEmptyFileState}
