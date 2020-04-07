@@ -64,14 +64,15 @@ class HelpAccountApiUpload extends Component {
 
     render() {
         const host = window.location.origin.toString();
+        const {prepare, upload} = this.state;
         return (
             <div className='help-sub-page'>
                 <div className='help-sub-page-left'>
                     <div className='help-sub-paragraph'>
-                        <a href={host + '/help/account/upload#prepare'}> <span className='help-sub-link'>Подготовка файла</span></a>
+                        <a href={host + '/help/account/upload#prepare'}> <span className={prepare ? 'paragraph-link-active': 'paragraph-link'} onClick={() =>this.setState({prepare: true, upload: false})}>Подготовка файла</span></a>
                     </div>
                     <div className='help-sub-paragraph'>
-                        <a href={host + '/help/account/upload#upload'}> <span className='help-sub-link'>Загрузка</span></a>
+                        <a href={host + '/help/account/upload#upload'}> <span className={upload ? 'paragraph-link-active': 'paragraph-link'} onClick={() =>this.setState({upload: true, prepare: false})}>Загрузка</span></a>
                     </div>
                 </div>
                 <div className='help-sub-page-right'>

@@ -334,6 +334,20 @@
      color: #2F80ED;
  }
 
+.paragraph-link{
+    color: #4F4F4F;
+}
+.paragraph-link:hover{
+    color: #2F80ED;
+}
+.paragraph-link:focus{
+    color: #2F80ED;
+}
+
+.paragraph-link-active{
+    color: #2F80ED;
+}
+
 .help-header-body-linkshelp-header-link-set{
     padding-top: 20px;
     font-family:  var(--font-family);
