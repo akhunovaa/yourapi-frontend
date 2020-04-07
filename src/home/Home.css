@@ -15,16 +15,72 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
+    text-align: left;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.header-text{
+    padding-left: 292px;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .header-text-main{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
-    padding-top: 7px;
+    text-align: left;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
+
+.header-slogan{
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 150%;
+    /* or 21px */
+
+    /* Gray 6 */
+    color: #F2F2F2;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.header-slogan span{
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 150%;
+    /* or 21px */
+
+    /* Gray 6 */
+    color: #F2F2F2;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
 
 .header-buttons{
     padding-top: 16px;

@@ -82,6 +82,9 @@ class SearchBox extends Component {
 
 
     handleSearchChange = (e, {value}) => {
+        if (undefined === value) {
+            return;
+        }
         this.setState({isLoading: true, value});
         const {apiData} = this.state;
 
@@ -116,6 +119,9 @@ class SearchBox extends Component {
                             resultRenderer={this.handleSearchResultRenderer}
                             onFocus={()=>this.setState({wide: true})}
                             onBlur={()=>this.setState({wide: false, results: []})}
+                            icon={{name: 'search', link: true, onClick: _.debounce(this.handleSearchChange, 500, {
+                                    leading: true,
+                                }) }}
                             {...this.props}
                             id="searchInput" name="searchInput"/>
                 </Grid.Column>
