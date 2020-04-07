@@ -662,8 +662,8 @@ class Profile extends Component {
                                         onClick={this.handleMainInformationSubmit}>Сохранить</Button>
                             </div>
                             <div className='cancel-button-container'>
-                                <Button fluid className="cancel-button" style={{width: 165, height: 32}}
-                                        disabled={loading} color='grey'
+                                <Button fluid className="cancel-button" style={{width: 165, height: 32, backgroundColor: '#A5A5A5'}}
+                                        disabled={loading}
                                         onClick={this.reload}><span className='command-approve-buttons-text'>Отмена</span></Button>
                             </div>
                         </div>

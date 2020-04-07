@@ -266,7 +266,7 @@ class AdministrationCompanyBody extends Component {
                           <Button fluid className="apply-button" style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Сохранить</span></Button>
                       </div>
                       <div className='cancel-button-container'>
-                          <Button fluid className="cancel-button"  style={{width: 165, height:32}}><span className='command-approve-buttons-text'>Отмена</span></Button>
+                          <Button fluid className="cancel-button"  style={{width: 165, height:32, backgroundColor: '#A5A5A5'}}><span className='command-approve-buttons-text'>Отмена</span></Button>
                       </div>
                   </div>
               </div>

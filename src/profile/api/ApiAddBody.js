@@ -320,7 +320,7 @@ class ApiAddBody extends Component {
                     </div>
                     <div className='cancel-button-container api-info-cancel-button'>
                         <Button onClick={this.onClickReset} fluid className="cancel-button"
-                                style={{background: '#A5A5A5', width: 112, height: 32}}>
+                                style={{background: '#A5A5A5', width: 112, height: 32, backgroundColor: '#A5A5A5'}}>
                             <span className='command-approve-buttons-text'>Отмена</span>
                         </Button>
                     </div>

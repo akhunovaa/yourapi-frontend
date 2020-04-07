@@ -268,7 +268,7 @@ class ApiUpdateOverviewBody extends Component {
                             </div>
                             <div className='cancel-button-container api-info-cancel-button'>
                                 <Button fluid className="cancel-button"
-                                        style={{background: '#A5A5A5', width: 112, height: 32}} onClick={this.editableHandle}>
+                                        style={{background: '#A5A5A5', width: 112, height: 32, backgroundColor: '#A5A5A5'}} onClick={this.editableHandle}>
                                     <span className='command-approve-buttons-text'>Отмена</span>
                                 </Button>
                             </div></>

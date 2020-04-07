@@ -115,7 +115,7 @@ class ApiUpdateMainBody extends Component {
             CancelButton: {
                 width: 112,
                 height: 32,
-                background: '#A5A5A5'
+               backgroundColor: '#A5A5A5'
             },
             PrivacySlider: {
                 paddingLeft: 6,
