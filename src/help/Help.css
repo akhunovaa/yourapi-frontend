@@ -169,6 +169,8 @@
     /* white */
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
+    height: auto;
+    min-height: 1063px;
 }
 
 .right-side-help-body{
@@ -279,6 +281,7 @@
 }
 
 .help-sub-page-left{
+    position: fixed;
     display: block;
     width: 274px;
     min-width: 240px;
@@ -293,6 +296,7 @@
     min-width: 852px;
     height: auto;
     padding-right: 222px;
+    margin-left: 274px;
 }
 
 .help-sub-paragraph{
