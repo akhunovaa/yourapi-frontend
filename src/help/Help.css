@@ -172,11 +172,11 @@
 }
 
 .help-header-label-link:hover{
-    color: #2F80ED;
+    color: #4F4F4F;
 }
 
 .help-header-label-link:focus{
-    color: #2F80ED;
+    color: #4F4F4F;
 }
 
 .help-body-element{
@@ -184,6 +184,11 @@
     text-align: left;
     display: grid;
 
+}
+
+.help-header-elements-label-link-disabled{
+    text-align: left;
+    display: grid;
 }
 
 .help-body-element-padded{
@@ -296,6 +301,10 @@
     color: #4F4F4F;
 }
 
+.help-link-disabled{
+    color: #4F4F4F;
+}
+
 .help-link:hover{
     color: #2F80ED;
 }
@@ -305,6 +314,11 @@
 }
 
 .help-sub-link{
+    /*color: #A5A5A5;*/
+    color: #2F80ED;
+}
+
+.help-sub-link-disabled{
     color: #A5A5A5;
 }
 
