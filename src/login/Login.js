@@ -262,7 +262,7 @@ class LoginForm2 extends Component {
                 paddingBottom: '16px'
             }
 
-        }
+        };
 
         return (
             <div className='login-form'>

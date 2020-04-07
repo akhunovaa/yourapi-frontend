@@ -13,11 +13,10 @@ h1.title {
     font-weight: normal;
     font-size: 24px;
     margin-bottom: 20px;
-    text-transform: capitalize;
 }
 
 body h1.title {
-    color: #1d4371;
+    color: #2F80ED;
 }
 
 .api-edit-form{
@@ -50,10 +49,10 @@ body h1.title {
 }
 
 .api-update-buttons{
-    display: block;
-    padding: 16px 0px 0px 0px;
+    /*display: block;*/
+    padding: 16px 0 0 0;
     height: 64px;
-    width: 468px;
+    /*width: 468px;*/
 }
 
 .api-project-avatar{
@@ -114,4 +113,10 @@ body h1.title {
     border: 1px dashed #D8D8D8;
     box-sizing: border-box;
     border-radius: 4px;
+}
+
+.delete-button{
+    float: right;
+    text-align: right;
+    display: block;
 }
