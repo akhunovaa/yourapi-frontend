@@ -95,14 +95,19 @@ class Help extends Component {
                             <div className='help-body-element help-body-element-padded-second'>
                                 <NavLink to='/help/account' className='help-header-label-link'><span
                                     className='help-header-label'>Личный кабинет</span></NavLink>
-                                <NavLink to='/help/account/setup' className='help-header-body-links'><span
-                                    className='help-header-body-links help-sub-link'>Настройка профиля</span></NavLink>
-                                <NavLink to='/help/account/loader' className='help-header-body-links'><span
-                                    className='help-header-body-links help-sub-link'>Загрузка API</span></NavLink>
-                                <NavLink to='/help/account/work' className='help-header-body-links'><span
-                                    className='help-header-body-links help-sub-link'>Работа c API</span></NavLink>
-                                <NavLink to='/help/account/administration' className='help-header-body-links'><span
-                                    className='help-header-body-links help-sub-link'>Администрирование</span></NavLink>
+                                {/*<NavLink to='/help/account/setup' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Настройка профиля</span></NavLink>*/}
+                                <div style={{cursor: "no-drop"}} className='help-header-body-links'>
+                                    <span className='help-header-body-links help-sub-link-disabled'>Настройка профиля</span>
+                                </div>
+                                <NavLink to='/help/account/loader' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Загрузка API</span></NavLink>
+                                <div style={{cursor: "no-drop"}} className='help-header-body-links'>
+                                    <span className='help-header-body-links help-sub-link-disabled'>Работа c API</span>
+                                </div>
+                                <div style={{cursor: "no-drop"}} className='help-header-body-links'>
+                                   <span className='help-header-body-links help-sub-link-disabled'>Администрирование</span>
+                                </div>
+                                {/*<NavLink to='/help/account/work' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Работа c API</span></NavLink>*/}
+                                {/*<NavLink to='/help/account/administration' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Администрирование</span></NavLink>*/}
                             </div>
                         </div>
                         <div className="help-inner-right-container">
