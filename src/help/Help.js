@@ -34,17 +34,32 @@ class Help extends Component {
         return (
             <div className="help-main">
                 <div className="help-header-picture" unselectable='on'>
-                    <div className='header-text'>
-                        <div className="header-slogan" unselectable='on'>
-                            <span>Здесь можно узнать о том,</span><br/>
-                            <span>как пользоваться нашим продуктом.</span><br/>
-                            <br/>
-                            <br/>
+                    <div className="help-header-picture-inner">
+                        <div className='header-text-left'>
+                            <div className="header-slogan" unselectable='on'>
+                                <span>Здесь можно узнать о том,</span><br/>
+                                <span>как пользоваться нашим продуктом.</span><br/>
+                                <br/>
+                                <br/>
+                            </div>
+                            <div className="header-slogan" unselectable='on'>
+                                <span>Сейчас мы находимся в стадии разработки,</span><br/>
+                                <span>поэтому информация будет пополняться</span><br/>
+                                <span>по мере реализации :)</span><br/>
+                            </div>
                         </div>
-                        <div className="header-slogan" unselectable='on'>
-                            <span>Сейчас мы находимся в стадии разработки,</span><br/>
-                            <span>поэтому информация будет пополняться</span><br/>
-                            <span>по мере реализации :)</span><br/>
+                        <div className='header-text-right' hidden>
+                            <div className="header-slogan-right" unselectable='on'>
+                                <span>Здесь можно узнать о том,</span><br/>
+                                <span>как пользоваться нашим продуктом.</span><br/>
+                                <br/>
+                                <br/>
+                            </div>
+                            <div className="header-slogan-right">
+                                <span>Сейчас мы находимся в стадии разработки,</span><br/>
+                                <span>поэтому информация будет пополняться</span><br/>
+                                <span>по мере реализации :)</span><br/>
+                            </div>
                         </div>
                     </div>
                 </div>

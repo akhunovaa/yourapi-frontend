@@ -15,6 +15,70 @@
     min-width: 1235px;
 }
 
+.help-header-picture-inner{
+    width: 706px
+}
+
+.header-text-left{
+    /*padding-top: 50px;*/
+    min-height: 126px;
+    height: auto;
+    /*padding-left: 292px;*/
+    width: 50%;
+    float: left;
+    min-width: 353px;
+}
+
+.header-text-right{
+    width: 50%;
+    float: right;
+    min-height: 126px;
+    min-width: 353px;
+}
+
+
+.header-slogan{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /*width: 353px;*/
+    /* Gray 6 */
+    color: #F2F2F2;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    width: 353px;
+
+    text-align: left;
+    margin: 0 auto;
+}
+
+.header-slogan-right{
+    font-family: Roboto, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /*width: 353px;*/
+    /* Gray 6 */
+    color: #F2F2F2;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    width: 353px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+
 .help-header-picture {
     /*min-width: 1348px;*/
     height: 280px;
@@ -23,6 +87,11 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-help-text-main{
