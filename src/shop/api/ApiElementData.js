@@ -31,6 +31,11 @@ class ApiElementData extends Component {
         window.location.reload();
     };
 
+    handleChange = (e, { id, name }) => {
+        this.setState({[id]: name})
+    };
+
+
     handleInputChange(event) {
         const target = event.target;
         const inputName = target.name;
@@ -65,7 +70,11 @@ class ApiElementData extends Component {
                                 <div className="grid-labels">
                                     <Icon link name='star' style={{color: '#F39847'}}/>
                                     <label style={{color: '#F39847'}}>4,9</label>
-                                    <Icon style={{paddingLeft: '16px'}} link name='bookmark outline'/>
+                                    <Icon style={{
+                                        paddingLeft: '16px',
+                                        color: this.state[item.id + item.name] === 'bookmark outline' ? '#2F80ED' : '#A5A5A5'
+                                    }} link onClick={this.handleChange} id={item.id + item.name}
+                                          name={this.state[item.id + item.name] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
                                 </div>
                             </div>
                             <div className="cell-grid-body">
@@ -99,7 +108,11 @@ class ApiElementData extends Component {
                                 <div className="grid-labels">
                                     <Icon link name='star' style={{color: '#F39847'}}/>
                                     <label style={{color: '#F39847'}}>4,5</label>
-                                    <Icon style={{paddingLeft: '16px'}} link name='bookmark'/>
+                                    <Icon style={{
+                                        paddingLeft: '16px',
+                                        color: this.state[item.id + item.name] === 'bookmark outline' ? '#2F80ED' : '#A5A5A5'
+                                    }} link onClick={this.handleChange} id={item.id + item.name}
+                                          name={this.state[item.id + item.name] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
                                 </div>
                             </div>
                             <div className="cell-grid-body">
@@ -132,7 +145,11 @@ class ApiElementData extends Component {
                                 <div className="grid-labels">
                                     <Icon link name='star' style={{color: '#F39847'}}/>
                                     <label style={{color: '#F39847'}}>4,9</label>
-                                    <Icon style={{paddingLeft: '16px'}} link name='bookmark outline'/>
+                                    <Icon style={{
+                                        paddingLeft: '16px',
+                                        color: this.state[item.id + item.name] === 'bookmark outline' ? '#2F80ED' : '#A5A5A5'
+                                    }} link onClick={this.handleChange} id={item.id + item.name}
+                                          name={this.state[item.id + item.name] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
                                 </div>
                             </div>
                             <div className="cell-grid-body">

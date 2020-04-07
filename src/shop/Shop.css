@@ -264,8 +264,8 @@
 
 .api-element-data{
     min-width: 270px;
-    height: 200px;
-    display: block;
+    /*height: 200px;*/
+    /*display: block;*/
     padding-top: 14px;
     padding-left: 10px;
     padding-right: 10px;
@@ -279,7 +279,7 @@
     font-size: 12px;
     line-height: 14px;
     color: #A5A5A5;
-    padding-top: 13px;
+    /*padding-top: 13px;*/
 }
 
 .api-element-footer .category-label a{

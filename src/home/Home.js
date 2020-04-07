@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './Home.css';
-import {Button, Grid, Icon, Image, Segment} from "semantic-ui-react";
+import {Button, Grid, Icon, Segment} from "semantic-ui-react";
 import {NavLink} from "react-router-dom";
 import {apiProjectFullListGet} from "../util/APIUtils";
 import Alert from "react-s-alert";
-import {getLink4Description} from "../util/ElementsDataUtils";
+import {getClassName4Color, getIconColor, getLink4Category, getLink4Description} from "../util/ElementsDataUtils";
 import {HomeCellLoadingIndicator, HomeLoadingIndicator} from '../common/LoadingIndicator';
 import LazyMiniImage from '../util/LazyMiniImage';
 
@@ -46,6 +46,10 @@ class Home extends Component {
         });
     }
 
+    handleChange = (e, { id, name }) => {
+        this.setState({[id]: name})
+    };
+
 
     componentWillUnmount() {
         this._isMounted = false;
@@ -62,45 +66,49 @@ class Home extends Component {
             <>
                 {
                     items.map(item => (
-                        <Grid.Column key={item.id} className="body-data">
-                            <Segment>
-                                <div className="body-cell-data">
-                                    <div>
-                                        <div className="cell-header">
-                                            <div className="grid-logo">
-                                                {
-                                                    item.image ? (
+                        <Grid.Column key={item.id + item.name} className="body-data">
+                            <Segment className='api-element-container'>
+                                <div className="api-element-data">
+                                    <div className="cell-header">
+                                        <div className="grid-logo">
+                                            {
+                                                item.image ? (
+                                                    <NavLink
+                                                        to={getLink4Description(item.category) + item.id}>
+                                                        {/*<Image src={host + "/api-data/image/" + item.image + "/32/32"}/>*/}
+                                                        <LazyMiniImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
+                                                    </NavLink>
+                                                ) : (
+                                                    <div className="home-api-text-avatar">
                                                         <NavLink
-                                                            to={getLink4Description(item.category) + item.id}>
-                                                            {/*<Image src={host + "/api-data/image/" + item.image + "/32/32"} onLoad={() => this.setState({imageLoaded: true})}/>*/}
-                                                            <LazyMiniImage src={host + "/api-data/image/" + item.image + "/32/32"} alt={item.fullName}/>
-                                                        </NavLink>
-                                                    ) : (
-                                                        <div className="home-api-text-avatar">
-                                                            <NavLink to={getLink4Description(item.category) + item.id}><span>{item.fullName && item.fullName[0]}</span></NavLink>
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-                                            <div className="grid-labels">
-                                                <Icon link name='star' style={{color: '#F39847'}}/>
-                                                <label style={{color: '#F39847'}}>{item.id}</label>
-                                                <Icon style={{paddingLeft: '16px'}} link name='bookmark'/>
-                                            </div>
+                                                            to={getLink4Description(item.category) + item.id}><span>{item.fullName && item.fullName[0]}</span></NavLink>
+                                                    </div>
+                                                )
+                                            }
                                         </div>
-                                        <div className="cell-grid-body">
-                                            <div className="cell-grid-body-text">
-                                                <NavLink to={getLink4Description(item.category) + item.id}
-                                                         className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
-                                            </div>
-                                            <div className="cell-grid-body-label">
-                                                <label>от {item.username.nickname ? item.username.nickname : item.username.name}</label>
-                                            </div>
-                                            <div className="cell-grid-body-description">
-                                                <label>{item.description}</label>
-                                            </div>
-                                            <div className="cell-grid-body-category">
-                                                <span>&#183; {item.category}</span>
+                                        <div className="grid-labels">
+                                            <Icon link name='star' style={{color: '#F39847'}}/>
+                                            <label style={{color: '#F39847'}}>{item.id}</label>
+                                            <Icon style={{paddingLeft: '16px', color: this.state[item.id + item.name] === 'bookmark outline' ? '#2F80ED' : '#A5A5A5'}} link onClick={this.handleChange} id={item.id + item.name} name={this.state[item.id + item.name] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
+                                        </div>
+                                    </div>
+                                    <div className="cell-grid-body">
+                                        <div className="cell-grid-body-text">
+                                            <NavLink to={getLink4Description(item.category) + item.id}
+                                                     className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
+                                        </div>
+                                        <div className="cell-grid-body-label">
+                                            <label>от {item.username.nickname ? item.username.nickname : item.username.name}</label>
+                                        </div>
+                                        <div className="cell-grid-body-description">
+                                            {item.description}
+                                        </div>
+                                        <div className="api-element-footer">
+                                            <div className={getClassName4Color(item.category)}>
+                                                <Icon color={getIconColor(item.category)} name='dot circle'
+                                                      size='small'/>
+                                                <NavLink to={getLink4Category(item.category)}
+                                                         className={getClassName4Color(item.category)}>{item.category}</NavLink>
                                             </div>
                                         </div>
                                     </div>

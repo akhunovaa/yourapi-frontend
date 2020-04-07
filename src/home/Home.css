@@ -182,8 +182,12 @@
     /* Gray 3 */
     color: #A5A5A5;
 }
+
+.cell-grid-body{
+    width: 100%;
+}
+
 .cell-grid-body-description{
-    height: 50px;
     font-family: Roboto, serif;
     font-style: normal;
     font-weight: normal;
@@ -191,7 +195,14 @@
     line-height: 16px;
     color: #4F4F4F;
     padding-top: 12px;
-    overflow: overlay;
+
+    height: 73px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* after 3 line show ... */
+    -webkit-box-orient: vertical;
 }
 .cell-grid-body-category{
     font-family: Roboto, serif;

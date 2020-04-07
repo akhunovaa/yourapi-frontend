@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Shop.css';
 import {NavLink} from "react-router-dom";
-import {Grid, Icon, Image, Segment} from "semantic-ui-react";
+import {Grid, Icon, Segment} from "semantic-ui-react";
 import {ShopLoadingIndicator} from "../common/LoadingIndicator";
 import {getClassName4Color, getIconColor, getLink4Category, getLink4Description} from "../util/ElementsDataUtils";
 import LazyMiniImage from '../util/LazyMiniImage';
@@ -27,8 +27,12 @@ class ShopBody extends Component {
 
     reload() {
         window.location.reload();
-    }
-    ;
+    };
+
+    handleChange = (e, {id, name}) => {
+        this.setState({[id]: name})
+    };
+
 
     handleInputChange(event) {
         const target = event.target;
@@ -73,7 +77,8 @@ class ShopBody extends Component {
                                                     <NavLink
                                                         to={getLink4Description(item.category) + item.id}>
                                                         {/*<Image src={host + "/api-data/image/" + item.image + "/32/32"}/>*/}
-                                                        <LazyMiniImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
+                                                        <LazyMiniImage
+                                                            src={host + "/api-data/image/" + item.image + "/32/32"}/>
                                                     </NavLink>
                                                 ) : (
                                                     <div className="home-api-text-avatar">
@@ -86,7 +91,11 @@ class ShopBody extends Component {
                                         <div className="grid-labels">
                                             <Icon link name='star' style={{color: '#F39847'}}/>
                                             <label style={{color: '#F39847'}}>{item.id}</label>
-                                            <Icon style={{paddingLeft: '16px'}} link name='bookmark'/>
+                                            <Icon style={{
+                                                paddingLeft: '16px',
+                                                color: this.state[item.id + item.name] === 'bookmark outline' ? '#2F80ED' : '#A5A5A5'
+                                            }} link onClick={this.handleChange} id={item.id + item.name}
+                                                  name={this.state[item.id + item.name] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
                                         </div>
                                     </div>
                                     <div className="cell-grid-body">
