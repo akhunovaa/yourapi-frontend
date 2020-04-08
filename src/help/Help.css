@@ -266,9 +266,8 @@
     width: 240px;
     min-width: 240px;
     overflow: hidden;
-    position: fixed;
+    /*position: fixed;*/
     background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
 }
 
 .help-links-element{
@@ -418,6 +417,7 @@
 .help-sub-page-right-body{
     padding-top: 44px;
     margin-left: 274px;
+    width: 632px;
 }
 
 .help-sub-page-right-body-header{
@@ -462,8 +462,8 @@
 .help-sub-page-right-body-header-image{
     border: 1px solid #E0E0E0;
     box-sizing: border-box;
-    width: 630px;
-    height: 400px;
+    width: 632px;
+    height: 402px;
     object-fit: cover;
     cursor: pointer;
 }
