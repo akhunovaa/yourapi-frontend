@@ -263,8 +263,12 @@
 .help-left-container-page-links-body{
     padding-top: 56px;
     padding-left: 32px;
-    width: 100%;
+    width: 240px;
+    min-width: 240px;
     overflow: hidden;
+    position: fixed;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
 }
 
 .help-links-element{
@@ -393,7 +397,6 @@
     min-width: 852px;
     height: auto;
     padding-right: 222px;
-    margin-left: 274px;
 }
 
 .help-sub-paragraph{
@@ -414,6 +417,7 @@
 
 .help-sub-page-right-body{
     padding-top: 44px;
+    margin-left: 274px;
 }
 
 .help-sub-page-right-body-header{
