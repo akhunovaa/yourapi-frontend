@@ -79,7 +79,7 @@
 }
 
 .api-detail-dealer{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -94,7 +94,7 @@
 }
 
 .api-detail-create-button-text{
-    font-family: Margarine;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -144,6 +144,12 @@
 
 .description-api-description-wrapper{
     text-align: justify;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* after 3 line show ... */
+    -webkit-box-orient: vertical;
 }
 
 .description-api-links-color-blue{

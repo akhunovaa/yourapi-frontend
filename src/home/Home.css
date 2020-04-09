@@ -188,7 +188,7 @@
 }
 
 .cell-grid-body-description{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -205,7 +205,7 @@
     -webkit-box-orient: vertical;
 }
 .cell-grid-body-category{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 12px;

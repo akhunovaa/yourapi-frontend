@@ -237,10 +237,9 @@ class ApiDetail extends Component {
                                     Стабильность
                                     <span className='description-body-link'>100%</span>
                                 </div>
-                                <div
-                                    className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>{description}<NavLink
-                                    to='#'
-                                    className='description-body-link description-api-links-color-blue'>...еще</NavLink>
+                                <div className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>
+                                    {description}
+                                    {/*<NavLink to='#' className='description-body-link description-api-links-color-blue'>...еще</NavLink>*/}
                                 </div>
                             </div>
                         </div>
