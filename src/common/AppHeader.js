@@ -71,9 +71,9 @@ class AppHeader extends Component {
                      <PrivateRoute exact path="/integrator" authenticated={authenticated} currentUser={currentUser} component={IntegratorHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/shop" authenticated={authenticated} currentUser={currentUser} component={ShopHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={currentUser} component={ProfileHeader} onLogout={onLogout}/>
+                    <PrivateRoute exact path="/profile/api" authenticated={authenticated} currentUser={currentUser} component={ApiHeader} onLogout={onLogout}/>
+                    <PrivateRoute exact path="/profile/administration" authenticated={authenticated} currentUser={currentUser} component={AdministrationHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/profile/:id?" authenticated={authenticated} currentUser={currentUser} component={UserProfileHeader} onLogout={onLogout}/>
-                     <PrivateRoute exact path="/profile/api" authenticated={authenticated} currentUser={currentUser} component={ApiHeader} onLogout={onLogout}/>
-                     <PrivateRoute exact path="/profile/administration" authenticated={authenticated} currentUser={currentUser} component={AdministrationHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/shop/category/:category?" authenticated={authenticated} currentUser={currentUser} component={ShopHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={authenticated} currentUser={currentUser}component={ShopHeader} onLogout={onLogout}/>
                 </Switch>

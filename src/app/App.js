@@ -132,22 +132,14 @@ class App extends Component {
                     <PrivateRoute path="/help/faq/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpFaq}/>
                     <PrivateRoute path="/help/integrator/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpIntegrator}/>
 
-                    <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile} onLogout={this.handleLogout}/>
+                    <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile} onLogout={this.handleLogout} loading={this.state.loading}/>
+                    <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Administration}/>
+                    <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Api}/>
                     <PrivateRoute exact path="/profile/:id?" authenticated={this.state.authenticated} component={UserProfile} onLogout={this.handleLogout}/>
-
-                    <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated}
-                                  currentUser={this.state.currentUser} component={Administration}/>
-                    <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated}
-                                  currentUser={this.state.currentUser} component={Api}/>
-                    <PrivateRoute exact path="/integrator" authenticated={this.state.authenticated}
-                                  currentUser={this.state.currentUser} component={Integrators}/>
-                    <PrivateRoute exact path="/shop" authenticated={this.state.authenticated}
-                                  currentUser={this.state.currentUser} component={Shop}/>
-                    <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated}
-                                  currentUser={this.state.currentUser} component={ApiCategoryShop}/>
-                    <PrivateRoute exact path="/shop/category/:category?/api/:id?"
-                                  authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-                                  component={ApiDetail}/>
+                    <PrivateRoute exact path="/integrator" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Integrators}/>
+                    <PrivateRoute exact path="/shop" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Shop}/>
+                    <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiCategoryShop}/>
+                    <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiDetail}/>
                     <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}/>
                     <Route path='*' exact={true} component={NotFound}/>
                 </Switch>

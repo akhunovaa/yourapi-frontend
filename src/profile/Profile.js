@@ -27,19 +27,19 @@ class Profile extends Component {
         super(props);
         this.state = {
             user: {
-                name: this.props.currentUser ? this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login : 'unknown',
-                surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
-                patrName: this.props.currentUser ? this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login : 'unknown',
-                email: this.props.currentUser ? this.props.currentUser.email ? this.props.currentUser.email : this.props.currentUser.login : 'unknown',
-                nickName: this.props.currentUser ? this.props.currentUser.nickName : 'unknown',
-                phone: this.props.currentUser ? this.props.currentUser.phone ? this.props.currentUser.phone : this.props.currentUser.phone : 'unknown',
-                birthDate: this.props.currentUser ? this.props.currentUser.birthDate ? this.props.currentUser.birthDate : this.props.currentUser.birthDate : 'unknown',
-                gender: this.props.currentUser ? this.props.currentUser.gender ? this.props.currentUser.gender : this.props.currentUser.gender : 'Мужской',
-                language: this.props.currentUser ? this.props.currentUser.language ? this.props.currentUser.language : this.props.currentUser.language : 'Русский',
-                city: this.props.currentUser ? this.props.currentUser.city ? this.props.currentUser.city : this.props.currentUser.city : 'Москва, Россия',
-                info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown'
+                name: '',
+                surname: '',
+                patrName: '',
+                email: '',
+                nickName: '',
+                phone: '',
+                birthDate: '',
+                gender: '',
+                language: '',
+                city: '',
+                info: ''
             },
-            imageUrl: this.props.currentUser ? this.props.currentUser.imageUrl ? this.props.currentUser.imageUrl + '/150/150' : '' : '',
+            imageUrl: '',
             open: false,
             id: this.props.currentUser ? this.props.currentUser.id : 0,
             name: '',
@@ -49,9 +49,9 @@ class Profile extends Component {
             nickName: '',
             phone: '',
             birthDate: '',
-            gender: '',
-            language: '',
-            city: '',
+            gender: this.props.currentUser ? this.props.currentUser.gender : '',
+            language: this.props.currentUser ? this.props.currentUser.language : '',
+            city: this.props.currentUser ? this.props.currentUser.city : '',
             info: '',
             loading: true,
             passwordDisabled: true,
@@ -75,6 +75,15 @@ class Profile extends Component {
         const img = this.image.current;
         if (img && img.complete) {
             this.handleImageLoaded();
+        }
+        if (this._isMounted) {
+            const {currentUser, loading} = this.props;
+            if (!loading){
+                this.setState({
+                    user: currentUser,
+                    loading: false
+                });
+            }
         }
         this.setState({loading: false});
     }
@@ -286,8 +295,9 @@ class Profile extends Component {
 
     render() {
 
-        const {user, imageUrl, showPassword, passwordDisabled, loading} = this.state;
-        const {currentUser, onLogout} = this.props;
+        const {user, showPassword, passwordDisabled, city, language, gender} = this.state;
+        const {currentUser, onLogout, loading} = this.props;
+        const imageUrl = user.imageUrl ? user.imageUrl.includes("yourapi.ru") ? user.imageUrl + '/150/150' : user.imageUrl : '';
         const sexOptions = [
             {
                 sex: 'Мужской',
@@ -298,6 +308,11 @@ class Profile extends Component {
                 sex: 'Женский',
                 text: 'Женский',
                 value: 'Женский'
+            },
+            {
+                sex: 'Неизвестно',
+                text: 'Неизвестно',
+                value: 'Неизвестно'
             }
         ];
         const languageOptions = [
@@ -310,6 +325,21 @@ class Profile extends Component {
                 language: 'English',
                 text: 'English',
                 value: 'English'
+            },
+            {
+                language: 'English',
+                text: 'English',
+                value: 'en'
+            },
+            {
+                language: 'Русский',
+                text: 'Русский',
+                value: 'ru'
+            },
+            {
+                city: 'Данные отсутствуют',
+                text: 'Данные отсутствуют',
+                value: 'Данные отсутствуют'
             }
         ];
         const cityOptions = [
@@ -352,6 +382,11 @@ class Profile extends Component {
                 city: 'Reykjavík, Iceland',
                 text: 'Reykjavík, Iceland',
                 value: 'Reykjavík, Iceland'
+            },
+            {
+                city: 'Данные отсутствуют',
+                text: 'Данные отсутствуют',
+                value: 'Данные отсутствуют'
             }
         ];
 
@@ -437,19 +472,19 @@ class Profile extends Component {
                             <div className="profile-info-container-name-inputs">
                                 <div className="profile-info-container-name-input">
                                     <label>Фамилия</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={user.surname}
+                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.surname}
                                            className="form-input" id="surname"
                                            name="surname" required placeholder='Фамилия'/>
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <label>Имя</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={user.name}
+                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.name}
                                            className="form-input" id="name"
                                            name="name" required placeholder='Имя'/>
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <label>Отчество</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={user.patrName}
+                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.patrName}
                                            className="form-input" id="patrName"
                                            name="patrName" required placeholder='Отчество'/>
                                 </div>
@@ -457,7 +492,7 @@ class Profile extends Component {
                             <div className="profile-info-container-nickname-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Имя профиля</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={user.nickName}
+                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.nickName}
                                            className="form-input" id="nickName"
                                            name="nickName" required placeholder='Имя профиля'/>
                                 </div>
@@ -465,7 +500,7 @@ class Profile extends Component {
                             <div className="profile-info-container-date-birth-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Дата рождения</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={user.birthDate}
+                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.birthDate}
                                            className="form-input" id="birthDate"
                                            name="birthDate" required placeholder='Дата рождения'/>
                                 </div>
@@ -473,26 +508,26 @@ class Profile extends Component {
                             <div className="profile-info-container-sex-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Пол</label>
-                                    <Dropdown onChange={this.handleDropdownChange} placeholder='Пол' fluid selection
+                                    <Dropdown loading={loading} onChange={this.handleDropdownChange} placeholder='Пол' fluid selection
                                               id="gender" name="gender" className="form-input" options={sexOptions}
-                                              defaultValue={user.gender}/>
+                                              value={gender}/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Язык</label>
-                                    <Dropdown onChange={this.handleDropdownChange} placeholder='Язык' fluid selection
+                                    <Dropdown loading={loading} onChange={this.handleDropdownChange} placeholder='Язык' fluid selection
                                               id="language" name="language" className="form-input"
-                                              options={languageOptions} defaultValue={user.language}/>
+                                              options={languageOptions} value={language}/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Город</label>
-                                    <Dropdown onChange={this.handleDropdownChange} placeholder='Город' fluid search
+                                    <Dropdown loading={loading} onChange={this.handleDropdownChange} placeholder='Город' fluid search
                                               selection id="city" name="city" noResultsMessage="Москва - лучший город"
                                               className="form-input" options={cityOptions}
-                                              defaultValue={user.city}/>
+                                              value={city}/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
@@ -514,14 +549,14 @@ class Profile extends Component {
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{marginBottom: 6}}>Телефон</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={user.phone}
+                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.phone}
                                            id="phone" name="phone" placeholder='+7( ___ ) ___ - __ - __ ' required/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{marginBottom: 6}}>Email</label>
-                                    <Input onChange={this.handleInputChange} defaultValue={user.email}
+                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.email}
                                            id="email" name="email" placeholder='user@botmasterzzz.com' required/>
                                 </div>
                             </div>
@@ -535,13 +570,13 @@ class Profile extends Component {
 
                             <div className="profile-info-container-name-inputs messengers">
                                 <div className="profile-info-container-name-input">
-                                    <Input disabled style={{paddingTop: 0, height: 32}}
+                                    <Input loading={loading} disabled style={{paddingTop: 0, height: 32}}
                                            className="form-input" id="messenger-login"
                                            name="messenger-login" required placeholder='Telegram' iconPosition='left'
                                            icon='telegram plane'/>
                                 </div>
                                 <div className="profile-info-container-name-input">
-                                    <Input onChange={this.handleInputChange} style={{paddingTop: 0, height: 32}}
+                                    <Input loading={loading} onChange={this.handleInputChange} style={{paddingTop: 0, height: 32}}
                                            className="form-input" id="messenger-login-two"
                                            defaultValue={user.phone}
                                            name="messenger-login" required placeholder='Телефон или имя'/>
@@ -574,7 +609,7 @@ class Profile extends Component {
                                 <div className="profile-info-container-name-inputs password">
                                     <div className="profile-info-container-name-input password-input">
                                         <label style={{marginBottom: 6}}>Старый пароль</label>
-                                        <Input style={{paddingTop: 0, height: 32, width: 250}}
+                                        <Input loading={loading} style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange}
                                                icon={<Icon name={showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
                                                placeholder='Старый пароль' id="oldPassword" name="oldPassword" required
@@ -582,7 +617,7 @@ class Profile extends Component {
                                     </div>
                                     <div className="profile-info-container-name-input password-input">
                                         <label style={{marginBottom: 6}}>Новый пароль</label>
-                                        <Input style={{paddingTop: 0, height: 32, width: 250}}
+                                        <Input loading={loading} style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange} disabled={passwordDisabled}
                                                icon={<Icon name={showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
                                                placeholder='Новый пароль' id="newPassword" name="newPassword" required
@@ -590,7 +625,7 @@ class Profile extends Component {
                                     </div>
                                     <div className={showPassword ? 'profile-password-hide profile-info-container-name-input password-input' : 'profile-info-container-name-input password-input'}>
                                         <label style={{marginBottom: 6}}>Подтвердите новый пароль</label>
-                                        <Input style={{paddingTop: 0, height: 32, width: 250}}
+                                        <Input loading={loading} style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange} disabled={passwordDisabled ? passwordDisabled : showPassword}
                                                icon={<Icon name={showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
                                                placeholder='Подтвердите новый пароль' id="newRePassword"
@@ -598,7 +633,7 @@ class Profile extends Component {
                                                type={showPassword ? 'text' : 'password'}/>
                                     </div>
                                     <div className="profile-info-container-name-input password-input">
-                                        <Button compact color='blue' style={{width: 165, height: 32}} className='apply-button' disabled={passwordDisabled}>
+                                        <Button loading={loading} compact color='blue' style={{width: 165, height: 32}} className='apply-button' disabled={passwordDisabled}>
                                             <span className='command-approve-buttons-text'>Изменить пароль</span>
                                         </Button>
                                     </div>
@@ -657,12 +692,12 @@ class Profile extends Component {
                         <Divider style={{marginTop: '40px', marginBottom: 0}}/>
                         <div className="profile-info-buttons">
                             <div className='apply-button-container'>
-                                <Button fluid className="apply-button" style={{width: 165, height: 32}}
+                                <Button loading={loading} fluid className="apply-button" style={{width: 165, height: 32}}
                                         disabled={loading} color='blue'
                                         onClick={this.handleMainInformationSubmit}>Сохранить</Button>
                             </div>
                             <div className='cancel-button-container'>
-                                <Button fluid className="cancel-button" style={{width: 165, height: 32, backgroundColor: '#A5A5A5'}}
+                                <Button loading={loading} fluid className="cancel-button" style={{width: 165, height: 32, backgroundColor: '#A5A5A5'}}
                                         disabled={loading}
                                         onClick={this.reload}><span className='command-approve-buttons-text'>Отмена</span></Button>
                             </div>

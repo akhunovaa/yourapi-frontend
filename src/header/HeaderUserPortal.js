@@ -45,7 +45,7 @@ class HeaderUserPortal extends Component {
             return <LoadingIndicator/>
         }
 
-        const imageUrl = currentUser ? currentUser.imageUrl : '';
+        const imageUrl = currentUser ? currentUser.imageUrl ? currentUser.imageUrl.includes("yourapi.ru") ? currentUser.imageUrl + '/40/40' : currentUser.imageUrl : '' : '';
 
         const styles = {
             Segment: {
@@ -70,7 +70,7 @@ class HeaderUserPortal extends Component {
                 trigger={
                     imageUrl ? (
                         <div className="profile-header-avatar">
-                            <LazyImage src={imageUrl + "/40/40"} size='small' circular verticalAlign='middle' alt={currentUser.name}/>
+                            <LazyImage src={imageUrl} size='small' circular verticalAlign='middle' alt={currentUser.name}/>
                         </div>
                     ) : (
                         <div className="header-right-navlink-profile-icon">
