@@ -9,6 +9,7 @@ import HelpShop from '../help/HelpShop';
 import HelpFaq from '../help/HelpFaq';
 import HelpIntegrator from '../help/HelpIntegrator';
 import Profile from '../profile/Profile';
+import UserProfile from '../profile/UserProfile';
 import SignUp from '../signup/SignUp';
 import Login from '../login/Login';
 import Administration from '../profile/administration/Administration';
@@ -131,8 +132,9 @@ class App extends Component {
                     <PrivateRoute path="/help/faq/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpFaq}/>
                     <PrivateRoute path="/help/integrator/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpIntegrator}/>
 
-                    <PrivateRoute exact path="/profile" authenticated={this.state.authenticated}
-                                  currentUser={this.state.currentUser} component={Profile} onLogout={this.handleLogout}/>
+                    <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile} onLogout={this.handleLogout}/>
+                    <PrivateRoute exact path="/profile/:id?" authenticated={this.state.authenticated} component={UserProfile} onLogout={this.handleLogout}/>
+
                     <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated}
                                   currentUser={this.state.currentUser} component={Administration}/>
                     <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated}

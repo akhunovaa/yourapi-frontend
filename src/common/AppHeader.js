@@ -3,6 +3,7 @@ import './AppHeader.css';
 import {Link, NavLink, Switch, withRouter} from "react-router-dom";
 import {Button, Dropdown, Icon} from "semantic-ui-react";
 import ProfileHeader from "../header/ProfileHeader";
+import UserProfileHeader from "../header/UserProfileHeader";
 import AdministrationHeader from "../header/AdministrationHeader";
 import ApiHeader from "../header/ApiHeader";
 import HeaderUserPortal from "../header/HeaderUserPortal";
@@ -70,6 +71,7 @@ class AppHeader extends Component {
                      <PrivateRoute exact path="/integrator" authenticated={authenticated} currentUser={currentUser} component={IntegratorHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/shop" authenticated={authenticated} currentUser={currentUser} component={ShopHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={currentUser} component={ProfileHeader} onLogout={onLogout}/>
+                     <PrivateRoute exact path="/profile/:id?" authenticated={authenticated} currentUser={currentUser} component={UserProfileHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/profile/api" authenticated={authenticated} currentUser={currentUser} component={ApiHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/profile/administration" authenticated={authenticated} currentUser={currentUser} component={AdministrationHeader} onLogout={onLogout}/>
                      <PrivateRoute exact path="/shop/category/:category?" authenticated={authenticated} currentUser={currentUser} component={ShopHeader} onLogout={onLogout}/>
