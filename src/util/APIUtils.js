@@ -136,6 +136,14 @@ export function getCurrentUser() {
     });
 }
 
+export function getUserProfile(id) {
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return request({
+        url: apiBaseUrl + "/individual" + "/" + id,
+        method: 'GET'
+    });
+}
+
 export function checkLocalStorage() {
     return localStorage.getItem(ACCESS_TOKEN);
 }

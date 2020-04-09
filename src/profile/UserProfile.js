@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import './UserProfile.css';
 import {NavLink} from "react-router-dom";
-import {Breadcrumb, Divider, Dropdown, Form, Icon, Input, Table, TextArea} from "semantic-ui-react";
+import {Breadcrumb, Divider, Dropdown, Form, Icon, Input, Table, TextArea, Modal, Button, Header} from "semantic-ui-react";
 import LazyImage from '../util/LazyImage';
+import {getUserProfile} from "../util/APIUtils";
 
 class UserProfile extends Component {
 
@@ -12,30 +13,58 @@ class UserProfile extends Component {
         super(props);
         this.state = {
             user: {
-                name: this.props.currentUser ? this.props.currentUser.name ? this.props.currentUser.name : this.props.currentUser.login : 'unknown',
-                surname: this.props.currentUser ? this.props.currentUser.surname ? this.props.currentUser.surname : this.props.currentUser.login : 'unknown',
-                patrName: this.props.currentUser ? this.props.currentUser.patrName ? this.props.currentUser.patrName : this.props.currentUser.login : 'unknown',
-                email: this.props.currentUser ? this.props.currentUser.email ? this.props.currentUser.email : this.props.currentUser.login : 'unknown',
-                nickName: this.props.currentUser ? this.props.currentUser.nickName : 'unknown',
-                phone: this.props.currentUser ? this.props.currentUser.phone ? this.props.currentUser.phone : this.props.currentUser.phone : 'unknown',
-                birthDate: this.props.currentUser ? this.props.currentUser.birthDate ? this.props.currentUser.birthDate : this.props.currentUser.birthDate : 'unknown',
-                gender: this.props.currentUser ? this.props.currentUser.gender ? this.props.currentUser.gender : this.props.currentUser.gender : 'Мужской',
-                language: this.props.currentUser ? this.props.currentUser.language ? this.props.currentUser.language : this.props.currentUser.language : 'Русский',
-                city: this.props.currentUser ? this.props.currentUser.city ? this.props.currentUser.city : this.props.currentUser.city : 'Москва, Россия',
-                info: this.props.currentUser ? this.props.currentUser.info ? this.props.currentUser.info : this.props.currentUser.info : 'unknown'
+                id: '',
+                name: '',
+                surname: '',
+                patrName: '',
+                nickName: '',
+                birthDate: '',
+                gender: '',
+                language: '',
+                city: '',
+                imageUrl: '',
+                info: ''
             },
-            loading: true
+            loading: true,
+            error: false,
+            errorMassage: '',
+            open: false,
+            close: true
         };
     }
 
     componentDidMount() {
         this._isMounted = true;
-        this.setState({loading: false});
+        this.loadRequestedUser();
     }
 
     componentWillUnmount() {
         this._isMounted = false;
     }
+
+    loadRequestedUser = () => {
+        const {id} = this.props.match.params;
+        getUserProfile(id)
+            .then(response => {
+                if (!response.success) {
+                    this.setState({
+                        errorMassage: response.message,
+                        error: true,
+                        open: true
+                    });
+                    return Promise.reject(response.message);
+                }else {
+                    this.setState({
+                        user: response.response,
+                        loading: false
+                    });
+                }
+            }).catch(error => {
+            this.setState({
+                loading: false
+            });
+        });
+    };
 
     reload = () => {
         this.setState({loading: true});
@@ -51,10 +80,13 @@ class UserProfile extends Component {
         this.setState({open: false})
     };
 
+    show = () => () => this.setState({open: true });
+    close = () => this.setState({ open: false });
+
     render() {
         const {id} = this.props.match.params;
-        const {user, imageUrl, loading} = this.state;
-        const {currentUser, onLogout} = this.props;
+        const {user, loading, open} = this.state;
+        const imageUrl = user.imageUrl ? user.imageUrl.includes("yourapi.ru") ? user.imageUrl + '/150/150' : user.imageUrl : '';
         const sexOptions = [
             {
                 sex: 'Мужской',
@@ -65,6 +97,11 @@ class UserProfile extends Component {
                 sex: 'Женский',
                 text: 'Женский',
                 value: 'Женский'
+            },
+            {
+                sex: 'Неизвестно',
+                text: 'Неизвестно',
+                value: 'Неизвестно'
             }
         ];
         const languageOptions = [
@@ -77,6 +114,21 @@ class UserProfile extends Component {
                 language: 'English',
                 text: 'English',
                 value: 'English'
+            },
+            {
+                language: 'English',
+                text: 'English',
+                value: 'en'
+            },
+            {
+                language: 'Русский',
+                text: 'Русский',
+                value: 'ru'
+            },
+            {
+                city: 'Данные отсутствуют',
+                text: 'Данные отсутствуют',
+                value: 'Данные отсутствуют'
             }
         ];
         const cityOptions = [
@@ -119,6 +171,11 @@ class UserProfile extends Component {
                 city: 'Reykjavík, Iceland',
                 text: 'Reykjavík, Iceland',
                 value: 'Reykjavík, Iceland'
+            },
+            {
+                city: 'Данные отсутствуют',
+                text: 'Данные отсутствуют',
+                value: 'Данные отсутствуют'
             }
         ];
 
@@ -139,8 +196,7 @@ class UserProfile extends Component {
                             <div className="profile-avatar">
                                 {
                                     imageUrl ? (
-                                        <LazyImage src={imageUrl} size='medium' circular verticalAlign='top'
-                                                   alt={user.name}/>
+                                        <LazyImage src={imageUrl} size='medium' circular verticalAlign='top' alt={user.name}/>
                                     ) : (
                                         <div className="text-avatar">
                                             <span>{user.name && user.name[0]}</span>
@@ -161,65 +217,65 @@ class UserProfile extends Component {
                             <div className="profile-info-container-name-inputs">
                                 <div className="profile-info-container-name-input">
                                     <label>Фамилия</label>
-                                    <Input value={user.surname}
+                                    <Input loading={loading} value={user.surname ? user.surname : ''}
                                            className="form-input" id="surname" disabled
-                                           name="surname" placeholder='Фамилия'/>
+                                           name="surname"/>
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <label>Имя</label>
-                                    <Input value={user.name} className="form-input" id="name"
-                                           name="name" disabled placeholder='Имя'/>
+                                    <Input value={user.name ? user.name : ''} className="form-input" id="name"
+                                           name="name" disabled/>
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <label>Отчество</label>
-                                    <Input value={user.patrName}
+                                    <Input loading={loading} value={user.patrName ? user.patrName : ''}
                                            className="form-input" id="patrName"
-                                           name="patrName" disabled placeholder='Отчество'/>
+                                           name="patrName" disabled/>
                                 </div>
                             </div>
                             <div className="profile-info-container-nickname-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Имя профиля</label>
-                                    <Input value={user.nickName} className="form-input" id="nickName" name="nickName"
-                                           disabled placeholder='Имя профиля'/>
+                                    <Input loading={loading} value={user.nickName ? user.nickName : ''} className="form-input" id="nickName" name="nickName"
+                                           disabled/>
                                 </div>
                             </div>
                             <div className="profile-info-container-date-birth-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Дата рождения</label>
-                                    <Input value={user.birthDate} className="form-input" id="birthDate"
-                                           name="birthDate" disabled placeholder='Дата рождения'/>
+                                    <Input loading={loading} value={user.birthDate ? user.birthDate : ''} className="form-input" id="birthDate"
+                                           name="birthDate" disabled/>
                                 </div>
                             </div>
                             <div className="profile-info-container-sex-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Пол</label>
-                                    <Dropdown placeholder='Пол' fluid selection id="gender" name="gender" className="form-input" options={sexOptions}
-                                              value={user.gender} disabled/>
+                                    <Dropdown loading={loading} placeholder='Пол' fluid selection id="gender" name="gender" className="form-input" options={sexOptions}
+                                              value={user.gender ? user.gender : 'Неизвестно'} disabled/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Язык</label>
-                                    <Dropdown placeholder='Язык' fluid selection id="language" name="language" className="form-input"
-                                              options={languageOptions} value={user.language} disabled/>
+                                    <Dropdown fluid selection id="language" name="language" className="form-input"
+                                              options={languageOptions} value={user.language ? user.language : 'Данные отсутствуют'} disabled/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Город</label>
-                                    <Dropdown placeholder='Город' fluid search
+                                    <Dropdown loading={loading} fluid search
                                               selection id="city" name="city" noResultsMessage="Москва - лучший город"
                                               className="form-input" options={cityOptions}
-                                              value={user.city} disabled/>
+                                              value={user.city ? user.city : 'Данные отсутствуют'} disabled/>
                                 </div>
                             </div>
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-textarea">
-                                    <label style={{paddingBottom: '6px'}}>О себе</label>
+                                    <label style={{paddingBottom: '6px'}}>Информация</label>
                                     <Form style={{paddingTop: '6px'}}>
-                                        <TextArea placeholder='Расскажите о себе' style={{minHeight: 265, maxHeight: 265, minWidth: 382}} id="info"
-                                                  name="info" value={user.info} disabled/>
+                                        <TextArea style={{minHeight: 265, maxHeight: 265, minWidth: 382}} id="info"
+                                                  name="info" value={user.info ? user.info : ''} disabled/>
                                     </Form>
                                 </div>
                             </div>
@@ -257,11 +313,27 @@ class UserProfile extends Component {
                                 </Table>
                             </div>
                             <div className="profile-info-container-name-input command-search-link">
-                                <NavLink to="#"><span style={{color: '#2F80ED'}}>+ Пригласить в команду</span></NavLink>
+                                <NavLink to="#" ><span style={{color: '#2F80ED'}}>+ Пригласить в команду</span></NavLink>
                             </div>
                         </div>
                     </div>
                 </div>
+                <Modal open={open} onClose={this.close} basic size='small'>
+                    <Header icon='user' content='Пользователь не найден' />
+                    <Modal.Content>
+                        <p>
+                            Данный пользователь не зарегистрирован в системе
+                        </p>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button basic color='red' inverted onClick={() => {
+                            const path = `/profile`;
+                            this.props.history.push(path);
+                        }}>
+                            <Icon name='remove' /> Назад
+                        </Button>
+                    </Modal.Actions>
+                </Modal>
             </div>
         )
     }
