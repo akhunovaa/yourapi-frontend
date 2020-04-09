@@ -86,6 +86,7 @@ class UserProfile extends Component {
     render() {
         const {id} = this.props.match.params;
         const {user, loading, open} = this.state;
+        const {authenticated, history} = this.props;
         const imageUrl = user.imageUrl ? user.imageUrl.includes("yourapi.ru") ? user.imageUrl + '/150/150' : user.imageUrl : '';
         const sexOptions = [
             {
@@ -327,8 +328,8 @@ class UserProfile extends Component {
                     </Modal.Content>
                     <Modal.Actions>
                         <Button basic color='red' inverted onClick={() => {
-                            const path = `/profile`;
-                            this.props.history.push(path);
+                            const path = authenticated ? '/profile' : '/';
+                            history.push(path);
                         }}>
                             <Icon name='remove' /> Назад
                         </Button>

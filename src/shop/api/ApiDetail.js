@@ -109,6 +109,8 @@ class ApiDetail extends Component {
     renderSwitchBody(link4Description) {
         const pagingArray = ['review', 'version', 'methods', 'price', 'questions', 'documentation'];
         const params = queryString.parse(this.props.location.search);
+        const {authenticated} = this.props;
+        const {host, operations} = this.state;
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'methods';
         switch (paging) {
             case 'review':
@@ -122,8 +124,7 @@ class ApiDetail extends Component {
             case 'documentation':
                 return <ApiDetailDocumentationBody {...this.props} />;
             default:
-                return <ApiDetailMethodsBody link={link4Description + "&page=methods"} host={this.state.host}
-                                             operations={this.state.operations}/>
+                return <ApiDetailMethodsBody authenticated={authenticated}  link={link4Description + "&page=methods"} host={host} operations={operations}/>
         }
     }
 

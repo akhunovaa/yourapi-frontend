@@ -24,6 +24,29 @@ const request = async (options) => {
         ).catch(error => console.log(error))
 };
 
+const clearRequest = async (options) => {
+    const headers = new Headers({
+        'Content-Type': 'application/json;charset=UTF-8',
+        'Accept': 'application/json;charset=UTF-8'
+    });
+
+    if (localStorage.getItem(ACCESS_TOKEN)) {
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
+    }
+
+    const defaults = {headers: headers};
+    options = Object.assign({}, defaults, options);
+    return await fetch(options.url, options)
+        .then(response =>
+            response.json().then(json => {
+                if (!response.ok) {
+                    return Promise.reject(json);
+                }
+                return json;
+            })
+        ).catch(error => console.log(error))
+};
+
 const requestGet = async (options) => {
     const headers = new Headers({
         'Accept': 'application/json;charset=UTF-8'
@@ -138,7 +161,7 @@ export function getCurrentUser() {
 
 export function getUserProfile(id) {
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
-    return request({
+    return clearRequest({
         url: apiBaseUrl + "/individual" + "/" + id,
         method: 'GET'
     });
@@ -150,7 +173,7 @@ export function checkLocalStorage() {
 
 export function login(loginRequest) {
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
-    return request({
+    return clearRequest({
         url: apiBaseUrl + "/auth/login",
         method: 'POST',
         body: JSON.stringify(loginRequest)
@@ -209,7 +232,7 @@ export function apiProjectImageUpdate(formData) {
 
 export function signup(signupRequest) {
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
-    return request({
+    return clearRequest({
         url: apiBaseUrl + "/auth/signup",
         method: 'POST',
         body: JSON.stringify(signupRequest)
@@ -226,7 +249,7 @@ export function apiProjectListGet() {
 }
 
 export function apiProjectGet(apiProjectId) {
-    prevalidateTokenState();
+    //prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
         url: apiBaseUrl + "/api-data/get/" + apiProjectId,
@@ -243,7 +266,7 @@ export function apiTestRequestSend(url) {
 }
 
 export function apiProjectFullListGet() {
-    prevalidateTokenState();
+    // prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
         url: apiBaseUrl + "/api-data/full",
@@ -252,7 +275,7 @@ export function apiProjectFullListGet() {
 }
 
 export function apiFullListGet() {
-    prevalidateTokenState();
+    // prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV   !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
         url: apiBaseUrl + "/api-data/shop/filter",
@@ -261,7 +284,7 @@ export function apiFullListGet() {
 }
 
 export function apiFullCriteriaListGet(criteria) {
-    prevalidateTokenState();
+    //prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV   !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
         url: apiBaseUrl + "/api-data/shop/filter?category=" + criteria,

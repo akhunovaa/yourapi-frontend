@@ -129,6 +129,11 @@
     margin-top: 12px;
 }
 
+.not-authorized-icon-sign{
+    font-size: 24px;
+    padding-right: 12px;
+}
+
 .header-center-search{
     width: 250px;
     font-family: Roboto !important;

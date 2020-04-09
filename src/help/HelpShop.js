@@ -58,8 +58,6 @@ class HelpShop extends Component {
 
     render() {
 
-        const {page} = this.props.match.params;
-
         return (
             <div className='help-page-main'>
                 <div className='left-side-help-body'>

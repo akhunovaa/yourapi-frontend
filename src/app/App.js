@@ -55,24 +55,20 @@ class App extends Component {
                 currentUser: null,
                 loading: false
             });
-            return <Redirect
-                to={{
-                    pathname: "/login",
-                    state: {from: this.props.location}
-                }}/>;
-        }
-        getCurrentUser()
-            .then(response => {
+        }else {
+            getCurrentUser()
+                .then(response => {
+                    this.setState({
+                        currentUser: response.response,
+                        authenticated: true,
+                        loading: false
+                    });
+                }).catch(error => {
                 this.setState({
-                    currentUser: response.response,
-                    authenticated: true,
                     loading: false
                 });
-            }).catch(error => {
-            this.setState({
-                loading: false
             });
-        });
+        }
     }
 
     handleLogout() {
@@ -105,41 +101,38 @@ class App extends Component {
 
     render() {
 
-        const {width} = this.state;
+        const {width, loading, authenticated, currentUser} = this.state;
+        const {history} = this.props;
         const isMobile = width <= 700;
 
-        if (this.state.loading) {
+        if (loading) {
             return <LoadingIndicator/>
         }
 
         return (
             <div>
-                <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} currentUser={this.state.currentUser}/>
+                <AppHeader authenticated={authenticated} onLogout={this.handleLogout} currentUser={currentUser}/>
                 <Switch>
-                    <PrivateRoute exact path="/" authenticated={this.state.authenticated}
-                                  currentUser={this.state.currentUser} component={Home}/>
-                    <Route exact path="/login"
-                           render={(props) => <Login isMobile={isMobile} history={this.props.history}
-                                                     authenticated={this.state.authenticated} {...props} />}/>
-                    <Route exact path="/signup"
-                           render={(props) => <SignUp isMobile={isMobile} history={this.props.history}
-                                                      authenticated={this.state.authenticated} {...props} />}/>
+                    <Route exact path="/" authenticated={authenticated} currentUser={currentUser} component={Home}/>
+                    <Route exact path="/login" render={(props) => <Login isMobile={isMobile} history={history} authenticated={authenticated} {...props} />}/>
+                    <Route exact path="/signup" render={(props) => <SignUp isMobile={isMobile} history={history} authenticated={authenticated} {...props} />}/>
+                    <Route exact path="/help" component={Help}/>
+                    <Route path="/help/account/:page?" component={HelpAccount}/>
+                    <Route path="/help/profile/:page?" component={HelpProfile}/>
+                    <Route path="/help/shop/:page?" authenticated={authenticated} currentUser={currentUser} component={HelpShop}/>
+                    <Route path="/help/faq/:page?" authenticated={authenticated} currentUser={currentUser} component={HelpFaq}/>
+                    <Route path="/help/integrator/:page?" authenticated={authenticated} currentUser={currentUser} component={HelpIntegrator}/>
+                    <Route exact path="/integrator" component={Integrators}/>
 
-                    <PrivateRoute exact path="/help" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Help}/>
-                    <PrivateRoute path="/help/account/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpAccount}/>
-                    <PrivateRoute path="/help/profile/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpProfile}/>
-                    <PrivateRoute path="/help/shop/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpShop}/>
-                    <PrivateRoute path="/help/faq/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpFaq}/>
-                    <PrivateRoute path="/help/integrator/:page?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={HelpIntegrator}/>
+                    <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={currentUser} component={Profile} onLogout={this.handleLogout} loading={loading}/>
+                    <PrivateRoute exact path="/profile/administration" authenticated={authenticated} currentUser={currentUser} component={Administration}/>
+                    <PrivateRoute exact path="/profile/api" authenticated={authenticated} currentUser={currentUser} component={Api}/>
 
-                    <PrivateRoute exact path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Profile} onLogout={this.handleLogout} loading={this.state.loading}/>
-                    <PrivateRoute exact path="/profile/administration" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Administration}/>
-                    <PrivateRoute exact path="/profile/api" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Api}/>
-                    <PrivateRoute exact path="/profile/:id?" authenticated={this.state.authenticated} component={UserProfile} onLogout={this.handleLogout}/>
-                    <PrivateRoute exact path="/integrator" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Integrators}/>
-                    <PrivateRoute exact path="/shop" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Shop}/>
-                    <PrivateRoute exact path="/shop/category/:category?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiCategoryShop}/>
-                    <PrivateRoute exact path="/shop/category/:category?/api/:id?" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={ApiDetail}/>
+                    <Route exact path="/profile/:id?" authenticated={authenticated} component={UserProfile}/>
+                    <Route exact path="/shop" authenticated={authenticated} currentUser={currentUser} component={Shop}/>
+                    <Route exact path="/shop/category/:category?" authenticated={authenticated} currentUser={currentUser} component={ApiCategoryShop}/>
+                    <Route exact path="/shop/category/:category?/api/:id?" render={(props) => <ApiDetail authenticated={authenticated} currentUser={currentUser} {...props} />}/>
+
                     <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}/>
                     <Route path='*' exact={true} component={NotFound}/>
                 </Switch>

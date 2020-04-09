@@ -22,8 +22,6 @@ class AppFooter extends Component {
         };
 
         return (
-            <div>
-                {authenticated ? (
                     <div className="footer-authenticated">
                         <div className='footer-left-logo'>
                             <NavLink to="/"><span style={styles.spanOfContainer}>© 2019-2020 YourAPI</span></NavLink>
@@ -60,10 +58,6 @@ class AppFooter extends Component {
                         </div>
                         <ScrollUpButton EasingType="easeOutCubic" style={styles.ScrollUpButton}/>
                     </div>
-                ) : (
-                    <div className="footer"/>
-                )}
-            </div>
         )
     }
 }

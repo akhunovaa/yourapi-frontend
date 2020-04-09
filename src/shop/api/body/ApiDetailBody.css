@@ -329,7 +329,7 @@
     padding-top: 30px;
     padding-left: 24px;
     padding-right: 24px;
-    height: auto;
+    height: 100%;
     width: 100%;
     /*display: inline-block;*/
     text-align: center;
@@ -1016,4 +1016,53 @@
 .code-copy{
     color: #A5A5A5;
     padding-left: 19px;
+}
+
+.restricted-login-button-text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /*vertical-align: middle;*/
+    align-items: center;
+    /* white */
+    color: #FFFFFF;
+    vertical-align: center;
+}
+
+.restricted-login-button-container{
+    text-align:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 15px;
+}
+
+.restricted-login-button-label{
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    color: #4F4F4F;
+    width: 100%;
+    padding-top: 214px;
+}
+
+.restricted-login-button{
+    width: 109px;
+    /*padding-right: 32px;*/
+}
+
+.restricted-button-container{
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    width: 100%;
+    height: 507px;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
 }

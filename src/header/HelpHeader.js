@@ -3,6 +3,7 @@ import './HelpHeader.css';
 import {Link} from "react-router-dom";
 import {Icon, Dropdown} from "semantic-ui-react";
 import HeaderUserPortal from "../header/HeaderUserPortal";
+import HeaderNotAuthenticatedUserPortal from "../header/HeaderNotAuthenticatedUserPortal";
 
 class HelpHeader extends Component {
 
@@ -25,7 +26,7 @@ class HelpHeader extends Component {
                 }
         };
 
-        const {currentUser, onLogout} = this.props;
+        const {currentUser, onLogout, authenticated} = this.props;
 
         return (
             <div className="help-header">
@@ -56,7 +57,9 @@ class HelpHeader extends Component {
                         <Icon link size={'large'}  name='bookmark outline' />
                     </div>
                     <div className='header-right-navlink-profile'>
-                        <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>
+                        {authenticated ? (
+                            <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>) : (
+                            <HeaderNotAuthenticatedUserPortal {...this.props}/>)}
                     </div>
                 </div>
             </div>

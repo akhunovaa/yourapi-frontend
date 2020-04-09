@@ -3,6 +3,7 @@ import './ApiDetailBody.css';
 import {Icon, Input, List} from "semantic-ui-react";
 import LoadingIndicator from "../../../common/LoadingIndicator";
 import ApiDetailMethodsOperation from "./ApiDetailMethodsOperation";
+import ApiRestrictedOperation from "./ApiRestrictedOperation";
 import queryString from "query-string";
 import {withRouter} from "react-router";
 import classNames from "classnames/bind";
@@ -102,7 +103,10 @@ class ApiDetailMethodsBody extends Component {
 
     render() {
 
-        if (this.state.loading) {
+        const {authenticated, link} = this.props;
+        const {loading} = this.state;
+
+        if (loading) {
             return <LoadingIndicator/>
         }
 
@@ -116,16 +120,20 @@ class ApiDetailMethodsBody extends Component {
         const params = queryString.parse(this.props.location.search);
         let operationNaming = (params.operation !== 'undefined' && this.handleCheck(operationNameArray, params.operation)) ? params.operation : '/';
 
-        let link = this.props.link + "&operation=";
+        let linkx = link + "&operation=";
         const HttpMethods = ({items}, {index}) => (
             <>
                 {
                     items.map(item => (
-                        <List.List key={index + item.path} className='detail-methods-element-body-content' hidden={this.state.hidden.p1}>
+                        <List.List key={index + item.path} className='detail-methods-element-body-content'
+                                   hidden={this.state.hidden.p1}>
                             <List.Content className='detail-methods-element-body'>
-                                <NavLink to={link + item.path }>
-                                    <div className={classNames({'detail-methods-element-body-paragraph-selected': (operationNaming === item.path)}, 'detail-methods-element-body-paragraph')} id={item.path}>
-                                         <span id={item.path} style={{color: '#219653'}}>{item.method}</span><span id={item.path}>{item.path}</span>
+                                <NavLink to={linkx + item.path}>
+                                    <div
+                                        className={classNames({'detail-methods-element-body-paragraph-selected': (operationNaming === item.path)}, 'detail-methods-element-body-paragraph')}
+                                        id={item.path}>
+                                        <span id={item.path} style={{color: '#219653'}}>{item.method}</span><span
+                                        id={item.path}>{item.path}</span>
                                     </div>
                                 </NavLink>
                             </List.Content>
@@ -135,49 +143,52 @@ class ApiDetailMethodsBody extends Component {
         );
 
         return (
-            <div>
                 <div className='detail-methods-body'>
-                    <div className='detail-methods-main-columns'>
-                        <div className='detail-methods-endpoints-container'>
-                            <div className='detail-methods-title'>
-                                <Icon name='list' className=''/>
-                                <span>Endpoints</span>
+                    {authenticated ? (
+                        <div className='detail-methods-main-columns'>
+
+                            <div className='detail-methods-endpoints-container'>
+                                <div className='detail-methods-title'>
+                                    <Icon name='list' className=''/>
+                                    <span>Endpoints</span>
+                                </div>
+                                <div className='detail-methods-title-label'>
+                                    <span>Выберите операцию, доступную для API</span>
+                                </div>
+                                <div className='detail-methods-search'>
+                                    <Input size={'small'} fluid icon={{name: 'search', link: true}}
+                                           placeholder='Поиск...' id="search"
+                                           name="search"/>
+                                </div>
+                                <div className='detail-methods-filter-text'>
+                                    <List verticalAlign='middle'>
+                                        <List.Item>
+                                            <div className='detail-methods-filter-element'>
+                                                <List.Content floated='right'>
+                                                    <div className='detail-methods-filter-element-header'>
+                                                        <Icon link id='p1' name={this.state.arrow.p1}
+                                                              onClick={this.toggle}/>
+                                                    </div>
+                                                </List.Content>
+                                                <List.Content>
+                                                    <div className='detail-methods-filter-element-header'>
+                                                        <span className='detail-methods-filter-text-title'>Фильтр</span>
+                                                        <span
+                                                            className='detail-methods-filter-text-title-main'>Операции</span>
+                                                    </div>
+                                                </List.Content>
+                                                <HttpMethods items={operations}/>
+                                            </div>
+                                        </List.Item>
+                                    </List>
+                                </div>
                             </div>
-                            <div className='detail-methods-title-label'>
-                                <span>Выберите операцию, доступную для API</span>
-                            </div>
-                            <div className='detail-methods-search'>
-                                <Input size={'small'} fluid icon={{name: 'search', link: true}}
-                                       placeholder='Поиск...' id="search"
-                                       name="search"/>
-                            </div>
-                            <div className='detail-methods-filter-text'>
-                                <List verticalAlign='middle'>
-                                    <List.Item>
-                                        <div className='detail-methods-filter-element'>
-                                            <List.Content floated='right'>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <Icon link id='p1' name={this.state.arrow.p1}
-                                                          onClick={this.toggle}/>
-                                                </div>
-                                            </List.Content>
-                                            <List.Content>
-                                                <div className='detail-methods-filter-element-header'>
-                                                    <span className='detail-methods-filter-text-title'>Фильтр</span>
-                                                    <span
-                                                        className='detail-methods-filter-text-title-main'>Операции</span>
-                                                </div>
-                                            </List.Content>
-                                            <HttpMethods items={operations}/>
-                                        </div>
-                                    </List.Item>
-                                </List>
-                            </div>
+                            <ApiDetailMethodsOperation link={link} operations={operations} {...this.props}/>
                         </div>
-                        <ApiDetailMethodsOperation link={link} operations={operations} {...this.props}/>
-                    </div>
+                    ) : (
+                        <ApiRestrictedOperation />
+                    )}
                 </div>
-            </div>
         )
     }
 }
