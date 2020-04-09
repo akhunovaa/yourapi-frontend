@@ -151,10 +151,10 @@ class ApiDetail extends Component {
 
         const {loading, name, dealer, category, updated, description, image, id} = this.state;
         const host = window.location.origin.toString();
-        const profileLink = host + '/profile' + '/' + dealer.nickname ? dealer.nickname : 'id' + dealer.id;
+        const profile = dealer.nickname ? dealer.nickname : 'id' + dealer.id;
+        const profileLink = '/profile' + '/' + profile;
         const link = getLink4Category(category);
         const link4Description = getLink4Description(category) + id;
-
         return (
             <div className="api-detail-main">
                 <div className="api-detail-container-breadcrumb">
@@ -195,7 +195,7 @@ class ApiDetail extends Component {
                                 </div>
                             </div>
                             <div className='api-detail-title'>{name}</div>
-                            <div className='api-detail-dealer'>от <NavLink to={profileLink ? profileLink : '#'}>{dealer.nickname ? dealer.nickname : dealer.name}</NavLink>
+                            <div className='api-detail-dealer'>от <NavLink to={profileLink}>{dealer.nickname ? dealer.nickname : dealer.name}</NavLink>
                             </div>
                             <div className="api-detail-rating">
                                 <Icon link name='star' style={{color: '#F39847'}}/>
