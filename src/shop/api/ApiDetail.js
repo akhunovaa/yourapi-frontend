@@ -151,7 +151,7 @@ class ApiDetail extends Component {
 
         const {loading, name, dealer, category, updated, description, image, id} = this.state;
         const host = window.location.origin.toString();
-        const profile = dealer.nickname ? dealer.nickname : 'id' + dealer.id;
+        const profile = dealer.nickname && !dealer.nickname.includes('.', ',') ? dealer.nickname : 'id' + dealer.id;
         const profileLink = '/profile' + '/' + profile;
         const link = getLink4Category(category);
         const link4Description = getLink4Description(category) + id;
@@ -195,7 +195,8 @@ class ApiDetail extends Component {
                                 </div>
                             </div>
                             <div className='api-detail-title'>{name}</div>
-                            <div className='api-detail-dealer'>от <NavLink to={profileLink}>{dealer.nickname ? dealer.nickname : dealer.name}</NavLink>
+                            <div className='api-detail-dealer'>от <NavLink
+                                to={profileLink}>{dealer.nickname ? dealer.nickname : dealer.name}</NavLink>
                             </div>
                             <div className="api-detail-rating">
                                 <Icon link name='star' style={{color: '#F39847'}}/>
@@ -237,9 +238,9 @@ class ApiDetail extends Component {
                                     <span className='description-body-link'>100%</span>
                                 </div>
                                 <div
-                                    className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>
-                                    {description}<NavLink to='#'
-                                                          className='description-body-link description-api-links-color-blue'>...еще</NavLink>
+                                    className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>{description}<NavLink
+                                    to='#'
+                                    className='description-body-link description-api-links-color-blue'>...еще</NavLink>
                                 </div>
                             </div>
                         </div>
