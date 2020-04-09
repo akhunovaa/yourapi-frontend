@@ -153,7 +153,7 @@ const checkResponseForAvalidToken = (message) => {
 
 export function getCurrentUser() {
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
-    return request({
+    return clearRequest({
         url: apiBaseUrl + "/individual/me",
         method: 'GET'
     });
