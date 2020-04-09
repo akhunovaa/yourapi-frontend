@@ -380,15 +380,26 @@
     display: flex;
 }
 
-.help-sub-page-left{
+.help-sub-page-left-body{
+
     position: fixed;
     display: block;
     width: 274px;
-    min-width: 240px;
-    height: auto;
     padding-top: 154px;
     padding-left: 60px;
     padding-right: 30px;
+
+}
+
+.help-sub-page-left{
+    min-width: 240px;
+    height: auto;
+
+    /*text-align: center;*/
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+
 }
 
 .help-sub-page-right{
@@ -413,10 +424,16 @@
     /* Gray 2 */
     color: #4F4F4F;
 }
+.help-sub-page-right-body-parent{
+    /*text-align: center;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .help-sub-page-right-body{
     padding-top: 44px;
-    margin-left: 274px;
+    /*margin-left: 274px;*/
     width: 632px;
 }
 
