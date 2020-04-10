@@ -1,12 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://yourapi.ru/</loc>
-        <lastmod>2020-01-09T22:08:55+00:00</lastmod>
+        <loc>https://yourapi.ru</loc>
+        <changefreq>always</changefreq>
     </url>
 
+    <url>
+        <loc>https://yourapi.ru/help</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/help/account/loader</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/login</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/signup</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/data</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/data/api</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/finance</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/finance/api</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/mobile</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/mobile/api</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/map</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/map/api</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/adv</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/adv/api</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/social</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/social/api</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/health</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/health/api</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/sport</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/sport/api</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/web</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/web/api</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/other</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/other/api</loc>
+        <changefreq>always</changefreq>
+    </url>
 
 </urlset>
+
