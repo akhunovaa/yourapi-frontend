@@ -3,14 +3,13 @@ import './Login.css';
 import Alert from 'react-s-alert';
 import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import {login} from "../util/APIUtils";
-import {Link, Redirect} from "react-router-dom";
+import {Link, NavLink, Redirect} from "react-router-dom";
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, VK_AUTH_URL, YANDEX_AUTH_URL, OAUTH2_REDIRECT_URI, BATTLE_NET_AUTH_URL } from '../constants';
 import registerServiceWorker from '../util/../registerServiceWorker';
 import {unregister} from '../util/../registerServiceWorker';
 import LoadingIndicator from '../common/LoadingIndicator';
 import { Icon as Iconx } from '@iconify/react';
 import battleNet from '@iconify/icons-fa-brands/battle-net';
-
 
 class Login extends Component {
 
@@ -146,7 +145,7 @@ class Login extends Component {
                 {isMobile ? <div/> :  <div id="login-container-left"/>}
                 <div id="login-container-right">
                     <div id="login-container-right-header">
-                        <Header as='h3' className={'login-right-header'}>YourAPI</Header>
+                        <NavLink to={"/"}> <Header as='h3' className={'login-right-header'}>YourAPI</Header></NavLink>
                     </div>
                     <div className="login-container-right-form">
                         <div className='navigate-links'>

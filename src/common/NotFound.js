@@ -7,7 +7,7 @@ class NotFound extends Component {
 
     render() {
         return (
-                    <div className="page-not-found">
+                    <div className="page-not-found" unselectable='on'>
                         <h1 className="page-not-found-title-2">
                             404
                         </h1>

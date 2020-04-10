@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Signup.css';
-import {Link, Redirect} from 'react-router-dom'
+import {Link, NavLink, Redirect} from 'react-router-dom'
 import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} from "semantic-ui-react";
 import { signup } from "../util/APIUtils";
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, VK_AUTH_URL, YANDEX_AUTH_URL, OAUTH2_REDIRECT_URI, BATTLE_NET_AUTH_URL } from '../constants';
@@ -136,7 +136,7 @@ class SignUp extends Component {
 
                 <div id="login-container-right">
                     <div id="login-container-right-header">
-                        <Header as='h3' className={'login-right-header'}>YourAPI</Header>
+                        <NavLink to={"/"}> <Header as='h3' className={'login-right-header'}>YourAPI</Header></NavLink>
                     </div>
                     <div className="signup-container-right-form">
                         <div className='navigate-links'>
