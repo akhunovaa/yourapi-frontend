@@ -1,8 +1,8 @@
 .page-not-found {
-    min-height: 911px;
+    min-height: 1100px;
+    height: auto;
     min-width: 1366px;
     width: auto;
-    height: 100%;
     background: url('../img/404.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
