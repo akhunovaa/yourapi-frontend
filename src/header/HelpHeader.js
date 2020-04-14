@@ -26,7 +26,7 @@ class HelpHeader extends Component {
                 }
         };
 
-        const {currentUser, onLogout, authenticated, handleSliderChange} = this.props;
+        const {currentUser, onLogout, authenticated, handleSliderChange, visible} = this.props;
 
         return (
             <div className="help-header">
@@ -59,7 +59,7 @@ class HelpHeader extends Component {
                     <div className='header-right-navlink-profile'>
                         {authenticated ? (
                             <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
-                            <HeaderNotAuthenticatedUserPortal handleSliderChange={handleSliderChange}/>)}
+                            <HeaderNotAuthenticatedUserPortal visible={visible} handleSliderChange={handleSliderChange}/>)}
                     </div>
                 </div>
             </div>

@@ -116,7 +116,7 @@ class App extends Component {
 
         return (
             <div>
-                <AppHeader authenticated={authenticated} onLogout={this.handleLogout} handleSliderChange={this.handleSliderChange} currentUser={currentUser}/>
+                <AppHeader authenticated={authenticated} onLogout={this.handleLogout} handleSliderChange={this.handleSliderChange} visible={visible} currentUser={currentUser}/>
                 <Switch>
 
                     <Route exact path="/" render={(props) => <Home authenticated={authenticated} visible={visible} handleSliderChange={this.handleSliderChange} currentUser={currentUser} {...props} />}/>

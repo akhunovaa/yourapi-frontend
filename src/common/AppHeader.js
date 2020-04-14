@@ -64,29 +64,28 @@ class AppHeader extends Component {
     // }
 
     render() {
-        const {onLogout, authenticated, currentUser, handleSliderChange} = this.props;
+        const {onLogout, authenticated, currentUser, handleSliderChange, visible} = this.props;
         return (
             <div style={{maxHeight: '64px'}}>
                 <Switch>
-                    <Route exact path="/"
-                           render={(props) => <HomeHeader handleSliderChange={handleSliderChange}
-                                                          authenticated={authenticated} currentUser={currentUser}
+                    <Route exact path="/" render={(props) => <HomeHeader handleSliderChange={handleSliderChange}
+                                                          authenticated={authenticated} currentUser={currentUser} visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
                     <Route path="/help"
                            render={(props) => <HelpHeader handleSliderChange={handleSliderChange}
-                                                          authenticated={authenticated} currentUser={currentUser}
+                                                          authenticated={authenticated} currentUser={currentUser} visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
                     <Route exact path="/integrator"
-                           render={(props) => <IntegratorHeader authenticated={authenticated} currentUser={currentUser}
+                           render={(props) => <IntegratorHeader authenticated={authenticated} currentUser={currentUser} visible={visible}
                                                                 onLogout={onLogout} {...props} />}/>
                     <Route exact path="/shop"
-                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange} authenticated={authenticated} currentUser={currentUser}
+                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange} authenticated={authenticated} currentUser={currentUser} visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
                     <Route exact path="/shop/category/:category?"
-                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange} authenticated={authenticated} currentUser={currentUser}
+                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange} authenticated={authenticated} currentUser={currentUser} visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
                     <Route exact path="/shop/category/:category?/api/:id?"
-                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange} authenticated={authenticated} currentUser={currentUser}
+                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange} authenticated={authenticated} currentUser={currentUser} visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
 
                     <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={currentUser}
@@ -102,19 +101,12 @@ class AppHeader extends Component {
                     ) : (
                         <Route exact path="/profile/:id?"
                                render={(props) => <HomeHeader handleSliderChange={handleSliderChange}
-                                                              authenticated={authenticated} currentUser={currentUser}
+                                                              authenticated={authenticated} currentUser={currentUser} visible={visible}
                                                               component={HomeHeader}
                                                               onLogout={onLogout} {...props} />}/>
                     )}
 
                 </Switch>
-                {/*{this.props.authenticated ? (*/}
-                {/*this.renderSwitch(path)*/}
-                {/*) : (*/}
-                {/*<div className="header">*/}
-
-                {/*</div>*/}
-                {/*)}*/}
             </div>
         )
     }
@@ -166,12 +158,9 @@ class HomeHeader extends Component {
 
 
     render() {
-        const {loading} = this.state;
-        const {currentUser, onLogout, authenticated, handleSliderChange} = this.props;
 
-        if (loading) {
-            return <LoadingIndicator/>
-        }
+        const {currentUser, onLogout, authenticated, handleSliderChange, visible} = this.props;
+
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo'>
@@ -206,7 +195,7 @@ class HomeHeader extends Component {
                     <div className='header-right-navlink-profile'>
                         {authenticated ? (
                             <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
-                            <HeaderNotAuthenticatedUserPortal handleSliderChange={handleSliderChange}/>)}
+                            <HeaderNotAuthenticatedUserPortal visible={visible} handleSliderChange={handleSliderChange}/>)}
                     </div>
                 </div>
             </div>
@@ -222,7 +211,7 @@ class IntegratorHeader extends Component {
     }
 
     render() {
-        const {currentUser, onLogout, authenticated} = this.props;
+        const {currentUser, onLogout, authenticated, visible} = this.props;
 
         return (
             <div className="header-authenticated">
@@ -265,7 +254,7 @@ class IntegratorHeader extends Component {
                     <div className='header-right-navlink-profile'>
                         {authenticated ? (
                             <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>) : (
-                            <HeaderNotAuthenticatedUserPortal {...this.props}/>)}
+                            <HeaderNotAuthenticatedUserPortal visible={visible} {...this.props}/>)}
                     </div>
                 </div>
 
@@ -282,7 +271,7 @@ class ShopHeader extends Component {
     }
 
     render() {
-        const {currentUser, onLogout, authenticated, handleSliderChange} = this.props;
+        const {currentUser, onLogout, authenticated, handleSliderChange, visible} = this.props;
 
         return (
             <div className="header-authenticated">
@@ -327,7 +316,7 @@ class ShopHeader extends Component {
                     <div className='header-right-navlink-profile'>
                         {authenticated ? (
                             <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
-                            <HeaderNotAuthenticatedUserPortal handleSliderChange={handleSliderChange}/>)}
+                            <HeaderNotAuthenticatedUserPortal handleSliderChange={handleSliderChange} visible={visible}/>)}
                     </div>
                 </div>
             </div>
@@ -343,7 +332,7 @@ class ShopCategoryHeader extends Component {
     }
 
     render() {
-        const {currentUser, onLogout, authenticated} = this.props;
+        const {currentUser, onLogout, authenticated, visible} = this.props;
 
         return (
             <div className="header-authenticated">
@@ -386,7 +375,7 @@ class ShopCategoryHeader extends Component {
                     <div className='header-right-navlink-profile'>
                         {authenticated ? (
                             <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>) : (
-                            <HeaderNotAuthenticatedUserPortal {...this.props}/>)}
+                            <HeaderNotAuthenticatedUserPortal visible={visible} {...this.props}/>)}
                     </div>
                 </div>
 
