@@ -112,10 +112,10 @@ class Shop extends Component {
                             <div className="shop-container-breadcrumb">
                                 <Breadcrumb>
                                     <Breadcrumb.Section as={NavLink} to={'/'} link><span
-                                        className='text-disabled-color'>Главная</span></Breadcrumb.Section>
+                                        className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
                                     <Breadcrumb.Divider icon='right chevron'/>
                                     <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
-                                        className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
+                                        className='text-disabled-color blue-hover'>Магазин</span></Breadcrumb.Section>
                                 </Breadcrumb>
                             </div>
                             <div className="shop-main-container">
@@ -168,63 +168,53 @@ class Shop extends Component {
                                         <div className='category-labels'>
                                             <div className='category-label'>
                                                 <Icon color='red' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/data'>Данные</NavLink>
-                                                <span
-                                                    className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[0])}</span>
+                                                <NavLink to='/shop/category/data' className='blue-hover'>Данные</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[0])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='orange' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/finance'>Финансы</NavLink>
-                                                <span
-                                                    className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[1])}</span>
+                                                <NavLink to='/shop/category/finance' className='blue-hover'>Финансы</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[1])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='yellow' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/mobile'>Мобильные</NavLink>
-                                                <span
-                                                    className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[2])}</span>
+                                                <NavLink to='/shop/category/mobile' className='blue-hover'>Мобильные</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[2])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='green' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/map'>Карты</NavLink>
-                                                <span
-                                                    className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[3])}</span>
+                                                <NavLink to='/shop/category/map' className='blue-hover'>Карты</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[3])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='olive' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/adv'>Реклама</NavLink>
-                                                <span
-                                                    className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[4])}</span>
+                                                <NavLink to='/shop/category/adv' className='blue-hover'>Реклама</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[4])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='blue' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/social'>Социальные сети</NavLink>
-                                                <span
-                                                    className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[5])}</span>
+                                                <NavLink to='/shop/category/social' className='blue-hover'>Социальные сети</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[5])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='purple' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/health'>Здравохранение</NavLink>
-                                                <span
-                                                    className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[6])}</span>
+                                                <NavLink to='/shop/category/health' className='blue-hover'>Здравохранение</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[6])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='teal' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/sport'>Спорт</NavLink>
-                                                <span
-                                                    className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[7])}</span>
+                                                <NavLink to='/shop/category/sport' className='blue-hover'>Спорт</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[7])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='violet' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/web'>Web</NavLink>
-                                                <span
-                                                    className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[8])}</span>
+                                                <NavLink to='/shop/category/web' className='blue-hover'>Web</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[8])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='grey' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/other'>Другое</NavLink>
-                                                <span
-                                                    className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[9])}</span>
+                                                <NavLink to='/shop/category/other' className='blue-hover'>Другое</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[9])}</span>
                                             </div>
                                         </div>
                                     </div>
