@@ -263,8 +263,7 @@ class ApiCategoryShop extends Component {
                                         projects[0] && projects[0].size > 0 ?
                                             (
                                                 <div id={projects[0].data_name}>
-                                                    <div
-                                                        className='api-element-container-header'>
+                                                    <div className='api-element-container-header'>
                                             <span
                                                 className='main-form-header'>{projects[0] ? projects[0].data_name : ''}</span>
                                                     </div>

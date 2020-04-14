@@ -65,6 +65,12 @@
 
     /* Gray 2 */
     color: #4F4F4F;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .shop-container-breadcrumb{
