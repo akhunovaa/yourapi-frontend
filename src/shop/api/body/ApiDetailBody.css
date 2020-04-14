@@ -1049,6 +1049,12 @@
     color: #4F4F4F;
     width: 100%;
     padding-top: 214px;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .restricted-login-button{
