@@ -268,9 +268,9 @@ class LoginForm2 extends Component {
                 <Grid className={!isWide ? 'login-grid-form' : 'login-wide-grid-form'}>
                     <Grid.Column widescreen={16} tablet={16} mobile={16} largeScreen={16} computer={16} stretched>
                         <Form size='tiny' onSubmit={this.handleSubmit}>
-                            <Segment className='login-data-segment-form'>
+                            <Segment className='login-data-segment-form blue-hover'>
                                 <Form.Field>
-                                    <label style={styles.labelStyle}>Логин/Email</label>
+                                    <label style={styles.labelStyle} className='blue-hover'>Логин/Email</label>
                                     <Input onChange={this.handleInputChange} className="form-login-input" id="login"
                                            name="login" required placeholder='Логин/Email'/>
                                 </Form.Field>

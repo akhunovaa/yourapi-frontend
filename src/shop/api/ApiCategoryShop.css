@@ -7,7 +7,7 @@
 }
 
 .api-shop-container-breadcrumb{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -43,7 +43,7 @@
 
 .api-shop-filter-title{
 
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -55,7 +55,7 @@
 }
 
 .api-shop-filter-rating{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -72,7 +72,7 @@
 }
 
 .api-shop-filter-response-time{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -85,7 +85,7 @@
 
 .api-shop-filter-response-time-label{
     padding-top: 10px;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -102,7 +102,7 @@
 
 
 .api-shop-filter-response-time{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -115,7 +115,7 @@
 
 .api-shop-filter-response-time-label{
     padding-top: 10px;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -127,7 +127,7 @@
 }
 
 .api-shop-filter-response-time{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -140,7 +140,7 @@
 
 .api-shop-filter-response-time-label{
     padding-top: 10px;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -169,7 +169,7 @@
 }
 
 .api-category-shop-empty{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;

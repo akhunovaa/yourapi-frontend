@@ -1,5 +1,5 @@
 body{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

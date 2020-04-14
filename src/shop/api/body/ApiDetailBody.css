@@ -57,7 +57,7 @@
 }
 
 .detail-review-rating{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -142,7 +142,7 @@
 
 .detail-review-rating-line-label{
     padding-left: 10px;
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -183,7 +183,7 @@
 
 .review-username{
 
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -197,7 +197,7 @@
 }
 
 .review-date{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -237,7 +237,7 @@
 }
 
 .review-text{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -279,7 +279,7 @@
 }
 
 .detail-version-element-header-text{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -291,7 +291,7 @@
 
 .detail-version-element-header-date{
     padding-left: 14px;
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -314,7 +314,7 @@
 
 .detail-version-element-body{
     padding: 16px 60px 17px 20px;
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -357,7 +357,7 @@
 }
 
 .detail-methods-endpoints-title{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -373,7 +373,7 @@
 }
 
 .detail-methods-title-label{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -388,7 +388,7 @@
 
 .detail-methods-search{
     padding-top: 16px;
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -400,7 +400,7 @@
 
 .detail-methods-search input{
     width: 100%;
-    font-family: Roboto !important;
+    font-family: var(--font-family) !important;
     font-style: normal !important;
     font-weight: normal !important;
     font-size: 14px !important;
@@ -408,7 +408,7 @@
 }
 
 .detail-methods-filter-text{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-size: 14px;
     line-height: 16px;
@@ -469,7 +469,7 @@
 }
 
 .detail-methods-element-body{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -480,7 +480,7 @@
 }
 
 .detail-methods-element-body-paragraph{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -517,7 +517,7 @@
 }
 
 .detail-methods-properties-text{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -534,7 +534,7 @@
 }
 
 .detail-methods-parameters-label{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -545,7 +545,7 @@
 }
 
 .detail-methods-parameters-input{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -582,7 +582,7 @@
 
 
 .detail-methods-test-button-text{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -608,7 +608,7 @@
 
 .detail-methods-code-sdk-text{
 
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -619,7 +619,7 @@
 }
 
 .detail-methods-code-fragment-textarea textarea{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -630,7 +630,7 @@
 }
 
 .detail-methods-example-code-fragment-textarea{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -659,7 +659,7 @@
 }
 
 .detail-methods-code-fragment-textarea-inner-response-code span{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -697,7 +697,7 @@
 }
 
 .detail-price-body-currency-text{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -725,7 +725,7 @@
 }
 
 .detail-price-body-currency-body{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -754,7 +754,7 @@
 
 
 .detail-price-body-individual-plan-button-text{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -801,7 +801,7 @@
 }
 
 .individual-plan-header{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -827,7 +827,7 @@
 }
 
 .individual-plan-header-label{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -838,7 +838,7 @@
 }
 
 .individual-plan-body{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
 }
 
@@ -898,7 +898,7 @@
 }
 
 .detail-price-body-main-plan-scope-element-header{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -941,7 +941,7 @@
 }
 
 .detail-price-body-main-plan-faq-header{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -953,7 +953,7 @@
 }
 
 .detail-price-body-main-plan-faq-subheader{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -970,7 +970,7 @@
 }
 
 .detail-price-body-main-plan-faq-subheader-label{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -998,7 +998,7 @@
 }
 
 .individual-plan-support-message-button-text{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -1019,7 +1019,7 @@
 }
 
 .restricted-login-button-text{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

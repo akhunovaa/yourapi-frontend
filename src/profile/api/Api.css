@@ -32,7 +32,7 @@
     width: 100%;
     min-height: 800px;
     height: auto;
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -40,7 +40,7 @@
 }
 
 .api-breadcrumb{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -80,7 +80,7 @@
 }
 
 .api-command-operation-text {
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -90,7 +90,7 @@
 }
 
 .api-list-text {
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -135,7 +135,7 @@
 .api-command-toggle{
     width: 268px;
     padding: 29px 28px 28px;
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -163,7 +163,7 @@
 
 .api-add-container-title{
 
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -175,7 +175,7 @@
 
 .api-add-container-inputs{ /*display: inline-flex;*/
 
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -189,7 +189,7 @@
     width: 352px;
     display: grid;
     min-width: 250px;
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -211,7 +211,7 @@
     width: 250px;
     display: grid;
     min-width: 250px;
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -234,7 +234,7 @@
 }
 
 .api-add-container-input-textarea{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -245,7 +245,7 @@
 }
 
 .api-add-container-input-textarea #info{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -256,7 +256,7 @@
 }
 
 .helper-message{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -308,7 +308,7 @@
 }
 
 .api-upload-text{
-    font-family: Roboto;
+    font-family: var(--font-family);;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

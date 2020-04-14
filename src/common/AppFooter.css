@@ -18,7 +18,7 @@
 }
 
 .footer-link-container{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -53,7 +53,7 @@
 }
 .footer-right-link-container{
     color: #F2F2F2;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     padding: 16px 24px 16px 0px;

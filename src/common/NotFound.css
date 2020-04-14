@@ -23,7 +23,7 @@
     left: 900px;
     top: 361px;
 
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 144px;
@@ -42,7 +42,7 @@
     left: 892px;
     top: 365px;
 
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 144px;
@@ -60,7 +60,7 @@
     left: 900px;
     top: 365px;
 
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 144px;
@@ -80,7 +80,7 @@
     left: 900px;
     top: 534px;
 
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -116,7 +116,7 @@
 }
 
 .go-back-404-text-button{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

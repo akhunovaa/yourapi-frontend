@@ -3,7 +3,7 @@
     padding-top: 32px;
     padding-left: 32px;
     padding-right: 28px;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -11,7 +11,7 @@
 }
 
 .command-operation-text{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

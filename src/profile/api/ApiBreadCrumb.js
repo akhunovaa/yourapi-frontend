@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './Api.css';
 import {Breadcrumb} from "semantic-ui-react";
 import {NavLink, withRouter} from "react-router-dom";
-import queryString from 'query-string';
 
 class ApiBreadCrumb extends Component {
 
@@ -76,13 +75,13 @@ class ApiBreadCrumb extends Component {
 
         return (
                 <Breadcrumb>
-                    <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right chevron'/>
-                    <Breadcrumb.Section as={NavLink} to={'/profile'} link><span className='text-disabled-color'>Личный кабинет</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={'/profile'} link><span className='text-disabled-color blue-hover'>Личный кабинет</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right chevron'/>
-                    <Breadcrumb.Section as={NavLink} to={'/profile/api'} link><span className='text-disabled-color'>Мои API</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={'/profile/api'} link><span className='text-disabled-color blue-hover'>Мои API</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right chevron'/>
-                    <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color'>{message}</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color blue-hover'>{message}</span></Breadcrumb.Section>
                 </Breadcrumb>
 
         )

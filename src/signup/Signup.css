@@ -40,7 +40,7 @@
 .submit-button{
     background: #2F80ED !important;
     color: white !important;
-    font-family: Roboto, serif !important;
+    font-family: var(--font-family) !important;
     font-style: normal !important;
     font-weight: normal !important;
     font-size: 14px !important;
@@ -66,6 +66,7 @@
 }
 
 .login-data-segment-form{
+    font-family: var(--font-family) !important;
     border: none !important;
     -webkit-box-shadow: none !important;
 }
@@ -91,7 +92,7 @@
 
 
 .footer-icon-group-label{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -102,6 +103,7 @@
 }
 
 .login-nav-link-left-login{
+    font-family: var(--font-family);
     width: 124px;
     float: left;
     height: 52px;
@@ -123,6 +125,7 @@
 }
 
 .signup-nav-link-right-1{
+    font-family: var(--font-family);
     width: 124px;
     float: right;
     height: 100%;
@@ -136,7 +139,7 @@
 .license-agreement{
     width: 100%;
     height: 52px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

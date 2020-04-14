@@ -9,59 +9,16 @@ import ApiHeader from "../header/ApiHeader";
 import HeaderUserPortal from "../header/HeaderUserPortal";
 import HeaderNotAuthenticatedUserPortal from "../header/HeaderNotAuthenticatedUserPortal";
 import SearchBox from "./SearchBox";
-// import Login from "../app/App";
-// import OAuth2RedirectHandler from "../login/oauth2/OAuth2RedirectHandler";
-// import Api from "../profile/api/Api";
 import PrivateRoute from '../common/PrivateRoute';
 import HelpHeader from "../header/HelpHeader";
-import LoadingIndicator from '../common/LoadingIndicator';
 
 class AppHeader extends Component {
 
     constructor(props) {
         super(props);
         this.state = {};
-        // this.renderSwitch = this.renderSwitch.bind(this);
-    }
 
-    // renderSwitch(path) {
-    //     switch (path) {
-    //         case '/':
-    //             return <HomeHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/integrator':
-    //             return <IntegratorHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop':
-    //             return <ShopHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/profile':
-    //             return <ProfileHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/profile/administration':
-    //             return <AdministrationHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/profile/api':
-    //             return <ApiHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop/category/data':
-    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop/category/finance':
-    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop/category/mobile':
-    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop/category/map':
-    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop/category/adv':
-    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop/category/social':
-    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop/category/health':
-    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop/category/sport':
-    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop/category/web':
-    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         case '/shop/category/other':
-    //             return <ShopCategoryHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //         default:
-    //             return <HomeHeader currentUser={this.props.currentUser} onLogout={this.props.onLogout}/>;
-    //     }
-    // }
+    }
 
     render() {
         const {onLogout, authenticated, currentUser, handleSliderChange, visible} = this.props;
@@ -164,11 +121,11 @@ class HomeHeader extends Component {
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo'>
-                    <Link to="/"><b style={{color: 'white'}}>YourAPI</b></Link>
+                    <NavLink to="/" className='white-inactive-link'>YourAPI</NavLink>
                 </div>
                 <div className='header-center-container'>
                     <div className='header-center-navlink-merch'>
-                        <Link to="/shop"><b style={{color: '#A5A5A5'}}>Магазин</b></Link>
+                        <NavLink to="/shop" className='blue-hover black-inactive-link'>Магазин</NavLink>
                     </div>
                     {/*<div className='header-center-navlink-integration'>*/}
                     {/*<Link to="/integrator"><b style={{color: '#A5A5A5'}}>Интеграторы</b></Link>*/}
@@ -178,7 +135,7 @@ class HomeHeader extends Component {
                     </div>
                 </div>
                 <div className="header-right-menu">
-                    <div className='header-right-navlink'>
+                    <div className='header-right-navlink blue-hover'>
                         <Dropdown text='RU' closeOnChange>
                             <Dropdown.Menu>
                                 <Dropdown.Item text='RU' description='Русский'/>
@@ -186,13 +143,13 @@ class HomeHeader extends Component {
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    <div className='header-right-navlink-bell'>
+                    <div className='header-right-navlink-bell blue-hover'>
                         <Icon link size={'large'} name='bell outline'/>
                     </div>
-                    <div className='header-right-navlink-bookmark'>
+                    <div className='header-right-navlink-bookmark blue-hover'>
                         <Icon link size={'large'} name='bookmark outline'/>
                     </div>
-                    <div className='header-right-navlink-profile'>
+                    <div className='header-right-navlink-profile blue-hover'>
                         {authenticated ? (
                             <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
                             <HeaderNotAuthenticatedUserPortal visible={visible} handleSliderChange={handleSliderChange}/>)}
@@ -220,7 +177,7 @@ class IntegratorHeader extends Component {
                 </div>
                 <div className='header-center-container'>
                     <div className='header-center-navlink-merch inactive-header-link'>
-                        <Link to="/shop" style={{color: '#A5A5A5'}}>Магазин</Link>
+                        <NavLink to="/shop" className='blue-hover black-inactive-link'>Магазин</NavLink>
                     </div>
                     {/*<div className='header-center-navlink-integration active-header'>*/}
                     {/*<Link to="/integrator" style={{color: '#4F4F4F'}}>Интеграторы</Link>*/}
@@ -276,11 +233,11 @@ class ShopHeader extends Component {
         return (
             <div className="header-authenticated">
                 <div className='header-left-logo active-logo'>
-                    <Link to="/">YourAPI</Link>
+                    <NavLink to="/">YourAPI</NavLink>
                 </div>
                 <div className='header-center-container'>
                     <div className='header-center-navlink-merch active-header'>
-                        <Link to="/shop" style={{color: '#4F4F4F'}}>Магазин</Link>
+                        <NavLink to="/shop" className='blue-hover black-inactive-link'>Магазин</NavLink>
                     </div>
                     {/*<div className='header-center-navlink-integration inactive-header-link'>*/}
                     {/*<Link to="/integrator" style={{color: '#A5A5A5'}}>Интеграторы</Link>*/}
@@ -299,24 +256,26 @@ class ShopHeader extends Component {
                                 (<Button fluid className='api-create-button' onClick={handleSliderChange} style={{background: '#F39847'}}><span className='api-create-button-text'>Добавить API</span></Button>)}
                         </div>
                     </div>
-                    <div className='header-right-navlink'>
-                        <Dropdown text='RU' closeOnChange>
-                            <Dropdown.Menu>
-                                <Dropdown.Item text='RU' description='Русский'/>
-                                <Dropdown.Item text='EN' description='English'/>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-                    <div className='header-right-navlink-bell'>
-                        <Icon link size={'large'} name='bell outline'/>
-                    </div>
-                    <div className='header-right-navlink-bookmark'>
-                        <Icon link size={'large'} name='bookmark outline'/>
-                    </div>
-                    <div className='header-right-navlink-profile'>
-                        {authenticated ? (
-                            <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
-                            <HeaderNotAuthenticatedUserPortal handleSliderChange={handleSliderChange} visible={visible}/>)}
+                    <div className="header-right-menu">
+                        <div className='header-right-navlink blue-hover'>
+                            <Dropdown text='RU' closeOnChange>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item text='RU' description='Русский'/>
+                                    <Dropdown.Item text='EN' description='English'/>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                        <div className='header-right-navlink-bell blue-hover'>
+                            <Icon link size={'large'} name='bell outline'/>
+                        </div>
+                        <div className='header-right-navlink-bookmark blue-hover'>
+                            <Icon link size={'large'} name='bookmark outline'/>
+                        </div>
+                        <div className='header-right-navlink-profile blue-hover'>
+                            {authenticated ? (
+                                <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
+                                <HeaderNotAuthenticatedUserPortal visible={visible} handleSliderChange={handleSliderChange}/>)}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -358,24 +317,26 @@ class ShopCategoryHeader extends Component {
                                 className='api-create-button-text'>Добавить API</span></Button></NavLink>
                         </div>
                     </div>
-                    <div className='header-right-navlink'>
-                        <Dropdown text='RU' closeOnChange>
-                            <Dropdown.Menu>
-                                <Dropdown.Item text='RU' description='Русский'/>
-                                <Dropdown.Item text='EN' description='English'/>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-                    <div className='header-right-navlink-bell'>
-                        <Icon link size={'large'} name='bell outline'/>
-                    </div>
-                    <div className='header-right-navlink-bookmark'>
-                        <Icon link size={'large'} name='bookmark outline'/>
-                    </div>
-                    <div className='header-right-navlink-profile'>
-                        {authenticated ? (
-                            <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>) : (
-                            <HeaderNotAuthenticatedUserPortal visible={visible} {...this.props}/>)}
+                    <div className="header-right-menu">
+                        <div className='header-right-navlink blue-hover'>
+                            <Dropdown text='RU' closeOnChange>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item text='RU' description='Русский'/>
+                                    <Dropdown.Item text='EN' description='English'/>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                        <div className='header-right-navlink-bell blue-hover'>
+                            <Icon link size={'large'} name='bell outline'/>
+                        </div>
+                        <div className='header-right-navlink-bookmark blue-hover'>
+                            <Icon link size={'large'} name='bookmark outline'/>
+                        </div>
+                        <div className='header-right-navlink-profile blue-hover'>
+                            {authenticated ? (
+                                <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
+                                <HeaderNotAuthenticatedUserPortal visible={visible}/>)}
+                        </div>
                     </div>
                 </div>
 

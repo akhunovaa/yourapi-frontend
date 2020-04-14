@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './Administration.css';
 import {Breadcrumb} from "semantic-ui-react";
 import {NavLink, withRouter} from "react-router-dom";
-import queryString from 'query-string';
 
 class CommandAdministration extends Component {
 
@@ -83,15 +82,15 @@ class CommandAdministration extends Component {
         let linkToDeepPage = '/profile/administration?company=' + naming + '&page=' + page;
         return (
                 <Breadcrumb>
-                    <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right chevron'/>
-                    <Breadcrumb.Section as={NavLink} to={'/profile'} link><span className='text-disabled-color'>Личный кабинет</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={'/profile'} link><span className='text-disabled-color blue-hover'>Личный кабинет</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right chevron'/>
-                    <Breadcrumb.Section as={NavLink} to={'/profile/administration'} link><span className='text-disabled-color'>Администрирование</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={'/profile/administration'} link><span className='text-disabled-color blue-hover'>Администрирование</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right chevron'/>
-                    <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color'>{naming}</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={linkToPage} link><span className='text-disabled-color blue-hover'>{naming}</span></Breadcrumb.Section>
                     <Breadcrumb.Divider icon='right arrow'/>
-                    <Breadcrumb.Section as={NavLink} to={linkToDeepPage} link active><span className='text-disabled-color'>{pageName}</span></Breadcrumb.Section>
+                    <Breadcrumb.Section as={NavLink} to={linkToDeepPage} link active><span className='text-disabled-color blue-hover'>{pageName}</span></Breadcrumb.Section>
                 </Breadcrumb>
 
         )

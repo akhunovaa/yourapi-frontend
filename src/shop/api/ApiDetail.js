@@ -181,16 +181,16 @@ class ApiDetail extends Component {
                             <div className="api-detail-container-breadcrumb">
                                 <Breadcrumb>
                                     <Breadcrumb.Section as={NavLink} to={'/'} link><span
-                                        className='text-disabled-color'>Главная</span></Breadcrumb.Section>
+                                        className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
                                     <Breadcrumb.Divider icon='right chevron'/>
                                     <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
-                                        className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
+                                        className='text-disabled-color blue-hover'>Магазин</span></Breadcrumb.Section>
                                     <Breadcrumb.Divider icon='right chevron'/>
                                     <Breadcrumb.Section as={NavLink} to={link} link><span
-                                        className='text-disabled-color'>{category}</span></Breadcrumb.Section>
+                                        className='text-disabled-color blue-hover'>{category}</span></Breadcrumb.Section>
                                     <Breadcrumb.Divider icon='right chevron'/>
                                     <Breadcrumb.Section as={NavLink} to={link4Description} link><span
-                                        className='text-disabled-color'>{name}</span></Breadcrumb.Section>
+                                        className='text-disabled-color blue-hover'>{name}</span></Breadcrumb.Section>
                                 </Breadcrumb>
                             </div>
                             <div className="api-detail-main-container">

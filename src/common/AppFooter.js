@@ -39,22 +39,24 @@ class AppFooter extends Component {
             <div className="footer-authenticated">
                 <div className='left-footer-elements'>
                     <div className='footer-left-logo'>
-                        <NavLink to="/"><span style={styles.spanOfContainer}>© 2019-2020 YourAPI</span></NavLink>
+                        <NavLink to="/" className='white-yellow-inactive-link'>© 2019-2020 YourAPI</NavLink>
                     </div>
 
                     <div className="footer-link-container">
-                        <a href="/privacy.html" target="_blank" rel="noopener noreferrer">
-                            <span style={styles.spanOfContainer}>Политика конфиденциальности</span>
+                        <a href="/privacy.html" target="_blank" rel="noopener noreferrer"
+                           className='white-yellow-inactive-link'>
+                            Политика конфиденциальности
                         </a>
                     </div>
                     <div className="footer-link-container">
-                        <a href="/agreement.html" target="_blank" rel="noopener noreferrer">
-                            <span style={styles.spanOfContainer}>Пользовательское соглашение</span>
+                        <a href="/agreement.html" target="_blank" rel="noopener noreferrer"
+                           className='white-yellow-inactive-link'>
+                            Пользовательское соглашение
                         </a>
                     </div>
                     <div className="footer-link-container">
-                        <a href='/help' rel="noopener noreferrer">
-                            <span style={styles.spanOfContainer} className='blue-hover'>Справка</span>
+                        <a href='/help' rel="noopener noreferrer" className='white-yellow-inactive-link'>
+                            Справка
                         </a>
                     </div>
                 </div>
@@ -63,7 +65,8 @@ class AppFooter extends Component {
                         {
                             social.map((item, index) => {
                                 return (
-                                    <a key={index + item.name} href={item.link} target='_blank' className='footer-icon-container blue-hover'>
+                                    <a key={index + item.name} href={item.link} target='_blank'
+                                       className='footer-icon-container blue-hover'>
                                         <Icon link size={'large'} name={item.name}/>
                                     </a>)
                             })
@@ -71,8 +74,8 @@ class AppFooter extends Component {
                     </div>
 
                     <div className="footer-link-container">
-                        <a href={"mailto:support@yourapi.ru"} rel="noopener noreferrer">
-                            <span style={styles.spanOfContainer}>Служба поддержки</span>
+                        <a href={"mailto:support@yourapi.ru"} rel="noopener noreferrer" className='white-yellow-inactive-link'>
+                            Служба поддержки
                         </a>
                     </div>
                 </div>

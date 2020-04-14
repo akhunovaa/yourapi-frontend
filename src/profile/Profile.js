@@ -395,11 +395,11 @@ class Profile extends Component {
                 <div className="profile-main-container">
                     <div className="container-breadcrumb">
                         <Breadcrumb>
-                            <Breadcrumb.Section as={NavLink} to={'/'} link>Главная</Breadcrumb.Section>
+                            <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
                             <Breadcrumb.Divider icon='right chevron'/>
-                            <Breadcrumb.Section as={NavLink} to={'/profile'} link>Личный кабинет</Breadcrumb.Section>
+                            <Breadcrumb.Section as={NavLink} to={'/profile'} link><span className='text-disabled-color blue-hover'>Личный кабинет</span></Breadcrumb.Section>
                             <Breadcrumb.Divider icon='right arrow'/>
-                            <Breadcrumb.Section active>Настройка профиля</Breadcrumb.Section>
+                            <Breadcrumb.Section active link><span className='text-disabled-color blue-hover'>Настройка профиля</span></Breadcrumb.Section>
                         </Breadcrumb>
                     </div>
                     <div className="profile-form-container">

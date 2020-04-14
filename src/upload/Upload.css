@@ -51,7 +51,7 @@
 
 .Filename {
     margin-bottom: 8px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -60,7 +60,7 @@
 
 .not-valid-filename {
     margin-bottom: 8px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;

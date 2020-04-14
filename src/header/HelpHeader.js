@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './HelpHeader.css';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {Dropdown, Icon} from "semantic-ui-react";
 import HeaderUserPortal from "../header/HeaderUserPortal";
 import HeaderNotAuthenticatedUserPortal from "../header/HeaderNotAuthenticatedUserPortal";
@@ -15,7 +15,7 @@ class HelpHeader extends Component {
     render() {
 
         const styles = {
-            b: {
+            navLink: {
                 color: 'white',
                 fontSize: '16px',
                 width: '100%'
@@ -32,34 +32,36 @@ class HelpHeader extends Component {
             <div className="help-header">
                 <div className='left-help-header-links'>
                     <div className='header-help-logo'>
-                        <Link to="/"><b style={styles.b}>YourAPI</b></Link>
+                        <NavLink to="/" className='white-yellow-inactive-link blue-hover'>YourAPI</NavLink>
                     </div>
                     <div className='header-help-sub'>
-                        <Link to="/help"><span style={styles.span}>Справка</span></Link>
+                        <NavLink to="/help" className='white-yellow-inactive-link blue-hover'>Справка</NavLink>
                     </div>
                 </div>
                 <div className='right-profile-administration-header-links'>
                     <div className='help-header-navlink'>
-                        <Link to="/shop" style={{color: '#FFFFFF'}}>Магазин API</Link>
+                        <NavLink to="/shop" className='blue-hover white-yellow-inactive-link'>Магазин API</NavLink>
                     </div>
-                    <div className='profile-administration-header-language-navlink'>
-                        <Dropdown text='RU' closeOnChange>
-                            <Dropdown.Menu>
-                                <Dropdown.Item text='RU' description='Русский'/>
-                                <Dropdown.Item text='EN' description='English'/>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
-                    <div className='header-right-navlink-bell'>
-                        <Icon link size={'large'} name='bell outline'/>
-                    </div>
-                    <div className='header-right-navlink-bookmark'>
-                        <Icon link size={'large'} name='bookmark outline'/>
-                    </div>
-                    <div className='header-right-navlink-profile'>
-                        {authenticated ? (
-                            <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
-                            <HeaderNotAuthenticatedUserPortal visible={visible} handleSliderChange={handleSliderChange}/>)}
+                    <div className="header-right-menu">
+                        <div className='header-right-navlink blue-hover white-yellow-inactive-link'>
+                            <Dropdown text='RU' closeOnChange>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item text='RU' description='Русский'/>
+                                    <Dropdown.Item text='EN' description='English'/>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                        <div className='header-right-navlink-bell blue-hover white-yellow-inactive-link'>
+                            <Icon link size={'large'} name='bell outline'/>
+                        </div>
+                        <div className='header-right-navlink-bookmark blue-hover white-yellow-inactive-link'>
+                            <Icon link size={'large'} name='bookmark outline'/>
+                        </div>
+                        <div className='header-right-navlink-profile blue-hover white-yellow-inactive-link'>
+                            {authenticated ? (
+                                <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
+                                <HeaderNotAuthenticatedUserPortal visible={visible} handleSliderChange={handleSliderChange}/>)}
+                        </div>
                     </div>
                 </div>
             </div>

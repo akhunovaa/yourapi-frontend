@@ -33,7 +33,7 @@
 
 .text-disabled-color{
     color: #A5A5A5;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -65,7 +65,7 @@
     padding: 16px 18px 24px 0px;
     min-width: 250px;
     height: auto;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -75,7 +75,7 @@
 
 .header-search-input #search{
     width: 250px;
-    font-family: Roboto !important;
+    font-family: var(--font-family) !important;
     font-style: normal !important;
     font-weight: normal !important;
     font-size: 14px !important;
@@ -87,7 +87,7 @@
     display: grid;
     min-width: 208px;
     width: 208px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

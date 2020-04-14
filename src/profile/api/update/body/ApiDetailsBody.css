@@ -29,7 +29,7 @@ body h1.title {
     padding-right: 12px;
     padding-top: 12px;
     /*width: 468px;*/
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -40,7 +40,7 @@ body h1.title {
 }
 
 .ui.form textarea {
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

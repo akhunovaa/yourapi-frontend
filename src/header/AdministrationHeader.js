@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './AdministrationHeader.css';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {Icon, Dropdown} from "semantic-ui-react";
 import HeaderUserPortal from "../header/HeaderUserPortal";
 
@@ -18,27 +18,27 @@ class AdministrationHeader extends Component {
             <div className="profile-administration-header">
                 <div className='left-profile-administration-header-links'>
                     <div className='header-left-logo'>
-                        <Link to="/"><b style={{color: 'white'}}>YourAPI</b></Link>
+                        <NavLink to="/" className='white-inactive-link'>YourAPI</NavLink>
                     </div>
                     <div className='header-navigation-link'>
-                        <Link to="#" style={{color: 'white'}}>Личный кабинет</Link>
+                        <NavLink to="/profile" className='white-inactive-link'>Личный кабинет</NavLink>
                     </div>
                     <div className='lk-page-link'>
-                        <Link to="/profile" style={{color: '#A7C8F4'}}>Настройки профиля</Link>
+                        <NavLink to="/profile" className='blue-inactive-link'>Настройки профиля</NavLink>
                     </div>
                     <div className='admin-page-link'>
-                        <Link to="/profile/administration" style={{color: 'white'}}><b>Администрирование</b></Link>
+                        <NavLink to="/profile/administration" className='white-inactive-link'>Администрирование</NavLink>
                     </div>
                     <div className='api-page-link'>
-                        <Link to="/profile/api" style={{color: '#A7C8F4'}}>Мои API</Link>
+                        <NavLink to="/profile/api" className='blue-inactive-link'>Мои API</NavLink>
                     </div>
                     <div className='linked-api-page-link'>
-                        <Link to="#" style={{color: '#A7C8F4'}}>Подключенные API</Link>
+                        <NavLink to="/profile/api" className='blue-inactive-link'>Подключенные API</NavLink>
                     </div>
                 </div>
                 <div className='right-profile-administration-header-links'>
                     <div className='profile-administration-header-navlink'>
-                        <Link to="/shop" style={{color: '#FFFFFF'}}>Магазин</Link>
+                        <NavLink to="/shop" className='white-inactive-link'>Магазин</NavLink>
                     </div>
                     <div className='profile-administration-header-language-navlink'>
                         <Dropdown text='RU' closeOnChange>

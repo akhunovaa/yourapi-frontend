@@ -89,9 +89,9 @@ class Integrators extends Component {
                 <div className="integrators-main-container">
                     <div className="integrators-container-breadcrumb">
                         <Breadcrumb>
-                            <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color'>Главная</span></Breadcrumb.Section>
+                            <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
                             <Breadcrumb.Divider icon='right chevron'/>
-                            <Breadcrumb.Section as={NavLink} to={'/integrator'} link><span className='text-disabled-color'>Интеграторы</span></Breadcrumb.Section>
+                            <Breadcrumb.Section as={NavLink} to={'/integrator'} link><span className='text-disabled-color blue-hover'>Интеграторы</span></Breadcrumb.Section>
                         </Breadcrumb>
                     </div>
                     <div className="integrators-form-container">

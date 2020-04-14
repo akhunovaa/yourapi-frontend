@@ -40,7 +40,7 @@
 }
 
 .header-links-font{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;

@@ -8,7 +8,7 @@
 }
 
 .container-breadcrumb{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -104,7 +104,7 @@
     padding-left: 32px;
     height: 42px;
     overflow: hidden;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
@@ -124,7 +124,7 @@
 }
 
 .profile-info-container-name{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -138,7 +138,7 @@
     padding-top: 28px;
     display: inline-flex;
 
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -166,7 +166,7 @@
     min-width: 250px;
     padding-right: 12px;
     width: 250px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -179,7 +179,7 @@
     padding-top: 20px;
     width: 250px;
     min-width: 250px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -192,7 +192,7 @@
     padding-top: 20px;
     width: 250px;
     min-width: 250px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -205,7 +205,7 @@
     padding-top: 20px;
     width: 250px;
     min-width: 250px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -218,7 +218,7 @@
     padding-top: 20px;
     width: 250px;
     min-width: 250px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -230,7 +230,7 @@
 
 .profile-info-container-messengers{
     padding-top: 28px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size:  14px;
@@ -241,7 +241,7 @@
 }
 
 .profile-info-container-messengers-button{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -253,7 +253,7 @@
 }
 
 .profile-messenger-portal{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -266,7 +266,7 @@
 }
 
 .messenger-list{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -301,7 +301,7 @@
 
 .profile-info-container-command-table{
     padding-top: 24px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -313,7 +313,7 @@
 }
 
 .command-approve-buttons-text{
-    font-family: Roboto !important;
+    font-family: var(--font-family) !important;
     font-style: normal !important;
     font-weight: normal !important;
     font-size: 14px !important;

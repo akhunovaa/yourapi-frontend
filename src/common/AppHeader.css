@@ -10,7 +10,7 @@
     /*width: 226px;*/
     height: 64px;
     float: right;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -28,14 +28,47 @@
     text-align: center;
     padding: 24px 28px 11px 28px;
     background-color: #428BEF;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 19px;
+    color: #fff;
     font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
+
+
+}
+
+.white-inactive-link{
+    color: white;
+}
+
+.white-inactive-link:hover{
+    color: white;
+}
+
+.white-yellow-inactive-link{
+    color: white;
+}
+
+.white-yellow-inactive-link:hover{
+    color: #428BEF;
+}
+
+.blue-inactive-link{
+    color: #A7C8F4;
+}
+
+.blue-inactive-link:hover{
+    color: white;
+}
+
+.black-inactive-link{
+    color: #4F4F4F;
 }
 
 .header-center-navlink{
     padding: 24px 36px 0px 36px;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -45,21 +78,22 @@
 
 .header-center-navlink-merch{
     text-align: center;
-    padding: 24px 18px 11px 18px;
-    font-family: Roboto;
+    font-family: var(--font-family);
+    color: var(--inactive-span-color);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
     line-height: 16px;
     min-width: 127px;
     width: 127px;
+    padding: 24px 36px 0px 36px;
 }
 
 
 .header-center-navlink-integration{
     text-align: center;
     padding: 24px 18px 0px 18px;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -69,23 +103,21 @@
 
 
 .header-right-navlink{
-    padding-top: 24px;
-    padding-bottom: 24px;
-    padding-left: 24px;
-    margin-right: 28px;
-    font-family: Roboto, sans-serif;
+    padding: 24px 78px 11px 28px;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
     white-space: nowrap;
     width: 59px;
+
 }
 
 .header-right-navlink-bell{
     text-align: center;
-    padding: 22px 0px 21px 0px;
-    font-family: Roboto, serif;
+    padding: 24px 28px 11px 28px;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -94,7 +126,7 @@
 .header-right-navlink-bookmark{
     text-align: center;
     padding: 24px 11px 24px 14px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -103,7 +135,7 @@
 .header-right-navlink-bell{
     text-align: center;
     padding: 24px 0px 24px 0px;
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -111,8 +143,8 @@
 
 .header-right-navlink-bookmark{
     text-align: center;
-    padding: 22px 11px 21px 14px;
-    font-family: Roboto, serif;
+    padding: 24px 11px 11px 14px;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -136,7 +168,7 @@
 
 .header-center-search{
     width: 250px;
-    font-family: Roboto !important;
+    font-family: var(--font-family) !important;
     font-style: normal !important;
     font-weight: normal !important;
     font-size: 14px !important;
@@ -153,7 +185,7 @@
 }
 
 .portal-item{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -174,7 +206,7 @@
 }
 
 .active-header{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -192,7 +224,7 @@
 }
 
 .inactive-header-link{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -204,7 +236,7 @@
 }
 
 .active-logo{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -217,7 +249,7 @@
 }
 
 .api-create-button-text{
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

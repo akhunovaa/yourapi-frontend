@@ -23,7 +23,7 @@
     padding-right: 24px;
     padding-left: 21px;
     padding-top: 26px;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -38,7 +38,7 @@
 .lk-page-link{
     padding-right: 24px;
     padding-top: 26px;
-    font-family: Roboto;
+    font-family: var(--font-family);
     font-size: 14px;
     line-height: 16px;
     width: 200px;
@@ -52,7 +52,7 @@
 .admin-page-link{
     padding-right: 32px;
     padding-top: 26px;
-    font-family: Roboto, sans-serif;
+    font-family: var(--font-family);
     font-weight: bold;
     font-size: 14px;
     line-height: 16px;
@@ -64,7 +64,7 @@
 .api-page-link{
     padding-right: 32px;
     padding-top: 26px;
-    font-family: Roboto, sans-serif;
+    font-family: var(--font-family);
     font-weight: bold;
     font-size: 14px;
     line-height: 16px;
@@ -74,9 +74,9 @@
 }
 
 .linked-api-page-link{
-    padding-right: 32px;
+    /*padding-right: 32px;*/
     padding-top: 26px;
-    font-family: Roboto, sans-serif;
+    font-family: var(--font-family);
     font-weight: bold;
     font-size: 14px;
     line-height: 16px;
@@ -87,7 +87,7 @@
 
 .profile-header-navlink{
     padding: 24px 36px 24px 36px;
-    font-family: Roboto, sans-serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -100,7 +100,7 @@
     padding-top: 24px;
     padding-left: 24px;
     margin-right: 28px;
-    font-family: Roboto, sans-serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

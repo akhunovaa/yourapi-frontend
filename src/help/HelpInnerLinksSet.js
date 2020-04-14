@@ -121,7 +121,7 @@ class HelpInnerLinksSet extends Component {
                         className='help-header-label'>Личный кабинет</span></NavLink>
                     {/*<NavLink to='/help/account/setup' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Настройка профиля</span></NavLink>*/}
                     <div style={{cursor: "no-drop"}} className='help-header-body-links'>
-                        <span className='help-header-body-links help-sub-link-disabled'>Настройка профиля</span>
+                        <span className='help-header-body-links help-sub-link-disabled blue-hover'>Настройка профиля</span>
                     </div>
                     <NavLink to='/help/account/loader' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Загрузка API</span></NavLink>
                     <div style={{cursor: "no-drop"}} className='help-header-body-links'>

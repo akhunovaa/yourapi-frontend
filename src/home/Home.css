@@ -92,7 +92,7 @@
 }
 
 .create-button{
-    font-family: Roboto, serif !important;
+    font-family: var(--font-family) !important;
     font-style: normal !important;
     font-weight: normal !important;
     font-size: 14px !important;
@@ -114,7 +114,7 @@
 }
 
 .main-body-new-api-container-name{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -122,6 +122,12 @@
     float: left;
     /* Gray 2 */
     color: #4F4F4F;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 .main-body-new-api-container-show-link{
@@ -162,7 +168,7 @@
 }
 
 .cell-grid-body-text{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -174,7 +180,7 @@
     color: #4F4F4F;
 }
 .cell-grid-body-label{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

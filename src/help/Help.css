@@ -4,6 +4,8 @@
     height: auto;
     min-width: 1235px;
     --background-inactive-color: #F2F2F2;
+    --inactive-span-color: #4F4F4F;
+    --active-span-color: #2F80ED;
 }
 
 .help-main{
@@ -38,7 +40,7 @@
 
 
 .header-slogan{
-    font-family: Roboto, serif;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
