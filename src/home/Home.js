@@ -124,7 +124,7 @@ class Home extends Component {
             </>
         );
 
-        const {visible, authenticated} = this.props;
+        const {visible, authenticated, handleSliderChange} = this.props;
 
         return (
             <div className="main">
@@ -152,20 +152,33 @@ class Home extends Component {
                                     </div>
                                     <div className="header-buttons">
                                         <div className="header-api-create-button">
-                                            <Button className="create-button"
-                                                    style={{background: '#F39847', color: 'white'}}
-                                                    size='large'>
-                                                <NavLink style={{color: 'white'}} to='/profile/api?page=add'>Разместить
-                                                    API</NavLink>
-                                            </Button>
+                                            {authenticated ?
+                                                (<Button className="create-button"
+                                                         style={{background: '#F39847', color: 'white'}}
+                                                         size='large'>
+                                                    <NavLink style={{color: 'white'}} to='/profile/api?page=add'>Разместить API</NavLink>
+                                                </Button>) :
+                                                (<Button className="create-button"
+                                                         style={{background: '#F39847', color: 'white'}}
+                                                         size='large' onClick={handleSliderChange}>
+                                                    Разместить API
+                                                </Button>)}
+
+
                                         </div>
                                         <div className="header-api-create-button">
-                                            <Button className="create-button"
-                                                    style={{background: '#FFFFFF', color: '#4F4F4F'}}
-                                                    size='large'>
-                                                <NavLink style={{background: '#FFFFFF', color: '#4F4F4F'}}
-                                                         to='/profile/administration'>Создать компанию</NavLink>
-                                            </Button>
+                                            {authenticated ?
+                                                (<Button className="create-button"
+                                                         style={{background: '#FFFFFF', color: '#4F4F4F'}}
+                                                         size='large'>
+                                                    <NavLink style={{background: '#FFFFFF', color: '#4F4F4F'}}
+                                                             to='/profile/administration'>Создать компанию</NavLink>
+                                                </Button>) :
+                                                (<Button className="create-button"
+                                                         style={{background: '#FFFFFF', color: '#4F4F4F'}}
+                                                         size='large' onClick={handleSliderChange}>
+                                                    Создать компанию
+                                                </Button>)}
                                         </div>
                                     </div>
                                 </div>

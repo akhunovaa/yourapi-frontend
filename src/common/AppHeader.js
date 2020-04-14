@@ -303,9 +303,11 @@ class ShopHeader extends Component {
                 <div className="header-right-menu">
                     <div className='header-right-center-container'>
                         <div className='api-create-button-container'>
-                            <NavLink to='/profile/api?page=add'><Button fluid className='api-create-button'
-                                                                        style={{background: '#F39847'}}><span
-                                className='api-create-button-text'>Добавить API</span></Button></NavLink>
+                            {authenticated ?
+                                (<NavLink to='/profile/api?page=add'><Button fluid className='api-create-button'
+                                                                             style={{background: '#F39847'}}><span
+                                    className='api-create-button-text'>Добавить API</span></Button></NavLink>) :
+                                (<Button fluid className='api-create-button' onClick={handleSliderChange} style={{background: '#F39847'}}><span className='api-create-button-text'>Добавить API</span></Button>)}
                         </div>
                     </div>
                     <div className='header-right-navlink'>

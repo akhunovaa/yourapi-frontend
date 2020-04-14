@@ -119,7 +119,7 @@ class App extends Component {
                 <AppHeader authenticated={authenticated} onLogout={this.handleLogout} handleSliderChange={this.handleSliderChange} currentUser={currentUser}/>
                 <Switch>
 
-                    <Route exact path="/" render={(props) => <Home authenticated={authenticated} visible={visible} currentUser={currentUser} {...props} />}/>
+                    <Route exact path="/" render={(props) => <Home authenticated={authenticated} visible={visible} handleSliderChange={this.handleSliderChange} currentUser={currentUser} {...props} />}/>
 
 
                     <Route exact path="/login" render={(props) => <Login isMobile={isMobile} history={history}
