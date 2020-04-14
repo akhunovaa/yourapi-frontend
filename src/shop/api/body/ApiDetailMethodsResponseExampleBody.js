@@ -9,7 +9,7 @@ class ApiDetailMethodsResponseExampleBody extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            example: '{\"api\": {\"results\": 1, \"predictions\":[1, 2, 3]}}'
+            example: '{"api": {"results": 1, "predictions":[1, 2, 3]}}'
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);

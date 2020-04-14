@@ -35,6 +35,7 @@ class ApiRestrictedOperation extends Component {
     render() {
 
         const {loading} = this.state;
+        const {handleSliderChange} = this.props;
 
         if (loading) {
             return <LoadingIndicator/>
@@ -46,7 +47,7 @@ class ApiRestrictedOperation extends Component {
                     <span>Этот раздел могут просматривать только авторизованные пользователи</span>
                 </div>
                 <div className='restricted-login-button-container'>
-                    <NavLink to='/login'><Button className='restricted-login-button' style={{background: '#F39847'}}><span className='restricted-login-button-text'>Войти</span></Button></NavLink>
+                    <Button onClick={handleSliderChange} className='restricted-login-button' style={{background: '#F39847'}}><span className='restricted-login-button-text'>Войти</span></Button>
                 </div>
             </div>
         )

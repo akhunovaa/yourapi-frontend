@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './Help.css';
 import HelpInnerLinksSet from "./HelpInnerLinksSet";
 import HelpAccountApiUpload from "./HelpAccountApiUpload";
+import {Menu, Segment, Sidebar} from "semantic-ui-react";
+import AuthContainerWrapper from "../home/AuthContainerWrapper";
 
 class HelpAccount extends Component {
 
@@ -42,7 +44,7 @@ class HelpAccount extends Component {
             case 'upload':
                 return <HelpAccountApiUpload {...this.props}/>;
             default:
-                return  <HelpAccountApiUpload {...this.props}/>;
+                return <HelpAccountApiUpload {...this.props}/>;
 
         }
 
@@ -59,16 +61,34 @@ class HelpAccount extends Component {
     render() {
 
         const {page} = this.props.match.params;
+        const {visible, authenticated} = this.props;
 
         return (
-            <div className='help-page-main'>
-                <div className='left-side-help-body'>
-                    <HelpInnerLinksSet {...this.props}/>
-                </div>
-                <div className='right-side-help-body'>
-                    {this.renderBody(page)}
-                </div>
-            </div>
+            <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
+                <Sidebar
+                    as={Menu}
+                    animation='overlay'
+                    direction='right'
+                    vertical
+                    visible={visible}
+                    className='login-slider-pushable'>
+                    {authenticated ? (<div/>) : (<AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}
+                </Sidebar>
+                <Sidebar.Pusher dimmed={visible}>
+                    <Segment className='login-sidebar-pushable'>
+                        <div className='help-page-main'>
+
+                            <div className='left-side-help-body'>
+                                <HelpInnerLinksSet {...this.props}/>
+                            </div>
+                            <div className='right-side-help-body'>
+                                {this.renderBody(page)}
+                            </div>
+
+                        </div>
+                    </Segment>
+                </Sidebar.Pusher>
+            </Sidebar.Pushable>
         )
     }
 }

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './HeaderUserPortal.css';
-import {NavLink} from "react-router-dom";
 import {Icon} from "semantic-ui-react";
 import LoadingIndicator from '../common/LoadingIndicator';
 
@@ -37,6 +36,7 @@ class HeaderNotAuthenticatedUserPortal extends Component {
     render() {
 
         const {loading} = this.state;
+        const {handleSliderChange} = this.props;
 
         if (loading) {
             return <LoadingIndicator/>
@@ -44,7 +44,7 @@ class HeaderNotAuthenticatedUserPortal extends Component {
 
         return (
             <div className="header-right-navlink-profile-icon not-authorized-icon-sign">
-                <NavLink to="/login"><Icon link name='sign-in'/></NavLink>
+                <Icon link name='sign-in' onClick={handleSliderChange}/>
             </div>
         )
     }

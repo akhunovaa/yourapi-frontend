@@ -13,7 +13,7 @@ import {Icon as Iconx} from "@iconify/react";
 import battleNet from "@iconify/icons-fa-brands/battle-net";
 import * as PropTypes from "prop-types";
 
-class SignUp extends Component {
+class SignUpMini extends Component {
 
     constructor(props) {
         super(props);
@@ -92,7 +92,7 @@ class SignUp extends Component {
     };
 
     render() {
-        const { authenticated, isMobile, location } = this.props;
+        const { authenticated, isMobile, location, handleAuthTypeChange } = this.props;
 
         if (authenticated) {
             return <Redirect
@@ -131,20 +131,14 @@ class SignUp extends Component {
 
         return (
             <div id="login-container">
-
-                {isMobile ? <div/> :  <div id="login-container-left"/>}
-
                 <div id="login-container-right">
-                    <div id="login-container-right-header">
-                        <NavLink to={"/"}> <Header as='h3' className={'login-right-header'}>YourAPI</Header></NavLink>
-                    </div>
                     <div className="signup-container-right-form">
                         <div className='navigate-links'>
-                            <div className='login-nav-link-left-login'>
-                                <Link to="/login"><b style={styles.linkStyle}>Вход</b></Link>
+                            <div className='login-nav-link-left-login' onClick={() => handleAuthTypeChange(false)}>
+                               <b style={styles.linkStyle}>Вход</b>
                             </div>
-                            <div className='signup-nav-link-right-1'>
-                                <Link to="/signup"><b style={styles.linkStyle}>Регистрация</b></Link>
+                            <div className='signup-nav-link-right-1' onClick={() => handleAuthTypeChange(true)}>
+                                <b style={styles.linkStyle}>Регистрация</b>
                             </div>
                         </div>
                         <SignupForm2 {...this.props} />
@@ -355,11 +349,4 @@ class SignupForm2 extends Component {
 
 }
 
-SignUp.propTypes = {
-    isMobile: PropTypes.bool.isRequired,
-    history: PropTypes.any.isRequired,
-    authenticated: PropTypes.bool.isRequired,
-    location: PropTypes.any
-};
-
-export default SignUp;
+export default SignUpMini;

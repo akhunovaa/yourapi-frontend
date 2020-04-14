@@ -103,7 +103,7 @@ class ApiDetailMethodsBody extends Component {
 
     render() {
 
-        const {authenticated, link} = this.props;
+        const {authenticated, link, handleSliderChange} = this.props;
         const {loading} = this.state;
 
         if (loading) {
@@ -186,7 +186,7 @@ class ApiDetailMethodsBody extends Component {
                             <ApiDetailMethodsOperation link={link} operations={operations} {...this.props}/>
                         </div>
                     ) : (
-                        <ApiRestrictedOperation />
+                        <ApiRestrictedOperation handleSliderChange={handleSliderChange}/>
                     )}
                 </div>
         )

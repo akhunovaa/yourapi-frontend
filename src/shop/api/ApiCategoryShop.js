@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './ApiCategoryShop.css';
 import {NavLink, Redirect} from "react-router-dom";
-import {Breadcrumb, Grid, Icon, Segment} from "semantic-ui-react";
+import {Breadcrumb, Grid, Icon, Menu, Segment, Sidebar} from "semantic-ui-react";
 import Slider from '@material-ui/core/Slider';
 import {apiFullCriteriaListGet} from "../../util/APIUtils";
 import Alert from "react-s-alert";
@@ -14,6 +14,7 @@ import {
     getLink4Description
 } from "../../util/ElementsDataUtils";
 import LazyMiniImage from '../../util/LazyMiniImage';
+import AuthContainerWrapper from "../../home/AuthContainerWrapper";
 
 
 class ApiCategoryShop extends Component {
@@ -54,7 +55,7 @@ class ApiCategoryShop extends Component {
         }
     }
 
-    handleChange = (e, { id, name }) => {
+    handleChange = (e, {id, name}) => {
         this.setState({[id]: name})
     };
 
@@ -113,6 +114,7 @@ class ApiCategoryShop extends Component {
 
         const host = window.location.origin.toString();
         const hasFirstRow = projects[0] && projects[0].size > 0 ? projects[0] && projects[0].size > 0 : projects[1] && projects[1].size > 0;
+        const {visible, authenticated} = this.props;
 
         const Projects = ({items}) => (
             <>
@@ -127,7 +129,8 @@ class ApiCategoryShop extends Component {
                                                 item.image ? (
                                                     <NavLink
                                                         to={getLink4Description(item.category) + item.id}>
-                                                        <LazyMiniImage src={host + "/api-data/image/" + item.image + "/32/32"}/>
+                                                        <LazyMiniImage
+                                                            src={host + "/api-data/image/" + item.image + "/32/32"}/>
                                                     </NavLink>
                                                 ) : (
                                                     <div className="home-api-text-avatar">
@@ -181,88 +184,106 @@ class ApiCategoryShop extends Component {
         const responseScaleTwo = this.state.responseScale[1];
 
         return (
-            <div className="api-shop-main">
-                <div className="api-shop-container-breadcrumb">
-                    <Breadcrumb>
-                        <Breadcrumb.Section as={NavLink} to={'/'} link><span
-                            className='text-disabled-color'>Главная</span></Breadcrumb.Section>
-                        <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
-                            className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
-                        <Breadcrumb.Divider icon='right chevron'/>
-                        <Breadcrumb.Section as={NavLink} to={link} link><span
-                            className='text-disabled-color'>{getCategoryName(category)}</span></Breadcrumb.Section>
-                    </Breadcrumb>
-                </div>
-                <div className="api-shop-main-container">
-                    <div className="api-shop-left-container">
-                        <div className='api-shop-inner-filter-container'>
-                            <div className='api-shop-filter-title'>Фильтры</div>
-                            <div className='api-shop-filter-rating'>Рейтинг</div>
-                            <div className='api-shop-filter-rating-stars'>
-                                <Icon link name='star outline' className='star'/>
-                                <Icon link name='star outline' className='star'/>
-                                <Icon link name='star outline' className='star'/>
-                                <Icon link name='star outline' className='star'/>
-                                <Icon link name='star outline' className='star'/>
+            <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
+                <Sidebar
+                    as={Menu}
+                    animation='overlay'
+                    direction='right'
+                    vertical
+                    visible={visible}
+                    className='login-slider-pushable'>
+                    {authenticated ? (<div/>) : (
+                        <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}
+                </Sidebar>
+                <Sidebar.Pusher dimmed={visible}>
+                    <Segment className='login-sidebar-pushable'>
+                        <div className="api-shop-main">
+                            <div className="api-shop-container-breadcrumb">
+                                <Breadcrumb>
+                                    <Breadcrumb.Section as={NavLink} to={'/'} link><span
+                                        className='text-disabled-color'>Главная</span></Breadcrumb.Section>
+                                    <Breadcrumb.Divider icon='right chevron'/>
+                                    <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
+                                        className='text-disabled-color'>Магазин</span></Breadcrumb.Section>
+                                    <Breadcrumb.Divider icon='right chevron'/>
+                                    <Breadcrumb.Section as={NavLink} to={link} link><span
+                                        className='text-disabled-color'>{getCategoryName(category)}</span></Breadcrumb.Section>
+                                </Breadcrumb>
                             </div>
-                            <div className='api-shop-filter-response-time'>Скорость отдачи</div>
-                            <div className='api-shop-filter-response-time-label'>
-                                <span className='left-label'>{responseScaleOne + 'mS'}</span>
-                                <span className='right-label'>{responseScaleTwo + 'mS'}</span>
-                            </div>
-                            <div className='api-shop-filter-response-time-line'>
-                                <Slider
-                                    className='shop-filter-response-time-line-slider'
-                                    value={this.state.responseScale}
-                                    onChange={this.handleSliderChange}
-                                    valueLabelDisplay="off"
-                                    aria-labelledby="range-slider"
-                                    min={0}
-                                    max={1000}
-                                />
-                            </div>
-                            <div className='api-shop-filter-response-time'>Стабильность</div>
-                            <div className='api-shop-filter-response-time-label'>
-                                <span className='left-label'>{this.state.responseStableScale[0] + '%'}</span>
-                                <span className='right-label'>{this.state.responseStableScale[1] + '%'}</span>
-                            </div>
-                            <div className='api-shop-filter-response-time-line'>
-                                <Slider
-                                    className='api-shop-filter-response-time-line-slider'
-                                    value={this.state.responseStableScale}
-                                    onChange={this.handleStableSliderChange}
-                                    valueLabelDisplay="off"
-                                    aria-labelledby="range-slider"
-                                    min={0}
-                                    max={100}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="api-shop-form-container">
-                        {this.state.loading ? (<CategoryShopLoadingIndicator/>) : (
-                            projects[0] && projects[0].size > 0 ?
-                                (
-                                    <div id={projects[0].data_name}>
-                                        <div
-                                            className='api-element-container-header'>
+                            <div className="api-shop-main-container">
+                                <div className="api-shop-left-container">
+                                    <div className='api-shop-inner-filter-container'>
+                                        <div className='api-shop-filter-title'>Фильтры</div>
+                                        <div className='api-shop-filter-rating'>Рейтинг</div>
+                                        <div className='api-shop-filter-rating-stars'>
+                                            <Icon link name='star outline' className='star'/>
+                                            <Icon link name='star outline' className='star'/>
+                                            <Icon link name='star outline' className='star'/>
+                                            <Icon link name='star outline' className='star'/>
+                                            <Icon link name='star outline' className='star'/>
+                                        </div>
+                                        <div className='api-shop-filter-response-time'>Скорость отдачи</div>
+                                        <div className='api-shop-filter-response-time-label'>
+                                            <span className='left-label'>{responseScaleOne + 'mS'}</span>
+                                            <span className='right-label'>{responseScaleTwo + 'mS'}</span>
+                                        </div>
+                                        <div className='api-shop-filter-response-time-line'>
+                                            <Slider
+                                                className='shop-filter-response-time-line-slider'
+                                                value={this.state.responseScale}
+                                                onChange={this.handleSliderChange}
+                                                valueLabelDisplay="off"
+                                                aria-labelledby="range-slider"
+                                                min={0}
+                                                max={1000}
+                                            />
+                                        </div>
+                                        <div className='api-shop-filter-response-time'>Стабильность</div>
+                                        <div className='api-shop-filter-response-time-label'>
+                                            <span
+                                                className='left-label'>{this.state.responseStableScale[0] + '%'}</span>
+                                            <span
+                                                className='right-label'>{this.state.responseStableScale[1] + '%'}</span>
+                                        </div>
+                                        <div className='api-shop-filter-response-time-line'>
+                                            <Slider
+                                                className='api-shop-filter-response-time-line-slider'
+                                                value={this.state.responseStableScale}
+                                                onChange={this.handleStableSliderChange}
+                                                valueLabelDisplay="off"
+                                                aria-labelledby="range-slider"
+                                                min={0}
+                                                max={100}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="api-shop-form-container">
+                                    {this.state.loading ? (<CategoryShopLoadingIndicator/>) : (
+                                        projects[0] && projects[0].size > 0 ?
+                                            (
+                                                <div id={projects[0].data_name}>
+                                                    <div
+                                                        className='api-element-container-header'>
                                             <span
                                                 className='main-form-header'>{projects[0] ? projects[0].data_name : ''}</span>
-                                        </div>
-                                        <Grid columns='3'>
-                                            <Projects items={projects[0] ? projects[0].list : []}/>
-                                        </Grid>
-                                    </div>
-                                )
-                                :
-                                (<div unselectable='on' className='api-category-shop-empty'>
-                                    Данные отсутствуют
-                                </div>)
-                        )}
-                    </div>
-                </div>
-            </div>
+                                                    </div>
+                                                    <Grid columns='3'>
+                                                        <Projects items={projects[0] ? projects[0].list : []}/>
+                                                    </Grid>
+                                                </div>
+                                            )
+                                            :
+                                            (<div unselectable='on' className='api-category-shop-empty'>
+                                                Данные отсутствуют
+                                            </div>)
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </Segment>
+                </Sidebar.Pusher>
+            </Sidebar.Pushable>
         )
     }
 }

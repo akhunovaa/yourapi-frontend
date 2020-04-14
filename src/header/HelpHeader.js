@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './HelpHeader.css';
 import {Link} from "react-router-dom";
-import {Icon, Dropdown} from "semantic-ui-react";
+import {Dropdown, Icon} from "semantic-ui-react";
 import HeaderUserPortal from "../header/HeaderUserPortal";
 import HeaderNotAuthenticatedUserPortal from "../header/HeaderNotAuthenticatedUserPortal";
 
@@ -26,7 +26,7 @@ class HelpHeader extends Component {
                 }
         };
 
-        const {currentUser, onLogout, authenticated} = this.props;
+        const {currentUser, onLogout, authenticated, handleSliderChange} = this.props;
 
         return (
             <div className="help-header">
@@ -45,21 +45,21 @@ class HelpHeader extends Component {
                     <div className='profile-administration-header-language-navlink'>
                         <Dropdown text='RU' closeOnChange>
                             <Dropdown.Menu>
-                                <Dropdown.Item text='RU' description='Русский' />
-                                <Dropdown.Item text='EN' description='English' />
+                                <Dropdown.Item text='RU' description='Русский'/>
+                                <Dropdown.Item text='EN' description='English'/>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
                     <div className='header-right-navlink-bell'>
-                        <Icon link size={'large'}  name='bell outline' />
+                        <Icon link size={'large'} name='bell outline'/>
                     </div>
                     <div className='header-right-navlink-bookmark'>
-                        <Icon link size={'large'}  name='bookmark outline' />
+                        <Icon link size={'large'} name='bookmark outline'/>
                     </div>
                     <div className='header-right-navlink-profile'>
                         {authenticated ? (
-                            <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>) : (
-                            <HeaderNotAuthenticatedUserPortal {...this.props}/>)}
+                            <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
+                            <HeaderNotAuthenticatedUserPortal handleSliderChange={handleSliderChange}/>)}
                     </div>
                 </div>
             </div>

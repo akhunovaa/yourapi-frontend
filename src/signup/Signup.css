@@ -108,6 +108,7 @@
     min-height: 52px;
     text-align: center;
     padding-top: 12px;
+    cursor: pointer;
 }
 
 .login-nav-link-left-login:hover{
@@ -118,6 +119,7 @@
     text-align: center;
     padding-top: 12px;
     background-color: #E0E0E0;
+    cursor: pointer;
 }
 
 .signup-nav-link-right-1{
@@ -128,6 +130,7 @@
     text-align: center;
     border-bottom: 2px solid #2F80ED;
     padding-top: 12px;
+    cursor: pointer;
 }
 
 .license-agreement{
