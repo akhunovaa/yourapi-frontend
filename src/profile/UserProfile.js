@@ -213,12 +213,11 @@ class UserProfile extends Component {
                             <div className="user-profile-main-container">
                                 <div className="container-breadcrumb">
                                     <Breadcrumb>
-                                        <Breadcrumb.Section as={NavLink} to={'/'} link>Главная</Breadcrumb.Section>
+                                        <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
                                         <Breadcrumb.Divider icon='right chevron'/>
-                                        <Breadcrumb.Section as={NavLink} to={'/profile' + '/' + id} link>Профиль
-                                            пользователя</Breadcrumb.Section>
+                                        <Breadcrumb.Section as={NavLink} to={'/profile' + '/' + id} link><span className='text-disabled-color blue-hover'>Профиль пользователя</span></Breadcrumb.Section>
                                         <Breadcrumb.Divider icon='right arrow'/>
-                                        <Breadcrumb.Section active>Просмотр профиля</Breadcrumb.Section>
+                                        <Breadcrumb.Section active link><span className='text-disabled-color blue-hover'>Просмотр профиля</span></Breadcrumb.Section>
                                     </Breadcrumb>
                                 </div>
                                 <div className="user-profile-form-container">
