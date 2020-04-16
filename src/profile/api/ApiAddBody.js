@@ -309,6 +309,7 @@ class ApiAddBody extends Component {
                                     setEmptyFileState={this.setEmptyFileState}
                                     uploadProgress={this.state.uploadProgress} emptyFile={this.state.emptyFile}
                                     successfullUploaded={this.state.successfullUploaded}/>
+                            <div className="file-create-helper">Создать <a target='_blank' href='https://openapi.yourapi.ru'>файл</a> или ознакомиться с <a target='_blank' href='https://yourapi.ru/help/account/loader'>инструкцией</a></div>
                         </div>
                     </div>
                 </div>
