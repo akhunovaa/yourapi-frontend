@@ -173,11 +173,13 @@ class ApiAddBody extends Component {
         this.setState({
             [inputName]: inputValue
         });
-        inputName === 'apiName' && inputValue.length > 3 && this.state.category.length > 3 ? this.setState({disabledButton: false}) : this.setState({disabledButton: true});
+        if (inputName === 'apiName' && inputValue.length > 2 && this.state.category.length > 2) {
+            this.setState({disabledButton: false})
+        }
     }
 
     handleDropdownChange(e, {name, value}) {
-        name === 'category' && value.length > 3 && this.state.apiName.length > 3  ? this.setState({disabledButton: false}) : this.setState({disabledButton: true});
+        name === 'category' && value.length > 2 && this.state.apiName.length > 2  ? this.setState({disabledButton: false}) : this.setState({disabledButton: true});
         this.setState({[name]: value});
     }
 
@@ -256,9 +258,9 @@ class ApiAddBody extends Component {
                 value: 'Здравохранение'
             },
             {
-                name: 'Web',
-                text: 'Web',
-                value: 'Web'
+                name: 'Web ',
+                text: 'Web ',
+                value: 'Web '
             },
             {
                 name: 'Другое',
