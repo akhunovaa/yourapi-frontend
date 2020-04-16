@@ -63,6 +63,7 @@ class Upload extends Component {
                 <div className={emptyFile ? 'api-upload-container api-empty-upload-container' : 'api-upload-container'}>
                     <Dropzone onFileAdded={onFileAdded} disabled={uploading || successfullUploaded}/>
                 </div>
+                <div className="file-create-helper">Создать <a target='_blank' href='https://openapi.yourapi.ru'>файл</a> или ознакомиться с <a target='_blank' href='https://yourapi.ru/help/account/loader'>инструкцией</a></div>
                 {
                     (!hasError && file) ? (
                         <div className='api-upload-container-inner-elements'>

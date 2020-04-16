@@ -7,6 +7,15 @@
     overflow: hidden;
 }
 
+.file-create-helper{
+    padding-top: 12px;
+    width: 100%;
+    text-align: center;
+}
+.file-create-helper a{
+    color: #2F80ED;
+}
+
 .image-upload {
     display: inline-block;
     flex-direction: column;
