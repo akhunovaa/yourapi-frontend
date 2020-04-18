@@ -71,7 +71,7 @@ class ApiDetail extends Component {
                         host: response.response.host,
                         operations: response.response.operations
                     });
-
+                    document.title  = 'YourAPI | ' + response.response.fullName;
                 }).catch(error => {
                 Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
                 this.setState({loading: false})

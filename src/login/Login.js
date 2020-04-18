@@ -37,7 +37,8 @@ class Login extends Component {
                 });
             }, 100);
         }
-        this.setState({loading: false})
+        this.setState({loading: false});
+        document.title  = 'YourAPI | Авторизация';
     }
 
     componentWillUnmount() {

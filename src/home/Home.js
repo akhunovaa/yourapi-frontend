@@ -45,6 +45,7 @@ class Home extends Component {
             }).catch(error => {
             Alert.error('Ошибка запросе на получение проектов' || (error && error.message));
         });
+        document.title  = 'YourAPI | Главная страница';
     }
 
     handleChange = (e, {id, name}) => {

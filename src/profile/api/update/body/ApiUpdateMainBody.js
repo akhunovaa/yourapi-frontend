@@ -24,6 +24,7 @@ class ApiUpdateMainBody extends Component {
         if (this._isMounted) {
             this.setState({loading: false});
         }
+        document.title  = 'YourAPI | Основные настройки';
     }
 
     componentWillUnmount() {

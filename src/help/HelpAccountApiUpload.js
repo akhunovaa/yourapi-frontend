@@ -17,6 +17,7 @@ class HelpAccountApiUpload extends Component {
         if (this._isMounted) {
             this.setState({loading: false})
         }
+        document.title  = 'YourAPI | Загрузка API';
     }
 
     componentWillUnmount() {

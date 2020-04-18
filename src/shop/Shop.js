@@ -42,6 +42,7 @@ class Shop extends Component {
                 this.setState({loading: false})
             });
         }
+        document.title  = 'YourAPI | API Marketplace';
     }
 
 

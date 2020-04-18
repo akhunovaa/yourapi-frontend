@@ -14,6 +14,7 @@ class ApiUpdateEndpointsBody extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        document.title  = 'YourAPI | Настройка Endpoint\'ов';
     }
 
     componentWillUnmount() {

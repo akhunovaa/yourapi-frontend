@@ -32,6 +32,7 @@ class SignUp extends Component {
         }
 
         this.setState({loading: false});
+        document.title  = 'YourAPI | Регистрация';
     }
 
     receiveMessage = event => {

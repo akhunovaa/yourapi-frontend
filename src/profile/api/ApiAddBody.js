@@ -145,6 +145,7 @@ class ApiAddBody extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        document.title  = 'YourAPI | Добавить API';
     }
 
     componentWillUnmount() {

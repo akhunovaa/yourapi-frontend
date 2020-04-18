@@ -83,9 +83,11 @@ class Profile extends Component {
                     user: currentUser,
                     loading: false
                 });
+                this.setState({loading: false});
+
+                document.title = 'YourAPI | Редактирование профиля';
             }
         }
-        this.setState({loading: false});
     }
 
     handleImageLoaded() {

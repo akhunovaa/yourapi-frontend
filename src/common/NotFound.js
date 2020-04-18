@@ -5,6 +5,11 @@ import {NavLink} from "react-router-dom";
 
 class NotFound extends Component {
 
+    componentDidMount() {
+        document.title  = 'YourAPI | 404 Страница не найдена';
+    }
+
+
     render() {
         return (
                     <div className="page-not-found" unselectable='on'>

@@ -14,6 +14,7 @@ class ApiUpdatePriceBody extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        document.title  = 'YourAPI | Настройка стоимости';
     }
 
     componentWillUnmount() {

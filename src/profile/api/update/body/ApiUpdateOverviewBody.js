@@ -36,6 +36,7 @@ class ApiUpdateOverviewBody extends Component {
     componentDidMount() {
         this._isMounted = true;
         this.iterateApiProjectList(this.props.projects, this.props.naming);
+        document.title  = 'YourAPI | Описание';
     }
 
     componentWillUnmount() {

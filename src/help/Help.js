@@ -19,7 +19,8 @@ class Help extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        this.setState({loading: false})
+        this.setState({loading: false});
+        document.title  = 'YourAPI | Справка';
     }
 
 

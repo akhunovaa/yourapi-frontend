@@ -23,6 +23,7 @@ class Integrators extends Component {
         this._isMounted = true;
         //this.setState({user: this.props.currentUser})
         // this.loadUser(handle);
+        document.title  = 'YourAPI | Интеграторы';
     }
 
 

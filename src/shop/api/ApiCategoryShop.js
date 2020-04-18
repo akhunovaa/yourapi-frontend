@@ -39,6 +39,7 @@ class ApiCategoryShop extends Component {
     componentDidMount() {
         this._isMounted = true;
         const criteria = this.state.categoryName;
+        document.title  = 'YourAPI | ' + getCategoryName(criteria);
         if (this._isMounted) {
             apiFullCriteriaListGet(criteria)
                 .then(response => {

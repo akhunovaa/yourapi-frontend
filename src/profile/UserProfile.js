@@ -51,6 +51,7 @@ class UserProfile extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        document.title  = 'YourAPI | ';
         this.loadRequestedUser();
     }
 
@@ -59,6 +60,7 @@ class UserProfile extends Component {
     }
 
     loadRequestedUser = () => {
+        const profileTitle = 'YourAPI | ';
         const {id} = this.props.match.params;
         getUserProfile(id)
             .then(response => {
@@ -74,6 +76,7 @@ class UserProfile extends Component {
                         user: response.response,
                         loading: false
                     });
+                    document.title = response.response ? document.title = profileTitle + response.response.surname + ' ' + response.response.name + ' ' + response.response.patrName : 'Пользователь не найден';
                 }
             }).catch(error => {
             this.setState({

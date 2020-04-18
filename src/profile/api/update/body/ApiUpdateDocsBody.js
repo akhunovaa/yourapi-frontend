@@ -14,6 +14,7 @@ class ApiUpdateDocsBody extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        document.title  = 'YourAPI | Документация';
     }
 
     componentWillUnmount() {
