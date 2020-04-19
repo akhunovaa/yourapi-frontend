@@ -76,9 +76,14 @@ class UserProfile extends Component {
                         user: response.response,
                         loading: false
                     });
-                    document.title = response.response ? document.title = profileTitle + response.response.surname + ' ' + response.response.name + ' ' + response.response.patrName : 'Пользователь не найден';
+                    const user = response.response;
+                    const surname = user.surname ? user.surname : '';
+                    const name = user.name ? user.name : '';
+                    const patrName = user.patrName ? user.patrName : '';
+                    document.title = profileTitle + surname + ' ' + name + ' ' + patrName;
                 }
             }).catch(error => {
+            document.title = profileTitle + 'Пользователь не найден';
             this.setState({
                 loading: false
             });
