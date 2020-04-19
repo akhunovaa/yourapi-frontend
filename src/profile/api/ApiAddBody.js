@@ -259,9 +259,9 @@ class ApiAddBody extends Component {
                 value: 'Здравохранение'
             },
             {
-                name: 'Web ',
-                text: 'Web ',
-                value: 'Web '
+                name: 'Web',
+                text: 'Web',
+                value: 'Web'
             },
             {
                 name: 'Другое',
