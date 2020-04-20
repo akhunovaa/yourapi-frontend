@@ -18,7 +18,7 @@ import {
     Container,
     Modal
 } from "semantic-ui-react";
-import {profileImageUpdate, profileInfoUpdate, profilePasswordUpdate, requestUserSecretList, requestNewApplicationSecretKey} from "../util/APIUtils";
+import {profileImageUpdate, profileInfoUpdate, profilePasswordUpdate, requestUserSecretList, requestNewApplicationSecretKey, requestUpdateApplicationSecretKey, requestDeleteApplicationSecretKey} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import ImageUploader from 'react-images-upload';
 import LazyImage from '../util/LazyImage';
@@ -112,16 +112,12 @@ class Profile extends Component {
     }
 
     handleSecretKeyShow = (name) => {
-        const visible = !this.state[name];
-        this.setState({[name]: visible});
+        const visible = !this.state[name + '_hide'];
+        this.setState({[name + '_hide']: visible});
     };
 
     secretDeleteModalClose = () => {
         this.setState({openSecretDelete: false});
-    };
-
-    secretDeleteModalDelete = () => {
-       console.log("delete")
     };
 
     userApplicationSecretAdd = () => {
@@ -133,18 +129,58 @@ class Profile extends Component {
                     userApplicationSecret: response.response
                 });
             }).catch(error => {
-            this.setState({loading: false})
+            this.setState({loading: false});
             Alert.error('Ошибка запроса по созданию ключа' || (error && error.message));
         });
       };
 
-    showSecretDeleteModal = () => this.setState({openSecretDelete: true});
+    showSecretDeleteModal = (name) => this.setState({openSecretDelete: true, item2delete: name});
 
-    handleSecretKeyUpdate = (name) => {
-        const vr = name + '_update';
-        this.setState({[vr]: false});
-        const visible = !this.state[vr];
-        this.setState({[vr]: visible});
+    handleSecretKeyUpdate = (created, name) => {
+        const visible = !this.state[created];
+        this.setState({[created]: visible});
+        const operationName=this.state[created] ? 'save outline' : 'edit outline';
+        if (operationName === 'save outline') {
+            const oldValue = name;
+            const newValue = this.state[name + '_name'];
+            if (newValue && newValue.length < 3) {
+                Alert.warning("Наименование нового ключа не соответствует правилам");
+                return;
+            }
+            this.setState({loading: true});
+            requestUpdateApplicationSecretKey(oldValue, newValue).then( response => {
+                this.setState({
+                    loading: false,
+                    userApplicationSecret: response.response
+                });
+            }).catch(error => {
+                this.setState({loading: false});
+                Alert.error(error.message || (error && error.message));
+            });
+        }
+    };
+
+    secretDeletelDeleteAction = () => {
+        const deleteItem = this.state.item2delete;
+            if (deleteItem && deleteItem.length < 3) {
+                Alert.warning("Наименование нового ключа не соответствует правилам");
+                return;
+            }
+        this.setState({loading: true});
+         requestDeleteApplicationSecretKey(deleteItem).then( response => {
+                this.setState({
+                    loading: false,
+                    openSecretDelete: false,
+                    userApplicationSecret: response.response
+                });
+            }).catch(error => {
+                this.setState({loading: false, openSecretDelete: false});
+                Alert.error(error.message || (error && error.message));
+            });
+        };
+
+    showSecretCancelUpdate = (created) => {
+        this.setState({[created]: false});
     };
 
     onCopy = (name) => {
@@ -168,7 +204,6 @@ class Profile extends Component {
         const target = event.target;
         const inputName = target.name;
         const inputValue = target.value;
-
         this.setState({
             [inputName]: inputValue
         });
@@ -786,23 +821,33 @@ class Profile extends Component {
                                                 {
                                                     loading ? (<ProfileUserApplicationSecretLoadingIndicator/>) : userApplicationSecret.map((item, index) => {
                                                         return (
-                                                            <Table.Row key={item.created} warning={this.state[item.name]}>
-                                                                <Table.Cell style={{paddingLeft: '6px', minWidth: 215}} collapsing warning={this.state[item.name + '_update']}>{this.state[item.name + '_update'] ? <Input fluid name={this.state.userApplicationSecret[index].name} value={this.state.userApplicationSecret[index].name} type='text'/> : item.name}</Table.Cell>
+                                                            <Table.Row key={item.created} warning={this.state[item.name + '_hide']}>
+                                                                <Table.Cell style={{paddingLeft: '6px', minWidth: 215}} collapsing warning={this.state[item.created]}>
+                                                                    {
+                                                                        this.state[item.created]
+                                                                        ?
+                                                                        <Input onChange={this.handleInputChange} fluid
+                                                                               name={this.state.userApplicationSecret[index].name + '_name'}
+                                                                               defaultValue={this.state.userApplicationSecret[index].name} type='text'/>
+                                                                        :
+                                                                        item.name
+                                                                    }
+                                                                </Table.Cell>
                                                                 <Table.Cell textAlign='left' style={{minWidth: 380}}>
                                                                     <CopyToClipboard text={this.state.userApplicationSecret[index].value} onCopy={() => this.onCopy(item.name)}>
                                                                         { this.state[item.name + '_copy'] ? <Icon className='application-secret-copy fadeInLeft animated3' name='paste'/>  : <Icon className='application-secret-copy' name='copy outline' link/> }
                                                                     </CopyToClipboard>
-                                                                    <Input icon={<Icon name={this.state[item.name] ? 'eye slash outline' : 'eye'} link onClick={() => this.handleSecretKeyShow(item.name)}/>}
+                                                                    <Input icon={<Icon name={this.state[item.name + '_hide'] ? 'eye slash outline' : 'eye'} link onClick={() => this.handleSecretKeyShow(item.name)}/>}
                                                                            className="form-input user-application-secret"
                                                                            placeholder='X-Secret-YourAPI-Header'
                                                                            id={item.name}
                                                                            value={this.state.userApplicationSecret[index].value}
-                                                                           type={this.state[item.name] ? 'text' : 'password'}>
+                                                                           type={this.state[item.name + '_hide'] ? 'text' : 'password'}>
                                                                     </Input>
                                                                 </Table.Cell>
                                                                 <Table.Cell style={{paddingLeft: 20}}>{new Date(item.created).toLocaleDateString() + ' ' + new Date(item.created).toLocaleTimeString()}</Table.Cell>
-                                                                <Table.Cell collapsing><Icon className='secret-crud-ico' name={this.state[item.name + '_update'] ? 'save outline' : 'edit outline'} link onClick={() => this.handleSecretKeyUpdate(item.name)}/></Table.Cell>
-                                                                <Table.Cell collapsing><Icon className='secret-crud-ico' name='delete' link onClick={this.showSecretDeleteModal}/></Table.Cell>
+                                                                <Table.Cell collapsing><Icon className='secret-crud-ico' name={this.state[item.created] ? 'save outline' : 'edit outline'} link onClick={() => this.handleSecretKeyUpdate(item.created, item.name)}/></Table.Cell>
+                                                                <Table.Cell collapsing>{this.state[item.created] ? (<Icon className='secret-crud-ico' name='redo' link onClick={() => this.showSecretCancelUpdate(item.created)}/>) : (<Icon className='secret-crud-ico' name='delete' link onClick={() => this.showSecretDeleteModal(item.name)}/>)}</Table.Cell>
                                                             </Table.Row>
                                                         )
                                                     })
@@ -914,7 +959,7 @@ class Profile extends Component {
                             className="menu-update"
                             negative
                             content="Удалить"
-                            onClick={this.secretDeleteModalDelete}
+                            onClick={this.secretDeletelDeleteAction}
                         />
                     </Modal.Actions>
                 </Modal>
