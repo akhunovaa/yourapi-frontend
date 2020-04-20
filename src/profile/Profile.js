@@ -1,23 +1,13 @@
 import React, {Component} from 'react';
 import './Profile.css';
 import {NavLink} from "react-router-dom";
-import {
-    Breadcrumb,
-    Button,
-    Checkbox,
-    Divider,
-    Dropdown,
-    Form,
-    Icon,
-    Input,
-    Table,
-    TextArea
-} from "semantic-ui-react";
-import {profileImageUpdate, profileInfoUpdate, profilePasswordUpdate} from "../util/APIUtils";
+import {Breadcrumb, Button, Checkbox, Divider, Dropdown, Form, Icon, Input, Table, TextArea, Portal, Segment, List} from "semantic-ui-react";
+import {profileImageUpdate, profileInfoUpdate, profilePasswordUpdate, requestUserSecretList} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import ImageUploader from 'react-images-upload';
 import LazyImage from '../util/LazyImage';
-import HeaderUserPortal from "../header/HeaderUserPortal";
+import {ProfileUserApplicationSecretLoadingIndicator} from '../common/LoadingIndicator';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 class Profile extends Component {
 
@@ -55,7 +45,8 @@ class Profile extends Component {
             info: '',
             loading: true,
             passwordDisabled: true,
-            showPassword: false
+            showPassword: false,
+            userApplicationSecret: []
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -71,22 +62,26 @@ class Profile extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-
+        document.title = 'YourAPI | Редактирование профиля';
         const img = this.image.current;
         if (img && img.complete) {
             this.handleImageLoaded();
         }
         if (this._isMounted) {
-            const {currentUser, loading} = this.props;
-            if (!loading){
-                this.setState({
-                    user: currentUser,
-                    loading: false
-                });
-                this.setState({loading: false});
-
-                document.title = 'YourAPI | Редактирование профиля';
-            }
+            const {currentUser} = this.props;
+            this.setState({
+                user: currentUser
+            });
+            requestUserSecretList()
+                .then(response => {
+                    this.setState({
+                        loading: false,
+                        userApplicationSecret: response.response
+                    });
+                }).catch(error => {
+                Alert.error('Ошибка запроса для списка клюей' || (error && error.message));
+                this.setState({loading: false})
+            });
         }
     }
 
@@ -94,10 +89,22 @@ class Profile extends Component {
         this.setState({loading: false});
     }
 
-    handlePasswordShow(){
+    handlePasswordShow() {
         const show = !this.state.showPassword;
         this.setState({showPassword: show, passwordDisabled: false});
     }
+
+    handleSecretKeyShow = (name) => {
+        const visible = !this.state[name];
+        this.setState({[name]: visible});
+    };
+
+    onCopy = (name) => {
+        const vr = name + '_copy';
+        this.setState({[vr]: true});
+        const timer = setTimeout(() => this.setState({[vr]: false}), 3000);
+        return () => clearTimeout(timer);
+    };
 
     componentWillUnmount() {
         this._isMounted = false;
@@ -297,8 +304,8 @@ class Profile extends Component {
 
     render() {
 
-        const {user, showPassword, passwordDisabled, city, language, gender} = this.state;
-        const {currentUser, onLogout, loading} = this.props;
+        const {user, showPassword, passwordDisabled, city, language, gender, userApplicationSecret, open} = this.state;
+        const {loading} = this.props;
         const imageUrl = user.imageUrl ? user.imageUrl.includes("yourapi.ru") ? user.imageUrl + '/150/150' : user.imageUrl : '';
         const sexOptions = [
             {
@@ -397,9 +404,11 @@ class Profile extends Component {
                 <div className="profile-main-container">
                     <div className="container-breadcrumb">
                         <Breadcrumb>
-                            <Breadcrumb.Section as={NavLink} to={'/'} link><span className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
+                            <Breadcrumb.Section as={NavLink} to={'/'} link><span
+                                className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
                             <Breadcrumb.Divider icon='right chevron'/>
-                            <Breadcrumb.Section as={NavLink} to={'/profile'} link><span className='text-disabled-color blue-hover'>Личный кабинет</span></Breadcrumb.Section>
+                            <Breadcrumb.Section as={NavLink} to={'/profile'} link><span
+                                className='text-disabled-color blue-hover'>Личный кабинет</span></Breadcrumb.Section>
                             <Breadcrumb.Divider icon='right arrow'/>
                             <Breadcrumb.Section active link><span className='text-disabled-color blue-hover'>Настройка профиля</span></Breadcrumb.Section>
                         </Breadcrumb>
@@ -409,7 +418,8 @@ class Profile extends Component {
                             <div className="profile-avatar">
                                 {
                                     imageUrl ? (
-                                        <LazyImage src={imageUrl} size='medium' circular verticalAlign='top' alt={user.name} />
+                                        <LazyImage src={imageUrl} size='medium' circular verticalAlign='top'
+                                                   alt={user.name}/>
                                     ) : (
                                         <div className="text-avatar">
                                             <span>{user.name && user.name[0]}</span>
@@ -474,7 +484,8 @@ class Profile extends Component {
                             <div className="profile-info-container-name-inputs">
                                 <div className="profile-info-container-name-input">
                                     <label>Фамилия</label>
-                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.surname}
+                                    <Input loading={loading} onChange={this.handleInputChange}
+                                           defaultValue={user.surname}
                                            className="form-input" id="surname"
                                            name="surname" required placeholder='Фамилия'/>
                                 </div>
@@ -486,7 +497,8 @@ class Profile extends Component {
                                 </div>
                                 <div className="profile-info-container-name-input">
                                     <label>Отчество</label>
-                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.patrName}
+                                    <Input loading={loading} onChange={this.handleInputChange}
+                                           defaultValue={user.patrName}
                                            className="form-input" id="patrName"
                                            name="patrName" required placeholder='Отчество'/>
                                 </div>
@@ -494,7 +506,8 @@ class Profile extends Component {
                             <div className="profile-info-container-nickname-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Имя профиля</label>
-                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.nickName}
+                                    <Input loading={loading} onChange={this.handleInputChange}
+                                           defaultValue={user.nickName}
                                            className="form-input" id="nickName"
                                            name="nickName" required placeholder='Имя профиля'/>
                                 </div>
@@ -502,7 +515,8 @@ class Profile extends Component {
                             <div className="profile-info-container-date-birth-input">
                                 <div className="profile-info-container-name-input">
                                     <label>Дата рождения</label>
-                                    <Input loading={loading} onChange={this.handleInputChange} defaultValue={user.birthDate}
+                                    <Input loading={loading} onChange={this.handleInputChange}
+                                           defaultValue={user.birthDate}
                                            className="form-input" id="birthDate"
                                            name="birthDate" required placeholder='Дата рождения'/>
                                 </div>
@@ -510,7 +524,8 @@ class Profile extends Component {
                             <div className="profile-info-container-sex-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Пол</label>
-                                    <Dropdown loading={loading} onChange={this.handleDropdownChange} placeholder='Пол' fluid selection
+                                    <Dropdown loading={loading} onChange={this.handleDropdownChange} placeholder='Пол'
+                                              fluid selection
                                               id="gender" name="gender" className="form-input" options={sexOptions}
                                               value={gender}/>
                                 </div>
@@ -518,7 +533,8 @@ class Profile extends Component {
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Язык</label>
-                                    <Dropdown loading={loading} onChange={this.handleDropdownChange} placeholder='Язык' fluid selection
+                                    <Dropdown loading={loading} onChange={this.handleDropdownChange} placeholder='Язык'
+                                              fluid selection
                                               id="language" name="language" className="form-input"
                                               options={languageOptions} value={language}/>
                                 </div>
@@ -526,7 +542,8 @@ class Profile extends Component {
                             <div className="profile-info-container-input">
                                 <div className="profile-info-container-name-input">
                                     <label style={{paddingBottom: '6px'}}>Город</label>
-                                    <Dropdown loading={loading} onChange={this.handleDropdownChange} placeholder='Город' fluid search
+                                    <Dropdown loading={loading} onChange={this.handleDropdownChange} placeholder='Город'
+                                              fluid search
                                               selection id="city" name="city" noResultsMessage="Москва - лучший город"
                                               className="form-input" options={cityOptions}
                                               value={city}/>
@@ -567,7 +584,57 @@ class Profile extends Component {
                             </div>
 
                             <div className="profile-info-container-input">
-                                <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>
+                                <Portal
+                                    closeOnPortalMouseLeave
+                                    closeOnTriggerClick
+                                    closeOnDocumentClick
+                                    trigger={
+                                        <Button className="profile-info-container-messengers-button" basic>+
+                                            Добавить</Button>
+                                    }
+                                    open={open}
+                                    onOpen={this.handleOpen}
+                                    onClose={this.handleClose}>
+                                    <div id='profile-messenger-portal'>
+                                        <Segment className="profile-messenger-portal"
+                                                 style={{position: 'fixed', top: '234px', left: 407}}>
+                                            <List size={"big"}>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Checkbox defaultChecked/><Icon style={{paddingLeft: 12}}
+                                                                                        name='telegram plane'><span
+                                                        className="messenger-list">Telegram</span></Icon>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='whatsapp'><span
+                                                        className="messenger-list">WhatsApp</span></Icon>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='viber'><span
+                                                        className="messenger-list">Viber</span></Icon>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}} name='skype'><span
+                                                        className="messenger-list">Skype</span></Icon>
+                                                    </List.Content>
+                                                </List.Item>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Checkbox/><Icon style={{paddingLeft: 12}}
+                                                                         name='facebook messenger'><span
+                                                        className="messenger-list">Facebook-messenger</span></Icon>
+                                                    </List.Content>
+                                                </List.Item>
+                                            </List>
+                                        </Segment>
+                                    </div>
+                                </Portal>
                             </div>
 
                             <div className="profile-info-container-name-inputs messengers">
@@ -578,7 +645,8 @@ class Profile extends Component {
                                            icon='telegram plane'/>
                                 </div>
                                 <div className="profile-info-container-name-input">
-                                    <Input loading={loading} onChange={this.handleInputChange} style={{paddingTop: 0, height: 32}}
+                                    <Input loading={loading} onChange={this.handleInputChange}
+                                           style={{paddingTop: 0, height: 32}}
                                            className="form-input" id="messenger-login-two"
                                            defaultValue={user.phone}
                                            name="messenger-login" required placeholder='Телефон или имя'/>
@@ -613,7 +681,8 @@ class Profile extends Component {
                                         <label style={{marginBottom: 6}}>Старый пароль</label>
                                         <Input loading={loading} style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange}
-                                               icon={<Icon name={showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
+                                               icon={<Icon name={showPassword ? 'eye slash outline' : 'eye'} link
+                                                           onClick={this.handlePasswordShow}/>}
                                                placeholder='Старый пароль' id="oldPassword" name="oldPassword" required
                                                type={showPassword ? 'text' : 'password'}/>
                                     </div>
@@ -621,26 +690,76 @@ class Profile extends Component {
                                         <label style={{marginBottom: 6}}>Новый пароль</label>
                                         <Input loading={loading} style={{paddingTop: 0, height: 32, width: 250}}
                                                onChange={this.handlePasswordInputChange} disabled={passwordDisabled}
-                                               icon={<Icon name={showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
+                                               icon={<Icon name={showPassword ? 'eye slash outline' : 'eye'} link
+                                                           onClick={this.handlePasswordShow}/>}
                                                placeholder='Новый пароль' id="newPassword" name="newPassword" required
                                                type={showPassword ? 'text' : 'password'}/>
                                     </div>
-                                    <div className={showPassword ? 'profile-password-hide profile-info-container-name-input password-input' : 'profile-info-container-name-input password-input'}>
+                                    <div
+                                        className={showPassword ? 'profile-password-hide profile-info-container-name-input password-input' : 'profile-info-container-name-input password-input'}>
                                         <label style={{marginBottom: 6}}>Подтвердите новый пароль</label>
                                         <Input loading={loading} style={{paddingTop: 0, height: 32, width: 250}}
-                                               onChange={this.handlePasswordInputChange} disabled={passwordDisabled ? passwordDisabled : showPassword}
-                                               icon={<Icon name={showPassword ? 'eye slash outline' : 'eye'} link onClick={this.handlePasswordShow}/>}
+                                               onChange={this.handlePasswordInputChange}
+                                               disabled={passwordDisabled ? passwordDisabled : showPassword}
+                                               icon={<Icon name={showPassword ? 'eye slash outline' : 'eye'} link
+                                                           onClick={this.handlePasswordShow}/>}
                                                placeholder='Подтвердите новый пароль' id="newRePassword"
                                                name="newRePassword" required
                                                type={showPassword ? 'text' : 'password'}/>
                                     </div>
                                     <div className="profile-info-container-name-input password-input">
-                                        <Button loading={loading} compact color='blue' style={{width: 165, height: 32}} className='apply-button' disabled={passwordDisabled}>
+                                        <Button loading={loading} compact color='blue' style={{width: 165, height: 32}}
+                                                className='apply-button' disabled={passwordDisabled}>
                                             <span className='command-approve-buttons-text'>Изменить пароль</span>
                                         </Button>
                                     </div>
                                 </div>
                             </form>
+                            <Divider style={{marginTop: '40px', marginBottom: 0}}/>
+                        </div>
+                        <div className="profile-info-container">
+                            <div id='secret' className="profile-info-container-name">
+                                <span>Секретные ключи для приложений</span>
+                            </div>
+                            <div className="profile-info-container-command-table">
+                                <Table basic='very' singleLine verticalAlign={'middle'} textAlign={'left'}>
+                                    <Table.Header>
+                                        <Table.Row>
+                                            <Table.HeaderCell><span
+                                                style={{color: '#A5A5A5'}}>Наименование</span></Table.HeaderCell>
+                                            <Table.HeaderCell><span
+                                                style={{color: '#A5A5A5', paddingLeft: 20}}>Ключ</span></Table.HeaderCell>
+                                            <Table.HeaderCell><span
+                                                style={{color: '#A5A5A5'}}>Время создания</span></Table.HeaderCell>
+                                        </Table.Row>
+                                    </Table.Header>
+                                            <Table.Body>
+                                                {
+                                                    loading ? (<ProfileUserApplicationSecretLoadingIndicator/>) : userApplicationSecret.map((item, index) => {
+                                                        return (
+                                                            <Table.Row key={item.created} warning={this.state[item.name]}>
+                                                                <Table.Cell collapsing>{item.name}</Table.Cell>
+                                                                <Table.Cell textAlign='left'>
+                                                                    <CopyToClipboard text={this.state.userApplicationSecret[index].value} onCopy={() => this.onCopy(item.name)}>
+                                                                        { this.state[item.name + '_copy'] ? <Icon className='application-secret-copy fadeInLeft animated3' name='paste'/>  : <Icon className='application-secret-copy' name='copy outline' link/> }
+                                                                    </CopyToClipboard>
+                                                                    <Input icon={<Icon name={this.state[item.name] ? 'eye slash outline' : 'eye'} link onClick={() => this.handleSecretKeyShow(item.name)}/>}
+                                                                           className="form-input user-application-secret"
+                                                                           placeholder='X-Secret-YourAPI-Header'
+                                                                           id={item.name}
+                                                                           value={this.state.userApplicationSecret[index].value}
+                                                                           type={this.state[item.name] ? 'text' : 'password'}>
+                                                                    </Input>
+                                                                </Table.Cell>
+                                                                <Table.Cell collapsing>{new Date(item.created).toLocaleDateString() + ' ' + new Date(item.created).toLocaleTimeString()}</Table.Cell>
+                                                            </Table.Row>
+                                                        )
+                                                    })
+                                                }
+                                            </Table.Body>
+
+                                </Table>
+                            </div>
                             <Divider style={{marginTop: '40px', marginBottom: 0}}/>
                         </div>
                         <div className="profile-info-container">
@@ -666,16 +785,19 @@ class Profile extends Component {
                                         <Table.Row>
                                             <Table.Cell>Волга</Table.Cell>
                                             <Table.Cell>Роль 1</Table.Cell>
-                                            <Table.Cell><Icon color='green' name='dot circle' size='small'/>В команде</Table.Cell>
+                                            <Table.Cell><Icon color='green' name='dot circle' size='small'/>В
+                                                команде</Table.Cell>
                                             <Table.Cell><NavLink to="#"><span style={{color: '#EB5757'}}>Выйти из команды </span></NavLink></Table.Cell>
                                         </Table.Row>
                                         <Table.Row>
                                             <Table.Cell>Урал</Table.Cell>
                                             <Table.Cell>Роль 3</Table.Cell>
-                                            <Table.Cell><Icon color='orange' name='dot circle' size='small'/>Запрос на участие</Table.Cell>
+                                            <Table.Cell><Icon color='orange' name='dot circle' size='small'/>Запрос на
+                                                участие</Table.Cell>
                                             <Table.Cell>
                                                 <div className='command-approve'>
-                                                    <Button icon fluid labelPosition='left' color='blue' className="command-apply-button" ><Icon name='checkmark'/>
+                                                    <Button icon fluid labelPosition='left' color='blue'
+                                                            className="command-apply-button"><Icon name='checkmark'/>
                                                         <span className='command-approve-buttons-text'>Принять</span>
                                                     </Button>
                                                     <Button fluid icon labelPosition='left' color='red'><Icon
@@ -694,14 +816,17 @@ class Profile extends Component {
                         <Divider style={{marginTop: '40px', marginBottom: 0}}/>
                         <div className="profile-info-buttons">
                             <div className='apply-button-container'>
-                                <Button loading={loading} fluid className="apply-button" style={{width: 165, height: 32}}
+                                <Button loading={loading} fluid className="apply-button"
+                                        style={{width: 165, height: 32}}
                                         disabled={loading} color='blue'
                                         onClick={this.handleMainInformationSubmit}>Сохранить</Button>
                             </div>
                             <div className='cancel-button-container'>
-                                <Button loading={loading} fluid className="cancel-button" style={{width: 165, height: 32, backgroundColor: '#A5A5A5'}}
+                                <Button loading={loading} fluid className="cancel-button"
+                                        style={{width: 165, height: 32, backgroundColor: '#A5A5A5'}}
                                         disabled={loading}
-                                        onClick={this.reload}><span className='command-approve-buttons-text'>Отмена</span></Button>
+                                        onClick={this.reload}><span
+                                    className='command-approve-buttons-text'>Отмена</span></Button>
                             </div>
                         </div>
                     </div>

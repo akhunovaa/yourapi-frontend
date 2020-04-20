@@ -59,12 +59,21 @@ export function ApiUpdatePageLoadingIndicator() {
             <Loader active inline indeterminate size='small' style={{
                 width: '100%',
                 height: '100%',
-                minHeight: 150,
-                minWidth: 150,
                 verticalAlign: 'middle'
             }}/>
         </div>
 
+    );
+}
+
+export function ProfileUserApplicationSecretLoadingIndicator() {
+    return (
+        <div style={{position: 'absolute', width: '50%', height: '50px'}}>
+            <Loader active inline indeterminate size='small' style={{
+                width: '80%',
+                top: '10px'
+            }}/>
+        </div>
     );
 }
 

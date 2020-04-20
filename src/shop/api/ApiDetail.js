@@ -73,7 +73,7 @@ class ApiDetail extends Component {
                     });
                     document.title  = 'YourAPI | ' + response.response.fullName;
                 }).catch(error => {
-                Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
+                Alert.error('Ошибка при получении проекта' || (error && error.message));
                 this.setState({loading: false})
             });
         }

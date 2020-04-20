@@ -140,6 +140,40 @@
     color: #4F4F4F;
 }
 
+.user-application-secret{
+    width: 97%;
+    position: fixed;
+    text-align: end;
+}
+
+.user-application-secret.ui.input>input {
+    font-family: var(--font-family);
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+    color: #4F4F4F !important;
+    text-align: end;
+    overflow: hidden;
+    padding-left: 25px;
+}
+
+.application-secret-copy{
+    font-size: 16px !important;
+    position: relative;
+    z-index: 999;
+    left: 31px;
+    color: #A5A5A5;
+}
+
+.application-secret-copy:hover{
+    color: #4F4F4F;
+}
+
+.user-application-secret-eye{
+    float: left;
+}
+
 .profile-info-container-name-inputs{
     padding-top: 28px;
     display: inline-flex;

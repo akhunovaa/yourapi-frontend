@@ -248,6 +248,15 @@ export function apiProjectListGet() {
     });
 }
 
+export function requestUserSecretList() {
+    prevalidateTokenState();
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return request({
+        url: apiBaseUrl + "/individual/secret/list",
+        method: 'GET'
+    });
+}
+
 export function apiProjectGet(apiProjectId) {
     //prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
