@@ -261,7 +261,7 @@ export function requestNewApplicationSecretKey() {
     prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
-        url: apiBaseUrl + "/secret/new",
+        url: apiBaseUrl + "/individual/secret/new",
         method: 'GET'
     });
 }
@@ -270,7 +270,7 @@ export function requestUpdateApplicationSecretKey(oldValue, newValue) {
     prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
-        url: apiBaseUrl + "/secret/update?name=" + oldValue + "&updateName=" + newValue,
+        url: apiBaseUrl + "/individual/secret/update?name=" + oldValue + "&updateName=" + newValue,
         method: 'GET'
     });
 }
@@ -279,7 +279,7 @@ export function requestDeleteApplicationSecretKey(deleteValue) {
     prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
-        url: apiBaseUrl + "/secret/delete?name=" + deleteValue,
+        url: apiBaseUrl + "/individual/secret/delete?name=" + deleteValue,
         method: 'GET'
     });
 }
