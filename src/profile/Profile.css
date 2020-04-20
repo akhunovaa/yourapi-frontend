@@ -170,6 +170,15 @@
     color: #4F4F4F;
 }
 
+.secret-crud-ico{
+    font-size: 16px !important;
+    color: #A5A5A5;
+}
+
+.secret-crud-ico:hover{
+    color: #4F4F4F;
+}
+
 .user-application-secret-eye{
     float: left;
 }
@@ -338,6 +347,18 @@
 .password-input{
     padding-top: 24px;
 }
+
+.user-application-secret-add{
+    background: #2F80ED;
+}
+
+.user-application-secret-add.ui.primary.button{
+    background-color: #2F80ED;
+    color: #fff;
+    text-shadow: none;
+    background-image: none;
+}
+
 
 .profile-info-container-command-table{
     padding-top: 24px;

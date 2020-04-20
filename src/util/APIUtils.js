@@ -257,6 +257,15 @@ export function requestUserSecretList() {
     });
 }
 
+export function requestNewApplicationSecretKey() {
+    prevalidateTokenState();
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return request({
+        url: apiBaseUrl + "/secret/new",
+        method: 'GET'
+    });
+}
+
 export function apiProjectGet(apiProjectId) {
     //prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
