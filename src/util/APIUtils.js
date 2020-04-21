@@ -300,7 +300,6 @@ export function apiProjectGet(apiProjectId) {
 }
 
 export function apiTestRequestSend(url, key, host) {
-    prevalidateTokenState();
     return requestApiTestGet({
         url: url,
         method: 'GET'
