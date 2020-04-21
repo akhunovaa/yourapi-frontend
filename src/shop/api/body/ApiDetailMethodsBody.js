@@ -51,17 +51,22 @@ class ApiDetailMethodsBody extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        const {authenticated} = this.props;
         if (this._isMounted) {
-            requestUserSecretList()
-                .then(response => {
-                    this.setState({
-                        loading: false,
-                        userApplicationSecret: response.response
-                    });
-                }).catch(error => {
-                Alert.error('Ошибка запроса для списка ключей' || (error && error.message));
+            if (authenticated) {
+                requestUserSecretList()
+                    .then(response => {
+                        this.setState({
+                            loading: false,
+                            userApplicationSecret: response.response
+                        });
+                    }).catch(error => {
+                    Alert.error('Ошибка запроса для списка ключей' || (error && error.message));
+                    this.setState({loading: false})
+                });
+            }else {
                 this.setState({loading: false})
-            });
+            }
         }
     }
 
