@@ -336,6 +336,10 @@
     /*position: relative;*/
 }
 
+.restrict-operation-loader{
+    top: 150px !important;
+}
+
 .detail-methods-main-columns{
     margin: 0 auto;
     text-align:left;
@@ -530,7 +534,7 @@
 }
 
 .detail-methods-parameters{
-    padding-top: 12px;
+    padding-top: 6px;
 }
 
 .detail-methods-parameters-label{
@@ -539,9 +543,14 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
-
+    padding-bottom: 6px;
     /* Gray 3 */
     color: #A5A5A5;
+    padding-top: 8px;
+}
+
+.detail-methods-parameters-label-required{
+    color: red;
 }
 
 .detail-methods-parameters-input{
@@ -550,13 +559,21 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
-
     /* Gray 2 */
     color: #4F4F4F;
 }
 
+.detail-methods-parameters-input.ui.dropdown>.text {
+    display: inline-block;
+    -webkit-transition: none;
+    transition: none;
+    overflow: hidden;
+    white-space: pre;
+    width: 165px;
+}
+
 .detail-methods-parameters-input-margin{
-  margin-right: 8px;
+  margin-right: 4px;
 }
 
 .detail-methods-test-button-container{
@@ -565,7 +582,6 @@
 
 .detail-methods-test-button{
     height: 32px;
-    width: 112px;
     /*vertical-align:middle;*/
     overflow: hidden;
 
@@ -573,6 +589,27 @@
     /*padding-bottom: 7px;*/
     /*padding-top: 7px;*/
     padding: 0 0 !important;
+}
+
+.secret-key-create-button{
+    height: 32px;
+    overflow: hidden;
+    text-align: center;
+    padding: 0 0 !important;
+    background-color: #F39847;
+}
+
+.secret-key-create-button-text{
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    /*vertical-align: middle;*/
+    align-items: center;
+    /* white */
+    color: #FFFFFF;
+    vertical-align: center;
 }
 
 .ui.basic.button.detail-methods-test-button {
@@ -1010,12 +1047,12 @@
 
 .code-paste {
     color: #A5A5A5;
-    padding-left: 19px;
+    padding-left: 8px;
 }
 
 .code-copy{
     color: #A5A5A5;
-    padding-left: 19px;
+    padding-left: 8px;
 }
 
 .restricted-login-button-text{

@@ -6,7 +6,18 @@ export default function LoadingIndicator() {
         <div className="loading-indicator"
              style={{display: 'block', textAlign: 'center', marginTop: '30px', minHeight: 1480}}>
             <Dimmer active inverted>
-                <Loader size='large'>Загрузка...</Loader>
+                <Loader size='medium'>Загрузка...</Loader>
+            </Dimmer>
+        </div>
+    );
+}
+
+export function LoadingIndicatorWithoutHeight() {
+    return (
+        <div className="loading-indicator"
+             style={{display: 'block', textAlign: 'center', marginTop: '30px'}}>
+            <Dimmer active inverted>
+                <Loader size='medium'>Загрузка...</Loader>
             </Dimmer>
         </div>
     );

@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
-import {Icon, Input, List} from "semantic-ui-react";
-import LoadingIndicator from "../../../common/LoadingIndicator";
+import {Dimmer, Icon, Input, List, Loader} from "semantic-ui-react";
+import {LoadingIndicatorWithoutHeight} from "../../../common/LoadingIndicator";
 import ApiDetailMethodsOperation from "./ApiDetailMethodsOperation";
 import ApiRestrictedOperation from "./ApiRestrictedOperation";
 import queryString from "query-string";
 import {withRouter} from "react-router";
 import classNames from "classnames/bind";
 import {NavLink} from "react-router-dom";
+import {requestUserSecretList} from "../../../util/APIUtils";
+import Alert from "react-s-alert";
 
 class ApiDetailMethodsBody extends Component {
 
@@ -22,6 +24,7 @@ class ApiDetailMethodsBody extends Component {
             info: null,
             response: '',
             operations: [],
+            userApplicationSecret: [],
             hidden: {
                 p1: false,
                 fixtures: true,
@@ -37,7 +40,8 @@ class ApiDetailMethodsBody extends Component {
                 countries: 'chevron down',
                 leagues: 'chevron down',
                 teams: 'chevron down'
-            }
+            },
+            blockMethodsState: false
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
@@ -48,7 +52,16 @@ class ApiDetailMethodsBody extends Component {
     componentDidMount() {
         this._isMounted = true;
         if (this._isMounted) {
-            this.setState({loading: false});
+            requestUserSecretList()
+                .then(response => {
+                    this.setState({
+                        loading: false,
+                        userApplicationSecret: response.response
+                    });
+                }).catch(error => {
+                Alert.error('Ошибка запроса для списка ключей' || (error && error.message));
+                this.setState({loading: false})
+            });
         }
     }
 
@@ -80,6 +93,10 @@ class ApiDetailMethodsBody extends Component {
         this.setState({open: false})
     };
 
+    handlePageRestrict = () => {
+        this.setState((prevState) => ({blockMethodsState: !prevState.blockMethodsState}));
+    };
+
     toggle(event) {
         const target = event.target;
         const inputName = target.id;
@@ -104,10 +121,10 @@ class ApiDetailMethodsBody extends Component {
     render() {
 
         const {authenticated, link, handleSliderChange} = this.props;
-        const {loading} = this.state;
+        const {userApplicationSecret, blockMethodsState, loading} = this.state;
 
         if (loading) {
-            return <LoadingIndicator/>
+            return <LoadingIndicatorWithoutHeight/>
         }
 
         const operations = this.props.operations ? this.props.operations : [];
@@ -142,8 +159,14 @@ class ApiDetailMethodsBody extends Component {
             </>
         );
 
+
         return (
-                <div className='detail-methods-body'>
+            <div className='detail-methods-body'>
+                <Dimmer.Dimmable dimmed={blockMethodsState} blurring>
+                    <Dimmer active={blockMethodsState} inverted verticalAlign='top'>
+                        <Loader indeterminate inline className='restrict-operation-loader'>Выполнение
+                            запроса...</Loader>
+                    </Dimmer>
                     {authenticated ? (
                         <div className='detail-methods-main-columns'>
 
@@ -183,12 +206,16 @@ class ApiDetailMethodsBody extends Component {
                                     </List>
                                 </div>
                             </div>
-                            <ApiDetailMethodsOperation link={link} operations={operations} {...this.props}/>
+                            <ApiDetailMethodsOperation link={link} operations={operations}
+                                                       userApplicationSecret={userApplicationSecret}
+                                                       loadingParent={loading}
+                                                       handlePageRestrict={this.handlePageRestrict} {...this.props}/>
                         </div>
                     ) : (
                         <ApiRestrictedOperation handleSliderChange={handleSliderChange}/>
                     )}
-                </div>
+                </Dimmer.Dimmable>
+            </div>
         )
     }
 }

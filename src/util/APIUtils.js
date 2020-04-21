@@ -71,9 +71,15 @@ const requestGet = async (options) => {
         );
 };
 
-const requestApiTestGet = async (options) => {
+const requestApiTestGet = async (options, key, host) => {
 
-    options = Object.assign({}, options);
+    const headers = new Headers({
+        'X-YourAPI-Key': key,
+        'X-YourAPI-Host': host
+    });
+
+    const defaults = {headers: headers};
+    options = Object.assign({}, defaults, options);
 
     return await fetch(options.url, options)
         .then(response =>
@@ -293,12 +299,12 @@ export function apiProjectGet(apiProjectId) {
     });
 }
 
-export function apiTestRequestSend(url) {
+export function apiTestRequestSend(url, key, host) {
     prevalidateTokenState();
     return requestApiTestGet({
         url: url,
         method: 'GET'
-    });
+    }, key, host);
 }
 
 export function apiProjectFullListGet() {

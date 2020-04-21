@@ -96,7 +96,7 @@ class Profile extends Component {
                         userApplicationSecret: response.response
                     });
                 }).catch(error => {
-                Alert.error('Ошибка запроса для списка клюей' || (error && error.message));
+                Alert.error('Ошибка запроса для списка ключей' || (error && error.message));
                 this.setState({loading: false})
             });
         }
@@ -800,8 +800,8 @@ class Profile extends Component {
                             </form>
                             <Divider style={{marginTop: '40px', marginBottom: 0}}/>
                         </div>
-                        <div className="profile-info-container">
-                            <div id='secret' className="profile-info-container-name">
+                        <div id='secret' className="profile-info-container">
+                            <div className="profile-info-container-name">
                                 <span>Секретные ключи для приложений</span>
                             </div>
                             <div className="profile-info-container-command-table">
