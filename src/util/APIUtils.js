@@ -304,8 +304,7 @@ export function apiProjectGet(apiProjectId) {
 export function apiTestRequestSend(url, key, host) {
     return requestApiTestGet({
         url: url,
-        method: 'GET',
-        mode: 'no-cors'
+        method: 'GET'
     }, key, host);
 }
 
