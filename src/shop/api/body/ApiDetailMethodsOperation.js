@@ -160,7 +160,7 @@ class ApiDetailMethodsOperation extends Component {
             }
             const fulledUrl = uri + parameterCharValue;
             handlePageRestrict();
-            apiTestRequestSend(fulledUrl, keyValue, host)
+            apiTestRequestSend(fulledUrl, keyValue, host.url)
                 .then(response => {
                     const data = this.jsonPrettify(response);
                     this.setState({
