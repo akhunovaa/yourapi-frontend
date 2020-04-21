@@ -79,17 +79,19 @@ const requestApiTestGet = async (options, key, host) => {
     });
 
     const defaults = {headers: headers};
+
     options = Object.assign({}, defaults, options);
 
     return await fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
+                console.log(json)
                 if (!response.ok) {
+                    console.log(response)
                     return Promise.reject(json);
                 }
                 return json;
-            })
-        )
+            })).catch(error => console.log(error))
 };
 
 const requestImage = async (options) => {

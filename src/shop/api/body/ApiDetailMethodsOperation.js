@@ -134,7 +134,7 @@ class ApiDetailMethodsOperation extends Component {
         const {handlePageRestrict, host} = this.props;
         const {keyValue} = this.state;
 
-        if (operation.path === undefined){
+        if (operation.path === undefined) {
             return
         }
         const pathName = (operation.path.includes('{') || operation.path.includes('}')) ? '' : operation.path;
@@ -152,7 +152,7 @@ class ApiDetailMethodsOperation extends Component {
                 if (arrayElement.input === 'query') {
                     const queryVariableValue = this.state[arrayElement.name] ? this.state[arrayElement.name] : '';
                     const queryVariableName = arrayElement.name;
-                    if(queryVariableValue !== ''){
+                    if (queryVariableValue !== '') {
                         const concatenatedParam = queryVariableName + '=' + queryVariableValue;
                         parameterCharValue === '' ? parameterCharValue += '?' + concatenatedParam : parameterCharValue += '&' + concatenatedParam;
                     }
@@ -168,6 +168,7 @@ class ApiDetailMethodsOperation extends Component {
                     });
                     handlePageRestrict();
                 }).catch(error => {
+                console.log(error)
                 handlePageRestrict();
                 const data = this.jsonPrettify(error);
                 this.setState({
@@ -327,7 +328,8 @@ class ApiDetailMethodsOperation extends Component {
                     <div className='detail-methods-properties-title'>
                         <span>Описание:</span>
                     </div>
-                    <span className='detail-methods-parameters-label'>{operation.description ? operation.description : 'описание отсутствует'}</span>
+                    <span
+                        className='detail-methods-parameters-label'>{operation.description ? operation.description : 'описание отсутствует'}</span>
                     <div className="detail-methods-parameters">
                         <div className="detail-methods-parameters">
                             <label className='detail-methods-parameters-label'>Хост</label>
@@ -366,9 +368,11 @@ class ApiDetailMethodsOperation extends Component {
                                 <>
                                     <div key={index} className="detail-methods-parameters">
                                         <label className='detail-methods-parameters-label'>{item.name}</label>
-                                        { item.required ? (<label className='detail-methods-parameters-label-required'>*</label>) : (<></>)}
+                                        {item.required ? (<label
+                                            className='detail-methods-parameters-label-required'>*</label>) : (<></>)}
                                         <div style={{paddingTop: 6}}/>
-                                        <Input size={'small'} fluid placeholder={item.name} id={item.name} name={item.name} onChange={this.handleParameterInputChange}/>
+                                        <Input size={'small'} fluid placeholder={item.name} id={item.name}
+                                               name={item.name} onChange={this.handleParameterInputChange}/>
                                     </div>
                                 </>)
                         }) : (<div/>)}
