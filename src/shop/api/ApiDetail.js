@@ -71,7 +71,7 @@ class ApiDetail extends Component {
                         host: response.response.host,
                         operations: response.response.operations
                     });
-                    document.title  = 'YourAPI | ' + response.response.fullName;
+                    document.title = 'YourAPI | ' + response.response.fullName;
                 }).catch(error => {
                 Alert.error('Ошибка при получении проекта' || (error && error.message));
                 this.setState({loading: false})
@@ -161,8 +161,8 @@ class ApiDetail extends Component {
         const link = getLink4Category(category);
         const link4Description = getLink4Description(category) + id;
 
-        const {visible, authenticated, handleSliderChange} = this.props;
-
+        const {visible, authenticated} = this.props;
+        console.log(link + '&page=price')
         return (
             <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
                 <Sidebar
@@ -228,11 +228,12 @@ class ApiDetail extends Component {
                                             <label style={{color: '#F39847'}}>4,9</label>
                                             <label style={{color: '#A5A5A5', paddingLeft: 4}}>({this.state.id})</label>
                                         </div>
-                                        <div className='api-detail-add-button'>
-                                            <Button className='api-detail-create-button'
-                                                    style={{background: '#2F80ED'}}>
-                                                <span className='api-detail-create-button-text'>Подключить</span>
-                                            </Button>
+                                        <div className='api-subscription-apply-container'>
+                                            <NavLink to={link4Description + '&page=price'} className='api-subscription-apply'>
+                                                <Button style={{background: '#2F80ED'}}>
+                                                    <span className='api-detail-create-button-text'>Оформить подписку</span>
+                                                </Button>
+                                            </NavLink>
                                         </div>
                                         <div className='api-detail-inner-body-container'>
                                             <div className='api-left-form-elements'>
