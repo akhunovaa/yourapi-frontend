@@ -81,13 +81,13 @@ class ApiDetailPriceBodyPlans extends Component {
                         </div>
                         <div className='individual-plan-body'>
                             <div className='individual-plan-price'>
-                                <span>0 Р</span>
+                                <span>0 рублей</span>
                             </div>
                             <div className='individual-plan-description'>
                                 <span>1000 запросов за пакет</span>
                             </div>
                             <div className='individual-plan-description'>
-                                <span>За последующие 0р</span>
+                                <span>За последующие 0 рублей</span>
                             </div>
                         </div>
                         <div className='individual-plan-description-footer padded-footer'>
