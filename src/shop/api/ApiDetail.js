@@ -229,8 +229,8 @@ class ApiDetail extends Component {
                                             <label style={{color: '#A5A5A5', paddingLeft: 4}}>({this.state.id})</label>
                                         </div>
                                         <div className='api-subscription-apply-container'>
-                                            <NavLink to={link4Description + '&page=price'} className='api-subscription-apply'>
-                                                <Button style={{background: '#2F80ED'}}>
+                                            <NavLink to={link4Description + '&page=price'}>
+                                                <Button style={{background: '#2F80ED'}}  className='api-subscription-apply'>
                                                     <span className='api-detail-create-button-text'>Оформить подписку</span>
                                                 </Button>
                                             </NavLink>

@@ -139,87 +139,6 @@ class ApiDetailPriceBody extends Component {
                             <ApiDetailPriceBodyPlans {...this.props} />
                         </div>
                         <div className='detail-price-body-main-plan-scopes'>
-                            <div className='detail-price-body-main-plan-scope-element'>
-                                <div className='detail-price-body-main-plan-scope-element-header'>
-                                    <span>Лиги</span>
-                                </div>
-                                <div className='detail-price-body-main-plan-scope-element-containers'>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='detail-price-body-main-plan-scope-element'>
-                                <div className='detail-price-body-main-plan-scope-element-header'>
-                                    <span>Страны</span>
-                                </div>
-                                <div className='detail-price-body-main-plan-scope-element-containers'>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='detail-price-body-main-plan-scope-element'>
-                                <div className='detail-price-body-main-plan-scope-element-header'>
-                                    <span>Шансы перед матчем</span>
-                                </div>
-                                <div className='detail-price-body-main-plan-scope-element-containers'>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='times' color='red' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                    <div className='detail-price-body-main-plan-scope-element-container'>
-                                        <Icon name='check' color='green' size='large'
-                                              style={{textAlign: 'left', paddingLeft: 88, width: 192}}/>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div className='detail-price-body-main-plan-faq'>
                                 <div className='detail-price-body-main-plan-faq-header'>
@@ -246,9 +165,11 @@ class ApiDetailPriceBody extends Component {
                             </div>
 
                             <div className='individual-plan-support-message'>
-                                <Button basic className='individual-plan-support-message-button'>
-                                    <span className='individual-plan-support-message-button-text'>Связаться со службой поддержки</span>
-                                </Button>
+                                <a href={"mailto:support@yourapi.ru"} rel="noopener noreferrer" target='_blank'>
+                                    <Button basic className='individual-plan-support-message-button'>
+                                        <span className='individual-plan-support-message-button-text'>Связаться со службой поддержки</span>
+                                    </Button>
+                                </a>
                             </div>
 
                         </div>
