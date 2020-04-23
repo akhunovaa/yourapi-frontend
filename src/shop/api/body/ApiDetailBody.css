@@ -834,7 +834,7 @@
 .individual-plan-element-inner-container{
     padding: 28px 20px 20px 20px;
     text-align: left;
-    height: auto;
+    height: 100%;
 }
 
 .individual-plan-header{

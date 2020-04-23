@@ -71,52 +71,23 @@ class ApiDetailPriceBodyPlans extends Component {
 
         return (
             <Slider {...settings}>
-                <div className='individual-plan-element-container'>
-                    <div className='individual-plan-element-inner-container'>
-                        <div className='individual-plan-header'>
-                            <span>Базовый</span>
-                        </div>
-                        <div className='individual-plan-header-label'>
-                            <span>Для индивидуальных пользователей</span>
-                        </div>
-                        <div className='individual-plan-body'>
-                            <div className='individual-plan-price'>
-                                <span>Бесплатно</span>
-                            </div>
-                            <div className='individual-plan-description'>
-                                <span>NNN запросов в день</span>
-                            </div>
-                            <div className='individual-plan-description'>
-                                <span>За последующие +50р</span>
-                            </div>
-                            <div className='individual-plan-description'>
-                                <span>30 запросов в минуту</span>
-                            </div>
-                        </div>
-                        <div className='individual-plan-description-footer'>
-                            <Button basic fluid className='individual-plan-description-select-button'>
-                                <span className='detail-price-body-individual-plan-button-text'>Выбрать</span>
-                            </Button>
-                        </div>
-                    </div>
-                </div>
                 <div className='individual-plan-element-container selected-container'>
                     <div className='individual-plan-element-inner-container'>
                         <div className='individual-plan-header'>
-                            <span>Профессионал</span>
+                            <span>FREE</span>
                         </div>
                         <div className='individual-plan-header-label'>
-                            <span>Для индивидуальных пользователей</span>
+                            <span>Тестирование YourAPI</span>
                         </div>
                         <div className='individual-plan-body'>
                             <div className='individual-plan-price'>
-                                <span>1200 Р</span>
+                                <span>0 Р</span>
                             </div>
                             <div className='individual-plan-description'>
-                                <span>NNN запросов в день</span>
+                                <span>1000 запросов за пакет</span>
                             </div>
                             <div className='individual-plan-description'>
-                                <span>За последующие +50р</span>
+                                <span>За последующие 0р</span>
                             </div>
                         </div>
                         <div className='individual-plan-description-footer padded-footer'>
@@ -124,81 +95,6 @@ class ApiDetailPriceBodyPlans extends Component {
                                     className='individual-plan-description-select-button selected-container-button'>
                                 <span
                                     className='detail-price-body-individual-plan-button-text selected-span-text'>Выбрать</span>
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-                <div className='individual-plan-element-container'>
-                    <div className='individual-plan-element-inner-container'>
-                        <div className='individual-plan-header'>
-                            <span>Компания</span>
-                        </div>
-                        <div className='individual-plan-header-label'>
-                            <span>Для индивидуальных пользователей</span>
-                        </div>
-                        <div className='individual-plan-body'>
-                            <div className='individual-plan-price'>
-                                <span>1900 Р</span>
-                            </div>
-                            <div className='individual-plan-description'>
-                                <span>NNN запросов в день</span>
-                            </div>
-                            <div className='individual-plan-description'>
-                                <span>За последующие +50р</span>
-                            </div>
-                        </div>
-                        <div className='individual-plan-description-footer padded-footer'>
-                            <Button basic fluid className='individual-plan-description-select-button'>
-                                <span className='detail-price-body-individual-plan-button-text'>Выбрать</span>
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-                <div className='individual-plan-element-container'>
-                    <div className='individual-plan-element-inner-container'>
-                        <div className='individual-plan-header'>
-                            <span>Разовые платежи</span>
-                        </div>
-                        <div className='individual-plan-header-label'>
-                            <span>Для индивидуальных пользователей</span>
-                        </div>
-                        <div className='individual-plan-body'>
-                            <div className='individual-plan-price'>
-                                <span>1 Р</span>
-                            </div>
-                        </div>
-                        <div className='individual-plan-description-footer padded-footer doubling-padded-footer'>
-                            <Button basic fluid className='individual-plan-description-select-button'>
-                                <span className='detail-price-body-individual-plan-button-text'>Выбрать</span>
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-                <div className='individual-plan-element-container'>
-                    <div className='individual-plan-element-inner-container'>
-                        <div className='individual-plan-header'>
-                            <span>Новичок</span>
-                        </div>
-                        <div className='individual-plan-header-label'>
-                            <span>Для индивидуальных пользователей</span>
-                        </div>
-                        <div className='individual-plan-body'>
-                            <div className='individual-plan-price'>
-                                <span>100 Р</span>
-                            </div>
-                            <div className='individual-plan-description'>
-                                <span>5 запросов в день</span>
-                            </div>
-                            <div className='individual-plan-description'>
-                                <span>За последующие +10р</span>
-                            </div>
-                            <div className='individual-plan-description'>
-                                <span>30 запросов в минуту</span>
-                            </div>
-                        </div>
-                        <div className='individual-plan-description-footer'>
-                            <Button basic fluid className='individual-plan-description-select-button'>
-                                <span className='detail-price-body-individual-plan-button-text'>Выбрать</span>
                             </Button>
                         </div>
                     </div>

@@ -129,9 +129,9 @@ class ApiDetailPriceBody extends Component {
                             </List>
                         </div>
                         <div className='detail-price-body-individual-plan-button-container'>
-                            <Button basic fluid className='detail-price-body-individual-plan-button'>
-                                <span className='detail-price-body-individual-plan-button-text'>Заказать индивидуальный план</span>
-                            </Button>
+                            {/*<Button basic fluid className='detail-price-body-individual-plan-button'>*/}
+                                {/*<span className='detail-price-body-individual-plan-button-text'>Заказать индивидуальный план</span>*/}
+                            {/*</Button>*/}
                         </div>
                     </div>
                     <div className='detail-price-body-main'>
