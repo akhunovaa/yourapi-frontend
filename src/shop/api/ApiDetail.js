@@ -162,7 +162,6 @@ class ApiDetail extends Component {
         const link4Description = getLink4Description(category) + id;
 
         const {visible, authenticated} = this.props;
-        console.log(link + '&page=price')
         return (
             <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
                 <Sidebar
