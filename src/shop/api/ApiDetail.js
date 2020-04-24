@@ -40,7 +40,8 @@ class ApiDetail extends Component {
             updated: '',
             info: '',
             host: '',
-            operations: ''
+            operations: '',
+            uuid: ''
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -59,6 +60,7 @@ class ApiDetail extends Component {
                     this.setState({
                         loading: false,
                         id: response.response.id,
+                        uuid: response.response.uuid,
                         name: response.response.fullName,
                         description: response.response.description,
                         category: response.response.category,
@@ -96,6 +98,11 @@ class ApiDetail extends Component {
             [inputName]: inputValue
         });
     }
+
+    handleChange = (e, {id, name}) => {
+        this.setState({[id]: name})
+    };
+
 
     handleDropdownChange = (e, {key, value}) => this.setState({[key]: value});
 
@@ -154,7 +161,8 @@ class ApiDetail extends Component {
 
     render() {
 
-        const {loading, name, dealer, category, updated, description, image, id} = this.state;
+        const {loading, name, dealer, category, updated, description, image, id, uuid} = this.state;
+
         const host = window.location.origin.toString();
         const profile = dealer.nickname && !dealer.nickname.includes('.', ',') ? dealer.nickname : 'id' + dealer.id;
         const profileLink = '/profile' + '/' + profile;
@@ -210,11 +218,12 @@ class ApiDetail extends Component {
                                                 }
                                             </div>
                                             <div className="grid-labels">
-                                                <Icon style={{paddingLeft: '16px', color: '#A5A5A5'}} link
-                                                      name='bookmark outline'/>
-                                                <Icon style={{paddingLeft: '16px', color: '#A5A5A5'}} link
+                                                <Icon style={{color: this.state[uuid] === 'bookmark outline' ? '#2F80ED' : ''}} className='grid-labels-icon'
+                                                      link onClick={this.handleChange} id={uuid}
+                                                      name={this.state[uuid] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
+                                                <Icon className='grid-labels-icon' link
                                                       name='share alternate'/>
-                                                <Icon style={{paddingLeft: '32px', color: '#A5A5A5'}} link
+                                                <Icon className='grid-labels-icon' link
                                                       name='info circle'/>
                                             </div>
                                         </div>

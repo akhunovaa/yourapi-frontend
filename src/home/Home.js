@@ -93,8 +93,8 @@ class Home extends Component {
                                             <label style={{color: '#F39847'}}>{item.id}</label>
                                             <Icon style={{
                                                 paddingLeft: '16px',
-                                                color: this.state[item.id + item.name] === 'bookmark outline' ? '#2F80ED' : '#A5A5A5'
-                                            }} link onClick={this.handleChange} id={item.id + item.name}
+                                                color: this.state[item.id + item.name] === 'bookmark outline' ? '#2F80ED' : ''
+                                            }} link onClick={this.handleChange} id={item.id + item.name} className='grid-labels-icon'
                                                   name={this.state[item.id + item.name] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
                                         </div>
                                     </div>
