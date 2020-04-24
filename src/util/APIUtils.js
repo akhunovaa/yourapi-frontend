@@ -282,6 +282,17 @@ export function requestUpdateApplicationSecretKey(oldValue, newValue) {
     });
 }
 
+export function apiSubscribtionSubmit(subsribtionData) {
+
+    prevalidateTokenState();
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return request({
+        url: apiBaseUrl + "/api-data/subscribe/apply",
+        method: 'POST',
+        body: JSON.stringify(subsribtionData)
+    });
+}
+
 export function requestDeleteApplicationSecretKey(deleteValue) {
     prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;

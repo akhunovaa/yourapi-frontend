@@ -141,7 +141,7 @@ class ApiDetail extends Component {
         const params = queryString.parse(this.props.location.search);
         const {authenticated, handleSliderChange} = this.props;
 
-        const {host, operations, userApplicationSecret, loading, pageTitle} = this.state;
+        const {host, operations, userApplicationSecret, loading, pageTitle, uuid} = this.state;
 
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'methods';
         switch (paging) {
@@ -150,7 +150,8 @@ class ApiDetail extends Component {
             case 'version':
                 return <ApiDetailVersionBody pageTitle={pageTitle} />;
             case 'price':
-                return <ApiDetailPriceBody pageTitle={pageTitle} authenticated={authenticated} userApplicationSecret={userApplicationSecret} handleSliderChange={handleSliderChange}/>;
+                return <ApiDetailPriceBody pageTitle={pageTitle} authenticated={authenticated}
+                                           userApplicationSecret={userApplicationSecret} handleSliderChange={handleSliderChange} uuid={uuid}/>;
             case 'questions':
                 return <ApiDetailQuestionsBody pageTitle={pageTitle} />;
             case 'documentation':

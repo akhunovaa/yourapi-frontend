@@ -44,6 +44,10 @@ class ApiDetailPriceBody extends Component {
         window.location.reload();
     };
 
+    handlePageRestrict = () => {
+        this.setState((prevState) => ({blockMethodsState: !prevState.blockMethodsState}));
+    };
+
     handleInputChange(event) {
         const target = event.target;
         const inputName = target.name;
@@ -109,15 +113,14 @@ class ApiDetailPriceBody extends Component {
 
     render() {
 
-        const {authenticated, userApplicationSecret, handleSliderChange} = this.props;
+        const {authenticated, userApplicationSecret, handleSliderChange, pageTitle, uuid} = this.props;
         const {blockMethodsState} = this.state;
 
         return (
             <div className='detail-price-body'>
                 <Dimmer.Dimmable dimmed={blockMethodsState} blurring>
                     <Dimmer active={blockMethodsState} inverted verticalAlign='top'>
-                        <Loader indeterminate inline className='restrict-operation-loader'>Выполнение
-                            запроса...</Loader>
+                        <Loader indeterminate inline className='restrict-operation-loader'>Выполнение запроса...</Loader>
                     </Dimmer>
                     {authenticated ? (<>
                             <div className='detail-price-body-header'>
@@ -126,15 +129,13 @@ class ApiDetailPriceBody extends Component {
                                         <List.Item>
                                             <List.Content floated='right'>
                                                 <div className='detail-price-body-currency-chevron'>
-                                                    <Icon link id='currency' name={this.state.arrow.currency}
-                                                          onClick={this.toggle}/>
+                                                    <Icon link id='currency' name={this.state.arrow.currency} onClick={this.toggle}/>
                                                 </div>
                                             </List.Content>
                                             <List.Content>
                                                 <div className='detail-price-body-currency-text'>
                                                     <span className='detail-price-body-currency-text-title'>Валюта</span>
-                                                    <span
-                                                        className='detail-price-body-currency-text-title-main'>{this.state.selectedCurrency}</span>
+                                                    <span className='detail-price-body-currency-text-title-main'>{this.state.selectedCurrency}</span>
                                                 </div>
                                             </List.Content>
                                         </List.Item>
@@ -148,7 +149,7 @@ class ApiDetailPriceBody extends Component {
                             </div>
                             <div className='detail-price-body-main'>
                                 <div className='detail-price-body-main-plans'>
-                                    <ApiDetailPriceBodyPlans {...this.props} />
+                                    <ApiDetailPriceBodyPlans userApplicationSecret={userApplicationSecret} pageTitle={pageTitle} handlePageRestrict={this.handlePageRestrict} uuid={uuid} {...this.props} />
                                 </div>
                                 <div className='detail-price-body-main-plan-scopes'>
 
