@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './ApiDetail.css';
 import {NavLink} from "react-router-dom";
-import {Breadcrumb, Button, Icon, Menu, Segment, Sidebar} from "semantic-ui-react";
+import {Breadcrumb, Button, Icon, Menu, Segment, Sidebar, Popup} from "semantic-ui-react";
 import ApiDetailReviewHeader from "./header/ApiDetailReviewHeader";
 import ApiDetailVersionHeader from "./header/ApiDetailVersionHeader";
 import ApiDetailPriceHeader from "./header/ApiDetailPriceHeader";
@@ -20,6 +20,7 @@ import {getLink4Category, getLink4Description} from "../../util/ElementsDataUtil
 import Alert from "react-s-alert";
 import LazyApiDetailImage from '../../util/LazyApiDetailImage';
 import AuthContainerWrapper from "../../home/AuthContainerWrapper";
+import ApiDetailCustomInfoPopup from "./ApiDetailCustomInfoPopup";
 
 class ApiDetail extends Component {
 
@@ -161,13 +162,20 @@ class ApiDetail extends Component {
 
     render() {
 
-        const {loading, name, dealer, category, updated, description, image, id, uuid} = this.state;
+        const {loading, name, dealer, category, updated, description, image, id, uuid, info, operations} = this.state;
 
         const host = window.location.origin.toString();
         const profile = dealer.nickname && !dealer.nickname.includes('.', ',') ? dealer.nickname : 'id' + dealer.id;
         const profileLink = '/profile' + '/' + profile;
         const link = getLink4Category(category);
         const link4Description = getLink4Description(category) + id;
+        const styles = {
+            infoPopup: {
+                borderRadius: 0,
+                opacity: 0.7,
+                padding: '2em'
+            }
+        };
 
         const {visible, authenticated} = this.props;
         return (
@@ -223,8 +231,16 @@ class ApiDetail extends Component {
                                                       name={this.state[uuid] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
                                                 <Icon className='grid-labels-icon' link
                                                       name='share alternate'/>
-                                                <Icon className='grid-labels-icon' link
-                                                      name='info circle'/>
+                                                <Popup
+                                                    trigger={<Icon className='grid-labels-icon' link name='info circle'/>}
+                                                    content={<ApiDetailCustomInfoPopup description={description}
+                                                                                       info={info} image={image}
+                                                                                       host={host} name={name}
+                                                                                       category={category} link={link} updated={updated} operations={operations}/>}
+                                                    style={styles.infoPopup}
+                                                    header={name}
+                                                    on='focus' inverted position='bottom center'
+                                                />
                                             </div>
                                         </div>
                                         <div className='api-detail-title'>{name}</div>

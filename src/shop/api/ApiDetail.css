@@ -60,6 +60,8 @@
 
 .api-header-logo-picture{
     float: left;
+    width: 77px;
+    height: 77px;
 }
 
 .api-detail-inner-header-container{
@@ -226,4 +228,27 @@
     background-image: -moz-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
     background-image: -o-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
     background-image: -webkit-linear-gradient(45deg,#46b5e5 1%,#1e88e5 64%,#40baf5 97%);
+}
+
+.api-detail-info-popup{
+    display: block;
+    color: white;
+}
+
+.api-detail-info-popup-description{
+
+}
+
+.api-detail-info-popup-description-footer{
+    float: bottom;
+}
+
+.api-header-logo-picture-popup{
+    min-width: 77px;
+    min-height: 77px;
+}
+
+.detail-popup-methods-element{
+    border-radius: 4px;
+    color: white;
 }
