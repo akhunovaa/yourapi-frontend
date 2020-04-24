@@ -8,8 +8,6 @@ import queryString from "query-string";
 import {withRouter} from "react-router";
 import classNames from "classnames/bind";
 import {NavLink} from "react-router-dom";
-import {requestUserSecretList} from "../../../util/APIUtils";
-import Alert from "react-s-alert";
 
 class ApiDetailMethodsBody extends Component {
 
@@ -24,7 +22,6 @@ class ApiDetailMethodsBody extends Component {
             info: null,
             response: '',
             operations: [],
-            userApplicationSecret: [],
             hidden: {
                 p1: false,
                 fixtures: true,
@@ -51,23 +48,6 @@ class ApiDetailMethodsBody extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const {authenticated} = this.props;
-        if (this._isMounted) {
-            if (authenticated) {
-                requestUserSecretList()
-                    .then(response => {
-                        this.setState({
-                            loading: false,
-                            userApplicationSecret: response.response
-                        });
-                    }).catch(error => {
-                    Alert.error('Ошибка запроса для списка ключей' || (error && error.message));
-                    this.setState({loading: false})
-                });
-            }else {
-                this.setState({loading: false})
-            }
-        }
     }
 
     componentWillUnmount() {
@@ -125,8 +105,8 @@ class ApiDetailMethodsBody extends Component {
 
     render() {
 
-        const {authenticated, link, handleSliderChange} = this.props;
-        const {userApplicationSecret, blockMethodsState, loading} = this.state;
+        const {authenticated, link, handleSliderChange, userApplicationSecret, loading} = this.props;
+        const {blockMethodsState} = this.state;
 
         if (loading) {
             return <LoadingIndicatorWithoutHeight/>

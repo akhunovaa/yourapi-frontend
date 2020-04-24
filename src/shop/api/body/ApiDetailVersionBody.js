@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
 import {Icon, List} from "semantic-ui-react";
+import {withRouter} from "react-router";
 
 class ApiDetailVersionBody extends Component {
 
@@ -326,4 +327,4 @@ class ApiDetailVersionBody extends Component {
     }
 }
 
-export default ApiDetailVersionBody;
+export default withRouter(ApiDetailVersionBody);

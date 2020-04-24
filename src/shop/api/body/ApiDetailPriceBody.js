@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
-import {Button, Icon, List} from "semantic-ui-react";
+import {Button, Dimmer, Icon, List, Loader} from "semantic-ui-react";
 import queryString from "query-string";
 import ApiDetailPriceBodyPlans from "./ApiDetailPriceBodyPlans";
+import {withRouter} from "react-router";
+import ApiRestrictedOperation from "./ApiRestrictedOperation";
 
 class ApiDetailPriceBody extends Component {
 
@@ -20,6 +22,7 @@ class ApiDetailPriceBody extends Component {
             arrow: {
                 currency: 'chevron down'
             },
+            blockMethodsState: false,
             selectedCurrency: currency === 'rur' ? 'Рубли (RUB)' : 'US Dollar (USD)'
         };
         this.reload = this.reload.bind(this);
@@ -105,83 +108,93 @@ class ApiDetailPriceBody extends Component {
 
 
     render() {
+
+        const {authenticated, userApplicationSecret, handleSliderChange} = this.props;
+        const {blockMethodsState} = this.state;
+
         return (
-            <div>
-                <div className='detail-price-body'>
-                    <div className='detail-price-body-header'>
-                        <div className='detail-price-body-currency'>
-                            <List verticalAlign='middle'>
-                                <List.Item>
-                                    <List.Content floated='right'>
-                                        <div className='detail-price-body-currency-chevron'>
-                                            <Icon link id='currency' name={this.state.arrow.currency}
-                                                  onClick={this.toggle}/>
-                                        </div>
-                                    </List.Content>
-                                    <List.Content>
-                                        <div className='detail-price-body-currency-text'>
-                                            <span className='detail-price-body-currency-text-title'>Валюта</span>
-                                            <span
-                                                className='detail-price-body-currency-text-title-main'>{this.state.selectedCurrency}</span>
-                                        </div>
-                                    </List.Content>
-                                </List.Item>
-                            </List>
-                        </div>
-                        <div className='detail-price-body-individual-plan-button-container'>
-                            {/*<Button basic fluid className='detail-price-body-individual-plan-button'>*/}
-                                {/*<span className='detail-price-body-individual-plan-button-text'>Заказать индивидуальный план</span>*/}
-                            {/*</Button>*/}
-                        </div>
-                    </div>
-                    <div className='detail-price-body-main'>
-                        <div className='detail-price-body-main-plans'>
-                            <ApiDetailPriceBodyPlans {...this.props} />
-                        </div>
-                        <div className='detail-price-body-main-plan-scopes'>
-
-                            <div className='detail-price-body-main-plan-faq'>
-                                <div className='detail-price-body-main-plan-faq-header'>
-                                    <span>Часто задаваемые вопросы</span>
+            <div className='detail-price-body'>
+                <Dimmer.Dimmable dimmed={blockMethodsState} blurring>
+                    <Dimmer active={blockMethodsState} inverted verticalAlign='top'>
+                        <Loader indeterminate inline className='restrict-operation-loader'>Выполнение
+                            запроса...</Loader>
+                    </Dimmer>
+                    {authenticated ? (<>
+                            <div className='detail-price-body-header'>
+                                <div className='detail-price-body-currency'>
+                                    <List verticalAlign='middle'>
+                                        <List.Item>
+                                            <List.Content floated='right'>
+                                                <div className='detail-price-body-currency-chevron'>
+                                                    <Icon link id='currency' name={this.state.arrow.currency}
+                                                          onClick={this.toggle}/>
+                                                </div>
+                                            </List.Content>
+                                            <List.Content>
+                                                <div className='detail-price-body-currency-text'>
+                                                    <span className='detail-price-body-currency-text-title'>Валюта</span>
+                                                    <span
+                                                        className='detail-price-body-currency-text-title-main'>{this.state.selectedCurrency}</span>
+                                                </div>
+                                            </List.Content>
+                                        </List.Item>
+                                    </List>
                                 </div>
-                                <div className='detail-price-body-main-plan-faq-subheader'>
-                                    <span>Безопасна ли моя оплата?</span>
-                                </div>
-                                <div className='detail-price-body-main-plan-faq-subheader-label'>
-                                    <span>Кредитные карты обрабатываются через PCI-совместимого банковского партнера</span>
-                                </div>
-                                <div className='detail-price-body-main-plan-faq-subheader subheader-padded'>
-                                    <span>Что делать, если я превышаю пределы моего плана?</span>
-                                </div>
-                                <div className='detail-price-body-main-plan-faq-subheader-label'>
-                                    <span>В зависимости от выбранного варианта вашего плана, вы либо будете отстранены, либо будете платить за перерасход</span>
-                                </div>
-                                <div className='detail-price-body-main-plan-faq-subheader subheader-padded'>
-                                    <span>Когда мне будет выставлен счет?</span>
-                                </div>
-                                <div className='detail-price-body-main-plan-faq-subheader-label'>
-                                    <span>Мы списываем средства с вашей кредитной карты при подписке на тарифный план API и в следующий расчетный  период - 5 число каждого месца</span>
+                                <div className='detail-price-body-individual-plan-button-container'>
+                                    {/*<Button basic fluid className='detail-price-body-individual-plan-button'>*/}
+                                    {/*<span className='detail-price-body-individual-plan-button-text'>Заказать индивидуальный план</span>*/}
+                                    {/*</Button>*/}
                                 </div>
                             </div>
+                            <div className='detail-price-body-main'>
+                                <div className='detail-price-body-main-plans'>
+                                    <ApiDetailPriceBodyPlans {...this.props} />
+                                </div>
+                                <div className='detail-price-body-main-plan-scopes'>
 
-                            <div className='individual-plan-support-message'>
-                                <a href={"mailto:support@yourapi.ru"} rel="noopener noreferrer" target='_blank'>
-                                    <Button basic className='individual-plan-support-message-button'>
-                                        <span className='individual-plan-support-message-button-text'>Связаться со службой поддержки</span>
-                                    </Button>
-                                </a>
+                                    <div className='detail-price-body-main-plan-faq'>
+                                        <div className='detail-price-body-main-plan-faq-header'>
+                                            <span>Часто задаваемые вопросы</span>
+                                        </div>
+                                        <div className='detail-price-body-main-plan-faq-subheader'>
+                                            <span>Безопасна ли моя оплата?</span>
+                                        </div>
+                                        <div className='detail-price-body-main-plan-faq-subheader-label'>
+                                            <span>Кредитные карты обрабатываются через PCI-совместимого банковского партнера</span>
+                                        </div>
+                                        <div className='detail-price-body-main-plan-faq-subheader subheader-padded'>
+                                            <span>Что делать, если я превышаю пределы моего плана?</span>
+                                        </div>
+                                        <div className='detail-price-body-main-plan-faq-subheader-label'>
+                                            <span>В зависимости от выбранного варианта вашего плана, вы либо будете отстранены, либо будете платить за перерасход</span>
+                                        </div>
+                                        <div className='detail-price-body-main-plan-faq-subheader subheader-padded'>
+                                            <span>Когда мне будет выставлен счет?</span>
+                                        </div>
+                                        <div className='detail-price-body-main-plan-faq-subheader-label'>
+                                            <span>Мы списываем средства с вашей кредитной карты при подписке на тарифный план API и в следующий расчетный  период - 5 число каждого месца</span>
+                                        </div>
+                                    </div>
+
+                                    <div className='individual-plan-support-message'>
+                                        <a href={"mailto:support@yourapi.ru"} rel="noopener noreferrer" target='_blank'>
+                                            <Button basic className='individual-plan-support-message-button'>
+                                                <span className='individual-plan-support-message-button-text'>Связаться со службой поддержки</span>
+                                            </Button>
+                                        </a>
+                                    </div>
+
+                                </div>
                             </div>
-
-                        </div>
-                    </div>
-                    <div>
-
-                    </div>
-                </div>
+                        </>) :
+                        (
+                            <ApiRestrictedOperation handleSliderChange={handleSliderChange}/>
+                        )
+                    }
+                </Dimmer.Dimmable>
             </div>
-
         )
     }
 }
 
-export default ApiDetailPriceBody;
+export default withRouter(ApiDetailPriceBody);

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
+import {withRouter} from "react-router";
 
 class ApiDetailQuestionsBody extends Component {
 
@@ -61,4 +62,4 @@ class ApiDetailQuestionsBody extends Component {
     }
 }
 
-export default ApiDetailQuestionsBody;
+export default withRouter(ApiDetailQuestionsBody);

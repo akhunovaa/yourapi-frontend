@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
+import {withRouter} from "react-router";
 
 class ApiDetailDocumentationBody extends Component {
 
@@ -16,6 +17,10 @@ class ApiDetailDocumentationBody extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        if (this._isMounted) {
+            const {pageTitle} = this.props;
+            document.title = pageTitle;
+        }
     }
 
     componentWillUnmount() {
@@ -62,4 +67,4 @@ class ApiDetailDocumentationBody extends Component {
     }
 }
 
-export default ApiDetailDocumentationBody;
+export default withRouter(ApiDetailDocumentationBody);

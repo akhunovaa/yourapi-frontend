@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
 import {Icon} from "semantic-ui-react";
+import {withRouter} from "react-router";
 
 class ApiDetailReviewBody extends Component {
 
@@ -17,6 +18,10 @@ class ApiDetailReviewBody extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        if (this._isMounted) {
+            const {pageTitle} = this.props;
+            document.title = pageTitle;
+        }
     }
 
     componentWillUnmount() {
@@ -227,4 +232,4 @@ class ApiDetailReviewBody extends Component {
     }
 }
 
-export default ApiDetailReviewBody;
+export default withRouter(ApiDetailReviewBody);

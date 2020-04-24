@@ -85,7 +85,6 @@ const requestApiTestGet = async (options, key, host) => {
     return await fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
-                console.log(json)
                 if (!response.ok) {
                     console.log(response)
                     return Promise.reject(json);

@@ -22,6 +22,8 @@ import LazyApiDetailImage from '../../util/LazyApiDetailImage';
 import AuthContainerWrapper from "../../home/AuthContainerWrapper";
 import ApiDetailCustomInfoPopup from "./ApiDetailCustomInfoPopup";
 import ApiDetailSharePopup from "./ApiDetailSharePopup";
+import {requestUserSecretList} from "../../util/APIUtils";
+import LoadingIndicator from "../../common/LoadingIndicator";
 
 class ApiDetail extends Component {
 
@@ -43,7 +45,8 @@ class ApiDetail extends Component {
             info: '',
             host: '',
             operations: '',
-            uuid: ''
+            uuid: '',
+            userApplicationSecret: []
         };
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -57,10 +60,11 @@ class ApiDetail extends Component {
         const params = queryString.parse(this.props.location.search);
         let id = params.id != null ? params.id : '1';
         if (this._isMounted) {
+            const {authenticated} = this.props;
+
             apiProjectGet(id)
                 .then(response => {
                     this.setState({
-                        loading: false,
                         id: response.response.id,
                         uuid: response.response.uuid,
                         name: response.response.fullName,
@@ -73,13 +77,29 @@ class ApiDetail extends Component {
                         updated: response.response.updated,
                         info: response.response.info,
                         host: response.response.host,
-                        operations: response.response.operations
+                        operations: response.response.operations,
+                        pageTitle: 'YourAPI | ' + response.response.fullName
                     });
                     document.title = 'YourAPI | ' + response.response.fullName;
                 }).catch(error => {
                 Alert.error('Ошибка при получении проекта' || (error && error.message));
                 this.setState({loading: false})
             });
+
+            if (authenticated) {
+                requestUserSecretList()
+                    .then(response => {
+                        this.setState({
+                            loading: false,
+                            userApplicationSecret: response.response
+                        });
+                    }).catch(error => {
+                    Alert.error('Ошибка запроса для списка ключей' || (error && error.message));
+                    this.setState({loading: false})
+                });
+            }else {
+                this.setState({loading: false})
+            }
         }
     }
 
@@ -121,23 +141,24 @@ class ApiDetail extends Component {
         const params = queryString.parse(this.props.location.search);
         const {authenticated, handleSliderChange} = this.props;
 
-        const {host, operations} = this.state;
+        const {host, operations, userApplicationSecret, loading, pageTitle} = this.state;
+
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'methods';
         switch (paging) {
             case 'review':
-                return <ApiDetailReviewBody {...this.props} />;
+                return <ApiDetailReviewBody  pageTitle={pageTitle} />;
             case 'version':
-                return <ApiDetailVersionBody {...this.props} />;
+                return <ApiDetailVersionBody pageTitle={pageTitle} />;
             case 'price':
-                return <ApiDetailPriceBody {...this.props} />;
+                return <ApiDetailPriceBody pageTitle={pageTitle} authenticated={authenticated} userApplicationSecret={userApplicationSecret} handleSliderChange={handleSliderChange}/>;
             case 'questions':
-                return <ApiDetailQuestionsBody {...this.props} />;
+                return <ApiDetailQuestionsBody pageTitle={pageTitle} />;
             case 'documentation':
-                return <ApiDetailDocumentationBody {...this.props} />;
+                return <ApiDetailDocumentationBody pageTitle={pageTitle}/>;
             default:
-                return <ApiDetailMethodsBody authenticated={authenticated} link={link4Description + "&page=methods"}
-                                             host={host} operations={operations}
-                                             handleSliderChange={handleSliderChange}/>
+                return <ApiDetailMethodsBody pageTitle={pageTitle} authenticated={authenticated} link={link4Description + "&page=methods"}
+                                             host={host} operations={operations} loading={loading}
+                                             handleSliderChange={handleSliderChange} userApplicationSecret={userApplicationSecret}/>
         }
     }
 
@@ -164,6 +185,11 @@ class ApiDetail extends Component {
     render() {
 
         const {loading, name, dealer, category, updated, description, image, id, uuid, info, operations} = this.state;
+
+        if (loading) {
+            return <LoadingIndicator/>
+        }
+
 
         const host = window.location.origin.toString();
         const profile = dealer.nickname && !dealer.nickname.includes('.', ',') ? dealer.nickname : 'id' + dealer.id;
