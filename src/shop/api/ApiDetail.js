@@ -21,6 +21,7 @@ import Alert from "react-s-alert";
 import LazyApiDetailImage from '../../util/LazyApiDetailImage';
 import AuthContainerWrapper from "../../home/AuthContainerWrapper";
 import ApiDetailCustomInfoPopup from "./ApiDetailCustomInfoPopup";
+import ApiDetailSharePopup from "./ApiDetailSharePopup";
 
 class ApiDetail extends Component {
 
@@ -229,8 +230,14 @@ class ApiDetail extends Component {
                                                 <Icon style={{color: this.state[uuid] === 'bookmark outline' ? '#2F80ED' : ''}} className='grid-labels-icon'
                                                       link onClick={this.handleChange} id={uuid}
                                                       name={this.state[uuid] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
-                                                <Icon className='grid-labels-icon' link
-                                                      name='share alternate'/>
+                                                <Popup
+                                                    trigger={<Icon className='grid-labels-icon' link name='share alternate'/>}
+                                                    content={<ApiDetailSharePopup url={link4Description} name={name}
+                                                                                  description={description} category={category}
+                                                                                  dealer={dealer} image={image} host={host}/>}
+                                                    style={styles.infoPopup}
+                                                    on='focus' inverted position='bottom center'
+                                                />
                                                 <Popup
                                                     trigger={<Icon className='grid-labels-icon' link name='info circle'/>}
                                                     content={<ApiDetailCustomInfoPopup description={description}

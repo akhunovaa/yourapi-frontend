@@ -235,6 +235,11 @@
     color: white;
 }
 
+.api-detail-share-popup{
+    display: flex;
+    color: white;
+}
+
 .api-detail-info-popup-description{
 
 }

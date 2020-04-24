@@ -25,6 +25,7 @@
     "react-s-alert": "^1.4.1",
     "react-scripts": "^3.4.1",
     "react-scroll-up-button": "^1.6.4",
+    "react-share": "^4.1.0",
     "react-slick": "^0.25.2",
     "semantic-ui-react": "^0.88.2",
     "slick-carousel": "^1.8.1",
