@@ -52,20 +52,20 @@ class Home extends Component {
 
     handleChange = (e, {id, name}) => {
         const {authenticated} = this.props;
-
+        const bookmarked = this.state[id] !== undefined;
         this.setState({
-            [id]: name === 'bookmark'
+            [id]: name === bookmarked
         });
 
 
         if (!authenticated) {
             this.setState({
-                [id]: !(name === 'bookmark')
+                [id]: !(bookmarked)
             });
             return;
         }
 
-        if (name === 'bookmark') {
+        if (bookmarked) {
             bookmarkRemove(id)
                 .then(response => {
                     this.setState({
