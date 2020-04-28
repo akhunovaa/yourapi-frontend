@@ -132,7 +132,7 @@ class Home extends Component {
                                                 color: item.bookmarked ? this.state[item.uuid] !== 'bookmark outline' ? '#2F80ED' : '' : this.state[item.uuid] === 'bookmark' ? '#2F80ED' : ''
                                             }} link onClick={this.handleChange} id={item.uuid}
                                                   className='grid-labels-icon'
-                                                  name={item.bookmarked ? this.state[item.uuid] !== 'bookmark outline' ? 'bookmark' : 'bookmark outline' : this.state[item.uuid] === 'bookmark' ? 'bookmark' : 'bookmark  outline'}/>
+                                                  name={item.bookmarked ? this.state[item.uuid] !== 'bookmark outline' ? 'bookmark' : 'bookmark outline' : this.state[item.uuid] === 'bookmark' ? 'bookmark' : 'bookmark outline'}/>
                                         </div>
                                     </div>
                                     <div className="cell-grid-body">
