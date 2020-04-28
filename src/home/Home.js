@@ -32,19 +32,21 @@ class Home extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        apiProjectFullListGet()
-            .then(response => {
-                if (this._isMounted) {
-                    this.setState({
-                        noveltyProjects: response.response.new_api_list,
-                        topProjects: response.response.top_api_list,
-                        recommendedProjects: response.response.recommended_api_list,
-                        loading: false
-                    })
-                }
-            }).catch(error => {
-            Alert.error('Ошибка запросе на получение проектов' || (error && error.message));
-        });
+        if (this._isMounted) {
+            apiProjectFullListGet()
+                .then(response => {
+                    if (this._isMounted) {
+                        this.setState({
+                            noveltyProjects: response.response.new_api_list,
+                            topProjects: response.response.top_api_list,
+                            recommendedProjects: response.response.recommended_api_list,
+                            loading: false
+                        })
+                    }
+                }).catch(error => {
+                Alert.error('Ошибка запросе на получение проектов' || (error && error.message));
+            });
+        }
         document.title  = 'YourAPI | Главная страница';
     }
 
@@ -93,9 +95,9 @@ class Home extends Component {
                                             <label style={{color: '#F39847'}}>{item.id}</label>
                                             <Icon style={{
                                                 paddingLeft: '16px',
-                                                color: this.state[item.id + item.name] === 'bookmark outline' ? '#2F80ED' : ''
-                                            }} link onClick={this.handleChange} id={item.id + item.name} className='grid-labels-icon'
-                                                  name={this.state[item.id + item.name] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
+                                                color: item.bookmarked ? '#2F80ED' : ''
+                                            }} link onClick={this.handleChange} id={item.uuid} className='grid-labels-icon'
+                                                  name={item.bookmarked ? 'bookmark' : 'bookmark outline'}/>
                                         </div>
                                     </div>
                                     <div className="cell-grid-body">

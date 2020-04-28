@@ -166,11 +166,6 @@ class ApiUpdateOverviewBody extends Component {
                 value: 'Мобильные'
             },
             {
-                name: 'Порно',
-                text: 'Порно',
-                value: 'Порно'
-            },
-            {
                 name: 'Карты',
                 text: 'Карты',
                 value: 'Карты'
@@ -194,6 +189,16 @@ class ApiUpdateOverviewBody extends Component {
                 name: 'Web',
                 text: 'Web',
                 value: 'Web'
+            },
+            {
+                name: 'Новости',
+                text: 'Новости',
+                value: 'Новости'
+            },
+            {
+                name: 'Медиа',
+                text: 'Медиа',
+                value: 'Медиа'
             },
             {
                 name: 'Другое',

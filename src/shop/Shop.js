@@ -92,7 +92,8 @@ class Shop extends Component {
 
     render() {
 
-        const projects = this.state.apiList ? this.state.apiList : [];
+
+        const {loading, apiList} = this.state;
         const {visible, authenticated} = this.props;
 
         return (
@@ -170,57 +171,67 @@ class Shop extends Component {
                                             <div className='category-label'>
                                                 <Icon color='red' name='dot circle' size='small'/>
                                                 <NavLink to='/shop/category/data' className='blue-hover'>Данные</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[0])}</span>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[0])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='orange' name='dot circle' size='small'/>
                                                 <NavLink to='/shop/category/finance' className='blue-hover'>Финансы</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[1])}</span>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[1])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='yellow' name='dot circle' size='small'/>
                                                 <NavLink to='/shop/category/mobile' className='blue-hover'>Мобильные</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[2])}</span>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[2])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='green' name='dot circle' size='small'/>
                                                 <NavLink to='/shop/category/map' className='blue-hover'>Карты</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[3])}</span>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[3])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='olive' name='dot circle' size='small'/>
                                                 <NavLink to='/shop/category/adv' className='blue-hover'>Реклама</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[4])}</span>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[4])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='blue' name='dot circle' size='small'/>
                                                 <NavLink to='/shop/category/social' className='blue-hover'>Социальные сети</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[5])}</span>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[5])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='purple' name='dot circle' size='small'/>
                                                 <NavLink to='/shop/category/health' className='blue-hover'>Здравохранение</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[6])}</span>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[6])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='teal' name='dot circle' size='small'/>
                                                 <NavLink to='/shop/category/sport' className='blue-hover'>Спорт</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[7])}</span>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[7])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='violet' name='dot circle' size='small'/>
                                                 <NavLink to='/shop/category/web' className='blue-hover'>Web</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[8])}</span>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[8])}</span>
+                                            </div>
+                                            <div className='category-label'>
+                                                <Icon color='blue' name='dot circle' size='small'/>
+                                                <NavLink to='/shop/category/news' className='blue-hover'>Новости</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[9])}</span>
+                                            </div>
+                                            <div className='category-label'>
+                                                <Icon color='green' name='dot circle' size='small'/>
+                                                <NavLink to='/shop/category/media' className='blue-hover'>Медиа</NavLink>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[10])}</span>
                                             </div>
                                             <div className='category-label'>
                                                 <Icon color='grey' name='dot circle' size='small'/>
                                                 <NavLink to='/shop/category/other' className='blue-hover'>Другое</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(this.state.loading, projects[9])}</span>
+                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[11])}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <ShopBody loading={this.state.loading} apiList={projects} {...this.props}/>
+                                <ShopBody loading={loading} apiList={apiList}/>
                             </div>
                         </div>
                     </Segment>

@@ -234,11 +234,6 @@ class ApiAddBody extends Component {
                 value: 'Мобильные'
             },
             {
-                name: 'Порно',
-                text: 'Порно',
-                value: 'Порно'
-            },
-            {
                 name: 'Карты',
                 text: 'Карты',
                 value: 'Карты'
@@ -257,6 +252,16 @@ class ApiAddBody extends Component {
                 name: 'Здравохранение',
                 text: 'Здравохранение',
                 value: 'Здравохранение'
+            },
+            {
+                name: 'Новости',
+                text: 'Новости',
+                value: 'Новости'
+            },
+            {
+                name: 'Медиа',
+                text: 'Медиа',
+                value: 'Медиа'
             },
             {
                 name: 'Web',

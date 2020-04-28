@@ -88,6 +88,10 @@ class ApiUpdateBody extends Component {
                 return '/shop/category/health/api?id=' + id;
             case 'Спорт':
                 return '/shop/category/sport/api?id=' + id;
+            case 'Новости':
+                return '/shop/category/news/api?id=' + id;
+            case 'Медиа':
+                return '/shop/category/media/api?id=' + id;
             case 'Web':
                 return '/shop/category/web/api?id=' + id;
             default:

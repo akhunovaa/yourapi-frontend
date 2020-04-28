@@ -18,6 +18,10 @@ export function getLink4Description(category) {
             return '/shop/category/sport/api?id=';
         case 'Web':
             return '/shop/category/web/api?id=';
+        case 'Новости':
+            return '/shop/category/news/api?id=';
+        case 'Медиа':
+            return '/shop/category/media/api?id=';
         default:
             return '/shop/category/other/api?id=';
     }
@@ -43,6 +47,10 @@ export function getLink4Category(category) {
             return '/shop/category/sport';
         case 'Web':
             return '/shop/category/web';
+        case 'Новости':
+            return '/shop/category/news';
+        case 'Медиа':
+            return '/shop/category/media';
         default:
             return '/shop/category/other';
     }
@@ -68,6 +76,10 @@ export function getIconColor(category) {
             return 'teal';
         case 'Web':
             return 'violet';
+        case 'Медиа':
+            return 'green';
+        case 'Новости':
+            return 'blue';
         default:
             return 'grey';
     }
@@ -91,6 +103,10 @@ export function getClassName4Color(category) {
             return 'category-label purple-label';
         case 'Спорт':
             return 'category-label teal-label';
+        case 'Медиа':
+            return 'category-label green-label';
+        case 'Новости':
+            return 'category-label blue-label';
         case 'Web':
             return 'category-label violet-label';
         default:
@@ -116,6 +132,10 @@ export function getCategoryName(category) {
             return 'Здравохранение';
         case 'sport':
             return 'Спорт';
+        case 'media':
+            return ' Медиа';
+        case 'news':
+            return 'Новости';
         case 'web':
             return 'Web';
         default:

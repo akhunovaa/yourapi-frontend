@@ -27,7 +27,7 @@ class ApiCategoryShop extends Component {
         this.state = {
             loading: true,
             categoryName: category,
-            permittedCategory: ['data', 'finance', 'mobile', 'map', 'adv', 'social', 'health', 'sport', 'web', 'other'],
+            permittedCategory: ['data', 'finance', 'mobile', 'map', 'adv', 'social', 'health', 'sport', 'web', 'news', 'media', 'other'],
             responseScale: [0, 1000],
             responseStableScale: [0, 100]
         };
@@ -50,7 +50,7 @@ class ApiCategoryShop extends Component {
                     });
 
                 }).catch(error => {
-                Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
+                Alert.error('Ошибка запросе на получение списка проектов' || (error && error.message));
                 this.setState({loading: false})
             });
         }
@@ -103,7 +103,9 @@ class ApiCategoryShop extends Component {
 
     render() {
 
-        if (!this.handleCheck(this.state.permittedCategory, this.state.categoryName)) {
+        const {loading, permittedCategory, categoryName, apiList} = this.state;
+
+        if (!this.handleCheck(permittedCategory, categoryName)) {
             return <Redirect
                 to={{
                     pathname: "/shop/category/data",
@@ -111,7 +113,7 @@ class ApiCategoryShop extends Component {
                 }}/>;
         }
 
-        const projects = this.state.apiList ? this.state.apiList : [];
+        const projects = apiList ? apiList : [];
 
         const host = window.location.origin.toString();
         const hasFirstRow = projects[0] && projects[0].size > 0 ? projects[0] && projects[0].size > 0 : projects[1] && projects[1].size > 0;
@@ -178,8 +180,8 @@ class ApiCategoryShop extends Component {
             </>
         );
 
-        const link = '/shop/category/' + this.state.categoryName;
-        const category = this.state.categoryName;
+        const link = '/shop/category/' + categoryName;
+        const category = categoryName;
 
         const responseScaleOne = this.state.responseScale[0];
         const responseScaleTwo = this.state.responseScale[1];
@@ -260,8 +262,8 @@ class ApiCategoryShop extends Component {
                                     </div>
                                 </div>
                                 <div className="api-shop-form-container">
-                                    {this.state.loading ? (<CategoryShopLoadingIndicator/>) : (
-                                        projects[0] && projects[0].size > 0 ?
+                                    {loading && !projects[0] ? (<CategoryShopLoadingIndicator/>) : (
+                                         projects[0].size > 0 ?
                                             (
                                                 <div id={projects[0].data_name}>
                                                     <div className='api-element-container-header'>

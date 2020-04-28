@@ -54,14 +54,14 @@ class ShopBody extends Component {
 
     render() {
 
-        if (this.props.loading) {
+        const {loading, apiList} = this.props;
+
+        if (loading) {
             return <ShopLoadingIndicator/>
         }
 
-        const projects = this.props.apiList ? this.props.apiList : [];
-
         const host = window.location.origin.toString();
-        const hasFirstRow = projects[0] && projects[0].size > 0 ? projects[0] && projects[0].size > 0 : projects[1] && projects[1].size > 0;
+        const hasFirstRow = apiList[0] && apiList[0].size > 0 ? apiList[0] && apiList[0].size > 0 : apiList[1] && apiList[1].size > 0;
 
         const Projects = ({items}) => (
             <>
@@ -128,198 +128,217 @@ class ShopBody extends Component {
 
         return (
             <div className="shop-form-container">
-                {projects[0] && projects[0].size > 0 ?
+                {apiList[0] && apiList[0].size > 0 ?
                     (
-                        <div id={projects[0].data_name}>
+                        <div id={apiList[0].data_name}>
                             <div
-                                className={projects[0] && projects[0].size > 0 ? 'api-element-container-header' : 'api-element-container-header second-api-element'}>
-                                <span className='main-form-header'>{projects[0] ? projects[0].data_name : ''}</span>
-                                <NavLink to={getLink4Category(projects[0].data_name)}
+                                className={apiList[0] && apiList[0].size > 0 ? 'api-element-container-header' : 'api-element-container-header second-api-element'}>
+                                <span className='main-form-header'>{apiList[0] ? apiList[0].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[0].data_name)}
                                          className='main-form-header-count right-label'>Посмотреть все
-                                    ({projects[0] ? projects[0].size : 0})</NavLink>
+                                    ({apiList[0] ? apiList[0].size : 0})</NavLink>
                             </div>
                             <Grid columns='3'>
-                                <Projects items={projects[0] ? projects[0].list : []}/>
+                                <Projects items={apiList[0] ? apiList[0].list : []}/>
                             </Grid>
                         </div>
                     )
                     :
-                    (<div>
-
-                    </div>)
+                    (<></>)
                 }
-                {projects[1] && projects[1].size > 0 ?
+                {apiList[1] && apiList[1].size > 0 ?
                     (
-                        <div id={projects[1].data_name}>
+                        <div id={apiList[1].data_name}>
                             <div
                                 className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
-                                <span className='main-form-header'>{projects[1] ? projects[1].data_name : ''}</span>
-                                <NavLink to={getLink4Category(projects[1].data_name)}
+                                <span className='main-form-header'>{apiList[1] ? apiList[1].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[1].data_name)}
                                          className='main-form-header-count right-label'>Посмотреть все
-                                    ({projects[1] ? projects[1].size : 0})</NavLink>
+                                    ({apiList[1] ? apiList[1].size : 0})</NavLink>
                             </div>
                             <Grid columns='3'>
-                                <Projects items={projects[1] ? projects[1].list : []}/>
+                                <Projects items={apiList[1] ? apiList[1].list : []}/>
                             </Grid>
                         </div>
                     )
                     :
-                    (<div>
-
-                    </div>)
+                    (<></>)
                 }
-                {projects[2] && projects[2].size > 0 ?
+                {apiList[2] && apiList[2].size > 0 ?
                     (
-                        <div id={projects[2].data_name}>
+                        <div id={apiList[2].data_name}>
                             <div
                                 className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
-                                <span className='main-form-header'>{projects[2] ? projects[2].data_name : ''}</span>
-                                <NavLink to={getLink4Category(projects[2].data_name)}
+                                <span className='main-form-header'>{apiList[2] ? apiList[2].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[2].data_name)}
                                          className='main-form-header-count right-label'>Посмотреть все
-                                    ({projects[2] ? projects[2].size : 0})</NavLink>
+                                    ({apiList[2] ? apiList[2].size : 0})</NavLink>
                             </div>
                             <Grid columns='3'>
-                                <Projects items={projects[2] ? projects[2].list : []}/>
+                                <Projects items={apiList[2] ? apiList[2].list : []}/>
                             </Grid>
                         </div>
                     )
                     :
-                    (<div>
-
-                    </div>)
+                    (<></>)
                 }
-                {projects[3] && projects[3].size > 0 ?
+                {apiList[3] && apiList[3].size > 0 ?
                     (
-                        <div id={projects[3].data_name}>
+                        <div id={apiList[3].data_name}>
                             <div
                                 className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
-                                <span className='main-form-header'>{projects[3] ? projects[3].data_name : ''}</span>
-                                <NavLink to={getLink4Category(projects[3].data_name)}
+                                <span className='main-form-header'>{apiList[3] ? apiList[3].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[3].data_name)}
                                          className='main-form-header-count right-label'>Посмотреть все
-                                    ({projects[3] ? projects[3].size : 0})</NavLink>
+                                    ({apiList[3] ? apiList[3].size : 0})</NavLink>
                             </div>
                             <Grid columns='3'>
-                                <Projects items={projects[3] ? projects[3].list : []}/>
+                                <Projects items={apiList[3] ? apiList[3].list : []}/>
                             </Grid>
                         </div>
                     )
                     :
-                    (<div>
-
-                    </div>)
+                    (<></>)
                 }
-                {projects[4] && projects[4].size > 0 ?
+                {apiList[4] && apiList[4].size > 0 ?
                     (
-                        <div id={projects[4].data_name}>
+                        <div id={apiList[4].data_name}>
                             <div
                                 className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
-                                <span className='main-form-header'>{projects[4] ? projects[4].data_name : ''}</span>
-                                <NavLink to={getLink4Category(projects[4].data_name)}
+                                <span className='main-form-header'>{apiList[4] ? apiList[4].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[4].data_name)}
                                          className='main-form-header-count right-label'>Посмотреть все
-                                    ({projects[4] ? projects[4].size : 0})</NavLink>
+                                    ({apiList[4] ? apiList[4].size : 0})</NavLink>
                             </div>
                             <Grid columns='3'>
-                                <Projects items={projects[4] ? projects[4].list : []}/>
+                                <Projects items={apiList[4] ? apiList[4].list : []}/>
                             </Grid>
                         </div>
                     )
                     :
-                    (<div>
-
-                    </div>)
+                    (<></>)
                 }
-                {projects[5] && projects[5].size > 0 ?
+                {apiList[5] && apiList[5].size > 0 ?
                     (
-                        <div id={projects[5].data_name}>
+                        <div id={apiList[5].data_name}>
                             <div
                                 className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
-                                <span className='main-form-header'>{projects[5] ? projects[5].data_name : ''}</span>
-                                <NavLink to={getLink4Category(projects[5].data_name)}
+                                <span className='main-form-header'>{apiList[5] ? apiList[5].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[5].data_name)}
                                          className='main-form-header-count right-label'>Посмотреть все
-                                    ({projects[5] ? projects[5].size : 0})</NavLink>
+                                    ({apiList[5] ? apiList[5].size : 0})</NavLink>
                             </div>
                             <Grid columns='3'>
-                                <Projects items={projects[5] ? projects[5].list : []}/>
+                                <Projects items={apiList[5] ? apiList[5].list : []}/>
                             </Grid>
                         </div>
                     )
                     :
-                    (<div>
-
-                    </div>)
+                    (<></>)
                 }
-                {projects[6] && projects[6].size > 0 ?
+                {apiList[6] && apiList[6].size > 0 ?
                     (
-                        <div id={projects[6].data_name}>
+                        <div id={apiList[6].data_name}>
                             <div
                                 className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
-                                <span className='main-form-header'>{projects[6] ? projects[6].data_name : ''}</span>
-                                <NavLink to={getLink4Category(projects[6].data_name)}
+                                <span className='main-form-header'>{apiList[6] ? apiList[6].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[6].data_name)}
                                          className='main-form-header-count right-label'>Посмотреть все
-                                    ({projects[6] ? projects[6].size : 0})</NavLink>
+                                    ({apiList[6] ? apiList[6].size : 0})</NavLink>
                             </div>
                             <Grid columns='3'>
-                                <Projects items={projects[6] ? projects[6].list : []}/>
+                                <Projects items={apiList[6] ? apiList[6].list : []}/>
                             </Grid>
                         </div>
                     )
                     :
-                    (<div>
-
-                    </div>)
+                    (<></>)
                 }
-                {projects[7] && projects[7].size > 0 ?
+                {apiList[7] && apiList[7].size > 0 ?
                     (
-                        <div id={projects[7].data_name}>
+                        <div id={apiList[7].data_name}>
                             <div
                                 className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
-                                <span className='main-form-header'>{projects[7] ? projects[7].data_name : ''}</span>
-                                <NavLink to={getLink4Category(projects[7].data_name)}
+                                <span className='main-form-header'>{apiList[7] ? apiList[7].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[7].data_name)}
                                          className='main-form-header-count right-label'>Посмотреть все
-                                    ({projects[7] ? projects[7].size : 0})</NavLink>
+                                    ({apiList[7] ? apiList[7].size : 0})</NavLink>
                             </div>
                             <Grid columns='3'>
-                                <Projects items={projects[7] ? projects[7].list : []}/>
+                                <Projects items={apiList[7] ? apiList[7].list : []}/>
                             </Grid>
                         </div>
                     )
                     :
-                    (<div>
-
-                    </div>)
+                    (<></>)
                 }
-                {projects[8] && projects[8].size > 0 ?
+                {apiList[8] && apiList[8].size > 0 ?
                     (
-                        <div id={projects[8].data_name}>
+                        <div id={apiList[8].data_name}>
                             <div
                                 className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
-                                <span className='main-form-header'>{projects[8] ? projects[8].data_name : ''}</span>
-                                <NavLink to={getLink4Category(projects[8].data_name)}
+                                <span className='main-form-header'>{apiList[8] ? apiList[8].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[8].data_name)}
                                          className='main-form-header-count right-label'>Посмотреть все
-                                    ({projects[8] ? projects[8].size : 0})</NavLink>
+                                    ({apiList[8] ? apiList[8].size : 0})</NavLink>
                             </div>
                             <Grid columns='3'>
-                                <Projects items={projects[8] ? projects[8].list : []}/>
+                                <Projects items={apiList[8] ? apiList[8].list : []}/>
                             </Grid>
                         </div>
                     )
                     :
-                    (<div>
-
-                    </div>)
+                    (<></>)
                 }
-                {projects[9] && projects[9].size > 0 ?
+                {apiList[9] && apiList[9].size > 0 ?
                     (
-                        <div id={projects[9].data_name}>
+                        <div id={apiList[9].data_name}>
                             <div
                                 className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
-                                <span className='main-form-header'>{projects[9] ? projects[9].data_name : ''}</span>
-                                <NavLink to={getLink4Category(projects[9].data_name)}
+                                <span className='main-form-header'>{apiList[9] ? apiList[9].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[9].data_name)}
                                          className='main-form-header-count right-label'>Посмотреть все
-                                    ({projects[9] ? projects[9].size : 0})</NavLink>
+                                    ({apiList[9] ? apiList[9].size : 0})</NavLink>
                             </div>
                             <Grid columns='3'>
-                                <Projects items={projects[9] ? projects[9].list : []}/>
+                                <Projects items={apiList[9] ? apiList[9].list : []}/>
+                            </Grid>
+                        </div>
+                    )
+                    :
+                    (<></>)
+                }
+                {apiList[10] && apiList[10].size > 0 ?
+                    (
+                        <div id={apiList[10].data_name}>
+                            <div
+                                className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
+                                <span className='main-form-header'>{apiList[10] ? apiList[10].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[10].data_name)}
+                                         className='main-form-header-count right-label'>Посмотреть все
+                                    ({apiList[10] ? apiList[10].size : 0})</NavLink>
+                            </div>
+                            <Grid columns='3'>
+                                <Projects items={apiList[10] ? apiList[10].list : []}/>
+                            </Grid>
+                        </div>
+                    )
+                    :
+                    (<></>)
+                }
+
+                {apiList[11] && apiList[11].size > 0 ?
+                    (
+                        <div id={apiList[11].data_name}>
+                            <div
+                                className={hasFirstRow ? 'api-element-container-header second-api-element' : 'api-element-container-header'}>
+                                <span className='main-form-header'>{apiList[11] ? apiList[11].data_name : ''}</span>
+                                <NavLink to={getLink4Category(apiList[11].data_name)}
+                                         className='main-form-header-count right-label'>Посмотреть все
+                                    ({apiList[11] ? apiList[11].size : 0})</NavLink>
+                            </div>
+                            <Grid columns='3'>
+                                <Projects items={apiList[11] ? apiList[11].list : []}/>
                             </Grid>
                         </div>
                     )
