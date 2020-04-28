@@ -33,24 +33,24 @@ class ShopBody extends Component {
 
     handleChange = (e, {id, name}) => {
         const {authenticated} = this.props;
-        const bookmarked = this.state[id] !== undefined;
-        this.setState({
-            [id]: bookmarked
-        });
 
+        const bookmarked = name === 'bookmark' ? 'bookmark' : 'bookmark outline';
+        this.setState({
+            [id]: name
+        });
 
         if (!authenticated) {
             this.setState({
-                [id]: !(bookmarked)
+                [id]: bookmarked === 'bookmark' ? 'bookmark outline' : 'bookmark'
             });
             return;
         }
 
-        if (bookmarked) {
+        if (bookmarked === 'bookmark') {
             bookmarkRemove(id)
                 .then(response => {
                     this.setState({
-                        [id]: false
+                        [id]: bookmarked === 'bookmark' ? 'bookmark outline' : 'bookmark'
                     })
                 }).catch(error => {
                 Alert.error('Ошибка при удалении для Bookmark' || (error && error.message));
@@ -59,7 +59,7 @@ class ShopBody extends Component {
             bookmarkAdd(id)
                 .then(response => {
                     this.setState({
-                        [id]: true
+                        [id]: bookmarked === 'bookmark' ? 'bookmark outline' : 'bookmark'
                     })
                 }).catch(error => {
                 Alert.error('Ошибка при добавлении для Bookmark' || (error && error.message));
@@ -128,9 +128,10 @@ class ShopBody extends Component {
                                             <label style={{color: '#F39847'}}>{item.id}</label>
                                             <Icon style={{
                                                 paddingLeft: '16px',
-                                                color: (item.bookmarked || this.state[item.uuid]) ? '#2F80ED' : ''
-                                            }} link onClick={this.handleChange} id={item.uuid} className='grid-labels-icon'
-                                                  name={(item.bookmarked || this.state[item.uuid]) ? 'bookmark' : 'bookmark outline'}/>
+                                                color: item.bookmarked ? this.state[item.uuid] !== 'bookmark outline' ? '#2F80ED' : '' : this.state[item.uuid] === 'bookmark' ? '#2F80ED' : ''
+                                            }} link onClick={this.handleChange} id={item.uuid}
+                                                  className='grid-labels-icon'
+                                                  name={item.bookmarked ? this.state[item.uuid] !== 'bookmark outline' ? 'bookmark' : 'bookmark outline' : this.state[item.uuid] === 'bookmark' ? 'bookmark' : 'bookmark  outline'}/>
                                         </div>
                                     </div>
                                     <div className="cell-grid-body">

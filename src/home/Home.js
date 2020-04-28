@@ -52,24 +52,24 @@ class Home extends Component {
 
     handleChange = (e, {id, name}) => {
         const {authenticated} = this.props;
-        const bookmarked = this.state[id] !== undefined;
-        this.setState({
-            [id]: bookmarked
-        });
 
+        const bookmarked = name === 'bookmark' ? 'bookmark' : 'bookmark outline';
+        this.setState({
+            [id]: name
+        });
 
         if (!authenticated) {
             this.setState({
-                [id]: !(bookmarked)
+                [id]: bookmarked === 'bookmark' ? 'bookmark outline' : 'bookmark'
             });
             return;
         }
 
-        if (bookmarked) {
+        if (bookmarked === 'bookmark') {
             bookmarkRemove(id)
                 .then(response => {
                     this.setState({
-                        [id]: false
+                        [id]: bookmarked === 'bookmark' ? 'bookmark outline' : 'bookmark'
                     })
                 }).catch(error => {
                 Alert.error('Ошибка при удалении для Bookmark' || (error && error.message));
@@ -78,7 +78,7 @@ class Home extends Component {
             bookmarkAdd(id)
                 .then(response => {
                     this.setState({
-                        [id]: true
+                        [id]: bookmarked === 'bookmark' ? 'bookmark outline' : 'bookmark'
                     })
                 }).catch(error => {
                 Alert.error('Ошибка при добавлении для Bookmark' || (error && error.message));
@@ -98,11 +98,12 @@ class Home extends Component {
     render() {
 
         const host = window.location.origin.toString();
+
         const Projects = ({items}) => (
             <>
                 {
-                    items.map(item => (
-                        <Grid.Column key={item.id + item.name} className="body-data">
+                    items.map((item, index)  => (
+                        <Grid.Column key={item.id + index + item.uuid} className="body-data">
                             <Segment className='api-element-container'>
                                 <div className="api-element-data">
                                     <div className="cell-header">
@@ -128,10 +129,10 @@ class Home extends Component {
                                             <label style={{color: '#F39847'}}>{item.id}</label>
                                             <Icon style={{
                                                 paddingLeft: '16px',
-                                                color: (item.bookmarked || this.state[item.uuid]) ? '#2F80ED' : ''
+                                                color: item.bookmarked ? this.state[item.uuid] !== 'bookmark outline' ? '#2F80ED' : '' : this.state[item.uuid] === 'bookmark' ? '#2F80ED' : ''
                                             }} link onClick={this.handleChange} id={item.uuid}
                                                   className='grid-labels-icon'
-                                                  name={(item.bookmarked || this.state[item.uuid]) ? 'bookmark' : 'bookmark outline'}/>
+                                                  name={item.bookmarked ? this.state[item.uuid] !== 'bookmark outline' ? 'bookmark' : 'bookmark outline' : this.state[item.uuid] === 'bookmark' ? 'bookmark' : 'bookmark  outline'}/>
                                         </div>
                                     </div>
                                     <div className="cell-grid-body">
