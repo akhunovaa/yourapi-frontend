@@ -54,7 +54,7 @@ class ApiDetailPriceBodyPlans extends Component {
 
     show = () => {
         this.setState({open: true});
-}
+    }
     close = () => this.setState({open: false});
 
     handleInputChange(event) {
@@ -81,22 +81,21 @@ class ApiDetailPriceBodyPlans extends Component {
             'api_key': keyValue,
             'subscription': 'FREE'
         });
-
-        console.log(subscriptiptionData)
+        this.close();
         handlePageRestrict();
         apiSubscribtionSubmit(subscriptiptionData)
             .then(response => {
-                this.close();
                 if (response.error) {
+                    handlePageRestrict();
                     Alert.warning(response.error + '. Необходимо заново авторизоваться');
                 } else if (response.success === false) {
+                    handlePageRestrict();
                     Alert.warning(response.message);
-                }else {
+                } else {
+                    handlePageRestrict();
                     Alert.success('Подписка успешно оформлена');
                 }
-                handlePageRestrict();
             }).catch(error => {
-            this.close();
             handlePageRestrict();
             Alert.error('Что-то пошло не так! Попробуйте заново.' || (error && error.message));
         });
@@ -191,7 +190,8 @@ class ApiDetailPriceBodyPlans extends Component {
                                     (
                                         <Button basic fluid onClick={this.show}
                                                 className='individual-plan-description-select-button selected-container-button'>
-                                            <span className='detail-price-body-individual-plan-button-text selected-span-text'>Выбрать</span>
+                                            <span
+                                                className='detail-price-body-individual-plan-button-text selected-span-text'>Выбрать</span>
                                         </Button>
                                     )}
                             </div>
