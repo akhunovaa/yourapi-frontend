@@ -231,7 +231,7 @@ class Shop extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <ShopBody loading={loading} apiList={apiList}/>
+                                <ShopBody loading={loading} apiList={apiList} authenticated={authenticated}/>
                             </div>
                         </div>
                     </Segment>

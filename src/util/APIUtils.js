@@ -174,6 +174,22 @@ export function getUserProfile(id) {
     });
 }
 
+export function bookmarkAdd(uuid) {
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return request({
+        url: apiBaseUrl + "/individual" + "/bookmark/add?uuid=" + uuid,
+        method: 'GET'
+    });
+}
+
+export function bookmarkRemove(uuid) {
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return request({
+        url: apiBaseUrl + "/individual" + "/bookmark/remove?uuid=" + uuid,
+        method: 'GET'
+    });
+}
+
 export function checkLocalStorage() {
     return localStorage.getItem(ACCESS_TOKEN);
 }

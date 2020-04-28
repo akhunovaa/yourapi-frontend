@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Home.css';
 import {Button, Grid, Icon, Menu, Segment, Sidebar} from "semantic-ui-react";
 import {NavLink} from "react-router-dom";
-import {apiProjectFullListGet} from "../util/APIUtils";
+import {apiProjectFullListGet, bookmarkAdd, bookmarkRemove} from "../util/APIUtils";
 import Alert from "react-s-alert";
 import {getClassName4Color, getIconColor, getLink4Category, getLink4Description} from "../util/ElementsDataUtils";
 import {HomeCellLoadingIndicator, HomeLoadingIndicator} from '../common/LoadingIndicator';
@@ -47,11 +47,44 @@ class Home extends Component {
                 Alert.error('Ошибка запросе на получение проектов' || (error && error.message));
             });
         }
-        document.title  = 'YourAPI | Главная страница';
+        document.title = 'YourAPI | Главная страница';
     }
 
     handleChange = (e, {id, name}) => {
-        this.setState({[id]: name})
+        const {authenticated} = this.props;
+
+        this.setState({
+            [id]: name === 'bookmark'
+        });
+
+
+        if (!authenticated) {
+            this.setState({
+                [id]: !(name === 'bookmark')
+            });
+            return;
+        }
+
+        if (name === 'bookmark') {
+            bookmarkRemove(id)
+                .then(response => {
+                    this.setState({
+                        [id]: false
+                    })
+                }).catch(error => {
+                Alert.error('Ошибка при удалении для Bookmark' || (error && error.message));
+            });
+        } else {
+            bookmarkAdd(id)
+                .then(response => {
+                    this.setState({
+                        [id]: true
+                    })
+                }).catch(error => {
+                Alert.error('Ошибка при добавлении для Bookmark' || (error && error.message));
+            });
+        }
+
     };
 
     componentWillUnmount() {
@@ -95,9 +128,10 @@ class Home extends Component {
                                             <label style={{color: '#F39847'}}>{item.id}</label>
                                             <Icon style={{
                                                 paddingLeft: '16px',
-                                                color: item.bookmarked ? '#2F80ED' : ''
-                                            }} link onClick={this.handleChange} id={item.uuid} className='grid-labels-icon'
-                                                  name={item.bookmarked ? 'bookmark' : 'bookmark outline'}/>
+                                                color: (item.bookmarked || this.state[item.uuid]) ? '#2F80ED' : ''
+                                            }} link onClick={this.handleChange} id={item.uuid}
+                                                  className='grid-labels-icon'
+                                                  name={(item.bookmarked || this.state[item.uuid]) ? 'bookmark' : 'bookmark outline'}/>
                                         </div>
                                     </div>
                                     <div className="cell-grid-body">
@@ -159,7 +193,8 @@ class Home extends Component {
                                                 (<Button className="create-button"
                                                          style={{background: '#F39847', color: 'white'}}
                                                          size='large'>
-                                                    <NavLink style={{color: 'white'}} to='/profile/api?page=add'>Разместить API</NavLink>
+                                                    <NavLink style={{color: 'white'}} to='/profile/api?page=add'>Разместить
+                                                        API</NavLink>
                                                 </Button>) :
                                                 (<Button className="create-button"
                                                          style={{background: '#F39847', color: 'white'}}

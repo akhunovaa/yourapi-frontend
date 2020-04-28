@@ -3,8 +3,10 @@ import './Shop.css';
 import {NavLink} from "react-router-dom";
 import {Grid, Icon, Segment} from "semantic-ui-react";
 import {ShopLoadingIndicator} from "../common/LoadingIndicator";
+import {bookmarkAdd, bookmarkRemove} from "../util/APIUtils";
 import {getClassName4Color, getIconColor, getLink4Category, getLink4Description} from "../util/ElementsDataUtils";
 import LazyMiniImage from '../util/LazyMiniImage';
+import Alert from "react-s-alert";
 
 class ShopBody extends Component {
 
@@ -30,7 +32,40 @@ class ShopBody extends Component {
     };
 
     handleChange = (e, {id, name}) => {
-        this.setState({[id]: name})
+        const {authenticated} = this.props;
+
+        this.setState({
+            [id]: name === 'bookmark'
+        });
+
+
+        if (!authenticated) {
+            this.setState({
+                [id]: !(name === 'bookmark')
+            });
+            return;
+        }
+
+        if (name === 'bookmark') {
+            bookmarkRemove(id)
+                .then(response => {
+                    this.setState({
+                        [id]: false
+                    })
+                }).catch(error => {
+                Alert.error('Ошибка при удалении для Bookmark' || (error && error.message));
+            });
+        }else {
+            bookmarkAdd(id)
+                .then(response => {
+                    this.setState({
+                        [id]: true
+                    })
+                }).catch(error => {
+                Alert.error('Ошибка при добавлении для Bookmark' || (error && error.message));
+            });
+        }
+
     };
 
 
@@ -93,9 +128,9 @@ class ShopBody extends Component {
                                             <label style={{color: '#F39847'}}>{item.id}</label>
                                             <Icon style={{
                                                 paddingLeft: '16px',
-                                                color: this.state[item.id + item.name] === 'bookmark outline' ? '#2F80ED' : '#A5A5A5'
-                                            }} link onClick={this.handleChange} id={item.id + item.name}
-                                                  name={this.state[item.id + item.name] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
+                                                color: (item.bookmarked || this.state[item.uuid]) ? '#2F80ED' : ''
+                                            }} link onClick={this.handleChange} id={item.uuid} className='grid-labels-icon'
+                                                  name={(item.bookmarked || this.state[item.uuid]) ? 'bookmark' : 'bookmark outline'}/>
                                         </div>
                                     </div>
                                     <div className="cell-grid-body">
