@@ -60,7 +60,7 @@ class ApiCategoryShop extends Component {
         const {authenticated} = this.props;
         const bookmarked = this.state[id] !== undefined;
         this.setState({
-            [id]: name === bookmarked
+            [id]: bookmarked
         });
 
 
