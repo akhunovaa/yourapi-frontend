@@ -236,7 +236,36 @@
 }
 
 .api-detail-share-popup{
+    display: block;
+    color: white;
+}
+
+.api-detail-share-popup-element{
     display: flex;
+    color: white;
+    width: 100%;
+}
+
+.api-detail-share-popup-input-element{
+    color: white;
+    width: 100%;
+    padding-bottom: 12px;
+    display: flex;
+}
+
+
+.api-detail-share-popup-input-element-copy{
+    width: 97%;
+    /*position: fixed;*/
+    text-align: end;
+}
+
+.api-detail-share-popup-input-copy{
+    font-size: 20px !important;
+    position: relative;
+    /*z-index: 999;*/
+    top: 15px;
+    left: 6px;
     color: white;
 }
 

@@ -201,7 +201,7 @@ class ApiDetail extends Component {
             infoPopup: {
                 borderRadius: 0,
                 opacity: 0.7,
-                padding: '2em'
+                // padding: '2em'
             }
         };
 
