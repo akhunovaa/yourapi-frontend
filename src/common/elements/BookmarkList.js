@@ -89,8 +89,7 @@ class BookmarkList extends Component {
                                 ))}
                         </Grid>
                     }
-                    on='focus' inverted position='bottom right' wide
-                    size={'small'}
+                    on='focus' position='bottom right' wide size={'small'}
                 />
             </div>
         )
