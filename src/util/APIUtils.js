@@ -280,6 +280,15 @@ export function requestUserSecretList() {
     });
 }
 
+export function bookmarkApiListGet(limit) {
+    prevalidateTokenState();
+    const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
+    return request({
+        url: apiBaseUrl + "/api-data/bookmark/list?limit=" + limit,
+        method: 'GET'
+    });
+}
+
 export function requestNewApplicationSecretKey() {
     prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
