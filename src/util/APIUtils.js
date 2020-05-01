@@ -318,11 +318,11 @@ export function requestDeleteApplicationSecretKey(deleteValue) {
     });
 }
 
-export function apiProjectGet(apiProjectId) {
+export function apiProjectGet(apiProjectUuid) {
     //prevalidateTokenState();
     const apiBaseUrl = process.env.NODE_ENV !== 'production' ? 'https://dev.yourapi.ru' : API_BASE_URL;
     return request({
-        url: apiBaseUrl + "/api-data/get/" + apiProjectId,
+        url: apiBaseUrl + "/api-data/get/" + apiProjectUuid,
         method: 'GET'
     });
 }

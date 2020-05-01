@@ -365,16 +365,14 @@ class ApiDetailMethodsOperation extends Component {
                             }
                         }).map((item, index) => {
                             return (
-                                <>
-                                    <div key={index} className="detail-methods-parameters">
+                             <div key={index + item.name} className="detail-methods-parameters">
                                         <label className='detail-methods-parameters-label'>{item.name}</label>
                                         {item.required ? (<label
                                             className='detail-methods-parameters-label-required'>*</label>) : (<></>)}
                                         <div style={{paddingTop: 6}}/>
                                         <Input size={'small'} fluid placeholder={item.name} id={item.name}
                                                name={item.name} onChange={this.handleParameterInputChange}/>
-                                    </div>
-                                </>)
+                                    </div>)
                         }) : (<div/>)}
                     </div>
                     <div className='detail-methods-test-button-container'>

@@ -65,7 +65,6 @@ class ApiDetailSharePopup extends Component {
         const text4share = descriptionText + '\n\nhttps://yourapi.ru' + url + '\n';
         const applicationName = 'YourAPI';
         const imageUrl = host + "/api-data/image/" + image + "/150/150";
-        console.log(imageUrl)
         const styles = {
             shareElement: {
                 paddingRight: 12

@@ -120,7 +120,7 @@ class ApiDetailMethodsBody extends Component {
         }
 
         const params = queryString.parse(this.props.location.search);
-        let operationNaming = (params.operation !== 'undefined' && this.handleCheck(operationNameArray, params.operation)) ? params.operation : '/';
+        let operationNaming = (params.operation !== 'undefined' && this.handleCheck(operationNameArray, params.operation)) ? params.operation : '/ ';
 
         let linkx = link + "&operation=";
         const HttpMethods = ({items}, {index}) => (
@@ -134,8 +134,7 @@ class ApiDetailMethodsBody extends Component {
                                     <div
                                         className={classNames({'detail-methods-element-body-paragraph-selected': (operationNaming === item.path)}, 'detail-methods-element-body-paragraph')}
                                         id={item.path}>
-                                        <span id={item.path} style={{color: '#219653'}}>{item.method}</span><span
-                                        id={item.path}>{item.path}</span>
+                                        <span id={item.path} style={{color: '#219653'}}>{item.method}</span><span style={{paddingLeft: 12}} id={item.path}>{item.path}</span>
                                     </div>
                                 </NavLink>
                             </List.Content>

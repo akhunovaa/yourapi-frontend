@@ -1,29 +1,29 @@
 export function getLink4Description(category) {
     switch (category) {
         case 'Данные':
-            return '/shop/category/data/api?id=';
+            return '/shop/category/data/api?uuid=';
         case 'Финансы':
-            return '/shop/category/finance/api?id=';
+            return '/shop/category/finance/api?uuid=';
         case 'Мобильные':
-            return '/shop/category/mobile/api?id=';
+            return '/shop/category/mobile/api?uuid=';
         case 'Карты':
-            return '/shop/category/map/api?id=';
+            return '/shop/category/map/api?uuid=';
         case 'Реклама':
-            return '/shop/category/adv/api?id=';
+            return '/shop/category/adv/api?uuid=';
         case 'Социальные сети':
-            return '/shop/category/social/api?id=';
+            return '/shop/category/social/api?uuid=';
         case 'Здравохранение':
-            return '/shop/category/health/api?id=';
+            return '/shop/category/health/api?uuid=';
         case 'Спорт':
-            return '/shop/category/sport/api?id=';
+            return '/shop/category/sport/api?uuid=';
         case 'Web':
-            return '/shop/category/web/api?id=';
+            return '/shop/category/web/api?uuid=';
         case 'Новости':
-            return '/shop/category/news/api?id=';
+            return '/shop/category/news/api?uuid=';
         case 'Медиа':
-            return '/shop/category/media/api?id=';
+            return '/shop/category/media/api?uuid=';
         default:
-            return '/shop/category/other/api?id=';
+            return '/shop/category/other/api?uuid=';
     }
 }
 

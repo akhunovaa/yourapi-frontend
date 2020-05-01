@@ -11,6 +11,7 @@ import HeaderNotAuthenticatedUserPortal from "../header/HeaderNotAuthenticatedUs
 import SearchBox from "./SearchBox";
 import PrivateRoute from '../common/PrivateRoute';
 import HelpHeader from "../header/HelpHeader";
+import BookmarkList from "./elements/BookmarkList";
 
 class AppHeader extends Component {
 
@@ -26,23 +27,32 @@ class AppHeader extends Component {
             <div style={{maxHeight: '64px'}}>
                 <Switch>
                     <Route exact path="/" render={(props) => <HomeHeader handleSliderChange={handleSliderChange}
-                                                          authenticated={authenticated} currentUser={currentUser} visible={visible}
-                                                          onLogout={onLogout} {...props} />}/>
+                                                                         authenticated={authenticated}
+                                                                         currentUser={currentUser} visible={visible}
+                                                                         onLogout={onLogout} {...props} />}/>
                     <Route path="/help"
                            render={(props) => <HelpHeader handleSliderChange={handleSliderChange}
-                                                          authenticated={authenticated} currentUser={currentUser} visible={visible}
+                                                          authenticated={authenticated} currentUser={currentUser}
+                                                          visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
                     <Route exact path="/integrator"
-                           render={(props) => <IntegratorHeader authenticated={authenticated} currentUser={currentUser} visible={visible}
+                           render={(props) => <IntegratorHeader authenticated={authenticated} currentUser={currentUser}
+                                                                visible={visible}
                                                                 onLogout={onLogout} {...props} />}/>
                     <Route exact path="/shop"
-                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange} authenticated={authenticated} currentUser={currentUser} visible={visible}
+                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange}
+                                                          authenticated={authenticated} currentUser={currentUser}
+                                                          visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
                     <Route exact path="/shop/category/:category?"
-                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange} authenticated={authenticated} currentUser={currentUser} visible={visible}
+                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange}
+                                                          authenticated={authenticated} currentUser={currentUser}
+                                                          visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
                     <Route exact path="/shop/category/:category?/api/:id?"
-                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange} authenticated={authenticated} currentUser={currentUser} visible={visible}
+                           render={(props) => <ShopHeader handleSliderChange={handleSliderChange}
+                                                          authenticated={authenticated} currentUser={currentUser}
+                                                          visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
 
                     <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={currentUser}
@@ -58,7 +68,8 @@ class AppHeader extends Component {
                     ) : (
                         <Route exact path="/profile/:id?"
                                render={(props) => <HomeHeader handleSliderChange={handleSliderChange}
-                                                              authenticated={authenticated} currentUser={currentUser} visible={visible}
+                                                              authenticated={authenticated} currentUser={currentUser}
+                                                              visible={visible}
                                                               component={HomeHeader}
                                                               onLogout={onLogout} {...props} />}/>
                     )}
@@ -146,13 +157,18 @@ class HomeHeader extends Component {
                     <div className='header-right-navlink-bell blue-hover'>
                         <Icon link size={'large'} name='bell outline'/>
                     </div>
-                    <div className='header-right-navlink-bookmark blue-hover'>
-                        <Icon link size={'large'} name='bookmark outline'/>
-                    </div>
+                    {
+                        authenticated ? (<BookmarkList/>) : (
+                            <div className='header-right-navlink-bookmark blue-hover'>
+                                <Icon link size={'large'} name='bookmark outline'/>
+                            </div>)
+                    }
+
                     <div className='header-right-navlink-profile blue-hover'>
                         {authenticated ? (
                             <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
-                            <HeaderNotAuthenticatedUserPortal visible={visible} handleSliderChange={handleSliderChange}/>)}
+                            <HeaderNotAuthenticatedUserPortal visible={visible}
+                                                              handleSliderChange={handleSliderChange}/>)}
                     </div>
                 </div>
             </div>
@@ -253,7 +269,8 @@ class ShopHeader extends Component {
                                 (<NavLink to='/profile/api?page=add'><Button fluid className='api-create-button'
                                                                              style={{background: '#F39847'}}><span
                                     className='api-create-button-text'>Добавить API</span></Button></NavLink>) :
-                                (<Button fluid className='api-create-button' onClick={handleSliderChange} style={{background: '#F39847'}}><span className='api-create-button-text'>Добавить API</span></Button>)}
+                                (<Button fluid className='api-create-button' onClick={handleSliderChange}
+                                         style={{background: '#F39847'}}><span className='api-create-button-text'>Добавить API</span></Button>)}
                         </div>
                     </div>
                     <div className="header-right-menu">
@@ -274,7 +291,8 @@ class ShopHeader extends Component {
                         <div className='header-right-navlink-profile blue-hover'>
                             {authenticated ? (
                                 <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
-                                <HeaderNotAuthenticatedUserPortal visible={visible} handleSliderChange={handleSliderChange}/>)}
+                                <HeaderNotAuthenticatedUserPortal visible={visible}
+                                                                  handleSliderChange={handleSliderChange}/>)}
                         </div>
                     </div>
                 </div>

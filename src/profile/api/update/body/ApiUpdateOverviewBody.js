@@ -191,11 +191,6 @@ class ApiUpdateOverviewBody extends Component {
                 value: 'Web'
             },
             {
-                name: 'Новости',
-                text: 'Новости',
-                value: 'Новости'
-            },
-            {
                 name: 'Медиа',
                 text: 'Медиа',
                 value: 'Медиа'

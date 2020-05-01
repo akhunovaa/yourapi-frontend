@@ -41,7 +41,7 @@ class ApiDetailCustomInfoPopup extends Component {
             <div className='api-detail-info-popup'>
                 <div className='api-detail-info-popup-description'>
                     {
-                        operations.map((item, index) => {
+                        operations ? operations.map((item, index) => {
                             return (
                                 <List.List key={index + item.path} className='detail-methods-element-body-content'>
                                     <List.Content className='detail-methods-element-body'>
@@ -51,7 +51,7 @@ class ApiDetailCustomInfoPopup extends Component {
                                     </List.Content>
                                 </List.List>
                                 )
-                        })
+                        }) : undefined
                     }
                 </div>
             </div>

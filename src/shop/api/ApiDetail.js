@@ -58,11 +58,11 @@ class ApiDetail extends Component {
     componentDidMount() {
         this._isMounted = true;
         const params = queryString.parse(this.props.location.search);
-        let id = params.id != null ? params.id : '1';
+        let uuid = params.uuid != null ? params.uuid : '1';
         if (this._isMounted) {
             const {authenticated} = this.props;
 
-            apiProjectGet(id)
+            apiProjectGet(uuid)
                 .then(response => {
                     this.setState({
                         id: response.response.id,
@@ -196,7 +196,7 @@ class ApiDetail extends Component {
         const profile = dealer.nickname && !dealer.nickname.includes('.', ',') ? dealer.nickname : 'id' + dealer.id;
         const profileLink = '/profile' + '/' + profile;
         const link = getLink4Category(category);
-        const link4Description = getLink4Description(category) + id;
+        const link4Description = getLink4Description(category) + uuid;
         const styles = {
             infoPopup: {
                 borderRadius: 0,
@@ -262,7 +262,6 @@ class ApiDetail extends Component {
                                                     content={<ApiDetailSharePopup url={link4Description} name={name}
                                                                                   description={description} category={category}
                                                                                   dealer={dealer} image={image} host={host}/>}
-                                                    style={styles.infoPopup}
                                                     on='focus' inverted position='bottom center'
                                                 />
                                                 <Popup
@@ -271,7 +270,6 @@ class ApiDetail extends Component {
                                                                                        info={info} image={image}
                                                                                        host={host} name={name}
                                                                                        category={category} link={link} updated={updated} operations={operations}/>}
-                                                    style={styles.infoPopup}
                                                     header={name}
                                                     on='focus' inverted position='bottom center'
                                                 />

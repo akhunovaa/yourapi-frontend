@@ -33,6 +33,7 @@ class SearchBox extends Component {
                         category.list.map((api) => {
                             const data = {
                                 api: api.id,
+                                uuid: api.uuid,
                                 title: api.fullName,
                                 description: api.description,
                                 category: api.category,
@@ -63,15 +64,15 @@ class SearchBox extends Component {
         this.setState({value: result.title});
     };
 
-    handleSearchResultRenderer = ({api, title, description, category, image }) => {
+    handleSearchResultRenderer = ({api, uuid, title, description, category, image }) => {
         return ([image && (
-            <a href={getLink4Description(category) + api}>
+            <a href={getLink4Description(category) + uuid}>
                 <div key='image' className='result-image'>
                     <LazySearchMiniImage src={image}/>
                 </div>
             </a>
         ),
-            <a href={getLink4Description(category) + api}>
+            <a href={getLink4Description(category) + uuid}>
                 <div key='content' className='result-content'>
                     {title && <div className='title'>{title}</div>}
                     {description && <div className='description'>{description}</div>}

@@ -164,14 +164,14 @@ class ApiCategoryShop extends Component {
                                             {
                                                 item.image ? (
                                                     <NavLink
-                                                        to={getLink4Description(item.category) + item.id}>
+                                                        to={getLink4Description(item.category) + item.uuid}>
                                                         <LazyMiniImage
                                                             src={host + "/api-data/image/" + item.image + "/32/32"}/>
                                                     </NavLink>
                                                 ) : (
                                                     <div className="home-api-text-avatar">
                                                         <NavLink
-                                                            to={getLink4Description(item.category) + item.id}><span>{item.fullName && item.fullName[0]}</span></NavLink>
+                                                            to={getLink4Description(item.category) + item.uuid}><span>{item.fullName && item.fullName[0]}</span></NavLink>
                                                     </div>
                                                 )
                                             }
@@ -189,7 +189,7 @@ class ApiCategoryShop extends Component {
                                     </div>
                                     <div className="cell-grid-body">
                                         <div className="cell-grid-body-text">
-                                            <NavLink to={getLink4Description(item.category) + item.id}
+                                            <NavLink to={getLink4Description(item.category) + item.uuid}
                                                      className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
                                         </div>
                                         <div className="cell-grid-body-label">

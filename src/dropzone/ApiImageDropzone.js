@@ -159,16 +159,9 @@ class ApiImageDropzone extends Component {
 
 //todo there are a lot of props that is set in parent, probably need remove some of them
 ApiImageDropzone.propTypes = {
-    onFilesAdded: PropTypes.func.isRequired,
     editable: PropTypes.bool.isRequired,
     disabled: PropTypes.bool.isRequired,
     onClickReset: PropTypes.func.isRequired,
-    hasExtension: PropTypes.bool.isRequired,
-    file: PropTypes.any.isRequired,
-    uploading: PropTypes.any.isRequired,
-    uploadProgress: PropTypes.any.isRequired,
-    successfullUploaded: PropTypes.any.isRequired,
-    setErrorFileState: PropTypes.any.isRequired,
     apiName: PropTypes.any.isRequired,
     apiId: PropTypes.any.isRequired,
     apiImage: PropTypes.any.isRequired

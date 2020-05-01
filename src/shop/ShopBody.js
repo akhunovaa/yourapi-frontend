@@ -110,7 +110,7 @@ class ShopBody extends Component {
                                             {
                                                 item.image ? (
                                                     <NavLink
-                                                        to={getLink4Description(item.category) + item.id}>
+                                                        to={getLink4Description(item.category) + item.uuid}>
                                                         {/*<Image src={host + "/api-data/image/" + item.image + "/32/32"}/>*/}
                                                         <LazyMiniImage
                                                             src={host + "/api-data/image/" + item.image + "/32/32"}/>
@@ -118,7 +118,7 @@ class ShopBody extends Component {
                                                 ) : (
                                                     <div className="home-api-text-avatar">
                                                         <NavLink
-                                                            to={getLink4Description(item.category) + item.id}><span>{item.fullName && item.fullName[0]}</span></NavLink>
+                                                            to={getLink4Description(item.category) + item.uuid}><span>{item.fullName && item.fullName[0]}</span></NavLink>
                                                     </div>
                                                 )
                                             }
@@ -136,7 +136,7 @@ class ShopBody extends Component {
                                     </div>
                                     <div className="cell-grid-body">
                                         <div className="cell-grid-body-text">
-                                            <NavLink to={getLink4Description(item.category) + item.id}
+                                            <NavLink to={getLink4Description(item.category) + item.uuid}
                                                      className='cell-grid-body-text'>{item.fullName}</NavLink><br/>
                                         </div>
                                         <div className="cell-grid-body-label">
