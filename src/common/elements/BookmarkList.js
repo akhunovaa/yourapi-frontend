@@ -17,7 +17,8 @@ class BookmarkList extends Component {
         super(props);
         this.state = {
             loading: true,
-            bookmarkData: []
+            bookmarkData: [],
+            clicked: false
         };
     }
 
@@ -38,6 +39,10 @@ class BookmarkList extends Component {
         }
     }
 
+    handleBookmarkClick = () => {
+        this.setState((prevState) => ({clicked: !prevState.clicked}));
+    };
+
     componentWillUnmount() {
         this.setState({
             bookmarkData: []
@@ -46,13 +51,15 @@ class BookmarkList extends Component {
     }
 
     render() {
-        const {loading, bookmarkData} = this.state;
+        const {loading, bookmarkData, clicked} = this.state;
 
         return (
             <div className='header-right-bookmark blue-hover'>
                 <Popup
-                    trigger={<Icon link size={'large'} name='bookmark outline'/>}
+                    trigger={<Icon link size={'large'} name={clicked ? 'bookmark' : 'bookmark outline'} style={{color: clicked ? '#2F80ED' : ''}} />}
                     header='Избранное'
+                    onClose={this.handleBookmarkClick}
+                    onOpen={this.handleBookmarkClick}
                     content={loading || bookmarkData === undefined ? <BookmarkLoadingIndicator/>
                         :
                         <Grid textAlign='left'>
