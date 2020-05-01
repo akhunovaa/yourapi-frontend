@@ -62,9 +62,9 @@ class BookmarkList extends Component {
                     onOpen={this.handleBookmarkClick}
                     content={loading || bookmarkData === undefined ? <BookmarkLoadingIndicator/>
                         :
-                        <Grid textAlign='left'>
+                        <Grid textAlign='left' style={{minHeight: 50, minWidth: 250}}>
                             {
-                                bookmarkData.map(item => (
+                                bookmarkData.length > 0 ? bookmarkData.map(item => (
                                     <Grid.Row key={item.id + item.name} divided>
                                         <Grid.Column width={3} verticalAlign={'middle'} textAlign={'justified'}>
                                             {
@@ -93,7 +93,7 @@ class BookmarkList extends Component {
                                             </div>
                                         </Grid.Column>
                                     </Grid.Row>
-                                ))}
+                                )) : <div style={{paddingTop: 20, color: '#A5A5A5'}}><span>Данные отсутствуют</span></div>}
                         </Grid>
                     }
                     on='focus' position='bottom right' wide size={'small'}
