@@ -61,11 +61,11 @@ class BookmarkList extends Component {
                                     <Grid.Row key={item.id + item.name} divided>
                                         <Grid.Column width={3} verticalAlign={'middle'} textAlign={'justified'}>
                                             {
-                                                item.image ? (
+                                                item.img ? (
                                                     <NavLink
                                                         to={getLink4Description(item.category) + item.uuid}>
                                                         <LazyBookmarkMiniImage
-                                                            src={host + "/api-data/image/" + item.image}/>
+                                                            src={host + "/api-data/image/" + item.img}/>
                                                     </NavLink>
                                                 ) : (
                                                     <div className="home-api-text-avatar">
