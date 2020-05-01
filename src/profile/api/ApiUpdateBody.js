@@ -14,6 +14,7 @@ import ApiUpdateEndpointsBody from "./update/body/ApiUpdateEndpointsBody";
 import ApiUpdatePriceBody from "./update/body/ApiUpdatePriceBody";
 import ApiUpdateDocsBody from "./update/body/ApiUpdateDocsBody";
 import ApiUpdateOverviewBody from "./update/body/ApiUpdateOverviewBody";
+import {getLink4Description} from "../../util/ElementsDataUtils";
 
 class ApiUpdateBody extends Component {
 
@@ -21,17 +22,11 @@ class ApiUpdateBody extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            api: {
-
-            }
-        };
         this.reload = this.reload.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
         this.renderSwitchHeader = this.renderSwitchHeader.bind(this);
         this.renderSwitchBody = this.renderSwitchBody.bind(this);
         this.iterateApiProjectList = this.iterateApiProjectList.bind(this);
-        this.getCategoryLink = this.getCategoryLink.bind(this);
     }
 
     componentDidMount() {
@@ -64,38 +59,9 @@ class ApiUpdateBody extends Component {
 
     iterateApiProjectList(array, val) {
         for (const arrayElement of array) {
-            if(arrayElement.name === val){
+            if (arrayElement.name === val) {
                 return arrayElement;
             }
-        }
-    }
-
-    getCategoryLink(category, id){
-        switch (category) {
-            case 'Данные':
-                return '/shop/category/data/api?id=' + id;
-            case 'Финансы':
-                return '/shop/category/finance/api?id=' + id;
-            case 'Мобильные':
-                return '/shop/category/mobile/api?id=' + id;
-            case 'Карты':
-                return '/shop/category/map/api?id=' + id;
-            case 'Реклама':
-                return '/shop/category/adv/api?id=' + id;
-            case 'Социальные сети':
-                return '/shop/category/social/api?id=' + id;
-            case 'Здравохранение':
-                return '/shop/category/health/api?id=' + id;
-            case 'Спорт':
-                return '/shop/category/sport/api?id=' + id;
-            case 'Новости':
-                return '/shop/category/news/api?id=' + id;
-            case 'Медиа':
-                return '/shop/category/media/api?id=' + id;
-            case 'Web':
-                return '/shop/category/web/api?id=' + id;
-            default:
-                return '/shop/category/other/api?id=' + id;
         }
     }
 
@@ -105,58 +71,66 @@ class ApiUpdateBody extends Component {
         const paging = (params.definition !== 'undefined' && this.handleCheck(pagingArray, params.definition)) ? params.definition : 'overview';
         const apiProject = this.iterateApiProjectList(this.props.projects, this.props.naming);
         const {category} = apiProject;
-        const {id} = apiProject;
-        const externalLink = this.getCategoryLink(category, id);
+        const {uuid} = apiProject;
+        const externalLink = getLink4Description(category) + uuid;
         switch (paging) {
             case 'overview':
-                return <ApiUpdateOverviewHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
+                return <ApiUpdateOverviewHeader naming={this.props.naming}
+                                                externalLink={externalLink} {...this.props}/>;
             case 'settings':
                 return <ApiUpdateMainHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
             case 'endpoints':
-                return <ApiUpdateEndpointsHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
+                return <ApiUpdateEndpointsHeader naming={this.props.naming}
+                                                 externalLink={externalLink} {...this.props}/>;
             case 'price':
                 return <ApiUpdatePriceHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
             case 'docs':
                 return <ApiUpdateDocsHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
             case 'announcements':
-                return <ApiUpdateAnnouncementsHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>;
+                return <ApiUpdateAnnouncementsHeader naming={this.props.naming}
+                                                     externalLink={externalLink} {...this.props}/>;
             default:
                 return <ApiUpdateOverviewHeader naming={this.props.naming} externalLink={externalLink} {...this.props}/>
         }
     }
 
     renderSwitchBody() {
+        const {loading} = this.props;
         const pagingArray = ['overview', 'settings', 'endpoints', 'price', 'docs', 'announcements'];
         const params = queryString.parse(this.props.location.search);
         const paging = (params.definition !== 'undefined' && this.handleCheck(pagingArray, params.definition)) ? params.definition : 'overview';
         const apiProject = this.iterateApiProjectList(this.props.projects, this.props.naming);
         switch (paging) {
             case 'overview':
-                return <ApiUpdateOverviewBody loading={this.state.loading} key={apiProject.id} naming={this.props.naming} projects={this.props.projects} apiProject={apiProject} {...this.props}/>;
+                return <ApiUpdateOverviewBody loading={loading} key={apiProject.id}
+                                              naming={this.props.naming} projects={this.props.projects}
+                                              apiProject={apiProject} {...this.props}/>;
             case 'settings':
-                return <ApiUpdateMainBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateMainBody loading={loading} naming={this.props.naming} {...this.props}/>;
             case 'endpoints':
-                return <ApiUpdateEndpointsBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateEndpointsBody loading={loading}
+                                               naming={this.props.naming} {...this.props}/>;
             case 'price':
-                return <ApiUpdatePriceBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdatePriceBody loading={loading} naming={this.props.naming} {...this.props}/>;
             case 'docs':
-                return <ApiUpdateDocsBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateDocsBody loading={loading} naming={this.props.naming} {...this.props}/>;
             case 'announcements':
-                return <ApiUpdateAnnouncementsBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>;
+                return <ApiUpdateAnnouncementsBody loading={loading}
+                                                   naming={this.props.naming} {...this.props}/>;
             default:
-                return <ApiUpdateOverviewBody loading={this.state.loading} naming={this.props.naming} {...this.props}/>
+                return <ApiUpdateOverviewBody loading={loading} naming={this.props.naming} {...this.props}/>
         }
     }
 
     render() {
-
+        const {loading} = this.props;
         return (
             <div className='api-body-main'>
                 <div className='update-api-detail-form-header-container'>
                     {this.renderSwitchHeader()}
                 </div>
                 <div className='api-detail-form-body-container'>
-                    {this.renderSwitchBody()}
+                    {loading ? '' : this.renderSwitchBody()}
                 </div>
             </div>
 

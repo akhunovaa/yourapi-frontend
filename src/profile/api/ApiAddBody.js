@@ -8,8 +8,7 @@ import {newApiUploadSend} from "../../util/APIUtils";
 
 class ApiAddBody extends Component {
 
-    _isMounted = false;
-    apiId = 0;
+    _isMounted = false
 
     constructor(props) {
         super(props);
