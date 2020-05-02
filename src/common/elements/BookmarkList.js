@@ -68,7 +68,7 @@ class BookmarkList extends Component {
             <div className='header-right-bookmark blue-hover'>
                 <Popup
                     trigger={clicked ?
-                        <Icon link name='close' size={'large'} onClick={this.handleClose}
+                        <Icon link name='bookmark' size={'large'} onClick={this.handleClose}
                               style={{color: clicked ? '' : '#2F80ED'}} className={colored}/> :
                         <Icon link size={'large'} name={clicked ? 'bookmark' : 'bookmark outline'}
                               style={{color: clicked ? '#2F80ED' : ''}} className={colored}/>}
