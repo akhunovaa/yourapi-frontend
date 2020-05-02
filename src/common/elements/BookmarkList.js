@@ -51,7 +51,7 @@ class BookmarkList extends Component {
     handleOpen = () => {
         this.setState((prevState) => ({clicked: !prevState.clicked, isOpen: true}));
         this.timeout = setTimeout(() => {
-            this.setState({isOpen: false})
+            this.setState((prevState) => ({clicked: !prevState.clicked, isOpen: false}))
         }, timeoutLength)
     };
 
