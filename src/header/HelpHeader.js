@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import {Dropdown, Icon} from "semantic-ui-react";
 import HeaderUserPortal from "../header/HeaderUserPortal";
 import HeaderNotAuthenticatedUserPortal from "../header/HeaderNotAuthenticatedUserPortal";
+import BookmarkList from "../common/elements/BookmarkList";
 
 class HelpHeader extends Component {
 
@@ -54,9 +55,12 @@ class HelpHeader extends Component {
                         <div className='header-right-navlink-bell blue-hover white-yellow-inactive-link'>
                             <Icon link size={'large'} name='bell outline'/>
                         </div>
-                        <div className='header-right-navlink-bookmark blue-hover white-yellow-inactive-link'>
-                            <Icon link size={'large'} name='bookmark outline'/>
-                        </div>
+                        {
+                            authenticated ? (<BookmarkList colored={'white-yellow-inactive-link'}/>) : (
+                                <div className='header-right-navlink-bookmark blue-hover white-yellow-inactive-link'>
+                                    <Icon link size={'large'} name='bookmark outline'/>
+                                </div>)
+                        }
                         <div className='header-right-navlink-profile blue-hover white-yellow-inactive-link'>
                             {authenticated ? (
                                 <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (

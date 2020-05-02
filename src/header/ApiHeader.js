@@ -3,6 +3,7 @@ import './ApiHeader.css';
 import {NavLink} from "react-router-dom";
 import {Icon, Dropdown} from "semantic-ui-react";
 import HeaderUserPortal from "./HeaderUserPortal";
+import BookmarkList from "../common/elements/BookmarkList";
 
 class ApiHeader extends Component {
 
@@ -52,9 +53,9 @@ class ApiHeader extends Component {
                     <div className='header-right-navlink-bell'>
                         <Icon link size={'large'}  name='bell outline' />
                     </div>
-                    <div className='header-right-navlink-bookmark'>
-                        <Icon link size={'large'}  name='bookmark outline' />
-                    </div>
+
+                    <BookmarkList colored={'white-inactive-link'}/>
+
                     <div className='header-right-navlink-profile'>
                         <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>
                     </div>

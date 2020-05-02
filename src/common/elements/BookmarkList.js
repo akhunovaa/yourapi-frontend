@@ -8,6 +8,7 @@ import {getLink4Description} from "../../util/ElementsDataUtils";
 import LazyBookmarkMiniImage from '../../util/LazyBookmarkMiniImage';
 
 const host = window.location.origin.toString();
+const timeoutLength = 4500;
 
 class BookmarkList extends Component {
 
@@ -18,7 +19,8 @@ class BookmarkList extends Component {
         this.state = {
             loading: true,
             bookmarkData: [],
-            clicked: false
+            clicked: false,
+            isOpen: false
         };
     }
 
@@ -39,10 +41,6 @@ class BookmarkList extends Component {
         }
     }
 
-    handleBookmarkClick = () => {
-        this.setState((prevState) => ({clicked: !prevState.clicked}));
-    };
-
     componentWillUnmount() {
         this.setState({
             bookmarkData: []
@@ -50,27 +48,47 @@ class BookmarkList extends Component {
         this._isMounted = false;
     }
 
+    handleOpen = () => {
+        this.setState((prevState) => ({clicked: !prevState.clicked, isOpen: true}));
+        this.timeout = setTimeout(() => {
+            this.setState({isOpen: false})
+        }, timeoutLength)
+    };
+
+    handleClose = () => {
+        this.setState((prevState) => ({clicked: !prevState.clicked, isOpen: false}));
+        clearTimeout(this.timeout)
+    };
+
     render() {
-        const {loading, bookmarkData, clicked} = this.state;
+        const {loading, bookmarkData, clicked, isOpen} = this.state;
+        const {colored} = this.props;
 
         return (
             <div className='header-right-bookmark blue-hover'>
                 <Popup
-                    trigger={<Icon link size={'large'} name={clicked ? 'bookmark' : 'bookmark outline'} style={{color: clicked ? '#2F80ED' : ''}} />}
+                    trigger={clicked ?
+                        <Icon link name='close' size={'large'} onClick={this.handleClose}
+                              style={{color: clicked ? '' : '#2F80ED'}} className={colored}/> :
+                        <Icon link size={'large'} name={clicked ? 'bookmark' : 'bookmark outline'}
+                              style={{color: clicked ? '#2F80ED' : ''}} className={colored}/>}
                     header='Избранное'
-                    onClose={this.handleBookmarkClick}
-                    onOpen={this.handleBookmarkClick}
+                    open={isOpen}
+                    onClose={this.handleClose}
+                    onOpen={this.handleOpen}
+                    on='focus' position='bottom right' wide size={'small'}
                     content={loading || bookmarkData === undefined ? <BookmarkLoadingIndicator/>
                         :
                         <Grid textAlign='left' style={{minHeight: 50, minWidth: 250}}>
+                            <div style={{width: '100%', paddingTop: 8}}/>
                             {
                                 bookmarkData.length > 0 ? bookmarkData.map(item => (
                                     <Grid.Row key={item.id + item.name} divided>
+
                                         <Grid.Column width={3} verticalAlign={'middle'} textAlign={'justified'}>
                                             {
                                                 item.img ? (
-                                                    <NavLink
-                                                        to={getLink4Description(item.category) + item.uuid}>
+                                                    <NavLink to={getLink4Description(item.category) + item.uuid}>
                                                         <LazyBookmarkMiniImage
                                                             src={host + "/api-data/image/" + item.img}/>
                                                     </NavLink>
@@ -83,20 +101,28 @@ class BookmarkList extends Component {
                                             }
                                         </Grid.Column>
                                         <Grid.Column width={12}>
-                                            <div style={{whiteSpace: 'nowrap', paddingTop: 4}}>
-                                                <NavLink to={getLink4Description(item.category) + item.uuid}>
+                                            <NavLink to={getLink4Description(item.category) + item.uuid}>
+                                                <div style={{whiteSpace: 'nowrap', paddingTop: 4}}>
+                                                <span style={{color: '#2F80ED'}}>
                                                     {item.fullName}
-                                                </NavLink>
-                                            </div>
-                                            <div style={{paddingTop: 4}}>
-                                                {item.description}
-                                            </div>
+                                                </span>
+                                                </div>
+                                                <div style={{paddingTop: 4}}>
+                                                    <span style={{color: '#4F4F4F'}}>
+                                                        {item.description}
+                                                    </span>
+                                                </div>
+                                            </NavLink>
                                         </Grid.Column>
+
                                     </Grid.Row>
-                                )) : <div style={{paddingTop: 20, color: '#A5A5A5'}}><span>Данные отсутствуют</span></div>}
+                                )) : <div style={{paddingTop: 20, color: '#A5A5A5'}}>Данные отсутствуют</div>}
+                            {bookmarkData.length > 0 ? (
+                                <div style={{width: '100%', textAlign: 'center'}}><NavLink to="/profile/bookmarks"
+                                                                                           style={{color: '#2F80ED'}}>Посмотреть
+                                    все</NavLink></div>) : (<></>)}
                         </Grid>
                     }
-                    on='focus' position='bottom right' wide size={'small'}
                 />
             </div>
         )

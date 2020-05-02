@@ -221,9 +221,12 @@ class IntegratorHeader extends Component {
                     <div className='header-right-navlink-bell'>
                         <Icon link size={'large'} name='bell outline'/>
                     </div>
-                    <div className='header-right-navlink-bookmark'>
-                        <Icon link size={'large'} name='bookmark outline'/>
-                    </div>
+                    {
+                        authenticated ? (<BookmarkList/>) : (
+                            <div className='header-right-navlink-bookmark blue-hover'>
+                                <Icon link size={'large'} name='bookmark outline'/>
+                            </div>)
+                    }
                     <div className='header-right-navlink-profile'>
                         {authenticated ? (
                             <HeaderUserPortal currentUser={currentUser} onLogout={onLogout} {...this.props}/>) : (
@@ -285,9 +288,12 @@ class ShopHeader extends Component {
                         <div className='header-right-navlink-bell blue-hover'>
                             <Icon link size={'large'} name='bell outline'/>
                         </div>
-                        <div className='header-right-navlink-bookmark blue-hover'>
-                            <Icon link size={'large'} name='bookmark outline'/>
-                        </div>
+                        {
+                            authenticated ? (<BookmarkList/>) : (
+                                <div className='header-right-navlink-bookmark blue-hover'>
+                                    <Icon link size={'large'} name='bookmark outline'/>
+                                </div>)
+                        }
                         <div className='header-right-navlink-profile blue-hover'>
                             {authenticated ? (
                                 <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
@@ -347,9 +353,12 @@ class ShopCategoryHeader extends Component {
                         <div className='header-right-navlink-bell blue-hover'>
                             <Icon link size={'large'} name='bell outline'/>
                         </div>
-                        <div className='header-right-navlink-bookmark blue-hover'>
-                            <Icon link size={'large'} name='bookmark outline'/>
-                        </div>
+                        {
+                            authenticated ? (<BookmarkList/>) : (
+                                <div className='header-right-navlink-bookmark blue-hover'>
+                                    <Icon link size={'large'} name='bookmark outline'/>
+                                </div>)
+                        }
                         <div className='header-right-navlink-profile blue-hover'>
                             {authenticated ? (
                                 <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
