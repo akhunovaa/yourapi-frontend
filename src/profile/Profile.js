@@ -383,6 +383,7 @@ class Profile extends Component {
                 }
             }
         }
+        this.reload();
     }
 
     render() {
