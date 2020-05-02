@@ -26,19 +26,24 @@ class BookmarkList extends Component {
     componentDidMount() {
         this._isMounted = true;
         if (this._isMounted) {
-            bookmarkApiListGet(3)
-                .then(response => {
-                    this.setState({
-                        bookmarkData: response.response,
-                        loading: false
-                    });
-                }).catch(error => {
-                this.setState({
-                    loading: false
-                });
-            });
+            this.requestBookmarkList();
         }
     }
+
+    requestBookmarkList = () => {
+        this.setState({loading: true});
+        bookmarkApiListGet(3)
+            .then(response => {
+                this.setState({
+                    bookmarkData: response.response,
+                    loading: false
+                });
+            }).catch(error => {
+            this.setState({
+                loading: false
+            });
+        });
+    };
 
     componentWillUnmount() {
         this.setState({
@@ -48,6 +53,7 @@ class BookmarkList extends Component {
     }
 
     handleOpen = () => {
+        this.requestBookmarkList();
         this.setState((prevState) => ({clicked: !prevState.clicked, isOpen: true}));
     };
 
