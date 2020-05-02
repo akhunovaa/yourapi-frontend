@@ -15,7 +15,7 @@ import queryString from "query-string";
 import ApiDetailPriceBody from "./body/ApiDetailPriceBody";
 import ApiDetailQuestionsBody from "./body/ApiDetailQuestionsBody";
 import ApiDetailDocumentationBody from "./body/ApiDetailDocumentationBody";
-import {apiProjectGet} from "../../util/APIUtils";
+import {apiProjectGet, bookmarkAdd, bookmarkRemove} from "../../util/APIUtils";
 import {getLink4Category, getLink4Description} from "../../util/ElementsDataUtils";
 import Alert from "react-s-alert";
 import LazyApiDetailImage from '../../util/LazyApiDetailImage';
@@ -46,6 +46,7 @@ class ApiDetail extends Component {
             host: '',
             operations: '',
             uuid: '',
+            bookmarkText: '',
             userApplicationSecret: []
         };
         this.reload = this.reload.bind(this);
@@ -78,6 +79,7 @@ class ApiDetail extends Component {
                         info: response.response.info,
                         host: response.response.host,
                         operations: response.response.operations,
+                        bookmarked: response.response.bookmarked,
                         pageTitle: 'YourAPI | ' + response.response.fullName
                     });
                     document.title = 'YourAPI | ' + response.response.fullName;
@@ -122,7 +124,40 @@ class ApiDetail extends Component {
     }
 
     handleChange = (e, {id, name}) => {
-        this.setState({[id]: name})
+        const {authenticated} = this.props;
+
+        const bookmarked = name === 'bookmark' ? 'bookmark' : 'bookmark outline';
+        this.setState({
+            bookmarkText: name
+        });
+
+        if (!authenticated) {
+            this.setState({
+                bookmarkText: bookmarked === 'bookmark' ? 'bookmark outline' : 'bookmark'
+            });
+            return;
+        }
+
+        if (bookmarked === 'bookmark') {
+            bookmarkRemove(id)
+                .then(response => {
+                    this.setState({
+                        bookmarkText: bookmarked === 'bookmark' ? 'bookmark outline' : 'bookmark'
+                    })
+                }).catch(error => {
+                Alert.error('Ошибка при удалении для Bookmark' || (error && error.message));
+            });
+        } else {
+            bookmarkAdd(id)
+                .then(response => {
+                    this.setState({
+                        bookmarkText: bookmarked === 'bookmark' ? 'bookmark outline' : 'bookmark'
+                    })
+                }).catch(error => {
+                Alert.error('Ошибка при добавлении для Bookmark' || (error && error.message));
+            });
+        }
+
     };
 
 
@@ -185,7 +220,7 @@ class ApiDetail extends Component {
 
     render() {
 
-        const {loading, name, dealer, category, updated, description, image, id, uuid, info, operations} = this.state;
+        const {loading, name, dealer, category, updated, description, image, id, bookmarkText, uuid, info, operations, bookmarked} = this.state;
 
         if (loading) {
             return <LoadingIndicator/>
@@ -254,9 +289,12 @@ class ApiDetail extends Component {
                                                 }
                                             </div>
                                             <div className="grid-labels">
-                                                <Icon style={{color: this.state[uuid] === 'bookmark outline' ? '#2F80ED' : ''}} className='grid-labels-icon'
-                                                      link onClick={this.handleChange} id={uuid}
-                                                      name={this.state[uuid] === 'bookmark outline' ? 'bookmark' : 'bookmark outline'}/>
+                                                <Icon style={{
+                                                    color: bookmarked ? bookmarkText !== 'bookmark outline' ? '#2F80ED' : '' : bookmarkText === 'bookmark' ? '#2F80ED' : ''
+                                                }} link onClick={this.handleChange} id={uuid}
+                                                      className='grid-labels-icon'
+                                                      name={bookmarked ? bookmarkText !== 'bookmark outline' ? 'bookmark' : 'bookmark outline' : bookmarkText === 'bookmark' ? 'bookmark' : 'bookmark outline'}/>
+
                                                 <Popup
                                                     trigger={<Icon className='grid-labels-icon' link name='share alternate'/>}
                                                     content={<ApiDetailSharePopup url={link4Description} name={name}
