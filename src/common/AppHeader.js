@@ -155,12 +155,12 @@ class HomeHeader extends Component {
                         </Dropdown>
                     </div>
                     <div className='header-right-navlink-bell blue-hover'>
-                        <Icon link size={'large'} name='bell outline'/>
+                        <Icon link size={'large'} name='bell outline' onClick={handleSliderChange}/>
                     </div>
                     {
                         authenticated ? (<BookmarkList/>) : (
                             <div className='header-right-navlink-bookmark blue-hover'>
-                                <Icon link size={'large'} name='bookmark outline'/>
+                                <Icon link size={'large'} name='bookmark outline' onClick={handleSliderChange}/>
                             </div>)
                     }
 
@@ -291,7 +291,7 @@ class ShopHeader extends Component {
                         {
                             authenticated ? (<BookmarkList/>) : (
                                 <div className='header-right-navlink-bookmark blue-hover'>
-                                    <Icon link size={'large'} name='bookmark outline'/>
+                                    <Icon link size={'large'} name='bookmark outline' onClick={handleSliderChange}/>
                                 </div>)
                         }
                         <div className='header-right-navlink-profile blue-hover'>

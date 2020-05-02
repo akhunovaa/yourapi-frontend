@@ -58,7 +58,7 @@ class HelpHeader extends Component {
                         {
                             authenticated ? (<BookmarkList colored={'white-yellow-inactive-link'}/>) : (
                                 <div className='header-right-navlink-bookmark blue-hover white-yellow-inactive-link'>
-                                    <Icon link size={'large'} name='bookmark outline'/>
+                                    <Icon link size={'large'} name='bookmark outline' onClick={handleSliderChange}/>
                                 </div>)
                         }
                         <div className='header-right-navlink-profile blue-hover white-yellow-inactive-link'>
