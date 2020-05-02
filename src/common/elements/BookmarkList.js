@@ -8,7 +8,6 @@ import {getLink4Description} from "../../util/ElementsDataUtils";
 import LazyBookmarkMiniImage from '../../util/LazyBookmarkMiniImage';
 
 const host = window.location.origin.toString();
-const timeoutLength = 4500;
 
 class BookmarkList extends Component {
 
@@ -50,14 +49,10 @@ class BookmarkList extends Component {
 
     handleOpen = () => {
         this.setState((prevState) => ({clicked: !prevState.clicked, isOpen: true}));
-        this.timeout = setTimeout(() => {
-            this.setState((prevState) => ({clicked: !prevState.clicked, isOpen: false}))
-        }, timeoutLength)
     };
 
     handleClose = () => {
         this.setState((prevState) => ({clicked: !prevState.clicked, isOpen: false}));
-        clearTimeout(this.timeout)
     };
 
     render() {
