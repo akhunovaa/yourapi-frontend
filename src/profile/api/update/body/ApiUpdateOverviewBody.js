@@ -17,6 +17,7 @@ class ApiUpdateOverviewBody extends Component {
             description: 'Описание',
             category: 'Финансы',
             terms: 'Особые условия',
+            uuid: '',
             formUpdateDisabled: false,
             apiProjectImageUrl: '',
             loading: true,
@@ -95,6 +96,7 @@ class ApiUpdateOverviewBody extends Component {
                     name: arrayElement.fullName,
                     category: arrayElement.category,
                     description: arrayElement.description,
+                    uuid: arrayElement.uuid,
                     terms: arrayElement.info ? arrayElement.info.termsOfService : '',
                     apiProjectImageUrl: arrayElement.image,
                     loading: false
@@ -107,17 +109,15 @@ class ApiUpdateOverviewBody extends Component {
     handleOverviewInformationSubmit(event) {
         event.preventDefault();
         const id = this.state.id ? this.state.id : 0;
-        const name = this.state.name;
-        const description = this.state.description;
-        const category = this.state.category;
-        const terms = this.state.terms;
+        const {name, description, category, terms, uuid} = this.state;
 
         const mainInfoRequest = Object.assign({}, {
             'id': id,
             'fullName': name,
             'description': description,
             'category': category,
-            'terms': terms
+            'terms': terms,
+            'uuid': uuid
         });
 
         overviewInformationUpdate(mainInfoRequest)
