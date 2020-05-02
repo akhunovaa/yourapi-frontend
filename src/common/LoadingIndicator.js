@@ -66,7 +66,7 @@ export function TreesetLoadingIndicator() {
 
 export function BookmarkLoadingIndicator() {
     return (
-        <div style={{paddingTop: 12, minWidth: 260}}>
+        <div style={{paddingTop: 12, minWidth: 337}}>
             <Loader indeterminate active inline='centered' size='small'/>
         </div>
     );
