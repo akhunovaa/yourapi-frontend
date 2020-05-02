@@ -370,6 +370,7 @@ class Profile extends Component {
                             } else if (response.success === false) {
                                 Alert.warning(response.message);
                             } else {
+                                this.reload();
                                 Alert.success('Данные успешно сохранены');
                             }
                         }).catch(error => {
@@ -383,7 +384,6 @@ class Profile extends Component {
                 }
             }
         }
-        this.reload();
     }
 
     render() {
