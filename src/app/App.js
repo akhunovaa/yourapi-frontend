@@ -30,6 +30,7 @@ import {getCurrentUser} from '../util/APIUtils';
 import {ACCESS_TOKEN} from '../constants';
 import {loadReCaptcha} from 'react-recaptcha-google'
 import OAuth2RedirectHandler from '../login/oauth2/OAuth2RedirectHandler';
+import {Helmet} from "react-helmet";
 
 class App extends Component {
 
@@ -105,6 +106,14 @@ class App extends Component {
     };
 
     render() {
+        const seo = {
+            title: "YourAPI | API Marketplace",
+            siteName: 'yourapi.ru',
+            description: "Marketplace IT решений. Find here your own IT decision! Your Marketplace. Artificial. Programmable. Intelligence.",
+            url: "https://yourapi.ru/",
+            image: "https://yourapi.ru/img/yourapi.png"
+        };
+
 
         const {width, loading, authenticated, currentUser, visible} = this.state;
         const {history} = this.props;
@@ -116,6 +125,24 @@ class App extends Component {
 
         return (
             <div>
+                <Helmet
+                    title={seo.title}
+                    meta={[
+                        {
+                            name: "description",
+                            property: "og:description",
+                            content: seo.description
+                        },
+                        { property: "og:title", content: seo.title },
+                        { property: "og:site_name", content: seo.siteName },
+                        { property: "og:url", content: seo.url },
+                        { property: "og:image", content: seo.image },
+                        { property: "og:image:type", content: "image/png" },
+                        { property: "twitter:image:src", content: seo.image },
+                        { property: "twitter:title", content: seo.title },
+                        { property: "twitter:description", content: seo.description }
+                    ]}
+                />
                 <AppHeader authenticated={authenticated} onLogout={this.handleLogout} handleSliderChange={this.handleSliderChange} visible={visible} currentUser={currentUser}/>
                 <Switch>
 
