@@ -30,10 +30,10 @@ class FilterBookmarkLinkElement extends Component {
             <div className='bookmarked-api-label'>
 
                     <NavLink to='/shop/bookmarks' className='bookmarked-api-filter-link'>
-                        <Icon className='bookmarked-api-filter-link-icon' link name={active ? 'bookmark' : 'bookmark outline'} style={{color: active ? '#2F80ED' : '#4F4F4F'}}/>
-                        <span className='bookmarked-api-filter-link-text' style={{color: active ? '#2F80ED' : '#4F4F4F'}}>Избранное</span>
+                        <Icon className='bookmarked-api-filter-link-icon' link name={active ? 'bookmark' : 'bookmark outline'} style={{color: active ? '#2F80ED' : ''}}/>
+                        <span className='bookmarked-api-filter-link-text' style={{color: active ? '#2F80ED' : ''}}>Избранное</span>
                     </NavLink>
-                    <span className='bookmarked-api-filter-data-size right-label' style={{color: active ? '#2F80ED' : '#4F4F4F'}}>{bookmarkLoadingIndicator(loading, bookmarkData)}</span>
+                    <span className='bookmarked-api-filter-data-size right-label' style={{color: active ? '#2F80ED' : ''}}>{bookmarkLoadingIndicator(loading, bookmarkData)}</span>
             </div>
         )
     }
