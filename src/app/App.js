@@ -17,6 +17,7 @@ import Api from '../profile/api/Api';
 import Integrators from '../integrators/Integrators';
 import Shop from '../shop/Shop';
 import ApiCategoryShop from '../shop/api/ApiCategoryShop';
+import ApiBookmark from '../shop/api/ApiBookmark';
 import ApiDetail from '../shop/api/ApiDetail';
 import LoadingIndicator from '../common/LoadingIndicator';
 import PrivateRoute from '../common/PrivateRoute';
@@ -172,6 +173,9 @@ class App extends Component {
 
                     <Route exact path="/profile/:id?" render={(props) => <UserProfile authenticated={authenticated} visible={visible} {...props} />}/>
                     <Route exact path="/shop" render={(props) => <Shop authenticated={authenticated} currentUser={currentUser} visible={visible} {...props} />}/>
+
+                    <PrivateRoute exact path="/shop/bookmarks" authenticated={authenticated} currentUser={currentUser} component={ApiBookmark}/>
+
                     <Route exact path="/shop/category/:category?" render={(props) => <ApiCategoryShop authenticated={authenticated} currentUser={currentUser} visible={visible} {...props} />}/>
                     <Route exact path="/shop/category/:category?/api/:id?" render={(props) => <ApiDetail handleSliderChange={this.handleSliderChange} authenticated={authenticated} currentUser={currentUser} visible={visible} {...props} />}/>
 

@@ -120,7 +120,7 @@ class BookmarkList extends Component {
                                 )) : <div style={{color: '#A5A5A5', minWidth: 337}}>Данные отсутствуют</div>}
                             { bookmarkData.length > 2 ? (
                                 <div style={{width: '100%', textAlign: 'center'}}>
-                                    <NavLink to="/profile/bookmarks" style={{color: '#2F80ED'}}>Посмотреть все</NavLink></div>) : (<></>)}
+                                    <NavLink to="/shop/bookmarks" style={{color: '#2F80ED'}}>Посмотреть все</NavLink></div>) : (<></>)}
                         </Grid>
                     }
                 />

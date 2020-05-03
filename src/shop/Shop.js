@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import './Shop.css';
 import {NavLink} from "react-router-dom";
 import {Breadcrumb, Icon, Menu, Segment, Sidebar} from "semantic-ui-react";
-import {apiFullListGet} from "../util/APIUtils";
+import {apiFullListGet, bookmarkApiListGet} from "../util/APIUtils";
 import Slider from '@material-ui/core/Slider';
 import ShopBody from "./ShopBody";
 import Alert from "react-s-alert";
 import {categoryLoadingIndicator} from "../common/LoadingIndicator";
 import AuthContainerWrapper from "../home/AuthContainerWrapper";
+import FilterBookmarkLinkElement from "./elements/FilterBookmarkLinkElement";
+import {BOOKMARK_REQUEST_DEFAULT_LIMIT} from "../constants";
 
 class Shop extends Component {
 
@@ -17,7 +19,9 @@ class Shop extends Component {
         super(props);
         this.state = {
             loading: true,
+            bookmarkLoading: true,
             apiList: [],
+            bookmarkData: [],
             responseScale: [0, 1000],
             responseStableScale: [0, 100]
         };
@@ -28,6 +32,7 @@ class Shop extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        const {authenticated} = this.props;
         if (this._isMounted) {
             apiFullListGet()
                 .then(response => {
@@ -41,8 +46,11 @@ class Shop extends Component {
                 Alert.error('Ошибка запросе на получение проекта' || (error && error.message));
                 this.setState({loading: false})
             });
+            if (authenticated) {
+                this.requestBookmarkList()
+            }
         }
-        document.title  = 'YourAPI | API Marketplace';
+        document.title  = 'YourAPI | Marketplace';
     }
 
 
@@ -90,10 +98,25 @@ class Shop extends Component {
         this.setState({open: false})
     };
 
+    requestBookmarkList = async () => {
+        this.setState({bookmarkLoading: true});
+        bookmarkApiListGet(BOOKMARK_REQUEST_DEFAULT_LIMIT)
+            .then(response => {
+                this.setState({
+                    bookmarkData: response.response,
+                    bookmarkLoading: false
+                });
+            }).catch(error => {
+            this.setState({
+                bookmarkLoading: false
+            });
+        });
+    };
+
     render() {
 
 
-        const {loading, apiList} = this.state;
+        const {loading, apiList, bookmarkData, bookmarkLoading} = this.state;
         const {visible, authenticated} = this.props;
 
         return (
@@ -124,6 +147,9 @@ class Shop extends Component {
                                 <div className="shop-left-container">
                                     <div className='shop-inner-filter-container'>
                                         <div className='shop-filter-title'>Фильтры</div>
+
+                                        <FilterBookmarkLinkElement bookmarkData={bookmarkData} loading={bookmarkLoading}/>
+
                                         <div className='shop-filter-rating'>Рейтинг</div>
                                         <div className='shop-filter-rating-stars'>
                                             <Icon link name='star outline' className='star'/>
@@ -231,7 +257,7 @@ class Shop extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <ShopBody loading={loading} apiList={apiList} authenticated={authenticated}/>
+                                <ShopBody loading={loading} apiList={apiList} authenticated={authenticated} requestBookmarkList={this.requestBookmarkList}/>
                             </div>
                         </div>
                     </Segment>

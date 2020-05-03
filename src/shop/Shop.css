@@ -85,8 +85,8 @@
 }
 
 .shop-left-container{
-    height: 710px;
-    min-height: 710px;
+    height: 750px;
+    min-height: 750px;
     width: 240px;
     min-width: 240px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.07);
@@ -342,3 +342,46 @@
     color: #2F80ED;
     padding-top: 6px;
 }
+
+.bookmarked-api-label{
+    padding-top: 22px;
+    /*color: #4F4F4F;*/
+}
+
+
+.bookmarked-api-filter-link{
+    text-align: left;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    color: #4F4F4F;
+}
+
+.bookmarked-api-filter-link-icon{
+    width: 12px;
+    height: 16px;
+    color: #4F4F4F;
+}
+
+.bookmarked-api-filter-link:hover >i{
+    color: #2F80ED;
+}
+
+.bookmarked-api-filter-link:hover >span{
+    color: #2F80ED;
+}
+
+.bookmarked-api-filter-link-text{
+    color: #4F4F4F;
+}
+
+.bookmarked-api-filter-data-size{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #A5A5A5;
+}
+

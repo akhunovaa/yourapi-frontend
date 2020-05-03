@@ -44,11 +44,18 @@ class AppHeader extends Component {
                                                           authenticated={authenticated} currentUser={currentUser}
                                                           visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
+                    <Route exact path="/shop/bookmarks"
+                           render={(props) => <BookmarkHeader handleSliderChange={handleSliderChange}
+                                                          authenticated={authenticated} currentUser={currentUser}
+                                                          visible={visible}
+                                                          onLogout={onLogout} {...props} />}/>
+
                     <Route exact path="/shop/category/:category?"
                            render={(props) => <ShopHeader handleSliderChange={handleSliderChange}
                                                           authenticated={authenticated} currentUser={currentUser}
                                                           visible={visible}
                                                           onLogout={onLogout} {...props} />}/>
+
                     <Route exact path="/shop/category/:category?/api/:id?"
                            render={(props) => <ShopHeader handleSliderChange={handleSliderChange}
                                                           authenticated={authenticated} currentUser={currentUser}
@@ -234,6 +241,71 @@ class IntegratorHeader extends Component {
                     </div>
                 </div>
 
+            </div>
+        );
+    }
+}
+
+class BookmarkHeader extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    render() {
+        const {currentUser, onLogout, authenticated, handleSliderChange, visible} = this.props;
+
+        return (
+            <div className="header-authenticated">
+                <div className='header-left-logo active-logo'>
+                    <NavLink to="/">YourAPI</NavLink>
+                </div>
+                <div className='header-center-container'>
+                    <div className='header-center-navlink-merch'>
+                        <NavLink to="/shop" className='blue-hover black-inactive-link'>Магазин</NavLink>
+                    </div>
+                    <div className='header-center-search-input'>
+                        <SearchBox onClick={this.handleOpenSearchOpen}/>
+                    </div>
+                </div>
+                <div className="header-right-menu">
+                    <div className='header-right-center-container'>
+                        <div className='api-create-button-container'>
+                            {authenticated ?
+                                (<NavLink to='/profile/api?page=add'><Button fluid className='api-create-button'
+                                                                             style={{background: '#F39847'}}><span
+                                    className='api-create-button-text'>Добавить API</span></Button></NavLink>) :
+                                (<Button fluid className='api-create-button' onClick={handleSliderChange}
+                                         style={{background: '#F39847'}}><span className='api-create-button-text'>Добавить API</span></Button>)}
+                        </div>
+                    </div>
+                    <div className="header-right-menu">
+                        <div className='header-right-navlink blue-hover'>
+                            <Dropdown text='RU' closeOnChange>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item text='RU' description='Русский'/>
+                                    <Dropdown.Item text='EN' description='English'/>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                        <div className='header-right-navlink-bell blue-hover'>
+                            <Icon link size={'large'} name='bell outline'/>
+                        </div>
+                        {
+                            authenticated ? (<BookmarkList/>) : (
+                                <div className='header-right-navlink-bookmark blue-hover'>
+                                    <Icon link size={'large'} name='bookmark outline' onClick={handleSliderChange}/>
+                                </div>)
+                        }
+                        <div className='header-right-navlink-profile blue-hover'>
+                            {authenticated ? (
+                                <HeaderUserPortal currentUser={currentUser} onLogout={onLogout}/>) : (
+                                <HeaderNotAuthenticatedUserPortal visible={visible}
+                                                                  handleSliderChange={handleSliderChange}/>)}
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -36,6 +36,19 @@ export function ShopLoadingIndicator() {
     );
 }
 
+export function BookmarkPageLoadingIndicator() {
+    return (
+        <Loader active indeterminate inline size='small' style={{
+            textAlign: 'center',
+            width: '100%',
+            height: '100%',
+            minHeight: 900,
+            minWidth: 150,
+            marginTop: 125
+        }}/>
+    );
+}
+
 export function CategoryShopLoadingIndicator() {
     return (
         <Loader active indeterminate inline size='small' style={{
@@ -123,4 +136,11 @@ export function HomeCellLoadingIndicator() {
  */
 export function categoryLoadingIndicator(factor, caseX) {
     return factor ? <Loader active inline='centered' size='mini'/> : caseX ? caseX.size : 0
+}
+
+/**
+ * @return {number}
+ */
+export function bookmarkLoadingIndicator(factor, bookmarkData) {
+    return factor ? <Loader active inline='centered' size='mini'/> : bookmarkData ? bookmarkData.length : 0
 }

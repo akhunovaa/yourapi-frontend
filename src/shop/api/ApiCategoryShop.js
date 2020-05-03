@@ -3,7 +3,7 @@ import './ApiCategoryShop.css';
 import {NavLink, Redirect} from "react-router-dom";
 import {Breadcrumb, Grid, Icon, Menu, Segment, Sidebar} from "semantic-ui-react";
 import Slider from '@material-ui/core/Slider';
-import {apiFullCriteriaListGet, bookmarkAdd, bookmarkRemove} from "../../util/APIUtils";
+import {apiFullCriteriaListGet, bookmarkAdd, bookmarkApiListGet, bookmarkRemove} from "../../util/APIUtils";
 import Alert from "react-s-alert";
 import {CategoryShopLoadingIndicator} from "../../common/LoadingIndicator";
 import {
@@ -15,6 +15,8 @@ import {
 } from "../../util/ElementsDataUtils";
 import LazyMiniImage from '../../util/LazyMiniImage';
 import AuthContainerWrapper from "../../home/AuthContainerWrapper";
+import FilterBookmarkLinkElement from "../elements/FilterBookmarkLinkElement";
+import {BOOKMARK_REQUEST_DEFAULT_LIMIT} from "../../constants";
 
 
 class ApiCategoryShop extends Component {
@@ -26,6 +28,9 @@ class ApiCategoryShop extends Component {
         const {category} = this.props.match.params;
         this.state = {
             loading: true,
+            bookmarkLoading: true,
+            bookmarkData: [],
+            apiList: [],
             categoryName: category,
             permittedCategory: ['data', 'finance', 'mobile', 'map', 'adv', 'social', 'health', 'sport', 'web', 'news', 'media', 'other'],
             responseScale: [0, 1000],
@@ -38,30 +43,67 @@ class ApiCategoryShop extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const criteria = this.state.categoryName;
-        document.title  = 'YourAPI | ' + getCategoryName(criteria);
+        const {categoryName} = this.state;
+        const title = getCategoryName(categoryName);
+        document.title  = 'YourAPI | ' + title;
         if (this._isMounted) {
-            apiFullCriteriaListGet(criteria)
-                .then(response => {
-
-                    this.setState({
-                        loading: false,
-                        apiList: response.response
-                    });
-
-                }).catch(error => {
-                Alert.error('Ошибка запросе на получение списка проектов' || (error && error.message));
-                this.setState({loading: false})
-            });
+            this.requestApiData();
         }
     }
+
+    requestApiData =  async () => {
+        const {categoryName} = this.state;
+        apiFullCriteriaListGet(categoryName)
+            .then(response => {
+                this.setState({
+                    loading: false,
+                    apiList: response.response
+                });
+                this.countCategoryBookMarkedSize()
+            }).catch(error => {
+            Alert.error('Ошибка запросе на получение списка проектов' || (error && error.message));
+            this.setState({loading: false})
+        });
+    };
+
+    countCategoryBookMarkedSize =  async () => {
+        let bookmarkData = [];
+        this.setState({bookmarkLoading: true});
+        const {apiList} = this.state;
+        for (const apiData of apiList) {
+            const innerList = apiData.list;
+            for (const api of innerList) {
+                if (api.bookmarked) {
+                    bookmarkData.push(api);
+                }
+            }
+        }
+        this.setState({bookmarkData: bookmarkData, bookmarkLoading: false});
+    };
+
+
+    requestBookmarkList = async () => {
+        this.setState({bookmarkLoading: true});
+        bookmarkApiListGet(BOOKMARK_REQUEST_DEFAULT_LIMIT)
+            .then(response => {
+                this.setState({
+                    bookmarkData: response.response,
+                    bookmarkLoading: false
+                });
+            }).catch(error => {
+            this.setState({bookmarkLoading: false});
+        });
+    };
+
+
 
     handleChange = (e, {id, name}) => {
         const {authenticated} = this.props;
 
         const bookmarked = name === 'bookmark' ? 'bookmark' : 'bookmark outline';
         this.setState({
-            [id]: name
+            [id]: name,
+            bookmarkLoading: true
         });
 
         if (!authenticated) {
@@ -90,7 +132,7 @@ class ApiCategoryShop extends Component {
                 Alert.error('Ошибка при добавлении для Bookmark' || (error && error.message));
             });
         }
-
+        this.requestApiData();
     };
 
     componentWillUnmount() {
@@ -133,10 +175,9 @@ class ApiCategoryShop extends Component {
         });
     };
 
-
     render() {
 
-        const {loading, permittedCategory, categoryName, apiList} = this.state;
+        const {loading, bookmarkLoading, permittedCategory, categoryName, apiList, bookmarkData} = this.state;
 
         if (!this.handleCheck(permittedCategory, categoryName)) {
             return <Redirect
@@ -146,10 +187,8 @@ class ApiCategoryShop extends Component {
                 }}/>;
         }
 
-        const projects = apiList ? apiList : [];
-
         const host = window.location.origin.toString();
-        const hasFirstRow = projects[0] && projects[0].size > 0 ? projects[0] && projects[0].size > 0 : projects[1] && projects[1].size > 0;
+
         const {visible, authenticated} = this.props;
 
         const Projects = ({items}) => (
@@ -251,6 +290,9 @@ class ApiCategoryShop extends Component {
                                 <div className="api-shop-left-container">
                                     <div className='api-shop-inner-filter-container'>
                                         <div className='api-shop-filter-title'>Фильтры</div>
+
+                                        <FilterBookmarkLinkElement bookmarkData={bookmarkData} loading={bookmarkLoading}/>
+
                                         <div className='api-shop-filter-rating'>Рейтинг</div>
                                         <div className='api-shop-filter-rating-stars'>
                                             <Icon link name='star outline' className='star'/>
@@ -296,16 +338,16 @@ class ApiCategoryShop extends Component {
                                     </div>
                                 </div>
                                 <div className="api-shop-form-container">
-                                    {loading && !projects[0] ? (<CategoryShopLoadingIndicator/>) : (
-                                         projects[0].size > 0 ?
+                                    {loading && !apiList[0] ? (<CategoryShopLoadingIndicator/>) : (
+                                        apiList[0].size > 0 ?
                                             (
-                                                <div id={projects[0].data_name}>
+                                                <div id={apiList[0].data_name}>
                                                     <div className='api-element-container-header'>
                                             <span
-                                                className='main-form-header'>{projects[0] ? projects[0].data_name : ''}</span>
+                                                className='main-form-header'>{apiList[0] ? apiList[0].data_name : ''}</span>
                                                     </div>
                                                     <Grid columns='3'>
-                                                        <Projects items={projects[0] ? projects[0].list : []}/>
+                                                        <Projects items={apiList[0] ? apiList[0].list : []}/>
                                                     </Grid>
                                                 </div>
                                             )

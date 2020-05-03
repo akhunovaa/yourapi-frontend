@@ -32,7 +32,7 @@ class ShopBody extends Component {
     };
 
     handleChange = (e, {id, name}) => {
-        const {authenticated} = this.props;
+        const {authenticated, requestBookmarkList} = this.props;
 
         const bookmarked = name === 'bookmark' ? 'bookmark' : 'bookmark outline';
         this.setState({
@@ -65,7 +65,7 @@ class ShopBody extends Component {
                 Alert.error('Ошибка при добавлении для Bookmark' || (error && error.message));
             });
         }
-
+        requestBookmarkList();
     };
 
 

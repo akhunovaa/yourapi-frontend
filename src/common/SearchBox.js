@@ -7,7 +7,7 @@ import Alert from "react-s-alert";
 import LazySearchMiniImage from "../util/LazySearchMiniImage";
 import {getLink4Description} from "../util/ElementsDataUtils";
 
-const initialState = {isLoading: false, results: [], value: ''};
+const initialState = {loading: false, results: [], value: ''};
 const host = window.location.origin.toString();
 class SearchBox extends Component {
 
@@ -18,6 +18,7 @@ class SearchBox extends Component {
         super(props);
         this.state = {
             loading: true,
+            isLoading: false,
             wide: false,
             apiData: []
         };
@@ -26,7 +27,7 @@ class SearchBox extends Component {
     componentDidMount() {
         this._isMounted = true;
         if (this._isMounted) {
-            apiFullListGet()
+           apiFullListGet()
                 .then(response => {
                     const apiData = [];
                     response.response.map((category) => {
@@ -37,7 +38,8 @@ class SearchBox extends Component {
                                 title: api.fullName,
                                 description: api.description,
                                 category: api.category,
-                                image: api.image ? host + "/api-data/image/" + api.image + "/73/73" : null
+                                image: api.image ? host + "/api-data/image/" + api.image + "/73/73" : null,
+                                loading: false
                             };
                             apiData.push(data);
                         });
@@ -66,14 +68,14 @@ class SearchBox extends Component {
 
     handleSearchResultRenderer = ({api, uuid, title, description, category, image }) => {
         return ([image && (
-            <a href={getLink4Description(category) + uuid}>
-                <div key='image' className='result-image'>
+            <a href={getLink4Description(category) + uuid} key={uuid +'image'}>
+                <div className='result-image'>
                     <LazySearchMiniImage src={image}/>
                 </div>
             </a>
         ),
-            <a href={getLink4Description(category) + uuid}>
-                <div key='content' className='result-content'>
+            <a href={getLink4Description(category) + uuid} key={uuid +'content'}>
+                <div className='result-content'>
                     {title && <div className='title'>{title}</div>}
                     {description && <div className='description'>{description}</div>}
                 </div>
@@ -86,7 +88,7 @@ class SearchBox extends Component {
         if (undefined === value) {
             return;
         }
-        this.setState({isLoading: true, value});
+        this.setState({loading: true, value});
         const {apiData} = this.state;
 
         setTimeout(() => {
@@ -94,25 +96,25 @@ class SearchBox extends Component {
             const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
             const isMatch = (result) => re.test(result.title);
             this.setState({
-                isLoading: false,
-                results: _.filter(apiData, isMatch),
-                loading: true
+                loading: false,
+                results: _.filter(apiData, isMatch)
             })
         }, 300)
     };
 
 
     render() {
-        const {isLoading, value, results, wide} = this.state;
+        const {value, results, wide, loading} = this.state;
+
         return (
             <Grid>
                 <Grid.Column width={ wide ? 10 : 6 }>
                     <Search className='header-center-search-box'
                             noResultsMessage={'Ничего не найдено...'}
-                            loading={isLoading}
+                            loading={loading}
                             onResultSelect={this.handleResultSelect}
                             onSearchChange={_.debounce(this.handleSearchChange, 500, {
-                                leading: true,
+                                leading: true
                             })}
                             results={results}
                             value={value}
@@ -121,7 +123,7 @@ class SearchBox extends Component {
                             onFocus={()=>this.setState({wide: true})}
                             onBlur={()=>this.setState({wide: false, results: []})}
                             icon={{name: 'search', link: true, onClick: _.debounce(this.handleSearchChange, 500, {
-                                    leading: true,
+                                    leading: true
                                 }) }}
                             {...this.props}
                             id="searchInput" name="searchInput"/>
