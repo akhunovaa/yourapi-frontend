@@ -279,7 +279,7 @@ class ApiDetail extends Component {
                                                 {
                                                     image && !loading ? (
                                                         <LazyApiDetailImage
-                                                            src={host + "/api-data/image/" + image + "/77/77"}
+                                                            src={host + "/api-data/image/" + image + "/77/77.jpg"}
                                                             alt={name}/>
                                                     ) : (
                                                         <div className={image ? '' : 'api-detail-text-avatar'}>
