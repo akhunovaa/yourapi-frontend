@@ -390,7 +390,7 @@ class Profile extends Component {
 
         const {user, showPassword, passwordDisabled, city, language, gender, userApplicationSecret, open, openSecretDelete} = this.state;
         const {loading} = this.props;
-        const imageUrl = user.imageUrl ? user.imageUrl.includes("yourapi.ru") ? user.imageUrl + '/150/150' : user.imageUrl : '';
+        const imageUrl = user.imageUrl ? user.imageUrl.includes("yourapi.ru") ? user.imageUrl + '/150/150.jpg' : user.imageUrl : '';
         const sexOptions = [
             {
                 sex: 'Мужской',

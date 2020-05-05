@@ -45,7 +45,7 @@ class HeaderUserPortal extends Component {
             return <LoadingIndicator/>
         }
 
-        const imageUrl = currentUser ? currentUser.imageUrl ? currentUser.imageUrl.includes("yourapi.ru") ? currentUser.imageUrl + '/40/40' : currentUser.imageUrl : '' : '';
+        const imageUrl = currentUser ? currentUser.imageUrl ? currentUser.imageUrl.includes("yourapi.ru") ? currentUser.imageUrl + '/40/40.jpg' : currentUser.imageUrl : '' : '';
 
         const styles = {
             Segment: {

@@ -111,7 +111,7 @@ class UserProfile extends Component {
         const {id} = this.props.match.params;
         const {user, loading, open} = this.state;
         const {authenticated, history, visible} = this.props;
-        const imageUrl = user.imageUrl ? user.imageUrl.includes("yourapi.ru") ? user.imageUrl + '/150/150' : user.imageUrl : '';
+        const imageUrl = user.imageUrl ? user.imageUrl.includes("yourapi.ru") ? user.imageUrl + '/150/150.jpg' : user.imageUrl : '';
         const sexOptions = [
             {
                 sex: 'Мужской',
