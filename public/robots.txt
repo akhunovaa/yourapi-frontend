@@ -1,19 +1,17 @@
 User-agent: *
 Allow: /
-Disallow: /js/
-Disallow: /css/
 Sitemap: http://yourapi.ru/sitemap.xml
 
 User-agent: Googlebot
 Allow: /
-Disallow: /js/
-Disallow: /css/
 Sitemap: http://yourapi.ru/sitemap.xml
 
 User-agent: Yandex
 Allow: /
-Disallow: /js/
-Disallow: /css/
+Sitemap: http://yourapi.ru/sitemap.xml
+
+User-agent: Twitterbot
+Allow: /
 Sitemap: http://yourapi.ru/sitemap.xml
 
 Host: yourapi.ru
