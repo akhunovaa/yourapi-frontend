@@ -109,6 +109,7 @@ class App extends Component {
     render() {
         const seo = {
             title: "YourAPI | API Marketplace",
+            type: "website",
             siteName: 'yourapi.ru',
             description: "Marketplace IT решений. Find here your own IT decision! Your Marketplace. Artificial. Programmable. Intelligence.",
             url: "https://yourapi.ru/",
@@ -135,12 +136,12 @@ class App extends Component {
                             content: seo.description
                         },
                         { property: "og:title", content: seo.title },
+                        { property: "og:description", content: seo.description },
+                        { property: "og:type", content: seo.type },
                         { property: "og:site_name", content: seo.siteName },
                         { property: "og:url", content: seo.url },
                         { property: "og:image", content: seo.image },
-                        { property: "og:image:type", content: "image/jpeg" },
                         { property: "twitter:image:src", content: seo.image },
-                        { property: "og:image:secure_url", content: seo.image },
                         { property: "twitter:title", content: seo.title },
                         { property: "twitter:description", content: seo.description }
                     ]}
