@@ -1,6 +1,6 @@
 import {ACCESS_DENIED_MESSAGE, ACCESS_TOKEN, API_BASE_URL} from '../constants';
 
-const request = async (options) => {
+const request =  (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json;charset=UTF-8',
         'Accept': 'application/json;charset=UTF-8'
@@ -12,7 +12,7 @@ const request = async (options) => {
 
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
-    return await fetch(options.url, options)
+    return fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
                 if (!response.ok) {
@@ -24,7 +24,7 @@ const request = async (options) => {
         ).catch(error => console.log(error))
 };
 
-const clearRequest = async (options) => {
+const clearRequest =  (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json;charset=UTF-8',
         'Accept': 'application/json;charset=UTF-8'
@@ -36,7 +36,7 @@ const clearRequest = async (options) => {
 
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
-    return await fetch(options.url, options)
+    return fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
                 if (!response.ok) {
@@ -47,7 +47,7 @@ const clearRequest = async (options) => {
         ).catch(error => console.log(error))
 };
 
-const requestGet = async (options) => {
+const requestGet = (options) => {
     const headers = new Headers({
         'Accept': 'application/json;charset=UTF-8'
     });
@@ -59,7 +59,7 @@ const requestGet = async (options) => {
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
 
-    return await fetch(options.url, options)
+    return fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
                 if (!response.ok) {
@@ -71,7 +71,7 @@ const requestGet = async (options) => {
         );
 };
 
-const requestApiTestGet = async (options, key, host) => {
+const requestApiTestGet = (options, key, host) => {
 
     const headers = new Headers({
         'X-YourAPI-Key': key,
@@ -82,7 +82,7 @@ const requestApiTestGet = async (options, key, host) => {
 
     options = Object.assign({}, defaults, options);
 
-    return await fetch(options.url, options)
+    return fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
                 if (!response.ok) {
@@ -93,7 +93,7 @@ const requestApiTestGet = async (options, key, host) => {
             })).catch(error => console.log(error))
 };
 
-const requestImage = async (options) => {
+const requestImage = (options) => {
 
     const headers = new Headers({
         'Accept': 'application/json'
@@ -106,7 +106,7 @@ const requestImage = async (options) => {
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
 
-    return await fetch(options.url, options)
+    return fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
                 if (!response.ok) {
@@ -118,7 +118,7 @@ const requestImage = async (options) => {
         );
 };
 
-const requestFileSend = async (options) => {
+const requestFileSend = (options) => {
 
     const headers = new Headers({
         'Accept': 'application/json'
@@ -131,7 +131,7 @@ const requestFileSend = async (options) => {
     const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
 
-    return await fetch(options.url, options)
+    return fetch(options.url, options)
         .then(response =>
             response.json().then(json => {
                 if (!response.ok) {
