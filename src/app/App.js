@@ -31,7 +31,6 @@ import {getCurrentUser} from '../util/APIUtils';
 import {ACCESS_TOKEN} from '../constants';
 import {loadReCaptcha} from 'react-recaptcha-google'
 import OAuth2RedirectHandler from '../login/oauth2/OAuth2RedirectHandler';
-import {Helmet} from "react-helmet";
 
 class App extends Component {
 
@@ -107,15 +106,6 @@ class App extends Component {
     };
 
     render() {
-        const seo = {
-            title: "YourAPI | API Marketplace",
-            type: "website",
-            siteName: 'yourapi.ru',
-            description: "Marketplace IT решений. Find here your own IT decision! Your Marketplace. Artificial. Programmable. Intelligence.",
-            url: "https://yourapi.ru/",
-            image: "https://yourapi.ru/img/yourapi_img.jpg"
-        };
-
 
         const {width, loading, authenticated, currentUser, visible} = this.state;
         const {history} = this.props;
@@ -127,29 +117,14 @@ class App extends Component {
 
         return (
             <div>
-                <Helmet
-                    title={seo.title}
-                    meta={[
-                        {
-                            name: "description",
-                            property: "og:description",
-                            content: seo.description
-                        },
-                        { property: "og:title", content: seo.title },
-                        { property: "og:description", content: seo.description },
-                        { property: "og:type", content: seo.type },
-                        { property: "og:site_name", content: seo.siteName },
-                        { property: "og:url", content: seo.url },
-                        { property: "og:image", content: seo.image },
-                        { property: "twitter:image:src", content: seo.image },
-                        { property: "twitter:title", content: seo.title },
-                        { property: "twitter:description", content: seo.description }
-                    ]}
-                />
-                <AppHeader authenticated={authenticated} onLogout={this.handleLogout} handleSliderChange={this.handleSliderChange} visible={visible} currentUser={currentUser}/>
+
+                <AppHeader authenticated={authenticated} onLogout={this.handleLogout}
+                           handleSliderChange={this.handleSliderChange} visible={visible} currentUser={currentUser}/>
                 <Switch>
 
-                    <Route exact path="/" render={(props) => <Home authenticated={authenticated} visible={visible} handleSliderChange={this.handleSliderChange} currentUser={currentUser} {...props} />}/>
+                    <Route exact path="/" render={(props) => <Home authenticated={authenticated} visible={visible}
+                                                                   handleSliderChange={this.handleSliderChange}
+                                                                   currentUser={currentUser} {...props} />}/>
 
 
                     <Route exact path="/login" render={(props) => <Login isMobile={isMobile} history={history}
@@ -157,13 +132,19 @@ class App extends Component {
                     <Route exact path="/signup" render={(props) => <SignUp isMobile={isMobile} history={history}
                                                                            authenticated={authenticated} {...props} />}/>
 
-                    <Route exact path="/help" render={(props) => <Help authenticated={authenticated} visible={visible} currentUser={currentUser} {...props} />}/>
-                    <Route exact path="/help/account/:page?" render={(props) => <HelpAccount authenticated={authenticated} visible={visible} {...props} />}/>
+                    <Route exact path="/help" render={(props) => <Help authenticated={authenticated} visible={visible}
+                                                                       currentUser={currentUser} {...props} />}/>
+                    <Route exact path="/help/account/:page?"
+                           render={(props) => <HelpAccount authenticated={authenticated}
+                                                           visible={visible} {...props} />}/>
 
                     <Route path="/help/profile/:page?" component={HelpProfile}/>
-                    <Route path="/help/shop/:page?" authenticated={authenticated} currentUser={currentUser} component={HelpShop}/>
-                    <Route path="/help/faq/:page?" authenticated={authenticated} currentUser={currentUser} component={HelpFaq}/>
-                    <Route path="/help/integrator/:page?" authenticated={authenticated} currentUser={currentUser} component={HelpIntegrator}/>
+                    <Route path="/help/shop/:page?" authenticated={authenticated} currentUser={currentUser}
+                           component={HelpShop}/>
+                    <Route path="/help/faq/:page?" authenticated={authenticated} currentUser={currentUser}
+                           component={HelpFaq}/>
+                    <Route path="/help/integrator/:page?" authenticated={authenticated} currentUser={currentUser}
+                           component={HelpIntegrator}/>
                     <Route exact path="/integrator" component={Integrators}/>
 
                     <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={currentUser}
@@ -173,13 +154,22 @@ class App extends Component {
                     <PrivateRoute exact path="/profile/api" authenticated={authenticated} currentUser={currentUser}
                                   component={Api}/>
 
-                    <Route exact path="/profile/:id?" render={(props) => <UserProfile authenticated={authenticated} visible={visible} {...props} />}/>
-                    <Route exact path="/shop" render={(props) => <Shop authenticated={authenticated} currentUser={currentUser} visible={visible} {...props} />}/>
+                    <Route exact path="/profile/:id?" render={(props) => <UserProfile authenticated={authenticated}
+                                                                                      visible={visible} {...props} />}/>
+                    <Route exact path="/shop"
+                           render={(props) => <Shop authenticated={authenticated} currentUser={currentUser}
+                                                    visible={visible} {...props} />}/>
 
-                    <PrivateRoute exact path="/shop/bookmarks" authenticated={authenticated} currentUser={currentUser} component={ApiBookmark}/>
+                    <PrivateRoute exact path="/shop/bookmarks" authenticated={authenticated} currentUser={currentUser}
+                                  component={ApiBookmark}/>
 
-                    <Route exact path="/shop/category/:category?" render={(props) => <ApiCategoryShop authenticated={authenticated} currentUser={currentUser} visible={visible} {...props} />}/>
-                    <Route exact path="/shop/category/:category?/api/:id?" render={(props) => <ApiDetail handleSliderChange={this.handleSliderChange} authenticated={authenticated} currentUser={currentUser} visible={visible} {...props} />}/>
+                    <Route exact path="/shop/category/:category?"
+                           render={(props) => <ApiCategoryShop authenticated={authenticated} currentUser={currentUser}
+                                                               visible={visible} {...props} />}/>
+                    <Route exact path="/shop/category/:category?/api/:id?"
+                           render={(props) => <ApiDetail handleSliderChange={this.handleSliderChange}
+                                                         authenticated={authenticated} currentUser={currentUser}
+                                                         visible={visible} {...props} />}/>
 
                     <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}/>
                     <Route path='*' exact={true} component={NotFound}/>

@@ -8,7 +8,6 @@ class ApiDetailDocumentationBody extends Component {
 
     constructor(props) {
         super(props);
-        const {category} = this.props.match.params;
         this.state = {};
         this.reload = this.reload.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -18,8 +17,7 @@ class ApiDetailDocumentationBody extends Component {
     componentDidMount() {
         this._isMounted = true;
         if (this._isMounted) {
-            const {pageTitle} = this.props;
-            document.title = pageTitle;
+
         }
     }
 

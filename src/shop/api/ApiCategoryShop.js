@@ -17,6 +17,7 @@ import LazyMiniImage from '../../util/LazyMiniImage';
 import AuthContainerWrapper from "../../home/AuthContainerWrapper";
 import FilterBookmarkLinkElement from "../elements/FilterBookmarkLinkElement";
 import {BOOKMARK_REQUEST_DEFAULT_LIMIT} from "../../constants";
+import {Helmet} from "react-helmet";
 
 
 class ApiCategoryShop extends Component {
@@ -43,9 +44,6 @@ class ApiCategoryShop extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const {categoryName} = this.state;
-        const title = getCategoryName(categoryName);
-        document.title  = 'YourAPI | ' + title;
         if (this._isMounted) {
             this.requestApiData();
         }
@@ -258,6 +256,19 @@ class ApiCategoryShop extends Component {
 
         const responseScaleOne = this.state.responseScale[0];
         const responseScaleTwo = this.state.responseScale[1];
+        const title = getCategoryName(categoryName);
+
+        const seo = {
+            title: "YourAPI | " + title,
+            type: "website",
+            siteName: 'yourapi.ru',
+            description: "Marketplace IT решений. Find here your own IT decision! Your Marketplace. Artificial. Programmable. Intelligence.",
+            url: "https://yourapi.ru/shop/category/"  + categoryName,
+            image: "https://yourapi.ru/img/yourapi_img.jpg",
+            site: "@yourapi_ru",
+            domain: "yourapi.ru",
+            card: "summary"
+        };
 
         return (
             <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
@@ -274,6 +285,26 @@ class ApiCategoryShop extends Component {
                 <Sidebar.Pusher dimmed={visible}>
                     <Segment className='login-sidebar-pushable'>
                         <div className="api-shop-main">
+                            <Helmet
+                                title={seo.title}
+                                defer
+                                meta={[
+                                    {property: "og:description", content: seo.description},
+                                    {property: "og:title", content: seo.title},
+                                    {property: "og:description", content: seo.description},
+                                    {property: "og:type", content: seo.type},
+                                    {property: "og:site_name", content: seo.siteName},
+                                    {property: "og:url", content: seo.url},
+                                    {property: "og:image", content: seo.image},
+                                    {property: "twitter:image", content: seo.image},
+                                    {property: "twitter:image:alt", content: seo.description},
+                                    {property: "twitter:title", content: seo.title},
+                                    {property: "twitter:description", content: seo.description},
+                                    {property: "twitter:site", content: seo.site},
+                                    {property: "twitter:domain", content: seo.domain},
+                                    {property: "twitter:card", content: seo.card}
+                                ]}
+                            />
                             <div className="api-shop-container-breadcrumb">
                                 <Breadcrumb>
                                     <Breadcrumb.Section as={NavLink} to={'/'} link><span

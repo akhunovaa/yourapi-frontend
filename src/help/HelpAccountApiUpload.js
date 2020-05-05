@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Help.css';
+import {Helmet} from "react-helmet";
 
 class HelpAccountApiUpload extends Component {
 
@@ -17,7 +18,6 @@ class HelpAccountApiUpload extends Component {
         if (this._isMounted) {
             this.setState({loading: false})
         }
-        document.title  = 'YourAPI | Загрузка API';
     }
 
     componentWillUnmount() {
@@ -66,8 +66,41 @@ class HelpAccountApiUpload extends Component {
     render() {
         const host = window.location.origin.toString();
         const {prepare, upload} = this.state;
+
+        const seo = {
+            title: "YourAPI | Загрузка API",
+            type: "website",
+            siteName: 'yourapi.ru',
+            description: "Marketplace IT решений. Find here your own IT decision! Your Marketplace. Artificial. Programmable. Intelligence.",
+            url: "https://yourapi.ru/help/account/loader",
+            image: "https://yourapi.ru/img/yourapi_img.jpg",
+            site: "@yourapi_ru",
+            domain: "yourapi.ru",
+            card: "summary"
+        };
+
         return (
             <div className='help-sub-page'>
+                <Helmet
+                    title={seo.title}
+                    defer
+                    meta={[
+                        {name: "description", property: "og:description", content: seo.description},
+                        {property: "og:title", content: seo.title},
+                        {property: "og:description", content: seo.description},
+                        {property: "og:type", content: seo.type},
+                        {property: "og:site_name", content: seo.siteName},
+                        {property: "og:url", content: seo.url},
+                        {property: "og:image", content: seo.image},
+                        {property: "twitter:image", content: seo.image},
+                        {property: "twitter:image:alt", content: seo.description},
+                        {property: "twitter:title", content: seo.title},
+                        {property: "twitter:description", content: seo.description},
+                        {property: "twitter:site", content: seo.site},
+                        {property: "twitter:domain", content: seo.domain},
+                        {property: "twitter:card", content: seo.card}
+                    ]}
+                />
                 <div className='help-sub-page-left'>
                     <div className='help-sub-page-left-body'>
                         <div className='help-sub-paragraph'>

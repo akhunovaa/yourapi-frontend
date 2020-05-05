@@ -8,6 +8,7 @@ import {getClassName4Color, getIconColor, getLink4Category, getLink4Description}
 import {HomeCellLoadingIndicator, HomeLoadingIndicator} from '../common/LoadingIndicator';
 import LazyMiniImage from '../util/LazyMiniImage';
 import AuthContainerWrapper from "./AuthContainerWrapper";
+import {Helmet} from "react-helmet";
 
 class Home extends Component {
 
@@ -47,7 +48,6 @@ class Home extends Component {
                 Alert.error('Ошибка запросе на получение проектов' || (error && error.message));
             });
         }
-        document.title = 'YourAPI | Главная страница';
     }
 
     handleChange = (e, {id, name}) => {
@@ -164,8 +164,45 @@ class Home extends Component {
 
         const {visible, authenticated, handleSliderChange} = this.props;
 
+        const seo = {
+            title: "YourAPI | Главная страница",
+            type: "website",
+            siteName: 'yourapi.ru',
+            description: "Marketplace IT решений. Find here your own IT decision! Your Marketplace. Artificial. Programmable. Intelligence.",
+            url: "https://yourapi.ru/",
+            image: "https://yourapi.ru/img/yourapi_img.jpg",
+            site: "@yourapi_ru",
+            card: "summary",
+            domain: "yourapi.ru"
+        };
+
+
         return (
             <div className="main">
+                <Helmet
+                    title={seo.title}
+                    defer
+                    meta={[
+                        {
+                            name: "description",
+                            property: "og:description",
+                            content: seo.description
+                        },
+                        {property: "og:title", content: seo.title},
+                        {property: "og:description", content: seo.description},
+                        {property: "og:type", content: seo.type},
+                        {property: "og:site_name", content: seo.siteName},
+                        {property: "og:url", content: seo.url},
+                        {property: "og:image", content: seo.image},
+                        {property: "twitter:image", content: seo.image},
+                        {property: "twitter:image:alt", content: seo.description},
+                        {property: "twitter:title", content: seo.title},
+                        {property: "twitter:description", content: seo.description},
+                        {property: "twitter:site", content: seo.site},
+                        {property: "twitter:domain", content: seo.domain},
+                        {property: "twitter:card", content: seo.card}
+                    ]}
+                />
                 <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
                     <Sidebar
                         as={Menu}

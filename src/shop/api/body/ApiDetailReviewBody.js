@@ -19,8 +19,7 @@ class ApiDetailReviewBody extends Component {
     componentDidMount() {
         this._isMounted = true;
         if (this._isMounted) {
-            const {pageTitle} = this.props;
-            document.title = pageTitle;
+
         }
     }
 

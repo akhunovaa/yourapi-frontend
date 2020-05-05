@@ -10,6 +10,7 @@ import {unregister} from '../util/../registerServiceWorker';
 import LoadingIndicator from '../common/LoadingIndicator';
 import { Icon as Iconx } from '@iconify/react';
 import battleNet from '@iconify/icons-fa-brands/battle-net';
+import {Helmet} from "react-helmet";
 
 class Login extends Component {
 
@@ -38,7 +39,6 @@ class Login extends Component {
             }, 100);
         }
         this.setState({loading: false});
-        document.title  = 'YourAPI | Авторизация';
     }
 
     componentWillUnmount() {
@@ -139,8 +139,44 @@ class Login extends Component {
             }
         };
 
+        const seo = {
+            title: "YourAPI | Авторизация",
+            type: "website",
+            siteName: 'yourapi.ru',
+            description: "Marketplace IT решений. Find here your own IT decision! Your Marketplace. Artificial. Programmable. Intelligence.",
+            url: "https://yourapi.ru/login",
+            image: "https://yourapi.ru/img/yourapi_img.jpg",
+            site: "@yourapi_ru",
+            domain: "yourapi.ru",
+            card: "summary"
+        };
+
         return (
             <div id="login-container">
+                <Helmet
+                    title={seo.title}
+                    defer
+                    meta={[
+                        {
+                            name: "description",
+                            property: "og:description",
+                            content: seo.description
+                        },
+                        {property: "og:title", content: seo.title},
+                        {property: "og:description", content: seo.description},
+                        {property: "og:type", content: seo.type},
+                        {property: "og:site_name", content: seo.siteName},
+                        {property: "og:url", content: seo.url},
+                        {property: "og:image", content: seo.image},
+                        {property: "twitter:image", content: seo.image},
+                        {property: "twitter:image:alt", content: seo.description},
+                        {property: "twitter:title", content: seo.title},
+                        {property: "twitter:description", content: seo.description},
+                        {property: "twitter:site", content: seo.site},
+                        {property: "twitter:domain", content: seo.domain},
+                        {property: "twitter:card", content: seo.card}
+                    ]}
+                />
                 {isMobile ? <div/> :  <div id="login-container-left"/>}
                 <div id="login-container-right">
                     <div id="login-container-right-header">

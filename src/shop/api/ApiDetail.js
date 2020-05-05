@@ -24,6 +24,7 @@ import ApiDetailCustomInfoPopup from "./ApiDetailCustomInfoPopup";
 import ApiDetailSharePopup from "./ApiDetailSharePopup";
 import {requestUserSecretList} from "../../util/APIUtils";
 import LoadingIndicator from "../../common/LoadingIndicator";
+import {Helmet} from "react-helmet";
 
 class ApiDetail extends Component {
 
@@ -82,7 +83,6 @@ class ApiDetail extends Component {
                         bookmarked: response.response.bookmarked,
                         pageTitle: 'YourAPI | ' + response.response.fullName
                     });
-                    document.title = 'YourAPI | ' + response.response.fullName;
                 }).catch(error => {
                 Alert.error('Ошибка при получении проекта' || (error && error.message));
                 this.setState({loading: false})
@@ -241,6 +241,19 @@ class ApiDetail extends Component {
         };
 
         const {visible, authenticated} = this.props;
+
+        const seo = {
+            title: "YourAPI | " + name,
+            type: "website",
+            siteName: 'yourapi.ru',
+            description: description,
+            url: link4Description,
+            image: image ? host + "/api-data/image/" + image + "/600/600.jpg" : "https://yourapi.ru/img/yourapi_img.jpg",
+            site: "@yourapi_ru",
+            domain: "yourapi.ru",
+            card: "summary"
+        };
+
         return (
             <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
                 <Sidebar
@@ -256,6 +269,26 @@ class ApiDetail extends Component {
                 <Sidebar.Pusher dimmed={visible}>
                     <Segment className='login-sidebar-pushable'>
                         <div className="api-detail-main">
+                            <Helmet
+                                title={seo.title}
+                                defer
+                                meta={[
+                                    {name: "description", property: "og:description", content: seo.description},
+                                    {property: "og:title", content: seo.title},
+                                    {property: "og:description", content: seo.description},
+                                    {property: "og:type", content: seo.type},
+                                    {property: "og:site_name", content: seo.siteName},
+                                    {property: "og:url", content: seo.url},
+                                    {property: "og:image", content: seo.image},
+                                    {property: "twitter:image", content: seo.image},
+                                    {property: "twitter:image:alt", content: seo.description},
+                                    {property: "twitter:title", content: seo.title},
+                                    {property: "twitter:description", content: seo.description},
+                                    {property: "twitter:site", content: seo.site},
+                                    {property: "twitter:domain", content: seo.domain},
+                                    {property: "twitter:card", content: seo.card}
+                                ]}
+                            />
                             <div className="api-detail-container-breadcrumb">
                                 <Breadcrumb>
                                     <Breadcrumb.Section as={NavLink} to={'/'} link><span

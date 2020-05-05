@@ -20,6 +20,7 @@ import {
 import LazyImage from '../util/LazyImage';
 import {getUserProfile} from "../util/APIUtils";
 import AuthContainerWrapper from "../home/AuthContainerWrapper";
+import {Helmet} from "react-helmet";
 
 class UserProfile extends Component {
 
@@ -51,7 +52,6 @@ class UserProfile extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        document.title  = 'YourAPI | ';
         this.loadRequestedUser();
     }
 
@@ -76,11 +76,6 @@ class UserProfile extends Component {
                         user: response.response,
                         loading: false
                     });
-                    const user = response.response;
-                    const surname = user.surname ? user.surname : '';
-                    const name = user.name ? user.name : '';
-                    const patrName = user.patrName ? user.patrName : '';
-                    document.title = profileTitle + surname + ' ' + name + ' ' + patrName;
                 }
             }).catch(error => {
             document.title = profileTitle + 'Пользователь не найден';
@@ -204,6 +199,22 @@ class UserProfile extends Component {
             }
         ];
 
+        const surname = user.surname ? user.surname : '';
+        const name = user.name ? user.name : '';
+        const patrName = user.patrName ? user.patrName : '';
+
+        const seo = {
+            title: "YourAPI | " + surname + ' ' + name + ' ' + patrName,
+            type: "website",
+            siteName: 'yourapi.ru',
+            description: user.info ? user.info : "YourAPI | " + surname + ' ' + name + ' ' + patrName,
+            url: "https://yourapi.ru/profile/id" + id,
+            image: imageUrl ? imageUrl : "https://yourapi.ru/img/yourapi_img.jpg",
+            site: "@yourapi_ru",
+            domain: "yourapi.ru",
+            card: "summary"
+        };
+
         return (
             <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
                 <Sidebar
@@ -218,6 +229,25 @@ class UserProfile extends Component {
                 <Sidebar.Pusher dimmed={visible}>
                     <Segment className='login-sidebar-pushable'>
                         <div className="user-profile-main">
+                            <Helmet
+                                title={seo.title}
+                                meta={[
+                                    {name: "description", property: "og:description", content: seo.description},
+                                    {property: "og:title", content: seo.title},
+                                    {property: "og:description", content: seo.description},
+                                    {property: "og:type", content: seo.type},
+                                    {property: "og:site_name", content: seo.siteName},
+                                    {property: "og:url", content: seo.url},
+                                    {property: "og:image", content: seo.image},
+                                    {property: "twitter:image", content: seo.image},
+                                    {property: "twitter:image:alt", content: seo.description},
+                                    {property: "twitter:title", content: seo.title},
+                                    {property: "twitter:description", content: seo.description},
+                                    {property: "twitter:site", content: seo.site},
+                                    {property: "twitter:domain", content: seo.domain},
+                                    {property: "twitter:card", content: seo.card}
+                                ]}
+                            />
                             <div className="user-profile-main-container">
                                 <div className="container-breadcrumb">
                                     <Breadcrumb>

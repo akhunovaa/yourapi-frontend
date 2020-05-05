@@ -10,6 +10,7 @@ import {categoryLoadingIndicator} from "../common/LoadingIndicator";
 import AuthContainerWrapper from "../home/AuthContainerWrapper";
 import FilterBookmarkLinkElement from "./elements/FilterBookmarkLinkElement";
 import {BOOKMARK_REQUEST_DEFAULT_LIMIT} from "../constants";
+import {Helmet} from "react-helmet";
 
 class Shop extends Component {
 
@@ -50,7 +51,6 @@ class Shop extends Component {
                 this.requestBookmarkList()
             }
         }
-        document.title  = 'YourAPI | Marketplace';
     }
 
 
@@ -115,6 +115,17 @@ class Shop extends Component {
 
     render() {
 
+        const seo = {
+            title: "YourAPI | Магазин",
+            type: "website",
+            siteName: 'yourapi.ru',
+            description: "Marketplace IT решений. Find here your own IT decision! Your Marketplace. Artificial. Programmable. Intelligence.",
+            url: "https://yourapi.ru/shop",
+            image: "https://yourapi.ru/img/yourapi_img.jpg",
+            site: "@yourapi_ru",
+            domain: "yourapi.ru",
+            card: "summary"
+        };
 
         const {loading, apiList, bookmarkData, bookmarkLoading} = this.state;
         const {visible, authenticated} = this.props;
@@ -134,6 +145,26 @@ class Shop extends Component {
                 <Sidebar.Pusher dimmed={visible}>
                     <Segment className='login-sidebar-pushable'>
                         <div className="shop-main">
+                            <Helmet
+                                title={seo.title}
+                                defer
+                                meta={[
+                                    {name: "description", property: "og:description", content: seo.description},
+                                    {property: "og:title", content: seo.title},
+                                    {property: "og:description", content: seo.description},
+                                    {property: "og:type", content: seo.type},
+                                    {property: "og:site_name", content: seo.siteName},
+                                    {property: "og:url", content: seo.url},
+                                    {property: "og:image", content: seo.image},
+                                    {property: "twitter:image", content: seo.image},
+                                    {property: "twitter:image:alt", content: seo.description},
+                                    {property: "twitter:title", content: seo.title},
+                                    {property: "twitter:description", content: seo.description},
+                                    {property: "twitter:site", content: seo.site},
+                                    {property: "twitter:domain", content: seo.domain},
+                                    {property: "twitter:card", content: seo.card}
+                                ]}
+                            />
                             <div className="shop-container-breadcrumb">
                                 <Breadcrumb>
                                     <Breadcrumb.Section as={NavLink} to={'/'} link><span

@@ -3,6 +3,7 @@ import './Help.css';
 import {NavLink} from "react-router-dom";
 import {Menu, Segment, Sidebar} from "semantic-ui-react";
 import AuthContainerWrapper from "../home/AuthContainerWrapper";
+import {Helmet} from "react-helmet";
 
 class Help extends Component {
 
@@ -20,7 +21,6 @@ class Help extends Component {
     componentDidMount() {
         this._isMounted = true;
         this.setState({loading: false});
-        document.title  = 'YourAPI | Справка';
     }
 
 
@@ -35,6 +35,18 @@ class Help extends Component {
     render() {
 
         const {visible, authenticated} = this.props;
+
+        const seo = {
+            title: "YourAPI | Справка",
+            type: "website",
+            siteName: 'yourapi.ru',
+            description: "Marketplace IT решений. Find here your own IT decision! Your Marketplace. Artificial. Programmable. Intelligence.",
+            url: "https://yourapi.ru/help/",
+            image: "https://yourapi.ru/img/yourapi_img.jpg",
+            site: "@yourapi_ru",
+            domain: "yourapi.ru",
+            card: "summary"
+        };
 
         return (
             <div className="help-main">
@@ -52,6 +64,26 @@ class Help extends Component {
                     <Sidebar.Pusher dimmed={visible}>
                         <Segment className='login-sidebar-pushable'>
                             <div className="help-header-picture" unselectable='on'>
+                                <Helmet
+                                    title={seo.title}
+                                    defer
+                                    meta={[
+                                        {name: "description", property: "og:description", content: seo.description},
+                                        {property: "og:title", content: seo.title},
+                                        {property: "og:description", content: seo.description},
+                                        {property: "og:type", content: seo.type},
+                                        {property: "og:site_name", content: seo.siteName},
+                                        {property: "og:url", content: seo.url},
+                                        {property: "og:image", content: seo.image},
+                                        {property: "twitter:image", content: seo.image},
+                                        {property: "twitter:image:alt", content: seo.description},
+                                        {property: "twitter:title", content: seo.title},
+                                        {property: "twitter:description", content: seo.description},
+                                        {property: "twitter:site", content: seo.site},
+                                        {property: "twitter:domain", content: seo.domain},
+                                        {property: "twitter:card", content: seo.card}
+                                    ]}
+                                />
                                 <div className="help-header-picture-inner">
                                     <div className='header-text-left'>
                                         <div className="header-slogan" unselectable='on'>
