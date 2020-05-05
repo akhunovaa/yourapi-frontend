@@ -6,8 +6,8 @@ import { signup } from "../util/APIUtils";
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, VK_AUTH_URL, YANDEX_AUTH_URL, OAUTH2_REDIRECT_URI, BATTLE_NET_AUTH_URL } from '../constants';
 import Alert from "react-s-alert";
 import { ReCaptcha } from 'react-recaptcha-google'
-// import {unregister} from "../registerServiceWorker";
-// import registerServiceWorker from "../registerServiceWorker";
+import {unregister} from "../registerServiceWorker";
+import registerServiceWorker from "../registerServiceWorker";
 import LoadingIndicator from '../common/LoadingIndicator';
 import {Icon as Iconx} from "@iconify/react";
 import battleNet from "@iconify/icons-fa-brands/battle-net";
@@ -43,7 +43,7 @@ class SignUp extends Component {
         event.preventDefault();
         const target = event.target;
         const inputId = target.id;
-        // unregister();
+        unregister();
         let host = window.location.origin.toString();
         let redirectUri = host + OAUTH2_REDIRECT_URI;
         let authUrl;
@@ -89,7 +89,7 @@ class SignUp extends Component {
         this.setState({
             previousUrl: previousUrl
         });
-        // registerServiceWorker();
+        registerServiceWorker();
     };
 
     render() {
