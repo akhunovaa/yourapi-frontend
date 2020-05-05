@@ -205,7 +205,7 @@ class ApiCategoryShop extends Component {
                                                     <NavLink
                                                         to={getLink4Description(item.category) + item.uuid}>
                                                         <LazyMiniImage
-                                                            src={host + "/api-data/image/" + item.image + "/32/32"}/>
+                                                            src={host + "/api-data/image/" + item.image + "/32/32.jpg"}/>
                                                     </NavLink>
                                                 ) : (
                                                     <div className="home-api-text-avatar">
