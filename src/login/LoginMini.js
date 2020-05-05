@@ -53,7 +53,7 @@ class LoginMini extends Component {
         event.preventDefault();
         const target = event.target;
         const inputId = target.id;
-        unregister();
+        // unregister();
         let host = window.location.origin.toString();
         let redirectUri = host + OAUTH2_REDIRECT_URI;
         let authUrl;
