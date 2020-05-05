@@ -5,8 +5,8 @@ import {Button, Checkbox, Divider, Form, Grid, Header, Icon, Input, Segment} fro
 import {login} from "../util/APIUtils";
 import {Link, NavLink, Redirect} from "react-router-dom";
 import { GOOGLE_AUTH_URL, FACEBOOK_AUTH_URL, ACCESS_TOKEN, VK_AUTH_URL, YANDEX_AUTH_URL, OAUTH2_REDIRECT_URI, BATTLE_NET_AUTH_URL } from '../constants';
-import registerServiceWorker from '../util/../registerServiceWorker';
-import {unregister} from '../util/../registerServiceWorker';
+// import registerServiceWorker from '../util/../registerServiceWorker';
+// import {unregister} from '../util/../registerServiceWorker';
 import LoadingIndicator from '../common/LoadingIndicator';
 import SignUpMini from '../signup/SignUpMini';
 import { Icon as Iconx } from '@iconify/react';
@@ -100,7 +100,7 @@ class LoginMini extends Component {
         this.setState({
             previousUrl: previousUrl
         });
-        registerServiceWorker();
+        // registerServiceWorker();
     };
 
     render() {
