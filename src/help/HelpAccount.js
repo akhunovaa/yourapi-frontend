@@ -79,7 +79,7 @@ class HelpAccount extends Component {
                         <div className='help-page-main'>
 
                             <div className='left-side-help-body'>
-                                <HelpInnerLinksSet {...this.props}/>
+                                <HelpInnerLinksSet active={'uploader'} {...this.props}/>
                             </div>
                             <div className='right-side-help-body'>
                                 {this.renderBody(page)}

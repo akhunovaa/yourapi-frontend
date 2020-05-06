@@ -51,15 +51,14 @@ class HelpInnerLinksSet extends Component {
 
     render() {
 
-        const {page} = this.props.match.params;
-
+        const {active} = this.props;
         return (
             <div className='help-left-container-page-links-body'>
                 <div className='help-links-element'>
-                    {/*<NavLink to='/help/faq' className='help-header-elements-label-link'><span className='help-header-elements-label help-link'>FAQ</span></NavLink>*/}
-                    <div style={{cursor: "no-drop"}} className='help-header-elements-label-link-disabled'>
-                        <span className='help-header-label help-link-disabled'>FAQ</span>
-                    </div>
+                    <NavLink to='/help/faq' className='help-header-label-link'><span className={active === 'faq' ? 'help-header-label help-link help-sub-link-enabled-header' : 'help-header-label help-sub-link-restricted-header'}>FAQ</span></NavLink>
+                    {/*<div className='help-header-elements-label-link-disabled'>*/}
+                        {/*<span className='help-header-label help-link-disabled'>FAQ</span>*/}
+                    {/*</div>*/}
                 </div>
                 <div className='help-body-element help-link-element-padded'>
                     {/*<NavLink to='/help/profile/registration' className='help-header-elements-label-link'><span className='help-header-elements-label help-link'>Учетная запись</span></NavLink>*/}
@@ -117,13 +116,12 @@ class HelpInnerLinksSet extends Component {
                     {/*<NavLink to='/help/account/api' className='help-header-link-set'><span className={page === 'api' ? 'help-header-link-set help-sub-link-active': 'help-header-link-set help-sub-link'}>Работа c API</span></NavLink>*/}
                     {/*<NavLink to='/help/account/administration' className='help-header-link-set'><span className={page === 'administration' ? 'help-header-link-set help-sub-link-active': 'help-header-link-set help-sub-link'}>Администрирование</span></NavLink>*/}
 
-                    <NavLink to='/help/account' className='help-header-label-link'><span
-                        className='help-header-label'>Личный кабинет</span></NavLink>
+                    <NavLink to='/help/account' className='help-header-label-link'><span className='help-header-label'>Личный кабинет</span></NavLink>
                     {/*<NavLink to='/help/account/setup' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Настройка профиля</span></NavLink>*/}
                     <div style={{cursor: "no-drop"}} className='help-header-body-links'>
                         <span className='help-header-body-links help-sub-link-disabled blue-hover'>Настройка профиля</span>
                     </div>
-                    <NavLink to='/help/account/loader' className='help-header-body-links'><span className='help-header-body-links help-sub-link'>Загрузка API</span></NavLink>
+                    <NavLink to='/help/account/loader' className='help-header-body-links'><span className={active === 'uploader' ? 'help-header-body-links help-sub-link-enabled' : 'help-header-body-links help-sub-link-restricted'}>Загрузка API</span></NavLink>
                     <div style={{cursor: "no-drop"}} className='help-header-body-links'>
                         <span className='help-header-body-links help-sub-link-disabled'>Работа c API</span>
                     </div>

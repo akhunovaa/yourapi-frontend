@@ -35,12 +35,6 @@ class HelpAccountApiUpload extends Component {
         });
     }
 
-    handleOnPhoneChange(value) {
-        this.setState({
-            phone: value
-        });
-    }
-
     viewData = (event) => {
         const target = event.target;
         const imgName = target.name;

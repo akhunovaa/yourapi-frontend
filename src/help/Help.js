@@ -117,13 +117,13 @@ class Help extends Component {
                                 <div className="help-inner-body-container">
                                     <div className="help-inner-left-container">
                                         <div className='help-body-element'>
-                                            {/*<NavLink to='/help/faq' className='help-header-elements-label-link'><span className='help-header-label help-link'>FAQ</span></NavLink>*/}
-                                            {/*<span className='help-header-body'>Здесь мы соберем самые распространенные вопросы о продукте</span>*/}
-                                            <div style={{cursor: "no-drop"}}
-                                                 className='help-header-elements-label-link-disabled'>
-                                                <span className='help-header-label help-link-disabled'>FAQ</span>
-                                                <span className='help-header-body'>Здесь мы соберем самые распространенные вопросы о продукте</span>
-                                            </div>
+                                            <NavLink to='/help/faq' className='help-header-elements-label-link'><span className='help-header-label help-link'>FAQ</span></NavLink>
+                                            <span className='help-header-body'>Здесь мы соберем самые распространенные вопросы о продукте</span>
+                                            {/*<div style={{cursor: "no-drop"}}*/}
+                                                 {/*className='help-header-elements-label-link-disabled'>*/}
+                                                {/*<span className='help-header-label help-link-disabled'>FAQ</span>*/}
+                                                {/*<span className='help-header-body'>Здесь мы соберем самые распространенные вопросы о продукте</span>*/}
+                                            {/*</div>*/}
                                         </div>
                                         <div className='help-body-element help-body-element-padded'>
                                             {/*<NavLink to='/help/shop' className='help-header-elements-label-link'><span className='help-header-label help-link'>Магазин API</span></NavLink>*/}

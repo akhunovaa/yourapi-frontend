@@ -138,13 +138,14 @@ class App extends Component {
                            render={(props) => <HelpAccount authenticated={authenticated}
                                                            visible={visible} {...props} />}/>
 
+                    <Route exact path="/help/faq"
+                           render={(props) => <HelpFaq authenticated={authenticated}
+                                                           visible={visible} {...props} />}/>
+
                     <Route path="/help/profile/:page?" component={HelpProfile}/>
-                    <Route path="/help/shop/:page?" authenticated={authenticated} currentUser={currentUser}
-                           component={HelpShop}/>
-                    <Route path="/help/faq/:page?" authenticated={authenticated} currentUser={currentUser}
-                           component={HelpFaq}/>
-                    <Route path="/help/integrator/:page?" authenticated={authenticated} currentUser={currentUser}
-                           component={HelpIntegrator}/>
+                    <Route path="/help/shop/:page?" authenticated={authenticated} currentUser={currentUser} component={HelpShop}/>
+
+                    <Route path="/help/integrator/:page?" authenticated={authenticated} currentUser={currentUser} component={HelpIntegrator}/>
                     <Route exact path="/integrator" component={Integrators}/>
 
                     <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={currentUser}
