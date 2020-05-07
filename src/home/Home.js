@@ -97,7 +97,8 @@ class Home extends Component {
 
     render() {
 
-        const host = window.location.origin.toString();
+        // const host = window.location.origin.toString();
+        const host = 'https://yourapi.ru';
 
         const Projects = ({items}) => (
             <>
