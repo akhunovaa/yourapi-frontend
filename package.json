@@ -45,7 +45,6 @@
     "minifyHtml": { "sortClassName": false },
     "cacheAjaxRequests": true,
     "inlineCss": true,
-    "skipThirdPartyRequests": true,
     "puppeteerExecutablePath": "/usr/bin/google-chrome"
   },
   "browserslist": [
