@@ -255,165 +255,168 @@ class ApiDetail extends Component {
         };
 
         return (
-            <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
-                <Sidebar
-                    as={Menu}
-                    animation='overlay'
-                    direction='right'
-                    vertical
-                    visible={visible}
-                    className='login-slider-pushable'>
-                    {authenticated ? (<div/>) : (
-                        <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}
-                </Sidebar>
-                <Sidebar.Pusher dimmed={visible}>
-                    <Segment className='login-sidebar-pushable'>
-                        <div className="api-detail-main">
-                            <Helmet
-                                title={seo.title}
-                                defer
-                                meta={[
-                                    {name: "description", property: "og:description", content: seo.description},
-                                    {property: "og:title", content: seo.title},
-                                    {property: "og:description", content: seo.description},
-                                    {property: "og:type", content: seo.type},
-                                    {property: "og:site_name", content: seo.siteName},
-                                    {property: "og:url", content: seo.url},
-                                    {property: "og:image", content: seo.image},
-                                    {property: "twitter:image", content: seo.image},
-                                    {property: "twitter:image:alt", content: seo.description},
-                                    {property: "twitter:title", content: seo.title},
-                                    {property: "twitter:description", content: seo.description},
-                                    {property: "twitter:site", content: seo.site},
-                                    {property: "twitter:domain", content: seo.domain},
-                                    {property: "twitter:card", content: seo.card}
-                                ]}
-                            />
-                            <div className="api-detail-container-breadcrumb">
-                                <Breadcrumb>
-                                    <Breadcrumb.Section as={NavLink} to={'/'} link><span
-                                        className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
-                                    <Breadcrumb.Divider icon='right chevron'/>
-                                    <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
-                                        className='text-disabled-color blue-hover'>Магазин</span></Breadcrumb.Section>
-                                    <Breadcrumb.Divider icon='right chevron'/>
-                                    <Breadcrumb.Section as={NavLink} to={link} link><span
-                                        className='text-disabled-color blue-hover'>{category}</span></Breadcrumb.Section>
-                                    <Breadcrumb.Divider icon='right chevron'/>
-                                    <Breadcrumb.Section as={NavLink} to={link4Description} link><span
-                                        className='text-disabled-color blue-hover'>{name}</span></Breadcrumb.Section>
-                                </Breadcrumb>
-                            </div>
-                            <div className="api-detail-main-container">
-                                <div className="api-detail-left-container">
-                                    <div className='api-detail-inner-filter-container'>
-                                        <div className='api-detail-inner-header-container'>
-                                            <div className="api-header-logo-picture">
-                                                {
-                                                    image && !loading ? (
-                                                        <LazyApiDetailImage
-                                                            src={host + "/api-data/image/" + image + "/77/77.jpg"}
-                                                            alt={name}/>
-                                                    ) : (
-                                                        <div className={image ? '' : 'api-detail-text-avatar'}>
-                                                            <span>{name && name[0]}</span>
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-                                            <div className="grid-labels">
-                                                <Icon style={{
-                                                    color: bookmarked ? bookmarkText !== 'bookmark outline' ? '#2F80ED' : '' : bookmarkText === 'bookmark' ? '#2F80ED' : ''
-                                                }} link onClick={this.handleChange} id={uuid}
-                                                      className='grid-labels-icon'
-                                                      name={bookmarked ? bookmarkText !== 'bookmark outline' ? 'bookmark' : 'bookmark outline' : bookmarkText === 'bookmark' ? 'bookmark' : 'bookmark outline'}/>
+            <div>
+                <Helmet
+                    title={seo.title}
+                    defer
+                    meta={[
+                        {name: "description", property: "og:description", content: seo.description},
+                        {property: "og:title", content: seo.title},
+                        {property: "og:description", content: seo.description},
+                        {property: "og:type", content: seo.type},
+                        {property: "og:site_name", content: seo.siteName},
+                        {property: "og:url", content: seo.url},
+                        {property: "og:image", content: seo.image},
+                        {property: "twitter:image", content: seo.image},
+                        {property: "twitter:image:alt", content: seo.description},
+                        {property: "twitter:title", content: seo.title},
+                        {property: "twitter:description", content: seo.description},
+                        {property: "twitter:site", content: seo.site},
+                        {property: "twitter:domain", content: seo.domain},
+                        {property: "twitter:card", content: seo.card}
+                    ]}
+                />
+                <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
+                    <Sidebar
+                        as={Menu}
+                        animation='overlay'
+                        direction='right'
+                        vertical
+                        visible={visible}
+                        className='login-slider-pushable'>
+                        {authenticated ? (<div/>) : (
+                            <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}
+                    </Sidebar>
+                    <Sidebar.Pusher dimmed={visible}>
+                        <Segment className='login-sidebar-pushable'>
+                            <div className="api-detail-main">
+                                <div className="api-detail-container-breadcrumb">
+                                    <Breadcrumb>
+                                        <Breadcrumb.Section as={NavLink} to={'/'} link><span
+                                            className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
+                                        <Breadcrumb.Divider icon='right chevron'/>
+                                        <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
+                                            className='text-disabled-color blue-hover'>Магазин</span></Breadcrumb.Section>
+                                        <Breadcrumb.Divider icon='right chevron'/>
+                                        <Breadcrumb.Section as={NavLink} to={link} link><span
+                                            className='text-disabled-color blue-hover'>{category}</span></Breadcrumb.Section>
+                                        <Breadcrumb.Divider icon='right chevron'/>
+                                        <Breadcrumb.Section as={NavLink} to={link4Description} link><span
+                                            className='text-disabled-color blue-hover'>{name}</span></Breadcrumb.Section>
+                                    </Breadcrumb>
+                                </div>
+                                <div className="api-detail-main-container">
+                                    <div className="api-detail-left-container">
+                                        <div className='api-detail-inner-filter-container'>
+                                            <div className='api-detail-inner-header-container'>
+                                                <div className="api-header-logo-picture">
+                                                    {
+                                                        image && !loading ? (
+                                                            <LazyApiDetailImage
+                                                                src={host + "/api-data/image/" + image + "/77/77.jpg"}
+                                                                alt={name}/>
+                                                        ) : (
+                                                            <div className={image ? '' : 'api-detail-text-avatar'}>
+                                                                <span>{name && name[0]}</span>
+                                                            </div>
+                                                        )
+                                                    }
+                                                </div>
+                                                <div className="grid-labels">
+                                                    <Icon style={{
+                                                        color: bookmarked ? bookmarkText !== 'bookmark outline' ? '#2F80ED' : '' : bookmarkText === 'bookmark' ? '#2F80ED' : ''
+                                                    }} link onClick={this.handleChange} id={uuid}
+                                                          className='grid-labels-icon'
+                                                          name={bookmarked ? bookmarkText !== 'bookmark outline' ? 'bookmark' : 'bookmark outline' : bookmarkText === 'bookmark' ? 'bookmark' : 'bookmark outline'}/>
 
-                                                <Popup
-                                                    trigger={<Icon className='grid-labels-icon' link name='share alternate'/>}
-                                                    content={<ApiDetailSharePopup url={link4Description} name={name}
-                                                                                  description={description} category={category}
-                                                                                  dealer={dealer} image={image} host={host}/>}
-                                                    on='focus' inverted position='bottom center'
-                                                />
-                                                <Popup
-                                                    trigger={<Icon className='grid-labels-icon' link name='info circle'/>}
-                                                    content={<ApiDetailCustomInfoPopup description={description}
-                                                                                       info={info} image={image}
-                                                                                       host={host} name={name}
-                                                                                       category={category} link={link} updated={updated} operations={operations}/>}
-                                                    header={name}
-                                                    on='focus' inverted position='bottom center'
-                                                />
+                                                    <Popup
+                                                        trigger={<Icon className='grid-labels-icon' link name='share alternate'/>}
+                                                        content={<ApiDetailSharePopup url={link4Description} name={name}
+                                                                                      description={description} category={category}
+                                                                                      dealer={dealer} image={image} host={host}/>}
+                                                        on='focus' inverted position='bottom center'
+                                                    />
+                                                    <Popup
+                                                        trigger={<Icon className='grid-labels-icon' link name='info circle'/>}
+                                                        content={<ApiDetailCustomInfoPopup description={description}
+                                                                                           info={info} image={image}
+                                                                                           host={host} name={name}
+                                                                                           category={category} link={link} updated={updated} operations={operations}/>}
+                                                        header={name}
+                                                        on='focus' inverted position='bottom center'
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className='api-detail-title'>{name}</div>
-                                        <div className='api-detail-dealer'>от <NavLink
-                                            to={profileLink}>{dealer.nickname ? dealer.nickname : dealer.name}</NavLink>
-                                        </div>
-                                        <div className="api-detail-rating">
-                                            <Icon link name='star' style={{color: '#F39847'}}/>
-                                            <label style={{color: '#F39847'}}>4,9</label>
-                                            <label style={{color: '#A5A5A5', paddingLeft: 4}}>({this.state.id})</label>
-                                        </div>
-                                        <div className='api-subscription-apply-container'>
-                                            <NavLink to={link4Description + '&page=price'}>
-                                                <Button style={{background: '#2F80ED'}}  className='api-subscription-apply'>
-                                                    <span className='api-detail-create-button-text'>Оформить подписку</span>
-                                                </Button>
-                                            </NavLink>
-                                        </div>
-                                        <div className='api-detail-inner-body-container'>
-                                            <div className='api-left-form-elements'>
-                                                Категория
-                                                <NavLink to={link}
-                                                         className='description-body-link description-api-links-color-blue'>{category}</NavLink>
+                                            <div className='api-detail-title'>{name}</div>
+                                            <div className='api-detail-dealer'>от <NavLink
+                                                to={profileLink}>{dealer.nickname ? dealer.nickname : dealer.name}</NavLink>
                                             </div>
-                                            <div className='api-left-form-elements'>
-                                                Версия
-                                                <span className='description-body-link'>16.1</span>
+                                            <div className="api-detail-rating">
+                                                <Icon link name='star' style={{color: '#F39847'}}/>
+                                                <label style={{color: '#F39847'}}>4,9</label>
+                                                <label style={{color: '#A5A5A5', paddingLeft: 4}}>({this.state.id})</label>
                                             </div>
-                                            <div className='api-left-form-elements'>
-                                                Последнее обновление
-                                                <span
-                                                    className='description-body-link'>{new Date(updated).toLocaleDateString()}</span>
+                                            <div className='api-subscription-apply-container'>
+                                                <NavLink to={link4Description + '&page=price'}>
+                                                    <Button style={{background: '#2F80ED'}}  className='api-subscription-apply'>
+                                                        <span className='api-detail-create-button-text'>Оформить подписку</span>
+                                                    </Button>
+                                                </NavLink>
                                             </div>
-                                            <div className='api-left-form-elements'>
-                                                Язык
-                                                <span
-                                                    className='description-body-link'>Русский, Английский</span><NavLink
-                                                to='#'
-                                                className='description-body-link description-api-links-color-blue'>и
-                                                еще +3</NavLink>
-                                            </div>
-                                            <div className='api-left-form-elements description-api-links-padder'>
-                                                Скорость отдачи
-                                                <span className='description-body-link'>230mS</span>
-                                            </div>
-                                            <div className='api-left-form-elements'>
-                                                Стабильность
-                                                <span className='description-body-link'>100%</span>
-                                            </div>
-                                            <div
-                                                className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>
-                                                {description}
-                                                {/*<NavLink to='#' className='description-body-link description-api-links-color-blue'>...еще</NavLink>*/}
+                                            <div className='api-detail-inner-body-container'>
+                                                <div className='api-left-form-elements'>
+                                                    Категория
+                                                    <NavLink to={link}
+                                                             className='description-body-link description-api-links-color-blue'>{category}</NavLink>
+                                                </div>
+                                                <div className='api-left-form-elements'>
+                                                    Версия
+                                                    <span className='description-body-link'>16.1</span>
+                                                </div>
+                                                <div className='api-left-form-elements'>
+                                                    Последнее обновление
+                                                    <span
+                                                        className='description-body-link'>{new Date(updated).toLocaleDateString()}</span>
+                                                </div>
+                                                <div className='api-left-form-elements'>
+                                                    Язык
+                                                    <span
+                                                        className='description-body-link'>Русский, Английский</span><NavLink
+                                                    to='#'
+                                                    className='description-body-link description-api-links-color-blue'>и
+                                                    еще +3</NavLink>
+                                                </div>
+                                                <div className='api-left-form-elements description-api-links-padder'>
+                                                    Скорость отдачи
+                                                    <span className='description-body-link'>230mS</span>
+                                                </div>
+                                                <div className='api-left-form-elements'>
+                                                    Стабильность
+                                                    <span className='description-body-link'>100%</span>
+                                                </div>
+                                                <div
+                                                    className='api-left-form-elements description-api-description-lighter description-api-description-wrapper'>
+                                                    {description}
+                                                    {/*<NavLink to='#' className='description-body-link description-api-links-color-blue'>...еще</NavLink>*/}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="api-detail-form-container">
-                                    <div className='api-detail-form-header-container'>
-                                        {this.renderSwitchHeader(link4Description)}
-                                    </div>
-                                    <div className='api-detail-form-body-container'>
-                                        {this.renderSwitchBody(link4Description)}
+                                    <div className="api-detail-form-container">
+                                        <div className='api-detail-form-header-container'>
+                                            {this.renderSwitchHeader(link4Description)}
+                                        </div>
+                                        <div className='api-detail-form-body-container'>
+                                            {this.renderSwitchBody(link4Description)}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </Segment>
-                </Sidebar.Pusher>
-            </Sidebar.Pushable>
+                        </Segment>
+                    </Sidebar.Pusher>
+                </Sidebar.Pushable>
+            </div>
+
         )
     }
 }

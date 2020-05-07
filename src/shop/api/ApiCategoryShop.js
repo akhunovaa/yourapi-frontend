@@ -271,128 +271,131 @@ class ApiCategoryShop extends Component {
         };
 
         return (
-            <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
-                <Sidebar
-                    as={Menu}
-                    animation='overlay'
-                    direction='right'
-                    vertical
-                    visible={visible}
-                    className='login-slider-pushable'>
-                    {authenticated ? (<div/>) : (
-                        <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}
-                </Sidebar>
-                <Sidebar.Pusher dimmed={visible}>
-                    <Segment className='login-sidebar-pushable'>
-                        <div className="api-shop-main">
-                            <Helmet
-                                title={seo.title}
-                                defer
-                                meta={[
-                                    {property: "og:description", content: seo.description},
-                                    {property: "og:title", content: seo.title},
-                                    {property: "og:description", content: seo.description},
-                                    {property: "og:type", content: seo.type},
-                                    {property: "og:site_name", content: seo.siteName},
-                                    {property: "og:url", content: seo.url},
-                                    {property: "og:image", content: seo.image},
-                                    {property: "twitter:image", content: seo.image},
-                                    {property: "twitter:image:alt", content: seo.description},
-                                    {property: "twitter:title", content: seo.title},
-                                    {property: "twitter:description", content: seo.description},
-                                    {property: "twitter:site", content: seo.site},
-                                    {property: "twitter:domain", content: seo.domain},
-                                    {property: "twitter:card", content: seo.card}
-                                ]}
-                            />
-                            <div className="api-shop-container-breadcrumb">
-                                <Breadcrumb>
-                                    <Breadcrumb.Section as={NavLink} to={'/'} link><span
-                                        className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
-                                    <Breadcrumb.Divider icon='right chevron'/>
-                                    <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
-                                        className='text-disabled-color blue-hover'>Магазин</span></Breadcrumb.Section>
-                                    <Breadcrumb.Divider icon='right chevron'/>
-                                    <Breadcrumb.Section as={NavLink} to={link} link><span
-                                        className='text-disabled-color blue-hover'>{getCategoryName(category)}</span></Breadcrumb.Section>
-                                </Breadcrumb>
-                            </div>
-                            <div className="api-shop-main-container">
-                                <div className="api-shop-left-container">
-                                    <div className='api-shop-inner-filter-container'>
-                                        <div className='api-shop-filter-title'>Фильтры</div>
+            <div>
+                <Helmet
+                    title={seo.title}
+                    defer
+                    meta={[
+                        {property: "og:description", content: seo.description},
+                        {property: "og:title", content: seo.title},
+                        {property: "og:description", content: seo.description},
+                        {property: "og:type", content: seo.type},
+                        {property: "og:site_name", content: seo.siteName},
+                        {property: "og:url", content: seo.url},
+                        {property: "og:image", content: seo.image},
+                        {property: "twitter:image", content: seo.image},
+                        {property: "twitter:image:alt", content: seo.description},
+                        {property: "twitter:title", content: seo.title},
+                        {property: "twitter:description", content: seo.description},
+                        {property: "twitter:site", content: seo.site},
+                        {property: "twitter:domain", content: seo.domain},
+                        {property: "twitter:card", content: seo.card}
+                    ]}
+                />
+                <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
+                    <Sidebar
+                        as={Menu}
+                        animation='overlay'
+                        direction='right'
+                        vertical
+                        visible={visible}
+                        className='login-slider-pushable'>
+                        {authenticated ? (<div/>) : (
+                            <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}
+                    </Sidebar>
+                    <Sidebar.Pusher dimmed={visible}>
+                        <Segment className='login-sidebar-pushable'>
+                            <div className="api-shop-main">
 
-                                        <FilterBookmarkLinkElement bookmarkData={bookmarkData} loading={bookmarkLoading}/>
+                                <div className="api-shop-container-breadcrumb">
+                                    <Breadcrumb>
+                                        <Breadcrumb.Section as={NavLink} to={'/'} link><span
+                                            className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
+                                        <Breadcrumb.Divider icon='right chevron'/>
+                                        <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
+                                            className='text-disabled-color blue-hover'>Магазин</span></Breadcrumb.Section>
+                                        <Breadcrumb.Divider icon='right chevron'/>
+                                        <Breadcrumb.Section as={NavLink} to={link} link><span
+                                            className='text-disabled-color blue-hover'>{getCategoryName(category)}</span></Breadcrumb.Section>
+                                    </Breadcrumb>
+                                </div>
+                                <div className="api-shop-main-container">
+                                    <div className="api-shop-left-container">
+                                        <div className='api-shop-inner-filter-container'>
+                                            <div className='api-shop-filter-title'>Фильтры</div>
 
-                                        <div className='api-shop-filter-rating'>Рейтинг</div>
-                                        <div className='api-shop-filter-rating-stars'>
-                                            <Icon link name='star outline' className='star'/>
-                                            <Icon link name='star outline' className='star'/>
-                                            <Icon link name='star outline' className='star'/>
-                                            <Icon link name='star outline' className='star'/>
-                                            <Icon link name='star outline' className='star'/>
-                                        </div>
-                                        <div className='api-shop-filter-response-time'>Скорость отдачи</div>
-                                        <div className='api-shop-filter-response-time-label'>
-                                            <span className='left-label'>{responseScaleOne + 'mS'}</span>
-                                            <span className='right-label'>{responseScaleTwo + 'mS'}</span>
-                                        </div>
-                                        <div className='api-shop-filter-response-time-line'>
-                                            <Slider
-                                                className='shop-filter-response-time-line-slider'
-                                                value={this.state.responseScale}
-                                                onChange={this.handleSliderChange}
-                                                valueLabelDisplay="off"
-                                                aria-labelledby="range-slider"
-                                                min={0}
-                                                max={1000}
-                                            />
-                                        </div>
-                                        <div className='api-shop-filter-response-time'>Стабильность</div>
-                                        <div className='api-shop-filter-response-time-label'>
+                                            <FilterBookmarkLinkElement bookmarkData={bookmarkData} loading={bookmarkLoading}/>
+
+                                            <div className='api-shop-filter-rating'>Рейтинг</div>
+                                            <div className='api-shop-filter-rating-stars'>
+                                                <Icon link name='star outline' className='star'/>
+                                                <Icon link name='star outline' className='star'/>
+                                                <Icon link name='star outline' className='star'/>
+                                                <Icon link name='star outline' className='star'/>
+                                                <Icon link name='star outline' className='star'/>
+                                            </div>
+                                            <div className='api-shop-filter-response-time'>Скорость отдачи</div>
+                                            <div className='api-shop-filter-response-time-label'>
+                                                <span className='left-label'>{responseScaleOne + 'mS'}</span>
+                                                <span className='right-label'>{responseScaleTwo + 'mS'}</span>
+                                            </div>
+                                            <div className='api-shop-filter-response-time-line'>
+                                                <Slider
+                                                    className='shop-filter-response-time-line-slider'
+                                                    value={this.state.responseScale}
+                                                    onChange={this.handleSliderChange}
+                                                    valueLabelDisplay="off"
+                                                    aria-labelledby="range-slider"
+                                                    min={0}
+                                                    max={1000}
+                                                />
+                                            </div>
+                                            <div className='api-shop-filter-response-time'>Стабильность</div>
+                                            <div className='api-shop-filter-response-time-label'>
                                             <span
                                                 className='left-label'>{this.state.responseStableScale[0] + '%'}</span>
-                                            <span
-                                                className='right-label'>{this.state.responseStableScale[1] + '%'}</span>
-                                        </div>
-                                        <div className='api-shop-filter-response-time-line'>
-                                            <Slider
-                                                className='api-shop-filter-response-time-line-slider'
-                                                value={this.state.responseStableScale}
-                                                onChange={this.handleStableSliderChange}
-                                                valueLabelDisplay="off"
-                                                aria-labelledby="range-slider"
-                                                min={0}
-                                                max={100}
-                                            />
+                                                <span
+                                                    className='right-label'>{this.state.responseStableScale[1] + '%'}</span>
+                                            </div>
+                                            <div className='api-shop-filter-response-time-line'>
+                                                <Slider
+                                                    className='api-shop-filter-response-time-line-slider'
+                                                    value={this.state.responseStableScale}
+                                                    onChange={this.handleStableSliderChange}
+                                                    valueLabelDisplay="off"
+                                                    aria-labelledby="range-slider"
+                                                    min={0}
+                                                    max={100}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="api-shop-form-container">
-                                    {loading && !apiList[0] ? (<CategoryShopLoadingIndicator/>) : (
-                                        apiList[0] !== undefined && apiList[0].size > 0 ?
-                                            (
-                                                <div id={apiList[0].data_name}>
-                                                    <div className='api-element-container-header'>
+                                    <div className="api-shop-form-container">
+                                        {loading && !apiList[0] ? (<CategoryShopLoadingIndicator/>) : (
+                                            apiList[0] !== undefined && apiList[0].size > 0 ?
+                                                (
+                                                    <div id={apiList[0].data_name}>
+                                                        <div className='api-element-container-header'>
                                             <span
                                                 className='main-form-header'>{apiList[0] ? apiList[0].data_name : ''}</span>
+                                                        </div>
+                                                        <Grid columns='3'>
+                                                            <Projects items={apiList[0] ? apiList[0].list : []}/>
+                                                        </Grid>
                                                     </div>
-                                                    <Grid columns='3'>
-                                                        <Projects items={apiList[0] ? apiList[0].list : []}/>
-                                                    </Grid>
-                                                </div>
-                                            )
-                                            :
-                                            (<div unselectable='on' className='api-category-shop-empty'>
-                                                Данные отсутствуют
-                                            </div>)
-                                    )}
+                                                )
+                                                :
+                                                (<div unselectable='on' className='api-category-shop-empty'>
+                                                    Данные отсутствуют
+                                                </div>)
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </Segment>
-                </Sidebar.Pusher>
-            </Sidebar.Pushable>
+                        </Segment>
+                    </Sidebar.Pusher>
+                </Sidebar.Pushable>
+            </div>
         )
     }
 }

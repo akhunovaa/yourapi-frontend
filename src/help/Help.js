@@ -50,6 +50,26 @@ class Help extends Component {
 
         return (
             <div className="help-main">
+                <Helmet
+                    title={seo.title}
+                    defer
+                    meta={[
+                        {name: "description", property: "og:description", content: seo.description},
+                        {property: "og:title", content: seo.title},
+                        {property: "og:description", content: seo.description},
+                        {property: "og:type", content: seo.type},
+                        {property: "og:site_name", content: seo.siteName},
+                        {property: "og:url", content: seo.url},
+                        {property: "og:image", content: seo.image},
+                        {property: "twitter:image", content: seo.image},
+                        {property: "twitter:image:alt", content: seo.description},
+                        {property: "twitter:title", content: seo.title},
+                        {property: "twitter:description", content: seo.description},
+                        {property: "twitter:site", content: seo.site},
+                        {property: "twitter:domain", content: seo.domain},
+                        {property: "twitter:card", content: seo.card}
+                    ]}
+                />
                 <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
                     <Sidebar
                         as={Menu}
@@ -64,26 +84,6 @@ class Help extends Component {
                     <Sidebar.Pusher dimmed={visible}>
                         <Segment className='login-sidebar-pushable'>
                             <div className="help-header-picture" unselectable='on'>
-                                <Helmet
-                                    title={seo.title}
-                                    defer
-                                    meta={[
-                                        {name: "description", property: "og:description", content: seo.description},
-                                        {property: "og:title", content: seo.title},
-                                        {property: "og:description", content: seo.description},
-                                        {property: "og:type", content: seo.type},
-                                        {property: "og:site_name", content: seo.siteName},
-                                        {property: "og:url", content: seo.url},
-                                        {property: "og:image", content: seo.image},
-                                        {property: "twitter:image", content: seo.image},
-                                        {property: "twitter:image:alt", content: seo.description},
-                                        {property: "twitter:title", content: seo.title},
-                                        {property: "twitter:description", content: seo.description},
-                                        {property: "twitter:site", content: seo.site},
-                                        {property: "twitter:domain", content: seo.domain},
-                                        {property: "twitter:card", content: seo.card}
-                                    ]}
-                                />
                                 <div className="help-header-picture-inner">
                                     <div className='header-text-left'>
                                         <div className="header-slogan" unselectable='on'>

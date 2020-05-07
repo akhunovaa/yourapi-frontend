@@ -131,169 +131,172 @@ class Shop extends Component {
         const {visible, authenticated} = this.props;
 
         return (
-            <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
-                <Sidebar
-                    as={Menu}
-                    animation='overlay'
-                    direction='right'
-                    vertical
-                    visible={visible}
-                    className='login-slider-pushable'>
-                    {authenticated ? (<div/>) : (
-                        <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}
-                </Sidebar>
-                <Sidebar.Pusher dimmed={visible}>
-                    <Segment className='login-sidebar-pushable'>
-                        <div className="shop-main">
-                            <Helmet
-                                title={seo.title}
-                                defer
-                                meta={[
-                                    {name: "description", property: "og:description", content: seo.description},
-                                    {property: "og:title", content: seo.title},
-                                    {property: "og:description", content: seo.description},
-                                    {property: "og:type", content: seo.type},
-                                    {property: "og:site_name", content: seo.siteName},
-                                    {property: "og:url", content: seo.url},
-                                    {property: "og:image", content: seo.image},
-                                    {property: "twitter:image", content: seo.image},
-                                    {property: "twitter:image:alt", content: seo.description},
-                                    {property: "twitter:title", content: seo.title},
-                                    {property: "twitter:description", content: seo.description},
-                                    {property: "twitter:site", content: seo.site},
-                                    {property: "twitter:domain", content: seo.domain},
-                                    {property: "twitter:card", content: seo.card}
-                                ]}
-                            />
-                            <div className="shop-container-breadcrumb">
-                                <Breadcrumb>
-                                    <Breadcrumb.Section as={NavLink} to={'/'} link><span
-                                        className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
-                                    <Breadcrumb.Divider icon='right chevron'/>
-                                    <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
-                                        className='text-disabled-color blue-hover'>Магазин</span></Breadcrumb.Section>
-                                </Breadcrumb>
-                            </div>
-                            <div className="shop-main-container">
-                                <div className="shop-left-container">
-                                    <div className='shop-inner-filter-container'>
-                                        <div className='shop-filter-title'>Фильтры</div>
+            <div>
+                <Helmet
+                    title={seo.title}
+                    defer
+                    meta={[
+                        {name: "description", property: "og:description", content: seo.description},
+                        {property: "og:title", content: seo.title},
+                        {property: "og:description", content: seo.description},
+                        {property: "og:type", content: seo.type},
+                        {property: "og:site_name", content: seo.siteName},
+                        {property: "og:url", content: seo.url},
+                        {property: "og:image", content: seo.image},
+                        {property: "twitter:image", content: seo.image},
+                        {property: "twitter:image:alt", content: seo.description},
+                        {property: "twitter:title", content: seo.title},
+                        {property: "twitter:description", content: seo.description},
+                        {property: "twitter:site", content: seo.site},
+                        {property: "twitter:domain", content: seo.domain},
+                        {property: "twitter:card", content: seo.card}
+                    ]}
+                />
+                <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
+                    <Sidebar
+                        as={Menu}
+                        animation='overlay'
+                        direction='right'
+                        vertical
+                        visible={visible}
+                        className='login-slider-pushable'>
+                        {authenticated ? (<div/>) : (
+                            <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}
+                    </Sidebar>
+                    <Sidebar.Pusher dimmed={visible}>
+                        <Segment className='login-sidebar-pushable'>
+                            <div className="shop-main">
 
-                                        <FilterBookmarkLinkElement bookmarkData={bookmarkData} loading={bookmarkLoading}/>
+                                <div className="shop-container-breadcrumb">
+                                    <Breadcrumb>
+                                        <Breadcrumb.Section as={NavLink} to={'/'} link><span
+                                            className='text-disabled-color blue-hover'>Главная</span></Breadcrumb.Section>
+                                        <Breadcrumb.Divider icon='right chevron'/>
+                                        <Breadcrumb.Section as={NavLink} to={'/shop'} link><span
+                                            className='text-disabled-color blue-hover'>Магазин</span></Breadcrumb.Section>
+                                    </Breadcrumb>
+                                </div>
+                                <div className="shop-main-container">
+                                    <div className="shop-left-container">
+                                        <div className='shop-inner-filter-container'>
+                                            <div className='shop-filter-title'>Фильтры</div>
 
-                                        <div className='shop-filter-rating'>Рейтинг</div>
-                                        <div className='shop-filter-rating-stars'>
-                                            <Icon link name='star outline' className='star'/>
-                                            <Icon link name='star outline' className='star'/>
-                                            <Icon link name='star outline' className='star'/>
-                                            <Icon link name='star outline' className='star'/>
-                                            <Icon link name='star outline' className='star'/>
-                                        </div>
-                                        <div className='shop-filter-response-time'>Скорость отдачи</div>
-                                        <div className='shop-filter-response-time-label'>
-                                            <span className='left-label'>{this.state.responseScale[0] + 'mS'}</span>
-                                            <span className='right-label'>{this.state.responseScale[1] + 'mS'}</span>
-                                        </div>
-                                        <div className='shop-filter-response-time-line'>
-                                            <Slider
-                                                className='shop-filter-response-time-line-slider'
-                                                value={this.state.responseScale}
-                                                onChange={this.handleSliderChange}
-                                                valueLabelDisplay="off"
-                                                aria-labelledby="range-slider"
-                                                min={0}
-                                                max={1000}
-                                            />
-                                        </div>
-                                        <div className='shop-filter-response-time'>Стабильность</div>
-                                        <div className='shop-filter-response-time-label'>
+                                            <FilterBookmarkLinkElement bookmarkData={bookmarkData} loading={bookmarkLoading}/>
+
+                                            <div className='shop-filter-rating'>Рейтинг</div>
+                                            <div className='shop-filter-rating-stars'>
+                                                <Icon link name='star outline' className='star'/>
+                                                <Icon link name='star outline' className='star'/>
+                                                <Icon link name='star outline' className='star'/>
+                                                <Icon link name='star outline' className='star'/>
+                                                <Icon link name='star outline' className='star'/>
+                                            </div>
+                                            <div className='shop-filter-response-time'>Скорость отдачи</div>
+                                            <div className='shop-filter-response-time-label'>
+                                                <span className='left-label'>{this.state.responseScale[0] + 'mS'}</span>
+                                                <span className='right-label'>{this.state.responseScale[1] + 'mS'}</span>
+                                            </div>
+                                            <div className='shop-filter-response-time-line'>
+                                                <Slider
+                                                    className='shop-filter-response-time-line-slider'
+                                                    value={this.state.responseScale}
+                                                    onChange={this.handleSliderChange}
+                                                    valueLabelDisplay="off"
+                                                    aria-labelledby="range-slider"
+                                                    min={0}
+                                                    max={1000}
+                                                />
+                                            </div>
+                                            <div className='shop-filter-response-time'>Стабильность</div>
+                                            <div className='shop-filter-response-time-label'>
                                             <span
                                                 className='left-label'>{this.state.responseStableScale[0] + '%'}</span>
-                                            <span
-                                                className='right-label'>{this.state.responseStableScale[1] + '%'}</span>
-                                        </div>
-                                        <div className='shop-filter-response-time-line'>
-                                            <Slider
-                                                className='shop-filter-response-time-line-slider'
-                                                value={this.state.responseStableScale}
-                                                onChange={this.handleStableSliderChange}
-                                                valueLabelDisplay="off"
-                                                aria-labelledby="range-slider"
-                                                min={0}
-                                                max={100}
-                                            />
-                                        </div>
-                                        <div className='shop-filter-response-time'>Категории</div>
-                                        <div className='category-labels'>
-                                            <div className='category-label'>
-                                                <Icon color='red' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/data' className='blue-hover'>Данные</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[0])}</span>
+                                                <span
+                                                    className='right-label'>{this.state.responseStableScale[1] + '%'}</span>
                                             </div>
-                                            <div className='category-label'>
-                                                <Icon color='orange' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/finance' className='blue-hover'>Финансы</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[1])}</span>
+                                            <div className='shop-filter-response-time-line'>
+                                                <Slider
+                                                    className='shop-filter-response-time-line-slider'
+                                                    value={this.state.responseStableScale}
+                                                    onChange={this.handleStableSliderChange}
+                                                    valueLabelDisplay="off"
+                                                    aria-labelledby="range-slider"
+                                                    min={0}
+                                                    max={100}
+                                                />
                                             </div>
-                                            <div className='category-label'>
-                                                <Icon color='yellow' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/mobile' className='blue-hover'>Мобильные</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[2])}</span>
-                                            </div>
-                                            <div className='category-label'>
-                                                <Icon color='green' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/map' className='blue-hover'>Карты</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[3])}</span>
-                                            </div>
-                                            <div className='category-label'>
-                                                <Icon color='olive' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/adv' className='blue-hover'>Реклама</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[4])}</span>
-                                            </div>
-                                            <div className='category-label'>
-                                                <Icon color='blue' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/social' className='blue-hover'>Социальные сети</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[5])}</span>
-                                            </div>
-                                            <div className='category-label'>
-                                                <Icon color='purple' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/health' className='blue-hover'>Здравохранение</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[6])}</span>
-                                            </div>
-                                            <div className='category-label'>
-                                                <Icon color='teal' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/sport' className='blue-hover'>Спорт</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[7])}</span>
-                                            </div>
-                                            <div className='category-label'>
-                                                <Icon color='violet' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/web' className='blue-hover'>Web</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[8])}</span>
-                                            </div>
-                                            <div className='category-label'>
-                                                <Icon color='blue' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/news' className='blue-hover'>Новости</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[9])}</span>
-                                            </div>
-                                            <div className='category-label'>
-                                                <Icon color='green' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/media' className='blue-hover'>Медиа</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[10])}</span>
-                                            </div>
-                                            <div className='category-label'>
-                                                <Icon color='grey' name='dot circle' size='small'/>
-                                                <NavLink to='/shop/category/other' className='blue-hover'>Другое</NavLink>
-                                                <span className='right-label'>{categoryLoadingIndicator(loading, apiList[11])}</span>
+                                            <div className='shop-filter-response-time'>Категории</div>
+                                            <div className='category-labels'>
+                                                <div className='category-label'>
+                                                    <Icon color='red' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/data' className='blue-hover'>Данные</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[0])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='orange' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/finance' className='blue-hover'>Финансы</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[1])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='yellow' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/mobile' className='blue-hover'>Мобильные</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[2])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='green' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/map' className='blue-hover'>Карты</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[3])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='olive' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/adv' className='blue-hover'>Реклама</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[4])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='blue' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/social' className='blue-hover'>Социальные сети</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[5])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='purple' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/health' className='blue-hover'>Здравохранение</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[6])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='teal' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/sport' className='blue-hover'>Спорт</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[7])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='violet' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/web' className='blue-hover'>Web</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[8])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='blue' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/news' className='blue-hover'>Новости</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[9])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='green' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/media' className='blue-hover'>Медиа</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[10])}</span>
+                                                </div>
+                                                <div className='category-label'>
+                                                    <Icon color='grey' name='dot circle' size='small'/>
+                                                    <NavLink to='/shop/category/other' className='blue-hover'>Другое</NavLink>
+                                                    <span className='right-label'>{categoryLoadingIndicator(loading, apiList[11])}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <ShopBody loading={loading} apiList={apiList} authenticated={authenticated} requestBookmarkList={this.requestBookmarkList}/>
                                 </div>
-                                <ShopBody loading={loading} apiList={apiList} authenticated={authenticated} requestBookmarkList={this.requestBookmarkList}/>
                             </div>
-                        </div>
-                    </Segment>
-                </Sidebar.Pusher>
-            </Sidebar.Pushable>
+                        </Segment>
+                    </Sidebar.Pusher>
+                </Sidebar.Pushable>
+            </div>
         )
     }
 }
