@@ -52,7 +52,9 @@ class UserProfile extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        this.loadRequestedUser();
+        if (this._isMounted) {
+            this.loadRequestedUser();
+        }
     }
 
     componentWillUnmount() {
