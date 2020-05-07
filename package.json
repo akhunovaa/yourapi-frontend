@@ -44,7 +44,9 @@
   "reactSnap": {
     "minifyHtml": { "sortClassName": false },
     "cacheAjaxRequests": true,
-    "inlineCss": true
+    "inlineCss": true,
+    "skipThirdPartyRequests": true,
+    "puppeteerExecutablePath": "/usr/bin/google-chrome"
   },
   "browserslist": [
     ">0.2%",
