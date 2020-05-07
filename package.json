@@ -42,7 +42,6 @@
   },
   "reactSnap": {
     "removeBlobs": true,
-    "removeScriptTags": true,
     "removeStyleTags": true,
     "fixWebpackChunksIssue": false,
     "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
