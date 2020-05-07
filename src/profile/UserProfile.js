@@ -202,10 +202,16 @@ class UserProfile extends Component {
         const surname = user.surname ? user.surname : '';
         const name = user.name ? user.name : '';
         const patrName = user.patrName ? user.patrName : '';
+        const nickName = user.nickName ? user.nickName : '';
+        const gender = user.gender === 'Мужской' ? 'male' : 'female';
 
         const seo = {
             title: "YourAPI | " + surname + ' ' + name + ' ' + patrName,
-            type: "website",
+            type: "profile",
+            firstName: name,
+            lastName: surname,
+            userName: nickName,
+            gender: gender,
             siteName: 'yourapi.ru',
             description: user.info ? user.info.substring(0, 160) : "YourAPI | " + surname + ' ' + name + ' ' + patrName,
             url: "https://yourapi.ru/profile/id" + id,
@@ -225,6 +231,10 @@ class UserProfile extends Component {
                         {property: "og:description", content: seo.description},
                         {property: "og:type", content: seo.type},
                         {property: "og:site_name", content: seo.siteName},
+                        {property: "profile:first_name", content: seo.firstName},
+                        {property: "profile:last_name", content: seo.lastName},
+                        {property: "profile:username", content: seo.userName},
+                        {property: "profile:gender", content: seo.gender},
                         {property: "og:url", content: seo.url},
                         {property: "og:image", content: seo.image},
                         {property: "twitter:image", content: seo.image},
