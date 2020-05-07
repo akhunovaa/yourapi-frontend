@@ -41,10 +41,10 @@
     "eject": "react-scripts eject"
   },
   "reactSnap": {
-    "inlineCss": true,
     "removeBlobs": true,
     "removeScriptTags": true,
-    "removeStyleTags": true
+    "removeStyleTags": true,
+    "fixWebpackChunksIssue": false
   },
   "browserslist": [
     ">0.2%",
