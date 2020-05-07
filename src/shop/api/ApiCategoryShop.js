@@ -370,7 +370,7 @@ class ApiCategoryShop extends Component {
                                 </div>
                                 <div className="api-shop-form-container">
                                     {loading && !apiList[0] ? (<CategoryShopLoadingIndicator/>) : (
-                                        apiList[0].size > 0 ?
+                                        apiList[0] !== undefined && apiList[0].size > 0 ?
                                             (
                                                 <div id={apiList[0].data_name}>
                                                     <div className='api-element-container-header'>
