@@ -44,7 +44,9 @@
     "removeBlobs": true,
     "removeScriptTags": true,
     "removeStyleTags": true,
-    "fixWebpackChunksIssue": false
+    "fixWebpackChunksIssue": false,
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "puppeteerExecutablePath": "/usr/bin/chromium-browser"
   },
   "browserslist": [
     ">0.2%",
