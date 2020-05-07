@@ -38,12 +38,14 @@
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "CI=true react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-sw": "sw-precache --root=build --config scripts/sw-precache-config.js && uglifyjs build/service-worker.js -o build/service-worker.js"
   },
   "reactSnap": {
-    "removeBlobs": true,
-    "removeStyleTags": true,
-    "fixWebpackChunksIssue": false,
+    "minifyHtml": { "sortClassName": false },
+    "cacheAjaxRequests": true,
+    "skipThirdPartyRequests": true,
+    "puppeteer": { "cache": false },
     "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
     "puppeteerExecutablePath": "/usr/bin/google-chrome"
   },
