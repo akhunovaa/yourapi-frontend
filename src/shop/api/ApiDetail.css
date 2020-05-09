@@ -53,7 +53,7 @@
 }
 
 .api-detail-inner-filter-container{
-    padding: 32px 20px 33px 40px;
+    padding: 32px 40px 0px 40px;
     display: block;
     height: 500px;
 }
@@ -121,6 +121,7 @@
 
 .grid-labels-icon{
     color: #A5A5A5;
+    font-size: 16px !important;
 }
 
 .grid-labels-icon:hover{
@@ -129,12 +130,14 @@
 
 .grid-labels{
     float: right;
-    padding-left: 16px
+    /*padding-left: 16px*/
+    width: 100px;
+    text-align: right;
 }
 
 .api-subscription-apply{
     height: 32px;
-    width: 142px;
+    width: 191px;
     /*vertical-align:middle;*/
     overflow: hidden;
 
@@ -190,7 +193,7 @@
 
 .description-body-link{
     padding-left: 8px;
-    font-family: Margarine;
+    font-family: var(--font-family);
     font-weight: normal;
     line-height: 19px;
 }

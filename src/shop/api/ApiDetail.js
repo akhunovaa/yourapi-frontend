@@ -324,13 +324,13 @@ class ApiDetail extends Component {
                                                 </div>
                                                 <div className="grid-labels">
                                                     <Icon style={{
-                                                        color: bookmarked ? bookmarkText !== 'bookmark outline' ? '#2F80ED' : '' : bookmarkText === 'bookmark' ? '#2F80ED' : ''
+                                                        color: bookmarked ? bookmarkText !== 'bookmark outline' ? '#2F80ED' : '' : bookmarkText === 'bookmark' ? '#2F80ED' : '', paddingRight: 20
                                                     }} link onClick={this.handleChange} id={uuid}
                                                           className='grid-labels-icon'
                                                           name={bookmarked ? bookmarkText !== 'bookmark outline' ? 'bookmark' : 'bookmark outline' : bookmarkText === 'bookmark' ? 'bookmark' : 'bookmark outline'}/>
 
                                                     <Popup
-                                                        trigger={<Icon className='grid-labels-icon' link name='share alternate'/>}
+                                                        trigger={<Icon className='grid-labels-icon' link name='share alternate' style={{paddingRight: 20}}/>}
                                                         content={<ApiDetailSharePopup url={link4Description} name={name}
                                                                                       description={description} category={category}
                                                                                       dealer={dealer} image={image} host={host}/>}

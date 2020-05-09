@@ -83,7 +83,7 @@
 }
 
 .detail-review-rating-count{
-    font-family: Margarine;
+    font-family: var(--font-family);
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
