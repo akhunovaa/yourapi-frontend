@@ -376,6 +376,15 @@
     padding-left: 8px;
 }
 
+.detail-methods-title span{
+    font-family: var(--font-family);;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #4F4F4F;
+}
+
 .detail-methods-title-label{
     font-family: var(--font-family);;
     font-style: normal;
