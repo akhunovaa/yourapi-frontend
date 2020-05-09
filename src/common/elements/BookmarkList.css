@@ -7,3 +7,22 @@
     font-size: 14px;
     min-height: 50px;
 }
+
+.header-right-bookmark-container.ui.wide.popup {
+    min-width: 409px;
+}
+
+.header-right-bookmark-container.ui.bottom.right.popup:before {
+    top: -.30714286em;
+    right: 8px;
+    bottom: auto;
+    left: auto;
+    margin-left: 0;
+    -webkit-box-shadow: -1px -1px 0 0 #bababc;
+    box-shadow: -1px -1px 0 0 #bababc;
+}
+
+.ui.grid>.divided.row> .bookmark-delete-button.column {
+     -webkit-box-shadow: none;
+     box-shadow: none;
+}

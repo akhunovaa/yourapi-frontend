@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import {Grid, Icon, Popup} from 'semantic-ui-react'
 import './BookmarkList.css';
-import {bookmarkApiListGet} from "../../util/APIUtils";
+import {bookmarkApiListGet, bookmarkRemove} from "../../util/APIUtils";
 import {BookmarkLoadingIndicator} from '../../common/LoadingIndicator';
 import {NavLink} from "react-router-dom";
 import {getLink4Description} from "../../util/ElementsDataUtils";
 import LazyBookmarkMiniImage from '../../util/LazyBookmarkMiniImage';
+import Alert from "react-s-alert";
 
 const host = window.location.origin.toString();
 
@@ -61,6 +62,17 @@ class BookmarkList extends Component {
         this.setState((prevState) => ({clicked: !prevState.clicked, isOpen: false}));
     };
 
+    bookmarkPurge = (e, {id}) => {
+
+        bookmarkRemove(id)
+            .then(response => {
+                this.requestBookmarkList();
+            }).catch(error => {
+            Alert.error('Ошибка при удалении для Bookmark' || (error && error.message));
+        });
+
+    };
+
     render() {
         const {loading, bookmarkData, clicked, isOpen} = this.state;
         const {colored} = this.props;
@@ -78,9 +90,10 @@ class BookmarkList extends Component {
                     onClose={this.handleClose}
                     onOpen={this.handleOpen}
                     on='focus' position='bottom right' wide size={'small'}
+                    className='header-right-bookmark-container'
                     content={loading || bookmarkData === undefined ? <BookmarkLoadingIndicator/>
                         :
-                        <Grid textAlign='left' style={{minHeight: 50, minWidth: 337}}>
+                        <Grid textAlign='left' style={{minHeight: 50, minWidth: 406}}>
                             <div style={{width: '100%', paddingTop: 8}}/>
                             {
                                 bookmarkData.length > 0 ? bookmarkData.map(item => (
@@ -101,7 +114,7 @@ class BookmarkList extends Component {
                                                 )
                                             }
                                         </Grid.Column>
-                                        <Grid.Column width={12}>
+                                        <Grid.Column width={11}>
                                             <NavLink to={getLink4Description(item.category) + item.uuid}>
                                                 <div style={{whiteSpace: 'nowrap', paddingTop: 4}}>
                                                 <span style={{color: '#2F80ED'}}>
@@ -116,11 +129,21 @@ class BookmarkList extends Component {
                                             </NavLink>
                                         </Grid.Column>
 
+                                        <Grid.Column width={1} textAlign={'left'} verticalAlign={'middle'}
+                                                     divided={'false'} className='bookmark-delete-button'>
+                                            <Icon style={{
+                                                color: item.bookmarked ? this.state[item.uuid] !== 'close' ? '#2F80ED' : '' : this.state[item.uuid] === 'close' ? '#2F80ED' : ''
+                                            }} link onClick={this.bookmarkPurge} id={item.uuid}
+                                                  className='grid-labels-icon'
+                                                  name={item.bookmarked ? this.state[item.uuid] !== 'bookmark outline' ? 'close' : 'close' : this.state[item.uuid] === 'close' ? 'close' : 'close'}/>
+                                        </Grid.Column>
+
                                     </Grid.Row>
-                                )) : <div style={{color: '#A5A5A5', minWidth: 337}}>Данные отсутствуют</div>}
-                            { bookmarkData.length > 2 ? (
-                                <div style={{width: '100%', textAlign: 'center'}}>
-                                    <NavLink to="/shop/bookmarks" style={{color: '#2F80ED'}}>Посмотреть все</NavLink></div>) : (<></>)}
+                                )) : <div style={{color: '#A5A5A5', minWidth: 337, height: 47.6, display: 'table'}}><span style={{verticalAlign: 'middle', display: 'table-cell'}}>Данные отсутствуют</span></div>}
+                            {bookmarkData.length > 2 ? (
+                                <div style={{width: '100%', textAlign: 'center', paddingBottom: 14}}>
+                                    <NavLink to="/shop/bookmarks" style={{color: '#2F80ED'}}>Посмотреть все</NavLink>
+                                </div>) : (<></>)}
                         </Grid>
                     }
                 />
