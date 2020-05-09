@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './HeaderUserPortal.css';
 import {NavLink} from "react-router-dom";
-import {Divider, Icon, List, Portal, Segment} from "semantic-ui-react";
+import {Divider, Icon, List, Popup} from "semantic-ui-react";
 import LazyImage from '../util/LazyImage';
 import * as PropTypes from "prop-types";
 import LoadingIndicator from '../common/LoadingIndicator';
@@ -48,83 +48,79 @@ class HeaderUserPortal extends Component {
         const imageUrl = currentUser ? currentUser.imageUrl ? currentUser.imageUrl.includes("yourapi.ru") ? currentUser.imageUrl + '/40/40.jpg' : currentUser.imageUrl : '' : '';
 
         const styles = {
-            Segment: {
-                position: 'fixed',
-                right: 12,
-                top: '76px',
-                zIndex: 1000
-            },
+            Segment: {},
             Divider: {
-                marginTop: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0
+                marginTop: 0, marginBottom: 0, marginLeft: -13, marginRight: -13, paddingTop: 0, paddingBottom: 0
             },
-            Image:{
+            Image: {
                 display: 'none'
             }
         };
 
         return (
-            <Portal
-                closeOnPortalMouseLeave
-                closeOnTriggerClick
-                closeOnDocumentClick
-                trigger={
-                    imageUrl ? (
-                        <div className="profile-header-avatar">
-                            <LazyImage src={imageUrl} size='small' circular verticalAlign='middle' alt={currentUser.name}/>
-                        </div>
-                    ) : (
-                        <div className="header-right-navlink-profile-icon">
-                            <Icon link name='user circle'/>
-                        </div>
-                    )
-                }
-                open={open}
-                onOpen={this.handleOpen}
-                onClose={this.handleClose}>
-                <div id='profile-portal' onClick={this.handleClose}>
-                    <Segment className="profile-segment"
-                             style={styles.Segment}>
+            <Popup
+                trigger={imageUrl ? (
+                    <div className="profile-header-avatar">
+                        <LazyImage src={imageUrl} size='small' circular verticalAlign='middle' alt={currentUser.name}/>
+                    </div>
+                ) : (
+                    <div className="header-right-navlink-profile-icon">
+                        <Icon link name='user circle'/>
+                    </div>
+                )}
+                on='click' wide size={'small'} position='bottom right'
+                content={
+                    <div id='profile-portal'>
                         <List size={"big"}>
                             <List.Item>
-                                <List.Content>
-                                    <NavLink to="/"><span
-                                        className="portal-item portal-item-main">Главная страница</span></NavLink>
-                                </List.Content>
+                                <NavLink to="/" className='portal-item-blue-hover'>
+                                    <List.Content>
+                                   <span
+                                       className="portal-item portal-item-main blue-hover">Главная страница</span>
+                                    </List.Content>
+                                </NavLink>
                             </List.Item>
                             <List.Item>
-                                <List.Content>
-                                    <NavLink to="/profile"><span
-                                        className="portal-item">Настройка профиля</span></NavLink>
-                                </List.Content>
+                                <NavLink to="/profile" className='portal-item-blue-hover'>
+                                    <List.Content>
+
+                                        <span className="portal-item blue-hover">Настройка профиля</span>
+
+                                    </List.Content>
+                                </NavLink>
                             </List.Item>
                             <List.Item>
-                                <List.Content>
-                                    <NavLink to="/profile/administration"><span
-                                        className="portal-item">Администрирование</span></NavLink>
-                                </List.Content>
+                                <NavLink to="/profile/administration" className='portal-item-blue-hover'>
+                                    <List.Content>
+                                        <span className="portal-item">Администрирование</span>
+                                    </List.Content>
+                                </NavLink>
                             </List.Item>
                             <List.Item>
                                 <Divider style={styles.Divider}/>
                             </List.Item>
                             <List.Item>
-                                <List.Content>
-                                    <NavLink to="/help"><span className="portal-item">Справка</span></NavLink>
-                                </List.Content>
+                                <NavLink to="/help" className='portal-item-blue-hover'>
+                                    <List.Content>
+                                        <span className="portal-item blue-hover">Справка</span>
+                                    </List.Content>
+                                </NavLink>
                             </List.Item>
                             <List.Item>
                                 <Divider style={styles.Divider}/>
                             </List.Item>
                             <List.Item>
-                                <List.Content>
-                                    <a onClick={onLogout}>
-                                        <span className="portal-item">Выйти</span>
-                                    </a>
-                                </List.Content>
+                                <a onClick={onLogout} className='portal-item-blue-hover'>
+                                    <List.Content>
+
+                                        <span className="portal-item blue-hover">Выйти</span>
+
+                                    </List.Content>
+                                </a>
                             </List.Item>
                         </List>
-                    </Segment>
-                </div>
-            </Portal>
+                    </div>}
+            />
         )
     }
 }

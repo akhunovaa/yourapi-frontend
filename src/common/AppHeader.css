@@ -34,7 +34,7 @@
     color: #fff;
     font-style: normal;
     font-weight: 700;
-
+    cursor: pointer;
 
 }
 
@@ -86,7 +86,12 @@
     line-height: 16px;
     min-width: 127px;
     width: 127px;
-    padding: 24px 36px 0px 36px;
+    padding: 24px 36px 24px 36px;
+    cursor: pointer;
+}
+
+.header-center-navlink-merch-navlink:hover div{
+    color: #2F80ED;
 }
 
 
@@ -180,11 +185,15 @@
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 16px;
+    /*line-height: 16px;*/
     color: #A5A5A5;
-    padding-top: 16px;
+    /*padding-top: 16px;*/
     text-align: center;
     vertical-align: middle;
+}
+
+.portal-item-blue-hover:hover div span{
+    color: #2F80ED;
 }
 
 .profile-segment{
