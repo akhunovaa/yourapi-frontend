@@ -155,8 +155,6 @@ class App extends Component {
                     <PrivateRoute exact path="/profile/api" authenticated={authenticated} currentUser={currentUser}
                                   component={Api}/>
 
-                    <Route exact path="/profile/:id?" render={(props) => <UserProfile authenticated={authenticated}
-                                                                                      visible={visible} {...props} />}/>
                     <Route exact path="/shop"
                            render={(props) => <Shop authenticated={authenticated} currentUser={currentUser}
                                                     visible={visible} {...props} />}/>
@@ -171,6 +169,9 @@ class App extends Component {
                            render={(props) => <ApiDetail handleSliderChange={this.handleSliderChange}
                                                          authenticated={authenticated} currentUser={currentUser}
                                                          visible={visible} {...props} />}/>
+
+                    <Route exact path="/profile/:id?" render={(props) => <UserProfile authenticated={authenticated}
+                                                                                      visible={visible} {...props} />}/>
 
                     <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}/>
                     <Route path='*' exact={true} component={NotFound}/>
