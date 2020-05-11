@@ -4,6 +4,7 @@ body{
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
+    min-width: 1348px;
 }
 
 .ui.form input{
