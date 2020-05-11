@@ -86,7 +86,7 @@ class ApiDetail extends Component {
                         error: false
                     });
                 }).catch(error => {
-                Alert.error('Ошибка при получении проекта' || (error && error.message));
+                Alert.error('Ошибка: запрашиваемый проект недоступен или не создан' || (error && error.message));
                 this.setState({loading: false, error: true})
             });
 
