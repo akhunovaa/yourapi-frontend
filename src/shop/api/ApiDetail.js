@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './ApiDetail.css';
-import {NavLink} from "react-router-dom";
-import {Breadcrumb, Button, Icon, Menu, Segment, Sidebar, Popup} from "semantic-ui-react";
+import {NavLink, Redirect} from "react-router-dom";
+import {Breadcrumb, Button, Icon, Menu, Popup, Segment, Sidebar} from "semantic-ui-react";
 import ApiDetailReviewHeader from "./header/ApiDetailReviewHeader";
 import ApiDetailVersionHeader from "./header/ApiDetailVersionHeader";
 import ApiDetailPriceHeader from "./header/ApiDetailPriceHeader";
@@ -15,14 +15,13 @@ import queryString from "query-string";
 import ApiDetailPriceBody from "./body/ApiDetailPriceBody";
 import ApiDetailQuestionsBody from "./body/ApiDetailQuestionsBody";
 import ApiDetailDocumentationBody from "./body/ApiDetailDocumentationBody";
-import {apiProjectGet, bookmarkAdd, bookmarkRemove} from "../../util/APIUtils";
+import {apiProjectGet, bookmarkAdd, bookmarkRemove, requestUserSecretList} from "../../util/APIUtils";
 import {getLink4Category, getLink4Description} from "../../util/ElementsDataUtils";
 import Alert from "react-s-alert";
 import LazyApiDetailImage from '../../util/LazyApiDetailImage';
 import AuthContainerWrapper from "../../home/AuthContainerWrapper";
 import ApiDetailCustomInfoPopup from "./ApiDetailCustomInfoPopup";
 import ApiDetailSharePopup from "./ApiDetailSharePopup";
-import {requestUserSecretList} from "../../util/APIUtils";
 import LoadingIndicator from "../../common/LoadingIndicator";
 import {Helmet} from "react-helmet";
 
@@ -34,6 +33,7 @@ class ApiDetail extends Component {
         super(props);
         this.state = {
             loading: true,
+            error: false,
             id: 0,
             name: '',
             description: '',
@@ -60,7 +60,8 @@ class ApiDetail extends Component {
     componentDidMount() {
         this._isMounted = true;
         const params = queryString.parse(this.props.location.search);
-        let uuid = params.uuid != null ? params.uuid : '1';
+        const {id} = this.props.match.params;
+        let uuid = params.uuid != null ? params.uuid : id;
         if (this._isMounted) {
             const {authenticated} = this.props;
 
@@ -81,11 +82,12 @@ class ApiDetail extends Component {
                         host: response.response.host,
                         operations: response.response.operations,
                         bookmarked: response.response.bookmarked,
-                        pageTitle: 'YourAPI | ' + response.response.fullName
+                        pageTitle: 'YourAPI | ' + response.response.fullName,
+                        error: false
                     });
                 }).catch(error => {
                 Alert.error('Ошибка при получении проекта' || (error && error.message));
-                this.setState({loading: false})
+                this.setState({loading: false, error: true})
             });
 
             if (authenticated) {
@@ -99,7 +101,7 @@ class ApiDetail extends Component {
                     Alert.error('Ошибка запроса для списка ключей' || (error && error.message));
                     this.setState({loading: false})
                 });
-            }else {
+            } else {
                 this.setState({loading: false})
             }
         }
@@ -181,20 +183,23 @@ class ApiDetail extends Component {
         const paging = (params.page !== 'undefined' && this.handleCheck(pagingArray, params.page)) ? params.page : 'methods';
         switch (paging) {
             case 'review':
-                return <ApiDetailReviewBody  pageTitle={pageTitle} />;
+                return <ApiDetailReviewBody pageTitle={pageTitle}/>;
             case 'version':
-                return <ApiDetailVersionBody pageTitle={pageTitle} />;
+                return <ApiDetailVersionBody pageTitle={pageTitle}/>;
             case 'price':
                 return <ApiDetailPriceBody pageTitle={pageTitle} authenticated={authenticated}
-                                           userApplicationSecret={userApplicationSecret} handleSliderChange={handleSliderChange} uuid={uuid}/>;
+                                           userApplicationSecret={userApplicationSecret}
+                                           handleSliderChange={handleSliderChange} uuid={uuid}/>;
             case 'questions':
-                return <ApiDetailQuestionsBody pageTitle={pageTitle} />;
+                return <ApiDetailQuestionsBody pageTitle={pageTitle}/>;
             case 'documentation':
                 return <ApiDetailDocumentationBody pageTitle={pageTitle}/>;
             default:
-                return <ApiDetailMethodsBody pageTitle={pageTitle} authenticated={authenticated} link={link4Description + "&page=methods"}
+                return <ApiDetailMethodsBody pageTitle={pageTitle} authenticated={authenticated}
+                                             link={link4Description + "&page=methods"}
                                              host={host} operations={operations} loading={loading}
-                                             handleSliderChange={handleSliderChange} userApplicationSecret={userApplicationSecret}/>
+                                             handleSliderChange={handleSliderChange}
+                                             userApplicationSecret={userApplicationSecret}/>
         }
     }
 
@@ -220,7 +225,14 @@ class ApiDetail extends Component {
 
     render() {
 
-        const {loading, name, dealer, category, updated, description, image, id, bookmarkText, uuid, info, operations, bookmarked} = this.state;
+        const {loading, name, dealer, category, updated, description, image, id, bookmarkText, uuid, info, operations, bookmarked, error} = this.state;
+
+        if (error) {
+            return <Redirect to={{
+                pathname: "/shop",
+                state: {from: this.props.location}
+            }}/>
+        }
 
         if (loading) {
             return <LoadingIndicator/>
@@ -325,24 +337,32 @@ class ApiDetail extends Component {
                                                 </div>
                                                 <div className="grid-labels">
                                                     <Icon style={{
-                                                        color: bookmarked ? bookmarkText !== 'bookmark outline' ? '#2F80ED' : '' : bookmarkText === 'bookmark' ? '#2F80ED' : '', paddingRight: 20
+                                                        color: bookmarked ? bookmarkText !== 'bookmark outline' ? '#2F80ED' : '' : bookmarkText === 'bookmark' ? '#2F80ED' : '',
+                                                        paddingRight: 20
                                                     }} link onClick={this.handleChange} id={uuid}
                                                           className='grid-labels-icon'
                                                           name={bookmarked ? bookmarkText !== 'bookmark outline' ? 'bookmark' : 'bookmark outline' : bookmarkText === 'bookmark' ? 'bookmark' : 'bookmark outline'}/>
 
                                                     <Popup
-                                                        trigger={<Icon className='grid-labels-icon' link name='share alternate' style={{paddingRight: 20}}/>}
+                                                        trigger={<Icon className='grid-labels-icon' link
+                                                                       name='share alternate'
+                                                                       style={{paddingRight: 20}}/>}
                                                         content={<ApiDetailSharePopup url={link4Description} name={name}
-                                                                                      description={description} category={category}
-                                                                                      dealer={dealer} image={image} host={host}/>}
+                                                                                      description={description}
+                                                                                      category={category}
+                                                                                      dealer={dealer} image={image}
+                                                                                      host={host}/>}
                                                         on='focus' inverted position='bottom center'
                                                     />
                                                     <Popup
-                                                        trigger={<Icon className='grid-labels-icon' link name='info circle'/>}
+                                                        trigger={<Icon className='grid-labels-icon' link
+                                                                       name='info circle'/>}
                                                         content={<ApiDetailCustomInfoPopup description={description}
                                                                                            info={info} image={image}
                                                                                            host={host} name={name}
-                                                                                           category={category} link={link} updated={updated} operations={operations}/>}
+                                                                                           category={category}
+                                                                                           link={link} updated={updated}
+                                                                                           operations={operations}/>}
                                                         header={name}
                                                         on='focus' inverted position='bottom center'
                                                     />
@@ -355,11 +375,13 @@ class ApiDetail extends Component {
                                             <div className="api-detail-rating">
                                                 <Icon link name='star' style={{color: '#F39847'}}/>
                                                 <label style={{color: '#F39847'}}>4,9</label>
-                                                <label style={{color: '#A5A5A5', paddingLeft: 4}}>({this.state.id})</label>
+                                                <label
+                                                    style={{color: '#A5A5A5', paddingLeft: 4}}>({this.state.id})</label>
                                             </div>
                                             <div className='api-subscription-apply-container'>
                                                 <NavLink to={link4Description + '&page=price'}>
-                                                    <Button style={{background: '#2F80ED'}}  className='api-subscription-apply'>
+                                                    <Button style={{background: '#2F80ED'}}
+                                                            className='api-subscription-apply'>
                                                         <span className='api-detail-create-button-text'>Оформить подписку</span>
                                                     </Button>
                                                 </NavLink>
