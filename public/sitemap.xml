@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.google.com/schemas/sitemap/0.84" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://yourapi.ru/</loc>
-        <changefreq>always</changefreq>
-    </url>
-
-    <url>
-        <loc>https://yourapi.ru/help</loc>
-        <changefreq>always</changefreq>
-    </url>
-
-    <url>
-        <loc>https://yourapi.ru/help/account/loader</loc>
-        <changefreq>always</changefreq>
-    </url>
-
-    <url>
-        <loc>https://yourapi.ru/shop</loc>
+        <loc>https://yourapi.ru</loc>
         <changefreq>always</changefreq>
     </url>
 
@@ -31,12 +16,42 @@
     </url>
 
     <url>
-        <loc>https://yourapi.ru/shop/category/data</loc>
+        <loc>https://yourapi.ru/privacy.html</loc>
         <changefreq>always</changefreq>
     </url>
 
     <url>
-        <loc>https://yourapi.ru/shop/category/data/api</loc>
+        <loc>https://yourapi.ru/agreement.html</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/help</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/help/faq</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/help/account</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/help/account/loader</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/data</loc>
         <changefreq>always</changefreq>
     </url>
 
@@ -46,17 +61,7 @@
     </url>
 
     <url>
-        <loc>https://yourapi.ru/shop/category/finance/api</loc>
-        <changefreq>always</changefreq>
-    </url>
-
-    <url>
         <loc>https://yourapi.ru/shop/category/mobile</loc>
-        <changefreq>always</changefreq>
-    </url>
-
-    <url>
-        <loc>https://yourapi.ru/shop/category/mobile/api</loc>
         <changefreq>always</changefreq>
     </url>
 
@@ -66,17 +71,7 @@
     </url>
 
     <url>
-        <loc>https://yourapi.ru/shop/category/map/api</loc>
-        <changefreq>always</changefreq>
-    </url>
-
-    <url>
         <loc>https://yourapi.ru/shop/category/adv</loc>
-        <changefreq>always</changefreq>
-    </url>
-
-    <url>
-        <loc>https://yourapi.ru/shop/category/adv/api</loc>
         <changefreq>always</changefreq>
     </url>
 
@@ -86,17 +81,7 @@
     </url>
 
     <url>
-        <loc>https://yourapi.ru/shop/category/social/api</loc>
-        <changefreq>always</changefreq>
-    </url>
-
-    <url>
         <loc>https://yourapi.ru/shop/category/health</loc>
-        <changefreq>always</changefreq>
-    </url>
-
-    <url>
-        <loc>https://yourapi.ru/shop/category/health/api</loc>
         <changefreq>always</changefreq>
     </url>
 
@@ -106,17 +91,17 @@
     </url>
 
     <url>
-        <loc>https://yourapi.ru/shop/category/sport/api</loc>
-        <changefreq>always</changefreq>
-    </url>
-
-    <url>
         <loc>https://yourapi.ru/shop/category/web</loc>
         <changefreq>always</changefreq>
     </url>
 
     <url>
-        <loc>https://yourapi.ru/shop/category/web/api</loc>
+        <loc>https://yourapi.ru/shop/category/news</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/shop/category/media</loc>
         <changefreq>always</changefreq>
     </url>
 
@@ -126,9 +111,25 @@
     </url>
 
     <url>
-        <loc>https://yourapi.ru/shop/category/other/api</loc>
+        <loc>https://yourapi.ru/profile/leon4uk</loc>
         <changefreq>always</changefreq>
     </url>
+
+    <url>
+        <loc>https://yourapi.ru/profile/yourapi</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/profile/%D0%90%D0%B7%D0%B0%D1%82%20%D0%90%D1%85%D1%83%D0%BD%D0%BE%D0%B2</loc>
+        <changefreq>always</changefreq>
+    </url>
+
+    <url>
+        <loc>https://yourapi.ru/profile/id74</loc>
+        <changefreq>always</changefreq>
+    </url>
+
 
 </urlset>
 
