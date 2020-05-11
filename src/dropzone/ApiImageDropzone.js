@@ -119,7 +119,9 @@ class ApiImageDropzone extends Component {
         const {locallyUploaded, imageUrl, editable, isHightlighted} = this.state;
         const {disabled, apiName} = this.props;
 
-        const host = window.location.origin.toString();
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
+
         const imageFullUrl = locallyUploaded ? imageUrl : host + "/api-data/image/" + imageUrl + "/73/73";
 
         return (

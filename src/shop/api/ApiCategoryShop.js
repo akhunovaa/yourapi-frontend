@@ -185,7 +185,8 @@ class ApiCategoryShop extends Component {
                 }}/>;
         }
 
-        const host = window.location.origin.toString();
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
 
         const {visible, authenticated} = this.props;
 

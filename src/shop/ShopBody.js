@@ -95,7 +95,9 @@ class ShopBody extends Component {
             return <ShopLoadingIndicator/>
         }
 
-        const host = window.location.origin.toString();
+
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
         const hasFirstRow = apiList[0] && apiList[0].size > 0 ? apiList[0] && apiList[0].size > 0 : apiList[1] && apiList[1].size > 0;
 
         const Projects = ({items}) => (

@@ -38,7 +38,9 @@ class HelpAccountApiUpload extends Component {
     viewData = (event) => {
         const target = event.target;
         const imgName = target.name;
-        const host = window.location.origin.toString();
+
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
         const fullImageUrl = host + '/img/' + imgName;
 
         const leftPosition = (window.screen.width / 2) - ((640 / 2) + 10);
@@ -58,7 +60,9 @@ class HelpAccountApiUpload extends Component {
     };
 
     render() {
-        const host = window.location.origin.toString();
+
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
         const {prepare, upload} = this.state;
 
         const seo = {

@@ -174,7 +174,9 @@ class ApiBookmark extends Component {
         if (loading) {
             return <BookmarkPageLoadingIndicator/>
         }
-        const host = window.location.origin.toString();
+
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
 
         const Projects = ({items}) => (
             <>

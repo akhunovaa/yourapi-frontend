@@ -62,7 +62,9 @@ class HelpFaq extends Component {
     viewData = (event) => {
         const target = event.target;
         const imgName = target.name;
-        const host = window.location.origin.toString();
+
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
         const fullImageUrl = host + '/img/help/' + imgName;
 
         const leftPosition = (window.screen.width / 2) - ((1000 / 2) + 10);
@@ -74,7 +76,9 @@ class HelpFaq extends Component {
     };
 
     render() {
-        const host = window.location.origin.toString();
+
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
         const {one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen} = this.state;
         const {visible, authenticated} = this.props;
         const seo = {

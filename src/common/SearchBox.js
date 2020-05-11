@@ -8,7 +8,9 @@ import LazySearchMiniImage from "../util/LazySearchMiniImage";
 import {getLink4Description} from "../util/ElementsDataUtils";
 
 const initialState = {loading: false, results: [], value: ''};
-const host = window.location.origin.toString();
+
+//const host = window.location.origin.toString();
+const host = "https://yourapi.ru";
 class SearchBox extends Component {
 
     state = initialState;

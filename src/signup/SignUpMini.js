@@ -42,7 +42,9 @@ class SignUpMini extends Component {
         const target = event.target;
         const inputId = target.id;
         unregister();
-        let host = window.location.origin.toString();
+
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
         let redirectUri = host + OAUTH2_REDIRECT_URI;
         let authUrl;
         switch (inputId) {
@@ -105,7 +107,9 @@ class SignUpMini extends Component {
             return <LoadingIndicator/>
         }
 
-        let host = window.location.origin.toString();
+
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
         let redirectUri = host + OAUTH2_REDIRECT_URI;
         const googleAuthUrl = host + GOOGLE_AUTH_URL + redirectUri;
         const facebookAuthUrl = host + FACEBOOK_AUTH_URL + redirectUri;

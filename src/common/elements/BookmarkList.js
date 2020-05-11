@@ -8,7 +8,9 @@ import {getLink4Description} from "../../util/ElementsDataUtils";
 import LazyBookmarkMiniImage from '../../util/LazyBookmarkMiniImage';
 import Alert from "react-s-alert";
 
-const host = window.location.origin.toString();
+
+//const host = window.location.origin.toString();
+const host = "https://yourapi.ru";
 
 class BookmarkList extends Component {
 

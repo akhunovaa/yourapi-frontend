@@ -227,7 +227,8 @@ class ApiDetail extends Component {
         }
 
 
-        const host = window.location.origin.toString();
+        //const host = window.location.origin.toString();
+        const host = "https://yourapi.ru";
         const profile = dealer.nickname && !dealer.nickname.includes('.', ',') ? dealer.nickname : 'id' + dealer.id;
         const profileLink = '/profile' + '/' + profile;
         const link = getLink4Category(category);
