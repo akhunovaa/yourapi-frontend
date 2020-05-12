@@ -11,6 +11,8 @@ import {withRouter} from "react-router";
 import {apiTestRequestSend} from "../../../util/APIUtils";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {HashLink as Link} from 'react-router-hash-link';
+import { CodeBlock, tomorrow as codeTheme} from 'react-code-blocks'
+import {getJavaOkHttp} from "../../../util/SDKExamplesDataUtil";
 
 class ApiDetailMethodsOperation extends Component {
 
@@ -24,17 +26,7 @@ class ApiDetailMethodsOperation extends Component {
                 url: ''
             },
             value: '',
-            codeValue: 'var unirest = require("unirest");\n' +
-                '\n' +
-                'var req = unirest("GET", "https://1-test-api.p.yourapi.ru/api/spelling/AutoComplete");\n' +
-                '\n' +
-                'req.query({\n' +
-                '\t"text": "do"\n' +
-                '});\n' +
-                '\n' +
-                'req.headers({\n' +
-                '\t"x-yourapi-host": "1-test-api.p.yourapi.ru",\n' +
-                '\t"x-yourapi-key": "d84d4c60c9msh148bf271be3d9f5p10d2',
+            codeValue: '',
             copied: false,
             codeCopied: false,
             project: 'Мой API',
@@ -59,7 +51,7 @@ class ApiDetailMethodsOperation extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        const {userApplicationSecret} = this.props;
+        const {userApplicationSecret, host} = this.props;
         if (this._isMounted) {
             const secretKeyOptions = [];
             for (let i = 0; i < userApplicationSecret.length; i++) {
@@ -68,7 +60,9 @@ class ApiDetailMethodsOperation extends Component {
                     value: userApplicationSecret[i].value
                 };
                 secretKeyOptions.push(data);
-                this.setState({keyValue: userApplicationSecret[i].value});
+                const fulledUrl = host.url;
+                const code = getJavaOkHttp(fulledUrl, host.url, userApplicationSecret[i].value);
+                this.setState({keyValue: userApplicationSecret[i].value, code: code});
             }
             this.setState({loading: false, secretKeyOptions: secretKeyOptions});
         }
@@ -185,12 +179,20 @@ class ApiDetailMethodsOperation extends Component {
     handleDropdownChange = (e, {key, value}) => this.setState({[key]: value});
 
     handleKeyDropdownChange = (e, {key, name, value}) => {
-        this.setState({keyValue: value});
+        const codeData = this.getCodeExampleData(value);
+        this.setState({keyValue: value, code: codeData});
     };
 
     handleCheck(array, val) {
         return array.some(item => item.path === val);
     }
+
+    getCodeExampleData = (key) => {
+        const {host} = this.props;
+        const fulledUrl = host.url ;
+        const code = getJavaOkHttp(fulledUrl, host.url, key);
+        return code;
+    };
 
     getFromArray = (array, val) => {
         let obj = undefined;
@@ -263,8 +265,7 @@ class ApiDetailMethodsOperation extends Component {
     render() {
 
         const {host, loadingParent} = this.props;
-        const {keyValue, secretKeyOptions, loading} = this.state;
-
+        const {keyValue, secretKeyOptions, loading, code} = this.state;
         if (loading || loadingParent) {
             return <ShopLoadingIndicator/>
         }
@@ -420,10 +421,9 @@ class ApiDetailMethodsOperation extends Component {
                                   id="language" name="language"
                                   className="form-input detail-methods-parameters-input detail-methods-parameters-input-margin chevron-down"
                                   options={languageOptions} defaultValue={this.state.language}/>
-                        <Button basic className='detail-methods-code-sdk'><Icon name='dropbox' color='black'
-                                                                                size='large'/><span
-                            className='detail-methods-code-sdk-text'>SDK</span></Button>
-                        <CopyToClipboard text={this.state.codeValue} onCopy={this.onCodeCopy}>
+                        <Button basic className='detail-methods-code-sdk'><Icon name='dropbox' color='black' size='large'/>
+                            <span className='detail-methods-code-sdk-text'>SDK</span></Button>
+                        <CopyToClipboard text={this.state.code} onCopy={this.onCodeCopy}>
                             {this.state.codeCopied ?
                                 <Icon className='code-paste fadeInLeft animated3' name='paste' link size='large'/> :
                                 <Icon className='code-copy blue-hover' name='copy outline' link size='large'/>}
@@ -432,10 +432,22 @@ class ApiDetailMethodsOperation extends Component {
                         {/*<Icon style={{paddingLeft: 12, color: '#A5A5A5'}} className='blue-hover' name='copy outline' link size='large'/>*/}
                     </div>
                     <div className="detail-methods-code-fragment-textarea">
-                        <Form style={{paddingTop: '6px'}}>
-                                    <TextArea onChange={this.onCodeChange} placeholder=''
-                                              style={{minHeight: 306, maxHeight: 306, minWidth: 270}} id="code"
-                                              name="code" value={this.state.codeValue}/>
+                        <Form style={{paddingTop: '6px', whiteSpace: "pre-wrap"}}>
+                            {/*<TextArea onChange={this.onCodeChange} placeholder=''*/}
+                                              {/*style={{minHeight: 306, maxHeight: 306, minWidth: 270}} id="code"*/}
+                                              {/*name="code" value={this.state.codeValue}/>*/}
+
+                            <CodeBlock
+                                style={{minHeight: 306, maxHeight: 306, minWidth: 270}}
+                                id="code"
+                                name="code"
+                                text={code === undefined ? getJavaOkHttp(host.url, host.url, 'YOUR_SECRET_KEY') : code}
+                                language={'java'}
+                                showLineNumbers={false}
+                                theme={codeTheme}
+                                onChange={this.onCodeChange}
+                            />
+
                         </Form>
                     </div>
                     {this.renderSwitchHeader()}

@@ -15,6 +15,7 @@
     "prop-types": "latest",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
+    "react-code-blocks": "0.0.7",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
@@ -42,9 +43,14 @@
     "generate-sw": "sw-precache --root=build --config scripts/sw-precache-config.js && uglifyjs build/service-worker.js -o build/service-worker.js"
   },
   "reactSnap": {
-    "minifyHtml": { "sortClassName": false },
+    "minifyHtml": {
+      "sortClassName": false
+    },
     "cacheAjaxRequests": true,
-    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
     "puppeteerExecutablePath": "/usr/bin/google-chrome"
   },
   "browserslist": [

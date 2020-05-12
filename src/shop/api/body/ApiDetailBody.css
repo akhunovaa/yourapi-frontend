@@ -664,15 +664,26 @@
     color: #4F4F4F;
 }
 
-.detail-methods-code-fragment-textarea textarea{
-    font-family: var(--font-family);
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
+.detail-methods-code-fragment-textarea{
+    /*min-width: 510px;*/
+    overflow-x: hidden;
+    /*max-width: 510px;*/
+    border: 1px solid rgba(34,36,38,.15);
+    margin-top: 6px;
 
-    /* Gray 2 */
-    color: #4F4F4F;
+}
+
+.detail-methods-code-fragment-textarea form span{
+    /*min-width: 510px;*/
+    overflow-x: hidden;
+    /*max-width: 510px;*/
+    /*border: 1px solid rgba(34,36,38,.15);*/
+}
+
+.detail-methods-code-fragment-textarea form span code{
+    white-space: pre-wrap;
+    /*min-width: 510px;*/
+    max-width: 342px;
 }
 
 .detail-methods-example-code-fragment-textarea{
