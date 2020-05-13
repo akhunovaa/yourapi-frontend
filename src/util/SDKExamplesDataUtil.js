@@ -12,10 +12,13 @@ export function getJavaOkHttp(url, host, key) {
 }
 
 export function getJavaUnirest(url, host, key) {
-   return "HttpResponse\u003CString\u003E response = Unirest.get(\"" + url + "\").header(\"x-yourapi-host\", \"" + host + "\").header(\"x-yourapi-key\", \"" + key + "\").asString();"
+   return "HttpResponse\u003CString\u003E response = Unirest.get(\"" + url + "\")\n" +
+       "\t.header(\"x-yourapi-host\", \"" + host + "\")\n" +
+       "\t.header(\"x-yourapi-key\", \"" + key + "\")\n" +
+       "\t.asString();"
 }
 
-export function getJSJquery(url, host, key, method) {
+export function getJSJquery(url, host, key) {
    return "var settings = {\n" +
        "\t\"async\": true,\n" +
        "\t\"crossDomain\": true,\n" +

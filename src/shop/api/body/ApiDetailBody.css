@@ -682,8 +682,8 @@
 }
 
 .detail-methods-code-fragment-textarea form span code{
-    white-space: pre-wrap;
-    /*min-width: 510px;*/
+    /*white-space: pre-wrap;*/
+    min-width: 510px;
     max-width: 342px;
 }
 

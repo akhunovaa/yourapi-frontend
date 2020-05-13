@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './ApiDetailBody.css';
-import {Button, Dropdown, Form, Icon, Input, Popup, TextArea} from "semantic-ui-react";
+import {Button, Dropdown, Form, Icon, Input, Popup} from "semantic-ui-react";
 import {ShopLoadingIndicator} from "../../../common/LoadingIndicator";
 import queryString from "query-string";
 import ApiDetailMethodsResponseExampleHeader from "./header/ApiDetailMethodsResponseExampleHeader";
@@ -11,8 +11,35 @@ import {withRouter} from "react-router";
 import {apiTestRequestSend} from "../../../util/APIUtils";
 import {CopyToClipboard} from "react-copy-to-clipboard";
 import {HashLink as Link} from 'react-router-hash-link';
-import { CodeBlock, tomorrow as codeTheme} from 'react-code-blocks'
-import {getJavaOkHttp} from "../../../util/SDKExamplesDataUtil";
+import {CodeBlock, tomorrow as codeTheme} from 'react-code-blocks'
+import {
+    getCLibCurlRequest,
+    getCRestSharpRequest,
+    getCUnirestRequest,
+    getGoRequest,
+    getJavaOkHttp,
+    getJavaUnirest,
+    getJSFetch,
+    getJSJquery,
+    getJSXMLHttpRequest,
+    getNodeJSAxiosRequest,
+    getNodeJSHttpRequest,
+    getNodeJSRequest,
+    getNodeJSUnirestRequest,
+    getPHPCurlRequest,
+    getPHPHttpV2Request,
+    getPHPUnirestRequest,
+    getPowershellRestRequest,
+    getPythonHttpClientRequest,
+    getPythonRequest,
+    getPythonUnirestRequest,
+    getRubyNetHttpRequest,
+    getRubyUnirestRequest,
+    getShellCurlRequest,
+    getShellHTTPieRequest,
+    getShellWgetRequest,
+    getSwiftNSUrllSessionRequest
+} from "../../../util/SDKExamplesDataUtil";
 
 class ApiDetailMethodsOperation extends Component {
 
@@ -26,9 +53,10 @@ class ApiDetailMethodsOperation extends Component {
                 url: ''
             },
             value: '',
-            codeValue: '',
+            codeValue: 'Java OkHttp',
             copied: false,
             codeCopied: false,
+            codeLanguage: 'java',
             project: 'Мой API',
             keyValue: '',
             idNumber: '123456',
@@ -115,6 +143,13 @@ class ApiDetailMethodsOperation extends Component {
         const inputName = target.name;
         const inputValue = target.value;
         this.setState({[inputName]: inputValue});
+        this.buildCodeExample();
+    };
+
+    buildCodeExample = () => {
+        const {codeValue} = this.state;
+        const codeData = this.getCodeExampleData(codeValue);
+        this.setState({codeData: codeData});
     };
 
     jsonPrettify = (json) => {
@@ -131,28 +166,9 @@ class ApiDetailMethodsOperation extends Component {
         if (operation.path === undefined) {
             return
         }
-        const pathName = (operation.path.includes('{') || operation.path.includes('}')) ? '' : operation.path;
-
+        this.buildCodeExample();
         if (host) {
-            let uri = host.url + pathName;
-            for (const arrayElement of operation.parameters) {
-                if (arrayElement.input === 'path') {
-                    const pathVariable = this.state[arrayElement.name] ? this.state[arrayElement.name] : '';
-                    uri += '/' + pathVariable
-                }
-            }
-            let parameterCharValue = '';
-            for (const arrayElement of operation.parameters) {
-                if (arrayElement.input === 'query') {
-                    const queryVariableValue = this.state[arrayElement.name] ? this.state[arrayElement.name] : '';
-                    const queryVariableName = arrayElement.name;
-                    if (queryVariableValue !== '') {
-                        const concatenatedParam = queryVariableName + '=' + queryVariableValue;
-                        parameterCharValue === '' ? parameterCharValue += '?' + concatenatedParam : parameterCharValue += '&' + concatenatedParam;
-                    }
-                }
-            }
-            const fulledUrl = uri + parameterCharValue;
+            const fulledUrl = this.getFullFormedUrlForTheRequest(operation);
             handlePageRestrict();
             apiTestRequestSend(fulledUrl, keyValue, host.url)
                 .then(response => {
@@ -176,22 +192,138 @@ class ApiDetailMethodsOperation extends Component {
         }
     }
 
-    handleDropdownChange = (e, {key, value}) => this.setState({[key]: value});
-
     handleKeyDropdownChange = (e, {key, name, value}) => {
+        this.setState({keyValue: value});
+       this.buildCodeExample();
+    };
+
+    handleDropdownChange = (e, {key, name, value}) => {
         const codeData = this.getCodeExampleData(value);
-        this.setState({keyValue: value, code: codeData});
+        this.setState({codeValue: value, codeData: codeData});
     };
 
     handleCheck(array, val) {
         return array.some(item => item.path === val);
     }
 
-    getCodeExampleData = (key) => {
+    getCodeExampleData = (code) => {
         const {host} = this.props;
-        const fulledUrl = host.url ;
-        const code = getJavaOkHttp(fulledUrl, host.url, key);
-        return code;
+        const operation = this.getRequestedOperation();
+        const fulledUrl = this.getFullFormedUrlForTheRequest(operation);
+        const {keyValue} = this.state;
+        const key = keyValue ? keyValue : 'YOUR_SECRET_KEY';
+        let codeData;
+        switch (code) {
+            case "Java OkHttp":
+                this.setState({codeLanguage: 'java'});
+                codeData = getJavaOkHttp(fulledUrl, host.url, key);
+                break;
+            case "Java Unirest":
+                this.setState({codeLanguage: 'java'});
+                codeData = getJavaUnirest(fulledUrl, host.url, key);
+                break;
+            case "C Libcurl":
+                this.setState({codeLanguage: 'c'});
+                codeData = getCLibCurlRequest(fulledUrl, host.url, key);
+                break;
+            case "C# RestSharp":
+                this.setState({codeLanguage: 'csharp'});
+                codeData = getCRestSharpRequest(fulledUrl, host.url, key);
+                break;
+            case "C# Unirest":
+                this.setState({codeLanguage: 'csharp'});
+                codeData = getCUnirestRequest(fulledUrl, host.url, key);
+                break;
+            case "Go NewRequest":
+                this.setState({codeLanguage: 'go'});
+                codeData = getGoRequest(fulledUrl, host.url, key);
+                break;
+            case "JavaScript jQuery":
+                this.setState({codeLanguage: 'javascript'});
+                codeData = getJSJquery(fulledUrl, host.url, key);
+                break;
+            case "JavaScript Fetch":
+                this.setState({codeLanguage: 'jsx'});
+                codeData = getJSFetch(fulledUrl, host.url, key);
+                break;
+            case "JavaScript XMLHttpRequest":
+                this.setState({codeLanguage: 'jsx'});
+                codeData = getJSXMLHttpRequest(fulledUrl, host.url, key);
+                break;
+            case "Node.js HTTP":
+                this.setState({codeLanguage: 'javascript'});
+                codeData = getNodeJSHttpRequest(fulledUrl, host.url, key);
+                break;
+            case "Node.js Request":
+                this.setState({codeLanguage: 'javascript'});
+                codeData = getNodeJSRequest(fulledUrl, host.url, key);
+                break;
+            case "Node.js Unirest":
+                this.setState({codeLanguage: 'javascript'});
+                codeData = getNodeJSUnirestRequest(fulledUrl, host.url, key);
+                break;
+            case "Node.js Axios":
+                this.setState({codeLanguage: 'javascript'});
+                codeData = getNodeJSAxiosRequest(fulledUrl, host.url, key);
+                break;
+            case "PHP cURL":
+                this.setState({codeLanguage: 'php'});
+                codeData = getPHPCurlRequest(fulledUrl, host.url, key);
+                break;
+            case "PHP HTTP v2":
+                this.setState({codeLanguage: 'php'});
+                codeData = getPHPHttpV2Request(fulledUrl, host.url, key);
+                break;
+            case "PHP Unirest":
+                this.setState({codeLanguage: 'php'});
+                codeData = getPHPUnirestRequest(fulledUrl, host.url, key);
+                break;
+            case "Powershell WebRequest":
+                this.setState({codeLanguage: 'bash'});
+                codeData = getPowershellRestRequest(fulledUrl, host.url, key);
+                break;
+            case "Powershell RestMethod":
+                this.setState({codeLanguage: 'bash'});
+                codeData = getPowershellRestRequest(fulledUrl, host.url, key);
+                break;
+            case "Python http.client":
+                this.setState({codeLanguage: 'python'});
+                codeData = getPythonHttpClientRequest(fulledUrl, host.url, key);
+                break;
+            case "Python Requests":
+                this.setState({codeLanguage: 'python'});
+                codeData = getPythonRequest(fulledUrl, host.url, key);
+                break;
+            case "Python Unirest":
+                this.setState({codeLanguage: 'python'});
+                codeData = getPythonUnirestRequest(fulledUrl, host.url, key);
+                break;
+            case "Ruby net::http":
+                this.setState({codeLanguage: 'ruby'});
+                codeData = getRubyNetHttpRequest(fulledUrl, host.url, key);
+                break;
+            case "Ruby Unirest":
+                this.setState({codeLanguage: 'ruby'});
+                codeData = getRubyUnirestRequest(fulledUrl, host.url, key);
+                break;
+            case "Shell cURL":
+                this.setState({codeLanguage: 'bash'});
+                codeData = getShellCurlRequest(fulledUrl, host.url, key);
+                break;
+            case "Shell HTTPie":
+                this.setState({codeLanguage: 'bash'});
+                codeData = getShellHTTPieRequest(fulledUrl, host.url, key);
+                break;
+            case "Shell Wget":
+                this.setState({codeLanguage: 'bash'});
+                codeData = getShellWgetRequest(fulledUrl, host.url, key);
+                break;
+            case "Swift NSURLSession":
+                this.setState({codeLanguage: 'swift'});
+                codeData = getSwiftNSUrllSessionRequest(fulledUrl, host.url, key);
+                break;
+        }
+        return codeData;
     };
 
     getFromArray = (array, val) => {
@@ -206,6 +338,46 @@ class ApiDetailMethodsOperation extends Component {
 
     handleClose = () => {
         this.setState({open: false})
+    };
+
+    getFullFormedUrlForTheRequest = (operation) => {
+        const {host} = this.props;
+
+        if (operation.path === undefined) {
+            return
+        }
+        const pathName = (operation.path.includes('{') || operation.path.includes('}')) ? '' : operation.path;
+        if (host) {
+            let uri = pathName !== '/' ? host.url + pathName : host.url;
+            for (const arrayElement of operation.parameters) {
+                if (arrayElement.input === 'path') {
+                    const pathVariable = this.state[arrayElement.name] ? this.state[arrayElement.name] : '';
+                    uri += '/' + pathVariable
+                }
+            }
+            let parameterCharValue = '';
+            for (const arrayElement of operation.parameters) {
+                if (arrayElement.input === 'query') {
+                    const queryVariableValue = this.state[arrayElement.name] ? this.state[arrayElement.name] : '';
+                    const queryVariableName = arrayElement.name;
+                    if (queryVariableValue !== '') {
+                        const concatenatedParam = queryVariableName + '=' + queryVariableValue;
+                        parameterCharValue === '' ? parameterCharValue += '?' + concatenatedParam : parameterCharValue += '&' + concatenatedParam;
+                    }
+                }
+            }
+            return uri + parameterCharValue;
+        }
+    };
+
+    getRequestedOperation = () => {
+        const operations = this.props.operations ? this.props.operations : [];
+        const operationNameArray = [];
+        for (let i = 0; i < operations.length; i++) {
+            operationNameArray.push(operations[i]);
+        }
+        const params = queryString.parse(this.props.location.search);
+        return (params.operation !== undefined && this.handleCheck(operationNameArray, params.operation)) ? this.getFromArray(operationNameArray, params.operation) : [];
     };
 
     jsonPrettify = (json) => {
@@ -265,7 +437,7 @@ class ApiDetailMethodsOperation extends Component {
     render() {
 
         const {host, loadingParent} = this.props;
-        const {keyValue, secretKeyOptions, loading, code} = this.state;
+        const {keyValue, secretKeyOptions, loading, codeLanguage, codeData, codeCopied, language} = this.state;
         if (loading || loadingParent) {
             return <ShopLoadingIndicator/>
         }
@@ -418,15 +590,7 @@ class ApiDetailMethodsOperation extends Component {
             return <ShopLoadingIndicator/>
         }
 
-        const operations = this.props.operations ? this.props.operations : [];
-
-        const operationNameArray = [];
-        for (let i = 0; i < operations.length; i++) {
-            operationNameArray.push(operations[i]);
-        }
-
-        const params = queryString.parse(this.props.location.search);
-        const operation = (params.operation !== undefined && this.handleCheck(operationNameArray, params.operation)) ? this.getFromArray(operationNameArray, params.operation) : [];
+        const operation = this.getRequestedOperation();
 
         return (
             <div className='detail-methods-main-columns'>
@@ -481,14 +645,14 @@ class ApiDetailMethodsOperation extends Component {
                             }
                         }).map((item, index) => {
                             return (
-                             <div key={index + item.name} className="detail-methods-parameters">
-                                        <label className='detail-methods-parameters-label'>{item.name}</label>
-                                        {item.required ? (<label
-                                            className='detail-methods-parameters-label-required'>*</label>) : (<></>)}
-                                        <div style={{paddingTop: 6}}/>
-                                        <Input size={'small'} fluid placeholder={item.name} id={item.name}
-                                               name={item.name} onChange={this.handleParameterInputChange}/>
-                                    </div>)
+                                <div key={index + item.name} className="detail-methods-parameters">
+                                    <label className='detail-methods-parameters-label'>{item.name}</label>
+                                    {item.required ? (<label
+                                        className='detail-methods-parameters-label-required'>*</label>) : (<></>)}
+                                    <div style={{paddingTop: 6}}/>
+                                    <Input size={'small'} fluid placeholder={item.name} id={item.name}
+                                           name={item.name} onChange={this.handleParameterInputChange}/>
+                                </div>)
                         }) : (<div/>)}
                     </div>
                     <div className='detail-methods-test-button-container'>
@@ -535,11 +699,12 @@ class ApiDetailMethodsOperation extends Component {
                         <Dropdown onChange={this.handleDropdownChange} placeholder='Язык' selection search
                                   id="language" name="language"
                                   className="form-input detail-methods-parameters-input detail-methods-parameters-input-margin chevron-down"
-                                  options={languageOptions} defaultValue={this.state.language}/>
-                        <Button basic className='detail-methods-code-sdk'><Icon name='dropbox' color='black' size='large'/>
+                                  options={languageOptions} defaultValue={language}/>
+                        <Button basic className='detail-methods-code-sdk'><Icon name='dropbox' color='black'
+                                                                                size='large'/>
                             <span className='detail-methods-code-sdk-text'>SDK</span></Button>
-                        <CopyToClipboard text={this.state.code} onCopy={this.onCodeCopy}>
-                            {this.state.codeCopied ?
+                        <CopyToClipboard text={codeData !== undefined ? codeData : getJavaOkHttp(host.url, host.url, 'YOUR_SECRET_KEY')} onCopy={this.onCodeCopy}>
+                            {codeCopied ?
                                 <Icon className='code-paste fadeInLeft animated3' name='paste' link size='large'/> :
                                 <Icon className='code-copy blue-hover' name='copy outline' link size='large'/>}
                         </CopyToClipboard>
@@ -548,16 +713,13 @@ class ApiDetailMethodsOperation extends Component {
                     </div>
                     <div className="detail-methods-code-fragment-textarea">
                         <Form style={{paddingTop: '6px', whiteSpace: "pre-wrap"}}>
-                            {/*<TextArea onChange={this.onCodeChange} placeholder=''*/}
-                                              {/*style={{minHeight: 306, maxHeight: 306, minWidth: 270}} id="code"*/}
-                                              {/*name="code" value={this.state.codeValue}/>*/}
 
                             <CodeBlock
                                 style={{minHeight: 306, maxHeight: 306, minWidth: 270}}
-                                id="code"
-                                name="code"
-                                text={code === undefined ? getJavaOkHttp(host.url, host.url, 'YOUR_SECRET_KEY') : code}
-                                language={'java'}
+                                id="codeData"
+                                name="codeData"
+                                text={codeData === undefined ? getJavaOkHttp(host.url, host.url, 'YOUR_SECRET_KEY') : codeData}
+                                language={codeLanguage}
                                 showLineNumbers={false}
                                 theme={codeTheme}
                                 onChange={this.onCodeChange}
