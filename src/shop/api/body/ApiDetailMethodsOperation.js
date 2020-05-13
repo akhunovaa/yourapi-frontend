@@ -532,7 +532,7 @@ class ApiDetailMethodsOperation extends Component {
                     <div className="detail-methods-code-fragment">
                         <label className='detail-methods-parameters-label'>Язык</label>
                         <div style={{paddingTop: 6}}/>
-                        <Dropdown onChange={this.handleDropdownChange} placeholder='Язык' selection
+                        <Dropdown onChange={this.handleDropdownChange} placeholder='Язык' selection search
                                   id="language" name="language"
                                   className="form-input detail-methods-parameters-input detail-methods-parameters-input-margin chevron-down"
                                   options={languageOptions} defaultValue={this.state.language}/>
