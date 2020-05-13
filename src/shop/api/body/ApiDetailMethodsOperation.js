@@ -32,7 +32,7 @@ class ApiDetailMethodsOperation extends Component {
             project: 'Мой API',
             keyValue: '',
             idNumber: '123456',
-            language: '(Node.js) Unirest',
+            language: 'Java OkHttp',
             params: '',
             pathVariable: ''
         };
@@ -278,24 +278,139 @@ class ApiDetailMethodsOperation extends Component {
 
         const languageOptions = [
             {
-                language: '(Node.js) Unirest',
-                text: '(Node.js) Unirest',
-                value: '(Node.js) Unirest'
+                language: 'Java OkHttp',
+                text: 'Java OkHttp',
+                value: 'Java OkHttp'
             },
             {
-                language: 'Python 3.8.1',
-                text: 'Python 3.8.1',
-                value: 'Python 3.8.1'
+                language: 'Java Unirest',
+                text: 'Java Unirest',
+                value: 'Java Unirest'
             },
             {
-                language: 'Python 2.7.17',
-                text: 'Python 2.7.17',
-                value: 'Python 2.7.17'
+                language: 'C Libcurl',
+                text: 'C Libcurl',
+                value: 'C Libcurl'
             },
             {
-                language: 'Go (Golang) 1.13',
-                text: 'Go (Golang) 1.13',
-                value: 'Go (Golang) 1.13'
+                language: 'C# RestSharp',
+                text: 'C# RestSharp',
+                value: 'C# RestSharp'
+            },
+            {
+                language: 'C# Unirest',
+                text: 'C# Unirest',
+                value: 'C# Unirest'
+            },
+            {
+                language: 'Go NewRequest',
+                text: 'Go NewRequest',
+                value: 'Go NewRequest'
+            },
+            {
+                language: 'JavaScript jQuery',
+                text: 'JavaScript jQuery',
+                value: 'JavaScript jQuery'
+            },
+            {
+                language: 'JavaScript Fetch',
+                text: 'JavaScript Fetch',
+                value: 'JavaScript Fetch'
+            },
+            {
+                language: 'JavaScript XMLHttpRequest',
+                text: 'JavaScript XMLHttpRequest',
+                value: 'JavaScript XMLHttpRequest'
+            },
+            {
+                language: 'Node.js HTTP',
+                text: 'Node.js HTTP',
+                value: 'Node.js HTTP'
+            },
+            {
+                language: 'Node.js Request',
+                text: 'Node.js Request',
+                value: 'Node.js Request'
+            },
+            {
+                language: 'Node.js Unirest',
+                text: 'Node.js Unirest',
+                value: 'Node.js Unirest'
+            },
+            {
+                language: 'Node.js Axios',
+                text: 'Node.js Axios',
+                value: 'Node.js Axios'
+            },
+            {
+                language: 'PHP cURL',
+                text: 'PHP cURL',
+                value: 'PHP cURL'
+            },
+            {
+                language: 'PHP HTTP v2',
+                text: 'PHP HTTP v2',
+                value: 'PHP HTTP v2'
+            },
+            {
+                language: 'PHP Unirest',
+                text: 'PHP Unirest',
+                value: 'PHP Unirest'
+            },
+            {
+                language: 'Powershell WebRequest',
+                text: 'Powershell WebRequest',
+                value: 'Powershell WebRequest'
+            },
+            {
+                language: 'Powershell RestMethod',
+                text: 'Powershell RestMethod',
+                value: 'Powershell RestMethod'
+            },
+            {
+                language: 'Python http.client',
+                text: 'Python http.client',
+                value: 'Python http.client'
+            },
+            {
+                language: 'Python Requests',
+                text: 'Python Requests',
+                value: 'Python Requests'
+            },
+            {
+                language: 'Python Unirest',
+                text: 'Python Unirest',
+                value: 'Python Unirest'
+            },
+            {
+                language: 'Ruby net::http',
+                text: 'Ruby net::http',
+                value: 'Ruby net::http'
+            },
+            {
+                language: 'Ruby Unirest',
+                text: 'Ruby Unirest',
+                value: 'Ruby Unirest'
+            },
+            {
+                language: 'Shell cURL',
+                text: 'Shell cURL',
+                value: 'Shell cURL'
+            },
+            {
+                language: 'Shell HTTPie',
+                text: 'Shell HTTPie',
+                value: 'Shell HTTPie'
+            },
+            {
+                language: 'Shell Wget',
+                text: 'Shell Wget',
+                value: 'Shell Wget'
+            },
+            {
+                language: 'Swift NSURLSession',
+                text: 'Swift NSURLSession',
+                value: 'Swift NSURLSession'
             }
         ];
 

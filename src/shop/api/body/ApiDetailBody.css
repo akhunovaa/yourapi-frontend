@@ -648,8 +648,9 @@
     height: 38px;
     white-space: nowrap;
     text-align: center;
-    padding-right: 12px;
-    padding-left: 12px;
+    /*padding-right: 12px;*/
+    /*padding-left: 12px;*/
+    padding-bottom: 5px !important;
 }
 
 .detail-methods-code-sdk-text{
