@@ -685,6 +685,7 @@
     /*white-space: pre-wrap;*/
     min-width: 510px;
     max-width: 342px;
+    min-height: 300px;
 }
 
 .detail-methods-example-code-fragment-textarea{
