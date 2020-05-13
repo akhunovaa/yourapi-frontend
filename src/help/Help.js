@@ -34,7 +34,7 @@ class Help extends Component {
 
     render() {
 
-        const {visible, authenticated} = this.props;
+        const {visible, authenticated, handleSliderChange} = this.props;
 
         const seo = {
             title: "YourAPI | Справка",
@@ -77,6 +77,7 @@ class Help extends Component {
                         direction='right'
                         vertical
                         visible={visible}
+                        onHide={() => handleSliderChange()}
                         className='login-slider-pushable'>
                         {authenticated ? (<div/>) : (
                             <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}

@@ -128,7 +128,7 @@ class Shop extends Component {
         };
 
         const {loading, apiList, bookmarkData, bookmarkLoading} = this.state;
-        const {visible, authenticated} = this.props;
+        const {visible, authenticated, handleSliderChange} = this.props;
 
         return (
             <div>
@@ -159,6 +159,7 @@ class Shop extends Component {
                         direction='right'
                         vertical
                         visible={visible}
+                        onHide={() => handleSliderChange()}
                         className='login-slider-pushable'>
                         {authenticated ? (<div/>) : (
                             <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}

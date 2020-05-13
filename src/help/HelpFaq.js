@@ -80,7 +80,7 @@ class HelpFaq extends Component {
         //const host = window.location.origin.toString();
         const host = "https://yourapi.ru";
         const {one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen} = this.state;
-        const {visible, authenticated} = this.props;
+        const {visible, authenticated, handleSliderChange} = this.props;
         const seo = {
             title: "YourAPI | F.A.Q.",
             type: "website",
@@ -122,6 +122,7 @@ class HelpFaq extends Component {
                         direction='right'
                         vertical
                         visible={visible}
+                        onHide={() => handleSliderChange()}
                         className='login-slider-pushable'>
                         {authenticated ? (<div/>) : (<AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}
                     </Sidebar>

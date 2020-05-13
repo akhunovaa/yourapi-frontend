@@ -176,6 +176,7 @@ class ApiCategoryShop extends Component {
     render() {
 
         const {loading, bookmarkLoading, permittedCategory, categoryName, apiList, bookmarkData} = this.state;
+        const {visible, authenticated, handleSliderChange} = this.props;
 
         if (!this.handleCheck(permittedCategory, categoryName)) {
             return <Redirect
@@ -187,8 +188,6 @@ class ApiCategoryShop extends Component {
 
         //const host = window.location.origin.toString();
         const host = "https://yourapi.ru";
-
-        const {visible, authenticated} = this.props;
 
         const Projects = ({items}) => (
             <>
@@ -300,6 +299,7 @@ class ApiCategoryShop extends Component {
                         direction='right'
                         vertical
                         visible={visible}
+                        onHide={() => handleSliderChange()}
                         className='login-slider-pushable'>
                         {authenticated ? (<div/>) : (
                             <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}

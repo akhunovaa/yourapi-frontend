@@ -226,6 +226,7 @@ class ApiDetail extends Component {
     render() {
 
         const {loading, name, dealer, category, updated, description, image, id, bookmarkText, uuid, info, operations, bookmarked, error} = this.state;
+        const {visible, authenticated, handleSliderChange} = this.props;
 
         if (error) {
             return <Redirect to={{
@@ -252,8 +253,6 @@ class ApiDetail extends Component {
                 // padding: '2em'
             }
         };
-
-        const {visible, authenticated} = this.props;
 
         const seo = {
             title: "YourAPI | " + name,
@@ -296,6 +295,7 @@ class ApiDetail extends Component {
                         direction='right'
                         vertical
                         visible={visible}
+                        onHide={() => handleSliderChange()}
                         className='login-slider-pushable'>
                         {authenticated ? (<div/>) : (
                             <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}

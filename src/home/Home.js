@@ -211,6 +211,7 @@ class Home extends Component {
                         direction='right'
                         vertical
                         visible={visible}
+                        onHide={() => handleSliderChange()}
                         className='login-slider-pushable'>
                         {authenticated ? (<div/>) : (
                             <AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}

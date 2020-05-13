@@ -61,7 +61,7 @@ class HelpAccount extends Component {
     render() {
 
         const {page} = this.props.match.params;
-        const {visible, authenticated} = this.props;
+        const {visible, authenticated, handleSliderChange} = this.props;
 
         return (
             <Sidebar.Pushable as={Segment} className='login-sidebar-pushable'>
@@ -71,6 +71,7 @@ class HelpAccount extends Component {
                     direction='right'
                     vertical
                     visible={visible}
+                    onHide={() => handleSliderChange()}
                     className='login-slider-pushable'>
                     {authenticated ? (<div/>) : (<AuthContainerWrapper authenticated={authenticated} {...this.props}/>)}
                 </Sidebar>
