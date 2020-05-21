@@ -109,9 +109,9 @@ class SearchBox extends Component {
         const {value, results, wide, loading} = this.state;
 
         return (
-            <Grid>
-                <Grid.Column width={ wide ? 10 : 6 }>
-                    <Search className='header-center-search-box'
+            <Grid columns='equal'>
+                <Grid.Column width={ wide ? 20 : 12 }>
+                    <Search fluid className='header-center-search-box'
                             noResultsMessage={'Ничего не найдено...'}
                             loading={loading}
                             onResultSelect={this.handleResultSelect}

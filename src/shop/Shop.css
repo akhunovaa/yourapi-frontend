@@ -3,7 +3,7 @@
     min-height: 1180px;
     background: #F2F2F2;
     /*min-width: 1633px;*/
-    min-width: 1348px;
+    min-width: 1024px;
 }
 
 .grid-logo-text-avatar{
@@ -100,7 +100,7 @@
     height: auto;
     min-height: 616px;
     margin-top: -40px;
-    min-width: 1002px;
+    min-width: 900px;
     padding-right: 50px;
     width: 100%;
 }
@@ -301,7 +301,7 @@
 }
 
 .api-element-data{
-    min-width: 270px;
+    min-width: 200px;
     /*height: 200px;*/
     /*display: block;*/
     padding-top: 14px;

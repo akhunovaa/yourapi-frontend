@@ -3,7 +3,7 @@
     min-height: 1180px;
     background: #F2F2F2;
     /*min-width: 1633px;*/
-    min-width: 1348px;
+    min-width: 1024px;
 }
 
 .api-shop-container-breadcrumb{
@@ -181,7 +181,7 @@
     min-height: 616px;
     /*margin-top: -40px;*/
     width: 100%;
-    min-width: 1002px;
+    /*min-width: 1002px;*/
     padding-right: 50px;
     margin-top: -40px;
 }

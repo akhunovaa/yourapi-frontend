@@ -4,7 +4,7 @@
     background: #F2F2F2;
     /*min-width: 1633px;*/
     /*min-width: 1348px;*/
-    min-width: 1350px;
+    min-width: 1024px;
 }
 
 .header-picture {
@@ -110,7 +110,7 @@
 .main-body-new-api-container{
     height: auto;
     display: grid;
-    min-width: 1108px;
+    min-width: 1024px;
 }
 
 .main-body-new-api-container-name{
@@ -221,7 +221,7 @@
     padding-top: 20px;
     height: auto;
     display: grid;
-    min-width: 1108px;
+    min-width: 1024px;
 }
 
 .main-body-test-api-container{
