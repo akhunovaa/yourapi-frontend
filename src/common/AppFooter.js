@@ -42,6 +42,7 @@ class AppFooter extends Component {
                         <NavLink to="/" className='white-yellow-inactive-link'>© 2019-2020 YourAPI</NavLink>
                     </div>
 
+
                     <div className="footer-link-container">
                         <a href="/privacy.html" target="_blank" rel="noopener noreferrer"
                            className='white-yellow-inactive-link'>
@@ -77,6 +78,11 @@ class AppFooter extends Component {
                         <a href={"mailto:support@yourapi.ru"} rel="noopener noreferrer" className='white-yellow-inactive-link'>
                             Служба поддержки
                         </a>
+                    </div>
+                    <div className="footer-link-container">
+                        <span  className='white-yellow-inactive-link'>
+                            +7 (495) 115-88-50
+                        </span>
                     </div>
                 </div>
 
