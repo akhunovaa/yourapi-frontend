@@ -5,7 +5,7 @@
 replicaCount: 2
 
 image:
-  repository: rusberbank.ru/botmasterzzz-yourapi-frontend
+  repository: registry.yourapi.ru/botmasterzzz-yourapi-frontend
   appVersion: 139
   pullPolicy: IfNotPresent
 
